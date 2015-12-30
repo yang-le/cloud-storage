@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>note1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script>
+<script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS_HTML-full"></script>
+
+<style>
+h1 {text-align:center}
+h2 {
+  font-weight: bold;
+  background-color: #DDDDDD;
+  padding: .2em .5em;
+  margin-top: 1.5em;
+  border-top: 3px solid #666666;
+  border-bottom: 2px solid #999999;
+}
+</style>
+</head>
+<body>
+
+<h2>一般的三次方程均可化简为$x^3 = 3px + 2q$的形式</h2>
+<p>
+一般的三次方程形式为
+$$X^3 + aX^2 + bX + c = 0$$
+记$f(X) = X^3 + aX^2 + bX + c$，对其求二阶导数得$f''(X) = 6X + 2a$。<br />
+令$f''(X) = 0$，可以看出
+$$X = -{a \over 3}$$
+是其拐点。<br />
+因此，我们考虑变换$X = x - {a \over 3}$，带入原方程得
+$$x^3 + (b - {a^2 \over 3})x + {2 \over 27}a^3 - {ab \over 3} + c = 0$$
+为下步运算方便，记$-3p = b - {a^2 \over 3}$,$-2q = {2 \over 27}a^3 - {ab \over 3} + c$，最终方程化简为
+$$x^3 = 3px + 2q$$<br />
+</p>
+
+<h2>一般的三次方程有求根公式$\sqrt[3]{q + \sqrt{q^2 - p^3}} + \sqrt[3]{q - \sqrt{q^2 - p^3}}$</h2>
+<p>
+考虑变换$x = s +t$，带入原方程我们得到
+$$s^3 + t^3 + 3st(s + t) = 3p(s + t) + 2q$$
+可以看出，若$s、t$满足
+\begin{align}
+st = p \\
+s^3 + t^3 = 2q
+\end{align}
+则$x$就是原方程的一个解。<br />
+从上述方程组中，我们消去t，得到一个关于$s^3$的二次方程
+$$s^6 - 2qs^3 + p^3 = 0$$
+套用下二次方程的求根公式得
+$$s^3 = q \pm \sqrt{q^2 - p ^3}$$
+根据$t$与$s$的对称性，有
+$$t^3 = q \mp \sqrt{q^2 - p ^3}$$
+最后，将$s$与$t$带回最初的变换，我们得到求根公式
+$$x = \sqrt[3]{q + \sqrt{q^2 - p^3}} + \sqrt[3]{q - \sqrt{q^2 - p^3}}$$
+</p>
+
+</body>
+</html>
