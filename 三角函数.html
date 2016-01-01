@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>note1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script>
+<script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS_HTML-full"></script>
+
+<style>
+h1 {text-align:center}
+h2 {
+  font-weight: bold;
+  background-color: #DDDDDD;
+  padding: .2em .5em;
+  margin-top: 1.5em;
+  border-top: 3px solid #666666;
+  border-bottom: 2px solid #999999;
+}
+</style>
+</head>
+<body>
+
+<h2>三角函数：定义</h2>
+<p>
+以下考虑圆心在坐标原点的单位圆(半径为1)：<br />
+圆周率：定义为圆的周长与其直径的比值，记号为$\pi$。<br />
+弧度：定义单位圆上，长度为1的弧所对的圆心角的大小为1弧度。<br />
+对于单位圆来说，其周长为$2\pi$，因此周角为$2\pi$弧度，平角为$\pi$弧度，直角为$\pi \over 2$弧度。<br />
+弧度的正负：圆弧是有方向的，据此可对弧度规定正负。规定逆时针(CCW：counter clock wise)旋转形成的弧所对应的弧度为正；顺时针(CW:clock wise)旋转形成的弧所对应的弧度为负。<br />
+自变量的定义：设有一动点T在单位圆上运动，定义自变量$\theta$为坐标点$S=(1,0)$，坐标原点O,动点T所组成的角$\angle SOT$的弧度值。点S称为起始点。动点T会随着时间的变化而变化，在某时刻t，点T的位置记为$(x,y)$。<br />
+正弦：角$\theta$的正弦记做$sin\theta$，定义为点T的纵坐标值。即$sin\theta = y$<br />
+余弦：角$\theta$的余弦记做$cos\theta$，定义为点T的横坐标值。即$cos\theta = x$<br />
+正切：角$\theta$的正切记做$tan\theta$，定义为$tan\theta = {y \over x} = {sin\theta \over cos\theta}$<br />
+另外还有三个三角函数分别是以上三者的倒数：<br />
+余割：$csc\theta = {1 \over sin\theta} = {1 \over y}$<br />
+正割：$sec\theta = {1 \over cos\theta} = {1 \over x}$<br />
+余切：$cot\theta = {1 \over tan\theta} = {cos\theta \over sin\theta} = {x \over y}$<br />
+</p>
+
+<h2>三角函数：性质</h2>
+<p>
+<table border="true">
+  <tr>
+    <th>函数</th>
+    <th>定义域</th>
+    <th>值域</th>
+    <th>奇偶性</th>
+    <th>周期</th>
+    <th>渐近线</th>
+  </tr>
+  <tr>
+    <td>$sin$</td>
+    <td>$R$</td>
+    <td>$(-1,+1)$</td>
+    <td>奇</td>
+    <td>$2\pi$</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>$cos$</td>
+    <td>$R$</td>
+    <td>$(-1,+1)$</td>
+    <td>偶</td>
+    <td>$2\pi$</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>$tan$</td>
+    <td>$\{\theta \in R|\theta \ne {(2n+1)\pi \over 2}\}$</td>
+    <td>$R$</td>
+    <td>奇</td>
+    <td>$\pi$</td>
+    <td>$x = {(2n+1)\pi \over 2}$</td>
+  </tr>
+  <tr>
+    <td>$cot$</td>
+    <td>$\{\theta \in R|\theta \ne n\pi\}$</td>
+    <td>$R$</td>
+    <td>奇</td>
+    <td>$\pi$</td>
+    <td>$x = n\pi$</td>
+  </tr>
+  <tr>
+    <td>$csc$</td>
+    <td>$\{\theta \in R|\theta \ne n\pi\}$</td>
+    <td>$(-\infty,-1) \cup (+1,+\infty)$</td>
+    <td>奇</td>
+    <td>$2\pi$</td>
+    <td>$x = n\pi$</td>
+  </tr>
+  <tr>
+    <td>$sec$</td>
+    <td>$\{\theta \in R|\theta \ne {(2n+1)\pi \over 2}\}$</td>
+    <td>$(-\infty,-1) \cup (+1,+\infty)$</td>
+    <td>偶</td>
+    <td>$2\pi$</td>
+    <td>$x = {(2n+1)\pi \over 2}$</td>
+  </tr>
+</table>
+</p>
+
+<h2>三角函数：求值</h2>
+<p>
+
+<table border="true">
+  <tr>
+    <td>$\theta$</td>
+    <td>0</td>
+    <td>$\pi \over 4$</td>
+    <td>$\pi \over 2$</td>
+    <td>$3\pi \over 4$</td>
+    <td>$\pi$</td>
+    <td>$5\pi \over 4$</td>
+    <td>$3\pi \over 2$</td>
+    <td>$7\pi \over 4$</td>
+    <td>$2\pi$</td>
+  </tr>
+  <tr>
+    <td>$sin\theta$</td>
+    <td>0</td>
+    <td>$\sqrt2 \over 2$</td>
+    <td>1</td>
+    <td>$\sqrt2 \over 2$</td>
+    <td>0</td>
+    <td>$-{\sqrt2 \over 2}$</td>
+    <td>-1</td>
+    <td>$-{\sqrt2 \over 2}$</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>$cos\theta$</td>
+    <td>1</td>
+    <td>$\sqrt2 \over 2$</td>
+    <td>0</td>
+    <td>$-{\sqrt2 \over 2}$</td>
+    <td>-1</td>
+    <td>$-{\sqrt2 \over 2}$</td>
+    <td>0</td>
+    <td>$\sqrt2 \over 2$</td>
+    <td>1</td>
+  </tr>
+</table>
+观察上表，函数值关于$\pi$的对称性可以用周期性和奇偶性解释。即
+$$sin(\theta) = sin(\theta \pm 2\pi)$$
+$$cos(\theta) = cos(\theta \pm 2\pi)$$
+$$sin(-\theta) = -sin(\theta)$$
+$$cos(-\theta) = cos(\theta)$$
+例如 $sin({7\pi \over 4}) = sin(-{\pi \over 4}) = -sin({\pi \over 4}) = -{\sqrt2 \over 2}$<br />
+对于两个相加等于$\pi \over 2$的角来说，可以从两个角度来看。<br />
+角度1：记$\alpha = \angle SOT$,$\beta = \angle TOE$，其中S点的坐标为(1, 0)，E点的坐标为(0, 1)，T点位于两者之间，坐标为(x,y)。显然有$\alpha + \beta = {\pi \over 2}$<br />
+角度2：对调x轴和y轴，这时S点的坐标变为(0, 1)，而E点的坐标变为(1, 0)，T点的坐标则相应变成了(y,x)。仍然有$\alpha + \beta = {\pi \over 2}$<br />
+从角度1来看，$sin(\alpha) = y$。但从角度2来看，$cos(\beta) = y$（注意这时y是横坐标值）。所以我们有
+$$sin(\alpha) = cos(\beta) = cos({\pi \over 2} - \alpha)$$
+类似地，我们还有
+$$cos(\alpha) = sin(\beta) = sin({\pi \over 2} - \alpha)$$
+下面我们来解释另一种对称性，即关于$\pi \over 2$的对称性<br />
+利用上面得出的式子,我们有$cos(\pi + \theta) = cos({\pi \over 2} - (- {\pi \over 2} -\theta)) = sin(- {\pi \over 2} -\theta) = -sin({\pi \over 2} + \theta)$<br />
+类似地$cos(\pi - \theta) = cos({\pi \over 2} - (- {\pi \over 2} + \theta)) = sin(- {\pi \over 2} + \theta) = -sin({\pi \over 2} - \theta)$<br />
+注意到$cos(\pi + \theta) = cos(-\pi + \theta) = cos(\pi - \theta)$，我们就得到了
+$$sin({\pi \over 2} + \theta) = sin({\pi \over 2} - \theta)$$
+用类似地思路，还可以证明以下等式
+$$cos({\pi \over 2} + \theta) = -cos({\pi \over 2} - \theta)$$
+这样就解释了上表中函数值关于$\pi \over 2$的对称性。<br />
+基本上来说，我们只需要记住$(0,{\pi \over 2})$范围内的正弦函数值，其余范围的各函数值均可由上述性质推得。
+</p>
+
+<h2>三角函数：恒等式</h2>
+<p>
+周期性：
+$$sin(\theta \pm 2\pi) = sin(\theta)$$
+$$cos(\theta \pm 2\pi) = cos(\theta)$$
+关于0的对称性：
+$$sin(0+\theta) = -sin(0-\theta)$$
+$$cos(0+\theta) = cos(0-\theta)$$
+关于$\pi \over 2$的对称性：
+$$sin({\pi \over 2} + \theta) = sin({\pi \over 2} - \theta)$$
+$$cos({\pi \over 2} + \theta) = -cos({\pi \over 2} - \theta)$$
+关于$\pi$的对称性：
+$$sin(\pi + \theta) = -sin(\pi - \theta)$$
+$$cos(\pi + \theta) = cos(\pi - \theta)$$
+综合使用以上公式，可以帮助我们把任意角的三角函数转换到$[0,{\pi \over 2}]$范围内。<br />
+正余互换：
+$$sin(\alpha) = cos({\pi \over 2} - \alpha)$$
+$$cos(\alpha) = sin({\pi \over 2} - \alpha)$$
+勾股定理：
+$$sin^2(\theta) + cos^2(\theta) = 1$$
+$$tan^2(\theta) + 1 = sec^2(\theta)$$
+$$1 + cot^2(\theta) = csc^2(\theta)$$
+综合使用上述公式，能让我们将6个三角函数中的任意一个，用其他五个中的任意一个表示出来。<br />
+角度的和与差：
+$$sin(\alpha + \beta) = sin(\alpha)cos(\beta) + cos(\alpha)sin(\beta)$$
+$$cos(\alpha + \beta) = cos(\alpha)cos(\beta) - sin(\alpha)sin(\beta)$$
+把上面的$\beta$替换成$-\beta$可以得到对应的角度差公式。
+$$sin(\alpha - \beta) = sin(\alpha)cos(\beta) - cos(\alpha)sin(\beta)$$
+$$cos(\alpha - \beta) = cos(\alpha)cos(\beta) + sin(\alpha)sin(\beta)$$
+这组公式可以有几种证明方法，最快的方法是借助欧拉公式。
+$$(cos(\alpha) + isin(\alpha))(cos(\beta) + isin(\beta)) = e^{i\alpha}e^{i\beta} = e^{i(\alpha + \beta)} = cos(\alpha + \beta) + isin(\alpha + \beta)$$
+将上式最左边乘开，并令其与最右端实部虚部分别相等即可得到。(用欧拉公式似乎有循环论证的嫌疑，因为欧拉公式的证明需要用幂级数展开，这就涉及到求三角函数的导数，而三角函数的导数正是通过角度和公式进行计算得出的...)<br />
+将角度和之两公式相除并化简还可得到
+$$tan(\alpha + \beta) = {tan(\alpha) + tan(\beta) \over 1 - tan(\alpha)tan(\beta)}$$
+将$sin$之角度和差公式相加减，我们就得到函数乘积公式：
+$$sin(\alpha)cos(\beta) = {sin(\alpha + \beta) + sin(\alpha - \beta) \over 2}$$
+$$cos(\alpha)sin(\beta) = {sin(\alpha + \beta) - sin(\alpha - \beta) \over 2}$$
+将$cos$之角度和差公式相加减，我们就得到函数乘积公式：
+$$sin(\alpha)sin(\beta) = {cos(\alpha - \beta) - cos(\alpha + \beta) \over 2}$$
+$$cos(\alpha)cos(\beta) = {cos(\alpha - \beta) + cos(\alpha + \beta) \over 2}$$
+做变换$\theta = \alpha + \beta$，$\phi = \alpha - \beta$，故有$\alpha = {\theta + \phi \over 2}$，$\beta = {\theta - \phi \over 2}$。<br />
+这将方便我们导出如下的函数和差公式
+$$sin(\theta) + sin(\phi) = 2sin({\theta + \phi \over 2})cos({\theta - \phi \over 2})$$
+$$sin(\theta) - sin(\phi) = 2cos({\theta + \phi \over 2})sin({\theta - \phi \over 2})$$
+$$cos(\theta) + cos(\phi) = 2cos({\theta + \phi \over 2})cos({\theta - \phi \over 2})$$
+$$cos(\theta) - cos(\phi) = -2sin({\theta + \phi \over 2})sin({\theta - \phi \over 2})$$
+角度和公式的另一个有用的特例是2倍角和3倍角公式
+$$sin(2\theta) = 2sin(\theta)cos(\theta)$$
+$$cos(2\theta) = cos^2(\theta) - sin^2(\theta) = 1 - 2sin^2(\theta) = 2cos^2(\theta) - 1$$
+$$sin(3\theta) = 3sin(\theta) - 4sin^3(\theta)$$
+$$cos(3\theta) = 4cos^3(\theta) - 3cos(\theta)$$
+这将方便我们导出如下的函数降幂公式：
+$$sin^2(\theta) = {1 - cos(2\theta) \over 2}$$
+$$cos^2(\theta) = {1 + cos(2\theta) \over 2}$$
+$$sin^3(\theta) = {3sin(\theta) - sin(3\theta) \over 4}$$
+$$cos^3(\theta) = {3cos(\theta) + cos(3\theta) \over 4}$$
+组合以上公式，使我们能够将4次5次甚至更高次幂降下来。<br />
+另一个例子是求$\pi \over 6$的正弦值，只需将$\theta = {\pi \over 6}$带入3倍角公式，得$3sin({\pi \over 6}) - 4sin^3({\pi \over 6}) = sin(3{\pi \over 6}) = sin({\pi \over 2})= 1$，即
+$$3sin({\pi \over 6}) - 4sin^3({\pi \over 6}) - 1 = 0$$
+解上述方程，如果观察到-1是其中一根，可分解因式为
+$$4(sin({\pi \over 6}) + 1)(sin({\pi \over 6}) - {1 \over 2})^2 = 0$$
+即可解得$sin({\pi \over 6}) = {1 \over 2}$。用一下勾股定理还可得到$cos({\pi \over 6}) = {\sqrt{3} \over 2}$
+</p>
+
+</body>
+</html>
