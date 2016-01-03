@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>指数函数</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script>
+<script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS_HTML-full"></script>
+
+<style>
+h1 {text-align:center}
+h2 {
+  font-weight: bold;
+  background-color: #DDDDDD;
+  padding: .2em .5em;
+  margin-top: 1.5em;
+  border-top: 3px solid #666666;
+  border-bottom: 2px solid #999999;
+}
+</style>
+</head>
+<body>
+
+<h2>指数函数</h2>
+<p>
+形如$f(x) = a^x$的函数称为指数函数。为了让$f(x)$在整个实轴上有定义，规定这里的$a\gt0$。<br />
+指数函数在某些方面和幂函数很相似，只是幂函数自变量出现在底数的位置上，而指数函数自变量出现在指数的位置上。<br />
+我们可以列出指数函数的如下基本性质，也算是作为对幂函数的一个简单的回顾
+\begin{eqnarray}
+a^{x+y} = a^x \cdot a^y \\
+a^{x-y} = {a^x \over a^y} \\
+a^{xy} = (a^x)^y \\
+a^{x \over y} = \sqrt[y]{a^x} \\
+a^0 = 1
+\end{eqnarray}
+因考虑到在微积分运算中的方便性，我们常以数学常数$e$作为指数函数的底数，即$f(x)=e^x$，也称为指数函数。<br />
+其中$e$的定义为
+\begin{equation}
+e = \lim_{n \to \infty}(1 + {1 \over n})^n
+\end{equation}
+是从复利的计算中抽象出来的一个常数，其值约为2.71828...。是在复利利率为100%的情况下，将1元钱存入银行1年所能获得的最大本息和。
+</p>
+
+<h2>对数函数</h2>
+<p>
+对数函数定义为指数函数的反函数。<br />
+也就是说，设$x = a^y$，其中$a\gt0$为已知量，$y$值会随$x$的变化而变化，两者之间的关系可以一函数来表达$y = f(x)$。这里的$y$就称为以$a$为底的关于$x$的对数函数，在数学中对数函数有个特别的记号$log$。如前述的$y = f(x)$就可以记为$y = log_a(x)$。<br />
+关于对数函数的基本性质，首先有反函数关系，即
+\begin{eqnarray}
+log_a(a^x) = x \\
+a^{log_a(x)} = x
+\end{eqnarray}
+借助上述两条等式，仿照指数函数的性质，也很容易得出关于对数函数的类似结论，如
+\begin{eqnarray}
+log_a(x) + log_a(y) = log_a(xy) \\
+log_a(x) - log_a(y) = log_a({x \over y}) \\
+ylog_a(x) = log_a({x^y}) \\
+{log_a(x) \over y} = log_a(\sqrt[y]{x}) \\
+log_a(1) = 0
+\end{eqnarray}
+证明是容易地，以第一条结论为例，首先我们记$P=a^x$，$Q=a^y$，则有$x = log_a(P)$和$y = log_a(Q)$。<br />
+在指数函数的对应性质两边取对数，得到$x+y = log_a(a^x \cdot a^y)$，即$log_a(P) + log_a(Q) = log_a(PQ)$。<br />
+这就完成了证明。其他各式均可仿此得证。<br />
+上面实际上只用了反函数关系的第一条结论，现在让我们从反函数关系的第二条出发，看看还能得出什么结论。首先做代换$x=b^t$,我们有$a^{log_a(b^t)} = b^t$。然后在两边取以$b$为底的对数，得到$log_a(b^t)log_b(a) = tlog_a(b)log_b(a) = t$，从两边消去$t$我们得到$log_a(b)log_b(a) = 1$也就是说
+\begin{equation}
+log_a(b) = {1 \over log_b(a)}
+\end{equation}
+好吧，这实际上无非就是在说，如果你做$a$的$n$次幂得到了$b$，那么你也可以对$b$开$n$次方得到$a$。<br />
+出于同样的目的，以$e$为底的对数函数$log_e(x)$以后也会经常用到，以至于它有一个专门名字称为自然对数，记号为$ln(x)$。
+</p>
+
+<h2>换底公式</h2>
+<p>
+既然以$e$为底数的指数函数及对数函数如此常用，我们自然希望有一些方便的公式，在非$e$底数的一般指数\对数和以$e$为底的指数\自然对数之间进行转换。<br />
+实际上，这并不难找到。如果我们希望找到这样的$t$，使得$a^x = e^t$。只要在两边取自然对数，立即得到$ln(a^x) = t$，即$t = xln(a)$。所以，我们有
+\begin{equation}
+a^x = e^{xln(a)}
+\end{equation}
+下面这件事就有点技巧了，如果我们希望找到这样的$t$，使得$log_a(x) = ln(t)$呢。希望你还记得$x = e^{ln(x)}$,带入前面的式子中，我们有$ln(x)log_a(e) = ln(t)$。这里面的$e$显然更适合做底数，所以我们使用倒数关系把$log_a(e)$换到分母的位置，得到${ln(x) \over ln(a)} = ln(t)$。好吧，现在我们已经不需要求出$t$的最终形式了，只要把这个结果回带回去，我们就能得到
+\begin{equation}
+log_a(x) = {ln(x) \over ln(a)}
+\end{equation}
+P.S.:如果你想知道，$t$的最终形式实际上就是$\sqrt[ln(a)]{x}$，很难看...
+</p>
+
+</body>
+</html>
