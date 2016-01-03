@@ -269,12 +269,12 @@ cos(\theta) - cos(\phi) = -2sin({\theta + \phi \over 2})sin({\theta - \phi \over
 \end{eqnarray}
 角度和公式的另一个有用的特例是2倍角和3倍角公式
 \begin{eqnarray}
-sin(2\theta) = 2sin(\theta)cos(\theta) \\
+sin(2\theta) = 2sin(\theta)cos(\theta) \label{sin5} \\
 \begin{split} 
-cos(2\theta)& = cos^2(\theta) - sin^2(\theta) \\
+cos(2\theta)& = cos^2(\theta) - sin^2(\theta)\\
 & = 1 - 2sin^2(\theta) \\
 & = 2cos^2(\theta) - 1
-\end{split} \\
+\end{split} \label{cos5} \\
 sin(3\theta) = 3sin(\theta) - 4sin^3(\theta) \\
 cos(3\theta) = 4cos^3(\theta) - 3cos(\theta)
 \end{eqnarray}
@@ -286,6 +286,13 @@ sin^3(\theta) = {3sin(\theta) - sin(3\theta) \over 4} \label{sin4} \\
 cos^3(\theta) = {3cos(\theta) + cos(3\theta) \over 4} \label{cos4}
 \end{eqnarray}
 组合使用公式\eqref{sin3}～\eqref{cos4}，使我们能够将4次5次甚至更高次幂降下来。<br />
+使用2倍角公式的一个例子是导出所谓的“万能公式”
+\begin{eqnarray}
+sin(\theta) = {2tan({\theta \over 2}) \over 1 + tan^2({\theta \over 2})} \\
+cos(\theta) = {1 - tan^2({\theta \over 2}) \over 1 + tan^2({\theta \over 2})} \\
+tan(\theta) = {2tan({\theta \over 2}) \over 1 - tan^2({\theta \over 2})}
+\end{eqnarray}
+只需将\eqref{sin5}\eqref{cos5}的右端分子分母同时除以$cos^2(\theta)$，再将$\theta$替换为$\theta \over 2$即可得到。<br />
 另一个例子是求$\pi \over 6$的正弦值，只需将$\theta = {\pi \over 6}$带入3倍角公式，得$3sin({\pi \over 6}) - 4sin^3({\pi \over 6}) = sin(3{\pi \over 6}) = sin({\pi \over 2})= 1$，即
 $$3sin({\pi \over 6}) - 4sin^3({\pi \over 6}) - 1 = 0$$
 解上述方程，如果观察到-1是其中一根，可分解因式为
