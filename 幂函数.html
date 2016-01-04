@@ -6,7 +6,8 @@
 
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
-    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: { equationNumbers: {autoNumber: "AMS"} }
   });
 </script>
 <script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS_HTML-full"></script>
@@ -27,20 +28,28 @@ h2 {
 
 <h2>幂函数</h2>
 <p>
-定义变量$x$的$n$次幂为$\underbrace{x \cdot x \cdots x}_\text{$n$ times}$，记为$f(x) = x^n$，其中$n$为正整数。<br />
+定义变量$x$的$n$次幂为$\underbrace{x \cdot x \cdots x}_\text{$n$ times}$，记为$f(x) = x^n$，其中$n$为正整数。
+</p>
+<p>
 根据上述定义，这个函数有一个显而易见的性质，即
 \begin{equation}
 x^n \cdot x^m = x^{n + m}
 \end{equation}
+</p>
+<p>
 为了把$n$可以取值的范围推广，我们先考虑$x^n \cdot x^0$，根据上面的性质，应该等于$x^{n + 0} = x^n$。<br />
 即$x^n \cdot x^0 = x^n$,所以我们得到
 \begin{equation}
 x^0 = 1
 \end{equation}
+</p>
+<p>
 然后我们尝试进入负数，因为$x^n \cdot x^{-n} = x^0 = 1$,所以应该有
 \begin{equation}
 x^{-n} = {1 \over x^n}
 \end{equation}
+</p>
+<p>
 为了引入分数，我们考虑$(x^n)^m$这个式子。根据定义，这表示$\underbrace{x^n \cdot x^n \cdots x^n}_\text{$m$ times}$。再结合$x^n$的定义，我们得到
 \begin{equation}
 (x^n)^m = x^{nm}
@@ -49,10 +58,14 @@ x^{-n} = {1 \over x^n}
 \begin{equation}
 x^{1 \over n} = \sqrt[n]x
 \end{equation}
-注意当我们使用$\sqrt[n]x$这个符号时，表示的是$x$的主n次方根，即$x$的n次方根中与$x$同号的唯一实数。如果n是偶数，那么负数将没有主n次方根。<br />
+注意当我们使用$\sqrt[n]x$这个符号时，表示的是$x$的主n次方根，即$x$的n次方根中与$x$同号的唯一实数。如果n是偶数，那么负数将没有主n次方根。
+</p>
+<p>
 因为我们的讨论仅限于实数范围内，需要注意幂函数的定义域。<br />
 当幂函数为整数幂时，定义域为$\mathbb R$。例如$3^2 = 9$，$(-\pi)^{-3} = -{1 \over \pi ^ 3}$,$0^0 = 1$都是有定义的。<br />
-当幂函数为分数幂时，如果分母是奇数，定义域仍为$\mathbb R$;如果分母是偶数，定义域则限定为$[0, +\infty)$。例如$(-8)^{1 \over 3} = -2$，$9^{1 \over 2} = 3$但$(-9)^{1 \over 2}$因为是复数，则在实数范围内没有定义。<br />
+当幂函数为分数幂时，如果分母是奇数，定义域仍为$\mathbb R$;如果分母是偶数，定义域则限定为$[0, +\infty)$。例如$(-8)^{1 \over 3} = -2$，$9^{1 \over 2} = 3$但$(-9)^{1 \over 2}$因为是复数，则在实数范围内没有定义。
+</p>
+<p>
 分数幂自然不能只限于${1 \over n}$这样的形式，考虑一般的有理数${p \over q}$，有理数幂的定义如下
 \begin{equation}
 x^{p \over q} = (x^p)^{1\over q} = \sqrt[q]{x^p}
@@ -61,7 +74,9 @@ x^{p \over q} = (x^p)^{1\over q} = \sqrt[q]{x^p}
 情况1：$p$是奇数，$q$也是奇数。定义域为$\mathbb R$<br />
 情况2：$p$是偶数，$q$是奇数。定义域为$\mathbb R$<br />
 情况3：$p$是奇数，$q$是偶数。定义域应限定为$[0, +\infty)$<br />
-总之，若化简$p \over q$使其分子分母不同时为偶数，则有理数次幂同样是当分母为偶数时，定义域为非负实数；其他情况，定义域为全部实数。<br />
+总之，若化简$p \over q$使其分子分母不同时为偶数，则有理数次幂同样是当分母为偶数时，定义域为非负实数；其他情况，定义域为全部实数。
+</p>
+<p>
 最后，我们还要定义无理数幂为有理数幂的极限，即
 \begin{equation}
 x^r = \lim_{q(\in \mathbb Q) \to r} x^q (x \in \mathbb R^+, r \in \mathbb R)
