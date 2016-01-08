@@ -9,6 +9,9 @@
     tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
     TeX: { equationNumbers: {autoNumber: "AMS"} }
   });
+  MathJax.Hub.Queue(function () {
+    document.getElementById("hide_page").style.visibility = "";
+  });
 </script>
 <script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
@@ -25,7 +28,7 @@ h2 {
 </style>
 </head>
 <body>
-
+<div id="hide_page" style="visibility:hidden">
 <h2>初等函数的定义</h2>
 <p>
 常函数、幂函数、指数函数、对数函数、三角函数及反三角函数，这六种函数称为基本初等函数。<br />
@@ -167,12 +170,63 @@ f'(x) & = \lim_{\Delta x \to 0}{e^{x + \Delta x} - e^x \over \Delta x} \\
 \end{split} 
 \end{equation}
 根据对数函数与指数函数的关系$e^{ln(x)} = x$，我们在两边求导，得$e^{ln(x)} \cdot ln'(x) = 1$,因此对于<br />
-指数函数 $f(x) = ln(x)$，有
+对数函数 $f(x) = ln(x)$，有
 \begin{equation}
 f'(x) = {1 \over x}
 \end{equation}
-
+三角函数<br />
+正弦函数 $f(x) = sin(x)$，依定义有
+\begin{equation}
+\begin{split} 
+f'(x) & = \lim_{\Delta x \to 0}{sin(x + \Delta x) - sin(x) \over \Delta x} \\
+& = \lim_{\Delta x \to 0}{2cos({\Delta x \over 2} + x)sin({\Delta x \over 2}) \over \Delta x} \\
+& = \lim_{\Delta x \to 0}{cos({\Delta x \over 2} + x)sin({\Delta x \over 2}) \over {\Delta x \over 2}} \\
+& = \lim_{\Delta x \to 0}{cos({\Delta x \over 2} + x)} \\
+& = cos(x)
+\end{split} 
+\end{equation}
+以上步骤中用到$\lim_{x \to 0}{sin(x) \over x} = 1$这一结论，证明如下<br />
+首先注意到，当$x \to 0$时，有$sin(x) \le x \le tan(x)$的结论成立，这可以通过观察单位圆中三者的关系得出。在不等号两边同时除以$sin(x)$，得到$1 \le {x \over sin(x)} \le {1 \over cos(x)}$。然后我们在不等号两边再取极限，有$\lim_{x \to 0}1 \le \lim_{x \to 0}{x \over sin(x) } \le \lim_{x \to 0}{1 \over cos(x)}$。两边都是1，中间也必然为1。因此我们的结论得到了证明。<br />
+余弦函数 $f(x) = cos(x)$，依定义有
+\begin{equation}
+\begin{split} 
+f'(x) & = \lim_{\Delta x \to 0}{cos(x + \Delta x) - cos(x) \over \Delta x} \\
+& = \lim_{\Delta x \to 0}{-2sin({\Delta x \over 2} + x)sin({\Delta x \over 2}) \over \Delta x} \\
+& = \lim_{\Delta x \to 0}{-sin({\Delta x \over 2} + x)sin({\Delta x \over 2}) \over {\Delta x \over 2}} \\
+& = \lim_{\Delta x \to 0}{-sin({\Delta x \over 2} + x)} \\
+& = -sin(x)
+\end{split} 
+\end{equation}
+正切函数 $f(x) = tan(x) = {sin(x) \over cos(x)}$，则可以用乘积的求导法则处理
+\begin{equation}
+\begin{split} 
+f'(x) & = sin'(x){1 \over cos(x)} + sin(x)({1 \over cos(x)})' \\
+& = 1 + tan^2(x) \\
+& = sec^2(x)
+\end{split} 
+\end{equation}
+余割函数 $f(x) = csc(x) = {1 \over sin(x)}$，仿照上述处理
+\begin{equation}
+\begin{split} 
+f'(x) & = -{cos(x) \over sin^2(x)} \\
+& = -cot(x)csc(x)
+\end{split} 
+\end{equation}
+正割函数 $f(x) = sec(x) = {1 \over cos(x)}$，仿照上述处理
+\begin{equation}
+\begin{split} 
+f'(x) & = {sin(x) \over cos^2(x)} \\
+& = tan(x)sec(x)
+\end{split} 
+\end{equation}
+余切函数 $f(x) = cot(x) = {1 \over tan(x)}$，仿照上述处理
+\begin{equation}
+\begin{split} 
+f'(x) & = -{sec^2(x) \over tan^2(x)} \\
+& = -csc^2(x)
+\end{split} 
+\end{equation}
 </p>
-
+</div>
 </body>
 </html>
