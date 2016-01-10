@@ -23,6 +23,11 @@ h2 {
   border-bottom: 2px solid #999999;
 }
 </style>
+
+<script type="text/javascript" src="../mathjs/dist/math.min.js"></script>
+<script type="text/javascript" src="../d3/d3.min.js"></script>
+<script type="text/javascript" src="../function-plot/dist/function-plot.js"></script>
+
 </head>
 <body>
 
@@ -51,10 +56,13 @@ h2 {
 <dl>
 <dt>正弦</dt>
 <dd>点T的纵坐标值,记做$sin\theta$。即$sin\theta = y$</dd>
+<dd id="sin"></dd>
 <dt>余弦</dt>
 <dd>点T的横坐标值,记做$cos\theta$。即$cos\theta = x$</dd>
+<dd id="cos"></dd>
 <dt>正切</dt>
 <dd>定义为${y \over x} = {sin\theta \over cos\theta}$,记做$tan\theta$。</dd>
+<dd id="tan"></dd>
 </dl>
 
 <p>
@@ -64,10 +72,13 @@ h2 {
 <dl>
 <dt>余割</dt>
 <dd>$csc\theta = {1 \over sin\theta} = {1 \over y}$</dd>
+<dd id="csc"></dd>
 <dt>正割</dt>
 <dd>$sec\theta = {1 \over cos\theta} = {1 \over x}$</dd>
+<dd id="sec"></dd>
 <dt>余切</dt>
 <dd>$cot\theta = {1 \over tan\theta} = {cos\theta \over sin\theta} = {x \over y}$</dd>
+<dd id="cot"></dd>
 </dl>
 
 <h2>三角函数：性质</h2>
@@ -299,6 +310,32 @@ $$3sin({\pi \over 6}) - 4sin^3({\pi \over 6}) - 1 = 0$$
 $$4(sin({\pi \over 6}) + 1)(sin({\pi \over 6}) - {1 \over 2})^2 = 0$$
 即可解得$sin({\pi \over 6}) = {1 \over 2}$。用一下勾股定理还可得到$cos({\pi \over 6}) = {\sqrt{3} \over 2}$
 </p>
+
+<script>
+function draw(tar_id, func) {
+  try {
+    functionPlot({
+      target: '#' + tar_id,
+      data: [{
+        fn: func,
+        sampler: 'builtIn',  // this will make function-plot use the evaluator of math.js
+        graphType: 'polyline'
+      }]
+    });
+  }
+  catch (err) {
+    console.log(err);
+    alert(err);
+  }
+}
+
+draw('sin', 'sin(x)');
+draw('cos', 'cos(x)');
+draw('tan', 'tan(x)');
+draw('csc', 'csc(x)');
+draw('sec', 'sec(x)');
+draw('cot', 'cot(x)');
+</script>
 
 </body>
 </html>
