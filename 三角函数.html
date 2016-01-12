@@ -56,13 +56,13 @@ h2 {
 <dl>
 <dt>正弦</dt>
 <dd>点T的纵坐标值,记做$sin\theta$。即$sin\theta = y$</dd>
-<dd id="sin"></dd>
+<dd id="sin"></dd><dd id="asin"></dd>
 <dt>余弦</dt>
 <dd>点T的横坐标值,记做$cos\theta$。即$cos\theta = x$</dd>
-<dd id="cos"></dd>
+<dd id="cos"></dd><dd id="acos"></dd>
 <dt>正切</dt>
 <dd>定义为${y \over x} = {sin\theta \over cos\theta}$,记做$tan\theta$。</dd>
-<dd id="tan"></dd>
+<dd id="tan"></dd><dd id="atan"></dd>
 </dl>
 
 <p>
@@ -71,14 +71,14 @@ h2 {
 
 <dl>
 <dt>余割</dt>
-<dd>$csc\theta = {1 \over sin\theta} = {1 \over y}$</dd>
-<dd id="csc"></dd>
+<dd>$csc\theta = {1 \over sin\theta} = {1 \over y}$ 所以 $arccsc(x) = arcsin({1 \over x})$</dd>
+<dd id="csc"></dd><dd id="acsc"></dd>
 <dt>正割</dt>
-<dd>$sec\theta = {1 \over cos\theta} = {1 \over x}$</dd>
-<dd id="sec"></dd>
+<dd>$sec\theta = {1 \over cos\theta} = {1 \over x}$ 所以 $arcsec(x) = arccos({1 \over x})$</dd>
+<dd id="sec"></dd><dd id="asec"></dd>
 <dt>余切</dt>
-<dd>$cot\theta = {1 \over tan\theta} = {cos\theta \over sin\theta} = {x \over y}$</dd>
-<dd id="cot"></dd>
+<dd>$cot\theta = {1 \over tan\theta} = {cos\theta \over sin\theta} = {x \over y}$ 所以 $arccot(x) = arctan({1 \over x})$ $(x > 0)$</dd>
+<dd id="cot"></dd><dd id="acot"></dd>
 </dl>
 
 <h2>三角函数：性质</h2>
@@ -139,6 +139,65 @@ h2 {
     <td>偶</td>
     <td>$2\pi$</td>
     <td>$x = {(2n+1)\pi \over 2}$</td>
+  </tr>
+</table>
+<br />
+<table border="true">
+  <tr>
+    <th>反函数</th>
+    <th>定义域</th>
+    <th>值域</th>
+    <th>奇偶性</th>
+    <th>周期</th>
+    <th>渐近线</th>
+  </tr>
+  <tr>
+    <td>$asin$</td>
+    <td>$(-1,+1)$</td>
+    <td>$(-{\pi \over 2},+{\pi \over 2})$</td>
+    <td>奇</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>$acos$</td>
+    <td>$(-1,+1)$</td>
+    <td>$(0,\pi)$</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>$atan$</td>
+    <td>$R$</td>
+    <td>$(-{\pi \over 2},+{\pi \over 2})$</td>
+    <td>奇</td>
+    <td>-</td>
+    <td>$y = \pm {\pi \over 2}$</td>
+  </tr>
+  <tr>
+    <td>$acot$</td>
+    <td>$R$</td>
+    <td>$(0,\pi)$</td>
+    <td>-</td>
+    <td>-</td>
+    <td>$y = 0$ $y = \pi$</td>
+  </tr>
+  <tr>
+    <td>$acsc$</td>
+    <td>$(-\infty,-1) \cup (+1,+\infty)$</td>
+    <td>$(-{\pi \over 2},+{\pi \over 2})$</td>
+    <td>奇</td>
+    <td>-</td>
+    <td>$y = 0$</td>
+  </tr>
+  <tr>
+    <td>$asec$</td>
+    <td>$(-\infty,-1) \cup (+1,+\infty)$</td>
+    <td>$(0,\pi)$</td>
+    <td>-</td>
+    <td>-</td>
+    <td>$y = {\pi \over 2}$</td>
   </tr>
 </table>
 
@@ -218,7 +277,13 @@ cos(\theta \pm 2\pi) = cos(\theta)
 关于0的对称性：
 \begin{eqnarray}
 sin(0+\theta) = -sin(0-\theta) \\
-cos(0+\theta) = cos(0-\theta)
+cos(0+\theta) = cos(0-\theta) \\
+tan(0+\theta) = -tan(0-\theta)
+\end{eqnarray}
+\begin{eqnarray}
+arcsin(0+\theta) = -arcsin(0-\theta) \\
+arccos(0+\theta) = \pi - arccos(0-\theta) \\
+arctan(0+\theta) = -arctan(0-\theta)
 \end{eqnarray}
 关于$\pi \over 2$的对称性：
 \begin{eqnarray}
@@ -233,14 +298,27 @@ cos(\pi + \theta) = cos(\pi - \theta)
 综合使用以上公式，可以帮助我们把任意角的三角函数转换到$[0,{\pi \over 2}]$范围内。<br />
 正余互换：
 \begin{eqnarray}
-sin(\alpha) = cos({\pi \over 2} - \alpha) \\
-cos(\alpha) = sin({\pi \over 2} - \alpha)
+sin(\alpha) = cos({\pi \over 2} - \alpha) \label{zy1} \\
+cos(\alpha) = sin({\pi \over 2} - \alpha) \label{zy2} \\
+csc(\alpha) = sec({\pi \over 2} - \alpha) \label{zy3} \\
+tan(\alpha) = cot({\pi \over 2} - \alpha) \label{zy4}
+\end{eqnarray}
+\eqref{zy2}由\eqref{zy1}经代换$\alpha \to {\pi \over 2} - \alpha$得到。\eqref{zy3}由\eqref{zy1}取倒数得到。\eqref{zy4}由\eqref{zy1} \eqref{zy2}做除法得到。
+\begin{eqnarray}
+arcsin(\alpha) = {\pi \over 2} - arccos(\alpha) \\
+arccsc(\alpha) = {\pi \over 2} - arcsec(\alpha) \\
+arctan(\alpha) = {\pi \over 2} - arccot(\alpha)
 \end{eqnarray}
 勾股定理：
 \begin{eqnarray}
 sin^2(\theta) + cos^2(\theta) = 1 \\
 tan^2(\theta) + 1 = sec^2(\theta) \\
 1 + cot^2(\theta) = csc^2(\theta)
+\end{eqnarray}
+\begin{eqnarray}
+arccos(x) = arcsin(\sqrt{1 - x^2}) \\
+arccot(x) = arccsc(\sqrt{1 + x^2}) \\
+arctan(x) = arcsec(\sqrt{1 + x^2})
 \end{eqnarray}
 综合使用上述公式，能让我们将6个三角函数中的任意一个，用其他五个中的任意一个表示出来。<br />
 角度的和与差：
@@ -281,7 +359,7 @@ cos(\theta) - cos(\phi) = -2sin({\theta + \phi \over 2})sin({\theta - \phi \over
 角度和公式的另一个有用的特例是2倍角和3倍角公式
 \begin{eqnarray}
 sin(2\theta) = 2sin(\theta)cos(\theta) \label{sin5} \\
-\begin{split} 
+\begin{split}
 cos(2\theta)& = cos^2(\theta) - sin^2(\theta)\\
 & = 1 - 2sin^2(\theta) \\
 & = 2cos^2(\theta) - 1
@@ -313,14 +391,42 @@ $$4(sin({\pi \over 6}) + 1)(sin({\pi \over 6}) - {1 \over 2})^2 = 0$$
 
 <script>
 function draw(tar_id, func) {
+  var range1 = [-Infinity, Infinity];
+  var range2 = [];
+  var func1 = func;
+  var func2 = func;
+
+  if ((tar_id === "asec") || (tar_id === "acsc")) {
+    range1 = [-Infinity, -1];
+    range2 = [1, Infinity];
+  }
+
+  if (tar_id === "acot") {
+    range1 = [-Infinity, 0];
+    range2 = [0, Infinity];
+    func1 = func + '+pi';
+  }
   try {
     functionPlot({
+      title: tar_id,
       target: '#' + tar_id,
       data: [{
-        fn: func,
+        fn: func1,
+        range: range1,
         sampler: 'builtIn',  // this will make function-plot use the evaluator of math.js
-        graphType: 'polyline'
-      }]
+        graphType: 'polyline',
+        color: 'black',
+        skipTip: true
+      },{
+        fn: func2,
+        range: range2,
+        sampler: 'builtIn',  // this will make function-plot use the evaluator of math.js
+        graphType: 'polyline',
+        color: 'black',
+        skipTip: true
+      }],
+      disableZoom: true,
+      grid: true
     });
   }
   catch (err) {
@@ -335,6 +441,13 @@ draw('tan', 'tan(x)');
 draw('csc', 'csc(x)');
 draw('sec', 'sec(x)');
 draw('cot', 'cot(x)');
+
+draw('asin', 'asin(x)');
+draw('acos', 'acos(x)');
+draw('atan', 'atan(x)');
+draw('acsc', 'acsc(x)');
+draw('asec', 'asec(x)');
+draw('acot', 'acot(x)');
 </script>
 
 </body>
