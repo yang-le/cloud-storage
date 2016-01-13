@@ -430,15 +430,21 @@ arcsin(x) = {\pi \over 2} - arccos(x) \\
 arccsc(x) = {\pi \over 2} - arcsec(x) \\
 arctan(x) = {\pi \over 2} - arccot(x)
 \end{eqnarray}
-记$x = sin(y)$,则$cos(y) = \sqrt{1 - x^2}$。由于$x = arcsin(sin(y)) = arccos(cos(y))$，我们就有
-\begin{equation}
-arccsin(x) = arccos(\sqrt{1 - x^2})
-\end{equation}
+<!--
+记$x = sin(y)$,则$cos(y) = \pm \sqrt{1 - x^2}$。由于$x = arcsin(sin(y)) = arccos(cos(y))$，并考虑正负号，我们就有
+\begin{eqnarray}
+arccsin(x) =
+\begin{cases}
+arccos(-\sqrt{1 - x^2}) & x > 0 \\
+arccos(\sqrt{1 - x^2}) & x < 0
+\end{cases}
+\end{eqnarray}
 基于公式\eqref{gg2} \eqref{gg3},使用类似的方法，我们可以得到
 \begin{eqnarray}
 arctan(x) = arcsec(\sqrt{1 + x^2}) \\
 arccot(x) = arccsc(\sqrt{1 + x^2})
 \end{eqnarray}
+-->
 </p>
 
 <script>
