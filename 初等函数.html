@@ -28,6 +28,22 @@ h2 {
 </style>
 </head>
 <body>
+<div style="display:none">
+\(
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\arcosh}{arcosh}
+\DeclareMathOperator{\artanh}{artanh}
+\DeclareMathOperator{\arcoth}{arcoth}
+\DeclareMathOperator{\arsech}{arsech}
+\DeclareMathOperator{\arcsch}{arcsch}
+\DeclareMathOperator{\sinc}{sinc}
+\)
+</div>
 <div id="hide_page" style="visibility:hidden">
 <h2>初等函数的定义</h2>
 <p>
@@ -67,7 +83,7 @@ f'(x) & = \lim_{\Delta x \to 0}{(x + \Delta x)^r - x^r \over \Delta x} \\
 指数函数需要用到一些预备的结果，首先
 \begin{equation}
 \begin{split}
-e^r & = [\lim_{n \to \infty}(1 + {1 \over n})^n]^r \\
+\mathrm{e}^r & = [\lim_{n \to \infty}(1 + {1 \over n})^n]^r \\
 & = \lim_{n \to \infty}(1 + {1 \over n})^{nr} \\
 & = \lim_{t \to \infty}(1 + {r \over t})^t
 \end{split}
@@ -82,77 +98,92 @@ e^r & = [\lim_{n \to \infty}(1 + {1 \over n})^n]^r \\
 两边求极限，并注意到极限和求和的可交换性，有
 \begin{equation}
 \begin{split}
-e^r & = \lim_{t \to \infty}(1 + {r \over t})^t \\
+\mathrm{e}^r & = \lim_{t \to \infty}(1 + {r \over t})^t \\
 & = \lim_{t \to \infty} \sum_{k=0}^\infty {1\cdot(1-{1 \over t})\cdot(1-{2 \over t})\cdots(1-{k-1 \over t}) \over k!}r^k \\
 & = \sum_{k=0}^\infty {1 \over k!}r^k
 \end{split}
 \end{equation}
-指数函数 $f(x) = e^x$,依定义有
+指数函数 $f(x) = \mathrm{e}^x$,依定义有
 \begin{equation}
 \begin{split}
-f'(x) & = \lim_{\Delta x \to 0}{e^{x + \Delta x} - e^x \over \Delta x} \\
-& = \lim_{\Delta x \to 0}{e^x(e^{\Delta x} - 1) \over \Delta x} \\
-& = \lim_{\Delta x \to 0}{e^x(\sum_{k=0}^\infty {1 \over k!}\Delta x^k - 1) \over \Delta x} \\
-& = \lim_{\Delta x \to 0}{e^x\sum_{k=1}^\infty {1 \over k!}\Delta x^{k-1}} \\
-& = \lim_{\Delta x \to 0}{e^x(1 + \sum_{k=2}^\infty {1 \over k!}\Delta x^{k-1})} \\
-& = e^x
+f'(x) & = \lim_{\Delta x \to 0}{\mathrm{e}^{x + \Delta x} - \mathrm{e}^x \over \Delta x} \\
+& = \lim_{\Delta x \to 0}{\mathrm{e}^x(\mathrm{e}^{\Delta x} - 1) \over \Delta x} \\
+& = \lim_{\Delta x \to 0}{\mathrm{e}^x(\sum_{k=0}^\infty {1 \over k!}\Delta x^k - 1) \over \Delta x} \\
+& = \lim_{\Delta x \to 0}{\mathrm{e}^x\sum_{k=1}^\infty {1 \over k!}\Delta x^{k-1}} \\
+& = \lim_{\Delta x \to 0}{\mathrm{e}^x(1 + \sum_{k=2}^\infty {1 \over k!}\Delta x^{k-1})} \\
+& = \mathrm{e}^x
 \end{split}
 \end{equation}
-根据对数函数与指数函数的关系$e^{ln(x)} = x$，我们在两边求导，得$e^{ln(x)} \cdot ln'(x) = 1$,因此对于<br />
-对数函数 $f(x) = ln(x)$，有
+对于一般的指数函数 $f(x) = a^x$,我们有$a^x = \mathrm{e}^{x\ln(a)}$,所以
+\begin{equation}
+\begin{split}
+f'(x) & = (\mathrm{e}^{x\ln(a)})' \\
+& = \mathrm{e}^{x\ln(a)} \cdot (x\ln(a))' \\
+& = \ln(a)a^x
+\end{split}
+\end{equation}
+根据对数函数与指数函数的关系$\mathrm{e}^{\ln(x)} = x$，我们在两边求导，得$\mathrm{e}^{\ln(x)} \cdot \ln'(x) = 1$,因此对于<br />
+对数函数 $f(x) = \ln(x)$，有
 \begin{equation}
 f'(x) = {1 \over x}
 \end{equation}
+对于一般的对数函数 $f(x) = \log_a(x)$,我们有$\log_a(x) = {\ln(x) \over \ln(a)}$,所以
+\begin{equation}
+\begin{split}
+f'(x) & = ({\ln(x) \over \ln(a)})' \\
+& = {1 \over \ln(a)x}
+\end{split}
+\end{equation}
 三角函数<br />
-正弦函数 $f(x) = sin(x)$，依定义有
+正弦函数 $f(x) = \sin(x)$，依定义有
 \begin{equation}
 \begin{split}
-f'(x) & = \lim_{\Delta x \to 0}{sin(x + \Delta x) - sin(x) \over \Delta x} \\
-& = \lim_{\Delta x \to 0}{2cos({\Delta x \over 2} + x)sin({\Delta x \over 2}) \over \Delta x} \\
-& = \lim_{\Delta x \to 0}{cos({\Delta x \over 2} + x)sin({\Delta x \over 2}) \over {\Delta x \over 2}} \\
-& = \lim_{\Delta x \to 0}{cos({\Delta x \over 2} + x)} \\
-& = cos(x)
+f'(x) & = \lim_{\Delta x \to 0}{\sin(x + \Delta x) - \sin(x) \over \Delta x} \\
+& = \lim_{\Delta x \to 0}{2\cos({\Delta x \over 2} + x)\sin({\Delta x \over 2}) \over \Delta x} \\
+& = \lim_{\Delta x \to 0}{\cos({\Delta x \over 2} + x)\sin({\Delta x \over 2}) \over {\Delta x \over 2}} \\
+& = \lim_{\Delta x \to 0}{\cos({\Delta x \over 2} + x)} \\
+& = \cos(x)
 \end{split}
 \end{equation}
-以上步骤中用到$\lim_{x \to 0}{sin(x) \over x} = 1$这一结论，证明如下<br />
-首先注意到，当$x \to 0$时，有$sin(x) \le x \le tan(x)$的结论成立，这可以通过观察单位圆中三者的关系得出。在不等号两边同时除以$sin(x)$，得到$1 \le {x \over sin(x)} \le {1 \over cos(x)}$。然后我们在不等号两边再取极限，有$\lim_{x \to 0}1 \le \lim_{x \to 0}{x \over sin(x) } \le \lim_{x \to 0}{1 \over cos(x)}$。两边都是1，中间也必然为1。因此我们的结论得到了证明。<br />
-余弦函数 $f(x) = cos(x)$，依定义有
+以上步骤中用到$\lim_{x \to 0}{\sin(x) \over x} = 1$这一结论，证明如下<br />
+首先注意到，当$x \to 0$时，有$\sin(x) \le x \le \tan(x)$的结论成立，这可以通过观察单位圆中三者的关系得出。在不等号两边同时除以$\sin(x)$，得到$1 \le {x \over \sin(x)} \le {1 \over \cos(x)}$。然后我们在不等号两边再取极限，有$\lim_{x \to 0}1 \le \lim_{x \to 0}{x \over \sin(x) } \le \lim_{x \to 0}{1 \over \cos(x)}$。两边都是1，中间也必然为1。因此我们的结论得到了证明。<br />
+余弦函数 $f(x) = \cos(x)$，依定义有
 \begin{equation}
 \begin{split}
-f'(x) & = \lim_{\Delta x \to 0}{cos(x + \Delta x) - cos(x) \over \Delta x} \\
-& = \lim_{\Delta x \to 0}{-2sin({\Delta x \over 2} + x)sin({\Delta x \over 2}) \over \Delta x} \\
-& = \lim_{\Delta x \to 0}{-sin({\Delta x \over 2} + x)sin({\Delta x \over 2}) \over {\Delta x \over 2}} \\
-& = \lim_{\Delta x \to 0}{-sin({\Delta x \over 2} + x)} \\
-& = -sin(x)
+f'(x) & = \lim_{\Delta x \to 0}{\cos(x + \Delta x) - \cos(x) \over \Delta x} \\
+& = \lim_{\Delta x \to 0}{-2\sin({\Delta x \over 2} + x)\sin({\Delta x \over 2}) \over \Delta x} \\
+& = \lim_{\Delta x \to 0}{-\sin({\Delta x \over 2} + x)\sin({\Delta x \over 2}) \over {\Delta x \over 2}} \\
+& = \lim_{\Delta x \to 0}{-\sin({\Delta x \over 2} + x)} \\
+& = -\sin(x)
 \end{split}
 \end{equation}
-正切函数 $f(x) = tan(x) = {sin(x) \over cos(x)}$，则可以用乘积的求导法则处理
+正切函数 $f(x) = \tan(x) = {\sin(x) \over \cos(x)}$，则可以用乘积的求导法则处理
 \begin{equation}
 \begin{split}
-f'(x) & = sin'(x){1 \over cos(x)} + sin(x)({1 \over cos(x)})' \\
-& = 1 + tan^2(x) \\
-& = sec^2(x)
+f'(x) & = \sin'(x){1 \over \cos(x)} + \sin(x)({1 \over \cos(x)})' \\
+& = 1 + \tan^2(x) \\
+& = \sec^2(x)
 \end{split}
 \end{equation}
-余割函数 $f(x) = csc(x) = {1 \over sin(x)}$，仿照上述处理
+余割函数 $f(x) = \csc(x) = {1 \over \sin(x)}$，仿照上述处理
 \begin{equation}
 \begin{split}
-f'(x) & = -{cos(x) \over sin^2(x)} \\
-& = -cot(x)csc(x)
+f'(x) & = -{\cos(x) \over \sin^2(x)} \\
+& = -\cot(x)\csc(x)
 \end{split}
 \end{equation}
-正割函数 $f(x) = sec(x) = {1 \over cos(x)}$，仿照上述处理
+正割函数 $f(x) = \sec(x) = {1 \over \cos(x)}$，仿照上述处理
 \begin{equation}
 \begin{split}
-f'(x) & = {sin(x) \over cos^2(x)} \\
-& = tan(x)sec(x)
+f'(x) & = {\sin(x) \over \cos^2(x)} \\
+& = \tan(x)\sec(x)
 \end{split}
 \end{equation}
-余切函数 $f(x) = cot(x) = {1 \over tan(x)}$，仿照上述处理
+余切函数 $f(x) = \cot(x) = {1 \over \tan(x)}$，仿照上述处理
 \begin{equation}
 \begin{split}
-f'(x) & = -{sec^2(x) \over tan^2(x)} \\
-& = -csc^2(x)
+f'(x) & = -{\sec^2(x) \over \tan^2(x)} \\
+& = -\csc^2(x)
 \end{split}
 \end{equation}
 在推导反三角函数的导数之前，我们先来证明反函数的导数公式。
@@ -162,48 +193,92 @@ f'(x) & = -{sec^2(x) \over tan^2(x)} \\
 {f^{-1}}'(x) = {1 \over f'(y)}
 \end{equation}
 反三角函数<br />
-反正弦函数 $f(x) = arccsin(x)$ <br />
-注意到在$arcsin(x)$的定义域上，$cos(y)$总是大于0的。所以有
+反正弦函数 $f(x) = \arcsin(x)$ <br />
+注意到在$\arcsin(x)$的定义域上，$\cos(y)$总是大于0的。所以有
 \begin{equation}
 \begin{split}
-f'(x) & = {1 \over sin'(y)} \\
-& = {1 \over cos(y)} \\
-& = {1 \over \sqrt{1 - sin^2(y)}} \\
+f'(x) & = {1 \over \sin'(y)} \\
+& = {1 \over \cos(y)} \\
+& = {1 \over \sqrt{1 - \sin^2(y)}} \\
 & = {1 \over \sqrt{1 - x^2}}
 \end{split}
 \end{equation}
-反余弦函数 $f(x) = arccos(x) = {\pi \over 2} - arccsin(x)$，两边求导得到
+反余弦函数 $f(x) = \arccos(x) = {\pi \over 2} - \arcsin(x)$，两边求导得到
 \begin{equation}
 f'(x) = -{1 \over \sqrt{1 - x^2}}
 \end{equation}
-反正切函数 $f(x) = arcctan(x)$ <br />
+反正切函数 $f(x) = \arctan(x)$ <br />
 依反函数的求导公式有
 \begin{equation}
 \begin{split}
-f'(x) & = {1 \over tan'(y)} \\
-& = {1 \over sec^2(y)} \\
-& = {1 \over 1 + tan^2(y)} \\
+f'(x) & = {1 \over \tan'(y)} \\
+& = {1 \over \sec^2(y)} \\
+& = {1 \over 1 + \tan^2(y)} \\
 & = {1 \over 1 + x^2}
 \end{split}
 \end{equation}
-反余切函数 $f(x) = arccot(x) = {\pi \over 2} - arcctan(x)$，两边求导得到
+反余切函数 $f(x) = \arccot(x) = {\pi \over 2} - \arctan(x)$，两边求导得到
 \begin{equation}
 f'(x) = -{1 \over 1 + x^2}
 \end{equation}
-反正割函数 $f(x) = arcsec(x) = arccos({1 \over x})$,两边求导得到
+反正割函数 $f(x) = \arcsec(x) = \arccos({1 \over x})$,两边求导得到
 \begin{equation}
 \begin{split}
-f'(x) & = arccos'({1 \over x})\\
+f'(x) & = \arccos'({1 \over x})\\
 & = -{1 \over \sqrt{1 - {1 \over x}^2}} \cdot (-{1 \over x^2}) \\
 & = {|x| \over \sqrt{x^2 - 1}} \cdot {1 \over x^2} \\
 & = {1 \over |x| \sqrt{x^2 - 1}}
 \end{split}
 \end{equation}
-反余割函数 $f(x) = arccsc(x) = {\pi \over 2} - arcsec({1 \over x})$,两边求导得到
+反余割函数 $f(x) = \arccsc(x) = {\pi \over 2} - \arcsec({1 \over x})$,两边求导得到
 \begin{equation}
 f'(x) = -{1 \over |x| \sqrt{x^2 - 1}}
 \end{equation}
 </p>
+
+<h2>几个重要的初等函数</h2>
+<p>
+双重指数函数$f(x) = a^{b^x}$ 其导数为 $f'(x) = \ln(a)\ln(b)b^xa^{b^x}$ <br />
+双曲函数 <br />
+<ul>
+<li>双曲正弦 $\sinh(x) = {\mathrm{e}^x - \mathrm{e}^{-x} \over 2}$</li>
+<li>双曲余弦 $\cosh(x) = {\mathrm{e}^x + \mathrm{e}^{-x} \over 2}$</li>
+<li>双曲正切 $\tanh(x) = {\sinh(x) \over \cosh(x)} = {\mathrm{e}^x - \mathrm{e}^{-x} \over \mathrm{e}^x + \mathrm{e}^{-x}}$</li>
+<li>双曲余切 $\coth(x) = {\cosh(x) \over \sinh(x)} = {\mathrm{e}^x + \mathrm{e}^{-x} \over \mathrm{e}^x - e^{-x}}$</li>
+<li>双曲正割 $\sech(x) = {1 \over \cosh(x)}$</li>
+<li>双曲余割 $\csch(x) = {1 \over \sinh(x)}$</li>
+</ul>
+其导数分别为
+<ul>
+<li>$\sinh'(x) = \cosh(x)$</li>
+<li>$\cosh'(x) = \sinh(x)$</li>
+<li>$\tanh'(x) = \sech^2(x)$</li>
+<li>$\coth'(x) = -\csch^2(x)$</li>
+<li>$\sech'(x) = -\tanh(x)\sech(x)$</li>
+<li>$\csch'(x) = -\coth(x)\csch(x)$</li>
+</ul>
+反双曲函数
+<ul>
+<li>反双曲正弦 $\arsinh(x) = \ln(x + \sqrt{x^2 + 1})$</li>
+<li>反双曲余弦 $\arcosh(x) = \ln(x + \sqrt{x^2 - 1})$</li>
+<li>反双曲正切 $\artanh(x) = {1 \over 2}\ln({1 + x \over 1 - x})$</li>
+<li>反双曲余切 $\arcoth(x) = {1 \over 2}\ln({x + 1 \over x - 1})$</li>
+<li>反双曲正割 $\arsech(x) = \ln({1 \over x} + \sqrt{{1 \over x^2} - 1})$</li>
+<li>反双曲余割 $\arcsch(x) = \ln({1 \over x} + \sqrt{{1 \over x^2} + 1})$</li>
+</ul>
+其导数分别为
+<ul>
+<li>$\arsinh'(x) = {1 \over \sqrt{x^2 + 1}}$</li>
+<li>$\arcosh'(x) = {1 \over \sqrt{x^2 - 1}}$</li>
+<li>$\artanh'(x) = {1 \over 1 - x^2}$</li>
+<li>$\arcoth'(x) = {1 \over 1 - x^2}$</li>
+<li>$\arsech'(x) = -{1 \over |x|\sqrt{1 - x^2}}$</li>
+<li>$\arcsch'(x) = -{1 \over |x|\sqrt{1 + x^2}}$</li>
+</ul>
+古德曼函数 <br />
+$\sinc$函数 $f(x) = {\sin(x) \over x}$ 其导数为 $f'(x) = {\cos(x) \over x} - {\sin(x) \over x^2}$
+</p>
+
 </div>
 </body>
 </html>
