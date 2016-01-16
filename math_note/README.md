@@ -21,8 +21,8 @@
 
 一 执行如下命令
 
-    git clone https://github.com/yang-le/cloud-storage.git math_note
-    cd math_note
+    git clone https://github.com/yang-le/cloud-storage.git
+    cd cloud-storage/math_note
     npm install
 
 二 开始阅读
