@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>不定积分</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: { equationNumbers: {autoNumber: "AMS"} }
+  });
+</script>
+<script type="text/javascript" src="node_modules/mathjax/MathJax.js?config=TeX-AMS_HTML-full"></script>
+
+<style>
+h1 {text-align:center}
+h2 {
+  font-weight: bold;
+  background-color: #DDDDDD;
+  padding: .2em .5em;
+  margin-top: 1.5em;
+  border-top: 3px solid #666666;
+  border-bottom: 2px solid #999999;
+}
+</style>
+</head>
+<body>
+<div style="display:none">
+\(
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\arcosh}{arcosh}
+\DeclareMathOperator{\artanh}{artanh}
+\DeclareMathOperator{\arcoth}{arcoth}
+\DeclareMathOperator{\arsech}{arsech}
+\DeclareMathOperator{\arcsch}{arcsch}
+\DeclareMathOperator{\sinc}{sinc}
+\)
+</div>
+
+<h2>黎曼积分的定义</h2>
+<p>
+我们把区间$(a, b)$等分为$n$份，可知第$k (1 \le k \le n)$份为$(a+ {k - 1 \over n}(b - a), a+ {k \over n}(b - a))$。其区间中点为$\xi_k = a + (k - {1 \over 2}){b - a \over n}$。<br />
+考虑在该区间上连续的函数$f(x)$，当$n$足够大时，$f(x)$在第$k$份上的平均值可以其在区间中点上的值，即$f(\xi_k)$，来近似。<br />
+这样，该函数曲线与区间$(a, b)$所围成的所谓“曲边梯形”的面积就可以近似表示为$\sum_{k = 1}^nf(\xi_k){b - a \over n}$。<br />
+最后，我们让$n \to +\infty$，如果此时前述和式的极限存在，我们将其特别地记为
+$$
+\int_a^b f(x) \mathrm{d}x = \lim_{n \to +\infty} \sum_{k = 1}^nf(\xi_k){b - a \over n}
+$$
+其中$a$称为积分下限，$b$称为积分上限，$f(x)$称为被积函数。整个式子称为区间$(a, b)$上函数$f(x)$的积分。
+</p>
+
+<h2>黎曼积分的基本性质</h2>
+<p>
+从上述定义，我们很容易得出黎曼积分的一些基本的性质，列举如下：
+\begin{eqnarray}
+\int_a^a f(x) \mathrm{d}x = 0 \\
+\int_a^b f(x) \mathrm{d}x = - \int_b^a f(x) \mathrm{d}x \\
+\int_a^b f(x) \mathrm{d}x + \int_b^c f(x) \mathrm{d}x = \int_a^c f(x) \mathrm{d}x \\
+\int_a^b f(x) \mathrm{d}x + \int_a^b g(x) \mathrm{d}x = \int_a^b f(x) + g(x) \mathrm{d}x \\
+\int_a^b C \cdot f(x) \mathrm{d}x = C \int_a^b f(x) \mathrm{d}x
+\end{eqnarray}
+\begin{eqnarray}
+\int_a^b C \mathrm{d}x = C(b -a) \\
+\int_a^b x \mathrm{d}x = {b^2 - a^2 \over 2}
+
+\end{eqnarray}
+最后一个式子看似没有那么显然，实际上只要注意到在$f(x) = x$的情况下，函数曲线与区间所围的面积为梯形，只需套用梯形面积的公式就可得出。
+</p>
+
+<h2>变上限积分</h2>
+<p>
+定义函数$F(x) = \int_0^x f(t) \mathrm{d}t$，称为变上限积分函数。结合黎曼积分的基本性质，容易验证其满足如下性质
+\begin{eqnarray}
+F(0) = 0 \\
+\int_a^b f(t) \mathrm{d}t = F(b) - F(a)
+\end{eqnarray}
+</p>
+
+</body>
+</html>

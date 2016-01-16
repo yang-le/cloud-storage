@@ -9,9 +9,6 @@
     tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
     TeX: { equationNumbers: {autoNumber: "AMS"} }
   });
-  MathJax.Hub.Queue(function () {
-    document.getElementById("hide_page").style.visibility = "";
-  });
 </script>
 <script type="text/javascript" src="node_modules/mathjax/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
@@ -44,7 +41,7 @@ h2 {
 \DeclareMathOperator{\sinc}{sinc}
 \)
 </div>
-<div id="hide_page" style="visibility:hidden">
+
 <h2>初等函数的定义</h2>
 <p>
 常函数、幂函数、指数函数、对数函数、三角函数及反三角函数，这六种函数称为基本初等函数。<br />
@@ -279,6 +276,5 @@ f'(x) = -{1 \over |x| \sqrt{x^2 - 1}}
 $\sinc$函数 $f(x) = {\sin(x) \over x}$ 其导数为 $f'(x) = {\cos(x) \over x} - {\sin(x) \over x^2}$
 </p>
 
-</div>
 </body>
 </html>
