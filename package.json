@@ -1,0 +1,24 @@
+{
+  "name": "math_note",
+  "version": "1.0.0",
+  "description": "some math note",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yang-le/cloud-storage.git"
+  },
+  "dependencies": {
+    "function-plot":"latest",
+    "mathjax":"latest",
+    "mathjs":"latest",
+    "d3":"latest"
+  },
+  "author": "Yang Le <yangle0125@qq.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yang-le/cloud-storage/issues"
+  },
+  "homepage": "https://github.com/yang-le/cloud-storage"
+}
