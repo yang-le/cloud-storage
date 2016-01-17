@@ -42,6 +42,107 @@ h2 {
 \)
 </div>
 
+<h2>反导数</h2>
+<p>
+前面讨论了关于如何求函数导数的问题，也求出了很多常见函数的导数。<br />
+现在来考虑这个问题的反问题，即如果给定一个函数$f(x)$(现在，不妨先假定它是初等函数)，那么如何求一个这样的函数$F(x)$，使得$F'(x) = f(x)$呢？<br />
+如果这样的$F(x)$存在，我们就称其为$f(x)$的反导数。<br />
+初步的看法是，我们可以直接利用前面求导的结果，倒着写出来，就能得出一个反导数表格来。不过在这之前，我们先来看下反导数有哪些值得注意的性质。<br />
+首先，存在性的问题。我们就只述不证了，如果$f(x)$是连续的，那么符合上述条件的$F(x)$一定存在。<br />
+其次，唯一性的问题。如果$F'(x) = f(x)$且$G'(x) = f(x)$，那么$F(x)$和$G(x)$一定相等吗？还是有其他的关系存在。<br />
+关于这个问题，我们来考虑另一个函数$H(x) = F(x) - G(x)$。通过对这个函数求导，我们得到$H'(x) = f(x) - f(x) = 0$。
+根据前面的结果，常函数的导数等于0。现在，我们要说，这句话反过来也对。即如果一个函数的导数为0，那么这个函数一定是常函数。这可以很容易地通过导数的定义得出。<br />
+所以，我们就有，如果两函数导数相等，这两个函数之间就相差一个常数。那么$f(x)$的反导数就不是一个函数，而是一族函数，我们记为$F(x) + C$。<br />
+这族函数也称为$f(x)$的反导数，又称为$f(x)$的不定积分,并有一个特别的记号为$\int f(x) \mathrm{d}x$。<br />
+由上面的结论我们看出，函数的导数如果存在，一定是唯一的；然而，函数的反导数如果存在，却不是唯一的。
+这实际上引出了一个很重要的结论，就是说函数的导数(如果看做一个操作的话)是不可逆的。我们知道$f^{-1}(f(x)) = x$，而相比之下，对一个函数求导数再求反导数就不一定还能得到这个函数了。<br />
+实际上，所有的函数组成了一个（无限维的）向量空间，导数操作是该向量空间上的一个线性变换，记为矩阵$D$。导数操作不可逆这件事，反应到向量空间里，就是说矩阵$D$是不可逆的，即$\det(D) = 0$。这是一个深刻的结果。<br />
+现在让我们来列出基本的反导数表吧 <br />
+常函数和幂函数
+\begin{eqnarray}
+\int 0 \mathrm{d}x = C \\
+\int rx^{r-1} \mathrm{d}x = x^r + C
+\end{eqnarray}
+指数和对数函数
+\begin{eqnarray}
+\int e^x \mathrm{d}x = e^x + C \\
+\int \ln(a)a^x \mathrm{d}x  = a^x + C \\
+\int {1 \over x} \mathrm{d}x  = \ln(x) + C \\
+\int {1 \over \ln(a)x} \mathrm{d}x  = \log_a(x) + C
+\end{eqnarray}
+(圆)三角函数
+\begin{eqnarray}
+\int \cos(x) \mathrm{d}x  = \sin(x) + C \\
+\int -\sin(x) \mathrm{d}x  = \cos(x) + C \\
+\int \sec^2(x) \mathrm{d}x  = \tan(x) + C \\
+\int -\csc^2(x) \mathrm{d}x  = \cot(x) + C \\
+\int \sec(x) \tan(x) \mathrm{d}x  = \sec(x) + C \\
+\int -\csc(x) \cot(x) \mathrm{d}x  = \csc(x) + C
+\end{eqnarray}
+反三角函数
+\begin{eqnarray}
+\int {1 \over \sqrt{1 - x^2}} \mathrm{d}x  = \arcsin(x) + C \\
+\int -{1 \over \sqrt{1 - x^2}} \mathrm{d}x  = \arccos(x) + C \\
+\int {1 \over 1 + x^2} \mathrm{d}x  = \arctan(x) + C \\
+\int -{1 \over 1 + x^2} \mathrm{d}x  = \arccot(x) + C \\
+\int {1 \over |x| \sqrt{x^2 - 1}} \mathrm{d}x  = \arcsec(x) + C \\
+\int -{1 \over |x| \sqrt{x^2 - 1}} \mathrm{d}x  = \arccsc(x) + C
+\end{eqnarray}
+双曲(三角)函数
+\begin{eqnarray}
+\int \cosh(x) \mathrm{d}x  = \sinh(x) + C \\
+\int \sinh(x) \mathrm{d}x  = \cosh(x) + C \\
+\int \sech^2(x) \mathrm{d}x  = \tanh(x) + C \\
+\int -\csch^2(x) \mathrm{d}x  = \coth(x) + C \\
+\int -\sech(x) \tanh(x) \mathrm{d}x  = \sech(x) + C \\
+\int -\csch(x) \coth(x) \mathrm{d}x  = \csch(x) + C
+\end{eqnarray}
+反双曲函数
+\begin{eqnarray}
+\int {1 \over \sqrt{x^2 + 1}} \mathrm{d}x  = \arsinh(x) + C \\
+\int {1 \over \sqrt{x^2 - 1}} \mathrm{d}x  = \arcosh(x) + C \\
+\int {1 \over 1 - x^2} \mathrm{d}x  = \artanh(x) + C = \arcoth(x) + C \\
+\int -{1 \over |x|\sqrt{1 - x^2}} \mathrm{d}x  = \arsech(x) + C \\
+\int -{1 \over |x|\sqrt{1 + x^2}} \mathrm{d}x  = \arcsch(x) + C
+\end{eqnarray}
+最后是双重指数函数和$\sinc$函数
+\begin{eqnarray}
+\int \ln(a)\ln(b)b^xa^{b^x} \mathrm{d}x = a^{b^x} + C \\
+\int {\cos(x) \over x} - {\sin(x) \over x^2} \mathrm{d}x = \sinc(x) + C
+\end{eqnarray}
+</p>
+
+<h2>不定积分的性质</h2>
+<p>
+有了导数和不定积分之间的关系，我们可以由导数的性质推出很多不定积分的性质。以下假定$F'(x) = f(x)$和$G'(x) = g(x)$<br />
+首先是线性性质：<br />
+其一，根据不定积分的定义，$F(x) + G(x)$可以有两种理解
+<ul>
+<li>$F(x) + G(x)$可以理解为$\int f(x) \mathrm{d}x + \int g(x) \mathrm{d}x$</li>
+<li>因为$(F(x) + G(x))' = f(x) + g(x)$，所以$F(x) + G(x)$又可以理解为$\int f(x) + g(x) \mathrm{d}x$</li>
+</ul>
+上述两种理解是等价的，所以我们得到
+\begin{equation}
+\int f(x) + g(x) \mathrm{d}x = \int f(x) \mathrm{d}x + \int g(x) \mathrm{d}x
+\end{equation}
+其二，因为$(kF(x))' = kf(x)$，按照不定积分的定义，我们得到
+\begin{equation}
+\int kf(x) \mathrm{d}x = k\int f(x) \mathrm{d}x
+\end{equation}
+然后是所谓的“分部积分公式”。<br />
+根据$(F(x)G(x))' = F'(x)G(x) + F(x)G'(x)$，我们可以得到$\int F'(x)G(x) + F(x)G'(x) \mathrm{d}x = F(x)G(x) + C$，把左边展开并移项得
+\begin{equation}
+\int F'(x)G(x) \mathrm{d}x = F(x)G(x) - \int F(x)G'(x) \mathrm{d}x
+\end{equation}
+某些情况下，这个公式可以把一个较难求出的积分转化为一个较易求出的积分。
+</p>
+
+<h2>反导数表的补充</h2>
+<p>
+前面所列的反导数表格，不过是把各初等函数的导数反过来记而已，是名副其实的“反”导数。下面考虑根据不定积分的性质，来推导另外几个初等函数的反导数。<br />
+首先是常函数。
+</p>
+
 <h2>黎曼积分的定义</h2>
 <p>
 我们把区间$(a, b)$等分为$n$份，可知第$k (1 \le k \le n)$份为$(a+ {k - 1 \over n}(b - a), a+ {k \over n}(b - a))$。其区间中点为$\xi_k = a + (k - {1 \over 2}){b - a \over n}$。<br />
@@ -67,7 +168,6 @@ $$
 \begin{eqnarray}
 \int_a^b C \mathrm{d}x = C(b -a) \\
 \int_a^b x \mathrm{d}x = {b^2 - a^2 \over 2}
-
 \end{eqnarray}
 最后一个式子看似没有那么显然，实际上只要注意到在$f(x) = x$的情况下，函数曲线与区间所围的面积为梯形，只需套用梯形面积的公式就可得出。
 </p>
@@ -79,7 +179,21 @@ $$
 F(0) = 0 \\
 \int_a^b f(t) \mathrm{d}t = F(b) - F(a)
 \end{eqnarray}
+前面求了各初等函数的导数，若要求此函数的导数，按照定义，也不算太难，有
+\begin{equation}
+\begin{split}
+F'(x) & = \lim_{\Delta x \to 0}{F(x + \Delta x) - F(x) \over \Delta x} \\
+& = \lim_{\Delta x \to 0}{\int_x^{x + \Delta x} f(t) \mathrm{d}t \over \Delta x} \\
+& = \lim_{\Delta x \to 0}{f(x + {\Delta x \over 2})\Delta x \over \Delta x} \\
+& = f(x)
+\end{split}
+\end{equation}
+由此可见，变上限积分是导数的逆运算。$F(x)$求导数可得到$f(x)$，反之，以$f(x)$为被积函数，做变上限积分，就得到$F(x)$。<br />
+此后，我们也称变上限积分为反导数，亦称为不定积分。记法为$F(x) = \int f(t) \mathrm{d}t$。
 </p>
+
+<h2>不定积分表（一）</h2>
+有了不定积分与导数之间的互逆关系，我们就可以根据先前得到的导数结果，列出不定积分的一些基本结果。如下：<br />
 
 </body>
 </html>
