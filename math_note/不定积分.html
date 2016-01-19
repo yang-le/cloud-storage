@@ -61,19 +61,19 @@ h2 {
 常函数和幂函数
 \begin{eqnarray}
 \int 0 \mathrm{d}x = C \\
-\int rx^{r-1} \mathrm{d}x = x^r + C
+\int rx^{r-1} \mathrm{d}x = x^r + C \label{mi}
 \end{eqnarray}
 指数和对数函数
 \begin{eqnarray}
 \int e^x \mathrm{d}x = e^x + C \\
-\int \ln(a)a^x \mathrm{d}x  = a^x + C \\
+\int \ln(a)a^x \mathrm{d}x  = a^x + C \label{zhishu1} \\
 \int {1 \over x} \mathrm{d}x  = \ln(x) + C \\
 \int {1 \over \ln(a)x} \mathrm{d}x  = \log_a(x) + C
 \end{eqnarray}
 (圆)三角函数
 \begin{eqnarray}
 \int \cos(x) \mathrm{d}x  = \sin(x) + C \\
-\int -\sin(x) \mathrm{d}x  = \cos(x) + C \\
+\int -\sin(x) \mathrm{d}x  = \cos(x) + C \label{sin1} \\
 \int \sec^2(x) \mathrm{d}x  = \tan(x) + C \\
 \int -\csc^2(x) \mathrm{d}x  = \cot(x) + C \\
 \int \sec(x) \tan(x) \mathrm{d}x  = \sec(x) + C \\
@@ -127,12 +127,16 @@ h2 {
 \end{equation}
 其二，因为$(kF(x))' = kf(x)$，按照不定积分的定义，我们得到
 \begin{equation}
-\int kf(x) \mathrm{d}x = k\int f(x) \mathrm{d}x
+\int kf(x) \mathrm{d}x = k\int f(x) \mathrm{d}x \label{xian2}
 \end{equation}
 然后是所谓的“分部积分公式”。<br />
 根据$(F(x)G(x))' = F'(x)G(x) + F(x)G'(x)$，我们可以得到$\int F'(x)G(x) + F(x)G'(x) \mathrm{d}x = F(x)G(x) + C$，把左边展开并移项得
 \begin{equation}
-\int F'(x)G(x) \mathrm{d}x = F(x)G(x) - \int F(x)G'(x) \mathrm{d}x
+\int F'(x)G(x) \mathrm{d}x = F(x)G(x) - \int F(x)G'(x) \mathrm{d}x \label{fenbu1}
+\end{equation}
+我们再做一步，即令上式中的$F(x) = x$，我们就得到很有用的如下公式
+\begin{equation}
+\int G(x) \mathrm{d}x = xG(x) - \int xG'(x) \mathrm{d}x \label{fenbu2}
 \end{equation}
 某些情况下，这个公式可以把一个较难求出的积分转化为一个较易求出的积分。
 </p>
@@ -140,7 +144,31 @@ h2 {
 <h2>反导数表的补充</h2>
 <p>
 前面所列的反导数表格，不过是把各初等函数的导数反过来记而已，是名副其实的“反”导数。下面考虑根据不定积分的性质，来推导另外几个初等函数的反导数。<br />
-首先是常函数。
+首先是常函数。根据\eqref{mi}，我们有$\int 1 \mathrm{d}x = x + C$，结合\eqref{xian2}，我们得到
+\begin{equation}
+\int k \mathrm{d}x = kx + C
+\end{equation}
+然后是幂函数，使用\eqref{fenbu2}，有$\int x^r \mathrm{d}x = x^{r+1} - \int x \cdot rx^{r-1} \mathrm{d}x$，移项并化简得到
+\begin{equation}
+\int x^r \mathrm{d}x = {x^{r+1} \over r+1} + C
+\end{equation}
+指数函数，我们只要把\eqref{zhishu1}变一个形式，就得到
+\begin{equation}
+\int a^x \mathrm{d}x = {a^x \over \ln(a)} + C
+\end{equation}
+对数函数，使用\eqref{fenbu2}，有$\int ln(x) \mathrm{d}x = xln(x) - \int x{1 \over x} \mathrm{d}x$，我们可以得到如下公式
+\begin{equation}
+\int \ln(x) \mathrm{d}x = x(\ln(x) - 1) + C
+\end{equation}
+同样地，还可以得到
+\begin{equation}
+\int \log_a(x) \mathrm{d}x = x(\log_a(x) - {1 \over \ln(a)}) + C
+\end{equation}
+三角函数，根据\eqref{sin1}，可得
+\begin{equation}
+\int \sin(x) \mathrm{d}x  = -\cos(x) + C
+\end{equation}
+又$\int \tan(x) \mathrm{d}x = x\tan(x) - \int x sec^2(x) \mathrm{d}x$
 </p>
 
 <h2>黎曼积分的定义</h2>
