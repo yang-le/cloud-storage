@@ -1,0 +1,347 @@
+#+TITLE: ANSI Common Lisp 中文版 笔记
+#+PROPERTY: header-args :exports both
+* 简介
+** 新的工具
+*** 从0累加到n的lisp实现
+#+BEGIN_SRC lisp
+  (defun sum (n)
+    (let ((s 0))
+      (dotimes (i n s)
+        (incf s i))))
+#+END_SRC
+
+#+BEGIN_SRC lisp
+  (sum 5)
+#+END_SRC
+
+#+RESULTS:
+: 10
+*** 从0累加到n的c实现
+#+BEGIN_SRC C
+  int sum(int n) {
+      int i, s = 0;
+      for (i = 0; i < n; ++i)
+          s += i;
+      return (s);
+  }
+#+END_SRC
+
+#+BEGIN_SRC C
+  printf("%d", sum(5));
+#+END_SRC
+
+#+RESULTS:
+: 10
+*** 一个lisp闭包的例子
+#+BEGIN_SRC lisp
+  (defun addn (n)
+    #'(lambda (x)
+        (+ x n)))
+#+END_SRC
+
+#+BEGIN_SRC lisp
+  (funcall (addn 3) 2)
+#+END_SRC
+
+#+RESULTS:
+: 5
+** 新的技术
+** 新的方法
+* 欢迎来到Lisp
+** 形式
+*** 最简单的lisp表达式
+#+BEGIN_SRC lisp
+1
+#+END_SRC
+
+#+RESULTS:
+: 1
+*** 加法函数
+#+BEGIN_SRC lisp
+(+)
+#+END_SRC
+
+#+RESULTS:
+: 0
+
+#+BEGIN_SRC lisp
+(+ 2)
+#+END_SRC
+
+#+RESULTS:
+: 2
+
+#+BEGIN_SRC lisp
+(+ 2 3)
+#+END_SRC
+
+#+RESULTS:
+: 5
+
+#+BEGIN_SRC lisp
+(+ 2 3 4)
+#+END_SRC
+
+#+RESULTS:
+: 9
+*** 略复杂的表达式
+#+BEGIN_SRC lisp
+(/ (- 7 1) (- 4 2))
+#+END_SRC
+
+#+RESULTS:
+: 3
+** 求值
+*** 引用
+#+BEGIN_SRC lisp
+  (quote (+ 3 5))
+#+END_SRC
+
+#+RESULTS:
+| + | 3 | 5 |
+
+#+BEGIN_SRC lisp
+'(+ 3 5)
+#+END_SRC
+
+#+RESULTS:
+| + | 3 | 5 |
+** 数据
+*** 符号
+#+BEGIN_SRC lisp
+'Artichoke
+#+END_SRC
+
+#+RESULTS:
+: ARTICHOKE
+*** 列表
+**** 一个例子
+#+BEGIN_SRC lisp
+'(my 3 "Sons")
+#+END_SRC
+
+#+RESULTS:
+| MY | 3 | Sons |
+
+**** 引用保护了整个表达式（包括内部的子表达式）被求值
+#+BEGIN_SRC lisp
+  '(the list (a b c) has 3 elements)
+#+END_SRC
+
+#+RESULTS:
+| THE | LIST | (A B C) | HAS | 3 | ELEMENTS |
+
+**** 可以调用list创建列表
+#+BEGIN_SRC lisp
+(list 'my (+ 2 1) "Sons")
+#+END_SRC
+
+#+RESULTS:
+| MY | 3 | Sons |
+
+**** 被引用的列表被视为数据，未被引用的列表被视为函数调用
+#+BEGIN_SRC lisp
+  (list '(+ 2 1) (+ 2 1))
+#+END_SRC
+
+#+RESULTS:
+| (+ 2 1) | 3 |
+
+**** 表示空表的两种方法
+#+BEGIN_SRC lisp
+()
+#+END_SRC
+
+#+RESULTS:
+: NIL
+
+#+BEGIN_SRC lisp
+nil
+#+END_SRC
+
+#+RESULTS:
+: NIL
+** 列表操作
+*** cons
+**** 例子
+#+BEGIN_SRC lisp
+(cons 'a '(b c d))
+#+END_SRC
+
+#+RESULTS:
+| A | B | C | D |
+
+**** list可以用cons实现
+#+BEGIN_SRC lisp
+(cons 'a (cons 'b nil))
+#+END_SRC
+
+#+RESULTS:
+| A | B |
+
+#+BEGIN_SRC lisp
+(list 'a 'b)
+#+END_SRC
+
+#+RESULTS:
+| A | B |
+*** car和cdr
+**** 例子
+#+BEGIN_SRC lisp
+(car '(a b c))
+#+END_SRC
+
+#+RESULTS:
+: A
+
+#+BEGIN_SRC lisp
+(cdr '(a b c))
+#+END_SRC
+
+#+RESULTS:
+| B | C |
+
+**** 混合使用
+#+BEGIN_SRC lisp
+(car (cdr (cdr '(a b c d))))
+#+END_SRC
+
+#+RESULTS:
+: C
+
+**** 简写
+#+BEGIN_SRC lisp
+(third '(a b c d))
+#+END_SRC
+
+#+RESULTS:
+: C
+
+#+BEGIN_SRC lisp
+(caddr '(a b c d))
+#+END_SRC
+
+#+RESULTS:
+: C
+
+** 真与假
+*** listp
+#+BEGIN_SRC lisp
+(listp '(a b c))
+#+END_SRC
+
+#+RESULTS:
+: T
+
+#+BEGIN_SRC lisp
+(listp 27)
+#+END_SRC
+
+#+RESULTS:
+: NIL
+*** null 和 not
+null用来判断一个列表是否为空
+#+BEGIN_SRC lisp
+(null nil)
+#+END_SRC
+
+#+RESULTS:
+: T
+not用来判断一个逻辑条件是否为假
+#+BEGIN_SRC lisp
+(not nil)
+#+END_SRC
+
+#+RESULTS:
+: T
+*** if
+#+BEGIN_SRC lisp
+  (if t 'exp1 'exp2)
+#+END_SRC
+
+#+RESULTS:
+: EXP1
+
+#+BEGIN_SRC lisp
+(if nil 'exp1 'exp2)
+#+END_SRC
+
+#+RESULTS:
+: EXP2
+
+如果忽略if的最后一个参数,默认值为nil.
+#+BEGIN_SRC lisp
+(if nil 'exp)
+#+END_SRC
+
+#+RESULTS:
+: NIL
+
+另外,任何不是nil的东西,都会被if视为t.
+#+BEGIN_SRC lisp
+(if 0 'exp)
+#+END_SRC
+
+#+RESULTS:
+: EXP
+*** and 和 or
+and和or都是短路操作符
+#+BEGIN_SRC lisp
+(and nil (+ 1 2))
+#+END_SRC
+
+#+RESULTS:
+: NIL
+
+#+BEGIN_SRC lisp
+(and t (+ 1 2))
+#+END_SRC
+
+#+RESULTS:
+: 3
+
+#+BEGIN_SRC lisp
+(or t (+ 1 2))
+#+END_SRC
+
+#+RESULTS:
+: T
+** 函数
+*** defun
+#+BEGIN_SRC lisp
+  (defun our-third (x)
+    (car (cdr (cdr x))))
+#+END_SRC
+
+#+BEGIN_SRC lisp
+  (our-third '(a b c d))
+#+END_SRC
+
+#+RESULTS:
+: C
+
+** 递归
+#+BEGIN_SRC lisp
+  (defun our-member (obj lst)
+    (if (null lst)
+        nil
+        (if (eql (car lst) obj)
+            lst
+            (our-member obj (cdr lst)))))
+#+END_SRC
+
+#+BEGIN_SRC lisp
+(our-member 'b '(a b c))
+#+END_SRC
+
+#+RESULTS:
+| B | C |
+
+#+BEGIN_SRC lisp
+(our-member 'z '(a b c))
+#+END_SRC
+
+#+RESULTS:
+: NIL
+** 阅读Lisp
+** 输入输出
