@@ -1,5 +1,6 @@
 #+TITLE: ANSI Common Lisp 中文版 笔记
 #+PROPERTY: header-args :exports both
+
 * 简介
 ** 新的工具
 *** 从0累加到n的lisp实现
@@ -16,6 +17,7 @@
 
 #+RESULTS:
 : 10
+
 *** 从0累加到n的c实现
 #+BEGIN_SRC C
   int sum(int n) {
@@ -32,6 +34,7 @@
 
 #+RESULTS:
 : 10
+
 *** 一个lisp闭包的例子
 #+BEGIN_SRC lisp
   (defun addn (n)
@@ -45,6 +48,7 @@
 
 #+RESULTS:
 : 5
+
 ** 新的技术
 ** 新的方法
 * 欢迎来到Lisp
@@ -56,6 +60,7 @@
 
 #+RESULTS:
 : 1
+
 *** 加法函数
 #+BEGIN_SRC lisp
 (+)
@@ -84,6 +89,7 @@
 
 #+RESULTS:
 : 9
+
 *** 略复杂的表达式
 #+BEGIN_SRC lisp
 (/ (- 7 1) (- 4 2))
@@ -91,6 +97,7 @@
 
 #+RESULTS:
 : 3
+
 ** 求值
 *** 引用
 #+BEGIN_SRC lisp
@@ -106,6 +113,7 @@
 
 #+RESULTS:
 | + | 3 | 5 |
+
 ** 数据
 *** 符号
 #+BEGIN_SRC lisp
@@ -114,6 +122,7 @@
 
 #+RESULTS:
 : ARTICHOKE
+
 *** 列表
 **** 一个例子
 #+BEGIN_SRC lisp
@@ -161,6 +170,7 @@ nil
 
 #+RESULTS:
 : NIL
+
 ** 列表操作
 *** cons
 **** 例子
@@ -185,6 +195,7 @@ nil
 
 #+RESULTS:
 | A | B |
+
 *** car和cdr
 **** 例子
 #+BEGIN_SRC lisp
@@ -239,6 +250,7 @@ nil
 
 #+RESULTS:
 : NIL
+
 *** null 和 not
 null用来判断一个列表是否为空
 #+BEGIN_SRC lisp
@@ -247,6 +259,7 @@ null用来判断一个列表是否为空
 
 #+RESULTS:
 : T
+
 not用来判断一个逻辑条件是否为假
 #+BEGIN_SRC lisp
 (not nil)
@@ -254,6 +267,7 @@ not用来判断一个逻辑条件是否为假
 
 #+RESULTS:
 : T
+
 *** if
 #+BEGIN_SRC lisp
   (if t 'exp1 'exp2)
@@ -284,6 +298,7 @@ not用来判断一个逻辑条件是否为假
 
 #+RESULTS:
 : EXP
+
 *** and 和 or
 and和or都是短路操作符
 #+BEGIN_SRC lisp
@@ -306,6 +321,7 @@ and和or都是短路操作符
 
 #+RESULTS:
 : T
+
 ** 函数
 *** defun
 #+BEGIN_SRC lisp
@@ -343,5 +359,6 @@ and和or都是短路操作符
 
 #+RESULTS:
 : NIL
+
 ** 阅读Lisp
 ** 输入输出
