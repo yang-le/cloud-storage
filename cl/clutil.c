@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <CL/opencl.h>
+#include "clutil.h"
 
 char* getProgramBuildLog(cl_program program, cl_device_id device)
 {

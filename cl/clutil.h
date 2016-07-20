@@ -1,6 +1,8 @@
 #ifndef __CL_UTIL_H__
 #define __CL_UTIL_H__
 
+#include <CL/opencl.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
