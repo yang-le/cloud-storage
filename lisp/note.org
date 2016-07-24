@@ -432,6 +432,7 @@ and和or都是短路操作符
 
 #+RESULTS:
 : 2
+
 *** 使用setf创建全局变量
 #+BEGIN_SRC lisp
   (setf x (list 'a 'b 'c))
@@ -439,6 +440,7 @@ and和or都是短路操作符
 
 #+RESULTS:
 | A | B | C |
+
 *** 设定任意位置上的内容
 #+BEGIN_SRC lisp
   (setf (car x) 'n)
@@ -459,6 +461,7 @@ and和or都是短路操作符
 
 ** 函数式编程
 函数式编程本质上意味着避免使用如setf一类的函数
+
 ** 迭代
 *** do
 #+BEGIN_SRC lisp
@@ -477,6 +480,7 @@ and和or都是短路操作符
 : 3 9
 : 4 16
 : 5 25
+
 *** dolist
 #+BEGIN_SRC lisp
   (defun our-length (lst)
