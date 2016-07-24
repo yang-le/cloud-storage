@@ -362,3 +362,10 @@ and和or都是短路操作符
 
 ** 阅读Lisp
 ** 输入输出
+*** format
+#+BEGIN_SRC lisp :results output
+  (format t "~A plus ~A equals ~A. ~%" 2 3 (+ 2 3))
+#+END_SRC
+
+#+RESULTS:
+: 2 plus 3 equals 5.
