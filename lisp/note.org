@@ -369,3 +369,128 @@ and和or都是短路操作符
 
 #+RESULTS:
 : 2 plus 3 equals 5.
+
+*** read
+#+BEGIN_SRC lisp
+  (defun askem (string)
+    (format t "~A" string)
+    (read))
+#+END_SRC
+
+#+BEGIN_SRC lisp
+(askem "How old are you?")
+#+END_SRC
+
+** 变量
+*** 局部变量
+#+BEGIN_SRC lisp
+  (let ((x 1) (y 2))
+    (+ x y))
+#+END_SRC
+
+#+RESULTS:
+: 3
+
+*** 全局变量
+#+BEGIN_SRC lisp
+  (defparameter *glob* 99)
+#+END_SRC
+
+#+RESULTS:
+: *GLOB*
+
+*** 全局常量
+#+BEGIN_SRC lisp
+  (defconstant limit (+ *glob* 1))
+#+END_SRC
+
+#+RESULTS:
+: LIMIT
+
+*** 全局量的检查
+#+BEGIN_SRC lisp
+  (boundp '*glob*)
+#+END_SRC
+
+#+RESULTS:
+: T
+
+** 赋值
+*** 例子
+#+BEGIN_SRC lisp
+  (setf *glob* 98)
+#+END_SRC
+
+#+RESULTS:
+: 98
+
+#+BEGIN_SRC lisp
+  (let ((n 10))
+    (setf n 2)
+    n)
+#+END_SRC
+
+#+RESULTS:
+: 2
+*** 使用setf创建全局变量
+#+BEGIN_SRC lisp
+  (setf x (list 'a 'b 'c))
+#+END_SRC
+
+#+RESULTS:
+| A | B | C |
+*** 设定任意位置上的内容
+#+BEGIN_SRC lisp
+  (setf (car x) 'n)
+  x
+#+END_SRC
+
+#+RESULTS:
+| N | B | C |
+
+*** 多个参数调用setf
+#+BEGIN_SRC lisp
+  (setf a 'b c 'd e 'f)
+  (list a c e)
+#+END_SRC
+
+#+RESULTS:
+| B | D | F |
+
+** 函数式编程
+函数式编程本质上意味着避免使用如setf一类的函数
+** 迭代
+*** do
+#+BEGIN_SRC lisp
+  (defun show-squares (start end)
+    (do ((i start (+ i 1)))
+        ((> i end) 'done)
+      (format t "~A ~A~%" i (* i i))))
+#+END_SRC
+
+#+BEGIN_SRC lisp :results output
+(show-squares 2 5)
+#+END_SRC
+
+#+RESULTS:
+: 2 4
+: 3 9
+: 4 16
+: 5 25
+*** dolist
+#+BEGIN_SRC lisp
+  (defun our-length (lst)
+    (let ((len 0))
+      (dolist (obj lst)
+        (setf len (+ len 1)))
+      len))
+#+END_SRC
+
+#+BEGIN_SRC lisp
+(our-length '(a b c))
+#+END_SRC
+
+#+RESULTS:
+: 3
+
+** 函数作为对象
