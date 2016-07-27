@@ -30,9 +30,7 @@
 (defun my-cdr (lst n)
   (if (= 0 n)
       lst
-      (if (= 1 n)
-          (cdr lst)
-          (cdr (my-cdr lst (- n 1))))))
+      (cdr (my-cdr lst (- n 1)))))
 
 (defun my-sublist (lst start len)
   (if (= 0 len)
