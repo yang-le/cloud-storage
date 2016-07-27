@@ -507,12 +507,14 @@ and和or都是短路操作符
 
 #+RESULTS:
 : 6
+
 #+BEGIN_SRC lisp
   (funcall #'+ 1 2 3)
 #+END_SRC
 
 #+RESULTS:
 : 6
+
 *** lambda符号
 #+BEGIN_SRC lisp
   ((lambda (x) (+ x 100)) 1)
@@ -527,6 +529,7 @@ and和or都是短路操作符
 
 #+RESULTS:
 : 101
+
 ** 类型
 *** typep
 #+BEGIN_SRC lisp
@@ -642,6 +645,7 @@ and和or都是短路操作符
 
 #+RESULTS:
 : 2
+
 *** 下列表达式,x该是什么,才会得到相同结果
 #+BEGIN_SRC lisp
 (car (x (cdr '(a (b c) d))))
