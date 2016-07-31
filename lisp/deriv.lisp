@@ -19,15 +19,26 @@
         ((and (number? m1) (number? m2)) (* m1 m2))
         (t (list '* m1 m2))))
 
+(defun make-exponentiation (x1 x2)
+  (cond ((=number? x2 0) 1)
+        ((=number? x2 1) x1)
+        ((and (number? x1) (number? x2)) (expt x1 x2))
+        (t (list 'expt x1 x2))))
+
 (defun sum? (x)
   (and (consp x) (eq (car x) '+)))
 (defun addend (s) (cadr s))
-(defun augend (s) (caddr s))
+(defun augend (s) (reduce #'make-sum (cddr s) :initial-value 0))
 
 (defun product? (x)
   (and (consp x) (eq (car x) '*)))
 (defun multiplier (p) (cadr p))
-(defun multiplicand (p) (caddr p))
+(defun multiplicand (p) (reduce #'make-product (cddr p) :initial-value 1))
+
+(defun exponentiation? (x)
+  (and (consp x) (eq (car x) 'expt)))
+(defun base (x) (cadr x))
+(defun power (x) (caddr x))
 
 (defun deriv (exp var)
   (cond ((number? exp) 0)
@@ -42,9 +53,14 @@
                         (deriv (multiplicand exp) var))
           (make-product (deriv (multiplier exp) var)
                         (multiplicand exp))))
-        (t
-         (error "unknown expression type: DERIV"))))
+        ((exponentiation? exp)
+         (make-product (power exp)
+         (make-product (make-exponentiation (base exp)
+                                            (- (power exp) 1))
+                       (deriv (base exp) var))))
+        (t (error "unknown expression type: DERIV"))))
 
 (deriv '(+ x 3) 'x)
 (deriv '(* x y) 'x)
-(deriv '(* (* x y) (+ x 3)) 'x)
+(deriv '(expt x 2) 'x)
+(deriv '(* x y (+ x 3)) 'x)

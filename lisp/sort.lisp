@@ -11,8 +11,6 @@
       lst
       (my-insert (car lst) (my-sort (cdr lst)))))
 
-(my-sort '(6 3 7 -2 1))
-
 (defun my-merge (lst1 lst2)
   (if (null lst1)
       lst2
