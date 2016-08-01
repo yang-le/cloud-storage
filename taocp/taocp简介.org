@@ -1,0 +1,58 @@
+taocp简介
+
+* 来自官方网站的信息
+The Art of Computer Programming (TAOCP)
+
+** 第1卷
+Fundamental Algorithms, Third Edition (Reading, Massachusetts: Addison-Wesley, 1997), xx+650pp. ISBN 0-201-89683-4
+Volume 1 Fascicle 1, MMIX: A RISC Computer for the New Millennium (2005), v+134pp. ISBN 0-201-85392-2
+*** 早先版本的翻译
+管纪文和苏运霖，计算机程序设计技巧，第1卷：基本算法（北京：国防工业出版社，1980），14+573页
+*** 第三版翻译
+苏运霖，计算机程序设计艺术，第1卷：基本算法（北京：国防工业出版社，2002），xx+625页
+*** 分册翻译
+无(但实际上应该是有，待查)
+
+** 第2卷
+Seminumerical Algorithms, Third Edition (Reading, Massachusetts: Addison-Wesley, 1997), xiv+762pp. ISBN 0-201-89684-2
+*** 早先版本的翻译
+管纪文和苏运霖，计算机程序设计技巧，第2卷：半数值算法（北京：国防工业出版社，1992），10+622页
+*** 第三版翻译
+苏运霖，计算机程序设计艺术，第2卷：半数值算法（北京：国防工业出版社，2002），xii+760页
+
+** 第3卷
+Sorting and Searching, Second Edition (Reading, Massachusetts: Addison-Wesley, 1998), xiv+780pp.+foldout. ISBN 0-201-89685-0
+*** 第一版翻译
+管纪文和苏运霖，计算机程序设计技巧，第3卷：排序和查找（北京：国防工业出版社，1985），viii+645页
+*** 第二版翻译
+苏运霖，计算机程序设计艺术，第3卷：排序和查找（北京：国防工业出版社，2002），x+779页
+
+** 第4A卷
+Combinatorial Algorithms, Part 1 (Upper Saddle River, New Jersey: Addison-Wesley, 2011), xvi+883pp. ISBN 0-201-03804-8
+
+香港的培生教育亚洲分社正在准备中文版出版事宜
+
+第四卷的初稿曾作为平装的分册出版，在第4A卷的硬皮版完成之前，有如下分册发行流通
+Volume 4 Fascicle 0, Introduction to Combinatorial Algorithms and Boolean Functions (2008), xii+216pp. ISBN 0-321-53496-4
+Volume 4 Fascicle 1, Bitwise Tricks & Techniques; Binary Decision Diagrams (2009), xiii+261pp. ISBN 0-321-58050-8
+Volume 4 Fascicle 2, Generating All Tuples and Permutations (2005), v+128pp. ISBN 0-201-85393-0
+Volume 4 Fascicle 3, Generating All Combinations and Partitions (2005), vi+150pp. ISBN 0-201-85394-9
+Volume 4 Fascicle 4, Generating All Trees; History of Combinatorial Generation (2006), vi+120pp. ISBN 0-321-33570-8
+
+这些分册的翻译如下
+Volume 4 Fascicle 0, under the direction of Lin Peng Huang (Beijing: Chinese Machine Press, 2010), xii+432pp.
+(应该还有更多分册翻译，待查)
+
+** 第4B卷
+第4B卷现有一个分册已出版，其将作为该卷的中间三分之一的内容，如下
+Volume 4 Fascicle 6, Satisfiability (2015), xiii+310pp. ISBN 978-0-13-439760-3
+
+另有一些“准分册”作为alpha测试之用，可以直接从Knuth的网页下载到，它们是
+Pre-Fascicle 5a (Mathematical Preliminaries Redux)
+Pre-Fascicle 5b (Introduction to Backtracking)
+
+** 第5卷
+Syntactic Algorithms
+正在准备中，预计将会在2025年完成。
+
+** 未来的计划
