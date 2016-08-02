@@ -1,0 +1,557 @@
+% CHANGES TO FASCICLE V4F6 OF THE ART OF COMPUTER PROGRAMMING
+%
+% Copyright (C) 2015 by Donald E. Knuth
+% This file may be freely copied provided that no modifications are made.
+% All other rights are reserved.
+%
+% Three levels of changes to the books are distinguished here:
+%
+% "\bugonpage" introduces the correction of an error;
+% "\amendpage" introduces new material for future editions;
+% "\improvepage" introduces ameliorations of lesser importance.
+%
+% (Changes introduced by \improvepage do not appear in the hardcopy listing.)
+%
+% Also, "\planforpage" introduces some of the author's half-baked intentions.
+%
+
+% NOTE: TO PUT THE INDEX ON A SEPARATE PAGE, RUN THIS WITH THE COMMAND LINE
+%   tex "\let\indexeject+ \input err4f6"
+
+\newif\ifall % \alltrue means show the trivial items too
+\relax % hook
+
+\def\vertical{|}
+\def\inref#1 #{\expandafter\def\csname\vertical#1\endcsname}
+\catcode`|=\active
+\let|\inref \input \jobname.ref
+\catcode`|=12
+
+\input taocpmac % use the format for TAOCP, with modifications below
+
+\def\becomes{\ifmmode\ \hbox\fi{\manfnt y}\ } % wiggly arrow indicates a change
+
+\def\bugonpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt\llap{\manfnt x}% print a black triangle in left margin
+   {\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\amendpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\improvepage#1.#2 #3 (#4) {\ifall
+  \medbreak\ninepoint
+  \line{\kern-6pt{\sl Page #2\enspace #3\/}
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\noindent}
+\def\planforpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hbox to 5pt{\hss.\hss}\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\begingroup\let\endchange=\endgroup\sl\noindent}
+\let\endchange=\fi
+\def\nl{\par\noindent}
+\def\nlh{\par\noindent\hangit}
+\def\hangit{\hangindent2em}
+\def\cutpar{{\parfillskip=0pt\par}}
+
+\def\date#1.#2.#3.{% convert "yy.mm.dd." to "dd Mon 19yy"
+  #3
+  \ifcase#2\or Jan\or Feb\or Mar\or Apr\or May\or Jun\or
+               Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi
+  \ \ifnum #1<97 \hundred#1\else19#1\fi}
+\def\hundred{20} % the "century" for dates before '97
+
+\def\ex #1. [#2]{\ninepoint
+  \textindent{\bf#1.}[{\it#2\/}]\kern6pt}
+\def\EX #1. [#2]{\ninepoint
+  \textindent{\llap{\manfnt x}\bf#1.}[{\it#2\/}]\kern6pt}
+
+\def\foottext#1{\medskip
+        \hrule height\ruleht width5pc \kern-\ruleht \kern3pt \eightpoint
+        \smallskip\textindent{#1}}
+\def\volheadline#1{\line{\hss\cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill
+       \titlefont\ #1\ \cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill\hss}}
+\def\refin#1 {\let|\inref \input #1.ref \let|\crossref}
+
+\let\defaultpointsize=\tenpoint
+
+%%%%%%%%%%%%%% opening remarks %%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{INTRODUCTION}
+\let\rhead=\lhead
+\titlepage
+\volheadline{THE ART OF COMPUTER PROGRAMMING}
+\bigskip
+\volheadline{ERRATA TO VOLUME 4 FASCICLE 6}
+\bigskip
+
+\noindent This document is a transcript of the notes that I have been making
+in my personal copy of {\sl The Art of Computer Programming}, Volume~4,
+Fascicle~6, since it was first printed in 2015.
+
+\ifall Four levels of updates\dash---``errors,'' ``amendments,'' ``plans,''
+   and ``improvements''\dash---appear, indicated by four
+\else Three levels of updates\dash---``errors,'' ``amendments,'' and
+   ``plans''\dash---appear, indicated by three \fi
+different typographic conventions:
+\begingroup\def\hundred{17}
+
+\bugonpage 0.666 line 1 (76.07.04)
+Technical or typographical errors (aka bugs) are the most critical items, so
+they are flagged with a `\thinspace{\manfnt x}\thinspace' preceding the page
+number. The date on which I first was told about the bug is shown; this is the
+effective date on which I paid the finder's fee. The necessary
+corrections are indicated in
+a straightforward way. If,~for example, the book says
+`$n$' where it should have said `$n+1$', the change is shown thus:
+\smallskip
+$n$ \becomes $n+1$
+\endchange
+
+\amendpage 0.666 line 2 (89.07.14)
+Amendments to the text appear in the same format as bugs, but without
+the~`\thinspace{\manfnt x}\thinspace'. These are things I wish I had known
+about or thought of when I wrote the original text, so I added them later.
+The date is the date I drafted the new text.
+\endchange
+
+\def\hundred{19}
+
+\planforpage 0.666 line 3 (17.11.20)
+Plans for the future represent a third kind of item. In such notes I~sketched
+my intentions about things that I wasn't ready to flesh out further when
+I~wrote them down. You can identify these items because they're written in
+slanted type, and preceded by a bunch of dots
+`\hbox to 6em{\leaders\hbox to 5pt{\hss.\hss}\hfill}' leading to the date on
+which I recorded the plan in my files.
+\endchange
+
+\improvepage 0.666 line 4 (38.01.10)
+The fourth and final category\dash---indicated by page and line number in
+smaller, slanted type\dash---consists of minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+You wouldn't even
+be seeing these items if you hadn't specifically chosen to print the complete
+errata list in all its gory details.
+Are you sure you wanted to do that?
+\endchange
+
+\endgroup
+\ifall\else\medskip\ninepoint
+My personal file of updates also includes a fourth category of items, not
+shown in this list. They are miscellaneous minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+If you really want to see all of the gory details,
+you can download the full list from Internet webpage
+$$\.{http://www-cs-faculty.stanford.edu/\char`\~knuth/taocp.html}$$
+by selecting the ``long form'' of the errata.
+\fi
+
+\medskip
+\tenpoint
+\beginconstruction
+The ultimate, glorious, future editions of Volumes 1--5 are works in progress.
+Please let me know of any improvements that you think I ought to make.
+Send your comments either by snail mail to D.~E. Knuth, Computer
+Science, Gates Building 4B, Stanford University, Stanford CA~94305-9045,
+or by email to
+{\tt taocp{\char`\@}cs.stanford.edu}. (Use email for book suggestions
+only, please\dash---all
+other correspondence is returned unread to the sender, or discarded,
+because I have no time to
+read ordinary email.) Although I'm working full time on
+Volume~4 these days, I~will try to reply to all such messages
+within a year of receipt. Current news about {\sl The Art of Computer
+Programming\/} is posted on
+$$\.{http://www-cs-faculty.stanford.edu/\char`~knuth/taocp.html}$$
+and updated regularly.
+\par\endconstruction
+\rightline{\dash---Don Knuth, March 2006}
+
+\bigskip
+\bigskip
+{\quoteformat
+He did a lot of editing. That's how he liked to work.
+Sometimes he even made alterations between printings.
+\author P. D. JAMES, {\sl The Lighthouse\/} (2005)
+% page 148 (within Chapter 7)
+\vfill\eject
+}
+
+\def\today{\number\day\space\ifcase\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi
+  \space\number\year}
+
+%%%%%%%%%%%%%%% CHANGES FOR VOLUME 4 FASCICLE 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{CHANGES TO V4F6: SATISFIABILITY}
+\def\rhead{CHANGES TO V4F6: SATISFIABILITY}
+\titlepage
+\volheadline{SATISFIABILITY} % the fascicle title
+\bigskip
+\rightline{Copyright \copyright\ 2015, Addison\with Wesley; all rights reserved}
+\rightline{Last updated \today}
+\bigskip
+%\rightline{\sl Most of these corrections have already been made in
+%                  recent printings.}
+%\medskip
+%\noindent Important note: The changes below include nearly every difference
+%between the paperback fascicle and the first printing of Volume 4A,
+%published in January 2011. All subsequent changes can be found in
+%the errata list for that volume.
+
+\smallskip
+\let\defaultpointsize=\tenpoint
+
+\bugonpage 4f6.i line $-2$ (16.05.11)
+\ninepoint Sa\~o Paulo \becomes S\~ao Paulo
+\endchange
+
+\bugonpage 4f6.v line $-9$ (16.01.17)
+\.{\char`\~/fasc5a} \becomes \.{\char`\~knuth/fasc5a}
+\endchange
+
+\bugonpage 4f6.9 line $-18$ (16.04.10)
+\rightline{\eightssi
+it can be put into the conjunctive normal form ``piece by piece'',}
+\endchange
+
+\bugonpage 4f6.32 line $-11$ (15.11.22)
+$\bar5 \bar3 \bar4$ \becomes $\bar5 \bar3 \bar7$
+\endchange
+
+\bugonpage 4f6.33 replacement for Fig.~39 (16.02.10)
+\centerline{\epsfbox{\figdir/ch7b.50}}
+\endchange
+
+\improvepage 4f6.34 line 2 after {\eq(60)} (16.07.05)
+moves. \becomes moves (the 4s and the 5s).
+\endchange
+
+\amendpage 4f6.51 the line after {\eq(82)} (16.05.26)
+[See A. C. Kaporis \becomes
+[See M. Hajiaghayi and G. B. Sorkin, arXiv:math/0310183 [math.{\mc CO}];
+A. C. Kaporis
+\endchange
+
+\bugonpage 4f6.55 replacement for Fig.~48 (16.02.10)
+\centerline{\epsfbox{\figdir/ch7b.51}}
+\endchange
+
+\bugonpage 4f6.131 line $-14$ (16.07.09)
+benchmark programs of 1992 \becomes benchmark problems of 1992
+\endchange
+
+\improvepage 4f6.134 better wording in exercise 15 (16.05.14)
+that has an arbitrary order~$n\ge3$ \becomes
+whose order is a given number~$n\ge3$
+\endchange
+
+\bugonpage 4f6.173  line 2 of exercise 417 (16.02.23)
+\ninepoint via~\eq(174) \becomes via~\eq(173)
+\endchange
+
+\amendpage 4f6.174 last line of exercise 428 (16.03.26)
+\ninepoint $M$ and $N$ cannot be \becomes $M$ and $N$ cannot both be
+\endchange
+
+\bugonpage 4f6.183 row 16, column 39 of the big matrix in exercise 518 (16.01.11)
+$\scriptscriptstyle0$ \becomes
+$\scriptscriptstyle2$
+\endchange
+
+\improvepage 4f6.183 line 2 of exercise {518(a)} (16.01.11)
+$r$ \becomes $p$\quad
+$s$ \becomes $q$\quad
+$t$ \becomes $r$
+\endchange
+
+\amendpage 4f6.186 replacement for lines 2--6 of answer 11 (16.02.04)
+Furthermore, the only way to match $j'1$ is to choose one of the satisfiability
+triples for clause~$j$. Suppose $\bar l_k j$ belongs to the chosen triple;
+then we must also have chosen the true triples for literal $l_k$.
+Thus a perfect matching implies satisfiable clauses.
+\endchange
+
+\let\defaultpointsize=\ninepoint % get ready for answer pages
+
+\amendpage 4f6.191 line 2 of answer 35 (15.12.23)
+$W_6$ \becomes $W_5$\nl
+$C_{n-1}$ \becomes $C_n$
+\endchange
+
+\bugonpage 4f6.204 bottom line and top lines of page 205 (16.01.11)
+nonzero top row \dots\ $(n-k)$, which \becomes
+nonzero first row and column has all entries zero except that
+$y_{1t}=-y_{t1}=y_{(k+1-t)1}=-y_{kt}=
+y_{k(k+1-t)}=-y_{(k+1-t)k}=y_{tk}=-y_{1(k+1-t)}$,
+for some~$t$ and~$k$ with $1<t\le k/2\le m/2$. So the answer is
+$2\sum_{k=4}^m\lfloor k/2-1\rfloor(m+1-k)(n+1-k)$, which
+\endchange
+
+\bugonpage 4f6.209 replacement for answer 128 (16.02.10)
+\ans128. $\vtop{\halign{\hfil$#$\hfil\quad&
+\tt\hfil#\hfil&
+\tt\hfil#\hfil&
+\tt\hfil#\hfil&
+\tt\hfil#\hfil&
+\quad\hfil$#$\hfil&
+\quad\hfil$#$\hfil&
+\quad$#$\hfil\kern-10pt\cr
+\hbox{Active ring}&$x_1$&$x_2$&$x_3$&$x_4$&
+\hbox{Units}&\hbox{Choice}&\hbox{Changed clauses}\cr
+\noalign{\vskip2pt}
+(1\,2\,3\,4)&-&-&-&-&&\bar1&21\bar3\cr
+(2\,3\,4)   &0&-&-&-&&\bar2&\bar312,32\bar4\cr
+(3\,4)      &0&0&-&-&\bar3&\bar3&\bar423,431\cr
+(4)         &0&0&0&-&4,\bar4&\rlap{Backtrack}\hidewidth\cr
+(3\,4)      &0&-&-&-&&2&\bar3\bar24\cr
+(3\,4)      &0&1&-&-&\bar4&\bar4&341,\bar142\cr
+(3)         &0&1&-&0&3,\bar3&\rlap{Backtrack}\hidewidth\cr
+(4\,3)      &-&-&-&-&&1&4\bar12,\bar2\bar13\cr
+(2\,4\,3)   &1&-&-&-&&\bar2&\cr
+(4\,3)      &1&0&-&-&4&4&32\bar4,1\bar4\bar2\cr
+(3)         &1&0&-&1&3,\bar3&\rlap{Backtrack}\hidewidth\cr
+(4\,3)      &1&-&-&-&&2&3\bar1\bar2\cr
+(4\,3)      &1&1&-&-&3&3&4\bar2\bar3,1\bar32,\bar4\bar3\bar1\cr
+(4)         &1&1&1&-&4,\bar4&\rlap{Backtrack}\hidewidth\cr
+}}$
+\endchange
+
+\bugonpage 4f6.262 and 263, new answer 390 {(but last paragraph remains
+as before)} (16.02.09)
+% part (d) was revised (16.05.13)
+\ans390. Let $d(u,v)$ be the distance between vertices $u$ and $v$. Then
+$d(v,v)=0$ and
+$$d(u,v)\le j+1\;\iff\;
+\hbox{$d(u,w)\le j$ for some $w\in N(v)=\{w\mid w\adj v\}$}$$
+if $u\ne v$.
+In parts (a), (d), we introduce variables $v_j$ for each vertex~$v$
+and $0\le j\le k$. In part~(c) we do this for $0\le j<n$. But parts
+(b), (e),~(f) use just $n$ variables, $\{v\mid v\in V\}$.\tighten\par
+(a) Clauses $(s_0)\land\bigwedge_{v\in V\setminus s}\bigl((\bar v_0)\land
+\bigwedge_{j=0}^{k-1}\bigl(\bar v_{j+1}\!\lor\bigvee_{w\in N(v)}w_j\bigr)\bigr)$
+are satisfied only if $v_j\le\[d(s,v)\le j]$; hence the additional
+clause $(t_k)$ is also satisfied only if $d(s,t)\le k$. Conversely,
+if $d(s,t)\le k$, all clauses are satisfied by setting
+$v_j\gets\[d(s,v)\le j]$.\par
+(b) There's a path from $s$ to $t$ if and only if there's a subset
+$H\subseteq V$ such that $s\in H\?$, $t\in H\?$, and every vertex~$v$
+of the induced graph $G\given H$ has degree $2-\[v=s]-\[v=t]$. [The vertices
+on a shortest path from $s$ to~$t$ yield one such~$H\?$. Conversely,
+given~$H\?$, we can find vertices $v_j\in H$ such that
+$s=v_0\adj v_1\adj\cdots\adj v_{k}=t$.]\par
+We can represent that criterion via clauses on the binary variables
+$v=\[v\in H]$ by asserting $(s)\land(t)$,
+together with clauses to ensure that $\Sigma(v)=2-\[v=s]-\[v=t]$
+for all $v\in H$, where
+$\Sigma(v)=\sum_{w\in N(v)}w$ is the degree of $v$ in $G\given H$. 
+The number of such clauses for each $v$ is at most $6@\vert N(v)\vert$,
+because we can append $\bar v$ to each clause of \eq(18) and~\eq(19)
+with $r=2$, and $\vert N(v)\vert$ additional clauses will rule
+out $\Sigma(v)<2$. Altogether there are $O(m)$ clauses, because
+$\sum_{v\in V}\vert N(v)\vert=2m$.\par
+[Similar but simpler alternatives, such as
+(i)~to require $\Sigma(v)\in\{0,2\}$ for all $v\in V\setminus\{s,t\}$, or
+(ii)~to require $\Sigma(v)\ge2$ for all $v\in H\setminus\{s,t\}$, do
+{\it not\/} work: Counterexamples are
+(i)~$\vcenter{\epsfbox{\figdir/v4b.3900}}$ and
+(ii)~$\vcenter{\epsfbox{\figdir/v4b.3901}}$.
+Another solution, more cumbersome, associates a Boolean variable
+with each {\it edge\/} of~$G$.]\par
+(c) Let $s$ be any vertex;
+use (a) with $k=n-1$, plus $(v_{n-1})$ for all~$v\in V\setminus s$.\par
+(d) Clauses $(s_0)\land \bigwedge_{j=0}^{k-1}\bigwedge_{v\in V}
+  \bigwedge_{w\in N(v)}(\bar v_j\!\lor w_{j+1})$
+are satisfied only if we have $v_j\ge\[d(s,v)\le j]$; hence the additional
+unit clause
+$(\bar t_k)$ cannot also be satisfied when $d(s,t)\le k$. Conversely,
+if $d(s,t)>k$ we can set $v_j\gets\[d(s,v)\le j]$.\par
+(e) $(s)\land\bigl(\bigwedge_{v\in V}\bigwedge_{w\in N(v)}(\bar v\lor w)\bigr)
+\land(\bar t)$.\par
+(f) Letting $s$ be any vertex, use
+$(s)\land\bigl(\bigwedge_{v\in V}\bigwedge_{w\in N(v)}(\bar v\lor w)\bigr)
+\land\bigl(\bigvee_{v\in V\setminus s}\bar v\bigr)$.\par
+\endchange
+
+\bugonpage 4f6.269 line 2 of answer 417 (16.02.23)
+as in \eq(174) \becomes as in \eq(173)
+\endchange
+
+\bugonpage 4f6.269 line 3 of answer 418 (16.02.23)
+via~\eq(174) \becomes via~\eq(173)
+\endchange
+
+\amendpage 4f6.269 line 1 of answer 423 (16.04.04)
+[But a {\it forcing\/} \becomes
+[But Ab{\'\i}o, Gange,
+Mayer-Eichberger, and Stuckey have shown
+[{\sl LNCS\/ \bf9676} (2016), 1--17]
+that weak forcing is always achieved if $(\bar a_j\!\lor a_l\lor a_h)$ is
+added to~\eq(173). Furthermore, a~{\it forcing\/}
+\endchange
+
+\amendpage 4f6.270 line 7 of answer 426 (16.04.05)
+variable elimination \becomes the elimination of an auxiliary variable
+\endchange
+
+\amendpage 4f6.271 line 6 of answer 436 (16.4.04)
+$\bigvee\{q_{k-1}\mid(q,a,q')\in T\}\bigr)$; together with (vi) \becomes
+$\bigvee\{q_{k-1}\mid(q,a,q')\in T\}\bigr)$,
+for $a\!\in\!A$, $q'\!\in\!Q$.
+And (vi)
+\endchange
+
+\bugonpage 4f6.271 replacement for lines 18--23 of answer 436 (16.4.04)
+For example, the language $L_2$ of exercise 434 yields $20n+4$ clauses with
+$8n+3$ auxiliary variables:
+$F=\bigwedge_{k=1}^n\bigl(
+(\bar t_{k00}\!\lor\bar x_k)\land(\bar t_{k00}\!\lor 0_k)\land
+(\bar t_{k11}\!\lor x_k)\land(\bar t_{k11}\!\lor 1_k)\land
+(\bar t_{k12}\!\lor x_k)\land(\bar t_{k12}\!\lor 2_k)\land
+(\bar t_{k02}\!\lor\bar x_k)\land(\bar t_{k02}\!\lor 2_k)\land
+(\bar 0_{k-1}\!\lor t_{k00}\lor t_{k11})\land
+(\bar 1_{k-1}\!\lor t_{k12})\land
+(\bar 2_{k-1}\!\lor t_{k02})\land
+(\bar 0_k\!\lor t_{k00})\land
+(\bar 1_k\!\lor t_{k11})\land
+(\bar 2_k\!\lor t_{k02}\lor t_{k12})\land
+(x_k\!\lor t_{k00}\lor t_{k02})\land
+(\bar x_k\!\lor t_{k11}\lor t_{k12})\land
+(\bar t_{k00}\!\lor 0_{k-1})\land
+(\bar t_{k11}\!\lor 0_{k-1})\land
+(\bar t_{k12}\!\lor 1_{k-1})\land
+(\bar t_{k02}\!\lor 2_{k-1})\bigr)\land
+(\bar 1_0)\land(\bar 2_0)\land(\bar 0_n)\land(\bar 1_n)$.
+%(Unit~propagation will immediately assign values to 12 of the $8n+3$ variables,
+%thereby satisfying 26 of these clauses, when $n\ge3$.
+%For example, $\bar t_{112}$, $\bar t_{n11}$, $\bar 0_{n-1}$ are~forced.)\par
+\endchange
+
+\bugonpage 4f6.272 lines 6 and 10 of answer 440 (16.04.03)
+$QR_{hik}$ \becomes $QP_{hik}$ \quad(twice)
+\endchange
+
+\amendpage 4f6.283 last lines of answer 488 (15.12.27)
+F.~R.~K. Chung and R.~L. Graham conjecture that  \becomes
+D.~M. Kane has proved, among other things, that\nl
+$O(1)$.] \becomes $O(1)$. (To appear.)]
+\endchange
+
+\improvepage 4f6.288 lines 3 and 7 (16.02.09)
+$S_{1kk}\land\bar Z_{11}\land Z_{12}$ becomes
+$(S_{1kk})\land(\bar Z_{11})\land(Z_{12})$\quad and\quad
+$S_{553}\land\bar Z_{17}$ \becomes
+$(S_{553})\land(\bar Z_{17})$
+\endchange
+
+\amendpage 4f6.288 replacement for answer 517{(a)} (16.01.11)
+\ans517. (a) (Solution by G\"unter Rote.) Replace the $j$th ternary clause
+$(l_j\!\lor l'_j\!\lor l''_j)$ by three ternary equations
+$l_j+a_j+c_j=1$, $\bar l'_j+a_j+b_j=1$, $\bar l''_j+c_j+d_j=1$,
+where $a_j$, $b_j$, $c_j$, and $d_j$ are new variables.
+\endchange
+
+\expandafter\ifx\csname indexeject\endcsname\relax\else\vfill\eject\fi
+\amendpage 4f6.292 and following (06.03.19)
+Miscellaneous changes to the existing index of Volume~4 Fascicle~6
+are collected here,
+including corrections and amendments to the old entries as well as new entries
+that are occasioned by the new material. Thus, the lines of the full index
+that have changed serve also as an index to the present document. However,
+when a correction or amendment has caused an old index entry to be deleted,
+the deletion is usually not indicated.
+
+\input exotic
+\begindoublecolumns
+\indexformat
+\gdef\Uni1.08:{\bitmap24:1.08:}
+\hangindent2em
+1-in-3 {\mc SAT}, 183. % 2nd
+Ab{\'\i}o Roig, Ignasi, 269. % 2nd
+Calabro, Christopher Matthew, 288. % 2nd
+Connection puzzles, 114, 170. % 2nd
+Exact (one-per-clause) satisfiability, 183. % 2nd
+Gange, Graeme Keith, 269. % 2nd
+Graham, Ronald Lewis (\GC72:74:-4:61% G2480
+<0000007c000f8000000000007f800ff000000000003fc00ff000000000003f000fc000e0%
+ 0000003e000fc001f00000003e000fc003f80000003e000fc007f80000003e000fc00ffc%
+ 3ffffffffffffffffe1fffffffffffffffff0fffffffffffffffff0200003e000fc00000%
+ 0000003e000fc000000000003e000fc000000000003e000fc000000000f03e000fc78000%
+ 0000fc7e000fcfe0000000fffffffffff0000000fffffffffff8000000fffffffffff800%
+ 00007c00000007c00000007c00000007c00000007c00000007c00000007c00000007c000%
+ 00007c00000007c00000007c00000007c00000007fffffffffc00000007fffffffffc000%
+ 00007c00000007e00000007c00000007e00000007c00000007e00000007c00000007e000%
+ 00007c00000007e00000007c00000007e00000007fffffffffe0000000ffffffffffe000%
+ 0000fc1fe00007e0000000fc3fc00007e0000000fc7f800007c0000000fcff00000003c0%
+ 000001fe00000003e0000003fc00000007e0000007fffffffffff000000ffffffffffff8%
+ 00003ffffffffffff800007fc007e00007e00000ff000ff00007e00003fe000ff00007e0%
+ 0007fc001fe00007e0001ffe003fe00007e0003ffe003f800007e000fefe007fc00007e0%
+ 07fcfe007ff80007e01ff0f800f0ff0007e0ffc0f801e03fc007c0ff00f807e01fc007c0%
+ 7c00f80fc00fc00fc00000f81f8007c00fc00000f87e0007c01fc00000f8fc0003f81f80%
+ 0000fbf00003fc1f800003fbc00000fe1f800007fb000001ff1f800007ffffffffff9f80%
+ 0003ffffffffff9f000001f0000000003f000000e0000000007e00000040000003fffe00%
+ 0000000000007ffc000000000000003ff8000000000000000ff80000000000000007f000%
+ 000000000000038000000000000000020000>%% Unicode char "845b
+\\\GC75:65:-3:60% G3302
+<00000003e0000000000000000001f8000000000000000001fe000000000000000000ff00%
+ 00000000000000007f0000000000000000007f8000000000000000003f80000000000000%
+ 00001fc000000000000000001fc000000000000000000fc000000000000000000fc00000%
+ 0000000000000fc0000780000000000007c0000fc000000000000400001fe00000000000%
+ 0000003ff0000ffffffffffffffff80003fffffffffffffffc0001fffffffffffffffc00%
+ 000000000000000000000000000000000000000000000000000000000000000000000000%
+ 380000000000000000003e0000000000000000003f0000000000000000007fc000000000%
+ 700000007fe000000000380000007fc0000000003c0000007f80000000001e0000007f80%
+ 000000001f0000007f00000000000f0000007f00000000000f8000007e000000000007c0%
+ 0000fe000000000007e00000fc000000000007f00000fc000000000003f80000fc000000%
+ 000003f80000f8000000000001fc0001f8000000000001fc0001f0000000000001fe0001%
+ f0000000000000fe0003f0000000000000ff0003e0000000000000ff0003e00000000000%
+ 007f8003c00000000000007f8007c00000000000007f8007c00000000000007f80078000%
+ 00000000003f800f800000000000003f800f000000000000003f800f000000000000003f%
+ 801f000000000000003f801e000000000000003f003e000000000000001f003c00000000%
+ 0000001e007c00000000000000180078000000000000001000f8000000000000000000f0%
+ 000000000000000001e000001c000000000001e000003e000000000003c000007f000000%
+ 000003c00000ff80ffffffffffffffffffc07fffffffffffffffffe03fffffffffffffff%
+ ffe0>%% Unicode char "7acb
+\JC48:48:0:40% J5581
+<00fc0000000000f80000000000f00000006000f0000000f000f0fffffff800f07ffffffc%
+ 00f003c0000000f003c0000000f003c0000000f003c0000004f003c0000004f003c00000%
+ 04fc03c006000cf603c00f000cf703ffff800cf383ffffc018f383c00f8018f3c3c00f00%
+ 18f3c3c00f0038f183c00f0038f003cc0f0070f003c70f0070f003c38f00f0f003c1cf00%
+ f0f003c1cf00e0f003c0cf0000f003c00f0000f003c00f0000f003cc0f0000f003c70f00%
+ 00f003c38f0000f003c1cf0000f003c1cf0000f003c0cf0000f003c00f0000f003c00f00%
+ 00f003c00f0000f001800f0000f000000f0000f000000f0000f000000f0000f000000f00%
+ 00f000000f1800f000000f3c00f0fffffffe00f07fffffff00f000000000006000000000%
+ >%% Unicode char "6046
+), 185. % 2nd
+Hajiaghayi, MohammadTaghi\indexbreak ({\arab\Afam/\Aihy/\Afa/\Aiq/\Aamd/ \Afam/\Aij/\Afa/\Aihh/ \Afam/\Amq/\Ait/ \Afd/\Amm/\Amhh/\Aim/}), 51. % 2nd
+{\mc ITE}, \see If-then-else operation. % 2nd
+Kane, Daniel Mertz, 283. % 2nd
+Linear matrices, \see Quad-free matrices. % 2nd
+Mayer-Eichberger, Valentin Christian Johannes Kaspar, 269. % 2nd
+Putnam, Hilary Whitehall, 9, 32, 130, 298. % 2nd
+Set splitting, \see Not-all-equal {\mc SAT}. % 2nd
+Sorkin, Gregory Bret, 51. % 2nd
+Stuckey, Peter James, 269. % 2nd
+{\mc XSAT}, \see $\,$Exact (one-per-clause) satisfiability. % 2nd
+\vfill
+\enddoublecolumns
+\endchange
+
+\bye
+
+[The next printing will be the 2nd.]
+not listed above:
+the grid lines will be made darker on illustrations that appear on pages
+ 19, 20, 25, 139, 197--201, 206, 207.
+page 20, in line after (39), say "that was"
+page 193, line 2 of answer 48, sneak the period inside the quotes
+Fan Chung leaves the index
+
+ARTICLES "TO APPEAR" THAT ARE STILL PENDING:
+Kane on nonattacking queens: answer to exercise 7.2.2.2--488.

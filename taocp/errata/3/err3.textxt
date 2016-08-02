@@ -1,0 +1,734 @@
+% CHANGES TO VOLUME 3 OF THE ART OF COMPUTER PROGRAMMING
+%
+% Copyright (C) 2011, 2012, 2013, 2014 by Donald E. Knuth
+% This file may be freely copied provided that no modifications are made.
+% All other rights are reserved.
+%
+% Three levels of changes to the books are distinguished here:
+%
+% "\bugonpage" introduces the correction of an error;
+% "\amendpage" introduces new material for future editions;
+% "\improvepage" introduces ameliorations of lesser importance.
+%
+% (Changes introduced by \improvepage do not appear in the hardcopy listing.)
+%
+% Also, "\planforpage" introduces some of the author's half-baked intentions.
+%
+
+% NOTE: TO PUT THE INDEX ON A SEPARATE PAGE, RUN THIS WITH THE COMMAND LINE
+%   tex "\let\indexeject+ \input err3"
+
+\newif\ifall % \alltrue means show the trivial items too
+\relax % hook
+
+\def\vertical{|}
+\def\inref#1 #{\expandafter\def\csname\vertical#1\endcsname}
+\catcode`|=\active
+\let|\inref \input \jobname.ref
+\catcode`|=12
+
+\input taocpmac % use the format for TAOCP, with modifications below
+
+\def\becomes{\ifmmode\ \hbox\fi{\manfnt y}\ } % wiggly arrow indicates a change
+
+\def\bugonpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt\llap{\manfnt x}% print a black triangle in left margin
+   {\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\amendpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\improvepage#1.#2 #3 (#4) {\ifall
+  \medbreak\ninepoint
+  \line{\kern-6pt{\sl Page #2\enspace #3\/}
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\noindent}
+\def\planforpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hbox to 5pt{\hss.\hss}\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\begingroup\let\endchange=\endgroup\sl\noindent}
+\let\endchange=\fi
+\def\nl{\par\noindent}
+\def\nlh{\par\noindent\hangit}
+\def\hangit{\hangindent2em}
+\def\cutpar{{\parfillskip=0pt\par}}
+
+\def\date#1.#2.#3.{% convert "yy.mm.dd." to "dd Mon 19yy"
+  #3
+  \ifcase#2\or Jan\or Feb\or Mar\or Apr\or May\or Jun\or
+               Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi
+  \ \ifnum #1<97 \hundred#1\else19#1\fi}
+\def\hundred{20} % the "century" for dates before '97
+
+\def\ex #1. [#2]{\ninepoint
+  \textindent{\bf#1.}[{\it#2\/}]\kern6pt}
+\def\EX #1. [#2]{\ninepoint
+  \textindent{\llap{\manfnt x}\bf#1.}[{\it#2\/}]\kern6pt}
+
+\def\foottext#1{\medskip
+        \hrule height\ruleht width5pc \kern-\ruleht \kern3pt \eightpoint
+        \smallskip\textindent{#1}}
+\def\volheadline#1{\line{\cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill
+       \titlefont\ #1\ \cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill}}
+\def\refin#1 {\let|\inref \input #1.ref \let|\crossref}
+
+\let\defaultpointsize=\tenpoint
+
+%%%%%%%%%%%%%% opening remarks %%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{INTRODUCTION}
+\let\rhead=\lhead
+\titlepage
+\volheadline{THE ART OF COMPUTER PROGRAMMING}
+\bigskip
+\volheadline{ERRATA TO VOLUME 3 (after 2010)}
+\bigskip
+
+\noindent This document is a transcript of the notes that I have been making
+in my personal copy of {\sl The Art of Computer Programming}, Volume~3 (second
+edition, 27th printing) since it was first printed in 2011.
+Previous errata are recorded in another file `{\tt all3-pre.ps}'.
+
+\ifall Four levels of updates\dash---``errors,'' ``amendments,'' ``plans,''
+   and ``improvements''\dash---appear, indicated by four
+\else Three levels of updates\dash---``errors,'' ``amendments,'' and
+   ``plans''\dash---appear, indicated by three \fi
+different typographic conventions:
+\begingroup\def\hundred{17}
+
+\bugonpage 0.666 line 1 (76.07.04)
+Technical or typographical errors (aka bugs) are the most critical items, so
+they are flagged with a `\thinspace{\manfnt x}\thinspace' preceding the page
+number. The date on which I first was told about the bug is shown; this is the
+effective date on which I paid the finder's fee. The necessary
+corrections are indicated in
+a straightforward way. If,~for example, the book says
+`$n$' where it should have said `$n+1$', the change is shown thus:
+\smallskip
+$n$ \becomes $n+1$
+\endchange
+
+\amendpage 0.666 line 2 (89.07.14)
+Amendments to the text appear in the same format as bugs, but without
+the~`\thinspace{\manfnt x}\thinspace'. These are things I wish I had known
+about or thought of when I wrote the original text, so I added them later.
+The date is the date I drafted the new text.
+\endchange
+
+\def\hundred{19}
+
+\planforpage 0.666 line 3 (17.11.20)
+Plans for the future represent a third kind of item. In such notes I~sketched
+my intentions about things that I wasn't ready to flesh out further when
+I~wrote them down. You can identify these items because they're written in
+slanted type, and preceded by a bunch of dots
+`\hbox to 6em{\leaders\hbox to 5pt{\hss.\hss}\hfill}' leading to the date on
+which I recorded the plan in my files.
+\endchange
+
+\improvepage 0.666 line 4 (38.01.10)
+The fourth and final category\dash---indicated by page and line number in
+smaller, slanted type\dash---consists of minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+You wouldn't even
+be seeing these items if you hadn't specifically chosen to print the complete
+errata list in all its gory details.
+Are you sure you wanted to do that?
+\endchange
+
+\endgroup
+\ifall\else\medskip\ninepoint
+My personal file of updates also includes a fourth category of items, not
+shown in this list. They are miscellaneous minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+If you really want to see all of the gory details,
+you can download the full list from Internet webpage
+$$\.{http://www-cs-faculty.stanford.edu/\char`\~knuth/taocp.html}$$
+by selecting the ``long form'' of the errata.
+\fi
+
+\medskip
+\tenpoint
+My shelves at home are
+bursting with preprints and reprints of significant research results that I
+want to digest and summarize, where appropriate, in the ultimate edition of
+Volume~3. I didn't do that in the second edition because I would surely have to do
+it over again later: New results continue to pour forth at a great rate, and I
+will have time to rewrite that volume only~once. Volumes 4 and~5 need to be
+finished first. So I've put most of my effort so far into writing up
+those parts of the total picture that seem to have converged to their
+near-final form. It follows, somewhat paradoxically, that the updates in this
+document are most current in the areas where there has been least activity.
+
+On the other hand I do believe that the changes listed here bring Volume~3
+completely up to date in two respects: (1)~All of the research problems in the
+previous edition\dash---i.e., all exercises that were rated 46 and
+above\dash---have received new ratings of 45 or less whenever I learned of a
+solution; and in such cases, the answer now refers to that solution.
+(2)~All of the historical information about pioneering developments has been
+amended whenever new details have come to my attention.
+
+\beginconstruction
+The ultimate, glorious, 100\% perfect editions of Volumes 1--4A are works in progress.
+Please let me know of any improvements that you think I ought to make.
+Send your comments either by snail mail to D.~E. Knuth, Computer
+Science, Gates Building 4B, Stanford University, Stanford CA~94305-9045,
+or by email to
+{\tt taocp{\char`\@}cs.stanford.edu}. (Use email for book suggestions
+only, please\dash---all
+other correspondence is returned unread to the sender, or discarded,
+because I have no time to
+read ordinary email.) Although I'm working full time on
+Volume~4B these days, I~will try to reply to all such messages
+within a year of receipt. Current news about {\sl The Art of Computer
+Programming\/} is posted on
+$$\.{http://www-cs-faculty.stanford.edu/\char`~knuth/taocp.html}$$
+and updated regularly.
+\par\endconstruction
+\rightline{\dash---Don Knuth, February 1998}
+
+\bigskip
+\bigskip
+{\quoteformat
+Writing a series like {\rm The Art of Computer Programming}
+is similar to painting the Forth Rail Bridge.
+No sooner is it finished than
+the job must be started again.
+\author MALCOLM CLARK (1992)
+% A plain TeX primer, Oxford University Press, page 7
+\bigskip\bigskip
+The time when\/ {\rm The Guardian} ceases to make mistakes altogether
+is not, at the moment, foreseeable.
+\author IAN MAYES (1998)
+% quoted in IHT, 17 Feb 98, p5
+% he is Reader's Editor of the Manchester Guardian
+\vfill\eject
+}
+
+\def\today{\number\day\space\ifcase\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi
+  \space\number\year}
+
+%%%%%%%%%%%%%%% CHANGES FOR VOLUME 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{CHANGES TO VOLUME 3: SORTING AND SEARCHING}
+\let\rhead=\lhead
+\titlepage
+\volheadline{SORTING AND SEARCHING}
+\bigskip
+\rightline{Copyright \copyright\ 2011, 2012, 2013, 2014, 2015
+ Addison\with Wesley; all rights reserved}
+\rightline{Last updated \today}
+\bigskip
+\rightline{\sl Most of these corrections have already been made in
+                  recent printings.}
+\smallskip
+\let\defaultpointsize=\tenpoint
+
+\bugonpage 3.0 (on the back page of the dustcover, line 23) (12.09.10)
+{\eightss Whatever your backgound, \becomes Whatever your background,}
+\endchange
+
+\improvepage 3.vii line 6 before the author's signature (15.09.23)
+nobody noticed \becomes nobody else noticed
+\endchange
+
+\amendpage 3.x line 16 (11.06.16)
+a {\it 45\/} rating \becomes
+a {\it 40\/} rating
+\endchange
+
+\amendpage 3.x line 20 (13.01.30)
+creativity.\ \becomes
+creativity. All exercises with ratings of {\it46\/} or more are open problems
+for future research, rated according to the number of
+different attacks that they've resisted so far.
+\endchange
+
+\bugonpage 3.xii line 8 (12.04.04)
+\ninepoint Internal sorting \becomes Internal Sorting
+\endchange
+
+\amendpage 3.34 in exercise 22 (12.04.13)
+\ninepoint
+line 6: $0^k$ \becomes $0^p$ (twice)\nl
+line 6: $k\ge0$ \becomes $p\ge0$\vadjust{\smallskip}\nl
+line $-3$: $\displaystyle \sum_{k\ge0}{k!^2(n_{\le t}-k)!\,(n_{>t}-k)!\over
+                            n_1!\ldots n_m!}$ \becomes
+           $\displaystyle \sum_{p\ge0}{p!^2(n_{\le t}-p)!\,(n_{>t}-p)!\over
+                            n_1!\ldots n_m!}$\nl
+line $-1$: $p_{\le t}=p_{>t}=k$ \becomes
+           $p_{\le t}=p_{>t}=p$
+\endchange
+
+\improvepage 3.86 line 12 (15.03.07)
+$h_{t-2}$ sorting \becomes $h_{t-2}$-sorting
+\endchange
+
+\bugonpage 3.88 line 3 (15.03.07)
+$0.15n^{3/2}\!@$ \becomes $0.16n^{3/2}\!@$
+\endchange
+
+\improvepage 3.96 steps L3 and L4 (15.03.10)
+record $R$ \becomes record $R_j$ \quad(twice)
+\endchange
+
+\bugonpage 3.102 last line of exercise 6 (15.03.06)
+\ninepoint for $N+1$ records \becomes for $N$ records
+\endchange
+
+\bugonpage 3.111 in Fig.~17 on the arrow $\rm M3\to M4$ (12.06.07)
+\ninepoint $i\land p=r$ \becomes $i\band p=r$
+\endchange
+
+\amendpage 3.129 line $-5$ (11.07.16)
+used before \becomes used at the end of Section 5.1.4
+\endchange
+
+\amendpage 3.133 the line following {\eq(48)} (11.11.05)
+ignore $\delta(n)$ \becomes ignore the ``wobbles'' of $\delta(n)$
+\endchange
+
+\improvepage 3.136 in exercise 35 (15.04.22)
+\ninepoint frequencies \becomes quantities
+\endchange
+
+\bugonpage 3.137 in exercise 49 (15.04.23)
+\ninepoint \eq(47) \becomes \eq(50)
+\endchange
+
+\bugonpage 3.174 line {\it20\/} of the {\tt MIX} program (12.02.04)
+\ninepoint To R3 if end of pass. \becomes To R3 if not end of pass.
+\endchange
+
+\improvepage 3.202 improvement to proof of Theorem K (15.05.16)
+Line 3: large. We \becomes large. Let $d$ be 2, 3, or 4. We\nl
+Line 6: on $d$, for $d\le4$. \becomes on $d$.\nl
+Line 8: on $n$. \becomes on $n$. The upper bound follows from \eq(4) and \eq(8).
+\endchange
+
+\bugonpage 3.202 line $-16$ (11.05.16)
+F. Hwang \becomes F. K. Hwang
+\endchange
+
+\bugonpage 3.205 line 1 of exercise 11 (11.05.16)
+\ninepoint F. Hwang \becomes F. K. Hwang
+\endchange
+
+\improvepage 3.210 in {\eq(6)} (13.01.20)
+$n\ge t$ \becomes $1\le t \le n$
+\endchange
+
+\amendpage 3.213 line 2 before {\eq(14)} (13.10.08)
+Improved. \becomes Then Kirkpatrick discovered that $V_3(42)=50$; this may
+well be the only other counterexample
+[see {\sl Lecture Notes in Comp.\ Sci.\ \bf8066} (2013), 61--76].
+Improved
+\endchange
+
+\improvepage 3.216 line 3 before the exercises (15.05.16)
+$\Theta\bigl(\lg\bigl(n!/T(G)\bigr)+n-k\bigr)$ \becomes
+$\Theta\bigl(\log\bigl(n!/T(G)\bigr)+n-k\bigr)$
+\endchange
+
+\amendpage 3.226 lines 5 and 6 after {\eq(11)} (14.12.25)
+172]; the values of $\hat S(n)$ for $n>8$ are still \becomes
+172]; M.~Codish,  L.~Cruz-Filipe, M.~Frank, and P.~Schneider-Kamp
+[{\sl International Conference on Tools with Artificial Intelligence\/ \bf26}
+(2014), 186--193]
+have also verified this when $n\le10$.
+The remaining values of $\hat S(n)$ are still
+\endchange
+
+\amendpage 3.229 line $-5$ (13.11.16)
+For $n\le 10$ \dots (see exercise 4). \becomes
+In fact all of the values given here are known to be exact (see the
+answer to exercise~4).
+\endchange
+
+\amendpage 3.234 lines 6 and 7 before the exercises (14.11.30)
+Andrew Yao \dots\ as $n\to\infty$; \becomes
+Andrew Yao [{\sl SICOMP\/ \bf9} (1980), 566--582]
+determined the asymptotic behavior of $\hat U_t(n)$ for fixed $t$, by
+showing that $\hat U_3(n)=2n+\lg n+O(1)$ and $\hat U_t(n)=
+n\bigl\lceil@\lg(t+1)\bigr\rceil +O\bigl((\log n)^{\lfloor\lg((t+1)/3)
+\rfloor}\bigr)$ as $n\to \infty $;
+\endchange
+
+\amendpage 3.241 exercise 44 (14.11.30)
+\ninepoint some $n>8$ \becomes some $n>10$
+\endchange
+
+\amendpage 3.242 last line of exercise 52 (15.04.08)
+\ninepoint co-NP-complete \becomes coNP-complete
+\endchange
+
+\improvepage 3.253 new sentence at end of the caption for Fig.~62 (13.01.20)
+\ninepoint There are $P=12$ external nodes.
+\endchange
+
+\improvepage 3.261 line $-2$ and page 262 line 1 (13.01.20)
+$X$ \becomes $K$\qquad[6 times]
+\endchange
+
+\bugonpage 3.264 line 2 of exercise 17 (13.01.20)
+$K_1\ge K_2\ge \cdots \ge K_N$ \becomes $K_1>K_2>\cdots>K_N$
+\endchange
+
+\improvepage 3.268 line 8 (15.06.15)
+[insert a dash as the Contents of T3 in Phase 1]
+\endchange
+
+\amendpage 3.297 line 13 (16.06.07)
+(see exercise 6). \becomes
+(see exercise 6). Jost B\"urgi had~already discovered very similar ideas
+before 1592; 
+see M.~Folkerts, D.~Launert, and A.~Thom, {\sl Historia
+Mathematica\/ \bf43} (2016), 133--147.
+\endchange
+
+\bugonpage 3.315 bottom line [but only in 17th--28th printings!] (11.03.27)
+instead of as a \becomes instead of as
+\endchange
+
+\improvepage 3.330 line 6 after the caption to {Fig.\ 85} (15.08.19)
+Figs.\ 70, 74, \becomes Figs.\ 70, 72, 74,
+\endchange
+
+\improvepage 3.339 line 12 (15.08.26)
+numbers with the most significant fields at \becomes
+numbers in a year-month-day format, so that the most significant fields are at
+\endchange
+
+\amendpage 3.382 in footnote d to Table 5.5--1 (14.09.16)
+\eightpoint
+5.2.1--29. \becomes
+5.2.1--29; $N^{7/6}$ is not rigorous.
+\endchange
+
+\amendpage 3.411 line {\it 07\/} of Program B (14.12.15)
+\ninepoint $\rA\gets l+u$. \becomes
+           $\rA\gets l+u$. (Overflow cannot occur.)
+\endchange
+
+\bugonpage 3.423 line 2 of exercise 8 (12.03.27)
+\ninepoint $\sum_{j=0}^{\lfloor\lg N\?\?\rfloor +2}$ \becomes
+           $\sum_{j=1}^{\lfloor\lg N\?\?\rfloor +2}$
+\endchange
+
+\bugonpage 3.426 line 6 of exercise 28 (12.10.30)
+\ninepoint
+$\bigl((x*x)*x\bigr)*\bigl((x*x)*x\bigr)$ \becomes
+$\bigl(x*(x*x)\bigr)*\bigl(x*(x*x)\bigr)$
+\endchange
+
+\improvepage 3.432 line 11 (15.07.20)
+$\.Q\equiv \.{LLINK(P)}$ or $\.{RLINK(P)}$ \becomes
+$\.Q\equiv \.{LLINK(P)}$ or $\.Q\equiv\.{RLINK(P)}$
+\endchange
+
+\improvepage 3.443 line 6 (16.05.05)
+$x\lg(1/x)$ is concave; \becomes
+$x\lg(1/x)$ is concave, when $x>0$;
+\endchange
+
+\improvepage 3.464 line 16 (16.04.03)
+$C\log N$ \becomes $C\lg N$
+\endchange
+
+\improvepage 3.489 line 21 (16.04.04)
+$\ln2=69.3$ \becomes $\ln2$; that's about 69.3
+\endchange
+
+\improvepage 3.513 line $-14$ (12.07.12)
+Section 2.3 \becomes Section II.3
+\endchange
+
+\improvepage 3.534 line 4 (14.10.01)
+or if \becomes or
+\endchange
+
+\bugonpage 3.573 line $-16$ (16.04.21)
+$286/8008\approx 3.5$ percent \becomes
+$286/8008\approx 3.6$ percent
+\endchange
+
+\let\defaultpointsize=\ninepoint % get ready for answer pages
+
+\amendpage 3.589 lines 10 and 11 of answer 19 (15.05.16)
+suggested by Jiang Ling \becomes suggested by Ling Jiang
+\endchange
+
+\improvepage 3.597 line 2 of answer 28 (15.10.5)
+hence td \becomes hence we have total displacement td
+\endchange
+
+\amendpage 3.598 line 12 of answer 10 (12.04.13)
+for some $k>1$ \becomes for some smallest $k>1$
+\endchange
+
+\improvepage 3.600 in answer 18 (15.10.10)
+giving all elements \becomes giving each of the $n_j$ elements
+\endchange
+
+\amendpage 3.601 in answer 22 (12.04.13)
+line 1: $0^k$ \becomes $0^p$\nl
+line 1: for some $k$ \becomes for some $p$\nl
+line 3: the number $k$ \becomes the number $p$\nl
+line $-4$: $0^k$ \becomes $0^p$\nl
+line $-3$: $k!\,(n_1+\cdots+n_t-k)!$ \becomes
+           $p!\,(n_1+\cdots+n_t-p)!$\nl
+line $-3$: $\scriptstyle p_1+\cdots+p_t=k$ \becomes
+           $\scriptstyle p_1+\cdots+p_t=p$\nl
+line $-2$: $k=0$ \becomes $p=0$
+\endchange
+
+\amendpage 3.610 line 1 of answer 23 (12.07.28)
+{\sl Journal\/} \becomes
+{\sl Comptes Rendus Acad.\ Sci.\ \bf88}
+(Paris, 1879), 965--967; {\sl Journal\/}
+\endchange
+
+\amendpage 3.614 new sentenced appended to answer 40 (14.04.06)
+See also Dan Romik, {\sl The Surprising Mathematics of
+Longest Increasing Subsequences\/} (2014), Chapter~4.
+\endchange
+
+\improvepage 3.620 in answer 10 (13.04.29)
+line 2 after the program: time savings \becomes time saved\nl
+lines 5--6 after the program: not desirable \dots unless \becomes
+usually
+insignificant, since only $O(\log N)$ time is saved in that case
+unless
+\endchange
+
+\bugonpage 3.629 line {\it23} of the program in answer 12 (12.06.06)
+\.{J4N} \.{4B} \ \becomes \ \.{J4N} \.{8B}
+\endchange
+
+\improvepage 3.631 line 6 of answer 18 (16.03.11)
+line 6: ``$\le$,'' \becomes ``$\le$'',
+\endchange
+
+\bugonpage 3.632 line 1 (16.04.20)
+M. Regnier \becomes M.~R\'egnier
+\endchange
+
+\bugonpage 3.642 line 6 of answer 16 (16.03.18)
+step 4 \becomes step I4
+\endchange
+
+\bugonpage 3.644 line 2 of answer 28 (15.04.24)
+$21{2\over 3}N\log N$ \becomes $21{2\over 3}N\log_3N$
+\endchange
+
+\bugonpage 3.660 line 9 of answer 23 (11.02.26)
+$x_{11}\gets 1$ \becomes $x_{11}\gets 0$
+\endchange
+
+\bugonpage 3.664 line 9 (16.03.31)
+the first $t-1$ steps \becomes steps 1, 2, \dots, $t-1$
+\endchange
+
+Thus the first $t-1$ steps make at most $(t-1)(k-1)+1$ comparisons
+\amendpage 3.666 last three lines of answer 4 (13.11.16)
+Ian Parberry \dots 116. \becomes
+Further values have been obtained by D. Bundala and J.~Z\'avodn\'y
+via satisfiability encoding (see Section 7.2.2.2). The value of $\hat T(17)$
+remains unknown.
+\endchange
+
+\bugonpage 3.668 line 2 of answer 24 (14.11.30)
+by exercise 21 \becomes by exercise 22(a)
+\endchange
+
+\amendpage 3.669 line $-3$ of answer 27 (11.12.18)
+103--115. The fact \becomes 103--115; see also
+B.~E. Tenner, {\sl Annals of Combinatorics\/ \bf11} (2007), 101--114.
+The fact
+\endchange
+
+\amendpage 3.669 append to the end of answer 32 (15.12.16)
+[{\sl Princeton Conference on Information Sciences and Systems\/ \bf6}
+ (1972), 387--391.]
+\endchange
+
+\improvepage 3.669 line $-3$ of answer 35 (16.04.02)
+strike out \becomes remove
+\endchange
+
+\amendpage 3.677 line 2 of answer 11 (13.01.20)
+sequence. \becomes
+sequence; hence the probability is 1/2, given that $\.{LASTKEY}\ne\infty$.
+\endchange
+
+\bugonpage 3.687 last line of answer 7 (13.06.02)
+polyphase's 176 \becomes polyphase's 180
+\endchange
+
+\bugonpage 3.723 line 3 of answer 10 (16.05.15)
+$K$ is one less \becomes $k$ is one less
+\endchange
+
+\bugonpage 3.730 line 2 of step A7 (12.10.02)
+\.{TABLE[$i$]} \becomes \.{TABLE[$j$]}
+\endchange
+
+\bugonpage 3.732 line 7 of answer 30 (16.04.16)
+$q_{j-k-1}<q_j$ \becomes $q_{j-k+1}<q_j$
+\endchange
+
+\improvepage 3.734 line $-2$ (16.04.19)
+$1-e\_-e^{-2}=0.4968$ \becomes
+$1-e\_-e^{-2}\approx0.4968$
+\endchange
+
+\let\defaultpointsize=\tenpoint % begin appendices
+
+\amendpage 3.753 through page 755 (12.04.07)
+[replace the notation $(R\Relbar\joinrel\joinrel\joinrel\Rightarrow x;\;y)$
+ by $(R{?}\ x{:}\ y)$ in eleven places]
+\endchange
+
+\amendpage 3.757 new entries for Appendix C (11.04.17)
+\ninepoint\noindent
+Program 5.2.1D$'$, 620.\nl
+Program 6.1S$'$, 702.
+\endchange
+
+\bugonpage 3.757 and 758 in Appendix C (11.04.17)
+\ninepoint\noindent
+Theorem 5.1.2C, 28--29.\nl
+Algorithm 5.2.2R, 123, 125.\nl
+Algorithm 5.4.2A, 267.\nl
+Program 6.2.3A, 464--466.\nl
+[also delete the first entry for Program 5.2C]
+\endchange
+
+\expandafter\ifx\csname indexeject\endcsname\relax\else\vfill\eject\fi
+\amendpage 3.759 and following (11.01.01)
+Miscellaneous changes to the existing index of Volume~3 are collected here,
+including corrections and amendments to the old entries as well as new entries
+that are occasioned by the new material. Thus, the lines of the full index
+that have changed serve also as an index to the present document. However,
+when a correction or amendment has caused an old index entry to be deleted,
+the deletion is usually not indicated.
+
+\input exotic
+\begindoublecolumns
+\indexformat
+\gdef\Uni1.08:{\bitmap24:1.08:}
+\hangindent 2em
+Bundala, Daniel, 666. % 31st
+B\"urgi, Jost, 297. % 33rd
+Calhorda Cruz Filipe, Lu{\'\i}s, 226. % 32nd
+Chebyshev (= Tschebyscheff), Pafnutii Lvovich ({\rus Chebyshevp2, Pafnut{\char12}i0 Lp1vovichp2} = {\rus Chebyshev, Pafnutii0 Lp1vovich}), 395. % 30th
+Codish, Michael ({\heb\Hsh/\Hyy/\Hdd/\Hvv/\Hqq/ \Hll/\Haa/\Hcc/\Hyy/\Hmm/}), 226. % 32nd
+Cruz-Filipe, Lu{\'\i}s Calhorda, 226. % 32nd
+$e$ (base of natural logarithms), 41, 526, 748--749, 755. % 30th
+Exact cover problem, 721. % 30th
+Folkerts, Menso Johann Otto, 297. % 33rd
+Frank, Michael ({\heb\Hqq/\Hnn/\Hrr/\Hpp/ \Hll/\Haa/\Hcc/\Hyy/\Hmm/}), 226. % 32nd
+Gaudette, Charles Henry, 347. % 33rd
+Geek art, xiv, 256. % 33rd
+Greedy algorithms, 406--407. % 33rd
+Hoey, Daniel Joseph, 215. % 33rd
+Kingston, Jeffrey Howard, 454. % 33rd
+Konheim, Alan Gustave, 265, 376, 505, 548, 732, 740. % 33rd
+Launert, Dieter Otto, 297. % 33rd
+Luke, Richard Carlen, 547. % 33rd
+Lum, Vincent Yu-sun (\GC75:74:-3:61% G3354
+<000070000001c000000000007e000001f800000000007f800001fe00000000007fc00001%
+ fe00000000007fc00001fc00000000007f800001f800000000007e000001f80000000000%
+ 7e000001f800000000007e000001f800000000007e000001f800000000007e000001f800%
+ 000000007e000001f800000000007e000001f800000000007e000001f800000000007e00%
+ 0001f800000000007e070001f800700000007e0f8001f801f80000007e1fc001f803fe00%
+ 00007e3fefffffffff007ffffffff7ffffffff803fffffffffffffffff801ffffffffa0f%
+ fe00000000007e00000ffe0000000000fe00000ffe0000000000fe00000fff0000000000%
+ fe00001fff0000000000fe00001fff0000000001fe00001fff0000000001fe00001fff80%
+ 00000001fe00003ffb8000000001ffe0003ffbc000000001fff8003ffbc000000003fffc%
+ 003ff9e000000003ffff007df9e000000003feff807df9f000000007fe7f80f9f8f00000%
+ 0007fe3fc0f9f8f80000000ffe1fc1f1f8f80000000f7e0fc1f1f8fc0000001f7e0fc3e1%
+ f87c0000001e7e07c3e1f87e0000003e7e07c7c1f87e0000003c7e0387c1f83f0000007c%
+ 7e030f81f83f800000787e000f81f81f800000f87e001f01f81fc00000f07e003e01f80f%
+ c00001f07e003e01f80fe00003e07e007c01f807f00003e07e00f801f807f80007c07e00%
+ f801f803fc000fc07e01f001f803fe001f807e03e001f801ff003f007e07c001f800ff80%
+ 3e007e0f8001f800ffc078007e0f0001f8007fe0f0007e1e0001f8003f00e0007e3c0001%
+ f8003c0040007e780001f800100040007e700001f800000000007e600001f80000000000%
+ 7e000001f800000000007e000001f800000000007e000001f800000000007e000001f800%
+ 000000007e000001f800000000007e000001f800000000007e000001f800000000007e00%
+ 0001f800000000007e000001f800000000007e000003f800000000007e000003f8000000%
+ 00007c000003f0000000000000000003f0000000>%% Unicode char "6797
+\GC75:73:-2:60% G5011
+<0007000000000000000000078000000e000070000007f800001f0000fc000007f800001f%
+ 8001fe000007f000003fdfffff000007e00fffffdfffff000007e007ffff8ffffc000007%
+ e003c01f8100f8000007e000001f8700f8000007e038701f87c0f8001807e07e781f83e0%
+ f8000c07e07e3e1f83e0f8000e07e07c3f1f81f0f8000707e0fc3f1f81f0f8000787e0f8%
+ 1f1f80f0f80003c7e1f01f1f80f0f80003c7e1f00f1f80f0f80003e7e3e00f1f80c0f800%
+ 03e7e3c0073f8007f80001e7e7c000ff803ff80001e7e78001ff83fff80001e7ef000fdf%
+ 9ffef80001e7ff003f9ffffcf80001e7fe0fff1fbff0f80001c7fc0ffc1f9fc0f80001c7%
+ f807f81f8f00fc000087f003e01f8400fc000007e07181df7000fc000007e0f803fff800%
+ f8000007e1fe03f87e00f8000007e3ff03f83f000000ffffffff87f81f8000007fffffff%
+ 87f80f8070003ffc7c0007e00fc1f800007c7c000fc007c3fc00007c7c000f8007c7fc00%
+ 003e7c001ffffffffe00003e7c001fffffffff00003e7c003fffffffff80003e7c003e00%
+ 7e000000003e7c007e007e000000003e7c007e007e000000003e7c00fe007e038000007e%
+ 7c00fe007e07c000007e7c01fe007e0fe000007c7c03be007e1ff000007c7c07bfffffff%
+ f800007c7c1f3ffffffffc00007c7c3e3ffffffffc00007c7c7c3e007e000000007c7cfe%
+ 3e007e00000000787cee3e007e03800000f87c9e3e007e07c00000f87c3e3e007e07e000%
+ 00f87c7c3e007e0ff00000f07cf03e007e1ff80000f07df03ffffffffc0000f07de03fff%
+ fffffc0001f07fe03e007e00000001e07fc03e007e00000003e07f803e007e00000003c0%
+ 7f803e007e00000007c07f003e007e001c000783ff003e007e003e000f81fe003e007e00%
+ 7f800f00fc003e007e00ffc01e0078003fffffffffe03c0038003fffffffffe038001000%
+ 3fffffffffe0700000007e0000000000600000007e0000000000200000007e0000000000%
+ 000000007e0000000000>%% Unicode char "8000
+\Uni1.08:24:24:-1:20% Unicode char "71ca
+<011c380318600718c00e350004630001c1f00700e000000026326366666666c66c4d04d019819830e60ec05804001806ffffff007c0000db000198c00718701c183fe0180e001800>%
+), 520, 567, 578. % 33rd
+Mahon, Maurice Hartland (= Magenta), xi. % 33rd
+Mankin, Efrem Seymour, 698. % 33rd
+Neumann, John von (= Neumann J\'anos Lajos = Margittai Neumann J\'anos), 8, 159, 385. % 33rd
+Odell, Margaret King, 394. % 32nd
+Olson, Charles Arthur, 544. % 30th
+Romik, Dan ({\heb\Hqq/\Hyy/\Hmm/\Hvv/\Hrr/ \Hfn/\Hdd/}), 614. % 32nd
+Satisfiability, 242, 666. % 31st
+Schneider-Kamp, Peter Jan (=~Jan~Peter), 226. % 32nd
+Sch\"utzenberger, Marcel-Paul, 17, 21, 39, 55, 57--58, 66, 68, 70, 670. % 33rd
+Thom, Andreas Berthold, 297. % 33rd
+Uzgalis, Robert Charles, 482, 490. % 30th
+Variance, different notions of, 709, 735, 742. %30th
+von Neumann, John (= Neumann J\'anos Lajos = Margittai Neumann J\'anos), 8, 159, 385. % 33rd
+Williams, Francis Aloysius, Jr\period, 521. % 33rd
+Wobbles, 133, 636, 727. % 29th
+Z\'avodn\'y, Jakub, 666. % 31st
+
+\vfill
+\enddoublecolumns
+\endchange
+
+\bye
+
+[The next printing will be the 34th.]
+not mentioned above:
+page 46, added some thin lines in Fig 4
+page 184, reformat PhD reference on line 8
+page 186, reformat PhD reference on line 9
+page 378, added a comma in line -2 of exercise 19
+page 379, better spacing on HM in ex 27
+page 528, reformat PhD reference on line -5
+page 545, line -6: trade-offs -> tradeoffs
+page 589, line 3 of answer 20, sneak period inside the quotes
+page 600, comma after displayed equation in answer 18
+page 710, reformat PhD reference on lines 2 and 3
+page 759, fix AMM entry
+page 767, added comma after Huang
+page 768, added comma after Jiang
+page 769, Karp entry "352, 353--354" condensed to "352--354"
+page 782, added comma after Wu
+
+ARTICLES "TO APPEAR" THAT ARE STILL PENDING:

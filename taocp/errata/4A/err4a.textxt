@@ -1,0 +1,2532 @@
+% CHANGES TO VOLUME 4A OF THE ART OF COMPUTER PROGRAMMING
+%
+% Copyright (C) 2011, 2012, 2013, 2014, 2015 by Donald E. Knuth
+% This file may be freely copied provided that no modifications are made.
+% All other rights are reserved.
+%
+% Three levels of changes to the books are distinguished here:
+%
+% "\bugonpage" introduces the correction of an error;
+% "\amendpage" introduces new material for future editions;
+% "\improvepage" introduces ameliorations of lesser importance.
+%
+% (Changes introduced by \improvepage do not appear in the hardcopy listing.)
+%
+% Also, "\planforpage" introduces some of the author's half-baked intentions.
+%
+
+% NOTE: TO PUT THE INDEX ON A SEPARATE PAGE, RUN THIS WITH THE COMMAND LINE
+%   tex "\let\indexeject+ \input err4a"
+
+\newif\ifall % \alltrue means show the trivial items too
+\relax % hook
+
+\def\vertical{|}
+\def\inref#1 #{\expandafter\def\csname\vertical#1\endcsname}
+\catcode`|=\active
+\let|\inref \input \jobname.ref
+\catcode`|=12
+
+\input taocpmac % use the format for TAOCP, with modifications below
+
+\def\becomes{\ifmmode\ \hbox\fi{\manfnt y}\ } % wiggly arrow indicates a change
+
+\def\bugonpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt\llap{\manfnt x}% print a black triangle in left margin
+   {\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\amendpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\improvepage#1.#2 #3 (#4) {\ifall
+  \medbreak\ninepoint
+  \line{\kern-6pt{\sl Page #2\enspace #3\/}
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\noindent}
+\def\planforpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hbox to 5pt{\hss.\hss}\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\begingroup\let\endchange=\endgroup\sl\noindent}
+\let\endchange=\fi
+\def\nl{\par\noindent}
+\def\nlh{\par\noindent\hangit}
+\def\hangit{\hangindent2em}
+\def\cutpar{{\parfillskip=0pt\par}}
+
+\def\date#1.#2.#3.{% convert "yy.mm.dd." to "dd Mon 19yy"
+  #3
+  \ifcase#2\or Jan\or Feb\or Mar\or Apr\or May\or Jun\or
+               Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi
+  \ \ifnum #1<97 \hundred#1\else19#1\fi}
+\def\hundred{20} % the "century" for dates before '97
+
+\def\ex #1. [#2]{\ninepoint
+  \textindent{\bf#1.}[{\it#2\/}]\kern6pt}
+\def\EX #1. [#2]{\ninepoint
+  \textindent{\llap{\manfnt x}\bf#1.}[{\it#2\/}]\kern6pt}
+
+\def\foottext#1{\medskip
+        \hrule height\ruleht width5pc \kern-\ruleht \kern3pt \eightpoint
+        \smallskip\textindent{#1}}
+\def\volheadline#1{\line{\cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill
+       \titlefont\ #1\ \cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill}}
+\def\refin#1 {\let|\inref \input #1.ref \let|\crossref}
+
+\let\defaultpointsize=\tenpoint
+
+%%%%%%%%%%%%%% opening remarks %%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{INTRODUCTION}
+\let\rhead=\lhead
+\titlepage
+\volheadline{THE ART OF COMPUTER PROGRAMMING}
+\bigskip
+\volheadline{ERRATA TO VOLUME 4A}
+\bigskip
+
+\noindent This document is a transcript of the notes that I have been making
+in my personal copy of {\sl The Art of Computer Programming}, Volume~4A
+since it was first printed in 2011.
+
+\ifall Four levels of updates\dash---``errors,'' ``amendments,'' ``plans,''
+   and ``improvements''\dash---appear, indicated by four
+\else Three levels of updates\dash---``errors,'' ``amendments,'' and
+   ``plans''\dash---appear, indicated by three \fi
+different typographic conventions:
+\begingroup\def\hundred{17}
+
+\bugonpage 0.666 line 1 (76.07.04)
+Technical or typographical errors (aka bugs) are the most critical items, so
+they are flagged with a `\thinspace{\manfnt x}\thinspace' preceding the page
+number. The date on which I first was told about the bug is shown; this is the
+effective date on which I paid the finder's fee. The necessary
+corrections are indicated in
+a straightforward way. If,~for example, the book says
+`$n$' where it should have said `$n+1$', the change is shown thus:
+\smallskip
+$n$ \becomes $n+1$
+\endchange
+
+\amendpage 0.666 line 2 (89.07.14)
+Amendments to the text appear in the same format as bugs, but without
+the~`\thinspace{\manfnt x}\thinspace'. These are things I wish I had known
+about or thought of when I wrote the original text, so I added them later.
+The date is the date I drafted the new text.
+\endchange
+
+\def\hundred{19}
+
+\planforpage 0.666 line 3 (17.11.20)
+Plans for the future represent a third kind of item. In such notes I~sketched
+my intentions about things that I wasn't ready to flesh out further when
+I~wrote them down. You can identify these items because they're written in
+slanted type, and preceded by a bunch of dots
+`\hbox to 6em{\leaders\hbox to 5pt{\hss.\hss}\hfill}' leading to the date on
+which I recorded the plan in my files.
+\endchange
+
+\improvepage 0.666 line 4 (38.01.10)
+The fourth and final category\dash---indicated by page and line number in
+smaller, slanted type\dash---consists of minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+You wouldn't even
+be seeing these items if you hadn't specifically chosen to print the complete
+errata list in all its gory details.
+Are you sure you wanted to do that?
+\endchange
+
+\endgroup
+\ifall\else\medskip\ninepoint
+My personal file of updates also includes a fourth category of items, not
+shown in this list. They are miscellaneous minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+If you really want to see all of the gory details,
+you can download the full list from Internet webpage
+$$\.{http://www-cs-faculty.stanford.edu/\char`\~knuth/taocp.html}$$
+by selecting the ``long form'' of the errata.
+\fi
+
+\medskip
+\tenpoint
+
+\beginconstruction
+The ultimate, glorious, future editions of {\sl The Art of Computer
+Programming\/} are works in progress.
+Please let me know of any improvements that you think I ought to make.
+Send your comments either by snail mail to D.~E. Knuth, Computer
+Science, Gates Building 4B, Stanford University, Stanford CA~94305-9045,
+or by email to
+{\tt taocp{\char`\@}cs.stanford.edu}. (Use email for book suggestions
+only, please\dash---all
+other correspondence is returned unread to the sender, or discarded,
+because I have no time to
+read ordinary email.) Although I'm working full time on
+Volume~4B these days, I~will try to reply to all such messages
+within a year of receipt. Current news is posted on
+$$\.{http://www-cs-faculty.stanford.edu/\char`~knuth/taocp.html}$$
+and updated regularly.
+\par\endconstruction
+\rightline{\dash---Don Knuth, January 2011}
+
+\bigskip
+\bigskip
+{\quoteformat
+If there happen to bee any iarre or dissonance, %
+% people say "ther" but it's really just a lightly printed letter e
+blame not the Printer,
+who (I doe assure thee) through his great paines and diligence,
+doth heere deliuer to thee a perfect and true Coppie.
+If .\thinspace.\thinspace.\ there bee any fault by mee committed,
+I desire the skilfull, eyther with courtesie to let the same bee concealed,
+or in friendly sort to bee thereof admonished:
+and at the next Impression he shall find error reformed:
+remembring alwaies, that it is more easie to finde a fault then to amend it.
+\author WILLIAM BYRD, %
+ {\sl Psalmes, Sonets, \& songs of sadnes and pietie\/} (1588)
+
+\bigskip\bigskip
+
+He did a lot of editing. That's how he liked to work.
+Sometimes he even made alterations between printings.
+\author P. D. JAMES, {\sl The Lighthouse\/} (2005)
+% page 148 (within Chapter 7)
+
+
+\bigskip\bigskip
+\vfill\eject
+}
+
+\def\today{\number\day\space\ifcase\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi
+  \space\number\year}
+
+%%%%%%%%%%%%%%% CHANGES FOR VOLUME 4A %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{CHANGES TO VOLUME 4A: COMBINATORIAL ALGORITHMS, PART 1}
+\let\rhead=\lhead
+\titlepage
+\volheadline{COMBINATORIAL ALGORITHMS, PART 1}
+\bigskip
+\rightline{Copyright \copyright\ 2011, 2012, 2013, 2014, 2015
+  Addison\with Wesley; all rights reserved}
+\rightline{Last updated \today}
+\bigskip
+\rightline{\sl Most of these corrections have already been made in
+                  recent printings.}
+\smallskip
+\let\defaultpointsize=\tenpoint
+\def\bland{@\land@} % \land as wide as \xor
+\def\blor{@\lor@}
+\def\nbool#1{\mathbin{\mkern1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern1.5mu}}
+\def\nimp{\?\nbool\supset\?}
+
+\amendpage 4a.viii line 11 (11.05.26)
+Section 7.2 \becomes Section 7.2.2
+\endchange
+
+\amendpage 4a.xii line 16 (11.06.16)
+a {\it 45\/} rating \becomes
+a {\it 40\/} rating
+\endchange
+
+\amendpage 4a.xii line 20 (13.01.30)
+creativity.\ \becomes
+creativity. All exercises with ratings of {\it46\/} or more are open problems for future research, rated according to the number of
+different attacks that they've resisted so far.
+\endchange
+
+\amendpage 4a.1 line 18 (11.04.23)
+{\eightss (1927)} \becomes {\eightss (1926)}
+\endchange
+
+\amendpage 4a.6 line $-19$ (15.08.19)
+Section 7.2.3, \becomes Section 7.2.2
+\endchange
+
+\bugonpage 4a.9 line 19 (11.04.23)
+``Can toy problems be useful?'' \becomes
+``Are toy problems    useful?''
+\endchange
+
+\bugonpage 4a.10 line 16 (11.04.23)
+{\eightssi good society} \becomes {\eightssi good Society}
+\endchange
+
+\bugonpage 4a.10 line $-12$ (11.01.31)
+(see page ii) \becomes (see page iv)
+\endchange
+
+\amendpage 4a.11 line 2 after {\eq(10)} (15.08.13)
+Section 7.2.2.2 \becomes Section 7.2.2.1
+\endchange
+
+\improvepage 4a.12 line 18 (11.08.03)
+\font\logosl=logosl9
+in the author's books about \TeX\ and \MF\ \becomes\nl
+in {\sl The \TeX book\/} and {\sl The {\logosl METAFONT\kern.1em}book}
+\endchange
+
+\bugonpage 4a.12 replacement for {\eq(13)} (13.07.11)
+$$\displaylines{\qquad
+\.{chaos}\adj
+\.{chose}\adj
+\.{chore}\adj
+\.{score}\adj
+\.{store}
+\hfill\cr\hfill\adj{}
+\.{stare}\adj
+\.{spare}\adj
+\.{space}\adj
+\.{peace}@.\qquad\eq(13)\cr}$$
+\endchange
+
+\improvepage 4a.13 line 14 (12.02.01)
+permitted.) \becomes permitted, and in which repeated edges are
+allowed too.)
+\endchange
+
+\improvepage 4a.15 lines $-19$ and $-18$ (11.07.20)
+spanning path \becomes spanning path $P_n$\nl
+spanning cycle \becomes spanning cycle $C_n$
+\endchange
+
+\amendpage 4a.15 line $-11$ (15.08.03)
+combinatorial problem of all \becomes problem of graph theory
+\endchange
+
+\amendpage 4a.15 line $-10$ (15.08.03)
+Section 7.3.3 \becomes Section 7.2.2.4
+\endchange
+
+\bugonpage 4a.16 line 26 (11.04.23)
+the odds \becomes changing two different letters, the odds
+\endchange
+
+\bugonpage 4a.16 line 29 (11.04.23)
+2056, 1198, 224 \becomes 2056, 1186, 224
+\endchange
+
+\bugonpage 4a.16 line before {\eq(22)} (11.05.15)
+out be \becomes out to be
+\endchange
+
+\amendpage 4a.17 lines 5--7 (13.03.04)
+Franz Heinen \dots 1836). \becomes
+Joseph Gergonne had, however, already posed and solved the problem for
+{\it any\/} $k$ points in the plane [{\sl Annales de math\'ematiques
+pures et appliqu\'ees\/ \bf1} (1811), 292, 375--384 and planche~6].
+\endchange
+
+\amendpage 4a.19 line 5 in the right column of Fig{.} 3 (11.04.23)
+{\sevenrm Hector MacQueen} \becomes {\sevenrm Hector Willard MacQueen}
+\endchange
+
+\bugonpage 4a.19 line 15 in the right column of Fig{.} 3 (11.04.23)
+{\sevenrm Cyrus Bettman Hardman} \becomes {\sevenrm Cyrus Bethman Hardman}
+\endchange
+
+\improvepage 4a.23 line $-11$ (11.09.13)
+cross references \becomes cross-references
+\endchange
+
+\bugonpage 4a.24 line 9 (11.04.23)
+{\it plane\_lisa\/}$(360,250,15,0,360,0,250,0,0,2295000)$ \becomes\nl
+{\it plane\_lisa\/}$(360,250,15,0,360,0,250,0,22950000)$
+\endchange
+
+\bugonpage 4a.25 line 28 (11.04.23)
+$\.{3,1,4,2}\adj\.{3,0,4,3}@$ \becomes
+$\.{3.1.4.2}\adj\.{3.0.4.3}@$
+\endchange
+
+\improvepage 4a.26 line 11 (11.04.23)
+two edges are adjacent in $L(G)$ \becomes
+two edges of $G$ are adjacent in $L(G)$
+\endchange
+
+\improvepage 4a.29 line 6 (11.12.30)
+graphical; therefore \becomes graphical, because a (simple) graph cannot
+contain more than one edge between two vertices. Therefore
+\endchange
+
+\bugonpage 4a.31 lines 13 and 14 (11.04.23)
+{\it plane\_lisa\/}$(360,250,15,0,360,0,250,0,0,2295000)$ \becomes\nl
+{\it plane\_lisa\/}$(360,250,15,0,360,0,250,0,22950000)$
+\endchange
+
+\amendpage 4a.32 line $-8$ (12.06.29)
+of colors \becomes of at most $k$ colors
+\endchange
+
+\bugonpage 4a.35 lines 15--17 (11.08.06)
+In Section 7.5.1 we'll \dots~study \becomes In Sections 7.5.1 and~7.5.5
+we'll see that a minimum vertex cover can be discovered quickly in any
+bipartite graph, or in any hypergraph that is the dual of a graph;
+we'll also study
+\endchange
+
+\amendpage 4a.42 replacement for exercise 88 (15.12.23)
+\ninepoint
+\ex88. [M20] The graph $W_n=K_1\join C_n$ is called the
+{\it wheel\/} with $n$ spokes, when $n\ge3$. How many cycles
+does it contain as subgraphs?
+\hangindent-.75in\hangafter-2\hfill\rlap{\hbox to.75in{\hfil
+    \smash{\lower7pt\vbox{\halign{\hfil#\hfil\cr
+        \epsfxsize=.3in\epsfbox{\figdir/v4a.88}\cr
+        \noalign{\vskip-3pt}\eightpoint$W_7$\cr}}}\qquad}}
+\endchange
+
+\amendpage 4a.44 line 2 of exercise 114 (11.05.23)
+\ninepoint bipartite graph \becomes bipartite multigraph
+\endchange
+
+\improvepage 4a.45 line 8 of exercise 137 (15.10.27)
+\ninepoint underlying graph \becomes numbering scheme
+\endchange
+
+\amendpage 4a.46 line 3 of exercise 140 (15.12.23)
+\ninepoint $W_8$ \becomes $W_7$
+\endchange
+
+\bugonpage 4a.46 replacement for last line of exercise 142 (11.05.23)
+\ninepoint\noindent
+of order~4
+that are considered in exercise~90.
+\em Hint: Observe that $(n-3)\#(K_3{:}G)=
+ 4\#(K_4{:}G)+2\#(K_{1,1,2}{:}G)+\#(\overline{K_{1,3}}{:}G)
++\#(\overline{K_1{\dirsum}K_{1,2}}{:}G)$.
+\endchange
+
+\improvepage 4a.48 line 9 before {\eq(1)} (13.07.15)
+normal English \becomes normal English for disjoint sets
+\endchange
+
+\bugonpage 4a.49 entire page (11.01.01)
+[In the first printing this page was shifted about 1\thinspace cm to the left]
+\endchange
+
+\amendpage 4a.49 three entries in Table 1 (14.10.16)
+\def\bool#1{\mathbin{\vcenter{\hbox{$#1$}}}}%
+$x\bool{\not\supset} y$ \becomes
+\setbox0=\hbox{$\supset$}%
+$x\bool{\rlap{\hbox to\wd0{\hfil$\vert@$\hfil}}\box0}y$\nl
+$x\bool{\not\subset} y$ \becomes
+\setbox0=\hbox{$\subset$}%
+$x\bool{\rlap{\hbox to\wd0{\hfil$@\vert$\hfil}}\box0}y$\nl
+$x\bool{\not\equiv} y$ \becomes
+\setbox0=\hbox{$\equiv$}%
+$x\bool{\rlap{\hbox to\wd0{\hfil$\vert$\hfil}}\box0}y$
+\endchange
+
+\bugonpage 4a.52 line 2 (12.02.11) % affects also page 51 line break
+constants. \becomes
+constants, together with the variables $\{x_1,\ldots,x_n\}$.
+\endchange
+
+\amendpage 4a.56 lines 4 and 5 after {\eq(31)} (11.07.13)
+especially in Section 7.9 \becomes for instance in Section 7.2.2.2
+\endchange
+
+\amendpage 4a.56 rearrangement of {\eq(32)} (13.06.17)
+$$\def\\#1#2{\if#11\bar\fi x_#2}
+\def\|#1#2#3#4#5#6{(\\#1#2{@\lor@}\\#3#4{@\lor@}\\#5#6)}
+\displaylines{\qquad
+\|010213@\land@\|020314@\land@\|030401@\land@\|041102
+\hfill\cr\hfill
+{}@\land@\|111203@\land@\|121304@\land@\|131411@\land@\|140112@.
+\qquad\eq(32)\cr}$$
+[also change `first seven' to `last seven' on line $-2$.]
+\endchange
+
+\amendpage 4a.59 beginning at line 3 after {\eq(36)}
+ and continuing into page 60 (16.07.28)
+\indent We use the following \dots Algorithm C is similar \becomes\nl\indent
+\algindentset{C1}%
+We use the following data structures for clauses~$c$ and propositions~$p$:
+$$\openup1\jot\vcenter{\halign{#\hfill\cr
+\.{CONCLUSION($c$)} is the proposition on the right of clause~$c@$;\cr
+\.{COUNT($c$)} is the number of hypotheses of~$c$ not yet asserted;\cr
+\.{TRUTH($p$)} is 1 if $p$ is known to be true, otherwise 0;\cr
+\.{LAST($p$)} is the last clause in which $p$ is waiting to be asserted;\cr
+\.{PREV($c$)} is the previous clause that awaits the same hypothesis as~$c$;\cr
+\.{START($c$)} tells where the hypotheses of $c$ appear in \.{MEM}.\cr}}$$
+(A ``hypothesis'' is the appearance of a proposition on the
+ left-hand side of a clause.)
+An array called \.{MEM} holds all the left-hand sides of the clauses;
+if $\.{START($c$)}=l$ and $\.{COUNT($c$)}=k$, the not-yet-asserted hypotheses
+of clause~$c$ are \.{MEM[$l+1$]}, \dots,~\.{MEM[$l+k$]}.
+We also maintain a stack $S_0$, $S_1$, \dots, $S_{s-1}$ of all propositions
+that are known to be true but not yet asserted.
+
+\algstep C1. [Initialize.] Set $\.{LAST($p$)}\gets\Lambda$ and
+$\.{TRUTH($p$)}\gets0$ for each proposition~$p$. Also set $l\gets s\gets0$, so
+that \.{MEM} and the stack are initially empty.
+Then for each clause $c$, having the form~\eq(36),
+set $\.{CONCLUSION($c$)}\gets v$. If $k=0$ and
+\vadjust{\goodbreak}% paging 2014.07.21
+$\.{TRUTH($v$)}=0$, simply set $\.{TRUTH($v$)}\gets1$, $S_s\gets v$, and $s\gets
+s+1$. But if $k>0$, set $\.{MEM[$l+j$]}\gets u_j$ for
+$1\le j\le k$, $\.{COUNT($c$)}\gets k$, $l\gets l+k$,
+$\.{PREV($c$)}\gets \.{LAST($u_k$)}$, and $\.{LAST($u_k$)}\gets c$.
+
+\algstep C2. [Prepare to loop.] Terminate the algorithm if $s=0$;
+the desired core now
+consists of all propositions whose \.{TRUTH} has been set to~1.
+Otherwise set $s\gets s-1$, $p\gets S_s$, and $c\gets \.{LAST($p$)}$.
+(We'll update the clauses that await~$p$.)\tighten
+
+\algstep C3. [Done with loop?] If $c=\Lambda$, return to C2. Otherwise set
+$k\gets\.{COUNT($c$)}-1$, $l\gets\.{START($c$)}$, and $c'\gets\.{PREV($c$)}$.
+
+\algstep C4. [Done with $c$?] If $k=0$, go to C5. Otherwise set $p\gets
+\.{MEM[$l+k$]}$. If $\.{TRUTH($p$)}=1$, set $k\gets k-1$ and repeat this step.
+Otherwise set $\.{COUNT($c$)}\gets\nobreak k$,
+$\.{PREV($c$)}\gets\.{LAST($p$)}$,
+$\.{LAST($p$)}\gets c$, and go to~C6.
+
+\algstep C5. [Deduce \.{CONCLUSION($c$)}.] Set $p\gets \.{CONCLUSION($c$)}$.
+If $\.{TRUTH($p$)}=0$, set $\.{TRUTH($p$)}\gets1$, $S_s\gets p$, $s\gets s+1$.
+
+\algstep C6. [Loop on~$c$.] Set $c\gets c'$ and return to C3.\quad\slug
+
+\smallskip\noindent
+Notice how smoothly the sequential and linked
+data structures work together, avoiding any need to
+search for a place to make progress in the calculation. We're doing
+a bare minimum of work! Algorithm~C is similar
+\endchange
+
+\bugonpage 4a.60 line $-19$ (12.01.02)
+Scutell\'a \becomes Scutell\`a
+\endchange
+
+\improvepage 4a.68 line $-2$ (11.06.18)
+Setting $x=y$ \becomes Setting $y=x$
+\endchange
+
+\bugonpage 4a.70 line 1 of step I4 (11.07.11)
+$\.{MARK($u$)}\ne s$ \becomes
+$\.{MARK($u$)}\ne s$ or $\.{RANK($u$)}\ne 1$
+\endchange
+
+\bugonpage 4a.74 line 7 (11.06.10)
+$u_k\le u_{k+d}$ \becomes $u_k\to u_{k+d}$
+\endchange
+
+\bugonpage 4a.74 lines 4 and 5 after {\eq(74)} (11.06.10)
+inequalities \becomes relations \qquad(twice)
+\endchange
+
+\bugonpage 4a.81 line 4 of exercise 26 (11.06.14)
+\ninepoint Exhibit \becomes Efficiently exhibit
+\endchange
+
+\amendpage 4a.85 line 2 of exercise 39 (13.11.06)
+\ninepoint $N$ internal nodes \becomes $N>0$ internal nodes
+\endchange
+
+\amendpage 4a.89 reordering of exercise 67 in the top several lines (11.07.08)
+\ninepoint 
+The original part (b) [`If $n>0$, let $t^*$ \dots'] becomes part (a);
+and the original part (a) [`Prove that, \dots'] becomes part (b).
+\endchange
+
+\bugonpage 4a.93 replacement for part {(d)} of exercise 110 (11.07.20)
+\ninepoint
+\item{d)} Suppose $f$ is a pure majority function, namely a threshold function
+of the form \eq(86) with $a=b=0$. Then $s_1\ge s_2\ge
+\cdots\ge s_n$ implies that $w_1\ge w_2\ge\cdots\ge w_n$.
+\endchange
+
+\bugonpage 4a.94 line 5 (12.01.22)
+$A_{n0}$, $A_{(n-1)1}$, \dots,~$A_{0n}$ \becomes
+$A_{m0}$, $A_{(m-1)1}$, \dots,~$A_{0m}$
+\endchange
+
+\improvepage 4a.96 line 6 (11.08.20)
+\ninepoint all vectors $z$. \becomes all $n$-bit vectors $z$.
+\endchange
+
+\improvepage 4a.100 line 8 (15.06.10)
+without \becomes in which each step~$x_i$ is normal, without
+\endchange
+
+\improvepage 4a.103 just before the displayed special chains (11.08.08)
+cannot obviously be shortened: \becomes cannot be shortened in an obvious way:
+\endchange
+
+\amendpage 4a.108 the line after {\eq(28)} (14.05.28)
+needed to compute \becomes that will compute
+\endchange
+
+\bugonpage 4a.109 line 5 (14.01.03)
+$S_1=\bar z_0\land\bar z_1\land z_2$ \becomes
+$S_1=z_0\land\bar z_1\land\bar z_2$
+\endchange
+
+\bugonpage 4a.109 line $-15$ (14.01.03)
+exercise 79 \becomes exercise 78
+\endchange
+
+\bugonpage 4a.110 line 3 before {\eq(35)} (13.01.14)
+{\sl Isvestiia} \becomes {\sl Izvesti{\t\i}a}
+\endchange
+
+\amendpage 4a.114 replacement for {\eq(45)} and the line above it (11.05.05)
+\noindent only 11\dash---a
+chain with fewer than 1.6 operations per output(!):
+$$\openup-.9\jot\eqalign{
+x_5&=x_1\blor x_2,\cr
+x_6&=x_3\xor x_5,\cr
+x_7&=\bar x_2\bland x_6,\cr
+\strut x_8&=x_4\blor x_7,\cr
+}\qquad\eqalign{
+\bar d=\phantom{_9}x_9&=x_6\xor x_8,\cr
+\bar f=x_{10}&=\bar x_5\bland x_8,\cr
+\bar b=x_{11}&=x_2\bland\bar x_9,\cr
+\strut\bar a=x_{12}&=\bar x_3\bland x_9,\cr
+}\qquad\eqalign{
+\bar c=x_{13}&=\bar x_4\bland x_{10},\cr
+\bar e=x_{14}&=x_4\blor x_9,\cr
+g=x_{15}&=x_6\blor x_{11}.\cr
+\strut\cr
+}\eqno(45)$$
+This amazing chain, found by Corey Plover in 2011, chooses $x_7$ non-greedily.
+\endchange
+
+\bugonpage 4a.117 in {\eq(56)} (14.01.03)
+$\lor$ \becomes $\land$ \quad(twice)
+\endchange
+
+\bugonpage 4a.117 in the line after {\eq(56)} (16.07.13)
+396 gates \becomes 394 gates
+\endchange
+
+\amendpage 4a.125 replacement for exercise 4 (16.07.28)
+\ninepoint
+\ex4. [M28] Prove that the minimum depth and formula
+length of a Boolean function satisfy
+$\lg L(f)<D(f)<\alpha\lg L(f)$ when $L(f)>1$, where
+$\alpha=1/\?\lg\chi\approx2.465965$ is related to the ``plastic
+constant''~$\chi$ of Eq.~7.1.4--\eq(90).
+\em Hint: If $f$ contains a subformula~$g$, we have $f=(g{?}\ f_1{:}\ f_0)$
+for suitable $f_1$ and~$f_0$.
+\endchange
+
+\amendpage 4a.126 replacement for exercise 15 (11.12.01)
+\ninepoint
+\ex15. [28] Find short-as-possible ways to evaluate the following Boolean
+functions using minimum memory:
+(a)~$S_1(x_1,x_2,x_3)$;
+(b)~$S_2(x_1,x_2,x_3,x_4)$;
+(c)~$S_1(x_1,x_2,x_3,x_4)$;
+(d)~the function in \eq(18).
+\endchange
+
+\amendpage 4a.128 rating of exercise 42 (11.09.07)
+\ninepoint {\it25\/} \becomes {\it30\/}
+\endchange
+
+\amendpage 4a.129 line 3 of exercise 58 (11.11.01)
+Russian \becomes USSR All-Union
+\endchange
+
+\amendpage 4a.131 rating of exercise 76 (11.10.16)
+\ninepoint{\it M25\/} \becomes {\it M26}
+\endchange
+
+\bugonpage 4a.131 line 8 of exercise 76 (11.10.16)
+\ninepoint$O(n/@\!\log n)^2$ \becomes $O(n^2)$
+\endchange
+
+\improvepage 4a.131 line 10 of exercise 76 (11.10.16)
+\ninepoint length $2^m$. \becomes
+length $2^m$, and the one-bit quantity
+$(\[l\le i]\xor\[i\le j])$ is {\mc AND}$@$ed with each component
+of $x\xor y$.
+\endchange
+
+\bugonpage 4a.131 line 3 of exercise 78 (13.11.15)
+\ninepoint $2\Vert S\Vert-2$ \becomes $2\vert S\vert-2$
+\endchange
+
+\amendpage 4a.132 rating of exercise 80 (11.10.24)
+\ninepoint {\it M27\/} \becomes {\it M29}
+\endchange
+
+\amendpage 4a.133 line $-2$ of exercise 86 (11.12.01)
+\ninepoint $r^2q\ge2^{r-1}$. \becomes
+$r^2q\ge2^{r+1}$. \em Hint: Now use the first formula.
+\endchange
+
+\amendpage 4a.133 rating of exercise 87 (11.11.30)
+\ninepoint {\it M20\/} \becomes {\it M22\/}
+\endchange
+
+\improvepage 4a.134 line 20 (11.11.17)
+{\it technique\/} is a trick \becomes {\it technique\/} is a mature trick
+\endchange
+
+\improvepage 4a.140 replacement for line $-3$ (14.12.28)
+$$\rho(2y+1)=0,\qquad \rho(2y)=\rho(y)+1\eqno(44)$$
+\endchange
+
+\amendpage 4a.153 replacement for lines 7--11 (16.06.30)
+\noindent
+we can also do bytewise comparison in the cases where $c>128$.
+Here's a 6-step formula that
+sets $t_j\gets128\[x_j<y_j]$ for each byte position~$j$ in the test word~$t@$:
+$$\advance\abovedisplayskip-.5pt
+  \advance\belowdisplayskip-.5pt
+t\;\gets\;\bigl((\bar x\band y)+(((\bar x\xor y)\rsh1)\band\bar h)\bigr)\band h.
+ \eqref|field-compare|(93)$$
+(See exercise 96. This trick was discovered in 2013 by Norbert Juffa.)
+Notice that $((\bar x\xor y)\rsh1)\band\bar h$ is the same as the quantity
+$((\bar x\xor y)\band\bar l)\rsh1$ that we saw in~\eq(88).\tighten
+\endchange
+
+\bugonpage 4a.157 replacement for the display in the
+ proof of Theorem R (11.08.04)
+$$\{2^k,\,2^{k+2^d},\,2^{k+2\cdot2^d},\,\ldots,\,2^{k+(d-1)2^d}\}\;\cap
+V_{d@0r}\;=\;\emptyset.$$
+\endchange
+
+\amendpage 4a.169 append to the caption of {Fig.~14} (14.06.28)
+\ninepoint [See H.~A. Schwarz, {\sl Crelle\/ \bf75} (1873),
+page 318 and Tafel~II following page 348.]
+\endchange
+
+\improvepage 4a.171 the line before {Fig.~15} (11.01.25)
+sides: \becomes sides (Fig.~15(b)):
+\endchange
+
+\improvepage 4a.172 the line before {\eq(158)} (15.12.09)
+that lead from \becomes that begin with
+\endchange
+
+\bugonpage 4a.173 line 1 after {Fig.~16} (11.04.15)
+at least two \becomes one, two, or three
+\endchange
+
+\amendpage 4a.189 rating of exercise 71 (11.09.07)
+\ninepoint {\it17\/} \becomes {\it20\/}
+\endchange
+
+\bugonpage 4a.194 line 3 of exercise 127 (11.02.24)
+\ninepoint boardword \becomes broadword
+\endchange
+
+\amendpage 4a.197 replacement for line 6 of exercise 173 (16.05.03)
+\ninepoint$$X^D=\;\vcenter{\hbox{$\bigcap$}}\,
+    \{@Y\mid Y\supseteq X\ \hbox{and $Y$ is closed}\};
+\quad
+  X^L=\;\vcenter{\hbox{$\bigcup$}}\,\,
+    \{@Y\mid Y\subseteq X\ \hbox{and $Y$ is open}\}.$$
+\endchange
+
+\amendpage 4a.198 line 9 of exercise 176 (12.04.25)
+$u'\adj^*v'$ in $G'$ \becomes
+$u'\adj^*v'$ in $G'$ (that is, they are in the same component).
+\endchange
+
+\amendpage 4a.198 line 3 of exercise 184 (12.03. 20)
+\ninepoint order. \becomes order. \em Hint: There is a simple answer.
+\endchange
+
+\amendpage 4a.198 rating of exercise 185 (12.03.21)
+\ninepoint {\it 22\/} \becomes {\it 23\/}
+\endchange
+
+\amendpage 4a.199 line 2 of exercise 189 (12.03.23)
+\ninepoint rotate it \becomes rotate it counterclockwise
+\endchange 
+
+\improvepage 4a.200 line 4 of exercise 196 (12.03.30)
+\ninepoint$\alpha_j=2^7+x_{l-j}$ \becomes
+$\alpha_j\gets2^7+x_{l-j}$
+\endchange
+
+\amendpage 4a.202 new exercise (13.11.16)
+\ninepoint\EX219. [20] What does this hack do? ``While $x\band(x+1)\ne0$,
+set $x\gets x-((x\band(x+1))\rsh1)$.''
+\endchange
+
+\improvepage 4a.207 line $-6$ (11.02.12)
+is best possible \becomes is the best possible
+\endchange
+
+\improvepage 4a.208 line $-5$ (12.06.08)
+So we set $x_1\gets0$ with probability 13/18, and \becomes
+So, with probability~13/18, we set $x_1\gets0$ and
+\endchange
+
+\improvepage 4a.209 line 2 of step B3 (12.06.01)
+Then if $h\ne0$, compute \becomes
+Then if $h\ne0$, do the following: Compute
+\endchange
+
+\amendpage 4a.214 append a sentence to the paragraph
+ preceding Theorem M (12.06.08)
+Kenneth McMillan has discovered an interesting upper bound 
+that holds whenever we can formulate a computation using this general setup.
+\endchange
+
+\amendpage 4a.225 new notation in line 4 (15.12.16)
+$v=f_v$ \becomes $v=f_o$
+\par\smallskip\noindent
+{\bf Note: Similarly, I want to replace $f_v$ \becomes $f_o$,
+$g_v$ \becomes $g_o$, $h_v$ \becomes $h_o$ everywhere except
+in \eq(72) and in
+the answer to exercise 7.1.4--93; this is a total of 104 changes!}
+\endchange
+
+\improvepage 4a.235 line 1 before {\eq(86)} (12.06.08)
+\eq(84) implies \becomes \eq(85) implies
+\endchange
+
+\bugonpage 4a.243 line 5 (12.05.18)
+$\half B(f)^2$ \becomes ${1\over8}B(f)^2$.
+\endchange
+
+\bugonpage 4a.248 line $-3$ (12.05.20)
+$3\cdot2^{n/2}$ \becomes $3\cdot2^{@(n+1)/2}$
+\endchange
+
+\bugonpage 4a.256 line 2 of Theorem S (15.01.15)
+$P\cup(x_1\sqcup Q)$ \becomes $P\cup(e_1\sqcup Q)$
+\endchange
+
+\bugonpage 4a.256 line $-10$ (12.05.21)
+complete different \becomes completely different
+\endchange
+
+\improvepage 4a.263 line 3 of exercise 76 (13.08.06)
+of such sets \becomes of subsets of $\{0,1,\ldots,n-1\}$
+\endchange
+
+\amendpage 4a.263 rating of exercise 77 (12.08.25)
+\ninepoint {\it M30\/} \becomes {\it M35\/}
+\endchange
+
+\amendpage 4a.266 rating of exercise 111 (12.09.15)
+\ninepoint {\it M21\/} \becomes {\it M22\/}
+\endchange
+
+\bugonpage 4a.267 last line of exercise 130 (11.11.01)
+$\Omega@(2^{m/3}\!/\sqrt m\,)$ \becomes
+$\Omega@(2^{m/3-O(\sqrt m)})$
+\endchange
+
+\improvepage 4a.267 last line of exercise 131 (11.10.19)
+\ninepoint Prove, however, that \becomes Prove that
+\endchange
+
+\amendpage 4a.271 new ratings for exercises (13.04.29)
+exercise 172, {\it M27\/} \becomes {\it M28}\nl
+exercise 173, {\it\HM28\/} \becomes {\it\HM33}
+\endchange
+
+\bugonpage 4a.278 line 3 of exercise 253 (11.10.04)
+\ninepoint {\mc PI}$(f_2)\setminus A$ \becomes
+           {\mc PI}$(f_1)\setminus A$
+\endchange
+
+\improvepage 4a.283 some clarifications (14.08.13)
+line 3 after \eq(4): rotating disk \becomes rotating mechanical disk\nl
+line 4 after \eq(4): four sensors \becomes four fixed optical sensors
+\endchange
+
+\improvepage 4a.286 line 8 (11.03.29)
+successively \becomes starting with $00\ldots0$ and successively
+\endchange
+
+\amendpage 4a.286 in Algorithm G (15.10.17)
+line 3 of the algorithm: maintaining a parity bit $a_\infty$ \becomes
+maintaining an odd parity bit $a_{-1}$ (as suggested by G.~Rote)\nl
+displayed equation \eq(14):
+ $a_\infty=a_{n-1}$ \becomes $a_{-1}=1\oplus a_{n-1}$\nl
+in step G4: If $a_\infty$ \dots\ minimum \becomes
+Let $j\ge0$ be minimum\nl
+in steps G1, G3, and the line following the algorithm:
+   $a_\infty$ \becomes $a_{-1}$\quad [four changes]
+\endchange
+
+\improvepage 4a.288 four lines before {\eq(20)} (11.07.27)
+The {\sl Walsh transform\/} \becomes
+The {\it Walsh transform\/}
+\endchange
+
+\bugonpage 4a.291 line 2 of step W1 (15.10.17)
+$m'\band(z-m)\band\bar m\ne0$ \becomes $m'\band(z-m)\band\bar z\ne0$
+\endchange
+
+\bugonpage 4a.291 line 2 of step W1 (13.05.15)
+$m'=2^5m$ \becomes $m'=2^4m$
+\endchange
+
+\improvepage 4a.292 lines $-8$ and $-7$ (15.10.17)
+of unnecessary work \becomes of work
+\endchange
+
+\bugonpage 4a.304 lines 2--4 of Algorithm D (14.09.18)
+$n$ zeros. (The two cycles may be identical, but they must be \becomes
+$n\ge2$ zeros. (The two cycles must be identical; but they are to be
+\endchange
+
+\improvepage 4a.304 in {\eq(58)} (15.12.09)
+$0\le r\le m$ \becomes $1\le r\le m$
+\endchange
+
+\amendpage 4a.306 line 1 after {\eq(59)} (13.12.20)
+for $L_m(n)$ using exercise 4.5.3--28(a), and \becomes
+for $L_m(n)$, using the M\"obius function and exercise 4.5.3--28(a);
+\endchange
+
+\amendpage 4a.308 rating of exercise 5 (13.12.25)
+\ninepoint {\it20\/} \becomes {\it22\/}
+\endchange
+
+\amendpage 4a.308 notation change in exercise 12{(a)} (16.05.12)
+\ninepoint $s_j$ \becomes $s_t$
+\endchange
+
+\amendpage 4a.309 notation change in exercise 13 (16.05.12)
+\ninepoint $s_j$ \becomes $s_t$ \quad (twice)
+\endchange
+
+\bugonpage 4a.311 line 4 of exercise 28 (14.01.17)
+$\alpha_{kj}$ \becomes $a_{kj}$
+\endchange
+
+\bugonpage 4a.312 line 2 of exercise 40 (14.02.04)
+\ninepoint $2^{5j}-1$ \becomes $2^{5j+5}-1$
+\endchange
+
+\amendpage 4a.313 rating of exercise 43 (11.11.08)
+\ninepoint {\it47\/} \becomes {\it41\/}
+\endchange
+
+\amendpage 4a.315 rewording of exercise 74 (13.05.27)
+\ninepoint
+\ex 74. [\HM25] (Savage and Winkler.) Prove that adjacent vertices
+of the $n$-cube cannot be separated by more than $O(2^n\!/\sqrt n\,)$
+positions in a monotonic Gray code.
+\endchange
+
+\amendpage 4a.317 rating of exercise 95 (14.04.24)
+\ninepoint {\it M23\/} \becomes {\it M24\/}
+\endchange
+
+\amendpage 4a.324 line 23 (14.07.17)
+A computer program for solving alphametics was published by John Beidler in
+\becomes
+Early computer programs for solving alphametics were published by
+R.~M. Burstall, {\sl Comp.\ J. \bf12} (1969), 48--51;
+John Beidler,
+\endchange
+
+\improvepage 4a.326 line $-15$ (11.08.27)
+saying that $j\alpha$ is ``the image \becomes
+saying that ``$j\alpha$ is the image
+\endchange
+
+\bugonpage 4a.327 line 9 after {\eq(12)} (13.03.07)
+{\sl Computational Methods} \becomes
+{\sl Computational Problems}
+\endchange
+
+\bugonpage 4a.336 line 25 (14.11.05)
+because of~\eq(32) \becomes because of~\eq(33)
+\endchange
+
+\amendpage 4a.336 step C4 (13.05.12)
+$k>1$. \becomes $k>1$; otherwise stop.
+\endchange
+
+\amendpage 4a.353 rating of exercise 101 (15.02.18)
+\ninepoint {\it 21\/} \becomes {\it 28\/}
+\endchange
+
+\improvepage 4a.357 after Table 1 (15.03.14)
+line 2: positions \becomes positions (subscripts)\nl
+line 4: leftmost position \becomes leftmost position in \eq(13)
+\endchange
+
+\bugonpage 4a.359 line 18 (11.03.24)
+$t<n$ \becomes $0<t<n$
+\endchange
+
+\amendpage 4a.363 line 11 (11.04.21)
+$n>t>1$. \becomes
+$n\ge t>1$. An auxiliary variable $c_{t+1}$ is used.
+\endchange
+
+\improvepage 4a.363 last line of Algorithm R (11.04.01)
+if $j\le t$.\quad\slug\qquad \becomes
+if $j\le t$.
+Otherwise the algorithm terminates.\quad\slug
+\endchange
+
+\improvepage 4a.365 line 13 (15.04.16)
+genlex methods \becomes {\it genlex\/} methods
+\endchange
+
+\amendpage 4a.381 new rating for exercise 23 (15.08.05)
+{\it M23\/} \becomes {\it M24\/}
+\endchange
+
+\amendpage 4a.384 new rating for exercise 56 (15.03.18)
+{\it M49\/} \becomes {\it M41\/}
+\endchange
+
+\amendpage 4a.399 line 11 (11.04.19)
+$O(n^{1/2})$ steps. \becomes
+$O(n^{1/2})$ steps.
+[See {\sl Handbook of Combinatorics\/ \bf2} (MIT Press, 1995), 1068--1069.]
+\endchange
+
+\bugonpage 4a.418 line $-3$ (16.07.28)
+$\Theta(n/\?\?\log n)^n$ \becomes $\bigl(\Theta(n/\?\?\ln n)\bigr){}^n$
+\endchange
+
+\improvepage 4a.448 in the introduction to Algorithm L (15.12.09)
+$l_k$ \becomes $l_j$\qquad(twice)\nl
+$r_k$ \becomes $r_j$\qquad(twice)\nl
+$k$th node \becomes $j$th node\qquad(twice)
+\endchange
+
+\improvepage 4a.456 lines $-3$ and $-2$ (13.11.29)
+is node $L_0$; \dots~$L_{2k}$ \becomes
+is node number $L_0$; the left and right children of branch node $2k-1$
+are respectively the nodes that are numbered
+$L_{2k-1}$ and $L_{2k}$
+\endchange
+
+\amendpage 4a.457 line 9 (13.11.29)
+to R2. \becomes to R2. (Here $L_k$ corresponds to $x$ in \eq(33).)
+\endchange
+
+\amendpage 4a.462 line 16 (12.02.02)
+root. \becomes root. The algorithm sets $p_0\gets-1$.
+\endchange
+
+\bugonpage 4a.475 line 1 of exercise 31 (11.06.29)
+\ninepoint height $n-1$ \becomes height $n$
+\endchange
+
+\amendpage 4a.479 in exercise 71 (15.12.09)
+\ninepoint line 1 and line 3: $M_{tn}$ \becomes $M_{t,n}$\nl
+line 3: $M_{1n}$ \becomes $M_{1,n}$
+\endchange
+
+\amendpage 4a.480 new rating for exercise 85 (15.12.09)
+{\it M35\/} \becomes {\it M30\/}
+\endchange
+
+\improvepage 4a.495 lines $-13$ and $-12$ (12.06.09)
+respectively simplicity, rank, mercy, and sovereignty. \becomes
+simplicity, rank, mercy, and sovereignty, in that order.
+\endchange
+
+\amendpage 4a.501 line $-6$ (14.03.01)
+dum-dum dum-dum dum-diddy \becomes
+dum, dum dum, dum dum-diddy
+\endchange
+
+\amendpage 4a.502 lines $-9$ through $-6$ (12.01.24)
+Those pages \dots~by mistake. \becomes
+Bernoulli didn't actually intend to publish
+those pages in this now-famous book; but the proofreader who found them
+among his notes decided to include the full details, in order ``to gratify
+curiosity.''
+\endchange
+
+\bugonpage 4a.509 line 7 (12.06.27)
+{\sl Papers}, Volume 4 \becomes {\sl Papers}, Volume 9
+\endchange
+
+\let\defaultpointsize=\ninepoint % get ready for answer pages
+
+\amendpage 4a.514 line 2 of the first answer 2 (11.09.13)
+its answer. \becomes
+its answer, assuming that he or she is suitably sagacious.
+\endchange
+
+\improvepage 4a.514, new format for Perelman references in answer 3 (14.04.05)
+arXiv:math/0211159 [math.{\mc DG}],
+arXiv:math/0303109 [math.{\mc DG}],
+arXiv:math/0307245 [math.{\mc DG}].
+\endchange
+
+\amendpage 4a.515 line 12 (12.04.24)
+$2^{30}+1$. \becomes
+$2^{30}+1$, because $2^{49}\perp2^{60}-1$.
+\endchange
+
+\amendpage 4a.515 line $-2$ of answer 8 (15.08.19)
+Skolem's variant of the problem \becomes the problem of exercise 2
+\endchange
+
+\improvepage 4a.517 line $-3$ (11.05.23)
+$L$ is a latin square \becomes
+$L$ with entries in $\{1,2,\ldots,n\}$ is a latin square
+\endchange
+
+\amendpage 4a.521 in answer 49 (15.11.18)
+which is $\overline C_6$ \becomes
+which is $\overline C_6$ and $K_2\sqprod K_3$
+\endchange
+
+\amendpage 4a.522 new paragraph at answer of answer 54 (12.07.18)
+[This digraph was first considered by Darryl~Francis, Philip Cohen, and
+A.~Ross Eckler in {\sl Word Ways\/ \bf19} (1976), 241; {\bf20} (1977), 8.]
+\endchange
+
+\bugonpage 4a.522 line 2 of answer 63 (11.05.23)
+$1\le k<t$ \becomes $1\le k\le t$
+\endchange
+
+\bugonpage 4a.523 line 4 of answer 71 (11.05.23)
+{\tt ASIZE IS 24} \becomes {\tt ASIZE IS 20}
+\endchange
+
+\amendpage 4a.524 bottom line (12.09.17)
+\lower.5pt\vbox{\epsfxsize=13pt\epsfbox{\figdir/v4a-old.1614}} \becomes
+\smash{\lower3pt\vbox{\epsfxsize=7pt\epsfbox{\figdir/v4a.1614}}}
+ (called the ``bull'').\par
+\endchange
+
+\amendpage 4a.525 replacement for answer 88 (15.12.23)
+\ans88. One cycle that doesn't use the center vertex, plus
+$n(n-1)$ cycles that do (namely, one for every ordered pair of distinct
+vertices on the rim). Just $n+1$ are induced.
+\endchange
+
+\improvepage 4a.526 line 2 of answer 90 (11.05.23)
+cographs by \eq(47) \becomes cographs by \eq(39)
+\endchange
+
+\amendpage 4a.526 line 3 of answer 90 (15.12.23)
+$W_5$ is a cograph, but not $W_6$ \becomes
+$W_4$ is a cograph, but not $W_5$
+\endchange
+
+\bugonpage 4a.526 last line of answer 97 (11.05.20)
+$K_m\dprod K_n=\overline{K_m\cprod K_n}=L(K_{m,n})$ \becomes
+$K_m\cprod K_n=\overline{K_m\dprod K_n}=L(K_{m,n})$
+\endchange
+
+\bugonpage 4a.527 line 5 of answer 101 (11.05.23)
+shortest cycle \becomes shortest odd cycle
+\endchange
+
+\improvepage 4a.527 line 15 of answer 105 (11.05.26)
+$u=C_t$, and $v=c_t$. \becomes and $u=C_t$.
+\endchange
+
+\bugonpage 4a.528 line 4 (11.05.23)
+$0\le a_j$ \becomes $0\ge a_j$
+\endchange
+
+\bugonpage 4a.528 lines 5 and 6 of answer 108 (11.05.23)
+In step~H4, omit ``$c_j\gets c_j-1$''; change ``$n\adj m$'' to ``$m\dadj n$'';
+\becomes
+In step~H4, change ``Set \dots\ and set''
+to ``If $j>0$, set $m\gets c_t$, create the arc $m\dadj n$, and set'';
+\endchange
+
+\amendpage 4a.528 line 4 of answer 110 (11.05.23)
+$d=2k$ \becomes $d=2k>0$
+\endchange
+
+\amendpage 4a.529 line 5 of answer 114 (11.05.23)
+bipartite graph \becomes bipartite multigraph
+\endchange
+
+\bugonpage 4a.529 line 4 of answer 122 (11.05.29)
+other three colors \becomes other three vertices
+\endchange
+
+\bugonpage 4a.530 last line of answer 126 (11.05.23)
+1978 \becomes 1979
+\endchange
+
+\bugonpage 4a.530 line 3 of answer 131 (14.01.11)
+68(a) \becomes 68(b)
+\endchange
+
+\bugonpage 4a.531 in answer 135 (11.05.23)
+line 1: $\omega=e^{2\pi i/6}$ \becomes $\omega=e^{2\pi i/12}$\nl
+line 5: $TD^mT^-$ \becomes $TD^{2m}T^-$
+\endchange
+
+\bugonpage 4a.532 in answer 138 (15.10.27)
+The six neighbors \dots~degree 8. \becomes
+The six neighbors of $(u,v)$ are then
+$((u\pm1)\mod2,(v\pm6)\mod10)$, $((u\pm1)\mod2,\allowbreak(v\pm1)\mod10)$,
+$(u,(v\pm1)\mod 10)$. One consequence is that 3D space can be ``tiled''
+with interesting 20-element subsets of a $3\times3\times3$ cube.
+\endchange
+
+\amendpage 4a.533 replacement for line 1 of answer 140 (15.12.23)
+\ans140. (a) $\#(K_3{:}W_n)=n$ and
+$\#(P_3{:}W_n)={n\choose2}$
+for $n\ge4$; also $\#(\,\overline{\!K_3}{:}W_7)=7$.
+\endchange
+
+\improvepage 4a.533 line 1 of answer 142 (11.05.24)
+the previous answer \becomes answer 140
+\endchange
+
+\amendpage 4a.534 last line of answer 145 (13.07.15)
+152.] \becomes 152. See also the analysis by Alonso and Reingold,
+{\sl Information Processing Letters\/ \bf113} (2013), 495--497.]
+\endchange
+
+\amendpage 4a.536 line 8 (13.11.28)
+ This expansion is a disguised form of the \becomes
+ The latter, with $k$ $*$'s, is a $k$-variable
+\endchange
+
+\bugonpage 4a.539 line $-6$ of answer 30 (13.10.13)
+essentially proportional to $mn$ (for step P1) plus the \becomes
+at most proportional to $mn$ (for step P1) plus $n$ times the
+\endchange
+
+\amendpage 4a.539 lines $-10$ and $-9$ of answer 31 (13.12.21)
+first defined by \dots\ see \becomes
+was first defined (under the
+name ``syllogistic result'') by
+Archie Blake on page 25 of his Ph.D. dissertation, {\sl Canonical
+Expressions in Boolean Algebra\/} (University of Chicago, 1937); see
+\endchange
+
+\bugonpage 4a.540 lines 2 and 3 (11.06.19)
+the generalized consensus if and only
+if this subcube is contained in $c_1\cup\cdots\cup c_m$.
+\becomes\nl
+the only subcube that could possibly be a
+generalized consensus.
+\endchange
+
+\amendpage 4a.540 added remark for end of answer 33 (11.06.20)
+(See, for example, Eq.~1.2.6--\eq(24).)
+\endchange
+
+\bugonpage 4a.541 line 3 of answer {34(c)} (13.10.16)
+$\lg\lg\lg n$ \becomes $\ln\lg\lg n$
+\endchange
+
+\amendpage 4a.542 replacement for lines 5--8 of answer 39 (15.12.09)
+$$c_{pq}=(y^{\bar p\circ\bar q}\,\lor\,l^{@@p}\,\lor\,r^q)$$
+and $x^p$ denotes $\[x=p]$, so that $x^0=\bar x$ and $x^1=x$.
+These clauses state in effect that $y=l\circ r@$; for example, if
+$\circ$ is~$\land@$, the four clauses are
+${(y\lor\bar l\lor\bar r)}\land
+{(\bar y\lor\bar l\lor r)}\land
+{(\bar y\lor l\lor\bar r)}\land
+{(\bar y\lor l\lor r)}$.
+Finally, add one more clause, $(y_1\lor y_1\lor y_1)$, to force $f=1$.
+\endchange
+
+\amendpage 4a.542 line 9 of answer 41 (14.04.11)
+The total \becomes
+(Only the first and last of these four clauses are actually needed.) The total
+\endchange
+
+\amendpage 4a.544 replacement for answer 54 (15.12.09)
+\ans54. If $x$ and $\bar x$ are both in $S$, then $u\in S\implies\bar u\in S$,
+because the existence of paths from
+$x$ to~$u$ and $u$ to~$x$ implies the existence of paths from
+$\bar u$ to~$\bar x$ and $\bar x$ to~$\bar u$.
+Similarly, $\bar u\in S\implies u\in S$.
+\endchange
+
+\amendpage 4a.544 append new sentence to the last line (15.11.22)
+(The number of $t$ variables can be reduced, as in exercise 7.2.2.2--12.)
+\endchange
+
+\bugonpage 4a.545 line 3 (12.01.02)
+5.24 \becomes 5.2.4
+\endchange
+
+\amendpage 4a.546 replacement for answer {67(a)} (11.07.08)
+\ans67. (a) A black Y in $t$ forces a black Y in $t^*$, because adjacent
+black stones $a\adj b\adj c$ in~$t$ yield two adjacent black stones in~$t^*$.
+Similarly, a black~Y in $t^*$ forces a black~Y in $t$.\tighten
+\endchange
+
+\improvepage 4a.547 line $-5$ (12.01.02)
+$x=y$ \becomes $y=x$
+\endchange
+
+\amendpage 4a.548 lines 16--18 of answer 77 (11.07.10)
+Since $d(w,v)$ \dots\ has rank~1. \becomes
+The vertex $x=\langle svw\rangle$ has rank~1 by~(c).
+ If $x=v$, then $u$ has rank~2 unless
+$w$ has rank~0.
+\endchange
+
+\amendpage 4a.551 new sentence at end of answer 88 (13.12.14)
+(Actually $O(t)$ delay
+suffices, as observed by Omid Etesami, if we rearrange clusters having the
+same~$d$, since those can each be done in $\le9$ units.)
+\endchange
+
+\bugonpage 4a.552 line 1 of answer 102 (11.07.17)
+\eq(1) and~\eq(2) \becomes \eq(11) and~\eq(12)
+\endchange
+
+\improvepage 4a.554 line 2 of answer 111 (11.07.22)
+set \becomes choose
+\endchange
+
+\amendpage 4a.555 line $-4$ of answer 111 (12.01.22)
+Exercise 70 tells us that \becomes Since $f_k$ is self-dual we have
+\endchange
+
+\amendpage 4a.555 line 1 of answer 112{(c)} (13.12.14)
+over all $2^m$ \becomes over all $n=2^m$
+\endchange
+
+\amendpage 4a.556 lines 4--6 (13.12.14)
+For example, \dots~hence \becomes
+For example,
+if $k\ge0$ and $f(x_1,\ldots,x_m)=x_1\xor\cdots\xor x_k\xor\[k\,\rm even]$,
+we find $F_\alpha=0$
+for all $\alpha$ except that $F_{1^k0^{m-k}}=2^{m-1}$.
+The multilinear representation of that function has leading
+term $\lceil2^{k-1}\rceil x_1\ldots x_k$;
+hence
+\endchange
+
+\bugonpage 4a.559 line 2 of answer 127 (11.07.31)
+$x_j$. \becomes $x_j$ or $\bar x_j$.
+\endchange
+
+\improvepage 4a.560 in lines 1 and 2 of answer 132{(b)} (11.08.08)
+Given $y=y_1\ldots y_n$ \becomes Given $y_0$, $y_1$, \dots, $y_n$\nl
+$1+h(y_1,y_3,\ldots,y_{n-1})$ \becomes $1+y_0+h(y_1,y_3,\ldots,y_{n-1})$\nl
+$x\cdot y\mod 2$ \becomes $(y_0+x\cdot y)\mod 2$
+\endchange
+
+\amendpage 4a.561 replacement for lines 3--10 of answer 4 (11.11.19)
+The hint follows when we let $f_t$ be the formula of size $L(f)-L(g)-1$ that
+arises when $g$ is replaced by~$t$.
+For $1\le k<L(f)$ let $g_k$ be a minimal subformula of size~$\ge k$. Then
+$g_k{?}\ f_{k1}{:}\ f_{k0}$ is obtained from a tree that has $g_k$,
+$f_{k1}$, and $f_{k0}$ on level~2.\par
+Let $d_r=\max\{\,D(f)\mid L(f)=r\,\}$. Since the children of $g_k$
+appear on level~3 and have size~$<k$, we have
+$d_r\le\min_{k=1}^{r-1}\max(3+d_{k-1},2+d_{r-k-1})$ for $r\ge3$. By induction
+on~$r$ it follows that $d_r\le l$ when $r\le b_{@l}$, where $b_{@l}=l$ for
+$0\le l\le2$ and $b_{@l}=b_{@l-2}+b_{@l-3}+2$ for $l\ge3$. We also have
+$b_{@l}+2=(8P_{@l}+18P_{@l+1}+11P_{@l+2})/23=c\chi^{@l}+O(0.87^{@l})$ in terms
+of the Perrin numbers of exercise 7.1.4--15, where $c=
+(2+4\chi+3\chi^2)/(3+2\chi)\approx2.224$. Hence $d_r<\alpha\lg r$ when $r>1$.
+[See P.~M. Spira, {\sl Hawaii Int.\ Conf.\ Syst.\ Sci.\ \bf4}
+ (1971), 525--527; R.~Brent, D.~Kuck, and K.~Maruyama, {\sl IEEE\/
+\bf C-22} (1973), 532--534. In {\sl JACM\/ \bf23} (1976), 534--543, D.~E.
+Muller and F.~P. Preparata proved that $D(f)\le\beta\lg L(f)+O(1)$,
+where $\beta=1/\?\lg z\approx 2.0807$, % 2.0806735551368511736
+$z^4=2z+1$. Is $\beta$ optimum?]
+\endchange
+
+\amendpage 4a.562 replacement for lines 2--8 of answer 15 (11.12.01)
+\vtop{\vskip-\baselineskip$$\openup-1\jot
+\eqalign{
+{\rm(a)}\enspace x_1&\gets x_1\xor x_2,\cr
+x_1&\gets x_1\xor x_3,\cr
+x_2&\gets x_2\land x_3,\cr
+x_1&\gets x_1\land\bar x_2.\cr
+&\phantom{x_3\land\bar x_1}\cr
+&\phantom{x_3\land\bar x_1}\cr
+&\phantom{x_3\land\bar x_1}\cr
+}\quad\eqalign{
+{\rm(b)}\enspace x_1&\gets x_1\xor x_2,\cr
+x_3&\gets x_3\xor x_4,\cr
+x_1&\gets x_1\xor x_3,\cr
+x_2&\gets x_2\xor x_4,\cr
+x_3&\gets x_3\lor x_2,\cr
+x_3&\gets x_3\land\bar x_1.\cr
+&\phantom{x_3\land\bar x_1}\cr
+}\quad\eqalign{
+{\rm(c)}\enspace x_1&\gets x_1\xor x_2,\cr
+x_2&\gets x_2\land\bar x_1,\cr
+x_3&\gets x_3\xor x_4,\cr
+x_4&\gets x_4\land x_1,\cr
+x_2&\gets\bar x_2\land x_3,\cr
+x_2&\gets x_2\xor x_1,\cr
+x_2&\gets x_2\land\bar x_4.\cr
+}\quad\eqalign{
+{\rm(d)}\enspace x_1&\gets x_1\xor x_2,\cr
+x_2&\gets x_2\xor x_3,\cr
+x_2&\gets x_2\lor x_1,\cr
+x_1&\gets x_1\xor x_4,\cr
+x_1&\gets x_1\land x_3,\cr
+x_2&\gets x_2\land\bar x_1,\cr
+x_2&\gets x_2\xor x_4.\cr
+}\quad$$}
+\endchange
+
+\bugonpage 4a.563 in some copies of the third printing only (13.01.13)
+\noindent {\sl Pages 563 and 564 were erroneously replaced by duplicates
+of pages 565 and 566 when the third printing went to the presses. The
+correct pages can be found online:}
+$$\hbox{\tt http:/\kern-.1em/www-cs-faculty.stanford.edu/\char`\~knuth/%
+          4a-563,564.ps.gz}$$
+\endchange
+
+\improvepage 4a.563 line 8 (14.01.09)
+performed. \becomes performed. (See \eq(14).)
+\endchange
+
+\amendpage 4a.564 last line of answer 20 (11.01.21)
+is the complement of~\eq(20) \becomes is equivalent to~\eq(20)
+\endchange
+
+\amendpage 4a.564 replacement for lines 3--6 of answer 21 (11.01.21)
+\noindent hardest function \eq(20) is still unknown, but
+David Stevenson has shown that $V(f)\le17$:
+$$\openup-2pt\eqalign{
+g&=\hbox{\mc AND}\bigl(
+   \hbox{\mc NAND}(w,x),\hbox{\mc NAND}(\bar w,\bar x)\bigr);\cr
+f&=\hbox{\mc OR}\bigl(\hbox{\mc AND}\bigl(\hbox{\mc NOT}(g),
+           \hbox{\mc NAND}(w,\bar z),\hbox{\mc NAND}(y,z)\bigr),\cr
+&\qquad \hbox{\mc AND}\bigl(\hbox{\mc NOT}(\hbox{\mc NOT}(g)),
+           \hbox{\mc NAND}(y,\bar z),\hbox{\mc NAND}(\bar y,z)\bigr)\bigr).\cr
+}$$
+\endchange
+
+\bugonpage 4a.565 line 3 of answer 23 (14.05.17)
+Of course $S_1$ \becomes Of course $S_5$
+\endchange
+
+\bugonpage 4a.565 answer 28 (14.01.03)
+\def\nbool#1{\mathbin{\mkern1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern1.5mu}}%
+\def\cnimp{\?\nbool\subset\?}%
+\def\nimp{\?\nbool\supset\?}%
+lines 1 and 3: $\cnimp$ \becomes $\nimp$\nl
+line 4: $1\le j\le\lfloor n/2\rfloor$ \becomes $0\le j\le\lfloor n/2\rfloor$
+\endchange
+
+\bugonpage 4a.565 line 4 of answer 28 (14.05.17)
+$(x_1+\cdots+x_{2j+1}$ \becomes $(-1)^j(x_1+\cdots+x_{2j+1}$
+\endchange
+
+\bugonpage 4a.565 lines 4 and following of answer 29 (14.01.03)
+Hence $a_{jd}\le 5$ \dots\ $n=10^7$.) \becomes
+Hence $a_{jd}\le4$ when
+$d\ge l=\lceil\log_{3/2}n\rceil$. It follows that
+$a_{j(j+l+3)}=0$ for $0\le j\le\lg n$, giving total depth $\le3(l+\lg n+2)$.
+(The actual depth turns out to be exactly 101 when $n=10^7$,
+118 when $n=10^8$, 133 when $n=10^9$.)
+\endchange
+
+\amendpage 4a.565 last line of answer 31 (14.05.28)
+325.] \becomes
+325. Exercise 7.2.2.2--481 improves $5n$ to $4.5n$.]
+\endchange
+
+\bugonpage 4a.568 line 7 of answer 42 (11.09.07)
+$l=2$ \becomes $l=3$
+\endchange
+
+\amendpage 4a.572 replacement for answer 57 (11.05.19)
+\ans57. The truth tables for $x_5$ through $x_{15}$, in hexadecimal
+notation, are respectively
+\.{0fff},
+\.{3ccc},
+\.{30c0},
+\.{75d5},
+\.{4919},
+\.{7000},
+\.{0606},
+\.{4808},
+\.{2000},
+\.{5d5d},
+\.{3ece}.
+So we get
+$$\def\\#1{\vcenter{\def\epsfsize##1##2{.5##1}\epsfbox{\figdir/v4a.125#1}}}
+1010\mapsto\\0\,,\quad
+1011\mapsto\\7\,,\quad
+1100\mapsto\\4\,,\quad
+1101\mapsto\\5\,,\quad
+1110\mapsto\\6\,,\quad
+1111\mapsto\\7\,.$$
+[Corey Plover, believing that it might be better to have a solution in
+which nondigits never masquerade as digits, has discovered a 12-step
+chain (with non-greedy $x_7$)
+$$\openup-.9\jot\eqalign{
+x_5&=x_1\xor x_2,\cr
+x_6&=x_3\bland\bar x_4,\cr
+x_7&=x_1\xor x_6,\cr
+x_8&=x_4\blor x_7,\cr
+}\qquad\eqalign{
+x_9&=x_2\xor x_3,\cr
+g=x_{10}&=x_7\blor x_9,\cr
+\bar d=x_{11}&=x_8\xor x_{10},\cr
+\bar a=x_{12}&=\bar x_3\bland x_{11},\cr
+}\qquad\eqalign{
+\bar b=x_{13}&=x_2\bland\bar x_{11},\cr
+\bar c=x_{14}&=x_7\bland x_9,\cr
+\bar e=x_{15}&=x_4\blor x_{12},\cr
+\bar f=x_{16}&=\bar x_5\bland x_8,\cr
+}$$
+for which $a$, \dots, $g$ have the truth tables
+\.{b7ff}, \.{f9f0}, \.{dfe3}, \.{b6df}, \.{a2aa}, \.{8ff2}, \.{3efd}, and
+$$\def\\#1{\vcenter{\def\epsfsize##1##2{.5##1}\epsfbox{\figdir/v4a.127#1}}}
+1010\mapsto\\0\,,\quad
+1011\mapsto\\1\,,\quad
+1100\mapsto\\2\,,\quad
+1101\mapsto\\3\,,\quad
+1110\mapsto\\4\,,\quad
+1111\mapsto\\5\,.$$
+\def\\#1{\vbox{\def\epsfsize##1##2{.25##1}\epsfbox{\figdir/v4a.125#1}}}%
+\def\|#1{\vbox{\def\epsfsize##1##2{.25##1}\epsfbox{\figdir/v4a.127#1}}}%
+He has also shown that all 11-step solutions to \eq(44) map the
+nondigits into either {\thinmuskip=3mu minus .5mu
+$(\\0,\\7,\\4,\\5,\\6,\\7)$,
+$(\\0,\\7,\\6,\\1,\|9,\|5)$,
+$(\\0,\\7,\\6,\\1,\|0,\|5)$,
+$(\\2,\\3,\\6,\\7,\\6,\\7)$,
+$(\|6,\\1,\\6,\\7,\\4,\\5)$, or
+$(\|6,\|8,\\6,\\7,\\4,\\5)$.]}
+\endchange
+
+\bugonpage 4a.573 line 1 of answer 62 (11.09.13)
+$t(n,r)$ \becomes $c(n,r)$
+\endchange
+
+\bugonpage 4a.574 line 2 of answer 67 (11.04.24)
+{\mc ANDN} \becomes {\mc BUTNOT}
+\endchange
+
+\bugonpage 4a.574 line 3 of answer 69 (11.10.09)
+$\alpha_{110}$ \becomes $\alpha_{011}$
+\endchange
+
+\bugonpage 4a.576 line 4 of answer 76 (11.10.16)
+$O(n/\!@\log n)$ \becomes $O(n)$
+\endchange
+
+\bugonpage 4a.576 bottom line (11.10.19)
+$x_1=x_1\circ x_2$ \becomes $x_{n+1}=x_1\circ x_2$
+\endchange
+
+\bugonpage 4a.577 replacement for the first 10 lines (11.10.19)
+\indent\em Case~4.1:\enspace
+ $k>n$. Then $k>n+1$. If $u_k=1$, set $x_1\gets t_{@l}$ and remove steps
+$n+1$,~$k$, $l$,~$U_{@l}$. Otherwise set $x_2\gets t_{n+1}$;
+this forces $x_k=\bar t_{@l}$, and we can remove $n+1$,~$k$, $l$,~$U_k$.\par
+\em Case 4.2:\enspace
+ $x_{@l}=x_1\circ x_m$. Then we must have $m=2$; for if $m>2$
+we could set $x_2\gets t_{n+1}$, $x_m\gets t_{@l}$, and make $x_{n+r}$
+independent of~$x_1$. Hence we may assume that $x_{n+1}=x_1\land x_2$,
+$x_{n+2}=x_1\?\?\lor x_2$.
+Setting $x_1\gets0$ allows us to remove $U_1$ and $U_{n+1}$; setting
+$x_1\gets1$ allows us to remove $U_1$ and $U_{n+2}$. Thus we're done unless
+$u_{n+1}=u_{n+2}=1$.\tighten\par
+If $x_p=\bar x_{n+1}$, set $x_1\gets0$ and remove $n+1$, $n+2$, $p$, $U_p$;
+if $x_q=\bar x_{n+2}$, set $x_1\gets1$ and remove $n+1$, $n+2$, $q$, $U_q$.
+Otherwise $x_p=x_{n+1}\circ x_u$ and $x_q=x_{n+2}\circ x_v$,
+where $x_u$ and~$x_v$
+do not depend on $x_1$ or~$x_2$. But that's impossible; it would allow us
+to set $x_3$, \dots,~$x_n$ to make $x_u=t_p$, then $x_2\gets1$ to
+make $x_{n+r}$ independent of~$x_1$.
+\endchange
+
+\bugonpage 4a.577 lines 2 and 4 of answer 78 (13.11.15)
+$\Vert S\Vert$ \becomes $\vert S\vert$\quad (twice)
+\endchange
+
+\bugonpage 4a.578 line 5 of case 3 in answer 80 (11.10.24)
+$u_{j'}=1$ \becomes $u_{j'}\ne1$
+\endchange
+
+\bugonpage 4a.578 near the end of answer 80 (14.05.22)
+Delete the parenthesized remarks `(According to \dots\ $n/2$.)'
+and insert a new paragraph at the end:
+
+(A nice unpublished idea of L.~Adleman, circa 1978, proves that
+$C(S_{\ge2})=2n+O(\sqrt n@)$: Given $m^2$ elements $x_{ij}$, compute
+$c\lor r$, where
+$c=S_{\ge2}\bigl(\bigvee_{i=1}^m x_{i1},\ldots,\bigvee_{i=1}^m x_{im}\bigr)$ and
+$r=S_{\ge2}\bigl(\bigvee_{j=1}^m x_{1j},\ldots,\bigvee_{j=1}^m x_{mj}\bigr)$
+each cost $<m^2+3m$ using just $\lor$ and $\land$.)
+\endchange
+
+\bugonpage 4a.580 in answer 86 (11.11.01)
+line 3 of (e): one of the functions
+ $\epsilon_i=\hat x_i\xor(\hat x_{j(i)}\land x_{k(i)})$. \becomes
+the union of the terms $\epsilon_i=\hat x_i\xor
+(\hat x_{j(i)}\land\hat x_{k(i)})$ for the $p$ {\mc AND} steps.\nl
+line 4 of (f): in one of the terms 
+$T=\delta_i=\hat x_i\xor(\hat x_{j(i)}\lor x_{k(i)})$ \becomes
+within the
+terms $T=\delta_i=\hat x_i\xor(\hat x_{j(i)}\lor\hat x_{k(i)})$\nl
+{\it also replace line 8 of (f) through line 3 of (g) by the following:}\nl
+monochromatic. We will prove that each term $T$ includes at
+most $2^{n-2-r}r^2$ such~$B$, hence $2^{n-2-r}r^2q\ge2^{n-1}$.\tighten\par
+We can compute $G^*=G_t$ from any given graph~$G$ by the following
+(inefficient) algorithm: Set $G_0\gets G$,
+$t\gets0$. If $G_t$ has an $r$-family~$S$ with $\vert\Delta(S)\vert<2$,
+set $t\gets t+1$, $G_t\gets\infty$, and stop.
+Otherwise, if $\Delta(S)=\{u,v\}$ and $u\nadj v$, set $t\gets t+1$,
+$G_t\gets(G_{t-1}$ plus the edge $u\adj v$) and repeat.
+Otherwise stop.\par
+There are  $2^{n-1-r}$
+bipartite minterms~$B$ with monochromatic $\{u_j,v_j\}$ for $1\le j\le r$
+when $\vert\Delta(S)\vert<2$. And when $\Delta(S)=\{u,v\}$ there are
+$2^{n-2-r}$ with monochromatic $\{u_j,v_j\}$ and bichromatic~$\{u,v\}$. Hence
+$$% again displayed to help paging (although it also helped comprehension!)
+T=\lceil G^*\rceil\setminus\lceil G\rceil=
+\bigl(\lceil G_t\rceil\setminus\lceil G_{t-1}\rceil\bigr)\lor\cdots\lor
+\bigl(\lceil G_1\rceil\setminus\nobreak\lceil G_0\rceil\bigr)$$
+contains $2^{n-2-r}(t+\[G^*=\infty])$
+minterms~$B$. And the algorithm stops with $t\le(r-1)^2$.\par
+% I had (r-1)^2+2, but the original graph G_0 must have r edges already.
+(g) Exercise 84 tells us that $q<{p\choose2}+(p+1){n\choose2}$. Thus we have
+\vadjust{\vskip2pt}%
+either $2(r-1)^3p\ge{n\choose3}-(r-1)^2(n-2)$ or ${p\choose 2}+
+(p+1){n\choose2}>2^{r+1}\!/r^2$.
+Both lower bounds for $p$ are
+$$\ge{1\over6}\Bigl({n\over6\lg n}\Bigr)^{\!3}\Bigl(1+O\Bigl(
+{\log\log n\over\log n}\Bigr)\Bigr)\qquad\hbox{when}\qquad
+r=\Big\lceil\lg\Bigl({n^6\over746496(\lg n)^4}\Bigr)\Big\rceil.$$
+\endchange
+
+\bugonpage 4a.583 line 8 (13.11.14)
+$x'(y\xor y')$ \becomes $x'\otimes(y\xor y')$
+\endchange
+
+\amendpage 4a.583 lines $-7$ thru $-3$ of answer 10 (11.01.23)
+$1\le j\le7$ \becomes $0\le j\le7$ \qquad and also include the constant
+$\.q_0=\.{8040201008040201}$
+\endchange
+
+\bugonpage 4a.584 line 2 of answer 13 (11.11.28)
+$a\ne b$ \becomes $x\oplus y=x'\oplus y'$ and $a\ne b$
+\endchange
+
+\amendpage 4a.589 improved answer to exercise 34{(c)} (15.03.10)
+Proof of~(c) by Liviu Lalescu:
+$x\xor y=(x-1)\xor(y-1)$ if and only~if $x\xor(x-1)=y\xor(y-1)$;
+and $x\xor(x-1)=2^{1+\rho@x}-1$ by Eq.~\eq(41).
+\endchange
+
+\amendpage 4a.589 line 1 of answer 41 (12.01.10)
+$\sum_{k=1}^{@\infty}z\losup{2^k}\!/(1-z\losup{2^k})$ \becomes
+$\sum_{k=1}^{@\infty}z\losup{2^k}\!/(1-z\losup{2^k})=
+\sum_{k=1}^{@\infty}kz\losup{2^k}\!/(1-z\losup{2^{k+1}})$
+\endchange
+
+\bugonpage 4a.592 line 8 of answer 58 (12.02.02)
+$k>1$ \becomes $k>0$
+\endchange
+
+\bugonpage 4a.594 line 1 of answer 71 (12.01.28)
+$\theta_k$ \becomes $\theta_k\lsh2^k$
+\endchange
+
+\amendpage 4a.594 lines 4 and 5 of answer 72 (12.02.02)
+So $\varphi$ \dots\ 58(f). \becomes
+So $\varphi\in\Omega$ by exercises 5.3.4--11 and 58(f).
+\endchange
+
+\bugonpage 4a.594 line 12 of answer 72 (12.01.30)
+$\theta_1=(10010010)_2$ \becomes
+$\theta_1=(10010011)_2$
+\endchange
+
+\bugonpage 4a.595 line $-6$ of answer 75 (12.01.31)
+$x_7x_5x_5x_3x_1x_1x_0$ \becomes
+$x_7x_5x_5x_3x_3x_1x_1x_0$
+\endchange
+
+\amendpage 4a.598 new answer 96 (16.06.30)
+\ans96. If $0\le x,y<256$, we have
+$x<y$ $\iff$ $\bar x+y\ge256$ $\iff$ $\lfloor(\bar x+y)/2\rfloor\ge128$.
+Thus we can use~\eq(88), replacing $x$ by $\bar x$.\par
+To get a similar test function for $\[x_j\le y_j]=1-\[y_j<x_j]$, we
+just interchange $x\swap y$ and take the complement. The result,
+after noting that $\bar y\xor x=\bar x\xor y$ and
+$\overline{u+v}=\bar u-v$ and $\overline{\bar y\band x}=\bar x\bor y$, is
+analogous to \eq(93):
+$$t\;\gets\;
+\bigl((\bar x\bor y)-(((\bar x\xor y)\rsh1)\band\bar h)\bigr)\band h.$$
+Before the final `$\band h$', N.~Juffa observes that we have
+$\lfloor(\bar x_j+y_j+1)/2\rfloor$ in each byte, a~bytewise average
+that is rounded up instead of down when $x_j+y_j$ is odd.
+\endchange
+
+\amendpage 4a.598 new answer 98 (16.06.30)
+\ans98. \begingroup\advance\thickmuskip-1mu
+Set $t\gets\bigl((\bar x\band y)+(((\bar x\xor y)\rsh1)\band\bar h)\bigr)
+ \band h$, $t\gets (t-(t\rsh1))+t$, $v\gets(x\xor y)\band t$,
+$z\gets x\xor v$, $w\gets y\xor v$.
+\endgroup
+[This 13-step procedure uses \eq(93) to find the bytes in which we want
+to swap $x_j\swap y_y$.
+Of course the \MMIX\ solution is much quicker, if available,
+because $\min(x,y)=x-(x\monus y)$: \ 
+\.{BDIF} \.{t,x,y;} \
+\.{ADDU} \.{z,y,t;} \
+\.{SUBU} \.{w,x,t}.]
+\endchange
+
+\amendpage 4a.598 line 5 of answer 99 (16.06.30)
+the formulas in answer 96 \becomes formulas analogous to \eq(91)
+\endchange
+
+\bugonpage 4a.602 line 1 of answer 124 (11.08.04)
+$\{1,2,\ldots,2^{n-1}\}$ \becomes $\{2^0,2^1,\ldots,2^{n-1}\}$
+\endchange
+
+\amendpage 4a.605 lines 14 thru $-2$ of answer 141 (16.06.25)
+$U_n/n$ appears to converge \dots smallest gap \becomes
+$U_n/n$ appears to converge to $\rho\approx13.52$; for example,
+$U_{10000000}=135160791$ and
+$U_{1000000000}=13517631473$.
+D.~W. Wilson noticed that the numbers form quasi-periodic ``clusters'' whose
+centers differ by multiples of $\delta\approx21.6016$; then
+S.~Steinerberger discovered empirically that $U_n\mod\lambda$ almost
+always lies in $\bigl[{1\over3}\lambda\dts{2\over3}\lambda]$, where
+$\lambda\approx2.443443$ [Report DCS/TR-1508 (Yale University, 2015)].
+By exploiting that amazing property, P.~Gibbs
+[viXra:1508.0085 (2015)] found that roughly $O(N)$ time
+and $O(N)$ space suffice to compute the first $N$ Ulam numbers.
+He and Jud McCranie
+calculated more than 25 billion Ulam numbers in 2015, discovering
+large gaps such as $U_{23647775834}-U_{23647775833}=
+319654122989-319654121875=1114$.
+[The smallest gap
+\endchange
+
+\bugonpage 4a.608 line 3 (12.02.25)
+six operations \becomes seven operations
+\endchange
+
+\amendpage 4a.608 in answer 159 (12.04.24)
+line 5: 20-step \becomes 19-step\nl
+line 9: $z\gets z\xor(t\band(z\xor((w{+}1)\rsh1)))$ \becomes
+$z\gets (z\bor t)-(t\rsh1)$
+\endchange
+
+\bugonpage 4a.608 line $-3$ of answer 159 (12.03.03)
+$t\gets y\band(y-1)\band\bar\mu_0$, $y\gets y-t+\[t\ne0]((t-1)\band\mu_0)$
+\becomes\nl
+$t\gets y\band-y\band\bar\mu_0$,
+$y\gets(t@{=}@0{?}\ y: y-1-((t@{-}@1)\band\bar\mu_0))$
+\endchange
+
+\amendpage 4a.608 line 2 of answer 161 (12.03.03)
+strips can \becomes strips, $y\mod2$, can
+\endchange
+
+\bugonpage 4a.610 replacement for step C1 in answer 168 (12.03.07)
+\algindentset{\hskip\parindent C1}%
+\algstep C1. [Loop on $k$.] Set $A_{j0}\gets0$ for $0\le j<M$. Then
+do step C2 for $k=1$, 2, \dots, $N'$. Then go to C5.
+\endchange
+
+\improvepage 4a.610 lines $-4$ and $-3$ of answer 168 (12.03.07)
+An $M\times N$ \dots~even~\eq(161). \becomes
+In many cases, like \eq(157) and \eq(159) and even
+\eq(161), an $M\times N$ torus is equivalent to an
+$(M-1)\times(N-1)$ array surrounded by zeros.
+\endchange
+
+\amendpage 4a.611 end of answer 173 (15.05.16)
+15--36.] \becomes
+15--36. See also J.~Serra, {\sl Image Analysis
+and Mathematical Morphology\/} (1982).]
+\endchange
+
+\bugonpage 4a.611 replacement for line 3 of answer 176 (12.03.08)
+\indent(b) Some $w'\in G'$ is adjacent or equal to each vertex of
+$N_u\cup N_v$. (Four cases.)\par
+\endchange
+
+\amendpage 4a.612 line 4 of step I4 (12.03.11)
+$\.R'\gets\.R$, $\.R\gets\.{SIB(R)}$ \becomes
+                $\.R\gets\.{SIB(R)}$
+\endchange
+
+\bugonpage 4a.613 in answer 181 (12.03.16)
+$b\eta$ \becomes $b(\eta+\half)$\quad [twice]\qquad and\qquad
+$b\xi$ \becomes $b(\xi+\half)$\quad [twice]
+\endchange
+
+\bugonpage 4a.614 line 6 of answer 185 (12.03.21)
+see exercise 183 \becomes see exercise 184
+\endchange
+
+\bugonpage 4a.615 lines 1 and 2 (12.03.23)
+$>0$ \becomes $\ge0$ \qquad[twice]
+\endchange
+
+\bugonpage 4a.617 lines 21--22 of answer 192 (12.03.27)
+So $F_{2(2^{2e}-1)}(y)=y@F_{2^{2e}-1}(y)^2$
+is a multiple of $(x^{2q}+1)/(x^2+1)$ \becomes
+So $F_{4(2^{2e}-1)}(y)=y^3F_{2^{2e}-1}(y)^4$
+is a multiple of $(x^{2q}+1)/(x^2+1)=f_2(x)^2f_3(x)^2\ldots f_r(x)^2$ 
+\endchange
+
+\bugonpage 4a.618 line 5 (12.03.28)
+$\lcm(c_1,\ldots,c_r)<n$ \becomes
+$\lcm(c_1,\ldots,c_r)\le n$
+\endchange
+
+\amendpage 4a.620 improvement to answer 218 (12.04.13)
+line 4: for $1<k<d$: Set $s\gets0$, $j\gets1$; then while $x\ne1$ \becomes\nl
+for $1<k<d$,  assuming that $t_k=2^k$ for $k\ge d/2$: Set $s\gets0$,
+$j\gets1$; then while $j<d/2-1$\nl
+{\it also append a new sentence to the end of the first paragraph:}\nl
+ Finally
+set $s\gets(s+1-x)\mod2^d$.\nl
+{\it also append a new sentence to the end of the second paragraph:}\nl
+(With another multiplication we could return $(1-s)a$  as soon as $j\ge d/2$.)
+\endchange
+
+\amendpage 4a.621 replacement for first four lines (11.08.04)
+\indent Suitable numbers~$t_k$ can be computed by setting $t_k\gets 1\lsh k$
+for $d-1\ge k\ge d/2$ and proceeding as follows for the remaining $k$s, in
+decreasing order:
+Set $x\gets1+(1\lsh k)$, $x\gets x+(x\lsh k)$, $s\gets0$, $j\gets k$;
+then while $j<d/2-1$ set $j\gets j+1$, and if $x\band(1\lsh j)\ne 0$ also set
+$x\gets x+(x\lsh j)$, $s\gets s-t_j$; finally $t_k\gets (s+x-1)\rsh1$.
+For example, when $d=32$ we get $t_{15}=$
+\endchange
+
+\amendpage 4a.621 new answer (13.11.16)
+\ans219. It ``sorts'' the bits, changing $x$ to $2^{@\nu x}-1$.
+\endchange
+
+\amendpage 4a.621 answer 4 (16.06.30)
+(See 7.1.3--\eq(93).) \becomes
+\endchange
+
+\amendpage 4a.623 replacement for answer 15 (11.12.09)
+\ans15. Both cases lead by induction to well known sequences of
+numbers: (a) The Lucas numbers $L_n=F_{n+1}+F_{n-1}=\phi^n+\phihat^n$
+[see E.~Lucas, {\sl Th\'eorie des Nombres\/} (1891), Chapter~18].
+(b) The Perrin numbers, defined by
+$P_3=3$, $P_4=2$, $P_5=5$, $P_n=P_{n-2}+P_{n-3}=\chi^n+\hat\chi^n+
+\overline{\hat\chi}{}^n$.
+[See E.~Lucas, {\sl Association Fran\c{c}aise pour l'Avancement des
+Sciences}, Compte-rendu {\bf5} (1876), 62;
+R.~Perrin, L'{\sl Interm\'ediaire des
+Math\'ematiciens\/ \bf 6} (1899), 76--77;
+Z. F\"uredi, {\sl Journal of Graph Theory\/ \bf11} (1987), 463.]
+\endchange
+
+\amendpage 4a.632 append new sentence to line 5 of answer 77 (12.10.23)
+We have
+$(c_0,c_1,c_2,\ldots{})=$\nl\quad$(1,1,2,1,5,3,5,1,19,14,25,6,50,14,19,1,167,148,282,
+84,\ldots{})$.\par % 617, 215, 307, ...; see notes in 7.1.4K from 5 Jan 08
+\endchange
+
+\bugonpage 4a.632 end of second paragraph in answer 77 (12.08.25)
+$y_{@2^n\?+k}=0$ \becomes $y_{@2^{n-1}\?+k}=0$
+\endchange
+
+\improvepage 4a.643 line 3 of answer 133 (12.11.07)
+$j=2^{x-1}$ and $i\band j\ne0\}$ \becomes
+$1\le x\le n$, $j=2^{x-1}$, and $i\band j\ne0\}$
+\endchange
+
+\amendpage 4a.646 line $-2$ of answer 138 (12.11.27)
+method for $m=1$ \becomes method
+\endchange
+
+\amendpage 4a.653 lines 5 and 6 of answer 171 (13.03.10)
+where $\circ$ is a nontrivial binary operator and we have \becomes
+where $g$ and $h$
+are read-once and regular and $\circ$~is a nontrivial binary operator,
+and where we have
+\endchange
+
+\bugonpage 4a.657 line 2 of answer 183 (13.11.29)
+$k>0$ \becomes $k>1$
+\endchange
+
+\bugonpage 4a.665 line 5 (13.12.30)
+and with neglible \becomes and uses negligible
+\endchange
+
+\improvepage 4a.670 line 5 (13.01.30)
+as in \eq(52) \becomes as explained in answer~198
+\endchange
+
+\amendpage 4a.670 line 16 (15.05.15)
+\def\\#1//{\hbox{\mc #1}}%
+$r_h\gets\\NONSUP//@(r,r_l)$ \becomes
+$r_h\gets\\BUTNOT//@(r,r_l)$
+\endchange
+
+\bugonpage 4a.670 line 20 (10.12.08)
+by $\epsilon\in g$' \becomes by `$\epsilon\in g$'
+\endchange
+
+\amendpage 4a.672 line 9 of answer 241{(c)} (16.02.15)
+{\sl Tit Bits\/} (1 Jan 1898) \becomes {\sl Tit-Bits\/ \bf33} (1 January 1898)
+\endchange
+
+\amendpage 4a.679 line 1 of answer 8 (15.10.17)
+$a_\infty$ \becomes $1\oplus a_{-1}$
+\endchange
+
+\amendpage 4a.679 new penultimate paragraph for answer 10 (16.06.25)
+A. M. Hinz has discovered that the German physicist
+G. C. Lichtenberg published similar
+results in {\sl G\"ottingische Anzeigen von gemeinn\"utzigen Sachen\/ \bf1}
+(1769), 637--640.\tighten\par
+\endchange
+
+\amendpage 4a.679 replacement for Algorithm C in answer 12 (16.05.12)
+\algindentset{\hskip\parindent C1}%
+\algstep C1. [Initialize.] Set $t\gets1$, $s_1\gets n$.
+(We assume that $n>1$.)
+\algstep C2. [Visit.] Visit $s_1\ldots s_t$. Then go to
+C4 if $t$ is even.
+\algstep C3. [Odd step.] If $s_t>1$, set $s_t\gets s_t-1$, $s_{t+1}\gets1$,
+$t\gets t+1$; otherwise set $t\gets t-1$ and $s_t\gets s_t+1$. Return to C2.
+\algstep C4. [Even step.] If $s_{t-1}>1$, set $s_{t-1}\gets s_{t-1}-1$,
+$s_{t+1}\gets s_t$, $s_t\gets1$, $t\gets t+1$; otherwise set $t\gets t-1$,
+$s_t\gets s_{t+1}$, $s_{t-1}\gets s_{t-1}+1$ (but terminate if $t$ has
+become~1). Return to C2.\quad\slug
+\endchange
+
+\amendpage 4a.680 replacement for lines 4--7 (16.05.12)
+\algindentset{\hskip\parindent B1}%
+\algstep B3. [Odd step.] If $q_{@t-1}>1$, set $q_{@t}\gets1$ and $t\gets t+1$;
+otherwise set $t\gets t-1$. Return to~~step~B2.
+\algstep B4. [Even step.] If $q_{@t-2}>q_{@t-1}+1$,
+set $q_{@t}\gets q_{@t-1}$, $q_{@t-1}\gets q_{@t}+1$, $t\gets t+1$;
+otherwise set $q_{@t-2}\gets
+q_{@t-1}$ and $t\gets t-1$ (but terminate if $t$ has become~1).
+Return to B2.\quad\slug
+\endchange
+
+\amendpage 4a.680 notation change in answer 13 (16.05.12)
+$j$ \becomes $t$ \qquad (in six subscripts)
+\endchange
+
+\amendpage 4a.684 replacement for lines 3--7 of answer 33 (14.01.25)
+\noindent
+for $0\le x<\half$, because $r_1(x)=1$ in this range and
+$r_j(2x)=r_{j+1}(x)$ for all~$x$. On the other hand
+when $\half\le x<1$,
+$$\postdisplaypenalty=10000
+\eqalign{
+w_k(x)=(-1)^{\lceil k/2\rceil}w_{\lfloor k/2\rfloor}(2x)
+&= (-1)^{\lceil k/2\rceil}r_1(2x)^{b_1+b_2}r_2(2x)^{b_2+b_3}\ldots{}\cr
+&= r_1(x)^{b_0+b_1}r_2(x)^{b_1+b_2}r_3(x)^{b_2+b_3}\ldots\cr}$$
+because $\lceil k/2\rceil\equiv b_0+b_1$ (modulo 2) and
+$r_1(x)=-1$ in this range.
+\endchange
+
+\amendpage 4a.684 append two new lines to answer 33 (15.04.22)
+(Incidentally, the Rademacher functions had been discovered independently
+by Felix Hausdorff in 1915 but not published; see his {\sl Gesammelte
+Werke\/ \bf5} (2006), 757--758.)\tighten
+\endchange
+
+\amendpage 4a.686 lines 2--5 of answer 43 (14.09.15)
+Exact calculation \dots\ in 1972.) \becomes
+And indeed, H.~Haanp\"a\"a and P.~R.~J. \"Osterg{\aa}rd
+found the exact value
+$d(6)=71$,676,427,445,141,767,741,440 in 2011, by using symmetry and
+``gluing together'' disjoint paths
+whose endpoints~$x$ have $\nu x=3$ and whose interior vertices have
+$\nu x\le3$. [{\sl Math.\ Comp.\ \bf83} (2014), 979--995.]
+\endchange
+
+\bugonpage 4a.692 line 4 of answer 74 (13.05.27)
+$2\bigl({n-1\choose j-1}+{n-1\choose j}+{n-1\choose j+1}\bigr)-1$ \becomes
+$\le2\bigl({n-1\choose j-1}+{n-1\choose j}+{n-1\choose j+1}\bigr)-1$
+\endchange
+
+\amendpage 4a.692 last line of answer 74 (13.07.15)
+7.10--00 \becomes 7.5.6--00
+\endchange
+
+\bugonpage 4a.694 line 1 of answer 84 {(in the eBook only)} (15.01.15)
+solution \ in \becomes solution in
+\endchange
+
+\bugonpage 4a.696 replacement for last three lines of answer 91 (14.04.02)
+\indent Incidentally, it is amusing to note that the mapping $k\mapsto g(2k)$
+is a one-to-one correspondence between all binary $n$-tuples with
+no consecutive~1s and all binary $(n+1)$-tuples with
+no odd-length runs.
+\endchange
+
+\bugonpage 4a.697 lines 7 and 8 of answer 95 (14.04.24)
+the cycle of $f()$ \dots\ By \eq(58) \becomes
+the cycle of $f()$  and $f'()$ with $x^n$ changed to $x^{n+1}$ and
+the $b$'s are the same cycle with $x^n$ changed to $x^{n-1}$, for
+$0\le x<r$. Hence we have $b_k\ldots b_{k+n-1}=a_{k+\delta_k}\ldots
+a_{k+n-1+\delta_k}$ for all~$k$, where $\delta_k$ is~even.
+By~\eq(58)
+\endchange
+
+\bugonpage 4a.699 in answer 99 (13.07.21)
+line 6: $j^+\equiv k^+$ \becomes $j^+\equiv k^-$\nl
+lines 7--9: we may take \dots~Then \becomes
+we may take $l/2=
+k^-+(2^n\!-2)\bigl(2^{n-3}(j^+-\nobreak k^-)\allowbreak\mod(2^{n-1}+1)\bigr)$
+if $j^+\ge k^-$, otherwise $l/2=
+j^++(2^n\!+2)\bigl(2^{n-3}(k^--j^+)\mod(2^{n-1}-1)\bigr)$.
+Otherwise let $(l+1)/2=
+k^++(2^n\!+2)x=j^-+1+(2^n\!-2)y$. Then
+\endchange
+
+\bugonpage 4a.700 in answer 105{(b)} (13.12.22)
+is prime. The condition \dots\ would begin \becomes
+is prime and $\vert\lambda_1\vert=r$. If $a_j\ne a_{j+r}$ for some~$j$,
+we must have $a_j<a_{j+r}$ for the smallest such~$j$, because
+$\lambda_1\beta@\omega<\beta@\omega$. But then $\alpha$ would begin
+\endchange
+
+\amendpage 4a.701 in answer 108 (14.06.12)
+line 1: $\lambda_{k+1}$ \becomes $\beta\alpha<\lambda_{k+1}$\nl
+line 8: suffix of $\lambda_{k-2}$, \becomes
+        suffix of $\lambda_{k-2}$ because $\vert\beta'\vert\le n/2$,
+\endchange
+
+\amendpage 4a.701 append to the last line of answer 108 (16.05.12)
+[See E. Moreno and D.~Perrin,
+{\sl Advances in Applied Mathematics\/ \bf33} (2004), 413--415;
+{\bf62} (2015), 184--187.]
+\endchange
+
+\bugonpage 4a.701 line 2 of answer 110 (14.06.15)
+$a_{j+(i-1)/2\mod m^2}$ \becomes $a_{j+(i+1)/2\mod m^2}$
+\endchange
+
+\bugonpage 4a.705 in answer 17 (14.08.02)
+line 7: $c_0=-1$ \becomes $c_0\gets-1$\nl
+line $-1$: $i=j+o_k$ \becomes $i\gets j+o_k$
+\endchange
+
+\amendpage 4a.711 last line of answer 55 (14.11.09)
+$\beta_{n!}^{-j}@\alpha\losub m$ fixes~$n$ and \becomes
+$\alpha_m$ fixes~$n$, $\beta_{n!}$ fixes~$n$, and
+\endchange
+
+\improvepage 4a.717 line 2 (14.04.28)
+[say `$\langle@$Visit the permutation in register \.a$\,\rangle$', thus
+matching the typographic style of \eq(45)]
+\endchange
+
+\improvepage 4a.718 improvement to line 3 (15.01.25)
+$k'_{j+1}\ge k\losub j$. \becomes
+$k'_{j+1}\ge k\losub j$, because $[k_j\dts k_{j+1}]$ is not a chain.
+\endchange
+
+\improvepage 4a.719 improvement to answer 95 (15.01.28)
+Generate \dots! Algorithm V. \becomes
+Using Algorithm V with the relations $1\prec n\succ 2\prec n-1\succ\cdots{}$,
+visit the up-down permutations $a_1'a_n'a_2'a_{n-1}'\ldots{}@$.
+\endchange
+
+\bugonpage 4a.719 line 1 of answer 100 (15.02.01)
+$l[q]$ \becomes $l_q$
+\endchange
+
+\amendpage 4a.720 replacement for top three lines (15.02.18)
+\vskip-1pt\algindentset{\hskip.5\parindent Y1}%
+\algstep Y3. [Decrease $k$.] Set $k\gets k-1$, and terminate if $k=0$.
+Otherwise set $q\gets u_k$, $p\gets a_q$, and $r\gets l_q$.
+If $p=q$, set $q\gets0$ and $k\gets k+1$ (preparing to make $a_p>p$).
+Otherwise set $l_{u_{k-1}}\gets q$ (preparing to make $a_p>q$).
+\endchange
+
+\amendpage 4a.720 line 11 (15.02.18)
+$11a_n+12t_n$, where $a_n<1.25331414@t_n$. \becomes
+$9a_n+12t_n$. It can be shown that
+$\sum a_nz^n\!/n!=e^z\bigl(z/1+z^3\!/(1\cdot3)
++z^5\!/(1\cdot3\cdot5)+\cdots{}\bigr)$, and that $a_n\sim\sqrt{\pi/2}\,t_n$.
+\endchange
+
+\bugonpage 4a.728 lines 1--3 of answer 23 (15.08.05)
+(If $r=1$ we have \dots\ etc.) \becomes
+(If $t-r$ is even we have $j>r$ $\iff$ $c_r=r-1$; otherwise
+$j>r$ $\iff$ $c_{r+1}=c_r+1$ and $c_{r-1}=r-2$, assuming that $c_0=-1$.)
+\endchange
+
+\amendpage 4a.734 in answer 53 (13.01.30)
+46.\ \becomes 46, for solutions to some small cases.
+\endchange
+
+\amendpage 4a.735 in answer 56 (15.03.18)
+lines 1 and 2: ``middle levels conjecture,'' which states \becomes
+ ``middle levels conjecture'' [Ivan~Havel,
+{\sl Teubner-Texte zur Mathematik\/ \bf59} (1983), 101--108; proved
+by Torsten M\"utze,
+{\ninepoint{\tt arXiv:1404.4442} [math.CO]} (2014), 42~pages], which states\nl
+line 3: In fact, such strings \becomes Such strings\nl
+line $-2$: The middle levels conjecture is known \becomes
+This stronger conjecture is known
+\endchange
+
+\bugonpage 4a.751 line 4 of answer 27 (14.07.23)
+(29) \becomes \eq(29)
+\endchange
+
+\amendpage 4a.755 a better solution to answer {54(b)} (13.07.26)
+(b) True, but not so obvious. The Ferrers diagram shows us that
+$$\textstyle a'_1+\cdots+a'_{k}\;=\;\sum_{j=1}^\infty\min(k,a_j);$$
+thus we want to show that $\alpha\succeq\beta$ implies
+$\sum_{j=1}^\infty\min(k,a_j)\le\sum_{j=1}^\infty\min(k,b_j)$ for all~$k\ge0$.
+This inequality is clear when $k\ge b_1$; and if $b_l\ge k\ge b_{l+1}$ we have
+$\sum_{j=1}^\infty\min(k,a_j)\le\sum_{j=1}^lk+\sum_{j=l+1}^\infty a_j
+\le kl+\sum_{j=l+1}^\infty b_j=\sum_{j=1}^\infty\min(k,b_j)$.
+\endchange
+
+\amendpage 4a.761 end of answer 73 (15.05.17)
+476.] \becomes
+476. This is a special case of considerably more general results proved by
+N.~J. Fine in 1959; see
+R.~A. Gilbert, {\sl AMM\/ \bf122} (2015), 322--331.]
+\endchange
+
+\amendpage 4a.765 append to answer 19(a) (15.10.01)
+[See J. K\"ursch\'ak, {\sl Matematikai versenyt\'etelek\/} (Szeged:\
+1929), Problem~2 from the E\"otv\"os Mathematical Competition of 1928.]
+\endchange
+
+\bugonpage 4a.770 line 7 of answer 34 (11.02.25)
+at most three times \becomes at most four times
+\endchange
+
+\bugonpage 4a.770 line 10 of answer 34 (11.02.25)
+all used the \becomes all used coalescences of the
+\endchange
+
+\bugonpage 4a.775 line $-4$ of answer 53 (11.09.13)
+[See \becomes See
+\endchange
+
+\amendpage 4a.777 last line of answer 62 (12.09.05)
+A1, 1--13 \becomes A1:1--A1:13; {\bf5} (2005), A9:1
+\endchange
+
+\amendpage 4a.778 replacement for answer 66 (12.01.05)
+\ans66. (The maximum of \eq(48) when $n=100$ is achieved only for the three
+partitions
+$7^16^25^44^63^72^61^4$,
+$7^16^25^44^63^82^51^3$,
+$7^16^25^44^73^62^61^3$.)
+\endchange
+
+\amendpage 4a.780 last lines of answer 82 (11.06.24)
+[This problem \dots\ (1972).] \becomes
+[This exercise was problem 78 in B.~A. Kordemsky's
+{\sl Matematicheska\t{\i}a Smekalka\/} (1954), translated into English
+as {\sl The Moscow Puzzles\/} (1972).]
+\endchange
+
+\amendpage 4a.785 last two lines of answer 22 (11.08.08)
+351--357] \dots Algorithm B.) \becomes
+351--357; {\bf54} (2011), 776--785] has shown that
+this algorithm, Algorithm~P, and Algorithm~B can all
+be extended to $t$-ary trees in interesting ways.)
+\endchange
+
+\amendpage 4a.790 new paragraph appended to answer 36 (12.06.09)
+[The ``Fuss--Catalan numbers''
+$C_n^{(t)}$ were first studied by N.~Fuss, {\sl Nova acta acad.\
+scient.\ imp.\ Pet.\ \bf9} (1791), 243--251.]
+\endchange
+
+\amendpage 4a.799 in answer 71 (15.12.09)
+line 1 and line 5 and line 7: $M_{tn}$ \becomes $M_{t,n}$\nl
+line 6: $M_{(2)n}$ \becomes $M_{2,n}$
+\endchange
+
+\amendpage 4a.799 line 1 of answer 72 (15.12.09)
+$M_{sn}$ \becomes $M_{s,n}$
+\endchange
+
+\amendpage 4a.799 in answer 74 (15.12.09)
+$M_{(p+1)n}$ \becomes $M_{p+1,n}$\nl
+[Also $M_{0(29)}$ \becomes $M_{0,29}$, etc.; insert commas and remove
+parentheses in the double-subscripts of~$M$.]
+\endchange
+
+\amendpage 4a.799 and 800 in answer 75 (15.12.09)
+[Insert commas and remove parentheses as in answer 74.]
+\endchange
+
+\amendpage 4a.801 replacement for lines 1--10 of answer 85 (15.12.09)
+\ans85. (Solution by G\"unter Rote.) The vector space $V$ can be represented as
+$$\{x\mid Ax=0\}$$ for some $m\times n$ matrix~$A$. Let $v_j$ be the $j$th
+column of~$A$, and notice that $v_j$ cannot be zero because $V$ contains no
+unit vectors. We can therefore assume that
+$\min\bigl(\Vert v_1\Vert,\ldots,\Vert v_n\Vert\bigr)=1$,
+after multiplying~$A$ by an appropriate constant.
+Exercise~84 now applies.
+\endchange
+
+\amendpage 4a.812 new sentence at end of answer 8 (13.10.09)
+\noindent
+G.~W. Leibniz had in fact discovered this rule in an unpublished manuscript
+dated 12 January 1684; see E.~Knobloch,
+{\sl Archive for Hist.\ Exact Sciences\/ \bf12} (1974), 142--173.
+\endchange
+
+\let\defaultpointsize=\tenpoint % begin appendices
+
+\amendpage 4a.817 (not an error!) (11.05.25)
+[The fact that no text appears above the authors' names
+in the quotations on this page is intentional. If you are unable
+to understand why, please consult the~Web.]
+\endchange
+
+\amendpage 4a.823 new entry to precede `$@G\setminus v$' (12.04.13)
+\par\tenpoint
+\vbox{\offinterlineskip
+\setbox\strutbox=\hbox{\vrule height9.5pt depth4.5pt width.4pt} % not a strut!
+  \def\P#1\cr{\phantom{\S}\hbox to1.5em{\hss#1}\cr}
+  \halign to\hsize{\hbox to.875in{\hfil$#$\quad}&#\strut&%
+          \quad#\hfil\tabskip=0pt plus 1fil&#\strut\tabskip=0pt&%
+          \hbox to.75in{\hfil#\hfil}\cr
+G\setminus U&&$G$ with vertices of the set $U$ removed&&\P13\cr
+}}
+\endchange
+
+\bugonpage 4a.824 line 14 (11.01.10)
+\tenpoint ${n\choose k}$ \becomes ${x\choose k}$
+\endchange
+
+\amendpage 4a.824 line 24 (13.09.13)
+${\sim}p$ or $\overline p$ \becomes
+$\lnot p$ or ${\sim}p$ or $\overline p$
+\endchange
+
+\amendpage 4a.825 new entry to follow the ruler function (11.02.07)
+\par\tenpoint
+\vbox{\offinterlineskip
+\setbox\strutbox=\hbox{\vrule height9.5pt depth4.5pt width.4pt} % not a strut!
+  \def\P#1\cr{\phantom{\S}\hbox to1.5em{\hss#1}\cr}
+  \halign to\hsize{\hbox to.875in{\hfil$#$\quad}&#\strut&%
+          \quad#\hfil\tabskip=0pt plus 1fil&#\strut\tabskip=0pt&%
+          \hbox to.75in{\hfil#\hfil}\cr
+\nu@n&&sideways sum (when $n\ge0$):
+ $\sum_{k\ge0}@\bigl((n\rsh k)\band1\bigr)$&&\P143\cr
+}}
+\endchange
+
+\amendpage 4a.826 new entry to follow `elementary family' (12.04.13)
+\par\tenpoint
+\vbox{\offinterlineskip
+\setbox\strutbox=\hbox{\vrule height9.5pt depth4.5pt width.4pt} % not a strut!
+  \def\P#1\cr{\phantom{\S}\hbox to1.5em{\hss#1}\cr}
+  \halign to\hsize{\hbox to.875in{\hfil$#$\quad}&#\strut&%
+          \quad#\hfil\tabskip=0pt plus 1fil&#\strut\tabskip=0pt&%
+          \hbox to.75in{\hfil#\hfil}\cr
+\wp&&universal family: all subsets of a given universe&&\P275\cr
+}}
+\endchange
+
+\bugonpage 4a.826 line $-6$ or $-7$ {(for the minimal elements)}  (13.07.15)
+${\cal F}^\uparrow$ \becomes ${\cal F}^\downarrow$
+\endchange
+
+\amendpage 4a.827 new entries for the index to notations (11.08.10)
+\par\tenpoint
+\vbox{\offinterlineskip
+\setbox\strutbox=\hbox{\vrule height9.5pt depth4.5pt width.4pt} % not a strut!
+  \def\P#1\cr{\phantom{\S}\hbox to1.5em{\hss#1}\cr}
+  \halign to\hsize{\hbox to.875in{\hfil$#$\quad}&#\strut&%
+          \quad#\hfil\tabskip=0pt plus 1fil&#\strut\tabskip=0pt&%
+          \hbox to.75in{\hfil#\hfil}\cr
+\alpha(G)&&independence number of $G$&&\P35\cr
+\gamma(G)&&domination   number of $G$&&\P673\cr
+% it's defined only implicitly there (as size of minimum dom set)
+% but I want to "reserve" this notation and the next two for future use
+\kappa(G)&&vertex connectivity of $G$&&\S7.4.1\cr
+\lambda(G)&&edge  connectivity of $G$&&\S7.4.1\cr
+\nu(G)&&matching number of $G$&&\S7.5.5\cr
+\chi(G)&&chromatic number of $G$&&\P35\cr
+\omega(G)&&clique number of $G$&&\P35\cr
+c(G)&&number of spanning trees of $G$&&\P482\cr
+}}
+
+\endchange
+
+\bugonpage 4a.830 lines 9 and 10 after the title (16.01.31)
+\ninepoint
+Boolean function of $mn$ Boolean variables,
+with 0 representing {\mc TRUE} and 1 representing {\mc FALSE} \becomes
+Boolean function of its index variables $(i,j)$,
+with 0 representing {\mc FALSE} and 1 representing {\mc TRUE}
+\endchange
+
+\expandafter\ifx\csname indexeject\endcsname\relax\else\vfill\eject\fi
+\amendpage 4a.834 and following (11.01.01)
+Miscellaneous changes to the existing index of Volume~4A are collected here,
+including corrections and amendments to the old entries as well as new entries
+that are occasioned by the new material. Thus, the lines of the full index
+that have changed serve also as an index to the present document. However,
+when a correction or amendment has caused an old index entry to be deleted,
+the deletion is usually not indicated.
+
+\input exotic
+\begindoublecolumns
+\indexformat
+\gdef\Uni1.08:{\bitmap24:1.08:}
+
+\hangindent2em
+$0@$--1 matrices, \see Matrices of $0@$s and 1s. % 3rd
+3-cube, 14, 346, 387, 532. % 7th
+3-variable functions, 63, 99, 104--105, 126. % 3rd
+$\chi$ (plastic constant), 125, 236, 623, 641. % 3rd
+$\forall$ (universal quantification), 87, 230, 265. % 4th
+Adjacency lists, 21--22, 70, 194. % 4th
+Adleman, Leonard Max, 578. % 6th
+Alon, Noga ({\heb\Hfn/\Hvv/\Hll/\Haa/ \Hhh/\Hgg/\Hvv/\Hnn/}), 556, 579, 580. % 7th
+Alonso, Laurent, 534, 798. % 4th
+\.{ARCS($v$)} (first arc of vertex $v$), 21, 194. % 7th
+Averages, bytewise, 151, 191, 598. % 7th
+Backtrack method, viii, 295, 334, 430, 503, 553, 665. % 3rd
+BESM-6 ({\rus BE1SM-6}) computer, 594. % 9th
+Binary decision diagrams, history, 257--258. % 7th
+Bit, defined, 47. % 4th
+Bit stuffing, 216. % 4th
+Bitonic sorting, 189, 594. % 4th
+Bitwise operations, 47, 74, 82, 100--102, 126, 133--202, 259, 284, 291--292, 312, 341, 358, 534, 562, 621, 683, 732, 735, 746. % 5th
+Bernoulli distribution, multivariate, 439. % 6th
+Boole, George, 48, 52, 133, 211, 536, 570. % 4th
+Boolean functions, enumeration of, 79, 559. % 4th
+Boolean functions, of 3 variables, 63, 78, 99, 104--105, 126. % 3rd
+Bracketing property, \see Enveloping series. % 4th
+Brent, Richard Peirce, 561, 568, 594. % 3rd
+Bull, 524. % 4th
+Burstall, Rodney Martineau, 324. %6th
+{\mc BUTNOT} gates ($\nimp$), 97, 100, 110, 574. % 3rd
+Catalan numbers, generalized, 476--477, 790. % 4th
+Century puzzle, 484. % 4th
+Chebyshev (= Tschebyscheff), Pafnutii Lvovich ({\rus Chebyshevp2, Pafnut{\char12}i0 Lp1vovichp2} = {\rus Chebyshev, Pafnutii0 Lp1vovich}), 775. % 4th
+Coalescence, 432, 770. % 2nd
+Cohen, Philip Michael, 520, 522. % 4th
+Coincidences, 811. %7th
+Coloring of graphs, 17, 22--23, 35, 39, 41, 42, 44, 46, 120--121, 233, 246, 258, 265, 274, 277, 529, 530, 831. % 3rd
+Conjunctive normal form ({\mc CNF}), 53, 56--57, 62, 72, 81, 85, 87, 97, 271, 277, 563, 571. % 4th
+Connected hypergraphs, 33. % 3rd
+Core of a Horn function, 58--60, 86, 543, 545. % 4th
+Custering, 171--172, 176, 196--197. % 4th
+Dedekind numbers ($\delta_n$), 224. % 4th
+Degree of a node in a tree, 472. % 4th
+Degree of a vertex in a graph, 14, 19, 39, 43, 44, 264, 464, 483, 529. % 4th
+Depth-first search, 23, 41, 60, 217, 575, 802--803. % 6th
+Directed torus graphs, 41, 352, 808. % 3rd
+Disjunctive normal form, full, 53--54, 81, 84, 558.
+Dobi\'nski, Gustaw, 419. % 3rd
+Duality, 34, 276, 387, 611, 743. % 3rd
+$\exists$ (existential quantification), 85, 87, 230, 265. % 4th
+$e$ (base of natural logarithms), as source of ``random'' data, 475, 516, 771, 818--819. %4th
+Eckler, Albert Ross, Jr\period, 522. % 4th
+Edge covering by cycles, 315. % 9th
+Enumeration of Boolean functions, 79, 559. % 4th
+Equivalence classes, 37, 69--70, 78--79, 101, 105, 161--162, 313, 472, 482, 557--558, 581, 688, 712, 722. % 4th
+E\"otv\"os de V\'as\'arosnam\'eny, Lor\'and, 765. % 7th
+Etesami, Omid ({\arab\Afam/\Aim/\Afa/\Ams/\Amt/\Aiai/\Aa/ \Afd/\Amy/\Aim/\Aa/}), 551. % 5th
+Fanin: The number of inputs to a gate, 97, 104, 124. % 4th
+Fanout: The number of uses of a gate, 97, 104, 570. %4th
+Feder Bermann, Tom\'as, 73, 313, 551. % 4th
+Fibonacci numbers, 168, 236, 246, 270, 316, 354, 396, 488, 544, 566, 569, 623, 675, 718, 811, 820. % 4th
+Fine, Nathan Jacob, 761. % 7th
+Footprints of a Boolean function, 100--101, 113, 114, 122, 125, 126, 564, 571--572, 605. % 7th
+Francis, Darryl, 522. % 4th
+F\"uredi, Zolt\'an, 623. % 3rd
+Fuss, Nikolai Ivanovich ({\rus Fuss, Nikolai0 Ivanovich}), 790. % 4th
+Gallai (= Gr\"unwald), Tibor, 527. % 2nd
+Geek art, xvi, 24, 136, 169, 174--175, 179, 185, 200, 296, 339, 371, 458, 485, 495--497, 504, 694. % 7th
+Generation of combinatorial patterns, history, 486--513.
+Gergonne, Joseph Diaz, 17. % 4th
+Gibbs, Philip Edward, 605. % 7th
+Gilbert, Rebekah Ann, 761. % 7th
+Golden ratio, 196, 236, 246, 270, 514, 623, 818--819. % 3rd
+Golle, Philippe, 480, 801. % 7th
+Gosper's hack, 136, 186, 358. % 3rd
+Graphs (continued): [a spurious entry `Graphs (continued):' appeared near the
+top of this page, in some printings, when it should have appeared {\it at\/}
+the top (or not at all)]\indexnoperiod % 7th
+Greedy algorithm, 113--114, 488, 572. % 3rd
+Haanp\"a\"a, Harri Timo, 686. % 4th
+Hausdorff, Felix, 684. % 7th
+Havel, Ivan, 735. % 6th
+Hinz, Andreas Michael, 679. % 7th
+Hitting sets of a family, \see Vertex covers. % 8th
+\sub minimal ($f^\sharp$), 276, 671, 674. % 8th
+Homomorphisms of graphs, 73--74. % 4th
+Horn clauses, 57--60, 85, 86, 119, 548, 575. % 4th
+Horn core, 58--60, 86, 543, 545. % 4th
+Ideals in a median algebra, 65, 68. % 4th
+Implicate, \see Clause. % 4th
+Indian mathematics, 15, 487--489, 491--492, 499--500, 507, 512. % 3rd
+Ising, Ernst, configurations, 380--381, 385, 726. % 5th
+Juffa, Norbert, 153, 598. % 7th
+$K_5$ (pentacle graph), 14, 42. % 3rd
+Kerbosch, Joseph (= Joep) Auguste G\'erard Marie, 604. % 2nd
+Klee, Victor LaRue, Jr\period, ix. % 3rd
+Kleine B\"uning, Hans Gerhard, 543, 545, 546. % 4th
+Knobloch, Eberhard Heinrich, 505, 506, 812. % 5th
+Kowalewski, Arnold Christian Felix, 525. % 7th
+Kruyswijk, Dirk, 457. % 7th
+Kuck, David Jerome, 561. % 3rd
+K\"ursch\'ak, J\'ozsef, 765. % 7th
+Lalescu, Gheorghe Liviu, 589. % 6th
+Le Corre, Jean Pierre, 145. % 2nd
+Leibniz, Gottfried Wilhelm, Freiherr von, 487, 501--502, 505--506, 512, 812, 814. % 5th
+Lichtenberg, Georg Christoph, 679. % 7th
+Linked allocation, 21, 60, 308, 309, 333--334, 719. % 6th
+Longest paths and cycles, 255, 276, 832. % 7th
+MacDonald, Peter Sherwood, 346. % 3rd
+Magmas, multiplication tables for, 163, 195. % 7th
+Maruyama, Kiyoshi (\JC47:47:-1:39% J2061
+<00006000000000007800000000007c00000000007c000000000078000000000078000000%
+ 00007800000000007800000000007800000000007800c00000007801e0007ffffffff000%
+ 3ffffffff00000007801e00000007801e00000007801e00000007801e00000007801e000%
+ 00007801e00000007801e00000007801e00000007801e00001f07801e000003f7801e000%
+ 000ff001e0000003f801e0000001fc01e0000000fe01e0000000ff81e0000001ffc1e000%
+ 0001efe1e0000001e7e1e0000003e3f1e0000003e3f1e0000003c1f1e0000007c0e1e000%
+ 00078001e000000f0001e008001f0001e008003e0001e00c007c0001e01c00f80001e01e%
+ 01e00001f03e03c00001fffe0f000001fffe3c000000fffce00000007ff8>%% Unicode "4e38
+\JC41:47:-4:39% J2719
+<00003000000000003c00000000003e00000000003e00000000003c00000000003c000000%
+ 00003c00000000003c00000000003c00000000003c000000c0003c000000f0003c000c00%
+ f8003c000f00f8003c000f80f0003c000f80f0003c000f00f0003c000f00f0003c000f00%
+ f0003c000f00f0003c000f00f0003c000f00f0003c000f00f0003c000f00f0003c000f00%
+ f0003c000f00f0003c000f00f0003c000f00f0003c000f00f0003c000f00f0003c000f00%
+ f0003c000f00f0003c000f00f0003c000f00f0003c000f00f0003c000f00f0003c000f00%
+ f0003c000f00f0003c000f00f0003c000f00f0003c000f00f0003c000f00ffffffffff00%
+ ffffffffff00f00000000f00f00000000f00f00000000f00600000000600>%% Unicode "5c71
+\JC48:48:0:40% J3222
+<0e00000c00000f80000f000007c0000f800003e0000f800001f0000f003001f0000f0078%
+ 00f0fffffffc00607ffffffc0000000f00000000000f00000000000f00c00000000f01e0%
+ c0003ffffff0f0001ffffff07c00000f00003e00000f00001f04000f000c0f04000f001e%
+ 0f0fffffffff060dffffffff000c0000000000180000000000180c00018000380f0003c0%
+ 00380fffffe000780fffffe000700f0003c000f00f0003c000e00f0003c001e00f0003c0%
+ 03e00fffffc003c00fffffc007c00f0003c0cf800f0003c07f000f0003c07f000f0003c0%
+ 3f000fffffc03f000fffffc01f800f0003c01f800f0003c01f800f0003c01fc00f0003c0%
+ 0fc00f0003c00fe00f0007c00fe00f007fc00fe00f001fc007e00f000f8003c006000700%
+ >%% Unicode "6e05
+), 561. % 3rd
+McMillan, Kenneth Lauchlin, 214, 627. % 4th
+Median graphs, 67--74, 89--90, 550. % 4th
+Medians ($\langle xyz\rangle$), x, 62--74, 87--91, 102, 125, 133, 202--205, 212, 229, 235, 255, 263, 264, 311, 585, 598, 637. % 7th
+Midpoint, bytewise, 151, 191. % 4th
+Minimal vertex covers, 34--35, 195, 259, 276, 537, 671, 674. % 8th
+M\"obius, August Ferdinand, function, 306. % 5th
+Mod 4 parity, 126. % 3rd
+Modular arithmetic, 207, 260, 515. % 3rd
+Monotone Boolean functions, 55, 63, 79, 80--82, 85, 87, 95, 202, 223--224, 231, 255, 256, 258, 263, 265, 270--271, 277, 278, 388, 460, 480, 536--537. % 7th
+\sub self-dual, 63--64, 70, 79, 87--89, 92--93, 133, 256, 263, 268, 546, 550, 631, 647. % 4th
+Monus operation ($x@{\dotminus}@y=\max\{0,x{-}y\}$), x,~49, 84, 152, 156, 193, 278, 550, 593, 598, 608, 735. % 7th
+Moreno Araya, Eduardo Enrique, 701. % 7th
+Morphology, mathematical, 611. % 7th
+Muller, David Eugene, 143, 561, 567. % 3rd
+Multiplication, in groupoids or magmas, 163, 195. % 7th
+Multivariate Bernoulli distribution, 439. % 6th
+M\"utze, Torsten, 735. % 5th
+Mux (multiplex) operation, 96, 125, 566, 568, 569, \also If-then-else function. % 3rd
+Neumann, John von (= Neumann J\'anos Lajos = Margittai Neumann J\'anos), 550, 622. % 7th
+\.{NEXT($a$)} (the next arc with the same initial vertex as~$a$), 21, 194. % 7th
+Nonnegative coefficients, 439. % 4th
+Odd parity bit, 286. % 7th
+Orthogonal latin squares, 3--8, 36--38, 516. % 3rd
+\"Osterg{\aa}rd, Patric Ralf Johan, 673, 686. % 3rd
+Padovan, Richard, numbers, 537, 561, 641. % 3rd
+Palindromes, 38, 515, 544. % 4th
+Parallel addition, 108, 127--128, 569, 570. % 4th
+Perrin, Dominique Pierre, 701. % 7th
+Perrin, Fran\c{c}ois Olivier Raoul, numbers, 537, 561, 623, 641. % 3rd
+Pi function, 52, 54, 80--82, 118, 125, 130, 205--207, 562. % 6th
+Pitts, Walter Harry, Jr\period, 75. % 4th
+Plastic constant ($\chi$), 125, 236, 623, 641. % 3rd
+Plover, Corey Michael, 114, 572. % 3rd
+Polynomials modulo a prime, 260. % 3rd
+Preparata, Franco Paolo, 561, 567. % 3rd
+Prime implicants of Boolean functions, 54, 64, 71, 81--84, 89, 94, 95, 129, 195, 258, 277--278, 577, 581. % 4th
+Prime clauses, 54, 81, 95, 129, 277. % 4th
+Products of digraphs and multigraphs, 42, 526. % 3rd
+Products of graphs, 27--28, 42--44, 483, 526. % 3rd
+Projections in a median algebra, 67, 69. % 4th
+Pure majority functions, 76, 93, 550. % 3rd
+Putzolu, Gianfranco Raimondo, 541. % 4th
+Rademacher, Hans, functions, 288, 312, 386, 684, 685. % 7th
+Recursive coroutines, 304--305, 317, 370. % 4th
+Regular graphs, 14, 24--26, 33, 40--44, 483. % 3rd
+Reingold, Edward Martin ({\heb \Hdd/\Hll/\Hvv/\Hgg/\Hnn/\Hyy/\Hyy/\Hrr/},\indexbreak{\heb \Hfm/\Hyy/\Hyy/\Hkh/ \Hfn/\Hbb/ \Hhh/\Hsh/\Hmm/ \Hqq/\Hkh/\Hts/\Hyy/}), 289, 362, 510, 534. % 4th
+Reliability polynomials, 80, 81, 84, 93, 206, 211--212, 260, 261, 267, 388, 535. % 2nd
+Renaming (selectively complementing) Boolean variables, 87, 536, 543, 544. % 4th
+Rote, G\"unter (= Rothe, G\"unther Alfred Heinrich), 198, 286, 801. % 7th
+Rounding, 165, 597, 598. % 7th
+Schwarz, Karl Hermann Amandus, 169. % 6th maybe earlier
+Sch\"utzenberger, Marcel-Paul, 373, 699, 739, 744. % 7th
+Scutell\`a, Maria Grazia, 60. % 4th
+Self-dual Boolean functions, 63, 79, 80, 92, 95. % 4th
+\sub monotone, 63--64, 70, 79, 87--89, 92--93, 133, 256, 263, 268, 546, 550, 631, 647. % 4th
+Sequential allocation, 21, 60, 220, 227, 603. % 6th
+Serra, Jean Paul Fr\'ed\'eric, 611. % 7th
+Set systems, \see $@$Families of sets. % 3rd
+Shrikhande, Sharadchandra Shankar ({\dn frd\char99\char6\lower0.1em\hbox{\char125}\kern-0.6emd \hbox{f\kern-0.6em\raise0.4em\hbox{\char21}}kr \char128FK\kern-0.6em\raise0.4em\hbox{\char21}X\kern-0.8em\hbox{\char3}}), 5. % 2nd
+Shortest paths in a graph, viii, 12, 16, 32, 66, 89, 646, 831. % 4th
+Sideways sum ($\nu@x$): Sum of binary digits, x,~77, 143, 295, 374, 383, 621, 682, 725. % 5th
+Simple graphs, 29, \see Graphs. %4th
+Simplexes, 372, 387. % 7th
+Skolem, Thoralf Albert, ix, 8, 36, 514, 515. % 3rd
+Sorting, 192, 242, 586, 595, 621. % 5th
+Source vertices, 18, 62, 253. % 4th
+Spanning cycles, \see Hamiltonian cycles. % 3rd
+Spanning paths, \see Hamiltonian paths. % 3rd
+Spira, Philip Martin, 561. % 3rd
+Steinerberger, Stefan, 605. % 7th
+Stevenson, David Ian, 113, 564, 572, 574. % 2nd
+Stirling cycle numbers, 777, 824. % 7th
+Stirling subset numbers, 439, 504--505, 777, 824. % 7th
+Stockmeyer, Larry Joseph, viii, 123, 124, 132, 565, 578, 592, 596. % 6th
+Synthesis of Boolean functions, 96--133, 206, 261, \see Boolean chains. % 4th
+Theorem proving, 59, 539, 548. % 4th
+\.{TIP($a$)} (final vertex of arc $a$), 21, 194. % 7th
+Toruses, x, 28, 41, 197, 309, 318, 327, 468, 469, 483, 680, 805, 808. % 3rd
+\sub directed, 352, 808. % 3rd
+Transitive tournament ($K\orie_{\!n}^{\vphantom h}$), 18, 27, 40, 41, 808. % 3rd
+Transversals of a graph or hypergraph, \see Vertex covers. % 8th
+Triangles (3-cliques), 133, 374. % 3rd
+Tuliani, Jonathan Roshan, 699. % 7th
+Unimodal sequences, 439. % 6th
+United States of America graph, 15, 34, 39--40, 210--211, 231--233, 244--246, 250, 254--255, 265, 269, 276, 277, 636, 670; \also {\it miles\/} graphs. % 3rd
+Uri, Dario, 617, 841. % 4th
+van Schooten, Frans, the younger, 498--499, 512. % 7th
+V\'azsonyi (Weiszfeld), Endre (= Andrew), 695. % 5th
+Vertex covers, 34--35, 831. % 8th
+\sub minimal, 34--35, 195, 259, 276, 537, 671, 674. % 8th
+\sub minimum, 34--35, 44, 831. % 8th
+Vertex degree, 14, 19, 39, 43, 44, 264, 464, 483, 529. % 3rd
+Vertices in a graph, 11, 13. % 3rd
+von Neumann, John (= Neumann J\'anos Lajos = Margittai Neumann J\'anos), 8, 159, 385. % 7th
+Voting, 451, 496, 801. % 7th
+$W_n$ (wheel graph with $n$ spokes), 42, 46, 482, 526, 533. % 7th
+\vfill
+\enddoublecolumns
+\endchange
+
+\bye
+
+[The next printing will be the 9th.]
+not listed above:
+
+ARTICLES "TO APPEAR" THAT ARE STILL PENDING:
+Answer 7.1.4--169 promises a paper from ``curious research group''; really?

@@ -1,0 +1,1346 @@
+% CHANGES TO FASCICLE V4F2 OF THE ART OF COMPUTER PROGRAMMING
+%
+% Copyright (C) 2005,2006,2007,2008,2009,2010 by Donald E. Knuth
+% This file may be freely copied provided that no modifications are made.
+% All other rights are reserved.
+%
+% Three levels of changes to the books are distinguished here:
+%
+% "\bugonpage" introduces the correction of an error;
+% "\amendpage" introduces new material for future editions;
+% "\improvepage" introduces ameliorations of lesser importance.
+%
+% (Changes introduced by \improvepage do not appear in the hardcopy listing.)
+%
+% Also, "\planforpage" introduces some of the author's half-baked intentions.
+%
+
+% NOTE: TO PUT THE INDEX ON A SEPARATE PAGE, RUN THIS WITH THE COMMAND LINE
+%   tex "\let\indexeject+ \input err4f2"
+
+\newif\ifall % \alltrue means show the trivial items too
+\relax % hook
+
+\def\vertical{|}
+\def\inref#1 #{\expandafter\def\csname\vertical#1\endcsname}
+\catcode`|=\active
+\let|\inref \input \jobname.ref
+\catcode`|=12
+
+\input taocpmac % use the format for TAOCP, with modifications below
+
+\def\becomes{\ifmmode\ \hbox\fi{\manfnt y}\ } % wiggly arrow indicates a change
+
+\def\bugonpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt\llap{\manfnt x}% print a black triangle in left margin
+   {\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\amendpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\improvepage#1.#2 #3 (#4) {\ifall
+  \medbreak\ninepoint
+  \line{\kern-6pt{\sl Page #2\enspace #3\/}
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\noindent}
+\def\planforpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hbox to 5pt{\hss.\hss}\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\begingroup\let\endchange=\endgroup\sl\noindent}
+\let\endchange=\fi
+\def\nl{\par\noindent}
+\def\nlh{\par\noindent\hangit}
+\def\hangit{\hangindent2em}
+\def\cutpar{{\parfillskip=0pt\par}}
+
+\def\date#1.#2.#3.{% convert "yy.mm.dd." to "dd Mon 19yy"
+  #3
+  \ifcase#2\or Jan\or Feb\or Mar\or Apr\or May\or Jun\or
+               Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi
+  \ \ifnum #1<97 \hundred#1\else19#1\fi}
+\def\hundred{20} % the "century" for dates before '97
+
+\def\ex #1. [#2]{\ninepoint
+  \textindent{\bf#1.}[{\it#2\/}]\kern6pt}
+\def\EX #1. [#2]{\ninepoint
+  \textindent{\llap{\manfnt x}\bf#1.}[{\it#2\/}]\kern6pt}
+
+\def\foottext#1{\medskip
+        \hrule height\ruleht width5pc \kern-\ruleht \kern3pt \eightpoint
+        \smallskip\textindent{#1}}
+\def\volheadline#1{\line{\hss\cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill
+       \titlefont\ #1\ \cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill\hss}}
+\def\refin#1 {\let|\inref \input #1.ref \let|\crossref}
+
+\let\defaultpointsize=\tenpoint
+
+%%%%%%%%%%%%%% opening remarks %%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{INTRODUCTION}
+\let\rhead=\lhead
+\titlepage
+\volheadline{THE ART OF COMPUTER PROGRAMMING}
+\bigskip
+\volheadline{ERRATA TO VOLUME 4 FASCICLE 2}
+\bigskip
+
+\noindent This document is a transcript of the notes that I have been making
+in my personal copy of {\sl The Art of Computer Programming}, Volume~4,
+Fascicle~2, since it was first printed in 2005.
+
+\ifall Four levels of updates\dash---``errors,'' ``amendments,'' ``plans,''
+   and ``improvements''\dash---appear, indicated by four
+\else Three levels of updates\dash---``errors,'' ``amendments,'' and
+   ``plans''\dash---appear, indicated by three \fi
+different typographic conventions:
+\begingroup\def\hundred{17}
+
+\bugonpage 0.666 line 1 (76.07.04)
+Technical or typographical errors (aka bugs) are the most critical items, so
+they are flagged with a `\thinspace{\manfnt x}\thinspace' preceding the page
+number. The date on which I first was told about the bug is shown; this is the
+effective date on which I paid the finder's fee. The necessary
+corrections are indicated in
+a straightforward way. If,~for example, the book says
+`$n$' where it should have said `$n+1$', the change is shown thus:
+\smallskip
+$n$ \becomes $n+1$
+\endchange
+
+\amendpage 0.666 line 2 (89.07.14)
+Amendments to the text appear in the same format as bugs, but without
+the~`\thinspace{\manfnt x}\thinspace'. These are things I wish I had known
+about or thought of when I wrote the original text, so I added them later.
+The date is the date I drafted the new text.
+\endchange
+
+\def\hundred{19}
+
+\planforpage 0.666 line 3 (17.11.20)
+Plans for the future represent a third kind of item. In such notes I~sketched
+my intentions about things that I wasn't ready to flesh out further when
+I~wrote them down. You can identify these items because they're written in
+slanted type, and preceded by a bunch of dots
+`\hbox to 6em{\leaders\hbox to 5pt{\hss.\hss}\hfill}' leading to the date on
+which I recorded the plan in my files.
+\endchange
+
+\improvepage 0.666 line 4 (38.01.10)
+The fourth and final category\dash---indicated by page and line number in
+smaller, slanted type\dash---consists of minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+You wouldn't even
+be seeing these items if you hadn't specifically chosen to print the complete
+errata list in all its gory details.
+Are you sure you wanted to do that?
+\endchange
+
+\endgroup
+\ifall\else\medskip\ninepoint
+My personal file of updates also includes a fourth category of items, not
+shown in this list. They are miscellaneous minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+If you really want to see all of the gory details,
+you can download the full list from Internet webpage
+$$\.{http://www-cs-faculty.stanford.edu/\char`\~knuth/taocp.html}$$
+by selecting the ``long form'' of the errata.
+\fi
+
+\medskip
+\tenpoint
+\beginconstruction
+The ultimate, glorious, future editions of Volumes 1--5 are works in progress.
+Please let me know of any improvements that you think I ought to make.
+Send your comments either by snail mail to D.~E. Knuth, Computer
+Science, Gates Building 4B, Stanford University, Stanford CA~94305-9045,
+or by email to
+{\tt taocp{\char`\@}cs.stanford.edu}. (Use email for book suggestions
+only, please\dash---all
+other correspondence is returned unread to the sender, or discarded,
+because I have no time to
+read ordinary email.) Although I'm working full time on
+Volume~4 these days, I~will try to reply to all such messages
+within a year of receipt. Current news about {\sl The Art of Computer
+Programming\/} is posted on
+$$\.{http://www-cs-faculty.stanford.edu/\char`~knuth/taocp.html}$$
+and updated regularly.
+\par\endconstruction
+\rightline{\dash---Don Knuth, February 2005}
+
+\bigskip
+\bigskip
+{\quoteformat
+For a work of such scope as this,
+the first word of the author should be an apology
+for what is doubtless the too ambitious effort
+of a single writer.
+\author EDWARD W. BYRN (1900)
+% The Progress of Invention in the Nineteenth Century, page i
+\vfill\eject
+}
+
+\def\today{\number\day\space\ifcase\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi
+  \space\number\year}
+
+%%%%%%%%%%%%%%% CHANGES FOR VOLUME 4 FASCICLE 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{CHANGES TO V4F2: GENERATING ALL TUPLES AND PERMUTATIONS}
+\let\rhead=\lhead
+\titlepage
+\volheadline{GENERATING ALL TUPLES AND PERMUTATIONS}
+\bigskip
+\rightline{Copyright \copyright\ 2005, 2006, 2007, 2008, 2009, 2010, Addison\with Wesley; all rights reserved}
+\rightline{Last updated \today}
+\bigskip
+\rightline{\sl Most of these corrections have already been made in
+                  recent printings.}
+\medskip
+\noindent Important note: The changes below include nearly every difference
+between the paperback fascicle and the first printing of Volume 4A,
+published in January 2011. All subsequent changes can be found in
+the errata list for that volume.
+
+\smallskip
+\let\defaultpointsize=\tenpoint
+
+\amendpage 4f2.iii line 12 (05.09.15)
+There will also be a Fascicle 1 for Volume 4. \becomes
+There will also be a Fascicle 1 for Volume 4, and even a Fascicle~0.
+\endchange
+
+\improvepage 4f2.iv line 20 (08.10.28)
+I shall happily pay a finder's fee of \$2.56 \becomes
+I happily offer a ``finder's fee'' of \$2.56
+\endchange
+
+\improvepage 4f2.iv lines 24 and 25 (08.10.28)
+reward you with immortal glory instead of mere money \becomes
+do my best to give you immortal glory
+\endchange
+
+\improvepage 4f2.iv line $-13$ (05.12.04)
+indices \becomes indexes
+\endchange
+
+\amendpage 4f2.0 replacement for lines 3 and 4 (08.10.11)
+\begingroup\noindent\sl The opening sections of this chapter can be found in
+Volume~4, Fascicle~0, and
+Volume~4, Fascicle~1, published in 2008 and 2009.
+
+\endgroup
+\endchange
+
+\bugonpage 4f2.2 in the running headline {(also on pages 4, 6, 8,
+   \dots!)} (08.01.29)
+\eightpoint SEARCHING \becomes SEARCHING (F2)
+\endchange
+
+\bugonpage 4f2.3 {(and throughout the fascicle!)} (08.04.04)
+\ninepoint{\bf Fig.\ 10} \becomes {\bf Fig.\ 30} [and all figure
+numbers need to increased by 20]
+\endchange
+
+\amendpage 4f2.4 line 16 (06.10.18)
+7.1--00 \becomes 7.1.3--117
+\endchange
+
+\improvepage 4f2.4 replacement for {\eq(12)} (09.03.11)
+\null
+$$\Gamma_n^R\,=\,\Gamma\losub n\oplus 1\smash{\overbrace{0\ldots0}^{n-1}}@,
+\ \hbox{also written $\Gamma\losub n\oplus 10^{n-1}$.}\eqno(12)$$
+\endchange
+
+\improvepage 4f2.5, just before the footnote (09.03.11)
+$k\oplus(1^{j+1})_2=k\oplus(2^{@j+1}-1)$. \becomes
+$k\oplus(1^{j+1})_2=k\oplus(2^{@j+1}-1)$. [In this formula
+`$1^{j+1}$' stands for $j+1$ repetitions of `1', but `$2^{j+1}$' denotes
+a power of~2.]
+\endchange
+
+\amendpage 4f2.6 line 4 (06.10.18)
+7.1--\eq(00) \becomes 7.1.3--\eq(44)
+\endchange
+
+\amendpage 4f2.8 in {\eq(17)} (09.04.19)
+$k=(b_{n-1}\ldots b_1b_0)_2$ \becomes
+$k=(\ldots b_2b_1b_0)_2$
+\endchange
+
+\amendpage 4f2.9 line $-7$ (06.10.18)
+Section 7.1 \becomes Section 7.1.3
+\endchange
+
+\amendpage 4f2.11 in step W1 (06.10.18)
+line 2: $\bigl((z-m)\oplus z\oplus m\bigr)\land m'\ne0$ \becomes
+$\bigl((z-m)\oplus z\oplus m\bigr)\band m'\ne0$\nl
+line 4: 7.1--\eq(00); it \becomes 7.1.3--\eq(90). It
+\endchange
+
+\amendpage 4f2.11 lines 1--2 of step W2 (05.05.19)
+$m_0\gets z\land(2^5-1)$, \dots\ $m_4\gets z\land(2^{25}-2^{20})$ \becomes
+$m_0\gets z\band(2^5-1)$,
+$m_1\gets z\band(2^{10}-2^5)$, $m_2\gets z\band(2^{15}-2^{10})$,
+$m_3\gets z\band(2^{20}-2^{15})$, and $m_4\gets z\band(2^{25}-2^{20})$
+\endchange
+
+\improvepage 4f2.12 replacement for {\eq(23)} (05.04.23)
+$$\def\,{\kern1pt}\vcenter{\halign{{\tt#}\,,&&\quad{\tt#}\,,\cr
+ducks&ducky&duces&dunes&dunks&dinks&dinky\cr
+dines&dices&dicey&dicky&dicks&picks&picky\cr
+pines&piney&pinky&pinks&punks&punky&\omit\quad{\tt pucks}\,.\cr}}\eqno(23)$$
+\endchange
+
+\amendpage 4f2.13 line $-7$ (09.03.26)
+45 \becomes 47
+\endchange
+
+\bugonpage 4f2.15 line $-12$ (08.09.05)
+$k<2^n$ \becomes $k<2^n-1$
+\endchange
+
+\improvepage 4f2.18 line $-6$ (09.04.19)
+with coordinates \becomes with integer components
+\endchange
+
+\improvepage 4f2.19 line 4 (09.04.25)
+coordinate \becomes component
+\endchange
+
+\improvepage 4f2.20 line 7 (09.04.25)
+coordinate \becomes component
+\endchange
+
+\bugonpage 4f2.20 bottom line (05.04.17)
+$j$th forest \becomes $j$th tree
+\endchange
+
+\bugonpage 4f2.23 in Table 1 (09.03.02)
+\ninepoint $22:1,7$ \becomes $22:1$
+\endchange
+
+\improvepage 4f2.24 line $-10$ (09.04.25)
+cycles are identical \becomes cycles may be identical
+\endchange
+
+\bugonpage 4f2.25 line 12 (09.04.19)
+{\tenthinbf step D6 \becomes step D5}
+\endchange
+
+\amendpage 4f2.26 line 9 (10.10.08)
+{\bf 68} (1958) \becomes
+(2) {\bf 68} (1958)
+\endchange
+
+\improvepage 4f2.28 line 2 of exercise 1 (09.04.25)
+\ninepoint coordinate \becomes component
+\endchange
+
+\improvepage 4f2.29 line 2 of exercise 16 (09.04.25)
+\ninepoint coordinates \becomes components
+\endchange
+
+\improvepage 4f2.29 last line of exercise 17 (09.04.25)
+\ninepoint changes \becomes position changes
+\endchange
+
+\amendpage 4f2.30 line 1 (07.07.05)
+\ninepoint [{\it21\/}] \becomes [{\it23\/}]
+\endchange
+
+\improvepage 4f2.30 line 3 (07.07.05)
+\ninepoint summed over \becomes
+a polynomial in the variables $z_0$, $z_1$, $z_2$, and $z_3$,
+summed over
+\endchange
+
+\bugonpage 4f2.31 replacement for line 4 of exercise 29 (09.03.23)
+$${1\over 2^n}\sum_{k@=@0}^{2^n\?-\?1}\,\Bigl\vert@
+g\iter{-1}\bigl(g(k)\oplus p\bigr) -k@@\Bigr\vert,$$
+\endchange
+
+\amendpage 4f2.32 line 2 of exercise 40 (09.03.02)
+\ninepoint $m_j=x\land(2\raise.7ex\hbox{$\scriptstyle5j$}-1)$ \becomes
+$m_j=z\band(2\raise.7ex\hbox{$\scriptstyle5j$}-1)$
+\endchange
+
+\amendpage 4f2.33 replacement for exercises 44--48 (09.03.26)
+\ninepoint
+\ex 44. [M20] Show that $d(n)\le{M(n)\choose2}$, if the $n$-cube has
+$M(n)$ perfect matchings.
+\smallskip
+\ex 45. [M40] (T. Feder and C. Subi, 2009.) This exercise constructs
+a large number of Gray cycles in the $(4r+2)$-cube
+$G=G_4\cprod G_3\cprod G_2\cprod G_1\cprod G_0\cprod G_{-1}$, where
+$G_i$ is an $r$-cube for $i>0$ and $G_0=G_{-1}=P_2$. The vertices
+$v$ are $(4r+2)$-bit strings $v_4\ldots v_0v_{-1}$, where $v_i$ has~$r$
+bits for $i>0$ and 1~bit for $i\le0$. The ``signature'' of~$v$ is
+the 4-bit string $\sigma(v)=s_4s_3s_2(s_1@{\oplus}@v_0)$, where $s_i$
+is the parity of~$v_i$. We treat bit strings as binary numbers.\tighten\par
+For $1\le l\le4$, let ${\cal M}_l(v)$ be a matching in~$G$ with
+$v\adj v'=v'_4\ldots v'_0v'_{-1}$ and $v'_i=v\losub i$ for $i\ne l$.
+(Note that ${\cal M}_l(v')=v$.)
+Also define ${\cal M}_0(v)=v\oplus2$. Consider the cycles formed by the
+edges $v\adj{\cal M}_{l(v)}(v)$, where $l(v)$ depends on $v$'s signature:
+$$\advance\abovedisplayskip-2pt
+  \advance\belowdisplayskip-2pt
+\def\\#1.#2{\vcenter{\halign{\hfil##\hfil\cr
+        \strut\raise1.5pt\hbox{\sevenrm#1}\cr#2\cr}}}
+\vcenter{\halign{\hfil$#={}$\cr\strut\sigma(v)\cr l(v)\cr}}\
+\\0000.0\
+\\0001.2\
+\\0011.0\
+\\0010.3\
+\\0110.1\
+\\0111.2\
+\\0101.0\
+\\0100.4\
+\\1100.1\
+\\1101.2\
+\\1111.1\
+\\1110.3\
+\\1010.1\
+\\1011.2\
+\\1001.0\
+\\1000.4$$
+\item{a)} Suppose $r=2$ and ${\cal M}_l(v)=v\oplus2^{2l+s_{l-1}}$ for $l>1$
+and ${\cal M}_1(v)=v\oplus2^{2+(v_0\oplus v_{-1})}$.
+What cycle contains vertex $0\ldots 0$ in this case?
+\item{b)} A vertex whose signature is a power of 2 is called a
+``ground vertex.'' Four vertices with the same $v_4\ldots v_1$ are called
+``siblings.''
+Define $u\equiv v$ if $u$ and $v$ are in the same cycle, or if $u$ and $v$
+are sibling ground vertices, or if a chain of such equivalences leads from
+$u$ to~$v$. Explain how to construct cycles in~$G$ for each equivalence class.
+\item{c)} Furthermore, if $u$ and $v$ are sibling ground vertices, there is
+such a cycle that retains the edges
+$\{u@{\oplus}@2\adj u, v@{\oplus}@2\adj v\}$ of the original cycles.
+\item{d)} Finally, show how to convert the cycles of (b) and~(c)
+into a single cycle.
+\item{e)} When ${\cal M}_1$, \dots,~${\cal M}_4$ vary, how many different
+Hamiltonian cycles do we get?
+\smallskip
+\ex 46. [M23] Extend exercise 45 to the $(kr+2)$-cube, for $k$ even.
+\smallskip
+\ex 47. [\HM24] What asymptotic estimates do exercises 44 and 46 give
+for \smash{$d(n)^{1/2^n}$}?
+\smallskip
+\ex 48. [\HM48] Determine the asymptotic behavior of \smash{$d(n)^{1/2^n}$} as
+$n\to\infty$.
+\endchange
+
+\improvepage 4f2.33 line 1 of exercise 51 (08.10.11)
+\ninepoint Complete \becomes ({\it Balanced Gray cycles.}) Complete
+\endchange
+
+\amendpage 4f2.33 new rating for exercise 55 (07.08.28)
+\ninepoint[{\it47\/}] \becomes [{\it35\/}]
+\endchange
+
+\amendpage 4f2.36 in exercise 85 (07.02.02)
+$\sqtimes$ \becomes $\boust$
+\qquad[This notational change also affects answers 85--87.]
+\endchange
+
+\amendpage 4f2.37 replacement for lines 1--4 of exercise 96 (10.01.19)
+\ninepoint
+\EX 96. [M28] Suppose a family of coroutines has been set up to generate a
+de~Bruijn cycle of length $m^n$ using Algorithms R and~D, based recursively
+on simple coroutines like Algorithm~S for the base case $n=2$, and using
+Algorithm~D when $n>2$ is even.
+
+\item{a)} How many coroutines $(R_n, D_n, S_n)$ of each type will there be?
+\endchange
+
+\amendpage 4f2.38 in exercise 107 (09.04.25)
+\ninepoint running time of Algorithm F. \becomes
+running time of Algorithm F, for fixed $m$ as $n\to\infty$.
+\endchange
+
+\improvepage 4f2.39 and 40 formatting change (05.06.11)
+[I'm moving the quotations from page 39 to page 40, for better page breaks.
+This change affects several entries in the index.]
+\endchange
+
+\improvepage 4f2.39 or 40, in step L4 (09.08.10)
+Then, if $k<l$, interchange $a_k\swap a_{@l}$, set $k\gets k+1$, $l\gets
+l-1$, and repeat until $k\ge l$. \becomes
+Then, while $k<l$, interchange $a_k\swap a_{@l}$ and
+ set $k\gets k+1$, $l\gets l-1$.
+\endchange
+
+\improvepage 4f2.42 bottom line (07.08.26)
+{\eightss DUCKWORTH and STEDMAN} \becomes
+{\eightss R. DUCKWORTH and F. STEDMAN}
+\endchange
+
+\improvepage 4f2.43 line $-21$ (05.09.17)
+musical or mathematical \becomes musical
+\endchange
+
+\improvepage 4f2.44 replacement for lines 3--7 (07.10.16)
+\algindentset{T1}%
+\algstep T3. [Hunt down.] Set $k\gets k+d$ and $j\gets m-1$. Then while $j>0$,
+set $t[k]\gets j$, $k\gets k+d$, and $j\gets j-1$.
+
+\algstep T4. [Offset.] Set $t[k]\gets t[k]+1$.
+
+\algstep T5. [Hunt up.] Set $k\gets k+d$, $j\gets 1$. While $j<m$,
+set $t[k]\gets j$, $k\gets k+d$, $j\gets j+1$.
+Then return to T3 if $k<N$, otherwise return to~T2.\quad\slug
+\endchange
+
+\improvepage 4f2.49 in step G3 (09.08.10)
+If $c_k=k$, set $c_k\gets0$,
+$k\gets k+1$, and repeat until $c_k<k$. \becomes
+While $c_k=k$, set $c_k\gets0$ and $k\gets k+1$.
+\endchange
+
+\improvepage 4f2.51 in step G2.1 (09.08.10)
+If $c_k=k$, apply $\sigma(k,k)^-$ to
+$a_0\ldots a_{n-1}$, set $c_k\gets0$, $k\gets k+1$, and repeat until
+$c_k<k$. \becomes
+While $c_k=k$, apply $\sigma(k,k)^-$ to
+$a_0\ldots a_{n-1}$ and set $c_k\gets0$, $k\gets k+1$.
+\endchange
+
+\bugonpage 4f2.52 line 6 after the illustration (09.04.19)
+from node $c_{n-1}\ldots c_{k+1}@j$ to its right sibling
+$c_{n-1}\ldots c_{k+1}(j{+}1)$ \becomes\nl
+from node $c_{n-1}\ldots c_{k+1}(j{-}1)$ to its right sibling
+$c_{n-1}\ldots c_{k+1}@j$
+\endchange
+
+\improvepage 4f2.57 in step E3 (09.08.10)
+Then if $c_k=k$, set $c_k\gets0$,
+$k\gets k+1$, and repeat until $c_k<k$. \becomes
+Then while $c_k=k$, set $c_k\gets0$
+and $k\gets k+1$.
+\endchange
+
+\improvepage 4f2.57 in step E5 (09.08.10)
+If $j<k$, interchange $b_j\swap b_k$ set $j\gets j+1$,
+$k\gets k-1$, and repeat until $j\ge k$. \becomes
+While $j<k$, interchange
+$b_j\swap b_k$ and set $j\gets j+1$, $k\gets k-1$.
+\endchange
+
+\amendpage 4f2.61 line 7 of {\eq(45)} (05.05.19)
+\ninepoint $t\gets c\land(11100)_2$ \becomes $t\gets c\band(11100)_2$
+\endchange
+
+\amendpage 4f2.61 line 6 of {\eq(46)} (05.05.19)
+\ninepoint $a\gets a\lor t$ \becomes $a\gets a\bor t$
+\endchange
+
+\amendpage 4f2.63 line 4 of Algorithm V (10.03.22)
+$a_0=0$ \becomes $a\losub0=a'_0=0$
+\endchange
+
+\amendpage 4f2.67 replacement for exercise 31 in Volume 4A (10.01.02)
+\ninepoint
+\ex 31. [M22] (Nob Yoshigahara.) (a) What is the unique solution to
+$\.A/\.{BC}+\.D/\.{EF}+\.G/\.{HI}=1$, when
+$\{\.A,\ldots,\.I\}=\{1,\ldots,9\}$?
+(b) Similarly, make $\.{AB}\mod2=0$, $\.{ABC}\mod3=0$, etc.
+\endchange
+
+\amendpage 4f2.68 line 2 of exercise 45 (09.10.16)
+\ninepoint 314157700 \becomes 161800000
+\endchange
+
+\improvepage 4f2.70 lines $-3$ and $-2$ (09.10.24)
+\ninepoint
+$a_j\gets2j$ for $j\le n/2$ and $a_{n-j}\gets2j+1$ for $j<n/2$.\ \becomes
+$a_j\gets2j$ for $1\le j\le n/2$ and $a_{n-j}\gets2j+1$ for $1\le j<n/2$.
+\endchange
+
+\bugonpage 4f2.71 replacement for line 8 (09.10.11)
+\ninepoint
+$$x\gets a_{@j-c_j+s+[o_j=+1]},\qquad y\gets a_{@j-c_j+s-[o_j=-1]};$$
+\endchange
+
+\bugonpage 4f2.71 last line of exercise 69 (09.09.05)
+\ninepoint $A_n=y$. \becomes $A_n=y$;
+step~Z4 should terminate when $A_1\ldots A_n=n\ldots1$.
+\endchange
+
+\improvepage 4f2.71 line 2 of exercise 74 (08.10.10)
+cycle exists \becomes cycle exists in the Cayley graph for $G$
+\endchange
+
+\amendpage 4f2.72 line 1 of exercise 75 (08.12.20)
+\ninepoint {\it M25\/} \becomes {\it M26\/}
+\endchange
+
+\amendpage 4f2.72 line 1 of exercise 75 (08.10.11)
+\ninepoint directed torus $C_m\times C_n$ \becomes
+directed torus $C\orie_{\!m}\times C\orie_{\!n}$
+\endchange
+
+\improvepage 4f2.72 line 3 of exercise 76 (05.02.17)
+\ninepoint
+$(x_{k+1},y_{k+1})=(x_k+2,y_k+1)$ \becomes
+$(x_{k+1},y_{k+1})\equiv(x_k+2,y_k+1)$
+\endchange
+
+\improvepage 4f2.73 line 1 of exercise 89 (10.03.22)
+\ninepoint in \eq(51) \becomes defined before \eq(51)
+\endchange
+
+\amendpage 4f2.75 replacement for exercise 112 (08.02.03)
+\begingroup \advance\parindent by 4pt % for them BIG exercise numbers
+\EX 112. [M30] (A. Williams, 2007.) Continuing exercise 111, construct
+{\it explicit\/}~cycles:\breathe
+\item{a)} Show that a universal cycle of permutations is equivalent
+to a Hamiltonian cycle on the Cayley graph with two generators
+$\rho=(1\ 2\ \ldots\ n{-}1)$ and $\sigma=(1\ 2\ \ldots\ n)$.
+\item{b)} Prove that any Hamiltonian path in that graph is
+actually a Hamiltonian cycle.
+\item{c)} Find such a path of the form
+$\sigma^2\rho^{n-3}\alpha_{\mathstrut1}\ldots
+ \sigma^2\rho^{n-3}\alpha_{(n-1)!}$,
+$\alpha_j\in\{\rho,\sigma\}$, for~$n\ge3$.
+\ex 113. [\HM43] \kern-2ptExactly how many universal cycles exist, for permutations of $\le\!9$ objects?
+\endgroup 
+\endchange
+
+\let\defaultpointsize=\ninepoint % get ready for answer pages
+
+\bugonpage 4f2.76 running headline should be blank (08.10.11)
+[delete `7.2.1.2']
+\endchange
+
+\amendpage 4f2.76 for greater elegance in answer 5 line 4 (05.06.09)
+$j>k$ \becomes $j<k$
+\endchange
+
+\improvepage 4f2.76 in answer 5 (10.01.30)
+[change the step numbers R1, R2, R3, R4 respectively to Z1, Z2, Z3, Z4]
+\endchange
+
+\improvepage 4f2.77 in answers 12 and 13 (10.01.30)
+[change the step numbers A1, A2, A3, A4 respectively to C1, C2, C3, C4]
+\endchange
+
+\improvepage 4f2.78 in answer 14 (10.01.30)
+[change the step numbers S1, S2, S3, S4, S5 respectively to V1, V2, V3, V4, V5]
+\endchange
+
+\improvepage 4f2.78 in answer 15 (10.01.30)
+[change the step numbers T1, T2, T3, T4, T5, T6
+ respectively to J1, J2, J3, J4, J5, J6]
+\endchange
+
+\bugonpage 472.78 line 2 of answer 16 (09.03.19)
+$g(b_1\ldots b_n)=a_1\ldots a_n$ \becomes
+$g(a_1\ldots a_n)=b_1\ldots b_n$
+\endchange
+
+\improvepage 4f2.78 line 3 of answer 17 (09.04.25)
+coordinates \becomes coordinate positions
+\endchange
+
+\bugonpage 4f2.78 line 2 of answer 18 (07.08.26)
+{\sl IEEE Trans.} \becomes {\sl IRE Trans.}
+\endchange
+
+\amendpage 4f2.80 line 1 (06.10.18)
+7.1--00 \becomes 7.1.3--3
+\endchange
+
+\bugonpage 4f2.80 line 6 (09.03.19)
+$p=\lceil 2^t\!/3\rceil$ \becomes
+$2^{\lfloor\lg p\rfloor+1}-p=\lceil 2^t\!/3\rceil$
+\endchange
+
+\amendpage 4f2.80 last line of answer 25 (05.09.17)
+596.] \becomes 596. The analogous
+bound for the modular $m$-ary Gray code is
+$\lceil m^t/(m^2-1)\rceil$, and this formula holds also for
+the reflected $m$-ary Gray code when $m$ is even; see van Zanten and
+Suparta, {\sl IEEE Trans.\ \bf IT-49} (2003), 485--487;
+{\sl Proc.\ South East Asian Math.\ Soc.\ Conf.\ }(Yogyakarta:\ Gadjah Mada
+University, 2003), 98--105.]
+\endchange
+
+\bugonpage 4f2.81 line 3 of answer 30 (07.03.23)
+$b_{j+l+1}$ \becomes $b_{j+2^{@l}}$
+\endchange
+
+\amendpage 4f2.81 in answer 30 (05.05.19)
+line 11: $r\gets(r-1)\land m$ \becomes $r\gets(r-1)\band m$\nl
+line 11: 7.1--00 \becomes 7.1.3--79\nl
+line 13: $m\gets 2m+\[t\land(t-1)\ne0]$ \becomes $m\gets 2m+\[t\band(t-1)\ne0]$
+\endchange
+
+\improvepage 4f2.81 in step Q2 of answer 30 (09.08.10)
+If $j\ne k$ set $X_{@l}\gets X_j$, $l\gets j$,
+$j\gets l\oplus\lfloor l/2\rfloor$, and repeat until $j=k$. \becomes
+While $j\ne k$,
+set $X_{@l}\gets X_j$, $l\gets j$, and $j\gets l\oplus\lfloor l/2\rfloor$.
+\endchange
+
+\bugonpage 4f2.81 or 82, line 1 of answer 34 (06.01.22)
+$r_{j+1}^{b_j}$ \becomes $r_{j+1}^{b_j}(x)$
+\endchange
+
+\amendpage 4f2.82, line 6 of answer 35 (07.04.03)
+Kronecker product \becomes direct product
+\endchange
+
+\improvepage 4f2.82 in answer 36 (10.01.30)
+[change the step numbers W1, W2, W3 respectively to T1, T2, T3]
+\endchange
+
+\bugonpage 4f2.82, line 3 of answer 37 (09.03.23)
+$\displaystyle{2j+1\over2^e}$ \becomes
+$\displaystyle{2j+1\over2^{e+1}}$
+\endchange
+
+\bugonpage 4f2.82 line 1 of answer 39 (06.01.22)
+Let's \becomes (a) Let's
+\endchange
+
+\bugonpage 4f2.82 line 4 of answer 39 (09.04.13)
+$(j+j')\cdot\bigl(p(j)+p(j')\bigr)$ \becomes
+$(j\oplus j')\cdot\bigl(p(j)\oplus p(j')\bigr)$
+\endchange
+
+\amendpage 4f2.83 line 5 (05.05.02)
+145--205. \becomes
+145--205; {\bf42} (2005), 213, 229--243.
+See also J.~H. Conway and D.~A. Smith, {\sl On Quaternions
+and Octonions\/} (2003).
+\endchange
+
+\amendpage 4f2.84 replacement for answers 44--48 (09.03.26)
+\ans44.
+ Every $n$-bit Gray cycle defines a pair of matchings
+(see exercise 55).
+
+\smallbreak
+\ans45.
+ (a) (\.{000} \.{002} \.{012} \.{010} \.{090} \.{094} \.{0b4}
+% \.{0b6} \.{2b6} \.{2be} \.{2ae} \.{2a6} \.{226} \.{22e} \.{23e} \.{23c}
+% \.{33c} \.{33e} \.{32e} \.{32c} \.{3ac} \.{3a8} \.{388} \.{38a} \.{18a}
+% \.{182} \.{192} \.{19a} \.{11a}
+$\ldots$ \.{112} \.{102} \.{100}), in hexadecimal, 32~elements in all.
+Notice that the signatures of elements in each cycle run through the Gray
+code~$\Gamma_4$.\par
+(b) A ground vertex $v$ is preceded in its cycle by its sibling $v\oplus2$.
+If $v$ is a ground vertex in a different cycle from its sibling $u=v\oplus1$,
+we can join the cycles by deleting
+$\{u@{\oplus}@2\adj u,\, v@{\oplus}@2\adj v\}$
+and inserting
+$\{u\adj v,\, u@{\oplus}@2\adj v@{\oplus}@2\}$.
+Repeat for all ground~$v$.\par
+(c) Consider the multigraph $G'$ whose vertices are the cycles and whose edges
+go from the cycle of $v$ to the cycle of $v+1$ for all even ground
+vertices~$v$. Every vertex of $G'$ has even degree, so the edges are a
+union of cycles in~$G'$. Thus any edge of~$G'$
+can be deleted without changing the connected components.\par
+(d) It's not difficult to construct a path~$P=v^{(0)}\adj v^{(1)}\adj
+v^{(2)}\adj\cdots$
+through vertices of~$G$ with $v_0=v_{-1}=0$
+that passes through all such $v$ with $\sigma(v)\le1$,
+and such that $\sigma(v^{(i)})\in\{0,1,2,4,8\}$ for all~$i$.
+Take the cycle from~(b) that contains $v^{(0)}$ and call it
+the ``working cycle''~$W$; then do the following for $i=1$, 2, \dots, until
+$W$ includes all vertices: If $v=v^{(i)}\notin W$, suppose $u=v^{(i-1)}$
+has $u_l\ne v_l$. \em Case 1: $u@{\oplus}@c\adj u$ is an edge of~$W$, for
+$c=1$ or $c=2$. Take a
+cycle for the equivalence class of~$v$ that has the edge
+$v@{\oplus}@c\adj v$. Delete those edges and insert
+$\{u\adj v,\, u@{\oplus}@c\adj v@{\oplus}@c\}$.
+\em Case 2: Otherwise Case 1 must have applied to $w=v^{(i-2)}$ and~$u$
+on the previous step. If $c=1$ then $W$ contains the edge
+$u@{\oplus}@2\adj u@{\oplus}@3$. We can find a cycle with
+$v@{\oplus}@2\adj v@{\oplus}@3$, and replace those edges by
+$\{u@{\oplus}@2\adj v@{\oplus}@3,\, u@{\oplus}@3\adj v@{\oplus}@3\}$.
+A similar edge-swap works when $c=2$.\par
+(e) The final cycle~$W$ allows us to reconstruct ${\cal M}_{l(v)}(v)$.
+When $l(v)\ne0$ the function ${\cal M}_{l(v)}$ is equivalent to
+$t=2^{3r-1}$ independent matchings of the $r$-cube, because there
+are $t$ ways to choose the $v_i$ for $i\ne l$ having the correct signature.
+So the number of different cycles is at least $M(r)^{12t}$ (see exercise~44).
+
+\smallbreak
+\ans46.
+ There are $k$-bit signatures $\sigma(v)$. When $\sigma(v)=g(j)$
+in Gray binary code, $l(v)=\bigl(\rho(j+1)+\[j\ne2^k-1]\bigr)
+@\hbox{[$j+2$ is not a power of 2]}$. % \[
+At least $M(r)\losup{(2^k-k)t}$ cycles arise,
+\vadjust{\vskip1pt}%
+where $t=2\losup{(k-1)(r-1)+2}$.
+[{\sl Information Processing Letters\/ \bf109} (2009), 267--272.]
+
+\smallbreak
+\ans47.
+ The bounds
+$({r\over e})^{2^{r-1}}<
+2^{r-1}!/(2^{r-1}\!/r)^{2^{r-1}}\le M(r)\le r!^{2^{r-1}\!/r}=
+({r\over e}+O(\log r))^{2^{r-1}}$
+are proved in Section 7.5.1. Hence $d(n)\losup{1/2^n}\le n/e+O(\log n)$
+by exercise~44.\par
+The lower bound from exercise 46, if we let $G_j$ be an $r_j$-cube, is
+$$\displaylines{\quad
+\bigl(M(r_1)^{2^{n-r_1-k+1}}\bigr)^{2^{k-1}-k}\cdot
+\bigl(M(r_2)^{2^{n-r_2-k+1}}\bigr)^{2^{k-2}}\cdot
+\bigl(M(r_3)^{2^{n-r_3-k+1}}\bigr)^{2^{k-3}}
+\hfill\cr\hfill{}\cdot\ldots\cdot
+\bigl(M(r_{k-1})^{2^{n-r_{k-1}-k+1}}\bigr)^2\cdot
+\bigl(M(r_ k   )^{2^{n-r_ k   -k+1}}\bigr)^2\,;\quad\cr}$$
+and it's better to choose
+$r_j\approx (n-2)/2^{j-[j{=}k]}$ % \[
+for $1\le j\le k$
+instead of using cubes of roughly the same size. Let $\alpha_j=r_j/e$
+be a lower bound on $M(r_j)\losup{2^{1-r_j}}$. The lower bound
+on $d(n)\losup{1/2^n}$ simplifies to
+$$\alpha_1^{1/2-k/2^k}\alpha_2^{1/4}\alpha_3^{1/8}\ldots
+\alpha_{k-1}^{1/2^{k-1}}\alpha_k^{1/2^{k-1}}=2^{-2+(k-4)/2^k}
+\Bigl({n-2\over e}\Bigr)^{1-k/2^k}
+\Bigl(1+O\Bigl({k\over n}\Bigr)\Bigr),$$
+and this is $n/(4e)+O(\log n)^2$ when $k=\lg n+O(1)$.
+\endchange
+
+% the next is now irrelevant because I removed the old exercise 48
+%\bugonpage 4f2.85 line 2 (09.03.23)
+%$c_{nk}d(n,k,g(k))=d(n,k+1)$ \becomes
+%$c_{nk}d(n,k,g(k))=c_{nk}d(n,k+1)$
+%\endchange
+
+\amendpage 4f2.85 replacement for answer 51 (05.09.18)
+\ans51. Let $c_j=2\lfloor(2^{n-1}+j)/n\rfloor$ and
+$c'_j=2\lfloor(2^{n+1}+j)/(n+2)\rfloor$. If $n\ne3$, it is not difficult to
+verify that $4c_j\ge8\lfloor2^{n-1}\!/n\rfloor>2\lceil2^{n+1}\!/(n+2)\rceil
+\ge c'_k$ for $0\le j<n$ and $0\le k<n+2$. Therefore we can apply Theorem~D
+to any $n$-bit Gray cycle with transition counts~$c_j$, underlining $b_j$
+copies of~$j$ and putting an underlined digit~0 last, where
+$b\losub j=2c\losub j-\half c'_{(j+2+d)\mod(n+2)}-\[j=0]$
+and $d$ is chosen so that $c'_d=c'_{d+1}$. This construction works because
+$l=b\losub 0+\cdots+b\losub{n-1}=2(c\losub0+\cdots+c\losub{n-1})-\half(c'_0
++\cdots+c'_{n+1}-c'_d-c'_{d+1})-1=\allowbreak c'_d-1$ is odd.
+[Corollary~B was discovered by T.~Bakos in the 1950s, and proved
+in detail by A.~\'Ad\'am in {\sl Truth Functions\/} (Budapest:~1968),
+28--37. \'Ad\'am's book also presents a proof by G.~Poll\'ak that, in fact,
+$c'_0=c'_1$ for all~$n$; hence we may take $d=0$.
+See also J.~P. Robinson and M.~Cohn,
+{\sl IEEE Trans.\ \bf C-30} (1981), 17--23.]
+\endchange
+
+\amendpage 4f2.85 new answer (09.10.23)
+\ans55. In fact, given any perfect matching $Q$ of $K_{2^n}$, one can find
+in $O(2^n)$ steps a perfect matching~$R$ of the $n$-cube such that $Q\cup R$
+is a Hamiltonian cycle of $K_{2^n}$.
+[See J.~Fink, {\sl J.~Comb.\ Theory\/ \bf B97} (2007),
+1074--1076;  {\sl Elect.\ Notes Disc.\ Math.\ \bf29}
+(2007), 345--351.]
+\endchange
+
+\bugonpage 4f2.86 last line of answer 59 (09.04.13)
+$\{v_{k-1},v_k,v_{k+1},v_{k+2}\}$ \becomes
+$\{v_k,v_{k+1},v_{k+2},v_{k+3}\}$
+\endchange
+
+\bugonpage 4f2.87 in answer 64 (10.02.28)
+line $-4$: ${}-\lfloor4\lg(m+n)-1+\epsilon\rfloor$ \becomes
+           ${}-\lfloor4\lg N   -1+\epsilon\rfloor$\nl
+line $-2$: $\epsilon=4\lg\bigl(2m/(m+n)\bigr)<1$ \becomes
+           $\epsilon=4\lg(2m/N)<1+\[N=m+n]$
+\endchange
+
+\bugonpage 4f2.88 first line of answer 67 (09.04.13)
+$u_{2^n-1}$ \becomes $u_{2^{n-1}-1}$
+\endchange
+
+\improvepage 4f2.89 in answer 73 (10.01.30)
+[change the step numbers R1, R2, R3, R4, R5 respectively to X1, X2, X3, X4, X5;
+also change the step numbers S1, S2, \dots,~S10 respectively to
+Y1, Y2, \dots,~Y10; and change `Algorithm~S' to `Algorithm~Y' in step X2]
+\endchange
+
+\bugonpage 4f2.89 line 4 of answer 74 (09.04.16)
+$3\cdot2^n\!/\sqrt{2\pi n}$ \becomes $3\cdot2^{n+1}\!/\sqrt{2\pi n}$
+\endchange
+
+\amendpage 4f2.90 replacement for answer 75 (09.06.02)
+\ans75. The trend-free canonical delta sequences all turn out to yield
+Gray {\it cycles\/}:
+$$\openup-.7\jot
+\displaylines{
+0\,1\,2\,3\,0\,1\,2\,4\,2\,1\,0\,3\,2\,1\,0\,1\,2\,1\,0\,3\,2\,1\,0\,4\,0\,1\,2\,3\,0\,1\,2\,(1)\cr
+0\,1\,2\,3\,0\,1\,2\,4\,2\,1\,0\,3\,2\,1\,0\,1\,3\,0\,1\,2\,3\,0\,1\,4\,1\,0\,3\,2\,1\,0\,3\,(1)\cr
+0\,1\,2\,3\,0\,1\,2\,4\,2\,1\,0\,3\,2\,1\,0\,2\,0\,3\,2\,1\,0\,3\,2\,4\,2\,3\,0\,1\,2\,3\,0\,(2)\cr
+0\,1\,2\,3\,0\,1\,2\,4\,2\,1\,0\,3\,2\,1\,0\,2\,1\,2\,3\,0\,1\,2\,3\,4\,3\,2\,1\,0\,3\,2\,1\,(2)\cr
+0\,1\,2\,3\,0\,1\,2\,4\,2\,3\,0\,1\,2\,3\,0\,2\,0\,1\,2\,3\,0\,1\,2\,4\,2\,3\,0\,1\,2\,3\,0\,(2)\cr
+0\,1\,2\,3\,4\,1\,0\,1\,2\,1\,0\,3\,0\,1\,4\,3\,2\,1\,0\,3\,0\,1\,4\,1\,0\,1\,2\,3\,4\,1\,0\,(3)\cr}$$
+(The second and fourth of these are cyclically equivalent.)
+\endchange
+
+\bugonpage 4f2.90 line 3 of answer 78 (09.04.25)
+if $b_j<m_j$ \becomes if $b_j<m_j-1$
+\endchange
+
+\bugonpage 4f2.93 line 6 of answer 87 (09.06.02)
+$\Sigma_m\boust(T_0,\ldots,T_{m-1})$ \becomes
+$\Sigma_m\boust(T_0,\ldots,T_{m-1})^R$
+\endchange
+
+\improvepage 4f2.93 and 94, in answer 91 (10.01.30)
+[change the step numbers Q1, Q2, \dots, Q7 respectively to U1, U2, \dots, U7]
+\endchange
+
+\bugonpage 4f2.95 last line of answer 95 (05.11.05)
+extra bits \becomes extra digits
+\endchange
+
+\amendpage 4f2.95 replacement for lines 1--3 of answer 96 (05.06.17)
+\ans96. (a) For example, when $n=5$ the top-level coroutine of type~R invokes
+a coroutine of type~D for $n=4$, which invokes two of type~S for $n=2$;
+hence $R_5=D_5=1$ and $S_5=2$.
+The recurrences $R_2=0$, $R_{2n+1}=1+R_{2n}$, $R_{2n}=2R_n$,
+$D_2=0$, $D_{2n+1}=D_{2n}=1+2D_n$, $S_2=1$, $S_{2n+1}=S_{2n}=2S_n$
+have the solution $R_n=n-2S_n$, $D_n=S_n-1$, $S_n=2^{\lfloor\lg n\rfloor-1}$.
+Thus $R_n+D_n+S_n=n-1$.\par
+\endchange
+
+\improvepage 4f2.95 in second paragraph of answer 96 (05.11.05)
+a sequence $(x')^n$ \becomes a sequence $(x')^n$, for $x'<r$
+\endchange
+
+\bugonpage 4f2.95 replacement for last paragraph of answer 96 (05.11.05)
+\indent From these observations we can conclude that
+no exceptions arise at any level when the coroutine for an $m^n$-cycle
+produces the final digit of a run~$x^n$, or the first digit following
+such a run. Hence the worst case occurs when the top-level coroutine
+activates a subcoroutine twice, making $2\lfloor\lg n\rfloor+2\nu(n)-3$
+activations altogether.
+\endchange
+
+\bugonpage 4f2.95 lines 5--8 of answer 97 (09.06.02)
+$\Sigma(k+1)$ \becomes $\Sigma f_n(k+1)$\nl
+$\Sigma(k-1)$ \becomes $\Sigma f_n(k-1)$\nl
+$\Sigma(k\pm1)$ \becomes $\Sigma f_n(k\pm1)$\nl
+$\Sigma(k)$ \becomes $\Sigma f_n(k)$
+\endchange
+
+\bugonpage 4f2.96 line 8 of answer 98 (09.06.02)
+$\Sigma f_n(k)=\Sigma f_n(k\mod 2^n)$ \becomes
+$\Sigma f_n(k)\equiv\Sigma f_n(k\mod 2^n)$
+\endchange
+
+\bugonpage 4f2.96 line 11 of answer 98 (06.01.22)
+\begingroup\medmuskip=0mu
+$1+k+\Sigma c_n(k-2)$ \becomes
+$1+k+\Sigma\Sigma c_n(k-2)$\endgroup
+\endchange
+
+\bugonpage 4f2.96 replacement for last two lines of answer 98 (09.06.02)
+\noindent
+(Incidentally, if $k=2^{s+1}-1-(2^{s-e_1}+2^{s-e_2}+\cdots+2^{s-e_t})$
+where $0<e_1<\cdots<e_t$, we have
+$S(k)=s+1+e_t+2e_{t-1}+4e_{t-2}+\cdots+2^{t-1}e_1$.)
+\endchange
+
+\improvepage 4f2.98 in answer 106 (10.01.30)
+[change the step numbers B1, B2, B3, B4, B5 respectively to E1, E2, E3, E4, E5]
+\endchange
+
+\amendpage 4f2.99 line 10 of answer 110 (05.04.06)
+Zolt\'an T\'oth \becomes Antal Iv\'anyi and Zolt\'an T\'oth
+\endchange
+
+\amendpage 4f2.100 end of answer 111 (07.09.08)
+.] \becomes ; and exercise 7.2.1.6--122.]
+\endchange
+
+\improvepage 4f2.101 in step L2.2$@'$ of answer 1 (09.08.10)
+If $y\ge x$, set $j\gets j-1$, $x\gets y$, $y\gets a_j$, and repeat until
+$y<x$. \becomes
+While $y\ge x$, set $j\gets j-1$, $x\gets y$, and $y\gets a_j$.
+\endchange
+
+\bugonpage 4f2.101 line 13 of answer 1 (05.02.03)
+Reverse $a_{j+1}\ldots a_{n-1}$ \becomes
+Reverse $a_{j+2}\ldots a_{n-1}$
+\endchange
+
+\improvepage 4f2.101 in step L4.1$'$ of answer 1 (09.08.10)
+Then, if $k<l$, interchange $a_k\swap a_{@l}$,
+set $k\gets k+1$, $l\gets l-1$, and repeat until $k\ge l$. \becomes
+Then, while $k<l$, interchange $a_k\swap a_{@l}$
+and set $k\gets k+1$, $l\gets l-1$.
+\endchange
+
+\improvepage 4f2.101 in answer 2 (10.01.30)
+[change the step numbers L1, L2, L3, L4 respectively to M1, M2, M3, M4]
+\endchange
+
+\amendpage 4f2.101 line 4 of answer 3 (05.12.31)
+N\=ar\=aya\d{n}a \becomes \'S\=ar\:ngadeva and N\=ar\=aya\d{n}a
+\endchange
+
+\bugonpage 4f2.102 line 2 of answer 6(b) (05.02.03)
+$\sum_{1\le k<l\le t}(n\losub k-n_k')\[n\losub l<n_l']$ \becomes
+$\sum_{1\le k<l\le t}(n\losub k-n_k')\[n\losub l>n_l']$
+\endchange
+
+\bugonpage 4f2.102 replacement for line 2 of answer 7 (05.02.03)
+$${n_1+\cdots+n_t\over n}+{(n_1n_2+n_1n_3+\cdots+n_{t-1}n_t)+
+n_1(n_1{-}1)+\cdots+n_t(n_t{-}1)\over n(n-1)}+\cdots{}\,.$$
+\endchange
+
+\amendpage 4f2.102 insert a new sentence at the beginning of answer 9 (06.04.06)
+Assume that $r>0$ and that we begin with $a_0<a_1\le a_2\le\cdots\le a_n$.
+\endchange
+
+\bugonpage 4f2.103 line 1 of answer 11 (10.01.05)
+$n!+x_n,n!,$ \becomes $n!+x_n,n!-1,$
+\endchange
+
+\bugonpage 4f2.103 in answer 15 (10.01.05)
+line 2: $b_k=k-1$ \becomes $b_{n-k}=k-1$\nl
+line 3: $j<k\le m$ \becomes $j<k\le n$
+\endchange
+
+\bugonpage 4f2.103 line 6 of answer 17 (05.08.02)
+$d_j\gets-1$ \becomes $o_j\gets-1$
+\endchange
+
+\improvepage 4f2.104 in step Q3 of answer 17 (09.08.10)
+Then if $c_k=0$, set $c_k\gets
+k-1$, $o_k\gets-o_k$, $k\gets k-1$, and repeat until $c_k\ne0$. \becomes
+Then, while $c_k=0$, set $c_k\gets k-1$, $o_k\gets-o_k$, and $k\gets k-1$.
+\endchange
+
+\bugonpage 4f2.104 line 3 of answer 20 (06.09.29)
+$2n-1$ operations \becomes $2n+1$ operations
+\endchange
+
+\amendpage 4f2.104 in answer 22 (10.01.05)
+$(\.{XY})_b+(\.{XX})_b=(\.{XYX})_b$ \becomes
+$(\.{X})_b+(\.{X})_b=(\.{XY})_b$
+\endchange
+
+\amendpage 4f2.105 new sentence for end of answer 27 (09.11.29)
+J.~A. Brown, J.~Szab\'o, and T.~J. Trowbridge suggest
+$\.{GREAT}+\.{GREAT}=\.{LARGE}$ and
+$\.{GREAT}+\.{GREAT}=\.{SMALL}$.
+\endchange
+
+\amendpage 4f2.105 new paragraph for answer 31 (10.10.02)
+(b) $\.{ABCDEFGHI}=381654729$, via Algorithm~X in 10 K$\mu$.
+\par\noindent[\em Note: Also introduce line 1 of the answer with `(a)'.
+The answer to part (b) appears only the hardcopy Volume 4A,
+not in the paperback fascicle.]
+\endchange
+
+\bugonpage 4f2.106 in answer 33 (10.01.05)
+line 6: (125) \becomes (389)\nl
+line 7: 6443 \becomes 12221
+\endchange
+
+\amendpage 4f2.106 line 1 of answer 34 (10.10.20)
+$=100000$. \becomes $=1014+255+98731=100000$.
+\endchange
+
+\bugonpage 4f2.106 in answer 36 (10.10.20)
+line 3: $\tt(17e4)$ \becomes $\tt(17e8)$\nl
+line 4: $\tt(69)(be)$ \becomes $\tt(69)(7d)(be)$
+\endchange
+
+\bugonpage 4f2.106 in answer 37 (10.10.20)
+line 1: $k!^{k-1}$ ways \becomes $k!^k$ ways\nl
+line 3: $A_n=$ \dots $10^{148}$. \becomes
+$A_n=\prod_{k=1}^{n-1}k!^{k+1}=
+n!^{n+1\choose2}\!/\prod_{k=1}^n k^{k+1\choose2}$. For example, $A_{10}\approx
+1.148\times10^{170}$.
+\endchange
+
+\bugonpage 4f2.107 line 4 of answer 43 (05.11.06)
+for $k\ge4$, let \becomes
+for $k\ge4$, let
+$\alpha(k,1)=(k\ k{-}4)$,
+$\alpha(k,j)=(k\ k{-}3{-}j\ k{-}2{-}j)$ for $1<j<k-2$, and
+\endchange
+
+\bugonpage 4f2.107 line 2 of answer 45 (09.10.16)
+425368917 \becomes 273914568
+\endchange
+
+\bugonpage 4f2.109 line 7 of answer 55 (10.03.22)
+$\alpha\losub{(n+1)!-1-n}$ \becomes $\alpha\losub{(n+1)!-1-n!}$
+\endchange
+
+\improvepage 4f2.109 line 1 of answer 60 (06.02.26)
+There \becomes (a,\thinspace b) There
+\endchange
+
+\bugonpage 4f2.111 bottom line of answer 68 (08.06.29)
+17--25 \becomes 17--21
+\endchange
+
+\bugonpage 4f2.111 in leftmost column of the display (09.09.05)
+\eightpoint 15342 \becomes 15432
+\endchange
+
+\amendpage 4f2.111 replacement for bottom line of answer 69 (09.10.22)
+ {\sl Discrete Math.\ \bf309} (2009), 5501--5508].
+\endchange
+
+\bugonpage 4f2.112 lines 9--13 of answer 73 (08.10.11)
+and let $\alpha$ be \dots~odd number of cycles, \becomes
+and let $\hat\alpha$
+be the permutation of~$X$ that takes a vertex~$\pi$ into $\alpha\pi$; this
+permutation has $g/a$ cycles of length~$a$. Define the permutation~$\hat\beta$
+similarly. Then $\hat\alpha\hat\beta^-$ has $g/c$ cycles of length~$c$.
+If $c$ is odd, any Hamiltonian cycle in the graph defines a cycle~$\hat\sigma$
+that contains all the vertices and satisfies the hypotheses of~(a).
+Therefore $\hat\alpha$ and $\hat\beta$ have an odd number of cycles,
+\endchange
+
+\bugonpage 4f2.112 replacement for lines 4--10 of answer 74 (08.10.11)
+Let $\hat\sigma$ be a Hamiltonian cycle, as in the previous answer, and let
+$\hat\gamma=\hat\alpha\hat\beta^-$. If
+$\pi\hat\sigma=\pi\hat\alpha$ then $\pi\hat\gamma\hat\sigma$ must be
+$\pi\hat\gamma\hat\alpha$, because $\pi\hat\gamma\hat\beta=\pi\hat\alpha$.
+And if $\pi\hat\sigma=\pi\hat\beta$ then $\pi\hat\gamma\hat\sigma$ cannot be
+$\pi\hat\gamma\hat\alpha$, because that would imply
+$\pi\hat\gamma^2\hat\sigma=\pi\hat\gamma^2\hat\alpha$,
+\dots, $\pi\hat\gamma^c\hat\sigma=\pi\hat\gamma^c\hat\alpha$.
+Thus the elements $\pi$, $\pi\hat\gamma$, $\pi\hat\gamma^2$, \dots,
+all have equivalent behavior with respect to their successors
+in~$\hat\sigma$.\par
+When the path $\pi\dadj\pi\hat\sigma\dadj\cdots\dadj\pi\hat\sigma^j$ has
+$k(j)$ steps of type~$\hat\alpha$, we have $\pi\hat\sigma^j=\pi\hat\beta^{@j}
+\hat\gamma^{k(j)}$. Thus $\pi\hat\sigma^{g/c}=\pi\hat\gamma^{t+k(g/c)}$, and
+we have $k(j+g/c)=k(j)$ for $j\ge0$. The path returns to~$\pi$ for the first
+time in $g$~steps if and only if $t+k(g/c)$ is relatively prime to~$c$.
+\endchange
+
+\improvepage 4f2.112 line $-1$ (08.03.24)
+Erd\H{o}s \becomes Erd\"os \qquad[to agree with the English spelling
+in the paper cited]
+\endchange
+
+\amendpage 4f2.113 last line of answer 75 (08.10.11)
+$C_m\times C_n$ \becomes $C\orie_{\!m}\times C\orie_{\!n}$
+\endchange
+
+\bugonpage 4f2.113 last line of answer 76 (05.02.17)
+$\displaystyle\sum_{k=1}^{d-1}$ \becomes $\displaystyle\sum_{k=0}^d$
+\endchange
+
+\amendpage 4f2.114 new sentence appended to answer 79 (08.02.03)
+(See the similar code in 7.1.3--\eq(69).)
+\endchange
+
+\improvepage 4f2.114 first line of answer 81 (10.03.22)
+\.{t \ \ IS \ \ \ \$255 ;k} \becomes \.k
+\endchange
+
+\bugonpage 4f2.116 line 3 (06.12.02)
+$j\ge1$ \becomes $j>1$.
+\endchange
+
+\bugonpage 4f2.116 line 8 (06.02.26)
+$\displaystyle \sum_{j+1}^{r-1}$ \becomes
+$\displaystyle \sum_{j=1}^{r-1}$
+\endchange
+
+\bugonpage 4f2.116 line 9 (06.12.02)
+$F_{r+1}-2F_j+(-1)^{@j}F_{r+1-j}$ \becomes
+$F_{r+1}-2F_j-(-1)^{@j}F_{r+1-j}$
+\endchange
+
+\amendpage 4f2.117 lines 3--5 of answer 100 (05.02.12)
+It appears likely \dots~for \becomes
+A.~D. King [{\sl Discrete Math.\ \bf306} (2006), 508--516]
+has shown that indecomposable permutations
+can be generated efficiently by
+making only a single transposition at each step. In fact, 
+{\it adjacent\/} transpositions may well suffice; for example, when $n=4$ the
+indecomposable permutations are
+\endchange
+
+\bugonpage 4f2.118 line 4 of answer 105 (06.03.29)
+ments; \becomes ments'';
+\endchange
+
+\bugonpage 4f2.119 line 10 of answer 108 (07.03.21)
+239--241 \becomes 739--741
+\endchange
+
+\amendpage 4f2.120 new answer 109 (10.11.11)
+\begingroup \advance\parindent by 4pt % for them BIG exercise numbers
+\ans109. An ingenious construction by I. H. Sudborough and L.~Morales
+[{\sl Theoretical Comp. Sci.\ \bf411} (2010), 3965--3970]
+ proves that $f(n)\ge {19\over128}n^2+O(1)$.
+\endchange
+
+\bugonpage 4f2.120 line 5 of answer 111 (06.03.29)
+Theorem 2.3.4.2D \becomes Theorem 2.3.4.2G
+\endchange
+
+\bugonpage 4f2.120 line $-2$ of answer 111 (06.04.21)
+Eulerian trials \becomes Eulerian trails
+\endchange
+
+\amendpage 4f2.120 new answer 112 (10.01.25)
+\ans112. (a) If the cycle is $a_1a_2\ldots{}@$, use $\sigma$ at step~$j$ if
+the subsequence $a_ja_{j+1}\ldots a_{j+n-1}$ is a permutation;
+otherwise use $\rho$.\par
+(b) This statement follows immediately from exercise 72.\par
+(c) Let $\Omegait_2=\sigma^2$, and obtain $\Omegait_{n+1}$ from $\Omegait_n$
+by substituting $\sigma\mapsto\sigma^2\!\rho^{n-1}$ and
+$\rho\mapsto\sigma^2\!\rho^{n-2}\sigma$. For example,
+$\Omegait_3=(\sigma^2\!\rho)^2$ and
+$\Omegait_4=\bigl((\sigma^2\!\rho^2)^2\sigma^2\!\rho\sigma\bigr){}^2$.
+Generate permutations by starting with $n\ldots21$ and applying the
+successive elements of~$\Omegait_n$; for example, the sequence when $n=4$ is
+$$\displaylines{
+4321,3214,2143,1423,4213,2134,1342,3412,4132,1324,3241,2431,\cr
+4312,3124,1243,2413,4123,1234,2341,3421,4231,2314,3142,1432,\cr}$$
+and the corresponding universal cycle is (432142134132431241234231).
+Notice that $n$ moves cyclically in this sequence of permutations;
+and the permutations
+that begin with~$n$ correspond to the sequence obtained
+from~$\Omegait_{n-1}$.\par
+[See F.~Ruskey and A.~Williams, {\sl ACM Trans.\ on Algorithms\/ \bf6}
+(2010), 45:1--45:12. Similar methods are said to be known to bell-ringers.
+Universal cycles can also be constructed explicitly for
+permutations of an arbitrary~{\it multiset}, with a method
+analogous to 7.2.1.1--\eq(62);
+see A.~Williams, Ph.D. thesis (Univ.\ of Victoria, 2009).]
+\endgroup
+\endchange
+
+\amendpage 4f2.120 and 121, changes to old answer 112 (08.02.03)
+[This answer is now the answer to exercise 113. In the second and third
+paragraphs, change `Notice first \dots~Now consider' \becomes `Consider'.
+Also delete the final paragraph.]
+\endchange
+
+\expandafter\ifx\csname indexeject\endcsname\relax\else\vfill\eject\fi
+\amendpage 4f2.122 and following (05.02.07)
+Miscellaneous changes to the existing index of Volume~4 Fascicle~2
+are collected here,
+including corrections and amendments to the old entries as well as new entries
+that are occasioned by the new material. Thus, the lines of the full index
+that have changed serve also as an index to the present document. However,
+when a correction or amendment has caused an old index entry to be deleted,
+the deletion is usually not indicated.
+
+\input exotic
+\begindoublecolumns
+\indexformat
+\gdef\Uni1.08:{\bitmap24:1.08:}
+\hangindent2em
+$\phi$ (golden ratio), as ``random'' example, 68. % 3rd
+\'Ad\'am, Andr\'as, 85. % 2nd
+Asymptotic methods, 33, 73, 98, 106, 109. % 2nd
+Bakos, Tibor, 85. % 2nd
+Balanced Gray codes, 14--17, 33, 35, 85. % 2nd
+Bell ringing, 39, 42--43, 59, 120. % 4th
+Binary Gray codes, enumeration of, 13, 33. % 2nd
+Brown, Joseph Alexander, 105. % 3rd
+Buckley, Michael Robert Warren, 66. % 2nd
+Castown, Rudolph William, 11. % 2nd
+Cayley graphs, 58, 69--72, 75, 111. % 2nd
+Codewords, 30. % 2nd
+Complete graph, 85. % 2nd
+Connected components, 34, 84. % 2nd
+Conway, John Horton, 74, 83. % 2nd
+Coroutines, 70--71. % 2nd
+\sub recursive, 24--25, 36--37. % 2nd
+Cyclic shifts, 26, 56, 58, 61, 68. % 2nd
+de Bruijn cycles, 22--27, 36--38, 74, 99, 121. % 2nd
+Dijkstra, Edsger Wybe, 42. % 2nd
+Direct product of matrices, 82. % 2nd
+Duval, Jean-Pierre, 98. % 2nd
+Feder, Tom\'as, 33. % 2nd
+Fibonacci, Leonardo, of Pisa (= Leonardo filio Bonacii Pisano), numbers, 36, 74, 116. % 2nd
+Field, finite, 31--32. % 2nd
+Fink, Ji\v{r}{\'\i}, 85. % 2nd
+Five-letter English words, 11, 32--33, 38, 66. % 2nd
+Generation of combinatorial patterns, 1. % 2nd
+Gray code for $n$-tuples,\indexnoperiod
+\sub nonbinary, 18--20, 35--36, 80, 82, 88, 90--92. % 2nd
+Hamilton cycle, 13, 34, 41, 58--59, 69--72, 75, 85, 111. % 2nd
+Hamilton path, 15, 33, 41, 58--59, 70--71, 75, 85, 110--111. % 2nd
+Inversion tables, 41, 72, 101, 116. % 2nd
+Iv\'anyi, Antal Mikl\'os, 99. % 2nd
+Jackson, Bradley Warren, 74. % 2nd
+K$\mu$: One thousand memory accesses, 105. % 2nd
+King, Andrew Douglas, 117. % 2nd
+Lexicographic permutation generation, 39, 50, 53, 54, 64--65. % 3rd
+Loony Loop, 36. % 3rd
+M$\mu$: One million memory accesses. % 2nd
+Matchings, 33--34, 63, 73, 84, 116--117. % 2nd
+\MMIX\ computer, ii, iv, 59--61, 72, 76. % 2nd
+Morales, Linda, 120. % 2nd
+Multisets, permutations of, 39--41, 62, 65, 71, 120--121. % 4th
+$n$-cube, matchings of, 33, 84. % 2nd
+$n$-cube, symmetries of, 66. % 2nd
+N\=ar\=aya\d{n}a Pa\d{n}\d{d}ita, \vadjust{\vskip1pt}son of N\d{r}si\:mha\indexbreak({\dn nArAyZ pE\char23Xt}, {\dn n\llap{\lower.12em\hbox{\char2}\kern.4em}Es\llap{\char92\kern-.05em}h-y p\llap{\lower.15em\hbox{\char0}\kern.3em}/,}), 39, 101. % 2nd
+Notational conventions:\indexnoperiod % 2nd
+\sub $x\xor y$ (bitwise exclusive or), 4. % 3rd
+\sub $\Gamma^R$ (reversal), 3. % 2nd
+\sub $\Gamma\boust\Gamma'$ (boustrophedon product), 36. % 2nd
+Novra, Henry, 92. % 2nd
+Organ-pipe order, 111, 118. % 2nd
+Permutation generation,\indexnoperiod
+\sub bypassing blocks, 51--54, 68, 117. % 3rd
+\sub lexicographic, 39, 50, 53, 54, 64--65. % 3rd
+Permutations,\indexnoperiod
+\sub of a multiset, 39--41, 62, 65, 71, 120--121. % 4th
+\sub order of, 58, 108. % 3rd
+\sub representation of, 47, 55. % 3rd
+Phi ($\phi$), as ``random'' example, 68. % 3rd
+Poll\'ak, Gy\"orgy, 85. % 2nd
+Preferential arrangements, \see Weak orderings. % 2nd
+Rapaport, Elvira Strasser, 111. % 3rd
+Recurrences, 23, 79, 81, 90, 95--96, 101. % 2nd
+Reflected Gray codes, 19--21, 35, 80, 90, 92. % 2nd
+Representation of permutations, 47, 55. % 3rd
+Ruskey, Frank, iv, 20, 21, 28, 31, 33, 59, 72, 94, 98, 111, 112, 115, 116, 120. % 2nd
+\'S\=ar\:ngadeva, son of So\d{d}haladeva ({\dn fA\kern-.1em\char'263\kern-.25em\char'15\kern.05em\llap{\raise.35em\hbox{\char'24}}\kern-.09emd\kern-.1em\llap{\char3}v}, {\dn soYld\kern-.02em\llap{\char3}v p\llap{\lower.15em\hbox{\char0}\kern.3em}/,}), 101. % 2nd
+Sch\"aff\/ler, Theodor Heinrich Otto, 5. % 2nd
+Shorthand universal cycles, \see Universal cycles of permutations. % 4th
+Smith, Derek Alan, 83. % 2nd
+Subi, Carlos Samuel, 33. % 2nd
+Sudborough, Ivan Hal, 120. % 2nd
+Suparta, I Nengah, 80. % 2nd
+Szab\'o, J\'ozsef, 105. % 3rd
+Traveling Salesrep Problem, 64. % 2nd
+Trowbridge, Terry Jay, 105. % 3rd
+Universal cycles of permutations, 74--75. % 2nd
+\sub modular, 120. % 2nd
+van Zanten, Arend Jan, 80. % 2nd
+Visiting an object, 1. % 2nd
+Weak orderings, 74, 118. % 2nd
+Williams, Aaron Michael, 75, 120--121. % 4th
+Zanten, Arend Jan van, 80. % 2nd
+
+\vfill
+\enddoublecolumns
+\endchange
+
+\bye
+
+[The next printing would have been the 5th.]
+not listed above:
+
+ARTICLES "TO APPEAR" THAT ARE STILL PENDING:
+Sudborough and Morales, accepted by TCS Aug 2010 but not yet edited
+
+CROSS-REFERENCES TO "00":
+  7.2.3--|5bit-gray|
+  7.10--|bandwidth-of-n-cube|

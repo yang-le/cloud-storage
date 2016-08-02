@@ -1,0 +1,1329 @@
+% CHANGES TO FASCICLE V4F3 OF THE ART OF COMPUTER PROGRAMMING
+%
+% Copyright (C) 2005,2006,2007,2008,2009,2010 by Donald E. Knuth
+% This file may be freely copied provided that no modifications are made.
+% All other rights are reserved.
+%
+% Three levels of changes to the books are distinguished here:
+%
+% "\bugonpage" introduces the correction of an error;
+% "\amendpage" introduces new material for future editions;
+% "\improvepage" introduces ameliorations of lesser importance.
+%
+% (Changes introduced by \improvepage do not appear in the hardcopy listing.)
+%
+% Also, "\planforpage" introduces some of the author's half-baked intentions.
+%
+
+% NOTE: TO PUT THE INDEX ON A SEPARATE PAGE, RUN THIS WITH THE COMMAND LINE
+%   tex "\let\indexeject+ \input err4f3"
+
+\newif\ifall % \alltrue means show the trivial items too
+\relax % hook
+
+\def\vertical{|}
+\def\inref#1 #{\expandafter\def\csname\vertical#1\endcsname}
+\catcode`|=\active
+\let|\inref \input \jobname.ref
+\catcode`|=12
+
+\input taocpmac % use the format for TAOCP, with modifications below
+
+\def\becomes{\ifmmode\ \hbox\fi{\manfnt y}\ } % wiggly arrow indicates a change
+
+\def\bugonpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt\llap{\manfnt x}% print a black triangle in left margin
+   {\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\amendpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\improvepage#1.#2 #3 (#4) {\ifall
+  \medbreak\ninepoint
+  \line{\kern-6pt{\sl Page #2\enspace #3\/}
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\noindent}
+\def\planforpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hbox to 5pt{\hss.\hss}\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\begingroup\let\endchange=\endgroup\sl\noindent}
+\let\endchange=\fi
+\def\nl{\par\noindent}
+\def\nlh{\par\noindent\hangit}
+\def\hangit{\hangindent2em}
+\def\cutpar{{\parfillskip=0pt\par}}
+
+\def\date#1.#2.#3.{% convert "yy.mm.dd." to "dd Mon 19yy"
+  #3
+  \ifcase#2\or Jan\or Feb\or Mar\or Apr\or May\or Jun\or
+               Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi
+  \ \ifnum #1<97 \hundred#1\else19#1\fi}
+\def\hundred{20} % the "century" for dates before '97
+
+\def\ex #1. [#2]{\ninepoint
+  \textindent{\bf#1.}[{\it#2\/}]\kern6pt}
+\def\EX #1. [#2]{\ninepoint
+  \textindent{\llap{\manfnt x}\bf#1.}[{\it#2\/}]\kern6pt}
+
+\def\foottext#1{\medskip
+        \hrule height\ruleht width5pc \kern-\ruleht \kern3pt \eightpoint
+        \smallskip\textindent{#1}}
+\def\volheadline#1{\line{\hss\cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill
+       \titlefont\ #1\ \cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill\hss}}
+\def\refin#1 {\let|\inref \input #1.ref \let|\crossref}
+
+\let\defaultpointsize=\tenpoint
+
+%%%%%%%%%%%%%% opening remarks %%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{INTRODUCTION}
+\let\rhead=\lhead
+\titlepage
+\volheadline{THE ART OF COMPUTER PROGRAMMING}
+\bigskip
+\volheadline{ERRATA TO VOLUME 4 FASCICLE 3}
+\bigskip
+
+\noindent This document is a transcript of the notes that I have been making
+in my personal copy of {\sl The Art of Computer Programming}, Volume~4,
+Fascicle~3, since it was first printed in 2005.
+
+\ifall Four levels of updates\dash---``errors,'' ``amendments,'' ``plans,''
+   and ``improvements''\dash---appear, indicated by four
+\else Three levels of updates\dash---``errors,'' ``amendments,'' and
+   ``plans''\dash---appear, indicated by three \fi
+different typographic conventions:
+\begingroup\def\hundred{17}
+
+\bugonpage 0.666 line 1 (76.07.04)
+Technical or typographical errors (aka bugs) are the most critical items, so
+they are flagged with a `\thinspace{\manfnt x}\thinspace' preceding the page
+number. The date on which I first was told about the bug is shown; this is the
+effective date on which I paid the finder's fee. The necessary
+corrections are indicated in
+a straightforward way. If,~for example, the book says
+`$n$' where it should have said `$n+1$', the change is shown thus:
+\smallskip
+$n$ \becomes $n+1$
+\endchange
+
+\amendpage 0.666 line 2 (89.07.14)
+Amendments to the text appear in the same format as bugs, but without
+the~`\thinspace{\manfnt x}\thinspace'. These are things I wish I had known
+about or thought of when I wrote the original text, so I added them later.
+The date is the date I drafted the new text.
+\endchange
+
+\def\hundred{19}
+
+\planforpage 0.666 line 3 (17.11.20)
+Plans for the future represent a third kind of item. In such notes I~sketched
+my intentions about things that I wasn't ready to flesh out further when
+I~wrote them down. You can identify these items because they're written in
+slanted type, and preceded by a bunch of dots
+`\hbox to 6em{\leaders\hbox to 5pt{\hss.\hss}\hfill}' leading to the date on
+which I recorded the plan in my files.
+\endchange
+
+\improvepage 0.666 line 4 (38.01.10)
+The fourth and final category\dash---indicated by page and line number in
+smaller, slanted type\dash---consists of minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+You wouldn't even
+be seeing these items if you hadn't specifically chosen to print the complete
+errata list in all its gory details.
+Are you sure you wanted to do that?
+\endchange
+
+\endgroup
+\ifall\else\medskip\ninepoint
+My personal file of updates also includes a fourth category of items, not
+shown in this list. They are miscellaneous minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+If you really want to see all of the gory details,
+you can download the full list from Internet webpage
+$$\.{http://www-cs-faculty.stanford.edu/\char`\~knuth/taocp.html}$$
+by selecting the ``long form'' of the errata.
+\fi
+
+\medskip
+\tenpoint
+\beginconstruction
+The ultimate, glorious, future editions of Volumes 1--5 are works in progress.
+Please let me know of any improvements that you think I ought to make.
+Send your comments either by snail mail to D.~E. Knuth, Computer
+Science, Gates Building 4B, Stanford University, Stanford CA~94305-9045,
+or by email to
+{\tt taocp{\char`\@}cs.stanford.edu}. (Use email for book suggestions
+only, please\dash---all
+other correspondence is returned unread to the sender, or discarded,
+because I have no time to
+read ordinary email.) Although I'm working full time on
+Volume~4 these days, I~will try to reply to all such messages
+within a year of receipt. Current news about {\sl The Art of Computer
+Programming\/} is posted on
+$$\.{http://www-cs-faculty.stanford.edu/\char`~knuth/taocp.html}$$
+and updated regularly.
+\par\endconstruction
+\rightline{\dash---Don Knuth, June 2005}
+
+\bigskip
+\bigskip
+{\quoteformat
+For a work of such scope as this,
+the first word of the author should be an apology
+for what is doubtless the too ambitious effort
+of a single writer.
+\author EDWARD W. BYRN (1900)
+% The Progress of Invention in the Nineteenth Century, page i
+\vfill\eject
+}
+
+\def\today{\number\day\space\ifcase\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi
+  \space\number\year}
+
+%%%%%%%%%%%%%%% CHANGES FOR VOLUME 4 FASCICLE 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{\kern-12ptCHANGES TO V4F3: GENERATING ALL COMBINATIONS AND PARTITIONS}
+\def\rhead{CHANGES TO V4F3: GENERATING ALL COMBINATIONS AND PARTITIONS\kern-12pt}
+\titlepage
+\volheadline{GENERATING ALL COMBINATIONS AND PARTITIONS} % the fascicle title
+\bigskip
+\rightline{Copyright \copyright\ 2005, 2006, 2007, 2008, 2009, 2010, Addison\with Wesley; all rights reserved}
+\rightline{Last updated \today}
+\bigskip
+\rightline{\sl Most of these corrections have already been made in
+                  recent printings.}
+\medskip
+\noindent Important note: The changes below include nearly every difference
+between the paperback fascicle and the first printing of Volume 4A,
+published in January 2011. All subsequent changes can be found in
+the errata list for that volume.
+
+\smallskip
+\let\defaultpointsize=\tenpoint
+
+\bugonpage 4f3.ii in the ISBN numbers (08.04.29)
+line 19: {\tt 1-201-85394-9} \becomes {\tt 0-201-85394-9}\nl
+line $-4$:    1-201-85394-9  \becomes      0-201-85394-9
+\endchange
+
+\improvepage 4f3.iv line 20 (08.10.28)
+I shall happily pay a finder's fee of \$2.56 \becomes
+I happily offer a ``finder's fee'' of \$2.56
+\endchange
+
+\improvepage 4f3.iv lines 24 and 25 (08.10.28)
+reward you with immortal glory instead of mere money \becomes
+do my best to give you immortal glory
+\endchange
+
+\improvepage 4f3.iv line $-12$ (05.12.04)
+indices \becomes indexes
+\endchange
+
+\amendpage 4f3.0 replacement for lines 3 and 4 (09.01.12)
+\beginconstruction The opening sections of this chapter appear in
+Volume~4, Fascicle~0, and
+Volume~4, Fascicle~1, first published in 2008 and 2009.\par\endgroup
+\endchange
+
+\improvepage 4f3.1 line $-8$ (08.04.21)
+The latter representation \becomes The string representation
+\endchange
+
+\bugonpage 4f3.2 in the running headline {(also on pages 4, 6, 8,
+   \dots!)} (05.09.07)
+\eightpoint (F2) \becomes (F3)
+\endchange
+
+\amendpage 4f3.2 line 7 (08.10.12)
+{\it multicombination}, \becomes
+{\it multicombination\/} of $s+1$ things,
+\endchange
+
+\amendpage 4f3.4 line 10 (06.10.18)
+7.1--00 \becomes 7.1.3--20
+\endchange
+
+\improvepage 4f3.4 line $-7$ (05.09.17)
+repeat until $c_j+1\ne c_{j+1}$. \becomes
+eventually the condition $c_j+1\ne c_{j+1}$ will occur.
+\endchange
+
+\improvepage 4f3.5 second line of step T4 (08.03.13)
+repeat this step until $x\ne c_{j+1}$ \becomes repeat step T4
+\endchange
+
+\bugonpage 4f3.7 in {\eq(23)} (06.07.31)
+$w_1\ge w_0;$ \becomes $w_1\ge w_0\ge0@;$
+\endchange
+
+\amendpage 4f3.8 lines $-13$ and $-12$ (06.03.24)
+discovered by D.~T. Tang \becomes
+discovered by J.~E. Miller in her Ph.D. thesis (Columbia University, 1971),
+then independently by D.~T. Tang
+\endchange
+
+\improvepage 4f3.8 near the bottom (06.10.23)
+lines $-3$ and $-1$: increasing \becomes nondecreasing\nl
+line $-2$: {\it decreasing} \becomes non{\it increasing}
+\endchange
+
+\improvepage 4f3.13 in step C3 (09.08.10)
+If $w_j=0$, set $w_j\gets1$, $j\gets j+1$, and repeat until $w_j=1$. \becomes
+While $w_j=0$, set $w_j\gets1$ and $j\gets j+1$.
+\endchange
+
+\improvepage 4f3.13 in steps C4 and C6 (08.04.21)
+$r=j>1$ \becomes $r=j$ and $j>1$
+\endchange
+
+\bugonpage 4f3.17 {(and throughout the fascicle!)} (08.04.04)
+\ninepoint{\bf Fig.\ 26} \becomes {\bf Fig.\ 46} [and all figure
+numbers need to increased by 20, except that there are {\it two\/}
+instances of Fig.~35! There are separate errata entries for the
+Fig.~35 that becomes Fig.~56.]
+\endchange
+
+\amendpage 4f3.19 line $-2$ (10.06.07)
+we have \becomes with $\kappa_t@0=0$, we have
+\endchange
+
+\improvepage 4f3.20 line $-2$ (05.08.07)
+in cross order \becomes in increasing cross order
+\endchange
+
+\improvepage 4f3.22 line $-5$ (10.05.30)
+In other words, \becomes {\it Proof.}\enspace In other words,
+\endchange
+
+\improvepage 4f3.27 exercise 20 (10.05.30)
+\ninepoint Find \becomes Devise
+\endchange
+
+\amendpage 4f3.27 exercise 21 (06.03.24)
+\ninepoint Prove \becomes (Joan E. Miller, 1971.) Prove
+\endchange
+
+\bugonpage 4f3.35 in the running headline (05.10.25)
+{\eightrm PARTITIONS \becomes COMBINATIONS}
+\endchange
+
+\bugonpage 4f3.35 line 3 of exercise 34 (06.03.07)
+$11001000,\,11001001$ \becomes $11001000,\,11001010,\,11001001$
+\endchange
+
+\amendpage 4f3.35 new exercise (06.08.09)
+\ninepoint{\advance\parindent by4pt
+\EX111. [M26] (P. Erd\H{o}s, C. Ko, and R. Rado.)
+Suppose $A$ is a set of $r$-combinations of an $n$-set, with $\alpha\cap\beta
+\ne\emptyset$ whenever $\alpha,\beta\in A$. Show that $\vert A\vert\le
+{n-1\choose r-1}$, if $r\le n/2$. \em Hint: Consider $\del^{n-2r}B$, where
+$B$ is the set of complements of~$A$.
+\par}
+\endchange
+
+\amendpage 4f3.36 line 4 (07.08.21)
+(see Table 1). All twelve of Stanley's \becomes \nl
+(see Table 1), based on a series of lectures by
+Gian-Carlo Rota. All twelve of these
+\endchange
+
+\amendpage 4f3.37 line 12 (08.09.22)
+into disjoint subsets \becomes into nonempty, disjoint subsets
+\endchange
+
+\amendpage 4f3.37 bottom line (05.10.24)
+52]: \becomes
+52], and pad the array with 1s
+as suggested by A.~Zoghbi and I.~Stojmenovi\'c [{\sl International
+Journal of Computer Math.\ \bf70} (1998), 319--332]:
+\endchange
+
+\amendpage 4f3.38 line 3 (06.05.29)
+$n\ge1$. \becomes
+$n\ge1$. The value of $a_0$ is also set to zero.
+\endchange
+
+\amendpage 4f3.38 replacement for step P1 (05.10.24)
+\algindentset{P1}%
+\algstep P1. [Initialize.] Set $a_m\gets1$ for $n\ge m>1$. Then set $m\gets1$
+and $a_0\gets0$.
+\endchange
+
+\amendpage 4f3.38 replacement for step P4 (05.10.24)
+\algindentset{P1}%
+\algstep P4. [Change 2 to $1{+}1$.] Set $a_q\gets1$, $q\gets q-1$, $m\gets
+m+1$, and return to P3. (At this point we have $a_k=1$ for $q<k\le n$.)
+\endchange
+
+\amendpage 4f3.38 line 3 of Algorithm H (10.05.30)
+$n\ge m\ge 2.$ \becomes
+$n\ge m\ge 2.$ A sentinel value is stored in $a_{m+1}$.
+\endchange
+
+\improvepage 4f3.38 better way to state step H4 (09.08.04)
+\algindentset{H1}%
+\algstep H4. [Find $j$.] Set $j\gets3$ and $s\gets a_1+a_2-1$. Then, while
+$a_j\ge a_1-1$, set $s\gets s+a_j$ and $j\gets j+1$.
+(Now $s=a_1+\cdots+a_{j-1}-1$ and $a_j<a_1-1$.)
+\endchange
+
+\improvepage 4f3.39 line $-16$ (08.09.22)
+$n$-multicombinations of $N$ \becomes $n$-multicombinations of $N$ things
+\endchange
+
+\improvepage 4f3.40 line 5 before {\eq(11)} (10.06.14)
+by transposing the rows and columns of the corresponding Ferrers diagram.
+\becomes
+by transposing its
+Ferrers diagram\dash---that is, by reflecting the diagram about the
+main diagonal.
+\endchange
+
+\amendpage 4f3.40 line 6 after {\eq(11)} (08.09.22)
+$(a_1\ldots a_m)\losup T$ \becomes
+$(a_1\ldots a_m)\losup T$, if $m<n$
+\endchange
+
+\amendpage 4f3.40 line 3 before {\eq(13)} (07.08.25)
+{\it representation}. \becomes
+{\it representation} [see S. Com\'et, {\sl Numer.\ Math.\ \bf1} (1959),
+90--109].
+\endchange
+
+\amendpage 4f3.41 line 1 (08.09.22)
+a path \becomes a path of length~$2n$
+\endchange
+
+\improvepage 4f3.41 lines 10 and 11 (10.06.14)
+When the partition has $t$ different parts, \becomes
+When the number of distinct parts of a partition is equal to~$t$,
+\endchange
+
+\amendpage 4f3.41 line 18 (10.08.23)
+Philipp \becomes Philippe
+\endchange
+
+\improvepage 4f3.42 line 1 (10.09.26)
+identity of Jacobi \becomes identity that Jacobi published in 1829
+\endchange
+
+\amendpage 4f3.42 the line after {\eq(21)} (10.06.14)
+setting $z=e^{-t}$ \becomes setting $z=e^{-t}$ with $t>0$
+\endchange
+
+\amendpage 4f3.42 in {\eq(23)} (10.06.14)
+$\displaystyle {p(n)\over 1-e^{-t}}$ \becomes
+$\displaystyle {p(n)\over 1-e^{-t}}=\sum_{k=n}^\infty p(n)@e^{(n-k)t}$
+\endchange
+
+\amendpage 4f3.43 lines 10 and 11 (10.06.14)
+$0\le\Re\theta\le1$ \dots~rectangle; \becomes
+\endchange
+
+\bugonpage 4f3.43 line 15 (10.06.11)
+Theorem 10.6.2 \becomes Theorem 10.6e
+\endchange
+
+\amendpage 4f3.43 replacement for lines $-11$ through $-2$ (10.09.27)
+$$f(y)\;=\;e^{-{3\over2}t(y+{1\over6})^2+\pi iy};\eqno(27)$$
+and this function $f$ qualifies for Poisson's summation formula under both of
+the criteria (i) and (ii) stated above. Therefore we try to integrate
+$e^{-2\pi miy}f(y)$, and that integral
+turns out to be easy for all~$m$ (see exercise 27):
+$$\int_{-\infty}^{@\infty} e^{-a(y+b)^2+2ciy}\,dy\;=\;
+ \sqrt{\pi\over a}@e^{-c^2\!/a-2bci}\qquad\hbox{when $a>0$.}
+\eqno(28)$$
+Plugging in to \eq(25), with $\theta=0$, $a={3\over2}t$, $b={1\over6}$,
+and $c=({1\over2}-m)\pi$, yields
+$$\sum_{n=-\infty}^\infty f(n)=\sum_{m=-\infty}^\infty g(m),\qquad
+g(m)=\sqrt{2\pi\over3t}e^{-2(m-\half)^2\pi^2\!/(3t)+{1-2m\over6}\pi i}.
+\eqno(29)$$
+These terms combine and cancel beautifully, as shown in exercise~27, giving
+$${e^{-t/24}\over P(e^{-t})}\;=\;
+\sqrt{2\pi\over t}\sum_{n=-\infty}^\infty (-1)^n e^{-6\pi^2(n+{1\over6})^2\!/t}
+\;=\;\sqrt{2\pi\over t}{e^{-\zeta(2)/t}\over P(e^{-4\pi^2\!/t})}.\eqno(30)$$
+\endchange
+
+\improvepage 4f3.45 line 3 before {\eq(40)} (06.04.18)
+by considering \becomes by transposing
+\endchange
+
+\improvepage 4f3.46 line 2 below Table 2 (08.03.24)
+Erd\H{o}s \becomes Erd\"os \qquad[to agree with the English spelling
+in the paper cited]
+\endchange
+
+\bugonpage 4f3.47 line 2 before {\eq(47)} (08.09.22)
+$\alpha^m=n^{-1/2}e^{-Cx}$ \becomes $\alpha^m=n^{-1/2}e^{-Cx}+O(n\_)$
+\endchange
+
+\bugonpage 4f3.48 line 2 after the top illustration (08.09.22)
+$O(\sqrt n\,)$ \becomes $O(\sqrt n\log\log\log n)$
+\endchange
+
+\amendpage 4f3.48 the line after {\eq(50)} (10.06.14)
+$m$ is reasonably large \becomes $m$ and $n$ are reasonably large
+\endchange
+
+\amendpage 4f3.49 two lines before {\eq(52)} (10.06.14)
+in steps P2 and P6; \becomes
+in step P2  or when we'll soon test $n\le x$ in~P6;
+\endchange
+
+\bugonpage 4f3.49 line $-1$ (09.05.14)
+$4-3C/\sqrt n$ \becomes $3+C/\sqrt n$
+\endchange
+
+\amendpage 4f3.50 line 10 (08.09.22)
+$(a_1\ldots a_m)^T$ \becomes
+$(a_1\ldots a_m)^T$ and $m<n$
+\endchange
+
+\improvepage 4f3.51 line 4 after Table~3 (10.05.30)
+$a_1a_2\ldots a_n$ \becomes $a_1a_2\ldots{}$
+\endchange
+\bugonpage 4f3.53 bottom line (06.12.08)
+\ninepoint $l_2$, $l_4$, $l_5$, $l_7$ \becomes
+$l_2$, $l_4$, $l_5$, $l_6$, $l_7$
+\endchange
+
+\amendpage 4f3.54 new wording for exercise 8 (10.06.14)
+\ninepoint
+\ex 8. [15] When $(p_1\ldots p_t,q_1\ldots q_t)$ yields
+the rim representation
+of a partition $a_1a_2\ldots{}$ as in \eq(15) and \eq(16), what's the
+rim representation of the conjugate partition $(a_1a_2\ldots{})\losup T@$?
+\endchange
+
+\bugonpage 4f3.54 new wording for exercise 13 (10.09.26)
+\ninepoint
+\EX 13. [M23] (F. Franklin, 1882.)
+Find a one-to-one correspondence
+$\alpha\swap\beta$ between
+partitions of~$n$ such that $\alpha$ has exactly $k$ parts
+repeated more than once if and only if $\beta$ has
+exactly $k$ even parts. (For example, the partition
+64421111 has two repeated parts $\{4,1\}$ and three even parts $\{6,4,2\}$.
+The case $k=0$ corresponds to Euler's result.)
+\endchange
+
+\amendpage 4f3.54 new rating for exercise 14 (10.06.14)
+\ninepoint[{\it M28\/}] \becomes [{\it M33\/}]
+\endchange
+
+\improvepage 4f3.54 new wording for exercise 16 (08.09.22)
+\ninepoint Find \dots\ and sum \becomes
+Find a formula for $\sum_{m,n}p(k,m,n)w^mz^n$, where $p(k,m,n)$
+is the number of partitions of~$n$ that have $m$~parts and trace~$k$. Sum
+\endchange
+
+\amendpage 4f3.55 new sentence for end of exercise {17(b)} (10.06.14)
+\ninepoint For example, the
+answer when $t=2$ is $(1+v)(1+vz)z^2\!/\bigl((1-z)(1-z^2)\bigr)$.
+\endchange
+
+\amendpage 4f3.55 replacement for the last line of exercise 18 (10.06.14)
+\ninepoint
+$$\sum_{{\scriptstyle a_1\ge\cdots\ge a_r>0,\,r\ge0}_{\mathstrut}^{\mathstrut}
+  \atop{\scriptstyle b_1>\cdots>b_s>0,\,s\ge0}} \mkern-45mu
+ u^{r+s} v^s z^{a_1+\cdots+a_r+
+           b_1+\cdots+b_s}\;=\mkern-15mu
+\sum_{{\scriptstyle c_1\ge\cdots\ge c_t>0,\,t\ge0}_{\mathstrut}^{\mathstrut}
+  \atop{\scriptstyle d_1,\ldots,d_t\in\{0,1\}}}\mkern-45mu
+  u^t v^{d_1+\cdots+d_t}z^{c_1+\cdots+c_t+(t-1)d_1+\cdots+d_{t-1}}.$$
+\endchange
+
+\amendpage 4f3.54 new rating for exercise 19 (10.06.14)
+\ninepoint[{\it M21\/}] \becomes [{\it M22\/}]
+\endchange
+
+\amendpage 4f3.55 line 1 of exercise 21 (08.09.22)
+\ninepoint partitions into \becomes partitions of $n$ into
+\endchange
+
+\amendpage 4f3.56 in exercise 27 (10.09.27)
+\ninepoint [{\it\HM23\/}] Evaluate \eq(29) \becomes
+           [{\it\HM21\/}] Prove \eq(28)
+\endchange
+
+\amendpage 4f3.57 new wording for exercise 38 (10.06.14)
+\ninepoint What is \dots\ largest part $l$? \becomes
+Given positive integers $l$ and~$m$, what generating function enumerates
+partitions that have exactly $m$~parts, and largest part~$l$?
+(See Eq.~\eq(51).)
+\endchange
+
+\amendpage 4f3.57 new rating for exercise 40 (10.09.28)
+\ninepoint[{\it M22\/}] \becomes [{\it M20\/}]
+\endchange
+
+\improvepage 4f3.57 line 1 of exercise 40 (10.09.28)
+\ninepoint What is the generating function for partitions \becomes
+Continuing exercise 38, what is the generating function
+for the number of partitions\nl
+[Note: Exercises 39 and 40 will become exercises 40 and 39 in Volume 4A.]
+\endchange
+
+\amendpage 4f3.57 new rating for exercise 43 (10.06.18)
+\ninepoint[{\it M21\/}] \becomes [{\it M18\/}]
+\endchange
+
+\amendpage 4f3.57 in exercise 47 (07.02.23)
+\ninepoint line 1 of step N4: 1, 2, \dots, $n$ \becomes 1, 2, \dots,\nl
+line $-1$ (the displayed equation): $\displaystyle \sum_{j=1}^m$
+\becomes $\displaystyle \sum_{j=1}^\infty$
+\endchange
+
+\amendpage 4f3.58 line 3 of exercise 50 (08.09.22)
+\ninepoint for all $m$ \becomes for all $m\ge0$.
+\endchange
+
+\amendpage 4f3.58 line 1 of exercise 54 (10.06.14)
+\ninepoint The partition \dots $b_1b_2\ldots{}$, \becomes
+ Let $\alpha=a_1a_2\ldots{}$ and
+$\beta=b_1b_2\ldots{}$ be partitions of~$n$. We say that
+$\alpha$ {\it majorizes\/}~$\beta$,
+\endchange
+
+\bugonpage 4f3.58 line 9 of exercise 55 (10.06.11)
+\ninepoint $n_2>n_1\ge0$ \becomes $n_2>n_1\ge0$ and $n_2>2$
+\endchange
+
+\amendpage 4f3.59 the rating of exercise 56 (07.01.21)
+\ninepoint [{\it M27\/}] \becomes [{\it M32\/}]
+\endchange
+
+\amendpage 4f3.60 line 2 of exercise 57 (10.06.14)
+\ninepoint Then \becomes By permuting rows and columns we can assume that
+$r_1\ge r_2\ge\cdots{}$ and $c_1\ge c_2\ge\cdots{}$. Then
+\endchange
+
+\bugonpage 4f3.60 line 2 of exercise 59 (06.10.26)
+\ninepoint same as conjugate \becomes same as the conjugate
+\endchange
+
+\amendpage 4f3.61 new exercise (09.09.11)
+\ninepoint
+\ex72. [M30] How many partitions of $n$ have no predecessor in Bulgarian
+solitaire?\nl
+\smallskip[The former exercise 72 now becomes number 73.]
+\endchange
+
+\improvepage 4f3.62 line 18 (05.10.30)
+in which we have \becomes of nonnegative integers in which we have
+\endchange
+
+\amendpage 4f3.63 an explanatory sentence to follow \eq(9) (08.02.09)
+(In other words, we begin with either $A\losub{(m-1)n}(m{-}1)$ or
+$A'_{(m-1)n}(m{-}1)$ and then use either
+$A_{mn}^R@j$ or $A\losub{mn}@j$, alternately, as $j$ decreases from
+$m-1$ to~0.)
+\endchange
+
+\amendpage 4f3.64 line $-9$ (10.10.09)
+{\sl Annals of Math.}\ \becomes
+{\sl Annals of Math.\ \rm(2)}
+\endchange
+
+\amendpage 4f3.67 line 2 (08.11.30)
+$\max(\Re z,\Im z)$ becomes
+$\max\bigl(\vert\Re z\vert,\vert\Im z\vert\bigr)$
+\endchange
+
+\bugonpage 4f3.67 lines 6 and 7 (10.11.08)
+and if the sums $\sum_{t\in B\setminus A}f(t)$ and
+$\sum_{t\in C\setminus A}\hat f(t)$ are both small, then
+$\sum_{t\in C}\hat f(t)$ is a good approximation to $\sum_{t\in B}f(t)$.
+\becomes\nl
+and if the sums $\sum_{t\in B}\vert f(t)\vert$ and
+$\sum_{t\in C}\vert\hat f(t)\vert$ are both small, then
+$\sum_{t\in A\cup C}\hat f(t)$ is a good approximation to
+$\sum_{t\in A\cup B}f(t)$.
+\endchange
+
+\bugonpage 4f3.67 line 14 (05.08.23)
+$O\Bigl({e^{n-n^{-2\epsilon}\!/2}\over n^n}\Bigr)$ \becomes
+$O\Bigl({e^{n-n^{2\epsilon}\!/2}\over n^n}\Bigr)$
+\endchange
+
+\amendpage 4f3.67 line $-3$ (08.11.30)
+$O(n^{9\epsilon-3/2})$ \becomes $O(n^{9\epsilon-2})$
+\endchange
+
+\improvepage 4f3.68 on the line following {\eq(23)} (05.09.17)
+saddle point now occurs \becomes saddle point for the new integrand occurs
+\endchange
+
+\improvepage 4f3.69 line $-2$ (10.06.17)
+$b_0$, $b_1$, $b_2$, $b_3$ \becomes 1, $b_1/n$, $b_2/n^2$, $b_3/n^3$
+\endchange
+
+\bugonpage 4f3.72 line $-20$ (09.05.14)
+By comparing \eq(47) \becomes
+By comparing \eq(46)
+\endchange
+
+\improvepage 4f3.74 line 18 (09.05.14)
+each $k$-block partition \becomes
+each set partition that has $k$ blocks
+\endchange
+
+\amendpage 4f3.74 line $-8$ (10.10.18)
+different multisets \becomes types of multisets
+\endchange
+
+\improvepage 4f3.75 line 22 (08.02.08)
+simple \becomes fairly simple
+\endchange
+
+\bugonpage 4f3.75 replacement for {\eq(57)} (07.01.18)
+$$\openup1\jot
+\def\\#1#2{\llap{\smash{\special{ps: .5 setgray}\vrule height 95pt
+           \special{ps: 0 setgray}\kern8pt}}%
+       \setbox0=\hbox{\ninepoint$f_{#1}=#2$}\hbox to.5em{\hss\rotl0\hss}}
+\vcenter{\halign{&\hskip1.5em\hfil$#$\cr
+j  &0&1&2&3&4&5&6&7&8&9&\hidewidth10\hidewidth&\hidewidth11\hidewidth\cr
+c_j&1&2&1&2&1&2&1&2&1&2&2&2\cr
+u_j&9&9&6&8&4&6&2&6&1&5&4&1\cr
+v_j&3&1&2&2&2&0&1&1&1&1&3&1\cr
+&\\00&&\\12&&\\24&&\\36&&\\48&&\\5{10\ }&\\6{11}&\\7{12}\cr}}\eqno(57)$$
+\endchange
+
+\bugonpage 4f3.75 line $-2$ (07.01.18)
+$f_0f_1\ldots f_n$, $c_0c_1\ldots c_{n}$,
+$u_0u_1\ldots u_{n}$, and $v_0v_1\ldots v_{n}$ \becomes\nl
+$f_0f_1\ldots f_n$, $c_0c_1\ldots c_{mn}$,
+$u_0u_1\ldots u_{mn}$, and $v_0v_1\ldots v_{mn}$
+\endchange
+
+\amendpage 4f3.76 restatement of step M2 (08.02.09)
+Set $j\gets a$ and \dots\ until $j=b$. \becomes
+Set $j\gets a$,
+$k\gets b$, and $x\gets0$. Then while $j<b$ do the following:
+Set $u_k\gets u_j-v_j$.
+If $u_k=0$, just set $x\gets1$ and $j\gets j+1$.
+Otherwise if $x=0$, set $c_k\gets c_j$, $v_k\gets\min(v_j,u_k)$,
+$x\gets\[u_k<v_j]$, $k\gets k+1$, $j\gets j+1$.
+Otherwise set $c_k\gets c_j$, $v_k\gets u_k$, $k\gets
+k+1$, $j\gets j+1$. (Notice that $x=\[\hbox{$v$ has changed}]$.)
+\endchange
+
+\amendpage 4f3.76 line 25 (07.01.18)
+every component. \becomes every component. (See exercise 68.)
+\endchange
+
+\bugonpage 4f3.80 line $-3$ (08.06.06)
+\ninepoint Fig.\ 35. \becomes Fig.\ 56
+\endchange
+
+\bugonpage 4f3.81 caption to the illustration (08.06.06)
+\ninepoint\bf Fig.\ 35. \becomes Fig.\ 56
+\endchange
+
+\bugonpage 4f3.81 line 3 after the illustration (08.06.06)
+\ninepoint Fig.\ 35. \becomes Fig.\ 56
+\endchange
+
+\improvepage 4f3.81 line 7 after the illustration (10.06.17)
+Ferrers diagram \becomes tableau shape
+\endchange
+
+\bugonpage 4f3.81 in exercise 29 (10.06.06)
+\ninepoint line 8: $a_1\ge\cdots\ge a_m$ \becomes
+                   $a_1\ge\cdots\ge a_m\ge0$\nl
+line 9 (the displayed formula): $y^{a_j+m-j+t}$ \becomes $y^{a_j+j-m+t}$
+\endchange
+
+\bugonpage 4f3.82 bottom line of exercise 29 (10.05.14)
+\ninepoint
+multisets $\{a\losub1{+}m,a\losub2{+}m{-}1,\ldots,
+a\losub m{+}1\}$ and $\{a'_1{+}m,a'_2{+}m{-}1,\ldots,a'_m{+}1\}$ \becomes
+multisets $\{a\losub1{+}1,a\losub2{+}2,\ldots,
+a\losub m{+}m\}$ and $\{a'_1{+}1,a'_2{+}2,\ldots,a'_m{+}m\}$
+\endchange
+
+\bugonpage 4f3.85 line 3 of exercise 63 (06.07.01)
+\ninepoint $(1@{+}@p_n(1{-}z)$ \becomes $(1@{+}@p_n(z{-}1)$
+\endchange
+
+\amendpage 4f3.85 line 1 of exercise 68 (07.01.18)
+\ninepoint
+[{\it 20\/}] How large can the stack get in Algorithm M, when it \becomes
+[{\it 21\/}] How large can variables $l$ and $b$ get in Algorithm M,
+when that algorithm
+\endchange
+
+\amendpage 4f3.85 line 1 of exercise 69 (08.02.09)
+\ninepoint [{\it 21\/}] \becomes [{\it 22\/}]
+\endchange
+
+\bugonpage 4f3.86 replacement for dominoes in exercise 82 (05.09.17)
+\font\dom=domino scaled 700
+$$\chardef\2="B2 \chardef\3="B3 \chardef\6="B6
+\def\\#1#2{\vcenter{\offinterlineskip\hbox{\dom#1}\hbox{\dom#2}}}
+\\1\2+\\1\3+\\41+\\15+\\1\6\;=\;
+\\\2\3+\\4\2+\\\25+\\4\3+\\45\;=\;
+\\\2\6+\\5\3+\\\3\6+\\\64+\\\65$$
+\endchange
+
+\let\defaultpointsize=\ninepoint % get ready for answer pages
+
+\amendpage 4f3.87 replacement for second line of answer 2 (10.03.10)
+\noindent result $@$is \ \lower15pt\hbox{\epsfbox{\figdir/v4a.2020}}$\,$.
+\vtop{\hsize=92mm\noindent Conversely, we can easily ``read off'' the
+representations $a_i$, $b_i$, $c_i$, $d_i$, $p_i$, or $q_i$ of \eq(2)--\eq(11)
+from any given path from $(0,0)$ to $(s,t)$.\parfillskip=0pt}
+\endchange
+
+\improvepage 4f3.87 in answer 3 (10.01.30)
+[change the step numbers F1, F2, F3, F4, F5 respectively to N1, N2, N3, N4, N5]
+\endchange
+
+\bugonpage 4f3.87 last line of answer 5 (06.07.31)
+$(\delta_t,\ldots,\delta_1)$ \becomes $(\delta_t,\ldots,\delta_0)$
+\endchange
+
+\bugonpage 4f3.87 last line of answer 6 (10.05.30)
+${n-2\choose t-1}+{n-2\choose t-2}+\cdots+{n-t-1\choose0}$ \becomes
+${n-2\choose t-1}+{n-3\choose t-2}+\cdots+{n-t-1\choose0}$
+\endchange
+
+\improvepage 4f3.87 step S4 in answer 7 (09.08.10)
+set $b_{j-1}\gets b_j-1$, $j\gets j-1$, and repeat until $j=1$. \becomes
+set $b_{j-1}\gets b_j-1$ and $j\gets j-1$.
+\endchange
+
+\bugonpage 4f3.89 line 5 of answer {12(b)} (10.05.30)
+{\bf 10} \becomes {\bf A10}
+\endchange
+
+\improvepage 4f3.89 step V4 in answer 9 (09.08.10)
+If $a_{k(q+r)}=1$, set
+$a_{k(q+r)}\gets0$, $k\gets k+1$, and repeat until $a_{k(q+r)}=0$. \becomes
+\endchange
+
+\bugonpage 4f3.90 replacement for answer 19  (06.03.18)
+\ans 19. It is the binary representation of post(1000000), where
+post$(2^{k+1}-1)=2^k$, and
+post$(n)=2^k+{\rm post}(n-2^k+1)$ if $2^k\le n<2^{k+1}-1$,
+for $k\ge0$. So it is 11110100001001000100.\tighten
+\endchange
+
+\amendpage 4f3.90 addendum to answer 19 (06.10.02)
+\noindent [Incidentally, the left-child/right-sibling representation of
+$T_\infty$ is the sideways heap.]
+\endchange
+
+\amendpage 4f3.90 line 1 of answer 21 (08.10.11)
+[See \becomes [Page 40 of Miller's thesis; see also
+\endchange
+
+\bugonpage 4f3.91 line 13 of answer 25 (06.04.26)
+$\{b_s,\ldots,b_1,c_t\ldots,c_1\}$ \becomes $\{b_s,\ldots,b_1,c_t,\ldots,c_1\}$
+\endchange
+
+\bugonpage 4f3.92 line 6 of answer 29 (10.06.06)
+$1\le j\le t$ \becomes $1\le j\le s$
+\endchange
+
+\bugonpage 4f3.92 line $-2$ of answer 30 (10.05.30)
+$\widehat C_{st}$ is $A_{\lfloor2^{s-\?1}\!/3\rfloor}(s,t)$ \becomes
+$\widehat C_{st}$ is $A_{\lfloor2^{s-\?1}\!/3\rfloor}(s,t)^R$
+\endchange
+
+\amendpage 4f3.95 addendum to answer 43 (06.12.08)
+(Incidentally, $s(x)=f(x)\xor1$ and $p(x)=f(x\xor1)$,
+where $f(x)=(x\dotminus1)+((x\band1)\lsh1)$.)
+\endchange
+
+\bugonpage 4f3.97 line 1 of answer 55 (05.09.06)
+[Solution \becomes (a) [Solution
+\endchange
+
+\bugonpage 4f3.97 line 4 of answer 55 (05.12.03)
+$t\le i\le n$ \becomes $t\le j\le n$
+\endchange
+
+\amendpage 4f3.98 line 5 (10.01.26)
+576.] \becomes 576; see~also A.~Williams, {\sl SODA\/ \bf20}
+(2009), 987--996, for a significant
+generalization by which the permutations of an arbitrary multiset
+can be generated looplessly by prefix rotations.]
+\endchange
+
+\bugonpage 4f3.98 line 4 of answer 60 (08.02.07)
+$x=t$ \becomes $x\gets t$.
+\endchange
+
+\improvepage 4f3.98 in step Q2 of answer 60 (09.08.10)
+$j\gets j+1$, and repeat until $x\le m_j$. \becomes
+and $j\gets j+1$.
+\endchange
+
+\bugonpage 4f3.99 line $-6$ of answer 62 (10.05.19)
+$r_{i+1}+\cdots+r_m-c_1-\cdots-c_{j-1},c_1+\cdots+c_j-r_i-\cdots-r_m$ \becomes
+\nl\quad $r_1+\cdots+r_i-c_{j+1}-\cdots-c_n,c_j+\cdots+c_n-r_1-\cdots-r_{i-1}$
+\endchange
+
+\improvepage 4f3.99 line $-5$ of answer 62 (05.09.06)
+[This line, the beginning of part (e), should be indented.]
+\endchange
+
+\improvepage 4f3.101 line 1 of answer 70 (10.05.30)
+From the identity \becomes Using the facts that $t\ge3$ implies
+\endchange
+
+\bugonpage 4f3.101 line 3 of answer 70 (10.06.06)
+${2t-2\choose t}{1\over t}$ \becomes
+${2t-2\choose t}{1\over t-1}$
+\endchange
+
+\bugonpage 4f3.102 line $-4$ of answer 77 (10.05.30)
+${n_v+1\choose v}$ \becomes ${n_v+1\choose v+1}$
+\endchange
+
+\bugonpage 4f3.106 last line of answer 97 (10.06.09)
+$13300\swap14400$ \becomes $13300\swap14310$
+\endchange
+
+\bugonpage 4f3.108 line 2 of answer 107 (06.08.09)
+3-combinations \becomes 2-combinations
+\endchange
+
+\amendpage 4f3.109 new answer (06.08.09)
+{\advance\parindent by4pt
+\ans 111. $\del^{n-2r}B$ is the set of all $r$-subsets of $B$; these subsets
+must not be in~$A$. If $\vert A\vert=\break\vert B\vert=
+{x\choose n-r}$ for some real $x>n-1$,
+we would have ${n\choose r}\ge\vert A\vert+\vert\del^{n-2r}B\vert\ge
+{x\choose n-r}+{x\choose r}>{n-1\choose n-r}+{n-1\choose r}={n\choose r}$,
+by exercise 80. [See {\sl Quart.\ J. Math.\ Oxford\/ \bf12} (1961),
+313--320.]
+\par}
+\endchange
+
+\bugonpage 4f3.110 in the running headline (05.08.27)
+7.2.1.3 \becomes 7.2.1.4
+\endchange
+
+\improvepage 4f3.110 line 1 of answer 4 (10.06.11)
+We must \becomes Assume that $1\le r\le n$. We must
+\endchange
+
+\improvepage 4f3.110 simplification of step C4 in answer 5 (10.06.18)
+$c_2\gets c2+1$. Then \dots~$l_1\gets2$. \becomes
+$c_2\gets c_2+1$, and $l_{@[c_1>0]}\gets2$. % \[...]
+If $k\ne2$, also set $l_2\gets k$. Return to~C2.
+\endchange
+
+\amendpage 4f3.110 improved answer 6 (10.09.27)
+\ans6. Assume that each partition is followed by 0.
+Set $j\gets0$, $k\gets a_1$, and $b_{k+1}\gets0$. Then,
+while $k>0$, set $j\gets j+1$ and, while $k>a_{j+1}$, set
+$b_k\gets j$ and $k\gets k-1$.
+(We have used \eq(11) in the dual form $a_j-a_{j+1}=
+d_j$, where $d_1\ldots d_n$ is the part-count representation of
+$b_1b_2\ldots{}@$. This algorithm essentially walks along the rim
+of the Ferrers diagram; so its running time is roughly
+proportional to $a_1+b_1$, the number of parts in the output
+plus the number of parts in the input.)
+\endchange
+
+\amendpage 4f3.110 last line of answer 8 (10.06.14)
+$b_1b_2\ldots{}$ \becomes $(a_1a_2\ldots{})\losup T$
+\endchange
+
+\bugonpage 4f3.111 line 3 of answer 11 (08.09.22)
+infinite series $\prod_{k\ge1_{\mathstrut}}(1+z\losup k+z\losup{2k})
+ (1+z\losup{2k}+z\losup{4k})
+ (1+z\losup{5k}+z\losup{10k})$ \becomes \nl
+infinite product $\prod_{k\ge0}\prod_{@r\in\{10^k,2\cdot10^k,5\cdot10^k\}}
+ (1+z^r+z^{2r})$
+\endchange
+
+\amendpage 4f3.111 replacement for answer 13 (10.09.26)
+\ans13. Map the partition $c_1{\cdot}1+c_2{\cdot}2+c_3{\cdot}3+\cdots{}$ into
+$r_1{\cdot}1+\lfloor c_1/2\rfloor{\cdot}2+
+ r_3{\cdot}3+\lfloor c_2/2\rfloor{\cdot}4+
+ r_5{\cdot}5+\lfloor c_3/2\rfloor{\cdot}6+\cdots{}$,
+where $r_m=(c_m\mod2)+2(c_{2m}\mod2)+4(c_{4m}\mod2)+
+8(c_{8m}\mod2)+\cdots{}$;
+$433222211\mapsto64421111\mapsto8332211$.
+[{\sl Johns Hopkins Univ.\ Circular \bf2}
+(1882), 72.]\tighten
+\endchange
+
+\bugonpage 4f3.111 line 2 of answer 14 (08.09.22)
+odd permutation are centered and divided \becomes
+odd parts are centered and the partition is divided
+\endchange
+
+\amendpage 4f3.111 replacement for second paragraph of answer 14 (08.06.18)
+In general, when the ``Durfee rectangle'' (shown in the diagram) has
+$t$~rows, suppose there are $a_1$, \dots,~$a_t$ extra dots at the right
+and $b_t$, \dots,~$b_1$, \dots, $b_t$ extra dots below, where
+$a_1\ge\cdots\ge a_t\ge0$ and $b_1\ge\cdots\ge b_t\ge0$. Then the distinct
+parts obtained are $2t-1+a_1+b_1$, $2t-2+a_1+b_2$, \dots, $2+a_{t-1}+b_t$,
+$1+a_t+b_t$, and (if it's nonzero) $0+a_t$. Conversely, any partition
+with $2t$ distinct nonnegative parts can uniquely be written in this form.
+\endchange
+
+\amendpage 4f3.112 line 10 of answer 17 (06.10.23)
+``Partition bijections, a survey,'' to appear in {\sl The Ramanujan Journal}.
+\becomes
+{\sl The Ramanujan Journal\/ \bf12} (2006), 5--75.
+\endchange
+
+\bugonpage 4f3.112 line $-3$ of answer 17 (10.06.18)
+$r=0$ \becomes $s=0$
+\endchange
+
+\bugonpage 4f3.112 line $-3$ of answer 17 (06.07.31)
+$b_1<t$).\ \becomes $b_1<t$.
+\endchange
+
+\amendpage 4f3.113 replacement for first paragraph of answer 23 (10.06.18)
+\ans23. (Solution by Marc van Leeuwen.) Divide \eq(19) by $1-v$, to get
+$$\eqalign{\prod_{k=1}^{@\infty}(1-u^kv^{k-1})@(1-u^kv^k)@(1-u^kv^{k+1})
+&\;=\;\sum_{n=0}^\infty(-1)^n@u^{n+1\choose2}\biggl(
+ {v^{n\choose 2}-v^{n+2\choose2}\over1-v}\biggr)\cr
+&\;=\;\sum_{n=0}^\infty(-1)^n@u^{n+1\choose2}\sum_{k=0}^{2n}v^k;\cr}$$
+now set $u=z$ and $v=1$.
+\endchange
+
+\bugonpage 4f3.114 line 2 of answer 24 (08.09.22)
+summed over all integers $j$ and $k$ \becomes
+summed over all integers $j$ and all nonnegative integers~$k$
+\endchange
+
+\bugonpage 4f3.114 line 7 of answer 24 (08.09.22)
+$/P(z^5)$ \becomes $/P(z^5)^5$
+\endchange
+
+\bugonpage 4f3.114 line 4 of answer 26 (08.09.22)
+$e^{-\pi^2m^2n^2}$ \becomes $e^{-\pi^2m^2n}$
+\endchange
+
+\amendpage 4f3.114 Replacement for answer 27 (10.09.27)
+\ans27. First, $\int_{-\infty}^\infty e^{-a(y+b)^2+2ciy}\,dy=
+e^{-c^2\!/a-2bci}\int_{-\infty}^\infty e^{-au^2}\,du$, by the substitution
+$u=y+b-ci/a$. And $\int_{-\infty}^\infty e^{-au^2}\,du=\int_0^\infty
+e^{-t}\,dt/\sqrt{at}=\Gamma(\half)/\sqrt a=\sqrt{\pi/a}$, by the
+substitution $t=au^2$ and exercises 1.2.5--20, 1.2.6--43.\par\breathe
+Now \eq(30) follows from (29) because we have, for all integers $m$,
+$$g(3m+1)+g(-3m)=\sqrt{{2\pi\over t}}(-1)^m e^{-6\pi^2(m+{1\over6})^2\!/t}@;
+\quad g(3m+2)+g(-3m-1)=0.$$
+[See M.~I. Knopp, {\sl Modular Functions in Analytic Number Theory\/}
+(1970), Chapter~3.]
+\endchange
+
+\bugonpage 4f3.115 answer 28 (08.09.22)
+line $-2$: If $n={}$ \becomes If $k={}$\nl
+line $-1$: $2^{-t}\bigl(1+(-1)^{[e_1=1]}/p_1\bigr)\ldots
+              \bigl(1+(-1)^{[e_t=1]}/p_t\bigr)$ \becomes\nl\qquad\qquad
+           $2^{-t}\bigl(1+(-1)^{[e_1>1]}/p_1\bigr)\ldots
+              \bigl(1+(-1)^{[e_t>1]}/p_t\bigr)$
+\endchange
+
+\improvepage 4f3.115 line 7 of answer 31 (10.04.18)
+$f_{pq}$ \becomes $f_{p,q}$\qquad (twice)
+\endchange
+
+\bugonpage 4f3.115 line 7 of answer 31 (08.09.22)
+less than $m/q$ \becomes less than $\lfloor m/q\rfloor$
+\endchange
+
+\bugonpage 4f3.115 line 2 of answer 33 (08.09.22)
+$m=\sqrt n$ \becomes $m=\lfloor\sqrt n\rfloor$
+\endchange
+
+\bugonpage 4f3.116 last line of answer 37 (06.08.26)
+{\sl de Scienze Economiche e Commerciale\/} \becomes
+{\sl di Scienze Economiche e Commerciali\/}
+\endchange
+
+\amendpage 4f3.116 new answer 40 (10.09.28)
+\ans40. $[x^m]\,(1+zx)(1+z^2x)\ldots(1+z^{l-1}x)=
+z^{m(m+1)/2}{l-1\choose m}{\atop\!\?z}$, by exercise 1.2.6--58; this is
+$(z-z^l)(z^2-z^l)\ldots(z^m-z^l)/
+((1-z)(1-z^2)\ldots(1-z^m))$.
+The answer also follows from Theorem~C\null: Replacing $a_1\ldots a_m$ by
+$(a_1-m)\ldots(a_m-1)$ gives an equivalent partition of $n-m(m+1)/2$ into at
+most $m$ parts, not exceeding $l-1-m$.
+\endchange
+
+\amendpage 4f3.117 new answer 43 (10.06.18)
+\ans43. $p\bigl(n-k(k-1)/2\bigr)$. (Change $a_1a_2\ldots a_k$ to
+$(a_1-k+1)(a_2-k+2)\ldots a_k$ to get an equivalent partition
+of $n-k(k-1)/2$.)
+\endchange
+
+\improvepage 4f3.118 part {(e)} of answer 50 (10.05.30)
+line 1: The \becomes Continuing the previous exercise and its answer, the\nl
+lines 2 and 3: $(1-z)$, where $F_k(z)$ is defined in the previous
+exercise. \becomes $(1-z)$.
+\endchange
+
+\bugonpage 4f3.118 last line of answer 53 (07.02.07)
+20~8~8~8~6~5~4~3~3~3~3~2~$1^{19}$ \becomes
+20~8~8~8~8~6~5~4~3~3~3~3~2~$1^{19}$
+\endchange
+
+\bugonpage 4f3.118 part {(b)} of answer 54 (05.11.05)
+$n-kl$ \becomes $n+kl$\qquad\qquad(three changes)
+\endchange
+
+\bugonpage 4f3.118 line 3 of answer 54 (10.06.18)
+$a'_k$ \becomes $a'_{@l}$
+\endchange
+
+\bugonpage 4f3.118 the end of answer 54{(c)} (05.11.05)
+$0\le\cdots\le c_{k+1}\le\cdots c_k$ \becomes
+$0\le\min(a_{k+1},b_{k+1})\le
+     \min(a_{k+1},b_{k+1}+b_1+\cdots+b_k-a_1-\cdots-a_k)
+=c_{k+1}\le a_{k+1}\le a_k=c_k+(c_1+\cdots+c_{k-1})
+-(a_1+\cdots+a_{k-1})\le c_k$.
+\endchange
+
+\bugonpage 4f3.118 in part {(f)} of answer 54 (10.06.18)
+False \dots~$(17\,16\,5\,5\,4)$. \becomes
+False for $\alpha\vee\beta@$; for example, $6321\vee543=633$ in Fig.~52.
+\endchange
+
+\amendpage 4f3.118 and 119, simplification of answer {55(a)} (10.06.11)
+Find the smallest $k$ \dots $\[k=l'+1]$. \becomes
+Find the smallest~$k$ with $a_k>b_k$,
+the smallest $l$ with $a_k>a_{@l+1}$, and the smallest $m$ with
+$a_k-1>a_{m+1}$. (Note that $b_k>0$.)
+If $a_m>a_{m+1}+1$, define
+$\gamma=c_1c_2\ldots{}$ by $c_k=a_k-\[k=m]+\[k=m{+}1]$.
+Otherwise let $c_k=a_k-\[k=l]+\[k=m{+}1]$.
+\endchange
+
+\bugonpage 4f3.120 line $-3$ of answer 57 (08.09.22)
+40--70 \becomes 49--70
+\endchange
+
+\bugonpage 4f3.121 line $-1$ of answer 59 (08.09.22)
+(see exercise~16) \becomes (see exercise~15)
+\endchange
+
+\amendpage 4f3.122 line $-2$ of answer 64 (09.07.23)
+to appear.\ \becomes
+ {\tt http:/\kern-.1em/arxiv.org/abs/0907.3873\kern.1em}.
+\endchange
+
+\improvepage 4f3.122 line $-7$ of answer 66 (08.09.22)
+for all such \becomes for the number of all such
+\endchange
+
+\bugonpage 4f3.123 line 5 of answer 68 (08.09.22)
+No part \becomes Assume that $n>1$. Then no part
+\endchange
+
+\amendpage 4f3.124 lines 12--13 (09.09.11)
+The origin of the problem is unknown; see \becomes
+The problem reportedly stems from Russia via Bulgaria and Sweden.
+See also
+\endchange
+
+\amendpage 4f3.124 new answer (09.09.11)
+\ans72. Equivalently, $a_1<m-1$ [B. Hopkins and J.~A. Sellers,
+{\sl Integers\/ \bf7},\thinspace2 (2007), \#A19].\nl
+\smallskip[The former answer 72 now becomes number 73.]
+\endchange
+
+\amendpage 4f3.124 line 1 of answer 73 {(formerly 72)} (07.08.21)
+Swap \becomes [R. Stanley, 1972 (unpublished).] Swap
+\endchange
+
+\amendpage 4f3.125 line 4 of answer 7 (07.04.25)
+``Partially ordered \dots~to appear \becomes
+{\sl Discrete Math.\ \bf298} (2005), 212--229
+\endchange
+
+\amendpage 4f3.131 lines 5--7 (07.04.25)
+in the paper ``Crossings \dots~partitions'' \becomes in a paper\nl
+(preprint, 2005) \becomes
+[{\sl Transactions of the Amer.\ Math.\ Soc.\ \bf359} (2007), 1555--1575]
+\endchange
+
+\amendpage 4f3.131 line $-2$ of answer 27 (05.11.05)
+S. Fomin, \becomes
+A.~Berele, {\sl J. Combinatorial Theory\/ \bf A43} (1986), 320--328;
+S.~Fomin,
+\endchange
+
+\bugonpage 4f3.132 line 3 of answer 29 (08.06.06)
+example of Fig.\ 35 \becomes example of Fig.\ 56
+\endchange
+
+\bugonpage 4f3.132 line 23 of answer 29 (06.06.27)
+[The formula \becomes \em Notes: The formula
+\endchange
+
+\bugonpage 4f3.134 last line of answer 35 (08.10.19)
+{\bf 58} (1954) \becomes {\bf 58} (1952)
+\endchange
+
+\bugonpage 4f3.138 line $-4$ of answer 53 (08.06.06)
+See P. L. Chebyshev \becomes [See P. L. Chebyshev
+\endchange
+
+\amendpage 4f3.141 lines 2 and 3 of answer 68 (07.01.18)
+The maximum level is also equal to~$n$. \becomes
+Then the values of $l+1=n$ and $b=mn_1+(m-1)n_2+\cdots+n_m$ 
+reach their maximum.
+[Thus it's best to choose names of the multiset elements
+so that $n_1\le n_2\le\cdots\le n_m$.]
+\endchange
+
+\bugonpage 4f3.142 bottom line of answer 76 (10.06.17)
+exercise 75 \becomes exercise 73
+\endchange
+
+\bugonpage 4f3.143 replacement for domino displays in answer 82 (05.09.17)
+\begingroup\chardef\2="B2 \chardef\3="B3 \chardef\6="B6
+\font\dom=domino scaled 500
+\def\\#1#2{\vcenter{\offinterlineskip\hbox{\dom#1}\hbox{\dom#2}}}%
+$$\thickmuskip=8mu
+\\1\2\equiv\\\24\equiv\\\3\6\,,\quad
+\\1\3\equiv\\\2\6\,,\quad
+\\\2\3\equiv\\4\6\,.$$
+$$\\\21+\\15+\\4\2+\\5\3+\\\6\3\;=\;
+\\1\3+\\\61+\\\25+\\\2\6+\\45\;=\;
+\\41+\\\2\3+\\4\3+\\4\6+\\\65$$
+\medskip
+\endgroup
+\endchange
+
+\expandafter\ifx\csname indexeject\endcsname\relax\else\vfill\eject\fi
+\amendpage 4f3.144 and following (05.06.23)
+Miscellaneous changes to the existing index of Volume~4 Fascicle~3
+are collected here,
+including corrections and amendments to the old entries as well as new entries
+that are occasioned by the new material. Thus, the lines of the full index
+that have changed serve also as an index to the present document. However,
+when a correction or amendment has caused an old index entry to be deleted,
+the deletion is usually not indicated.
+
+\input exotic
+\begindoublecolumns
+\indexformat
+\gdef\Uni1.08:{\bitmap24:1.08:}
+\hangindent2em
+Becker, Harold William, 129, 134. % 2nd
+Bell numbers, 64--65, 80--84, 123, 125. % 6th
+Berele, Allan, 131. % 2nd
+Bitstring notation: Data represented as a string of $0@$s and~1s, 1--2, 26, 28. % 2nd
+Bitwise operations, 4, 95, 109. % 2nd
+Catalan numbers, 101. % 5th
+Com\'et, Stig, 40. % 2nd
+Dominance order, \see Majorization. % 2nd
+Erd\H{o}s, P\'al (= Paul), 19, 35, 46, 57. % 2nd
+$f$-vectors, \see Size vectors. % 2nd
+Ferrers diagrams, 39--40, 45, 48, 51, 72, 118, 120, 123, 131. % 6th
+Fibonacci, Leonardo, of Pisa (= Leonardo filio Bonacii Pisano), recurrence, 42. % 2nd
+Fomin, Sergey Vladimirovich ({\rus Fomin, Sergei0 Vladimirovich}), 131. % 2nd
+Goldman, Jay Robert, 132. % 2nd
+Hickey, Michael, 16, 97. % 2nd
+Inclusion and exclusion principle, 46, 57, 134, 139. % 2nd
+Ko, Chao (= Ke Zhao, \GC74:74:-3:61% G3134
+<001e0000000000000000001fc000000000000000000ff000000000000000000ff0000000%
+ 00000000000ff000000000000000000ff000000000000000000f8000000000001c00000f%
+ 8000000000003e00000f8000000000007f00000f807fffffffffff80000f803fffffffff%
+ ffc0000f801fffffffffffc0000f80060000001f8000000f80000000001f8000000f8000%
+ 0000001f8000000f81c00000001f8000000f83e00000001f8000000f87f00000001f8000%
+ fffffff80000001f80007ffffffc0000001f80003ffffffc0000001f8000080f80038001%
+ c01f8000000f8003c003e01f8000000f8003f007f01f8000001f8003fffff81f8000001f%
+ 8003fffffc1f8000001f8003f003e01f8000001f8001f003e01f8000001f8001f003e01f%
+ 8000001f8001f003e01f8000003f8001f003f01f8000003ff001f003f01f8000007ffe01%
+ f003f01f8000007fff81f003f01f8000007fffc1f003f01f800000ff9fe1f003f01f8000%
+ 00ff8ff1f003f01f800000ff87f1f003f01f800001ef83f9f003f01f800001ef81f9f003%
+ f01f800003cf80f9f003f01f800003cf80f9f003f01f8000078f8079f003f01f8000078f%
+ 8021f003f01f80000f0f8001f003f01f80000f0f8001f003f01f80001e0f8001fffff01f%
+ 80001e0f8001fffff01f80003c0f8001f003f01f80007c0f8003f003f01f8000780f8003%
+ f003f01f8000e00f8003f003f01f8000c00f8003f003e01f8000800f8003f000001f8000%
+ 800f8003f000001f8000000f8003f000001f8000000f80000000001f8000000f80000000%
+ 001f8000000f80000000001f8000000f80000000001f8000000f80000000001f8000000f%
+ 80000000001f8000000f80000000001f8000000f80000000001f8000000f80000000001f%
+ 8000000f80000000ffff8000001f80000000ffff8000001f800000001fff8000001f8000%
+ 000007ff0000001f8000000003ff0000001f8000000001ff0000001f8000000000fe0000%
+ 001f0000000000fe0000001f0000000000f00000>%% Unicode char "67ef
+\GC68:72:-5:59% G5357
+<000000000000000e00000000000000003f00000000000000007f801fffffffffffffffc0%
+ 0fffffffffffffffe007fffffffffffffff00200001fc000003ff00000001fc000003fc0%
+ 0000001f8000003f000000003f8000003f000000003f8000003f000000003f8000003f00%
+ 0000003f8000003f000000003f8000007f000000003f0000007f000000003f0000007f00%
+ 0000007f0000007e000000007e0000007e00000000fe000000fe00000000fc000000fe00%
+ 000001fc000001fe00000001f8000001fc00000003f8000001fc00000003f0000001f800%
+ 000007f001f803f80000000fe001ff83f00000000fc0001ffff00000001f800007ffe000%
+ 00003f800003ffe00000007f000001ffc00000007e000000ff80000000fc000000ff0000%
+ 0001fc0000007e00000003f80000004000000007f0000000000000000fe000000000e000%
+ 001ffc00000001f800003e7f00000003fc00007c7ffffffffffe0001f07ffffffffffe00%
+ 07e07ffffffffffe000f007e00000001f8003c007e00000001f800e0007e00000001f800%
+ c0007e00000001f80000007e00000001f80000007e00000001f80000007e00000001f800%
+ 00007e00000001f80000007e00000001f80000007e00000001f80000007e00000001f800%
+ 00007e00000001f80000007e00000001f80000007e00000001f80000007e00000001f800%
+ 00007e00000001f80000007e00000001f80000007e00000001f80000007e00000001f800%
+ 00007ffffffffff80000007ffffffffff80000007ffffffffff80000007e00000001f800%
+ 00007e00000001f80000007e00000001f80000007e00000001f80000007e00000001f800%
+ 00007e00000001f8000000fe00000001f8000000fc00000001f8000000fc00000001f000%
+ >%%  Unicode char "53ec
+), 35. % 2nd
+Leeuwen, Marcus Aurelius Augustinus van, 113, 131. % 6th
+Left-child/right-sibling links, 90. % 2nd
+Lenin, Vladimir Ilyich ({\rus Lenin, Vladimir~Ilp1ich}), 11. % 2nd
+Littlewood, Dudley Ernest, 120. % 2nd
+Littlewood, John Edensor, 121. % 2nd
+Loizou, Georghios (= George; {\grk Lo"'izou, Ge'wrgios}), 110, 111. % 2nd
+Loopless generation, 8, 25, 27, 28, 92, 96--98, 110. % 4th
+Miller, Joan Elizabeth, 8, 27. % 2nd
+Motzkin, Theodor (= Theodore) Samuel \indexbreak
+ ({\heb\Hfn/\Hyy/\Hqq/\Hts/\Hvv/\Hmm/
+ \Hll/\Haa/\Hvv/\Hmm/\Hsh/ \Hrr/\Hvv/\Hdd/\Hvv/\Haa/\Hyy/\Htv/}), 77, 128, 141. % 2nd
+Multisets, permutations of, 4, 14--15, 29, 30, 41, 89, 98, 123. % 4th
+Naud\'e, Philippe, junior, 41. % 6th
+Notational conventions:\indexnoperiod % 2nd
+\sub $\Gamma^R$ (reversal), 8. % 2nd
+\sub ${n\parts m}^{\mathstrut}_{\mathstrut}$ (the number of partitions of~$n$ into exactly $m$~parts), 38. % 2nd
+Permutations, of a multiset, 4, 14--15, 29, 30, 41, 89, 98, 123. % 4th
+Rad\'o, Richard, 35. % 2nd
+Rota, Gian-Carlo, 36. % 2nd
+Seth, Vikram ({\dn Evk\kern-1em\char125\kern.3emm s\kern-0.8em\char3W}), ii, 83. % 2nd
+Sideways heap, 90. % 2nd
+Stojmenovi\'c, Ivan Dan\v{c}a ({\rus Stojmenovits1, Ivan Dancha}), 37. % 2nd
+Tableau shapes, 40, 81, \see Ferrers diagrams. % 6th
+Ulyanov, Vladimir Ilyich ({\rus Ulp1yanov, Vladimir Ilp1ich}), 11. % 2nd
+van Leeuwen, Marcus Aurelius Augustinus, 113, 131. % 6th
+Williams, Aaron Michael, 97--98. % 4th
+Zoghbi, Antoine Chaiban \indexbreak
+ ({\arab\Afy/\Amb/\Aigh/\Afz/\Ail/\Aa/ \An/\Afa/\Amb/\Amy/\Aish/ \An/\Afw/\Amtt/\Ain/\Aha/}), 37. % 2nd
+
+\vfill
+\enddoublecolumns
+\endchange
+
+\bye
+
+[The next printing would have been the 6th.]
+not listed above:
+page 38, I've changed the introductory remarks at beginning of algs P and H
+page 42, I've qualified (20) to consider the cases of n<=0
+page 61, new phrase in line 3 of exercise 73
+page 136, line 1 better spacing (H1, ...)
+
+check |gosper-hack|=20 in 7.1.3.ref, regarding page 4f3.4
+
+ARTICLES "TO APPEAR" THAT ARE STILL PENDING:
+

@@ -1,0 +1,756 @@
+% CHANGES TO VOLUME 1 OF THE ART OF COMPUTER PROGRAMMING
+%
+% Copyright (C) 2011, 2012, 2013, 2014, 2015 Donald E. Knuth
+% This file may be freely copied provided that no modifications are made.
+% All other rights are reserved.
+%
+% Three levels of changes to the books are distinguished here:
+%
+% "\bugonpage" introduces the correction of an error;
+% "\amendpage" introduces new material for future editions;
+% "\improvepage" introduces ameliorations of lesser importance.
+%
+% (Changes introduced by \improvepage do not appear in the hardcopy listing.)
+%
+% Also, "\planforpage" introduces some of the author's half-baked intentions.
+%
+
+% NOTE: TO PUT THE INDEX ON A SEPARATE PAGE, RUN THIS WITH THE COMMAND LINE
+%   tex "\let\indexeject+ \input err1"
+
+\newif\ifall % \alltrue means show the trivial items too
+\relax % hook
+
+\def\vertical{|}
+\def\inref#1 #{\expandafter\def\csname\vertical#1\endcsname}
+\catcode`|=\active
+\let|\inref \input \jobname.ref
+\catcode`|=12
+
+\input taocpmac % use the format for TAOCP, with modifications below
+
+\def\becomes{\ifmmode\ \hbox\fi{\manfnt y}\ } % wiggly arrow indicates a change
+
+\def\bugonpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt\llap{\manfnt x}% print a black triangle in left margin
+   {\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\amendpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\improvepage#1.#2 #3 (#4) {\ifall
+  \medbreak\ninepoint
+  \line{\kern-6pt{\sl Page #2\enspace #3\/}
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\noindent}
+\def\planforpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hbox to 5pt{\hss.\hss}\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\begingroup\let\endchange=\endgroup\sl\noindent}
+\let\endchange=\fi
+\def\nl{\par\noindent}
+\def\nlh{\par\noindent\hangit}
+\def\hangit{\hangindent2em}
+\def\cutpar{{\parfillskip=0pt\par}}
+
+\def\date#1.#2.#3.{% convert "yy.mm.dd." to "dd Mon 19yy"
+  #3
+  \ifcase#2\or Jan\or Feb\or Mar\or Apr\or May\or Jun\or
+               Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi
+  \ \ifnum #1<97 \hundred#1\else19#1\fi}
+\def\hundred{20} % the "century" for dates before '97
+
+\def\ex #1. [#2]{\ninepoint
+  \textindent{\bf#1.}[{\it#2\/}]\kern6pt}
+\def\EX #1. [#2]{\ninepoint
+  \textindent{\llap{\manfnt x}\bf#1.}[{\it#2\/}]\kern6pt}
+
+\def\foottext#1{\medskip
+        \hrule height\ruleht width5pc \kern-\ruleht \kern3pt \eightpoint
+        \smallskip\textindent{#1}}
+\def\volheadline#1{\line{\cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill
+       \titlefont\ #1\ \cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill}}
+\def\refin#1 {\let|\inref \input #1.ref \let|\crossref}
+
+\let\defaultpointsize=\tenpoint
+
+%%%%%%%%%%%%%% opening remarks %%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{INTRODUCTION}
+\let\rhead=\lhead
+\titlepage
+\volheadline{THE ART OF COMPUTER PROGRAMMING}
+\bigskip
+\volheadline{ERRATA TO VOLUME 1 (after 2010)}
+\bigskip
+
+\noindent This document is a transcript of the notes that I have been making
+in my personal copy of {\sl The Art of Computer Programming}, Volume~1 (third
+edition, 27th printing), since it was first printed in 2011.
+Previous errata are recorded in another file `{\tt all1-pre.ps}'.
+
+\ifall Four levels of updates\dash---``errors,'' ``amendments,'' ``plans,''
+   and ``improvements''\dash---appear, indicated by four
+\else Three levels of updates\dash---``errors,'' ``amendments,'' and
+   ``plans''\dash---appear, indicated by three \fi
+different typographic conventions:
+\begingroup\def\hundred{17}
+
+\bugonpage 0.666 line 1 (76.07.04)
+Technical or typographical errors (aka bugs) are the most critical items, so
+they are flagged with a `\thinspace{\manfnt x}\thinspace' preceding the page
+number. The date on which I first was told about the bug is shown; this is the
+effective date on which I paid the finder's fee. The necessary
+corrections are indicated in
+a straightforward way. If,~for example, the book says
+`$n$' where it should have said `$n+1$', the change is shown thus:
+\smallskip
+$n$ \becomes $n+1$
+\endchange
+
+\amendpage 0.666 line 2 (89.07.14)
+Amendments to the text appear in the same format as bugs, but without
+the~`\thinspace{\manfnt x}\thinspace'. These are things I wish I had known
+about or thought of when I wrote the original text, so I added them later.
+The date is the date I drafted the new text.
+\endchange
+
+\def\hundred{19}
+
+\planforpage 0.666 line 3 (17.11.20)
+Plans for the future represent a third kind of item. In such notes I~sketched
+my intentions about things that I wasn't ready to flesh out further when
+I~wrote them down. You can identify these items because they're written in
+slanted type, and preceded by a bunch of dots
+`\hbox to 6em{\leaders\hbox to 5pt{\hss.\hss}\hfill}' leading to the date on
+which I recorded the plan in my files.
+\endchange
+
+\improvepage 0.666 line 4 (38.01.10)
+The fourth and final category\dash---indicated by page and line number in
+smaller, slanted type\dash---consists of minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+You wouldn't even
+be seeing these items if you hadn't specifically chosen to print the complete
+errata list in all its gory details.
+Are you sure you wanted to do that?
+\endchange
+
+\endgroup
+\ifall\else\medskip\ninepoint
+My personal file of updates also includes a fourth category of items, not
+shown in this list. They are miscellaneous minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+If you really want to see all of the gory details,
+you can download the full list from Internet webpage
+$$\.{http://www-cs-faculty.stanford.edu/\char`\~knuth/taocp.html}$$
+by selecting the ``long form'' of the errata.
+\fi
+
+\medskip
+\tenpoint
+My shelves at home are
+bursting with preprints and reprints of significant research results that I
+want to digest and summarize, where appropriate, in the ultimate edition of
+Volume~1. I didn't do that in the third edition because I would surely have to do
+it over again later: New results continue to pour forth at a great rate, and I
+will have time to rewrite that volume only~once. Volumes 4 and~5 need to be
+finished first. So I've put most of my effort so far into writing up
+those parts of the total picture that seem to have converged to their
+near-final form. It follows, somewhat paradoxically, that the updates in this
+document are most current in the areas where there has been least activity.
+
+On the other hand I do believe that the changes listed here bring Volume~1
+completely up to date in two respects: (1)~All of the research problems in the
+previous edition\dash---i.e., all exercises that were rated 46 and
+above\dash---have received new ratings of 45 or less whenever I learned of a
+solution; and in such cases, the answer now refers to that solution.
+(2)~All of the historical information about pioneering developments has been
+amended whenever new details have come to my attention.
+
+\beginconstruction
+The ultimate, glorious, 100\% perfect editions of Volumes 1--4A are works in progress.
+Please let me know of any improvements that you think I ought to make.
+Send your comments either by snail mail to D.~E. Knuth, Computer
+Science, Gates Building 4B, Stanford University, Stanford CA~94305-9045,
+or by email to
+{\tt taocp{\char`\@}cs.stanford.edu}. (Use email for book suggestions
+only, please\dash---all
+other correspondence is returned unread to the sender, or discarded,
+because I have no time to
+read ordinary email.) Although I'm working full time on
+Volume~4B these days, I~will try to reply to all such messages
+within a year of receipt. Current news about {\sl The Art of Computer
+Programming\/} is posted on
+$$\.{http://www-cs-faculty.stanford.edu/\char`~knuth/taocp.html}$$
+and updated regularly.
+\par\endconstruction
+\rightline{\dash---Don Knuth, January 2011}
+
+\bigskip
+\bigskip
+{\quoteformat
+What happened?
+The subject took the bit in its teeth and ran away with it,
+that's what happened.
+I know now how Sir James Frazer felt when,
+after setting out to dash off a brief monograph
+on a single obscure rite, he found himself
+in the embarrassing possession of
+the 12 volumes of ``The Golden Bough.''
+\author WAVERLEY ROOT (1974)
+% International Herald Tribune, 22 May 1974, p8
+\vfill\eject
+}
+
+\def\today{\number\day\space\ifcase\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi
+  \space\number\year}
+
+%%%%%%%%%%%%%%% CHANGES FOR VOLUME 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{CHANGES TO VOLUME 1: FUNDAMENTAL ALGORITHMS}
+\let\rhead=\lhead
+\titlepage
+\volheadline{FUNDAMENTAL ALGORITHMS}
+\bigskip
+\rightline{Copyright \copyright\ 2011, 2012, 2013, 2014, 2015
+ Addison\with Wesley; all rights reserved}
+\rightline{Last updated \today}
+\bigskip
+\rightline{\sl Most of these corrections have already been made in
+                  recent printings.}
+\smallskip
+\let\defaultpointsize=\tenpoint
+
+\bugonpage 1.0 (on the back page of the dustcover, line 23) (12.09.10)
+{\eightss Whatever your backgound, \becomes Whatever your background,}
+\endchange
+
+\bugonpage 1.x line 14 (16.03.24)
+American Mathematical Monthly \becomes
+The American Mathematical Monthly
+\endchange
+
+\amendpage 1.xi new paragraph to follow line 20 (13.11.25)
+My efforts to extend and enhance these volumes have been enormously
+enhanced since 1980 by the wise guidance of Addison--Wesley's editor
+Peter Gordon. He has become not only my ``publishing partner'' but also
+a close friend, while continually nudging me to move in fruitful directions.
+Indeed, my interactions with dozens of Addison--Wesley people during more
+than three decades have been much better than any author deserves. The
+tireless support of managing editor John Fuller, whose meticulous
+attention to detail has maintained the highest standards of production
+quality in spite of frequent updates, has been particularly praiseworthy.
+\endchange
+
+\improvepage 1.xi line 5 before the author's signature (15.09.23)
+nobody noticed \becomes nobody else noticed
+\endchange
+
+\amendpage 1.xvi line 16 (11.06.16)
+a {\it 45\/} rating \becomes
+a {\it 40\/} rating
+\endchange
+
+\amendpage 1.xvi line 20 (13.01.30)
+creativity.\ \becomes
+creativity. All exercises with ratings of {\it46\/} or more are open problems
+for future research, rated according to the number of
+different attacks that they've resisted so far.
+\endchange
+
+\improvepage 1.6 lines 1--3 (13.03.13)
+$\{m,n\}$ \becomes $m$ and $n$ [twice]\nl
+$\{n,r\}$ \becomes $n$ and $r$ [twice]
+\endchange
+
+\improvepage 1.8 lines $-5$ and $-4$ (13.03.13)
+Such a computational method \dots\ it is also \becomes
+Every step of such a computational method is clearly
+effective, and experience shows that pattern-matching rules of this kind are
+also
+\endchange
+
+\amendpage 1.9 the rating of exercise 7 (14.04.05)
+\ninepoint {\it M21\/} \becomes {\it\HM21\/}
+\endchange
+
+\improvepage 1.11 lines 3--4 (15.05.06)
+An expansion \dots\ can \becomes
+A more leisurely presentation of much of the
+following material, together with related concepts, can
+\endchange
+
+\bugonpage 1.17 line 26 (13.12.15)
+{\bf11} (1838) \becomes {\bf12} (1838)
+\endchange
+
+\improvepage 1.18 clarification in exercise 4 (13.02.10)
+\ninepoint $\phi^{n-2}$. \becomes $\phi^{n-2}$ for all positive integers $n$.
+\endchange
+
+\improvepage 1.19 clarification in exercise 5 line 1 (13.02.05)
+exact divisors \becomes positive integer divisors
+\endchange
+
+\improvepage 1.22 lines 1 and 3 after {\eq(8)} (13.01.20)
+$10^x$ \becomes $b^x$ \qquad[two places]
+\endchange
+
+\amendpage 1.23 line 1 after {\eq(13)} (15.02.22)
+Edward M. Reingold. \becomes
+Ernesto Trucco [{\sl Bull.\ Math.\ Biophysics\/ \bf18} (1956), 130].
+\endchange
+
+\bugonpage 1.27 line 1 (11.07.22)
+\ninepoint $n>1$ \becomes $n>1$ and $n\ne e$.
+\endchange % actually I've also changed $n$ to $x$ in this exercise
+
+\bugonpage 1.50 line $-5$ (14.06.15)
+{\sl della Scienze\/} \becomes {\sl delle Scienze\/}
+\endchange
+
+\improvepage 1.70 in exercise 25 (13.10.07)
+\ninepoint
+line 1: as in Eq.~\eq(30). \becomes as in Example~4 (see Eq.~\eq(30)).\nl
+line 5: the identity \becomes multiples of a special case of \eq(34),
+\endchange
+
+\bugonpage 1.70 line 2 of exercise 25 (13.10.07)
+\ninepoint provided $z$ is small enough \becomes
+provided that $x$ is close enough to 1
+\endchange
+
+\amendpage 1.79 new exercise for Section 1.2.7 (13.02.11)
+\ninepoint
+\ex25. [M21] Let $H_n^{(u,v)}=\sum_{1\le j\le k\le n}1/(j^uk^v)$.
+What are $H_n^{(0,v)}$ and $H_n^{(u,0)}$?
+Prove the general identity
+$H_n^{(u,v)}+H_n^{(v,u)}=H_n^{(u)}H_n^{(v)}+H_n^{(u+v)}$.
+\endchange
+
+\improvepage 1.104 line 11 (14.06.26)
+random variable \becomes random integer
+\endchange
+
+\amendpage 1.104 new sentence preceding the exercises (12.07.19)
+\noindent[S.~Bernstein had contributed key ideas in {\sl Uchenye zapiski
+Nauchno-\nl\quad Issledovatel'skikh kafedr Ukrainy\/ \bf1} (1924), 38--48.]
+\endchange
+
+\amendpage 1.110 lines 14--16 (14.07.01)
+We have \dots\ This equation \becomes We have
+$$\root n\of{n}=
+e^{\ln n/n}=1+(\ln n/n)+O\bigl((\log n/n)^2\bigr),\eqno(18)$$
+because $\log n/n\to0$ as $n\to\infty$; see exercises 8 and~11.
+(Notice that we needn't specify the base of `log' inside $O$-notation,
+where constants are ignored.) This equation
+\endchange
+
+\amendpage 1.111 line above Fig.~12 (12.07.08)
+{\sl Petropoli\-tan\ae\/} \becomes {\sl Imperialis Petropoli\-tan\ae\/}
+\endchange
+
+\amendpage 1.114 line 7 (13.02.26)
+is less than \becomes is less in absolute value than
+\endchange
+
+\improvepage 1.116 line 2 of exercise 8 (12.02.18)
+${cn^2\choose n}\big/c^n{n^2\choose n}$ \becomes
+${cn^2\choose n}\big/\bigl(c^n{n^2\choose n}\bigr)$
+\endchange
+
+\amendpage 1.144 line 2 (11.11.29)
+\ninepoint to zero. \becomes to zero,
+and the overflow toggle is cleared.
+\endchange
+
+\amendpage 1.151 line $-11$ (11.11.29)
+{\sl set to zero\/} \becomes {\sl set to positive zero\/}
+\endchange
+
+\improvepage 1.173 line 3 after the table (13.12.15)
+table. \becomes
+table, except that the unknown
+destination of $e$ is represented there by `)' not `?'.
+\endchange
+
+\bugonpage 1.229 line 11 (11.02.06)
+{\sl Mechanization\/} \becomes {\sl Mechanisation}
+\endchange
+
+\amendpage 1.229 lines 25--29 (15.12.19)
+see {\sl Proceedings}\ \dots\ 87--90; B.~E. Carpenter \dots\ 78--79.  \becomes
+see B.~E. Carpenter \dots\ 78--79. See also H.~D. Huskey's mention of
+``reversion storage'' in {\sl Proceedings}\ \dots\ 87--90.
+\endchange
+
+\amendpage 1.242 line 2 (12.04.28)
+top, front \becomes top, bottom, front
+\endchange
+
+\bugonpage 1.268 program line {\it 71\/} (12.06.30)
+\ninepoint \tt QLINK(F) \becomes QLINK[F]
+\endchange
+
+\improvepage 1.275 line 7 (12.09.06)
+list have \becomes list must have
+\endchange
+
+\amendpage 1.303 in the line before {\eq(13)} (11.08.29)
+transformation: \becomes
+transformation (see M.~H. Doolittle,
+{\sl Report of the Superintendent of the U.~S. Coast and Geodetic Survey\/}
+(1878), 115--120):
+\endchange
+
+\amendpage 1.331 rating of exercise 14 (12.08.15)
+\ninepoint {\it22\/} \becomes {\it20\/}
+\endchange
+
+
+\bugonpage 1.339 replacement for line 17 (11.03.14)
+$$D(y)=3\bigl( 1/(x+1)\bigr) -\bigl(-(a(2x))/(x^2)^2\bigr),\eqno(21)$$
+\endchange
+
+\amendpage 1.465 new quotation {(to follow the one by Lehmer)} (13.08.18)
+{\quoteformat
+I must explain, to begin with,
+that all the Trees, in this system, grow {\rm head-downwards:}
+the Root is at the {\rm top,} and the Branches are {\rm below.}
+If it be objected that the name ``Tree'' is a misnomer, my answer
+is that I am only following the example of all writers on {\rm Genealogy.}
+A {\rm Genealogical$\!$} tree {\rm always} grows {\rm downwards:}
+then why may not a {\rm $\,$Logical$\!$} ``Tree'' do likewise?
+\author LEWIS CARROLL, in {\sl Symbolic Logic\/} (1896)
+% book XII, chapter II; page 281 of Bartlett's editions
+% galley proofs sent out 6 Nov 1896, then lost but eventually published 1977
+}
+\endchange
+
+\let\defaultpointsize=\ninepoint % get ready for answer pages
+
+\amendpage 1.466 append new copy at the end of answer 7 (14.08.10)
+For example, try $m=5$ and $n=1$, 2, \dots: The average of
+1, 2, 3, 2, 1,
+3, 4, 5, 4, 2,
+3, 4, 5, 4, 2, \dots\ is 3.6.
+\endchange
+
+\amendpage 1.467 new line at end of answer 8 (13.04.29)
+\noindent
+Each iteration either decreases $m$ or keeps $m$ unchanged and decreases~$n$.
+\endchange
+
+\amendpage 1.469 new lines at end of answer 8 (13.02.26)
+\noindent
+This construction can't make $d_k=9$ for all $k>l$, because that could
+happen only if $(n+d_1/10+\cdots+d_l/10^l+1/10^l)^m\le u$.
+\endchange
+
+\improvepage 1.470 in step E1 of answer 28 (11.10.28)
+If $1-\epsilon$ \dots $k\gets1$. \becomes
+Set $x\gets1-\epsilon-x$, $y\gets y_0$,
+and $k\gets1$, where $1-\epsilon$ is the largest possible value
+of~$x$, and $y_0$ is the nearest approximation to $b^{1-\epsilon}$.
+\endchange
+
+\amendpage 1.472 new copy for end of answer 31 (11.10.20)
+Consequently we have $\bigl(\sum_{j=1}^n u_j\bigr)\bigl(\sum_{j=1}^n v_j\bigr)
+\le n\sum_{j=1}^n u_jv_j$ when $u_1\le u_2\le\cdots\le u_n$ and
+$v_1\le v_2\le\cdots\le v_n$, a result known as {\it Chebyshev}'s
+monotonic inequality. [See {\sl Soobshch.\ mat.\ obshch.\ Khar'kovskom
+Univ.\ \bf4},\thinspace2 (1882), 93--98.]
+\endchange
+
+\amendpage 1.474 lines 3--5 of answer 43 (11.11.26)
+as in exercise 44 \dots\ $(x_i-1)\bigr)$. \becomes
+by setting $x=1$ in exercise~40 and obtaining
+${\prod_{k\ne i}(x_k-1)/x_i\prod_{k\ne i}(x_k-x_i)}$. After multiplying
+numerator and denominator by $x_i-1$, we can sum on $i$
+by applying exercise~33 with $r=0$ to the $n+2$ numbers
+$\{0,1,x_1,\ldots,x_n\}$.
+\endchange
+
+\amendpage 1.476 replacement for answer 4 (13.12.22)
+\ans4.  By part (f), $x\le\lceil x\rceil<x+1$;
+hence $-x-1<-\lceil x\rceil \le-x$; use part~(e).
+\endchange
+
+\amendpage 1.485 replacement for answer 22 (13.09.10)
+\ans22.  Assume that $n>0$. The $k$th term is $r/(r-tk)$ times
+$$\displaylines{\quad{1\over n!}\Bigl({n\atop k}\Bigr)
+  \prod_{0\le j<k}(r-tk-j)\prod_{0\le j<n-k}(n-1-r+tk-j)
+\hfill\cr\hfill{}
+={(-1)^{k-1}\over n!}\Bigl({n\atop k}\Bigr)\prod_{0\le j<k}
+(-r+tk+j)\prod_{k\le j<n}(-r+tk+j)\quad\cr}$$
+and the two products give a polynomial of degree $n-1$ in $k$ after
+division by $r-tk$. So the sum over $k$ is zero by Eq.~\eq(34).
+\endchange
+
+\amendpage 1.485 lines 2 and 3 of answer 25 (13.10.07)
+(Alternatively \dots\ $x=1$.) We have \becomes
+When $w$ is sufficiently small, we have
+\endchange
+
+\improvepage 1.491 line 2 of answer 66 (15.04.17)
+$y>n-1$ \becomes $y\ge n-1$
+\endchange
+
+\amendpage 1.491 replacement for last line of answer 67 (12.02.18)
+${n\choose k}\ge\bigl({(n-k+1)e\over k}
+\bigr){}^k{1\over ek}$, which is less memorable (but often sharper) than
+${n\choose k}\ge\bigl({n\over k}\bigr){}^k$.
+\endchange
+
+\amendpage 1.492 replacement for answer 16 (16.06.21)
+\ans16. $H_{2n}-\half H_n$.
+\endchange
+
+\amendpage 1.493 new answer for section 1.2.7 (13.02.11)
+\ans25. $H_n^{(0,v)}=\sum_{k=1}^nH_n^{(v)}$ and $H_n^{(u,0)}=H_n^{(u-1)}$;
+so the identity generalizes~\eq(8). [See L.~Euler,
+{\sl Novi Comment.\ Acad.\ Sci.\ Pet.\ \bf 20} (1775), 140--186, \S2.]
+\endchange
+
+\bugonpage 1.503 last line of answer 3 (13.03.05)
+1937 \becomes 1927
+\endchange
+
+\improvepage 1.504 last line of answer 8 (12.02.18)
+${cn^2\choose n}\big/c^n{n^2\choose n}$ \becomes
+${cn^2\choose n}\big/\bigl(c^n{n^2\choose n}\bigr)$
+\endchange
+
+\improvepage 1.514 replacement for line 5 of the program (13.04.30)
+\nobreak\vskip-12pt\ansmixthree
+3H \ \ \ &ENT2&9*8-8,1&Start at row 9.\cr
+\endmix
+\endchange
+
+\bugonpage 1.514 replacement for lines 19 and 20 of the program (13.03.10)
+\nobreak\vskip-12pt\ansmixthree
+PHASE2&ENT3&9*8 \ \ \ &At this point $\rA =\min_jC(j)$\cr
+3H&ENT2&0,3&Prepare to search a row.\cr
+\endmix
+\endchange
+
+\amendpage 1.518 line 14 (14.08.27)
+Victorius of Aquitania \becomes Victorius of Aquitaine
+\endchange
+
+\amendpage 1.546 last lines of answer 9 (14.06.30)
+plagues many automatic programming systems.) \becomes
+plagued many automatic programming systems in the old days.)
+\endchange
+
+\bugonpage 1.552 in answer 12 (12.06.30)
+line 1: $29p$ \becomes $27p$\nl
+line 3: $3\over4$ \becomes 78\%
+\endchange
+
+\amendpage 1.570 new sentence to follow line 1 of answer 30 (13.10.08)
+Thus $\.{LOC(T)}=\.{HEAD}$, and $\.{HEAD}\symord/$ is the first node of
+the binary tree in symmetric order.
+\endchange
+
+\improvepage 1.570 line $-3$ of answer 30 (13.10.08)
+the algorithm of exercise 21 \becomes Algorithm~U in answer 21
+\endchange
+
+\amendpage 1.576 new answer(s) (14.09.09)
+\anss 14, 15. See Martin Ward and Hussain~Zedan,
+``Provably correct derivation of algorithms using FermaT,''
+{\sl Formal Aspects of Computing\/ \bf26} (2014), 993--1031.
+\endchange
+
+\bugonpage 1.607 lines 1--9 (16.06.24)
+[In some printings, the ``primes'' disappeared from step names;
+for example, step C5$^\prime$ was simply called step C5.]
+\endchange
+
+\let\defaultpointsize=\tenpoint % begin appendices
+
+\bugonpage 1.611 line 5 (14.07.25)
+inner loop A3* \becomes inner loop A2.5*
+\endchange
+
+\bugonpage 1.613 last line of answer 28 (14.04.14)
+$\.{AVAIL[$k$]}\gets \.L$. \becomes $\.{AVAILF[$k$]}\gets \.L$.
+\endchange
+
+\amendpage 1.624 through page 626 (12.04.07)
+[replace the notation $(R\Relbar\joinrel\joinrel\joinrel\Rightarrow x;\;y)$
+ by $(R{?}\ x{:}\ y)$ in eleven places]
+\endchange
+
+\amendpage 1.628 new entries for Appendix C (11.04.17)
+\ninepoint\noindent
+Program 1.2.10M, 145, 186.\nl
+Program 1.4.3.1M, 204--211, 530.\nl
+Program 2.1A, 236.\nl
+Program 2.1B, 535.\nl
+Program 2.3.1S, 325.
+\endchange
+
+\bugonpage 1.629 in Appendix C (11.04.17)
+\ninepoint\noindent
+Algorithm 2.4B$'$, 606. \becomes
+Algorithm 2.4B$'$, 605. Algorithm 2.4B$''$, 606.\nl
+Algorithm 2.5G, 613. \becomes Algorithm 2.5G, 613--614.
+\endchange
+
+\expandafter\ifx\csname indexeject\endcsname\relax\else\vfill\eject\fi
+\amendpage 1.630 and following (11.01.01)
+Miscellaneous changes to the existing index of Volume~1 are collected here,
+including corrections and amendments to the old entries as well as new entries
+that are occasioned by the new material. Thus, the lines of the full index
+that have changed serve also as an index to the present document. However,
+when a correction or amendment has caused an old index entry to be deleted,
+the deletion is usually not indicated.
+
+\input exotic
+\begindoublecolumns
+\indexformat
+\gdef\Uni1.08:{\bitmap24:1.08:}
+\hangindent 2em
+Bernstein, Sergei Natanovich ({\rus Bernshtei0n, Sergei0 Natanovich}), 104. %30th
+Carroll, Lewis (= Dodgson, Charles Lutwidge), 465. % 32nd
+Chebyshev (= Tschebyscheff), Pafnutii Lvovich ({\rus Chebyshevp2, Pafnut{\char12}i0 Lp1vovichp2} = {\rus Chebyshev, Pafnutii0 Lp1vovich}), inequalities, 98, 104, 472. % 31st
+Comfort, Webb Tyler, 461. % 34th
+Depth of node in a tree, \see Level. % 30th
+Diagrams of structural information, tree structures, 309--315, 337, 346, 349, 460, 465. % 32nd
+Dodgson, Charles Lutwidge, \see Carroll. % 32nd
+Doolittle, Myrick Hascall, 303. % 29th
+$e$ (base of natural logarithms), 23, 619--620, 626. % 30th
+Empty list, 244--245, 247, 258, 260--261, 273--275, 278, 280, 540, 546. % 30th
+Euler, Leonhard ({\rus Ei0lerp2, Leonardp2} = {\rus E1i0ler, Leonard}), 49, 50, 52, 57, 75, 76, 87, 111, 374, 407, 472, 493, 496, 536, 600. % 31st
+Family trees, 310--311, 317, 406, 465. % 32nd
+Fuller, John Edward, xi. % 32nd
+Geek art, xx. % 34th
+GO button of \MIX, 126, 139, 143--144, 211. % 29th
+Gordon, Peter Stuart, xi. % 32nd
+Huskey, Harry Douglas, 229. % 34th
+Knuth, Nancy Jill Carter (\GC75:75:-3:62% G2463
+<0000001f0000000000000000001ff8000000000000000007ff000000000000000003ff80%
+ 00000000000000007f8000000000000000007f8000000000000000003f8000003c000000%
+ 00003f8000007e00000000001f800000ff00000000000f800001ff00ffffffffffffffff%
+ ff80ffffffffffffffffffc07fffffffffffffffffe03800000000000000000000000000%
+ 00000000000000000000000070000000000078000000f800000000007f000001fc000000%
+ 00007ffffffffe00000000007fffffffff00000000003ffffffffe00000000003f000000%
+ fc00000000003f000000fc00000000003f000000fc00000000003f000000fc0000000000%
+ 3f000000fc00000000003f000000fc00000000003f000000fc00000000003f000000fc00%
+ 000000003ffffffffc00000000003ffffffffc00000000003ffffffffc00000000003f00%
+ 0000fc00000000003f000000fc00000000003f000000fc00000001c03e0000000003c000%
+ 01e03e0000000007e00001f800000000000ff00001fffffffffffffff00001ffffffffff%
+ fffff80001f8000000000007f80001f8000000000007e00001f8000000000007e00001f8%
+ 000000000007e00001f801c000078007e00001f801e00007e007e00001f801f8000ff007%
+ e00001f801fffffff007e00001f801fffffff007e00001f801ffffffc007e00001f801f8%
+ 000fc007e00001f801f8000fc007e00001f801f8000fc007e00001f801f8000fc007e000%
+ 01f801f8000fc007e00001f801f8000fc007e00001f801f8000fc007e00001f801f8000f%
+ c007e00001f801f8000fc007e00001f801ffffffc007e00001f801ffffffc007e00001f8%
+ 01ffffffc007e00001f801f8000fc007e00001f801f0000fc007e00001f801f0000f0007%
+ e00001f801f000000007e00001f8000000000007e00001f800000000ffcfe00001f80000%
+ 00007fffc00001f8000000000fffc00001f80000000000ffc00001f800000000007f8000%
+ 01f800000000003f800001f000000000001f000001f00000000000100000>%% Unicode char "9ad8
+\GC75:75:-3:62% G3011
+<0001e0000000000000000001f8000001f00000000001ff000001ff0000000000ff000001%
+ ff0000000000fe000001ff0000000000fc000001fe0000000000f8000001fc0000000000%
+ f8000001f80038000000f80e0001f800fc000000f80f0001f801fe000000f81f8001f803%
+ ff000700f81fffffffffff800380f81fffffffffffc003c0f81f8fffffffffc001e0f83f%
+ 0001f800000001f0f83f0001f800000000f8f87e0001f800000000fcf87c0001f801c000%
+ 00fef8f80001f803e000007ef8f80001f807f800007ef9f00001f80ffc00007efbe01fff%
+ fffffe00007efbc00ffffffffe00007cff0007fffffffe00007cfe000001f80000000008%
+ fa1e0001f80000000000f83f0001f80000000000f87f0001f8001c003fffffff8001f800%
+ 3e001fffffffc001f8007f801fffffffe001f800ffc00803f803ffffffffffe00003f801%
+ ffffffffffe00003f800ffffffffffe00003f8000000000000000007fe00000000000000%
+ 0007ff800f0000078000000fffe00fc0000fc000000ffff007ffffffe000001ffff807ff%
+ fffff000001ffbfe07fffffff000003ef9fe07c00007e000003ef8fe07c00007c000007e%
+ f87f07c00007c000007cf83f07c00007c00000fcf83f07c00007c00000fcf81e07c00007%
+ c00001f8f81e07ffffffc00001f8f80007ffffffc00003f0f80007c00007c00003e0f800%
+ 07c00007c00007c0f80007c00007c0000fc0f80007c00007c0000f80f80007c00007c000%
+ 1f00f80007c00007c0001e00f80007c00007c0003c00f80007ffffffc0007000f80007ff%
+ ffffc0006000f80007ffffffc000c000f80007c00007c0008000f80007c00007c0000000%
+ f80007c00007c0000000f80007c00007c0000000f80007c00007c0000000f80007c00007%
+ c0000000f80007c00007c0000000f80007c00007c0000000f80007c03fffc0000000f800%
+ 07c01fffc0000000fc0007c007ffc0000000fc000fc001ffc0000000fc000fc0007fc000%
+ 0001fc000fc0003f80000001f8000fc0001f80000001f8000000001e0000>%% Unicode char "7cbe
+%\JC47:48:-1:40% J4586
+%<0001801800000001e01e00000001f01f00180001e01e003cfffffffffffefffffffffffe%
+% 0001e01e00000000c00c00001800306000c01e00787801e01ffff87ffff01ffff87ffff0%
+% 1e00787801e01e00787801e01ffff87fffe01ffff87fffe01e00787801e01e00787801e0%
+% 1ffff87fffe01ffff87fffe01e00787801e01e00363001e01e00078001e01e0007c031e0%
+% 1e00078079e01efffffffde01e7ffffffde01e00078001e01e0c078181e01e0fffffe1e0%
+% 1e0fffffe1e01e0f0783c1e01e0f0783c1e01e0fffffc1e01e0fffffc1e01e0f0783c1e0%
+% 1e0f0783c1e01e0fffffc1e01e0fffffc1e01e0f3fc3c1e01e067ff981e01e007fbe01e0%
+% 1e00f79f01e01e01e78f81e01e03c78fffe01e078787cfe01e1e0783c7c00c7803018380%
+% >%% Unicode char "862d
+\GC76:72:-2:62% G3228
+<000000000000380000000000700000003c00000000003c0000007e00000000003e000000%
+ 7f80000000001f8000007fc0000000001fc000007fe0000000000fe000007f8000000000%
+ 07f00000ff800000000007f80000ff000000000003fc0000fe000000000003fc0000f000%
+ 0000000001fe0001f0000000000001fe0001e0000000000000fe0003e0000000000000fe%
+ 0007c00000000000007e0007c00000000000007e000f800000000000007e001f00000000%
+ 0000003e003f000780000000003c003e000fc00000000038007c000fe000000000000078%
+ 001fe0000000000000f0003ff00003fffffffffffffff80001fffffffffffffffc00007f%
+ fffffffffffffc0000180000000000000000000000000000000000000000000000000000%
+ 000000000000000000000000000000000000000000000000000000000000000000000000%
+ 000000000000000000000000000000000000000000000000000000000000000000000000%
+ 000000000000000000000000000000000000000000000000000000000000000000000000%
+ 00380000000000000000007c000000000000000000fe000000000000000001fe00000000%
+ 0000000003ff0000000fffffffffffff8000000fffffffffffffc0000003ffffffffffff%
+ c0000000c000000000000000000000000000000000000000000000000000000000000000%
+ 000000000000000000000000000000000000000000000000000000000000000000000000%
+ 000000000000000000000000000000000000000000000000000000000000000000000000%
+ 000000000000000000000000000000000000000000000000000000000000000000000000%
+ 00000000000000000000000000000000380000000000000000007c000000000000000000%
+ fe000000000000000000ff000000000000000001ff800000000000000003ffc0ffffffff%
+ ffffffffffe0fffffffffffffffffff03ffffffffffffffffff008000000000000000000%
+ >%% Unicode char "5170
+), x, xx. % 33rd
+Lam\'e, Gabriel L\'eon Jean Baptiste, 407. % 34th
+Lilius, Aloysius (= Aloigi Giglio, Luigi Lilio), 159. % 33rd
+Lineal chart, 310--311, 465. % 32nd
+log (without subscript), 110. % 33rd
+Markov, Andrei Andreevich ({\rus Markov, Andrei0 Andreevich}), the younger, 9. % 31st
+Neumann, John von (= Neumann J\'anos Lajos = Margittai Neumann J\'anos), 18, 229, 231, 457. % 34th
+Nonnegative coefficients, 396, 501. % 30th
+Number system, decimal, 21, 619. % 32nd
+Overflow toggle of \MIX, 126, 131, 134, 142, 144, 208, 214, 228. % 29th
+Pattern matching, 8. % 31st
+Pedigree, 310--312, 465. % 32nd
+Reingold, Edward Martin ({\heb \Hdd/\Hll/\Hvv/\Hgg/\Hnn/\Hyy/\Hyy/\Hrr/},\indexbreak{\heb \Hfm/\Hyy/\Hyy/\Hkh/ \Hfn/\Hbb/ \Hhh/\Hsh/\Hmm/ \Hqq/\Hkh/\Hts/\Hyy/}), 518. % 33rd
+Reversion storage, 229, 240. % 34th
+Root of a tree, 308, 309, 317, 465. % 32nd
+Staver, Tor B{\o}hm, 582. % 28th
+Stirling numbers, 66--69, 71--74, 78, 99--100, 506, 582, 591, 625. % 34th
+Trees, diagrams of, 309--315, 337, 346, 349, 460, 465. % 32nd
+Trucco, Ernesto, 23. % 33rd
+Victorius of Aquitaine, 518. % 33rd
+von Neumann, John (= Neumann J\'anos Lajos = Margittai Neumann J\'anos), 18, 229, 231, 457. % 34th
+Ward, Martin Paul, 576. % 32nd
+Windley, Peter Francis, 523. % 34th
+Zedan, Hussein Saleh Mamoud\indexbreak
+ ({\arab\An/\Aa/\Afd/\Aiy/\Az/ \Ad/\Afw/\Amm/\Amhh/\Aim/ \Afhh/\Ail/\Afa/\Aiss/ \Afn/\Amy/\Ams/\Aihh/}), 576. %32nd
+
+\vfill
+\enddoublecolumns
+\endchange
+
+\bye
+
+[The next printing will be the 36th.]
+Not mentioned above:
+page 204, line 4, tuck the comma inside the quotes
+page 459, (Ph.D...) -> [Ph.D...] in line 22
+page 508, line 1 of answer 21, tuck the comma inside the quotes
+page 525, reformat PhD reference on line 5 of answer 23
+
+ARTICLES "TO APPEAR" THAT ARE STILL PENDING:

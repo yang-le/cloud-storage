@@ -1,0 +1,1245 @@
+% CHANGES TO FASCICLE V4F0 OF THE ART OF COMPUTER PROGRAMMING
+%
+% Copyright (C) 2008,2009,2010 by Donald E. Knuth
+% This file may be freely copied provided that no modifications are made.
+% All other rights are reserved.
+%
+% Three levels of changes to the books are distinguished here:
+%
+% "\bugonpage" introduces the correction of an error;
+% "\amendpage" introduces new material for future editions;
+% "\improvepage" introduces ameliorations of lesser importance.
+%
+% (Changes introduced by \improvepage do not appear in the hardcopy listing.)
+%
+% Also, "\planforpage" introduces some of the author's half-baked intentions.
+%
+
+% NOTE: TO PUT THE INDEX ON A SEPARATE PAGE, RUN THIS WITH THE COMMAND LINE
+%   tex "\let\indexeject+ \input err4f0"
+
+\newif\ifall % \alltrue means show the trivial items too
+\relax % hook
+
+\def\vertical{|}
+\def\inref#1 #{\expandafter\def\csname\vertical#1\endcsname}
+\catcode`|=\active
+\let|\inref \input \jobname.ref
+\catcode`|=12
+
+\input taocpmac % use the format for TAOCP, with modifications below
+
+\def\becomes{\ifmmode\ \hbox\fi{\manfnt y}\ } % wiggly arrow indicates a change
+
+\def\bugonpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt\llap{\manfnt x}% print a black triangle in left margin
+   {\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\amendpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\improvepage#1.#2 #3 (#4) {\ifall
+  \medbreak\ninepoint
+  \line{\kern-6pt{\sl Page #2\enspace #3\/}
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\noindent}
+\def\planforpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hbox to 5pt{\hss.\hss}\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\begingroup\let\endchange=\endgroup\sl\noindent}
+\let\endchange=\fi
+\def\nl{\par\noindent}
+\def\nlh{\par\noindent\hangit}
+\def\hangit{\hangindent2em}
+\def\cutpar{{\parfillskip=0pt\par}}
+
+\def\date#1.#2.#3.{% convert "yy.mm.dd." to "dd Mon 19yy"
+  #3
+  \ifcase#2\or Jan\or Feb\or Mar\or Apr\or May\or Jun\or
+               Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi
+  \ \ifnum #1<97 \hundred#1\else19#1\fi}
+\def\hundred{20} % the "century" for dates before '97
+
+\def\ex #1. [#2]{\ninepoint
+  \textindent{\bf#1.}[{\it#2\/}]\kern6pt}
+\def\EX #1. [#2]{\ninepoint
+  \textindent{\llap{\manfnt x}\bf#1.}[{\it#2\/}]\kern6pt}
+
+\def\foottext#1{\medskip
+        \hrule height\ruleht width5pc \kern-\ruleht \kern3pt \eightpoint
+        \smallskip\textindent{#1}}
+\def\volheadline#1{\line{\hss\cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill
+       \titlefont\ #1\ \cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill\hss}}
+\def\refin#1 {\let|\inref \input #1.ref \let|\crossref}
+
+\let\defaultpointsize=\tenpoint
+
+%%%%%%%%%%%%%% opening remarks %%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{INTRODUCTION}
+\let\rhead=\lhead
+\titlepage
+\volheadline{THE ART OF COMPUTER PROGRAMMING}
+\bigskip
+\volheadline{ERRATA TO VOLUME 4 FASCICLE 0}
+\bigskip
+
+\noindent This document is a transcript of the notes that I have been making
+in my personal copy of {\sl The Art of Computer Programming}, Volume~4,
+Fascicle~0, since it was first printed in 2008.
+
+\ifall Four levels of updates\dash---``errors,'' ``amendments,'' ``plans,''
+   and ``improvements''\dash---appear, indicated by four
+\else Three levels of updates\dash---``errors,'' ``amendments,'' and
+   ``plans''\dash---appear, indicated by three \fi
+different typographic conventions:
+\begingroup\def\hundred{17}
+
+\bugonpage 0.666 line 1 (76.07.04)
+Technical or typographical errors (aka bugs) are the most critical items, so
+they are flagged with a `\thinspace{\manfnt x}\thinspace' preceding the page
+number. The date on which I first was told about the bug is shown; this is the
+effective date on which I paid the finder's fee. The necessary
+corrections are indicated in
+a straightforward way. If,~for example, the book says
+`$n$' where it should have said `$n+1$', the change is shown thus:
+\smallskip
+$n$ \becomes $n+1$
+\endchange
+
+\amendpage 0.666 line 2 (89.07.14)
+Amendments to the text appear in the same format as bugs, but without
+the~`\thinspace{\manfnt x}\thinspace'. These are things I wish I had known
+about or thought of when I wrote the original text, so I added them later.
+The date is the date I drafted the new text.
+\endchange
+
+\def\hundred{19}
+
+\planforpage 0.666 line 3 (17.11.20)
+Plans for the future represent a third kind of item. In such notes I~sketched
+my intentions about things that I wasn't ready to flesh out further when
+I~wrote them down. You can identify these items because they're written in
+slanted type, and preceded by a bunch of dots
+`\hbox to 6em{\leaders\hbox to 5pt{\hss.\hss}\hfill}' leading to the date on
+which I recorded the plan in my files.
+\endchange
+
+\improvepage 0.666 line 4 (38.01.10)
+The fourth and final category\dash---indicated by page and line number in
+smaller, slanted type\dash---consists of minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+You wouldn't even
+be seeing these items if you hadn't specifically chosen to print the complete
+errata list in all its gory details.
+Are you sure you wanted to do that?
+\endchange
+
+\endgroup
+\ifall\else\medskip\ninepoint
+My personal file of updates also includes a fourth category of items, not
+shown in this list. They are miscellaneous minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+If you really want to see all of the gory details,
+you can download the full list from Internet webpage
+$$\.{http://www-cs-faculty.stanford.edu/\char`\~knuth/taocp.html}$$
+by selecting the ``long form'' of the errata.
+\fi
+
+\medskip
+\tenpoint
+\beginconstruction
+The ultimate, glorious, future editions of Volumes 1--5 are works in progress.
+Please let me know of any improvements that you think I ought to make.
+Send your comments either by snail mail to D.~E. Knuth, Computer
+Science, Gates Building 4B, Stanford University, Stanford CA~94305-9045,
+or by email to
+{\tt taocp{\char`\@}cs.stanford.edu}. (Use email for book suggestions
+only, please\dash---all
+other correspondence is returned unread to the sender, or discarded,
+because I have no time to
+read ordinary email.) Although I'm working full time on
+Volume~4 these days, I~will try to reply to all such messages
+within a year of receipt. Current news about {\sl The Art of Computer
+Programming\/} is posted on
+$$\.{http://www-cs-faculty.stanford.edu/\char`~knuth/taocp.html}$$
+and updated regularly.
+\par\endconstruction
+\rightline{\dash---Don Knuth, February 2008}
+
+\bigskip
+\bigskip
+{\quoteformat
+He did a lot of editing. That's how he liked to work.
+Sometimes he even made alterations between printings.
+\author P. D. JAMES, {\sl The Lighthouse\/} (2005)
+% page 148 (within Chapter 7)
+\vfill\eject
+}
+
+\def\today{\number\day\space\ifcase\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi
+  \space\number\year}
+
+%%%%%%%%%%%%%%% CHANGES FOR VOLUME 4 FASCICLE 0 %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{\kern-16ptCHANGES TO V4F0: INTRO TO COMB'L ALGS AND BOOLEAN FUNCS}
+\def\rhead{CHANGES TO V4F0: INTRO TO COMB'L ALGS AND BOOLEAN FUNCS\kern-16pt}
+\titlepage
+\volheadline{INTRO TO COMBINATORIAL ALGS, BOOLEAN FUNCS} % the fascicle title
+\bigskip
+\rightline{Copyright \copyright\ 2008, 2009, 2010, Addison\with Wesley; all rights reserved}
+\rightline{Last updated \today}
+\bigskip
+\rightline{\sl Most of these corrections have already been made in
+                  recent printings.}
+\medskip
+\noindent Important note: The changes below include nearly every difference
+between the paperback fascicle and the first printing of Volume 4A,
+published in January 2011. All subsequent changes can be found in
+the errata list for that volume.
+
+\def\bland{@\land@} % \land as wide as \xor
+\def\blor{@\lor@}
+\smallskip
+\let\defaultpointsize=\tenpoint
+
+\bugonpage 4f0.{\tenbsy1} back cover line 10 (09.04.07)
+{\eightss problems.All} \becomes {\eightss problems. All}
+\endchange
+
+\improvepage 4f0.iii line 15 (08.12.22)
+on combinatorial algorithms \becomes about combinatorial searching
+\endchange
+
+\bugonpage 4f0.iii line $-10$ (09.02.27)
+underly \becomes underlie
+\endchange
+
+\improvepage 4f0.iv line 15 (08.10.28)
+I shall happily pay a finder's fee of \$2.56 \becomes
+I happily offer a ``finder's fee'' of \$2.56
+\endchange
+
+\improvepage 4f0.iv lines 19 and 20 (08.10.28)
+reward you with immortal glory instead of mere money \becomes
+do my best to give you immortal glory
+\endchange
+
+\amendpage 4f0.ix line 9 (08.10.28)
+cheerfully pay \becomes cheerfully award
+\endchange
+
+\bugonpage 4f0.ix line 17 (08.10.31)
+{\eightss (1995) \becomes (1994)}
+\endchange
+
+\bugonpage 4f0.x line 4 (08.10.31)
+{\eightss (1968) \becomes (1969)}
+\endchange
+
+\amendpage 4f0.3 line $-13$ (08.02.13)
+\eightpoint
+[The lack of accents in {\sl Recreations}~\dots\ is {\it not\/} an
+error: No accents were put onto the title page of Ozanam's book,
+or on its {\it planches\/} of illustrations, until the 1770 edition.]
+\endchange
+
+\amendpage 4f0.8 line 20 (10.10.09)
+{\sl Annals of Math.}\ \becomes
+{\sl Annals of Math.\ \rm(2)}
+\endchange
+
+\amendpage 4f0.8 line 22 (09.07.19)
+coding and cryptography \becomes discrete geometry and error-correcting codes
+\endchange
+
+\amendpage 4f0.13 replacement for lines $-8$ and $-7$ (09.12.03)
+\item{$\bullet$} $C_n$ has $n$ edges $v\adj((v\mod n){+}1)$ for $1\le v\le n$,
+when $n\ge1$;
+it is a graph only when $n\ge3$
+(but $C_1$ and $C_2$ are multigraphs).
+\endchange
+
+\bugonpage 4f0.24 lines 5 and 6 (09.09.24)
+the smallest circle that passes through $u$ and~$v$ does not enclose
+ \becomes\nl
+there's a circle passing through $u$ and~$v$ that does not enclose
+\endchange
+
+\improvepage 4f0.28 in {\eq(51)} (09.03.25)
+$K_2\cprod K_2\cprod@\cdots@\cprod K_2$ \becomes
+$P_2\cprod P_2\cprod@\cdots@\cprod P_2$
+\endchange
+
+\bugonpage 4f0.30 use a more robust version of Algorithm H (10.01.04)
+\algindentset{H1}%
+\algstep H1. [Set the $c$'s.] Start with $k\gets d_1$ and $j\gets0$.
+Then while $k>0$ do the follow\-ing operations: Set $j\gets j+1$;
+while $k>d_{j+1}$, set $c_k\gets j$ and $k\gets k-1$.\penalty-500\
+Terminate successfully if $j=0$ (all $d$'s are zero).
+
+\algstep H2. [Find $n$.] Set $n\gets c_1$. Terminate successfully if $n=0$;
+terminate unsuccessfully if $d_1\ge n>0$.
+
+\algstep H3. [Begin loop on $j$.] Set $i\gets1$, $t\gets d_1$, $r\gets c_t$,
+and $j\gets d_n$.
+
+\algstep H4. [Generate a new edge.] Set $c_j\gets c_j-1$ and $m\gets c_t$.
+Create the edge $n\adj m$, and set $d_m\gets d_m-1$, $c_t\gets m-1$,
+$j\gets j-1$. If $j=0$, return to step~H2. Otherwise,
+if $m=i$, set $i\gets r+1$, $t\gets d_i$, and $r\gets c_t$
+(see exercise~104); repeat step~H4.\quad\slug
+\endchange
+
+\bugonpage 4f0.32 line 8 (10.04.06)
+1993 \becomes 1994
+\endchange
+
+\amendpage 4f0.33 new {\eq(60)} to match {\eq(57)} better (09.12.09)
+$$\openup-1\jot\eqalign{
+&(x_1\xor x_2\xor x_3)\land
+  (x_2\xor x_4\xor x_6)\land
+  (x_3\xor x_4\xor x_7)\cr
+&\qquad{}\land(x_3\xor x_5\xor x_6)\land
+  (\bar x_1\lor\bar x_2\lor\bar x_4)\cr}\eqno(60)$$
+\endchange
+
+\amendpage 4f0.36 the rating of exercise 2 (09.03.30)
+\ninepoint [{\it 18\/}] \becomes [{\it 20\/}]
+\endchange
+
+\amendpage 4f0.37 the rating of exercise 18 (09.07.09)
+\ninepoint [{\it M23\/}] \becomes [{\it M26\/}]
+\endchange
+
+\amendpage 4f0.37 the rating of exercise 23 (09.07.09)
+\ninepoint [{\it M21\/}] \becomes [{\it M23\/}]
+\endchange
+
+\bugonpage 4f0.39 in exercise 43 (08.07.31)
+\ninepoint
+[A printing error has put a spurious blob of blank ink on the
+rightmost illustration in some copies (perhaps not in all).]
+\endchange
+
+\amendpage 4f0.41 line 2 of exercise 72 (10.09.29)
+\ninepoint the {\it ancestors\/} \becomes
+           the (inclusive) {\it ancestors\/}
+\endchange
+
+\bugonpage 4f0.41 line 5 of exercise 75 (08.06.09)
+\ninepoint $t=j$ \becomes $t\gets j$
+\endchange
+
+\amendpage 4f0.42 new rating for exercise 78 (09.04.28)
+{\it M26\/} \becomes {\it M27\/}
+\endchange
+
+\amendpage 4f0.43 new rating for exercise 105 (09.12.07)
+{\it M34\/} \becomes {\it M38\/}
+\endchange
+
+\amendpage 4f0.44 in exercise 119 because of the new {\eq(60)} (09.12.09)
+$(\bar x_1\lor\bar x_2\lor\bar x_3)$ \becomes
+$(\bar x_1\lor\bar x_2\lor\bar x_4)$
+\endchange
+
+\improvepage 4f0.49 in the heading line of Table 1 (08.06.12)
+Notation(s) \becomes New and old notation(s)
+\endchange
+
+\amendpage 4f0.49 in Table 1 (09.01.08)
+line  `0011': Left projection \becomes Left projection; first dictator\nl
+line  `0101': Right projection \becomes Right projection; second dictator
+\endchange
+
+\amendpage 4f0.52 lines 16--17 (08.12.17)
+{\it multilinear representation\/} \becomes
+{\it multilinear representation\/} or {\it exclusive normal form}
+\endchange
+
+\improvepage 4f0.55 line 7 (08.10.07)
+a best disjunctive normal form \becomes a shortest disjunctive normal form
+\endchange
+
+\improvepage 4f0.55 line 8 (09.08.03)
+NP-complete \becomes NP-hard
+\endchange
+
+\bugonpage 4f0.56 line 11 (08.04.21)
+$2^n$ truth tables \becomes $2^n$-bit truth tables
+\endchange
+
+\amendpage 4f0.60 line 22 and 23 (08.07.19)
+in a paper \dots~284. \becomes
+in papers by W.~F. Dowling and J.~H. Gallier,
+{\sl J. Logic Programming\/ \bf1} (1984), 267--284; M.~G. Scutell\'a,
+{\sl J. Logic Programming\/ \bf8} (1990), 265--273.
+\endchange
+
+\improvepage 4f0.61 in {\eq(42)} (08.10.07)
+$u$ \becomes $u@.$ \qquad(where `$u$' appears the second time)
+\endchange
+
+\bugonpage 4f0.62 line $-10$ (10.02.01)
+(1993) \becomes (1994)
+\endchange
+
+\amendpage 4f0.62 {(not an error)} (08.06.03)
+\eightpoint
+[The index refers to a ``pun resisted'' on this page. I was thinking
+of ``co-medians''\dots]
+\endchange
+
+\improvepage 4f0.63 lines 16 and 17 (08.06.18)
+if that was our preference \becomes if we wanted to
+\endchange
+
+\bugonpage 4f0.75 line 21 (09.03.02)
+McCullough \becomes McCulloch
+\endchange
+
+\amendpage 4f0.90 line 1 of exercise 79 (09.12.13)
+\ninepoint A {\it subgraph\/} \becomes
+\ninepoint An induced {\it subgraph\/}
+\endchange
+
+\amendpage 4f0.90 line 6 of exercise 80 (09.12.13)
+\ninepoint Find a subgraph \becomes
+\ninepoint Find an induced subgraph
+\endchange
+
+\amendpage 4f0.91 the rating of exercise 83 (10.01.18)
+\ninepoint [{\it 28\/}] \becomes [{\it 38\/}]
+\endchange
+
+\improvepage 4f0.92 line $-2$ (08.05.02)
+for all $k\ge0$ \becomes for $0\le k\le n$
+\endchange
+
+\improvepage 4f0.102 line $-17$ (09.02.14)
+from $t$: \becomes from $t$ (see 7.1.3--\eq(83)):
+\endchange
+
+\bugonpage 4f0.104 replacement for lines 18--34 (10.08.09)
+\def\NOT{\hbox{\mc NOT}}%
+\def\OR{\hbox{\mc OR}}%
+\def\NAND{\hbox{\mc NAND}}%
+\def\AND{\hbox{\mc AND}}%
+\noindent tubes:
+They had four kinds of gates,
+\NOT$(f)$,
+\NAND$(f,g)$,
+\OR$(f_1,\ldots,f_k)$, and
+\AND$(f_1,\ldots,f_k)$, respectively costing
+1, 2, $k$, and~0. 
+Every input to \NOT, \NAND, or \OR\
+ could be either a variable, or the complement of a variable,
+or the result of a
+previous gate; every input to \AND\ had to be the output of
+either \NOT\ or \NAND\ that wasn't also used elsewhere.
+
+With those cost criteria, a function might not have the same cost as its
+complement. One could, for instance,
+ evaluate $x\land y$ as $\AND\bigl(\NOT(\bar x),\NOT(\bar y)\bigr)$,
+with cost~2;
+but the cost of $\bar x\lor(\bar y\land\bar z)=\NAND(x,\allowbreak\OR(y,z))$
+was~4 while its complement $x\land(y\lor z)=\AND\bigl(\NOT(\bar x),
+\NAND(\bar y,\bar z)\bigr)$ cost only~3. Therefore the Harvard researchers
+needed to consider 402
+essentially different classes of 4-variable functions instead of~222
+(see the answer to exercise 7.1.1--125).
+Of course in those days they worked mostly by hand. They found
+$V(f)<20$ in all cases, except for the 64
+functions equivalent to
+$S_{0,1}(w,x,y,z)\lor\bigl(S_2(w,x,y)\land\nobreak z\bigr)$,
+which they evaluated with 20~control grids as follows: % p269
+$$\displaylines{\qquad
+g_1=\AND(\NOT(\bar w),\NOT(\bar x)),\ 
+g_2=\NAND(\bar y,z),
+\hfill\cr\qquad\qquad
+g_3=\AND(\NOT(w),\NOT(x));
+\hfill\cr\qquad
+f=\AND\bigl(
+\NAND(g_1,g_2),
+\NAND(g_3,\AND(\NOT(\bar y),\NOT(\bar z))),
+\hfill\cr\noalign{\vskip-\jot}\hfill
+\NOT(\AND(\NOT(g_3),\NOT(\bar y),\NOT(z))),
+\hfill\cr\noalign{\vskip-\jot}\hfill
+   \NOT(\AND(\NOT(g_1),\NOT(g_2),\NOT(g_3)))
+\bigr).\qquad\eq(20)\cr}$$
+\endchange
+
+\amendpage 4f0.113 replacement for {\eq(43)} and the preceding line (10.07.05)
+\noindent aren't always so lucky, but a
+chain of 22 steps does emerge; and David Stevenson has shown that only 21
+steps are actually needed if we choose $x_{10}$ non-greedily:
+$$\advance\abovedisplayskip2pt\openup-.9\jot\eqalign{
+x_5&=x_2\xor x_3,\cr
+x_6&=\bar x_1\bland x_4,\cr
+x_7&=x_3\bland\bar x_6,\cr
+x_8&=x_1\xor x_2,\cr
+x_9&=x_4\xor x_5,\cr
+x_{10}&=x_3\blor x_9,\cr
+\strut x_{11}&=x_6\xor x_{10},\cr
+}\qquad\eqalign{
+x_{12}&=x_1\bland x_2,\cr
+x_{13}&=x_9\bland\bar x_{12},\cr
+x_{14}&=\bar x_3\bland x_{13},\cr
+x_{15}&=x_5\xor x_{14},\cr
+x_{16}&=x_1\xor x_7,\cr
+x_{17}&=x_1\blor x_5,\cr
+\strut x_{18}&=x_6\xor x_{13},\cr
+}\qquad\eqalign{
+\bar a=x_{19}&=x_{15}\xor x_{18},\cr
+\bar b=x_{20}&=x_{11}\bland\bar x_{13},\cr
+\bar c=x_{21}&=\bar x_8\bland x_{11},\cr
+\bar d=x_{22}&=x_9\bland\bar x_{16},\cr
+\bar e=x_{23}&=x_6\blor x_{14},\cr
+\bar f=x_{24}&=\bar x_8\bland x_{15},\cr
+\strut g=x_{25}&=x_7\blor x_{17}.\cr
+}\eqno(43)$$
+\endchange
+
+\bugonpage 4f0.127 in exercise 37 (09.05.15)
+\ninepoint line 2 of part (b): Prove that \becomes Prove for fixed $m$ that\nl
+line 1 of part (c): Given $n$, \becomes Given $n>1$,
+\endchange
+
+\bugonpage 4f0.128 line 3 of exercise 42 (10.04.06)
+\ninepoint $(u_1\land v_{@0})$ \becomes $(v_1\land u_{@0})$
+\endchange
+
+\amendpage 4f0.128 in exercise 43 (10.03.08)
+\ninepoint line 2 of part (a): $k$ is odd \becomes $k\ge1$ is odd\nl
+line 1 of part (b): transducer \becomes transducer with $\vert Q\vert=2$
+\endchange
+
+\let\defaultpointsize=\ninepoint % get ready for answer pages
+
+\amendpage 4f0.130 line 4 of exercise 67 (10.03.07)
+\begingroup\def\X/{{\eightss X}}%
+\ninepoint among \X/'s best. \becomes
+legal and minimizes \X/'s worst-case outcome.
+\endgroup
+\endchange
+
+\bugonpage 4f0.131 line 1 of exercise 76{(c)} (10.05.08)
+\ninepoint$\[j>l]$ \becomes $\[j<l]$
+\endchange
+
+\improvepage 4f0.135 line 3 of answer 7 (09.07.19)
+$(0,1,2,3,4,5,6,5,6,\ldots,5,6,5,4,3,2,1,0)$. This sequence \becomes\nl
+$(d_0,d_1,\ldots,d_{2n})=(0,1,2,3,4,5,6,5,6,\ldots,5,6,5,4,3,2,1,0)$, which
+\endchange
+
+\bugonpage 4f0.141 end of answer 43 (09.12.30)
+girth 4 \becomes girth 3
+\endchange
+
+\improvepage 4f0.142 first line of answer 60 (09.04.26)
+Set $A={}$ \becomes Let $A={}$
+\endchange
+
+\bugonpage 4f0.144 line 7 of answer 78 (09.04.26)
+all multiples of 4. \becomes all even.
+\endchange
+
+\improvepage 4f0.147 line 2 of answer 104 (09.12.03)
+Variables $r$ and $i$ mark the starting and ending row \becomes
+Variables $i$ and $r$ delimit the available rows
+\endchange
+
+\bugonpage 4f0.147 replacement for all but the first paragraph of answer 105 (10.01.04)
+\indent
+Let $a_k=d_1+\cdots+d_k-c_1-\cdots-c_k+k$, and suppose that
+we reach $a_k>0$ in step~H2 for some $k\le s$.
+Let $A_j$, $C_j$, $D_j$, $N$, and~$S$ be the numbers that correspond to
+$a_j$, $c_j$, $d_j$, $n$, and $s$ {\it before\/} steps H3 and~H4; thus
+$N=n+1$, $D_j=d_j+(0$~or~1), etc. We want to prove that $A_K>0$
+for some $K\le S$.\par
+Steps H3 and H4 have removed row~$N$ and the bottommost remaining
+$q$ cells in column~$t$, for some
+$t\ge S$ and $q>0$, together with the rightmost cells in rows 1 through~$p$.
+If $p>0$ we have $C_{t+1}=p$.
+Let $r=D_N=p+q$, $u=C_t$, and $v=c_t$. Notice that $D_j=t$ for $p<j\le u$,
+and $C_j=N$ for $1\le j\le r$; also $A_j=a_j$ for $1\le j\le p$.\par
+If $k$ is minimal we have $1\le a_k\le d_k-c_k+1$, hence $c_k\le d_k$.
+If $D_k>t$ then $k\le p$ and $A_k=a_k$.
+If $D_k<t$ it follows that $A_k=a_k+r-\min(k,r)\ge a_k$, because $k\le D_k$.
+Thus we may assume that $D_k=t.$\par
+Suppose $t>S$; hence $u\le S$. For $k<j\le u$ we have $d_j\ge D_j-1=t-1
+\ge d_k-1\ge c_k-1\ge c_j-1$. Thus $a_u\ge a_k>0$. But $A_u=a_u$,
+because $r\le u\le S<t$.
+We may therefore assume that $t=S$. Suppose $k<t$; then $c_k=d_k=t$,
+because $S\le c_k\le d_k\le t$. But $r=t$ leads to $c_k=N-1$ and a
+contradiction; and $r<t$ leads to $u=t$, from which it follows that
+$A_t>A_{t-1}=a_{t-1}-1\ge0$.\par
+(Deep breath.) OK; we've reduced the problem to cases with $k=t=S$.
+Hence $t=s\le c_t\le d_t\le D_t=t$,
+and we have $a_t=a_{t-1}+1$. Consequently $a_{t-1}=0$.\par
+In fact we can show by induction on $t-j$ that $a_j=0$ for $p\le j<t$:
+If $a_{j+1}=0$ then $0\le a_j=c_{j+1}-t-1\ge q-1\ge0$, because $c_{j+1}\ge
+t+q$ when $p\le j<t-1$.\par
+If $p<t-1$, this argument proves that $q=1$ and $c_r=N-1=t+1$.
+We conclude that, regardless of~$p$, we must have $q=1$, $N=t+2$,
+$D_j=t+1$ for $1\le j\le p$, $D_j=t$ for $p<j\le t+1$, and $D_N=p+1$.
+Algorithm~H does actually change this ``good'' sequence into a ``bad'' one;
+but $D_1+\cdots+D_N=2p+t(t+1)+1$ is odd.
+\smallskip\noindent
+{\sl[Note: Now answers 106--145 move about 10 lines down;
+many index entries change.]}
+\endchange
+
+\bugonpage 4f0.148 replacement for first paragraph of answer 108 (10.01.04)
+\ans108. We may assume that $d^+_1\ge\cdots\ge d^+_n$; the in-degrees
+$d_k^-$ need not be in any particular order. Apply Algorithm~H to the
+sequence $d\losub1\ldots d\losub n=d^+_1\ldots d^+_n$, but with the following
+changes: Step H2 becomes ``[Done?] Terminate successfully if $d_1=n=0@$;
+terminate unsuccessfully if $d_1>n$.'' In step H3, change
+``$j\gets d_n$'' to ``$j\gets d_n^-$,'' and
+terminate~unsuccessfully if $j>c_1$. In step~H4, omit ``$c_j\gets c_j-1$'';
+change ``$n\adj m$'' to ``$m\dadj n$''; and
+set $n\gets n-1$ just before returning to~H2.
+An argument like Lemma M and Corollary H justifies
+this approach.
+\endchange
+
+\amendpage 4f0.150 line 2 of answer 133 (09.04.28)
+[Can it be drawn with fewer than 12 crossings?] \becomes
+[In fact,
+Markus Chimani used branch-and-cut methods in 2009 to prove that it
+cannot be drawn with fewer than 12 crossings.]
+\endchange
+
+\amendpage 4f0.166 replacement for answer 68 (08.08.25)
+\bigskip
+\ans68. Here is one of the 258,594 solutions for $n=15$ that has
+59 black stones:
+\smash{\kern-20pt\lower 50pt\vbox{\epsfbox{\figdir/v4a.84}\kern3pt}\kern-20pt}%
+.\break
+(The answers for $1\le n\le 15$ are respectively
+2, 3, 4, 6, 8, 11, 14, 18, 23, 27,\hskip18mm\break
+33, 39, 45, 52, 59.
+The prime implicants for these functions can be\hskip23mm\break
+represented by fairly
+small ZDDs; see Section 7.1.4.)\vskip2\baselineskip
+\endchange
+
+\amendpage 4f0.168 line 1 of answer 81 (09.12.13)
+a subgraph \becomes an induced subgraph
+\endchange
+
+\bugonpage 4f0.169 replacement for answer 83 (10.01.18)
+\ans83. Consider first the Boolean (two-vertex) case, and let an optimum
+solution be obtainable by the recursive rules $u_0\gets v_0$ and
+$u_j\gets f_{t+2-j}(u_{j-1},v_j,\ldots,v_t)$ for $1\le j\le t$,
+where each $f_k$ is a suitable Boolean function of $k$ variables.
+The first function
+$f_{t+1}(v_0,v_1,\ldots,v_t)$ actually depends on its ``most remote''
+variable~$v_t$, because we must have
+$f_{2k+1}(0,1,1,0,1,0,1,\ldots,0,1,0,x)=x$
+when $\rho=1-\epsilon$ and $k\ge2$.\par
+One suitable function $f_{t+1}$ can be obtained as follows: Let
+$f_{t+1}(0,v_1,\ldots,v_t)=0$ if $v_1=0$. Otherwise let the
+``runs'' of the input sequence be
+$$v_0v_1\ldots v_t=01^{a_k}0^{a_{k-1}}\ldots1^{a_2}0^{a_1}
+\qquad\hbox{or}\qquad
+01^{a_k}0^{a_{k-1}}\ldots1^{a_3}0^{a_2}1^{a_1},$$
+where $a_k,\ldots,a_1\ge1$, and let
+$\alpha_j=2\dotminus a_j\rho=\max(0,2-a_j\rho)$ for $1\le j\le k$. Then
+$$f_{t+1}(0,v_1,\ldots,v_t)=\bigi[\alpha_k\dotminus(\alpha_{k-1}\dotminus
+ (\cdots\dotminus(\alpha_2\dotminus(1\dotminus a_1\rho))\cdots))=0].$$
+Also let $f_{t+1}(1,v_1,\ldots,v_t)=\bar f_{t+1}(0,\bar v_1,\ldots,\bar v_t)$,
+so that $f_{t+1}$ is self-dual.\par
+With a somewhat delicate proof one can show that $f_{t+1}$
+is also monotone.\par
+Therefore, by Theorem~P, we can apply $f_{t+1}$ componentwise to the labels of
+an arbitrary median graph, always staying within the graph.
+\endchange
+
+\amendpage 4f0.173 replacement for answer 109(d) (08.05.02)
+\smallskip
+(d) True, because max and min satisfy these distributive laws.
+(In fact, we obtain
+a distributive {\it mixed-radix majorization lattice\/} in a similar way from
+the set of all $n$-tuples $a_1\ldots a_n$ with $0\le a_j<m_j$
+for $1\le j\le n$. R.~P. Stanley has observed that Fig.~\fig8/ is
+also the lattice of order ideals of the triangular grid shown here.)\tighten
+{\parshape 4 0pt 28pc 0pt 27.5pc 0pt 27pc 0pt 26.5pc \parfillskip=0pt
+\smash{\raise0pt\rlap{\kern5pt\epsfbox{\figdir/v4a.686}}}\par}\breathe
+\endchange
+
+\improvepage 4f0.174 line 2 (09.02.14)
+Then \becomes Thus
+\endchange
+
+\amendpage 4f0.174 line 7 of answer 111{(c)} (09.02.14)
+where $f$ is the function derived in part (a) \becomes
+derived from these larger probabilities as in part (a)
+\endchange
+
+\bugonpage 4f0.174 line 11 of answer 111{(c)} (08.09.23)
+$F_k(p\ldots,p)$ \becomes $F_k(p,\ldots,p)$
+\endchange
+
+\improvepage 4f0.177 lines 11--12 of answer 121 (09.02.14)
+the ten cases when $m=3$ and $n=6$ are \becomes
+the following ten cases arise when $m=3$ and $n=6$:
+\endchange
+
+\amendpage 4f0.179 replacement for answer 132{(c)} (10.03.12)
+\indent
+(c) The argument in part (a) proves that $f(x)$ is bent if and only if
+$s(y)=2^{n/2}(-1)^{g(y)}$ for some Boolean function~$g(y)$. This function
+$g$, the Fourier/Hadamard transform of~$f$,
+is also bent, because $\sum_y(-1)^{g(y)+w\cdot y}=
+2^{-n/2}\sum_{x,y}(-1)^{f(x)+x\cdot y+w\cdot y}=2^{n/2}\sum_x(-1)^{f(x)}\[x=w]=
+2^{n/2}(-1)^{f(w)}$ for all~$w$. The hint now tells us that we have
+$\sum_y(-1)^{g(y)+g(y\oplus z)}=0$ for all nonzero~$z$, and the
+same holds for~$f$.\par\breathe
+Conversely, assume that $f(x)$ satisfies the stated condition. Then we have
+$$s(y)^2=\sum_{x,t}(-1)^{f(x)+x\cdot y+f(x\oplus t)+(x\oplus t)\cdot y}
+=\sum_t(-1)^{t\cdot y}\sum_x(-1)^{f(x)+f(x\oplus t)}=2^n$$ for all~$y$.\par
+\endchange
+
+\amendpage 4f0.180 in the final paragraph of answer 132 (10.03.12)
+line 6: $2^{n-1}-2^{(n-3)/2}$ from all affine functions when $g$ and $h$
+ \becomes
+ $2^{n-1}-2^{(n-1)/2}$ from all affine functions when $g$ and ${g\oplus h}$\nl
+line 9: 108.] \becomes 108. S.~Kavut and M. Diker~Y\"ucel,
+{\sl Information and Computation\/ \bf208} (2010), 341--350, have achieved
+distance $2^8-14$ when $n=9$.]
+\endchange
+
+\amendpage 4f0.181 final line of answer 4 (10.11.25)
+527.] \becomes B.~Doerr improved $\alpha$ to $-1/\lg(\sqrt3-1)$ in
+Math.\ Sem.\ Univ.\ Kiel Tech.\ Report 99-28 (1999).]
+\endchange
+
+\improvepage 4f0.182 line 1 (09.03.05)
+to an appropriate bit vector of weight 1 \becomes
+to its unique footprint vector (which contains exactly one~1)
+\endchange
+
+\bugonpage 4f0.182 replacement for step U6 (09.03.04)
+\itemitem{\bf U6.} [Update $U(f)$ and $\phi(f)$.] If $U(f)=\infty$, set
+$c\gets c-1$, $\phi(f)\gets v$, $U(f)\gets u$, and put $f$ into list~$u$.
+Otherwise if $U(f)>u$, move $f$ from list~$U(f)$
+to list~$u$ and set $\phi(f)\gets v$, $U(f)\gets u$.
+Otherwise if $U(f)=u$, set $\phi(f)\gets\phi(f)\bor v$.\quad\slug
+\endchange
+
+\bugonpage 4f0.182 answer 12 (10.05.02)
+$x_5=x_3\land x_2$ \becomes $x_5=x_3\land x_4$
+\endchange
+
+\amendpage 4f0.184 addendum to answer 21 (10.08.09)
+The minimum cost of their hardest function \eq(20) is still unknown, but
+a vacuum-tube variant of the footprint method
+shows that $V(f)\le18$:
+$$
+\openup-2.5pt\displaylines{\qquad
+\hbox{\mc OR}\bigl(
+ \hbox{\mc AND}\bigl(
+ \hbox{\mc NAND}(\bar x_1,     x_2),
+ \hbox{\mc NAND}(     x_1,\bar x_2),
+ \hbox{\mc NAND}(     x_1,\bar x_4),
+ \hbox{\mc NAND}(     x_3,     x_4)\bigr),
+\hfill\cr\hfill
+ \hbox{\mc AND}\bigl(
+ \hbox{\mc NAND}(     x_1,     x_2),
+ \hbox{\mc NAND}(\bar x_1,\bar x_2),
+ \hbox{\mc NAND}(     x_3,\bar x_4),
+ \hbox{\mc NAND}(\bar x_3,     x_4)\bigr)\bigr).
+\qquad\cr}$$
+Although they failed to find this particular construction,
+the Harvard researchers
+did remarkably well, in some cases beating the footprint heuristic
+by as many as 6~grids! % e.g. #226 with 11 while footprint needs 17
+\endchange
+
+\improvepage 4f0.185 answer 36 (09.05.15)
+line 2: optimum depth and $Q_n$ has depth $\le\lceil\lg n\rceil+1$: \becomes\nl
+$D(y_j)\le\lceil\lg n\rceil$
+for $1\le j\le n$ and $Q_n$ has $D(y_j)\le\lceil\lg n\rceil+\[j\ne n]$:\nl
+lines 7--9: To prove validity \dots\ power of 2. \becomes
+\endchange
+
+\improvepage 4f0.186 lines $-6$ and $-5$ of answer 36 (09.05.15)
+use the otherwise-forbidden $P'_{\lfloor n/2\rfloor}$
+construction for $Q_n$ when $n=2^m+1$, \becomes\nl
+replace $Q_{2n+1}$ by ($Q_{2n}$ and $y_{2n+1}=y_{2n}\land x_{2n+1}$)
+when $n$ is a power of~2,
+\endchange
+
+\improvepage 4f0.186 in answer 37{(c)} (09.05.15)
+line 3: $d(n)>d(n-1)>0$ \becomes $d(n)>d(n-1)$ and $n>2$\nl
+line 4: minimum occurs \becomes minimum with minimal cost occurs
+\endchange
+
+\bugonpage 4f0.186 last line of answer 37{(c)} (09.05.15)
+$n-\lfloor{2\over3}(n-\lfloor\lg n\rfloor+3)\rfloor+2$ \becomes
+$n-\lfloor\lg{2\over3}(n-\lfloor\lg n\rfloor+3)\rfloor+2$
+\endchange
+
+\bugonpage 4f0.189 line 3 of answer 43 (10.04.28)
+$d_{j+1}(q)=d(d_j(q),a_j)$ \becomes $d_j(q)=d(d_{j-1}(q),a_j)$\nl
+$d_{j+1}=d_j\circ d\losup{(a_j\?)}$ \becomes
+$d_j=d_{j-1}\circ d\losup{(a_j\?)}$
+\endchange
+
+\amendpage 4f0.189 line 13 of answer 43 (10.03.08)
+$b_j=\bar q_j\land a_j=\bar d_{(j-1)0}\land a_j$ \becomes
+$b_1=a_1$, and $b_j=\bar q_j\land a_j=\bar d_{(j-1)0}\land a_j$ for $j>1$
+\endchange
+
+\amendpage 4f0.189 last line of answer 43 (10.04.04)
+not $6p_4+4=28$ \dots~5.) \becomes
+$6p_{n-1}+(n-1)=28$; the actual depth is~4, not $2\lceil\lg(n-1)\rceil+1=5$.
+Notice that the straightforward chain $b_j=a_j\land\bar b_{j-1}$ for $1<j\le n$
+also solves problem~(a); it~wins on cost, but has depth~$n-1$.)
+\endchange
+
+\bugonpage 4f0.189 in answer 44 (10.04.04)
+lines 12 and 13: The total cost is 20, and the maximum depth is 5. \becomes
+The total cost is~20; the maximum depth, $6$, occurs in the
+computation of~$z_3$.\nl
+line 18: clearly superior to the conditional-sum method (which
+has the same depth~$2m+1$) \becomes
+superior to the conditional-sum method
+(which however has depth~$2m+1$, not~$2m+2$)
+\endchange
+
+\amendpage 4f0.190 replacement for last line of answer 52 (10.07.05)
+\noindent
+(These upper bounds are quite weak when $n$ is small. For example, we know that
+$C(n)=(0,1,4,7,12)$ when $n=(1,2,3,4,5)$; and Eq.~7.1.1--\eq(16)
+gives $C(n+1)\le2C(n)+2$, so that $C(6)\le26$, $C(7)\le54$, etc.)
+\endchange
+
+\bugonpage 4f0.191 replacement for last line of answer 57 (09.08.17)
+$$\def\\#1{\vcenter{\def\epsfsize##1##2{.5##1}\epsfbox{\figdir/v4a.127#1}}}
+1010\mapsto\\0\,,\quad
+1011\mapsto\\1\,,\quad
+1100\mapsto\\2\,,\quad
+1101\mapsto\\3\,,\quad
+1110\mapsto\\4\,,\quad
+1111\mapsto\\5\,.$$
+\endchange
+
+\amendpage 4f0.191 replacement for first six lines of answer 54 (10.10.02)
+\ans54. The greedy-footprint heuristic gives a chain of length 14:
+$$\openup-.9\jot\eqalign{
+x_5&=x_1\xor x_3,\cr
+x_6&=x_2\xor x_3,\cr
+x_7&=x_1\bland x_2,\cr
+x_8&=x_1\bland\bar x_6,\cr
+\strut x_9&=x_4\bland x_5,\cr
+}\qquad\eqalign{
+x_{10}&=x_4\bland\bar x_5,\cr
+x_{11}&=x_4\xor x_5,\cr
+x_{12}&=x_6\bland x_{11},\cr
+f_1=x_{13}&=\bar x_7\bland x_{12},\cr
+\strut f_2=x_{14}&=\bar x_6\bland x_{10},\cr
+}\qquad\eqalign{
+f_3=x_{15}&=\bar x_8\bland x_9,\cr
+f_4=x_{16}&=x_4\bland x_8,\cr
+f_5=x_{17}&=x_7\bland x_9,\cr
+f_6=x_{19}&=x_6\bland x_{10}.\cr
+\strut\cr
+}$$
+\endchange
+
+\amendpage 4f0.191 in answer 55 (10.07.05)
+line 2: 30 \becomes 29\nl
+line 7: $x_7\bland x_{12}$ \becomes $x_8\bland x_{12}$
+\endchange
+
+\amendpage 4f0.191 additional material for answer 57 (10.07.05)
+\noindent
+[David Stevenson, believing that it would be better to have a solution in
+which nondigits never masquerade as digits, has come up with
+another chain of length 13, namely
+$$\openup-.9\jot\eqalign{
+x_5&=\bar x_1\bland x_4,\cr
+x_6&=x_3\bland\bar x_5,\cr
+x_7&=x_2\xor x_5,\cr
+x_8&=x_3\xor x_7,\cr
+\strut x_9&=x_3\blor x_5,\cr
+}\qquad\eqalign{
+\bar d=x_{10}&=\bar x_6\bland x_8,\cr
+\bar a=x_{11}&=\bar x_3\bland x_7,\cr
+\bar b=x_{12}&=x_2\bland\bar x_8,\cr
+\bar f=x_{13}&=\bar x_2\bland x_9,\cr
+\strut \bar e=x_{14}&=x_4\blor x_{11},\cr
+}\qquad\eqalign{
+\bar c=x_{15}&=\bar x_2\bland x_6,\cr
+x_{16}&=c_9\xor x_{10},\cr
+g=x_{17}&=x_1\xor x_{16},\cr
+\strut\cr
+\strut\cr
+}$$
+for which $a$, \dots, $g$ have the truth tables
+\.{b7f3}, \.{f9fc}, \.{dfcf}, \.{b6f3}, \.{a2a2}, \.{8fcf}, \.{3ec0}, and
+$$\def\\#1{\vcenter{\def\epsfsize##1##2{.5##1}\epsfbox{\figdir/v4a.127#1}}}
+1010\mapsto\\6\,,\quad
+1011\mapsto\\7\,,\quad
+1100\mapsto\\8\,,\quad
+1101\mapsto\\8\,,\quad
+1110\mapsto\\9\,,\quad
+1111\mapsto\\2\,.$$
+Is there a 13-step
+chain for \eq(44) that produces 16 {\it distinct\/} outputs?$@$]
+
+\smallskip\noindent[\em Note: The foregoing change does not fit in
+the paperback fascicle, but it will be made in the hardcover Volume 4A.]
+\endchange
+
+\amendpage 4f0.192 replacement for lines 2--6 of answer 59 (10.10.02)
+$$\openup-.9\jot\eqalign{
+x_5&=x_2\xor x_3,\cr
+x_6&=x_1\xor x_4,\cr
+x_7&=x_1\xor x_3,\cr
+x_8&=x_4\blor x_5,\cr
+x_9&=x_6\bland x_8,\cr
+\strut x_{10}&=x_7\blor x_9,\cr
+}\qquad\eqalign{
+x_{11}&=x_2\blor x_7,\cr
+x_{12}&=x_2\bland\bar x_6,\cr
+x_{13}&=x_3\bland x_4,\cr
+x_{14}&=x_4\bland x_5,\cr
+x_{15}&=x_5\bland x_{10},\cr
+\strut x_{16}&=x_2\bland\bar x_{13},\cr
+}\qquad\eqalign{
+x_{17}&=\bar x_6\bland x_8,\cr
+f_1=x_{18}&=x_{11}\xor x_{17},\cr
+f_2=x_{19}&=x_{10}\bland\bar x_{14},\cr
+f_3=x_{20}&=x_9\xor x_{16},\cr
+f_4=x_{21}&=x_{12}\xor x_{15}.\cr
+\strut\cr
+}$$
+\endchange
+
+\amendpage 4f0.192 new solution to exercise 61 (10.06.07)
+\ans61. The following 17-gate solution by David Stevenson generalizes
+to $8m+1$ gates for addition mod~$2^m+1$:
+$u_0=x_0\land y_0$, $v_0=x_0\xor y_0$,
+$u_1=x_1\land y_1$, $v_1=x_1\xor y_1$,
+$t_1=v_1\land u_0$, $t_2=v_1\xor u_0$, $c_2=u_1\lor t_1$;
+$u_2=x_2\land y_2$, $t_3=x_2\lor y_2$, $t_4=t_3\lor c_2$;
+$t_5=t_2\lor v_0$, $t_6=t_5\land t_4$, $t_7=t_6\lor u_2$;
+$t_8=t_7\land\bar v_0$, $z_0=t_7\xor v_0$, $z_1=t_2\xor t_8$;
+$z_2=t_4\xor t_7$.
+(Notice that $(x_2x_1x_0)_2+(y_2y_1y_0)_2=(u_2t_4t_2v_0)_2-4\[x=y=4]$.
+Gilbert Lee has found another 17-step solution if the inputs are
+represented by 000, 001, 011, 101, and 111.)
+\endchange
+
+\amendpage 4f0.193 line 5 of answer 66 (10.03.06)
+\begingroup\def\O/{{\eightss O}}\def\X/{{\eightss X}}%
+\font\tiny=cmss8 at 3.6pt
+\newdimen\uu \uu=.18pt
+\uu=.18pt
+\def\cell#1#2#3{\vrule height2.9pt depth.6pt width0pt
+            \hbox to3.5pt{\hss\tiny\ifx#1.\else
+              \kern#2\uu\raise#3\uu\hbox{#1}\fi\hss}}%
+\def\\#1#2#3#4#5#6#7#8#9{\vcenter to11pt{\offinterlineskip
+ \halign{\cell##&\vrule width.25pt\cell##&\vrule width.25pt\cell##\cr
+ {#1}{-1}1&{#2}01&{#3}11\cr
+ \noalign{\hrule height.25pt}
+ {#4}{-1}0&{#5}00&{#6}10\cr
+ \noalign{\hrule height.25pt}
+ {#7}{-1}{-1}&{#8}0{-1}&{#9}1{-1}\cr}\kern0pt}}%
+$\\.O.X...X.$ \becomes $\\XO.....X.$ or $\\.O.X...X.$
+\endchange
+
+\amendpage 4f0.194 replacement for the first paragraph of answer 67 (10.03.07)
+\ans67. The best solution known so far, due to David Stevenson in 2010,
+uses a total of 818 gates (472~{\mc AND}, 327~{\mc OR}, 13~{\mc NOR}, 6~{\mc
+ANDN}); see
+$$\advance\abovedisplayskip-1.5pt
+  \advance\belowdisplayskip-1.5pt
+\.{http://www-cs-faculty.stanford.edu/\char`\~knuth/%
+         818-gate-solution}$$
+for the details. After taking care of moves such as $w_j$ and $b_j$,
+and cleverly optimizing don't cares, Stevenson
+\begingroup\catcode`\*=\active \def*{\smash{\lower.4ex\hbox{\char`\*}}}%
+essentially {\mc OR}s together about 200 special positions (such as
+$\\{ }**{ }{ }O{ }XX$) that make $c=1$,
+about 200 others (such as $\\O{ }{ }{ }{ }*O*{ }$) that make $s=1$, and about
+% that position loses no matter what X plays!
+50 (such as $\\XO{ }*{ }O*O{ }$) that make $m=1$; then he saves gates by
+% those *s cannot be Os since there are already three Os and just one X
+finding common subexpressions among the {\mc AND}s that define special
+positions, and by using the distributive law, etc.\tighten\par\endgroup
+\endgroup
+\endchange
+
+\bugonpage 4f0.194 line 2 of answer 68 (10.07.05)
+cost is $2^n$ times a polynomial in~$n$ \becomes
+cost is $\Omega(n2^n)$
+\endchange
+
+\amendpage 4f0.195 line 5 of answer 76 (10.05.08)
+$(2^m+O(m))$ \becomes $(2^m-O(m))$
+\endchange
+
+\improvepage 4f0.197 answer 80 (09.03.20)
+[insert `(a)' at the beginning of the answer; move the journal citation
+to the end]
+\endchange
+
+\bugonpage 4f0.199 line $-3$ (09.03.22)
+fewer then \becomes fewer than
+\endchange
+
+\expandafter\ifx\csname indexeject\endcsname\relax\else\vfill\eject\fi
+\amendpage 4f0.201 and following (08.02.05)
+Miscellaneous changes to the existing index of Volume~4 Fascicle~0
+are collected here,
+including corrections and amendments to the old entries as well as new entries
+that are occasioned by the new material. Thus, the lines of the full index
+that have changed serve also as an index to the present document. However,
+when a correction or amendment has caused an old index entry to be deleted,
+the deletion is usually not indicated.
+
+\input exotic
+\begindoublecolumns
+\indexformat
+\gdef\Uni1.08:{\bitmap24:1.08:}
+\hangindent2em
+3-cube, 7. % 2nd
+3-variable functions, 63, 99, 104--105, 156. % 6th
+4-variable functions, 79, 98--105, 112--114, 122, 126, 129. % 6th
+5-variable functions, 79, 105--106, 126, 191. % 6th
+$\Lambda$ (null pointer), 21. % 4th
+Algebraic normal form, \see Multilinear representation of a Boolean function. % 3rd
+$b$-ary codewords, 38. % 4th
+Boolean functions, 33, 47--96, \also Boolean chains. % 6th
+\sub of 3 variables, 63, 78, 99, 104--105, 156. % 6th
+Bose, Raj Chandra ({\bg\C114\C059\C106\ \C099\C078\C100\kern-.024em\C168\ \C098\C115\C117}$@$), 5. % 6th
+Branch-and-cut methods, 150. % 4th
+Caplin, Alfred Gerald (= Al Capp), 79. % 2nd
+Chimani, Markus, 150. % 4th
+Chow, Chao Kong (\GC72:76:-3:61% G5460
+<0000000000000000e0000c000000000000f0000e000000000001f8000f000000000001fc%
+ 000f800000000003fe000fffffffffffffff000fffffffffffffff000f800007000001fe%
+ 000f800007e00001f8000f800007f80001f00007800007f80001f00007800007f00001f0%
+ 0007800007e00001f00007800007c00001f00007800007c00001f00007800007c00e01f0%
+ 0007800007c01f01f00007800007c03f81f00007800007c07fc1f0000781ffffffffe1f0%
+ 000780ffffffffe1f00007804007c00001f00007800007c00001f00007800007c00001f0%
+ 0007800007c00001f00007800007c00001f00007800007c00001f00007800007c001c1f0%
+ 0007800007c003e1f00007800007c007e1f00007800007c00ff1f000079ffffffffff9f0%
+ 00078ffffffffffdf00007880000000001f00007800000000001f00007800000000001f0%
+ 0007800000000001f00007800000000001f0000780300001e001f00007803c0003f001f0%
+ 000f803e0007fc01f0000f803ffffffc01f0000f803ffffffc01f0000f803f0001e001f0%
+ 000f803f0001e001f0000f803f0001e001f0000f803f0001e001f0000f003f0001e001f0%
+ 001f003f0001e001f0001f003f0001e001f0001f003f0001e001f0001f003f0001e001f0%
+ 001f003f0001e001f0001f003f0001e001f0001e003f0001e001f0003e003fffffe001f0%
+ 003e003fffffe001f0003e003ffffff001f0003e003f0001f001f0007c003f0001f001f0%
+ 007c003f0001f001f00078003f0001f001f00078003e00000001f000f0003c00000001f0%
+ 00f0000000000001f001e0000000000001f001c0000000000001f00380000000003c1ff0%
+ 0380000000003ffff007000000000007fff00e000000000000fff0380000000000007fe0%
+ 700000000000003fe0c00000000000003f80c00000000000001f80000000000000001e00%
+ >%%  Unicode char "5468
+\JC48:48:0:40% J3050
+<004000000000007000000000007c0000000c007c0000001e00780fffffff007007ffffff%
+ 00e0000f000f00e0000f000fc1c4000f000ff386000f000f7f07c00f000f3e07c00f000f%
+ 3e0f800f001f1f0f000f001e1f1f000e001e0f1e001e003e033c001e003e0038003e007c%
+ 0071007c1ffc00e380f00ff801c3c3e007f00381e30003c0f70fe0000000fefff0000000%
+ 7ffcf00000007ff0700000003ef07300003030f023c0007800f003fffffc00f003fffffc%
+ 00f003c000781cf003c000781ffe03c000780fff03c000780ef7c3c000780ef3e3c00078%
+ 0ef1f3c000780ef0f3c000781cf0f3c000781cf063c000783cf003c0007878f003c00078%
+ f0f003fffff8c0f003fffff800f003c0007800f003c0007800f003c00030006001800000%
+ >%%  Unicode char "7d39
+\GC78:78:-1:64% G3121
+<000000001e0000000000000000001f0000000000000000000fe0000000000000000007f8%
+ 000000000000000007f8000000000000000003f8000000000000000001f800000e000000%
+ 000001f800001f00003c000000f800003f80003e000000f800007fc0003f000000f80000%
+ ffe0003ffffffffffffffff0003ffffffffffffffff8003f000001c000000000003f0000%
+ 01f000000000003f000001fc00000000003f000001ff00000000003f000001ff00000000%
+ 003f000001ff00070000003f000001fe001fc000003f000001f8003fe000003f0fffffff%
+ fffff000003f0ffffffffffff000003f07fffffffffff000003f03c001f8001ff000003f%
+ 000001f8001fe000003f000001f8001f8000003f000001f8001f8380003f000001f8001f%
+ 87c0003f000001f8001f8ff0003f000001f8001f9ff8003f7ffffffffffffffc003f3fff%
+ fffffffffffc003f3ffffffffffffffc003f040001f8001f8000003f000001f8001f8000%
+ 003f000001f8001f8000003f000001f8001f8000003f000001f8001f8000003f000001f8%
+ 001f8000003f000001f8001f8000003f0fffffffffff8000003f07ffffffffff8000003f%
+ 07ffffffffff8000003f008001f9c01f8000003f000001f8e01fbc00003f03c001f8e01f%
+ 3e00003f01e001f8f0007e00003f00f001f8f0007f00003f00fc01f87800ff80003f007e%
+ 01f87801ffc0003e003f01f87c03ff00003e003f01f83c07fc00003e001f03f83e0ff800%
+ 003e001f87f81e1fe000007e001f9ff81f7fc000007e000fbdf80fff0000007c000f79f8%
+ 0ff80000007c0003f1f807e0000000fc000fe1f803f0000000f8007fc1f803f8000000f8%
+ 03ff81f801fc000000f81fff01f800ff000001f0fffc01f8007f800001f0fff801f8007f%
+ e00003e07ff001f8003ffc0003e07fc001f8001fff0007c03f0001f8000ffffc07c01e00%
+ 01f80003fffc0f801803cff80001fff00f800003fff80000fff01f0000007ff800000fc0%
+ 3e0000001ff8000001007c0000000ff8000000007800000003f800000000f000000003f0%
+ 00000000e000000003e0000000004000000003c000000000>%%  Unicode char "5eb7
+), 76. % 4th
+Chv\'atal, V\'aclav (= Va\v{s}ek), 14. % 2nd
+Cocliques, \see Independent vertices. % 6th
+Complement, of a simple digraph without loops, 42. % 3rd
+Dictator functions, 49, \see Projection functions. % 3rd
+Diker Y\"ucel, Melek, 180. % 3rd
+Directed graphs, simple, 18, 19, 40, 42, 43, 145, 146. % 3rd
+Discrete Fourier transforms, 94, 155, 179. % 3rd
+Doerr, Benjamin, 181. % 6th
+Dot minus ($\dotminus$), 49, 84, 169. % 5th
+Doyle, Arthur Ignatius Conan, 1. % 2nd
+{\sl FOCS: Proceedings of the IEEE Symposia on Foundations of Computer Science\/} (1975--), formerly called the {\sl Symposia on Switching Circuit Theory and Logic Design\/} (1960--1965), {\sl Symposia on Switching and Automata Theory\/} (1966--1974). % 2nd
+Euclidean distance, vii, 10, 12. % 2nd
+Exclusive normal form, 52, \see Multilinear representation. % 3rd
+Fischer, Michael John, 127, 128, 189. % 4th
+Four-letter words, 10. % 4th
+Fourier, Jean Baptiste Joseph, transform, discrete, 94, 155, 179. % 3rd
+Games, 58, 86, \also Tic-tac-toe. % 2nd
+Graphs, median, 67--74, 90, 169. % 5th
+Grid graphs, triangular, 25, 145, 173. % 2nd
+Harvard University Computation Laboratory, 104, 126, 184. % 6th
+Inclusion and exclusion principle, 159. % 2nd
+Inclusive ancestors of a node: The node itself together with its proper ancestors, 41. % 6th
+Hadamard transform, 155, 179. % 3rd % "Hadamard matrix" is now out
+Holton, Derek Allan, 151. % 2nd
+$K_{3,3}$ (utilities graph), 17, 39, 42, 141. % 6th
+Kavut, Sel\c{c}uk, 180. % 3rd
+Ladner, Richard Emil, 127, 128, 189. % 4th
+Lee, Gilbert Ching Jye (\GC72:74:-5:61% G3278
+<00000000f00000000000000000fc0000000000000000fe0000000000000000ff80000000%
+ 00000000ff8000000000000000ff8000000000000000ff0000000000000000fc00000000%
+ 00000000fc0000038000000000fc000007c000000000fc00000fe000000000fc00001ff0%
+ fffffffffffffffff87ffffffffffffffffc3ffffffffffffffffc0c00001ffce0000000%
+ 0000003ffcf00000000000007ffc780000000000007ffc38000000000000fefc3c000000%
+ 000000fcfc1e000000000001f8fc1f000000000003f8fc0f800000000003f0fc07c00000%
+ 000007e0fc07e0000000000fc0fc03f8000000001f80fc01ff000000003f00fc00ffc000%
+ 00007e00fc00fff0000000fc00fc007ffe000001f800fc003fff800003e000fc000ffffe%
+ 0007c000f80077ffff000f8000f800f9fffc003f00000001fcfffc007ffffffffffe1ff0%
+ 01f8ffffffffff07c007e07fffffffff00801f801000000fff00003f000000001ffe0000%
+ fc000000003ff80000f0000000007ff000004000000000ff800000000000003ffe000000%
+ 000000003ff0000000000000003fe0000000000000003fe0000000000000003f800001c0%
+ 000000003f000003e0000000003f000007f0000000003f00000ff8fffffffffffffffffc%
+ 7ffffffffffffffffe1ffffffffffffffffe040000003f00000000000000003f00000000%
+ 000000003f00000000000000003f00000000000000003f00000000000000003f00000000%
+ 000000003f00000000000000003f00000000000000003f00000000000000003f00000000%
+ 000000003f00000000000000003f00000000000000f83f00000000000000ffff00000000%
+ 0000001fff000000000000000fff0000000000000003ff0000000000000001fe00000000%
+ 00000000fc0000000000000000f000000000>%% Unicode char "674e
+\GC77:76:-2:62% G3016
+<000000000000003800000000f0000000007c00000000fc00000000fe00000000fe000000%
+ 01ff00000000ffffffffffff80000000ffffffffffff800000007fffffffffff00000000%
+ 7c00000000fe000000007c00000000fc000000007c00000000fc000000007c00000000fc%
+ 000000007c00000000fc000000007c00000000fc000000007ffffffffffc000000007fff%
+ fffffffc000000007ffffffffffc000000007c00000000fc000000007c00000000fc0000%
+ 00007c00000000fc000000007c00000000fe000000007c00000000fe000000007fffffff%
+ fffe00000000fffffffffffe00000000fffffffffffe00000000fc000f8000fe00000000%
+ fc0007e000f000000000f80003f000c000000000000003f800000e000000000003f80000%
+ 1f000000000003f800003fc00000000003f000007fe07ffffffffffffffffff03fffffff%
+ fffffffffff83ffffffffffffffffff81000000000000000000000003800000001c00000%
+ 00003c00000003e0000000003f00000007f0000000003f8000000ff8000000003fffffff%
+ fffc000000003ffffffffffc000000003f00000003f8000000003f00000003f800000000%
+ 3f00000003f0000000003f00000003f0000000003f00000003f0000000003f00000003f0%
+ 000000003f00000003f0000000003f00000003f0000000003ffffffffff0000000003fff%
+ fffffff0000000007ffffffffff0000000007f0007c003f0000000007f0007c003f00000%
+ 00007f0007c003f0000000007fc007c000000000000007e007c00000000000000ff807c0%
+ 7800000000001ffc07c01f00000000003ffc07c007fc000000007ff007c003ffc0000000%
+ ffc007c000fff0000001ff8007c0007ff8000003fe0007c0003ffc000007f80007c0000f%
+ fc00001fe00007c00007fe00003fc00007c00003fe0000ff00fc07c00000fe0001fc00ff%
+ ffc000007e001fe0000fffc000003c00ff800003ff8000003c00f8000001ff8000001800%
+ 800000007f8000000800000000007e0000000000000000007c0000000000000000004000%
+ 00000000>%% Unicode char "666f
+\JC48:48:0:40% J2370
+<003030000f80003838000fc0003f3f000f00003f3f000f00003e3e000f00003c3c200f00%
+ 007c3ff00f1000787ff00f380078f0fffffc00f8f0fffffc00f1e0f00f0001f1c0f30f00%
+ 01e3f1e3cf0003c7f1c3ef0003ce3bc3ef0007cc1b83cf0007c00f83cf040fc00f03cf0e%
+ 0fc00e3fffff1fc01c3fffff3bc038000f0073c070000f00e3c0e0000f00c3c3c0000f00%
+ 03cf00300f0003ce003c0f0003c0003e0f0003c0003e0f0003c0003c001c03c0003c003e%
+ 03cfffffffff03cfffffffff03c003fd800003c003fd800003c007bcc00003c0073ce000%
+ 03c00f3c700003c01e3c380003c03c3c1e0003c0783c0f0003c0f03c07fe03c1e03c03ff%
+ 03c3c03c01ff03cf003c00ff03fc003c007e03f0003c003c03c0003c0000018000180000%
+ >%% Unicode char "5091
+), 192. % 4th
+Leonardo di ser Piero da Vinci, 9, 24. % 2nd
+Length of a Boolean function, 99, 103, 125, 129. % 4th
+Lewis, Harry Roy, 164. % 4th
+Medians ($\langle xyz\rangle$), 62--74, 87--91, 102, 125, 133. % 2nd; "Med op" out
+Monotone Boolean functions, self-dual, 63--64, 70, 79, 87--89, 92--93, 133,
+ 169. % 5th
+Monus operation ($x@{\dotminus}@y$), 49, 84, 169. % 5th
+$n$-ary Boolean functions, 51--55, 78--79, 95. % 3rd
+$n$-cube: The $2^n$ points $(x_1,\ldots,x_n)$ with ${x_j=0}$ or ${x_j=1}$ in each coordinate position, 7, 28, 41, 73, 129. % 2nd
+{\mc NOT} gates, 32, 33, 104. % 6th
+Notation, 26, 48, 132, 146. % 2nd
+Order ideals, 173. % 2nd
+$\rm{P=NP}$(?), 55. % 2nd
+Pincusian mathematics, 79. % 2nd
+Rad\'o, Richard, 174. % 2nd
+Saturating subtraction ($\dotminus$), 49, 84, 169. % 5th
+Scutell\'a, Maria Grazia, 60. % 2nd
+Simple digraphs, 18, 19, 40, 42, 43, 145, 146. % 3rd
+Self-dual Boolean functions, monotone, 63--64, 70, 79, 87--89, 92--93, 133, 169. % 5th
+Sholomov, Lev Abramovich ({\rus Sholomov, Lev Abramovich}), 129. % 6th
+Stevenson, David Ian, 113, 184, 191, 192, 194. % 6th
+Triangular grids, 25, 88, 145, 173. % 2nd
+Tsuboi, Tei{\`\i}chi (\JC48:46:0:38% J3658
+<07800000003007c00000007803e0fffffffc03e07ffffffc03c0000f000003c0000f0000%
+ 03c0000f00c003c0000f007003c0300f007c03c0380f007c03c31c0f007c03c79c0f00f8%
+ ffffce0f00f07fffce0f00f003c00f0f01e003c00f0f01e003c00f0f03c003c00f0f0380%
+ 03c0070f0f8003c0060f0e0003c0000f000003c0000f000003c0000f000c03c0000f001e%
+ 03c3ffffffff03c1ffffffff03c0000f000003c0000f000003c1800f000003c7c00f0000%
+ 03df800f000003ff000f0000e3fc000f0000fff0000f00007fc0000f00007f00000f0000%
+ 3c00000f00003000000f00000000000f00000000000f00000000000f00000000000f0000%
+ 0000000f00000000000f00000000000f0000000000060000>%% Unicode char "576a
+\JC48:48:0:40% J1670
+<0003000300000003c003c0000003e003e0000003e003e0000003c003c0000003c003c000%
+ 0003c003c0000003c003c0000003c003c0000003c003c0000003c003c0300003c003c078%
+ 3ffffffffffc1ffffffffffc0003c003c0000003c003c0000003c003c0000003c003c000%
+ 0003c003c0000003c003c0000003c003c0000003c003c0000003c003c0000003c003c000%
+ 0003c003c0000003c003c0000003c003c00c0003c003c01effffffffffff7fffffffffff%
+ 0003c003c0000003c003c0000003c003c0000003c003c0000007c003c00000078003c000%
+ 00078003c00000078003c000000f0003c000000f0003c000000f0003c000001e0003c000%
+ 001e0003c000003c0003c00000780003c00000e00003c00001c00003c000070000018000%
+ >%%  Unicode char "4e95
+\JC48:48:0:40% J3674
+<000006000000000007800000000007e00000000003e00000010003c00000010003c00000%
+ 030003c0000c030003c0001e07ffffffffff0fffffffffff0f000000001e1f000000001e%
+ 3f000000003c3e00000000783e00000000f81c00000000e0000000000000000000000000%
+ 0ffffffffff007fffffffff0000003c00000000003c00000000003c00000000003c00000%
+ 003003c00000001c03c00000001f03c00000001f03c00000001e03c00300001e03c00780%
+ 001e03ffffc0001e03ffffc0001e03c00000001e03c00000001c03c00000003c03c00000%
+ 003f03c00000003fc3c000000039e3c000000070f3c0000000f07bc0000000e03fc00000%
+ 01e01fe0000003c00ff80000078003ffffff0f0000fffffffc00003ffffef000000ffffc%
+ >%%  Unicode char "5b9a
+\JC48:4:0:20% J1676
+<00000000000c00000000001effffffffffff7fffffffffff>%% Unicode char "4e00
+), 172, 173, 178. % 4th
+Universe, protons in the, 124. % 2nd
+\.{WORDS}($n$), the $n$ most common five-letter words of English, 10--12. % 2nd
+Y\"ucel, Melek Diker, 180. % 3rd
+\vfill
+\enddoublecolumns
+\endchange
+
+\bye
+
+[The next printing would have been the 6th.]
+not listed above:
+page 155, (c,\thinspace d)
+
+
+ARTICLES "TO APPEAR" THAT ARE STILL PENDING:
+Lars Andersen in answer 7.10
+addendum to answer 7.1.2--21
+
+check 7.1.3--|consensus| = 142
+    7.1.4--|perrin-nos| = 15
+   7.1.4--|reg-enum| = 75
+
+CROSS-REFERENCES TO "00":
+   7.2.2.1--|langford-planar|

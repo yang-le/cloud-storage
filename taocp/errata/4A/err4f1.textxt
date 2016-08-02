@@ -1,0 +1,1195 @@
+% CHANGES TO FASCICLE V4F1 OF THE ART OF COMPUTER PROGRAMMING
+%
+% Copyright (C) 2009, 2010 by Donald E. Knuth
+% This file may be freely copied provided that no modifications are made.
+% All other rights are reserved.
+%
+% Three levels of changes to the books are distinguished here:
+%
+% "\bugonpage" introduces the correction of an error;
+% "\amendpage" introduces new material for future editions;
+% "\improvepage" introduces ameliorations of lesser importance.
+%
+% (Changes introduced by \improvepage do not appear in the hardcopy listing.)
+%
+% Also, "\planforpage" introduces some of the author's half-baked intentions.
+%
+
+% NOTE: TO PUT THE INDEX ON A SEPARATE PAGE, RUN THIS WITH THE COMMAND LINE
+%   tex "\let\indexeject+ \input err4f1"
+
+\newif\ifall % \alltrue means show the trivial items too
+\relax % hook
+
+\def\vertical{|}
+\def\inref#1 #{\expandafter\def\csname\vertical#1\endcsname}
+\catcode`|=\active
+\let|\inref \input \jobname.ref
+\catcode`|=12
+
+\input taocpmac % use the format for TAOCP, with modifications below
+
+\def\becomes{\ifmmode\ \hbox\fi{\manfnt y}\ } % wiggly arrow indicates a change
+
+\def\bugonpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt\llap{\manfnt x}% print a black triangle in left margin
+   {\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\amendpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\improvepage#1.#2 #3 (#4) {\ifall
+  \medbreak\ninepoint
+  \line{\kern-6pt{\sl Page #2\enspace #3\/}
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\noindent}
+\def\planforpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hbox to 5pt{\hss.\hss}\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\begingroup\let\endchange=\endgroup\sl\noindent}
+\let\endchange=\fi
+\def\nl{\par\noindent}
+\def\nlh{\par\noindent\hangit}
+\def\hangit{\hangindent2em}
+\def\cutpar{{\parfillskip=0pt\par}}
+
+\def\date#1.#2.#3.{% convert "yy.mm.dd." to "dd Mon 19yy"
+  #3
+  \ifcase#2\or Jan\or Feb\or Mar\or Apr\or May\or Jun\or
+               Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi
+  \ \ifnum #1<97 \hundred#1\else19#1\fi}
+\def\hundred{20} % the "century" for dates before '97
+
+\def\ex #1. [#2]{\ninepoint
+  \textindent{\bf#1.}[{\it#2\/}]\kern6pt}
+\def\EX #1. [#2]{\ninepoint
+  \textindent{\llap{\manfnt x}\bf#1.}[{\it#2\/}]\kern6pt}
+
+\def\foottext#1{\medskip
+        \hrule height\ruleht width5pc \kern-\ruleht \kern3pt \eightpoint
+        \smallskip\textindent{#1}}
+\def\volheadline#1{\line{\hss\cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill
+       \titlefont\ #1\ \cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill\hss}}
+\def\refin#1 {\let|\inref \input #1.ref \let|\crossref}
+
+\let\defaultpointsize=\tenpoint
+
+%%%%%%%%%%%%%% opening remarks %%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{INTRODUCTION}
+\let\rhead=\lhead
+\titlepage
+\volheadline{THE ART OF COMPUTER PROGRAMMING}
+\bigskip
+\volheadline{ERRATA TO VOLUME 4 FASCICLE 1}
+\bigskip
+
+\noindent This document is a transcript of the notes that I have been making
+in my personal copy of {\sl The Art of Computer Programming}, Volume~4,
+Fascicle~1, since it was first printed in 2009.
+
+\ifall Four levels of updates\dash---``errors,'' ``amendments,'' ``plans,''
+   and ``improvements''\dash---appear, indicated by four
+\else Three levels of updates\dash---``errors,'' ``amendments,'' and
+   ``plans''\dash---appear, indicated by three \fi
+different typographic conventions:
+\begingroup\def\hundred{17}
+
+\bugonpage 0.666 line 1 (76.07.04)
+Technical or typographical errors (aka bugs) are the most critical items, so
+they are flagged with a `\thinspace{\manfnt x}\thinspace' preceding the page
+number. The date on which I first was told about the bug is shown; this is the
+effective date on which I paid the finder's fee. The necessary
+corrections are indicated in
+a straightforward way. If,~for example, the book says
+`$n$' where it should have said `$n+1$', the change is shown thus:
+\smallskip
+$n$ \becomes $n+1$
+\endchange
+
+\amendpage 0.666 line 2 (89.07.14)
+Amendments to the text appear in the same format as bugs, but without
+the~`\thinspace{\manfnt x}\thinspace'. These are things I wish I had known
+about or thought of when I wrote the original text, so I added them later.
+The date is the date I drafted the new text.
+\endchange
+
+\def\hundred{19}
+
+\planforpage 0.666 line 3 (17.11.20)
+Plans for the future represent a third kind of item. In such notes I~sketched
+my intentions about things that I wasn't ready to flesh out further when
+I~wrote them down. You can identify these items because they're written in
+slanted type, and preceded by a bunch of dots
+`\hbox to 6em{\leaders\hbox to 5pt{\hss.\hss}\hfill}' leading to the date on
+which I recorded the plan in my files.
+\endchange
+
+\improvepage 0.666 line 4 (38.01.10)
+The fourth and final category\dash---indicated by page and line number in
+smaller, slanted type\dash---consists of minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+You wouldn't even
+be seeing these items if you hadn't specifically chosen to print the complete
+errata list in all its gory details.
+Are you sure you wanted to do that?
+\endchange
+
+\endgroup
+\ifall\else\medskip\ninepoint
+My personal file of updates also includes a fourth category of items, not
+shown in this list. They are miscellaneous minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+If you really want to see all of the gory details,
+you can download the full list from Internet webpage
+$$\.{http://www-cs-faculty.stanford.edu/\char`\~knuth/taocp.html}$$
+by selecting the ``long form'' of the errata.
+\fi
+
+\medskip
+\tenpoint
+\beginconstruction
+The ultimate, glorious, future editions of Volumes 1--5 are works in progress.
+Please let me know of any improvements that you think I ought to make.
+Send your comments either by snail mail to D.~E. Knuth, Computer
+Science, Gates Building 4B, Stanford University, Stanford CA~94305-9045,
+or by email to
+{\tt taocp{\char`\@}cs.stanford.edu}. (Use email for book suggestions
+only, please\dash---all
+other correspondence is returned unread to the sender, or discarded,
+because I have no time to
+read ordinary email.) Although I'm working full time on
+Volume~4 these days, I~will try to reply to all such messages
+within a year of receipt. Current news about {\sl The Art of Computer
+Programming\/} is posted on
+$$\.{http://www-cs-faculty.stanford.edu/\char`~knuth/taocp.html}$$
+and updated regularly.
+\par\endconstruction
+\rightline{\dash---Don Knuth, January 2009}
+
+\bigskip
+\bigskip
+{\quoteformat
+He did a lot of editing. That's how he liked to work.
+Sometimes he even made alterations between printings.
+\author P. D. JAMES, {\sl The Lighthouse\/} (2005)
+% page 148 (within Chapter 7)
+\vfill\eject
+}
+
+\def\today{\number\day\space\ifcase\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi
+  \space\number\year}
+
+%%%%%%%%%%%%%%% CHANGES FOR VOLUME 4 FASCICLE 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{CHANGES TO V4F1: BITWISE TRICKS/TECHNIQUES; BDDS}
+\let\rhead=\lhead
+\titlepage
+\volheadline{BITWISE TRICKS/TECHNIQUES, BDDS} % the fascicle title
+\bigskip
+\rightline{Copyright \copyright\ 2009, 2010, Addison\with Wesley; all rights reserved}
+\rightline{Last updated \today}
+\bigskip
+\rightline{\sl Most of these corrections have already been made in
+                  recent printings.}
+\medskip
+\noindent Important note: The changes below include nearly every difference
+between the paperback fascicle and the first printing of Volume 4A,
+published in January 2011. All subsequent changes can be found in
+the errata list for that volume.
+
+\smallskip
+\let\defaultpointsize=\tenpoint
+
+\bugonpage 4f0.{\tenbsy1} back cover line 10 (09.04.07)
+{\eightss problems.All} \becomes {\eightss problems. All}
+\endchange
+
+\improvepage 4f1.ii line $-14$ (09.04.26)
+\ninepoint Copyright $\copyright$ 2009 \becomes
+\ninepoint Copyright $\copyright$ MMIX
+\endchange
+
+\bugonpage 4f1.iii line $-7$ (09.03.25)
+subection 7.1.3 \becomes subsection 7.1.3
+\endchange
+
+\bugonpage 4f1.vi line 5 (10.01.22)
+by a sharp sign \becomes by a number sign or hash mark
+\endchange
+
+\amendpage 4f1.10 replacement for three lines following {\eq(53)} (10.05.26)
+[This technique was devised in 1967 by Luther Woodrum of IBM's Systems
+Development Division (unpublished);
+many other programmers have subsequently discovered it independently.]
+\endchange
+
+\amendpage 4f1.14 lines 4--5 (09.12.21)
+Every setting of the individual crossbars therefore \becomes
+To start the recursion when $n=1$, we let
+$P(2)$ consist of a single crossbar.
+Every setting of the
+individual crossbars clearly
+\endchange
+
+\improvepage 4f1.17 a few lines before {\eq(81)} (09.07.01)
+the necessary masks \becomes suitable masks
+\endchange
+
+\amendpage 4f1.17 replacement for the paragraph containing {\eq(81)} (09.05.06)
+\indent
+A ``sheep-and-goats'' or ``grouping'' operation has been suggested for
+computer hardware, extending \eq(78) to produce the general unshuffled word
+$$(x_{r-1}\ldots x_1x_0@y_{s-1}\ldots y_1y_0)_2=
+(z_{i_{r-1}}\ldots z_{i_1}z_{i_0}@z_{j_{s-1}}\ldots z_{j_1}z_{j_0})_2;\enspace
+\eq(81)$$
+here $i_{r-1}>\cdots>i_1>i_0$ are the indices where $\chi_i=0$.
+But another operation called ``gather-flip,'' which reverses the order
+of the unmasked bits and gives
+$$(x_0x_1\ldots x_{r-1}@y_{s-1}\ldots y_1y_0)_2=
+(z_{i_0}z_{i_1}\ldots z_{i_{r-1}}@z_{j_{s-1}}\ldots z_{j_1}z_{j_0})_2,\enspace
+\eqref|gather-flip|(81\hbox{$'$})$$
+turns out to be more useful and easier to implement.
+Any permutation of $2^d$ bits is achievable by using either operation,
+at most $d$ times (see exercises 72 and~73).\par
+\smallskip\eightpoint
+[To make room for this new material, several lines of page 16 have moved
+to page 15, and the index has been changed accordingly.]
+\endchange
+
+\amendpage 4f1.19 new sentence for bottom line (09.05.06)
+See also R.~B. Lee, {\sl IEEE Micro\/ \bf16},\thinspace4
+ (August 1996), 51--59.
+\endchange
+
+\improvepage 4f1.22 just above {\eq(97)} (09.04.04)
+to storage allocation \becomes to finding $r$ contiguous free blocks
+when allocating storage
+\endchange
+
+\bugonpage 4f1.27 line 8 (09.12.24)
+442--451 \becomes 442--453
+\endchange
+
+\amendpage 4f1.33 line 5 (10.09.29)
+nodes. \becomes nodes.
+(These are the ``inclusive'' descendants, including $j$ itself.)
+\endchange
+
+\amendpage 4f1.33 line $-13$ (10.09.29)
+an {\it ancestor\/} \becomes an (inclusive) {\it ancestor\/}
+\endchange
+
+\amendpage 4f1.33 line $-2$ (10.09.29)
+vertex $u$ \becomes vertex $u$ (always meaning an {\it inclusive\/} ancestor)
+\endchange
+
+\amendpage 4f1.41 in Fig.~16 (10.04.29)
+replace the Chinese character at the left by the following
+more appropriate one:
+$$\vcenter{\epsfbox{\figdir/ch7a.120}}$$
+\endchange
+
+\amendpage 4f1.44 line 15 (09.10.13)
+41--47 \becomes 41--48
+\endchange
+
+\bugonpage 4f1.47 line 20 (09.07.03)
+$(5,9)\adj(5,10)$ \becomes $(6,9)\adj(6,10)$
+\endchange
+
+\bugonpage 4f1.47 replacement for lines 22--25 (09.07.03)
+Movement to the left in step T8 is conveniently implemented by setting
+$H(y)\gets H(y)\xor(1\lsh(x_{\rm max}-x))$, using the $H$~vectors of
+\eq(166) and~\eq(167). Movement to the right is similar, but we set
+$x\gets x+1$ first. Step T10 could set
+$$H(y)\gets H(y)\xor((1\lsh(x_{\rm max}-\min(x,x')))-
+                     (1\lsh(x_{\rm max}-\max(x,x'))));\eqno(172)$$
+\endchange
+
+\bugonpage 4f1.51 line 14 (09.06.01)
+$\bigl(\alpha_{n-1}(x)@x^{8(n-1)}+\cdots+\alpha_m(x)@x^{8m}\bigr)@x^{16}
+\mod p(x)$ \becomes\nl
+$\bigl(\alpha_{n-1}(x)@x^{8(n-1-m)}+\cdots+\alpha_{m+1}(x)@x^8+\alpha_m(x)
+\bigr)@x^{16}\mod p(x)$
+\endchange
+
+\amendpage 4f1.52 new copy for last line of exercise 9 (09.08.23)
+[\em Hint: Use exercise 8.]
+\endchange
+
+\bugonpage 4f1.55 line 2 of exercise 35 (09.12.15)
+such that $\nu(n^+)+\nu(n^-)$ is minimized \becomes
+such that $n^+\band n^-=(n^+\bor n^-)\band((n^+\bor n^-)\rsh1)=0$
+\endchange
+
+\improvepage 4f1.56 line 5 of exercise 58 (09.03.10)
+\ninepoint ``Omega router.'' \becomes
+           ``Omega router'' or ``inverse butterfly.''
+\endchange
+
+\amendpage 4f1.57 new part for exercise 58 (09.05.07)
+\ninepoint\item{f)}Prove that the permutation
+$0\varphi\ldots(N-1)\varphi$ is Omega-routable
+if and only if it is sorted by Batcher's bitonic sorting
+network of order~$N$. (See Section 5.3.4.)
+\endchange
+
+\amendpage 4f1.57 replacement for exercise 72 (09.05.07)
+\ninepoint
+\ex72. [25] (Y. Hilewitz and R. B. Lee.) Prove that the gather-flip
+operation \eq(81\hbox{$'$}) is Omega-routable in the sense of exercise 58.
+\endchange
+
+\amendpage 4f1.58 replacement for exercise 73 (09.05.07)
+\ninepoint
+\ex73. [22] Prove that $d$ well-chosen steps of (a)~the
+sheep-and-goats operation~\eq(81) or (b)~the
+gather-flip operation~\eq(81\hbox{$'$}) will implement
+any desired $2^d$-bit permutation.
+\endchange
+
+\amendpage 4f1.67 line 2 of exercise 190 (10.06.27)
+\ninepoint neighbors \becomes rook-neighbors
+\endchange
+
+\amendpage 4f1.70 new exercise (10.03.09)
+\ninepoint
+\EX218. [M30] (Hans Petter Selasky, 2009.)
+For fixed $d\ge3$, design an algorithm to compute $a\cdot x^y\mod 2^{@d}$,
+given integers $a$, $x$, and~$y$, where $x$ is odd, using $O(d)$ additions and
+bitwise operations together with a single multiplication by~$y$.
+\endchange
+
+\improvepage 4f1.74 line 21 (10.10.18)
+{\it list all solutions\/} \becomes {\it generate all solutions}
+\endchange
+
+\bugonpage 4f1.76 line 10 after {\eq(12)} (09.05.05)
+\def\topsink/{$\ninepoint\sq(\lower1pt\hbox{$\top$})$}%
+number of paths from node $k$ to \topsink/. \becomes
+number of ways to go from node $k$ to~\topsink/ by choosing
+values for $x_{@l}\ldots x_n$, if $l$ is the label of node~$k$.
+\endchange
+
+\bugonpage 4f1.80 line 4 (09.10.13)
+connectivity function \becomes connectedness function
+\endchange
+
+\amendpage 4f1.81 line 3 after {\eq(26)} (10.07.02)
+$n+2\choose2$ \becomes ${n+1\choose2}+2$
+\endchange
+
+\amendpage 4f1.99 beginning at line 21 (09.12.01)
+[My original presentation of this material could be simplified because the
+function $a(x)$ wasn't needed.
+Therefore I've replaced everything from the former \eq(67)
+through the first three lines of page 100 by the following new copy.]
+\begingroup\def\\#1//{\hbox{\mc #1}}
+$$\eqalignno{
+\\IND//@(x)&=\lnot\bigvee_{u\subadj v}(x_u\land x_v);&\eq(67)\cr
+\\KER//@(x)&=\\IND//@(x)\land\bigwedge_{v}\bigl(x_v\lor
+                    \bigvee_{u\subadj v}x_u\bigr).&\eq(68)\cr}$$
+We can form a new graph $\cal G$ whose vertices are the kernels of~$G$,
+namely the vectors~$x$ such that $\\KER//@(x)=1$. Let's say that two
+kernels $x$ and~$y$ are {\it adjacent\/} in~$\cal G$ if they differ
+in just the two entries for $u$ and~$v$, where $(x_u,x_v)=(1,0)$ and
+$(y_u,y_v)=(0,1)$, in which case we'll also have $u\adj v$.
+Kernels can be
+considered as certain ways to place markers on vertices of~$G@$;
+moving a marker from one vertex to a neighboring vertex produces
+an adjacent kernel. Formally we define
+$$\\ADJ//@(x,y)=\[\nu(x\xor y)=2]\land %\[\nu(x)=\nu(y)] \land
+  \\KER//@(x)\land\\KER//@(y).\eqno(69)$$
+Then $x\adj y$ in $\cal G$ if and only if $\\ADJ//@(x,y)=1$.
+
+\breathe
+Notice that, if $x=x_1\ldots x_n$,
+the function $\[\nu(x)=2]$ is the symmetric function
+$S_2(x_1,\ldots,x_n)$. %, and the function $\[\nu(x)=\nu(y)]$ also
+%has a fairly small BDD (see exercise~43).
+Furthermore $f(x\xor y)$ has at most 3 times as many nodes as $f(x)$,
+if we interleave the variables zipperwise
+so that the branching order is $(x_1,y_1,\ldots,x_n,y_n)$.
+So $B(\\ADJ//)$ won't be extremely large
+unless $B(\\KER//)$ is large.\tighten
+
+Quantification now makes it
+easy to express the condition that $x$ is an {\it isolated
+vertex\/} of~$\cal G$ (a vertex of degree~0, a kernel without neighbors):
+$$\\ISO//@(x)\;=\;\\KER//@(x)\land\lnot\exists@y\,\\ADJ//@(x,y).\eqno(70)$$
+
+For example, suppose $G$ is the graph of contiguous states in the USA,
+as in~\eq(18). Then each kernel vector~$x$ has 49 entries $x_v$
+for $v\in\{\.{ME}, \.{NH}, \ldots, \.{CA}\}$. The graph~$\cal G$
+has 266,137 vertices, and we have observed earlier that the BDD sizes for
+$\\IND//@(x)$ and $\\KER//@(x)$ are respectively 428 and 780 (see \eq(17)).
+In this case $\\ADJ//@(x,y)$ in \eq(69) has a BDD of only 7260 nodes,
+even though it's
+a function of 98 Boolean variables.
+\endgroup
+\endchange
+
+\amendpage 4f1.100 bottom line (09.12.01)
+$a(x\xor y)$ \becomes $\[\nu(x\xor y)=2]$
+\endchange
+
+\bugonpage 4f1.106 line $-13$ (09.12.27)
+$f(x'')=1$ \becomes $P_m^\pi(x'')=1$
+\endchange
+
+\bugonpage 4f1.106 replacement for {\eq(99)} (09.12.27)
+$$\eqalignno{
+\{i_1(x),i_2(x),\ldots,i_{k-1}(x)\}&=\{i_1(x'),i_2(x'),\ldots,i_{k-1}(x')\}\cr
+\hbox{and }
+\{j_1(x),j_2(x),\ldots,j_{k-1}(x)\}&=\{j_1(x'),j_2(x'),\ldots,j_{k-1}(x')\}.&
+\eq(99)\cr}$$
+\endchange
+
+\amendpage 4f1.108 line $-6$ (10.08.22)
+\def\cirx(#1){$\cir(\lower.5pt\hbox{#1})$}%
+transmogrified \becomes transmogrified into \cirx(2)s
+\endchange
+
+\amendpage 4f1.108 line $-2$ (10.08.22)
+appear at the right \becomes appear above $t_2$ at the right
+\endchange
+
+\improvepage 4f1.110 line 19 (10.05.31)
+new size \becomes new size of those levels
+\endchange
+
+\improvepage 4f1.110 line $-14$ (10.05.31)
+but every such spawns at most two beads of half the size in \becomes
+but every bead on level~$j-1$ of~$f$ spawns at most two
+beads, of half the size, in
+\endchange
+
+\bugonpage 4f1.112 line 8 (10.06.31)
+the variable that is currently called~$x_j$ is the original variable~$x_k$
+\becomes
+the original variable~$x_k$ is currently called either $x_{j-1}$ or~$x_j$
+\endchange
+
+\bugonpage 4f1.113 line 11 after {\eq(107)} (09.08.05)
+been entirely \becomes has been entirely
+\endchange
+
+\bugonpage 4f1.115 line $-9$ (10.06.16)
+$Z_{n,y}$ \becomes $Z_{n,a}$
+\endchange
+
+\bugonpage 4f1.118 replacement for lines $-11$ through $-6$ (10.04.04)
+\noindent
+also for $z$-profiles, but with $q'_k$ counting only
+{\it nonzero\/} subtables of order $n-k$:
+$$\openup-.5\jot\displaylines{
+\hfill q'_k\;\ge\;z\losub k,\qquad\hbox{for $0\le k<n$;}\hfill
+    \llap{\eq(123)}\cr
+\hfill q'_k\le1+z_0+\cdots+z_{k-1}\enspace\hbox{and}\enspace
+  q'_k\le z_k+\cdots+z_n,\quad\hbox{for $0\le k\le n$;}\quad\hfill
+    \llap{\eq(124)}\cr
+\hfill Z(f)\;\ge\;2q'_k-1,\qquad\hbox{for $0\le k\le n$.}\hfill
+    \llap{\eq(125)}\cr}$$
+Consequently the BDD size and the ZDD size can never be wildly different:
+$$\advance\abovedisplayskip-4pt % paging 2010.04.04
+  \advance\belowdisplayskip-4pt
+Z(f)\;\le\;{n\over2}@\bigl(B(f)+1\bigr)+1\qquad\hbox{and}\qquad
+  B(f)\;\le\;{n\over2}@\bigl(Z(f)+1\bigr)+2.\eqno(126)$$
+\endchange
+
+\bugonpage 4f1.121 line 26 (10.08.22)
+\eq(131). \becomes \eq(131)
+\endchange
+
+\improvepage 4f1.124 line 12 (10.09.13)
+function is {\it sweet\/} \becomes function $f$ is {\it sweet\/}
+\endchange
+
+\bugonpage 4f1.126 line 8 (09.10.14)
+5--44 \becomes 5--36
+\endchange
+
+\bugonpage 4f1.126 line 20 (09.08.14)
+weights satisfying $w_i\ge0$ \becomes weights are nonnegative
+\endchange
+
+\bugonpage 4f1.126 line 23 (09.10.14)
+(1999) \becomes (1997)
+\endchange
+
+\amendpage 4f1.129 line 1 of exercise 37 (09.12.24)
+\ninepoint Vuillemin \becomes Vuillemin, 1976
+\endchange
+
+\improvepage 4f1.129 line 1 of exercise 44 (10.09.13)
+\ninepoint $S_n$ \becomes $\Sigmait_n$
+\endchange
+
+\bugonpage 4f1.134 line 1 of exercise 110 (10.02.14)
+$f_n=U_n$ \becomes $B(f_n)=U_n$
+\endchange
+
+\amendpage 4f1.134 line 1 of exercise 113 (09.10.28)
+\ninepoint having sink nodes \becomes having two sink nodes
+\endchange
+
+\amendpage 4f1.137 line 2 of exercise 155 (09.12.01)
+\ninepoint see \eq(67) \becomes see \eq(68)
+\endchange
+
+\amendpage 4f1.137 line 5 of exercise 160 (10.01.30)
+\ninepoint $L_{ij}=0$ \becomes $L_{ij}(X)=0$
+\endchange
+
+\amendpage 4f1.138 replacement for pattern {(4)} in line 2 (10.11.18)
+$$\vcenter{\epsfbox{\figdir/ch7a.144}}$$
+\endchange
+
+\bugonpage 4f1.146 line 1 of exercise 256 (09.03.06)
+\ninepoint as family of \becomes as a family of
+\endchange
+
+\bugonpage 4f1.146 line 1 of exercise 259 (09.05.17)
+\ninepoint can be can be \becomes can be
+\endchange
+
+\amendpage 4f1.148 new exercise (09.10.01)
+{\ninepoint\advance\parindent by 4pt
+\EX265. [21] Devise an algorithm that finds the $m$th smallest solution
+to $f(x)=1$ in lexicographic order of $x_1\ldots x_n$,
+given $m$ and the BDD for a Boolean function~$f$ of $n$ variables.
+Your algorithm should take $O(nB(f)+n^2)$ steps.\par}
+\endchange
+
+\let\defaultpointsize=\ninepoint % get ready for answer pages
+
+\improvepage 4f1.149 in answer 5 (10.02.04)
+digit \becomes bit \qquad(four times)
+\endchange
+
+\bugonpage 4f1.149 line 3 of answer 8 (09.11.29)
+$\vert\alpha\vert=\vert\beta\vert=\vert\gamma\vert$ \becomes
+$\vert\alpha'\vert=\vert\beta'\vert=\vert\gamma'\vert$
+\endchange
+
+\bugonpage 4f1.149 line 5 of answer 10 (09.05.13)
+$xy'+x'y+x'y' < xy$ when $x'<x$ and $y'<y$ \becomes
+$xy'+x'y+x'y'\ne xy$ when $0\le x'<x$ and $0\le y'<y$
+\endchange
+
+\bugonpage 4f1.153 last line of answer 19 (09.05.16)
+263--279 \becomes 265--279
+\endchange
+
+\amendpage 4f1.156 last line of answer 35 (09.12.24)
+paper a8, 14 pp. \becomes A08:1--A08:14.
+\endchange
+
+\bugonpage 4f1.156 replacement for last line of answer 36 (09.12.12)
+(See exercises 66 and 70 for applications of $x^\xor$;
+see also exercises 128 and~209.)
+\endchange
+
+\bugonpage 4f1.156 line 2 of answer 38 (10.10.04)
+\.{SRU}  \.{y,y,1;} \
+\.{CMPU} \.{t,x,0;} \
+\.{ADDU} \.{y,y,t}' takes $15\upsilon$ \becomes
+\.{SRU}  \.{t,y,1;} \
+\.{SUBU} \.{y,y,t}' takes $14\upsilon$
+\endchange
+
+\amendpage 4f1.157 replacement for lines 9--12 of answer 44 (10.10.04)
+\noindent But on \MMIX, which has sideways addition built in,
+there's a better solution by J. Dallos:
+$$\def\\#1{\vcenter{\halign{\tt##\kern.3em\hfil&\tt##\hfil\cr#1}}}
+\\{
+SADD&nu2,x,m5\cr
+SADD&t,x,m4\cr
+2ADDU&nu2,nu2,t\cr
+}\hskip1.8em\\{
+SADD&t,x,m3\cr
+2ADDU&nu2,nu2,t\cr
+SADD&t,x,m2\cr
+}\hskip1.8em\\{
+2ADDU&nu2,nu2,t\cr
+SADD&t,x,m1\cr
+2ADDU&nu2,nu2,t\cr
+}\hskip1.8em\\{
+SADD&t,x,m0\cr
+2ADDU&nu2,nu2,t\quad\slug\cr
+\cr}$$
+\endchange
+
+\bugonpage 4f1.158 line 4 of answer 53 (09.12.12)
+$(u_{d-1}v_{d-1})$ \becomes $(u_{d-t}v_{d-t})$
+\endchange
+
+\amendpage 4f1.159 line 3 of answer {58(d)} (09.05.05)
+$\phi$ \becomes $\varphi$\qquad(twice)\nl
+{\it then\/} $\tau$.] \becomes
+{\it then\/} $\tau$. The~Sylow
+group~$T$ includes many interesting and important
+permutations, including bit reversal and cyclic shifts. It corresponds
+to settings of the Omega network
+where crossbars of length $2^j$ that are congruent mod~$2^{j+1}$
+all switch or all pass, as a unit.]\par % en bloc
+\endchange
+
+\amendpage 4f1.160 new paragraph for end of answer 58 (09.05.07)
+\indent
+(f) Any setting of the crossbars corresponds to a permutation that makes
+Batcher's comparator modules do the equivalent switching.
+\endchange
+
+\amendpage 4f1.161 replacement for lines 6--$\infty$ of answer 70 (09.07.01)
+\indent The computation ends with $k=\lambda@@\nu\bar\chi+1$; 
+the remaining masks $\theta_k$, \dots, $\theta_{d-1}$, if any,
+are zero and those steps can be omitted from \eq(80).
+``Minimal'' masks, for which~${*}\losup{2^{k+1}}=0\losup{2^{k+1}}$
+in answer~69, are obtained
+if the operations 
+`$\theta_k\gets x$, $\psi\gets(\psi\band\bar x)\rsh2^k$'
+are replaced by
+`$\psi\gets(\psi\band\bar x)\rsh2^k$, $\theta_k\gets x\band(x+\psi)$'
+in the loop above.\par\breathe
+[See {\it compress\/} in H.~S. Warren, Jr., {\sl Hacker's Delight\/}
+(Addison\with Wesley, \kern-.5pt2002),~\hbox{\S7--4};
+also G.~L. Steele Jr., {\sl U.S. Patent 6715066\/} (30 March 2004).
+\font\ninecyr=lhwnr8 at 9pt
+The BESM-6 computer, designed in 1965, implemented {\it compress\/}
+under the name {\ninecyr<sborka>} (``gather'' or ``pack'').
+Its {\ninecyr<razborka>} command (``scatter'' or ``unpack'')
+went the other way.]
+\endchange
+
+\amendpage 4f1.161 replacement for answers 72 and 73 (09.05.07)
+\ans72.
+Assume that the leftmost mask bit, $\chi_{N-1}$, is zero, since it is
+immaterial. Then the result
+$(z_{(N-1)\varphi}\ldots z_{1\varphi}z_{0\varphi})_2$
+of any gather-flip corresponds to a permutation with $0\varphi<\cdots<k\varphi>
+\cdots>(N@{-}@1)\varphi$, where $k=\nu\chi$. For example, if $N=8$ and
+$\chi=(00101100)_2$, the result is $(z_0z_1z_4z_6z_7z_5z_3z_2)_2$. So
+$\varphi$ is a cyclic shift of a bitonic permutation, and
+$\varphi\in\Omega$ by exercises 58(d) and 58(f).\par
+Moreover, the masks $\theta_0$, $\theta_1$, \dots, $\theta_{d-1}$ for the
+1-swap, 2-swap, \dots, $2^{d-1}$-swap can be computed as follows: The
+permutation $\psi=\varphi^-$ satisfies $j\psi=(N{-}1{-}j)\bar\chi_j+s_j$,
+where $s_j=\chi_{j-1}+\cdots+\chi_1+\chi_0$ counts the 1s following
+mask bit~$\chi_j$.
+Let $\psi_0=\psi$ and $\theta_k=(\lfloor\psi_k/2^k\rfloor\mod2)\band\mu_k$,
+where $\psi_{k+1}$ is the $2^k$-swap of $\psi_k$ with mask~$\theta_k$.
+(In our example, $s_7\ldots s_1s_0=33221000$
+and $(0\bar\chi_7)\ldots(6\bar\chi_1)(7\bar\chi_0)=01030067$; hence
+$\psi_0=(7\psi)\ldots(1\psi)(0\psi)=33221000+01030067=34251067$.
+Then $\theta_0=(10011001)_2\band\mu_0=(00010001)_2$;
+$\psi_1=34521076@$; $\theta_1=(10010010)_2\band\mu_1=(00010011)_2$;
+$\psi_2=32547610@$; $\theta_2=(00111100)_2\band\mu_2=(00001100)_2$.
+In general $j\psi_k\equiv j$ (modulo $2^k$).)
+Represent each permutation $\psi_k$ as a set of $d$ bit vectors, namely as the
+``bit slices'' $\psi_k\mod2$, $\lfloor\psi_k/2\rfloor\mod2$, etc.
+Then $O(d^2)$ bitwise operations suffice for this computation.
+\par
+The {\it scatter-flip\/} operation, which undoes the effect of gather-flip,
+is obtained via the same crossbar network but from right to left
+(first a $2^{d-1}$-swap, ending with a 1-swap).\tighten\par
+[See {\sl Journal of Signal Processing Systems\/ \bf53} (2008), 145--169.]
+\smallbreak
+\ans73.
+(a) Equivalently, $d$ sheep-and-goats operations must be able to
+transform the word $x^\pi=(x_{(2^d-1)\pi}\ldots x_{1\pi}x_{0\pi})_2$ into
+$(x_{2^d-1}\ldots x_1x_0)_2$, for any permutation $\pi$ of
+$\{0,1,\ldots,\allowbreak2^d{-}@1\}$. And this can be done by radix-2
+sorting (Algorithm 5.2.5R): First bring the odd numbered
+bits to the left, then bring the bits~$j$ for odd $\lfloor j/2\rfloor$
+left, and so on. For example, when $d=3$ and $x^\pi=
+(x_3x_1x_0x_7x_5x_2x_6x_4)_2$, the three operations yield successively
+$(x_3x_1x_7x_5x_0x_2x_6x_4)_2$,
+$(x_3x_7x_2x_6x_1x_5x_0x_4)_2$,
+$(x_7x_6x_5x_4x_3x_2x_1x_0)_2$. [See Z.~Shi and R.~Lee, {\sl Proc.\
+IEEE Conf.\ ASAP'00\/} (IEEE CS Press, 2000), 138--148.]\par
+% "Application-Specific Systems, Architectures, and Processors"
+% but ASAP'00 works fine on Google (with two other confs as false drops)
+(b) With gather-flip, the same strategy always yields
+$(x_{g(2^d-1)}\ldots x_{g(1)}x_{g(0)})_2$, where $g(k)$
+is Gray binary code, 7.2.1.1--\eq(9).
+For instance, the example of~(a) is now
+$(x_5x_7x_1x_3x_0x_2x_6x_4)_2$,
+$(x_6x_2x_3x_7x_5x_1x_0x_4)_2$,
+$(x_4x_5x_7x_6x_2x_3x_1x_0)_2$.
+\smallskip\eightpoint
+[I've actually put this material on page 243, temporarily,
+since it doesn't fit on page 161.]
+\endchange
+
+\amendpage 4f1.162 line 10 of answer 75 (09.05.16)
+is odd. \becomes is odd.
+For example, if $(i_0,\ldots,i_5)=(j_0,\ldots,j_5)=(0,1,3,5,7,8)$, the
+subproblems have $i=j=(0,1,3,4)$ and $(0,2,4)$;
+$x_7\ldots x_0\mapsto x_6x_7x_5x_4x_2x_3x_1x_0\mapsto\cdots\mapsto
+x_5x_7x_5x_3x_1x_3x_1x_0\mapsto x_7x_5x_5x_3x_1x_1x_0$.\par
+\endchange
+
+\amendpage 4f1.164 last lines of answer 91 (09.05.16)
+\.{l\qquad\#0101010101010101} \becomes\nl
+after which \dots ($67\upsilon$) \becomes
+but omit the final \.{SLU}, then repeat
+the first four instructions again.
+The total time for eight
+$\alpha$-blends (66$\upsilon$)
+\endchange
+
+\bugonpage 4f1.165 last line of answer 101 (09.12.12)
+{\sl CACM\/ \bf6} \becomes {\sl CACM\/ \bf18}
+\endchange
+
+\bugonpage 4f1.168 line 5 of answer 124 (10.07.03)
+$V_0=U_t\setminus V_1$ \becomes $V_0=U_{t-1}\setminus V_1$
+\endchange
+
+\bugonpage 4f1.169 in answer 128 (09.12.30)
+36 and 117 \becomes 36 and 66
+\endchange
+
+\bugonpage 4f1.176 line 4 of answer 167 (10.01.02)
+$f_1$ \becomes $S_1$
+\endchange
+
+\bugonpage 4f1.177 replacement for first lines of answer 173 (09.05.16)
+{\advance\parindent by 4pt
+\ans173. (a) The hint is readily verified. Notice that
+if $X$ and $Y$ are closed, $X\band Y$ is closed;
+if $X$ and $Y$ are open, $X\bor Y$ is open. Thus $X^D$ is closed and
+$X^L$ is open; $X^{DD}=X^D${\parfillskip=0pt\par}}
+\endchange
+
+\amendpage 4f1.178 lines 13 and 14 of answer 179 (10.09.29)
+tree of components \dots all children \becomes
+tree of current components, where each node
+has several fields: \.{CHILD}, \.{SIB}, and \.{PARENT} (tree links);
+\.{DORMANT} (a circular list, via \.{SIB} links,
+of all former children
+\endchange
+
+\bugonpage 4f1.178 line $-3$ (09.06.30)
+$\.R=\.R'$is \becomes $\.R=\.R'$ is
+\endchange
+
+\bugonpage 4f1.181 line $-3$ of answer 187 (09.12.24)
+{\bf9},\thinspace3 \becomes {\bf19},\thinspace3
+\endchange
+
+\bugonpage 4f1.184 line 1 (09.04.11)
+Meer\"o \becomes M\'er\H{o}
+\endchange
+
+\improvepage 4f1.186 line 4 of answer 216 (10.04.06)
+Double precision \becomes Double-precision
+\endchange
+
+\bugonpage 4f1.186 bottom line (09.12.24)
+{\bf12} (2008) \becomes {\bf13} (2008)
+\endchange
+
+\bugonpage 4f1.186 new answer {(which will actually be on page 244)} (10.03.09)
+\ans218. Let $b$ be any integer with $b\mod8=5$. Then $x=b^{L(x)}\mod2^d$
+for some integer $L(x)$, depending on~$b$, whenever $0<x<2^d$ and $x\mod4=1$
+(see Section 3.2.1.2). The following algorithm computes $s=4L(x)$, given a
+table of the numbers $t_k=-4L(2^k+1)$ for $1<k<d$:
+Set $s\gets0$, $j\gets1$; then while $x\ne1$, set $j\gets j+1$, and
+if $x\band(1\lsh j)\ne0$ also set $x\gets (x+(x\lsh j))\mod2^d$,
+$s\gets (s+t_j)\mod2^d$.\par
+Now to compute $a\cdot x^y$ we can proceed as follows (with all arithmetic
+done mod~$2^d$): If $x\band2\ne0$, set $x\gets-x$ and $a\gets(-1)^{y\band1}a$.
+(Now $x\mod4=1$.) Set $s\gets 4L(x)\cdot y$, using the algorithm above, and
+$j\gets1$; then while $s\ne0$,
+set $j\gets j+1$, and if $s\band(1\lsh j)\ne0$ also set $s\gets s+t_j$,
+$a\gets a+(a\lsh j)$. The desired answer is then~$a$.\par
+Suitable numbers~$t_k$ can be computed by setting $t_{d-1}\gets 1\lsh(d-1)$
+and proceeding as follows for $k=d-2$, $d-3$, \dots,~2:
+Set $x\gets1+(1\lsh k)$, $x\gets x+(x\lsh k)$, $s\gets0$, $j\gets k$;
+then while $x\ne1$ set $j\gets j+1$, and if $x\band(1\lsh j)\ne 0$ also set
+$x\gets x+(x\lsh j)$, $s\gets s-t_j$; finally $t_k\gets s\rsh1$.
+For example, when $d=32$ we get
+$t_k=2^k$ for $32>k\ge16$,
+$t_{15}=\Hex{20008000}$,
+$t_{14}=\Hex{18004000}$,
+$t_{13}=\Hex{0e002000}$,
+$t_{12}=\Hex{07801000}$,
+$t_{11}=\Hex{03e00800}$,
+$t_{10}=\Hex{41f80400}$,
+$t_9=\Hex{18fe0200}$,
+$t_8=\Hex{0b7f8100}$,
+$t_7=\Hex{319fe080}$,
+$t_6=\Hex{5e8bf840}$,
+$t_5=\Hex{4a617e20}$,
+$t_4=\Hex{17c26f90}$,
+$t_3=\Hex{6119d1e8}$,
+$t_2=\Hex{2c30267c}$.
+(This procedure finds the $L$'s for {\it some\/} integer~$b$, without
+revealing the actual value of~$b$ itself!)\tighten\par
+[The methods of this exercise have interesting connections to the
+algorithms of Briggs and Feynman for {\it real\/}-valued
+logarithm and exponential in exercises 1.2.2--25
+and 1.2.2--28. Our broadword procedure for $x^y$ works also for
+calculating the inverse of~$x$, modulo~$2^d$, when $y=-1$; but there's
+a direct algorithm available for that:
+Set $z\gets1$, $j\gets 0@$; while $x\ne1$ set $j\gets j+1$, and
+if $x\band(1\lsh j)\ne0$, also set $z\gets(z+(z\lsh j))\mod2^d$,
+$x\gets(x+(x\lsh j))\mod2^d$.
+The final $z$ is the inverse of the original odd number~$x$.]\par
+\endchange
+
+\bugonpage 4f1.188 line 1 of answer 11 (10.02.14)
+all paths \becomes the number of settings of $x_{v_k}\ldots x_n$ that lead
+\endchange
+
+\improvepage 4f1.192 lines 3 and $-2$ of answer 44 (10.09.13)
+$S_n$ \becomes $\Sigmait_n$
+\endchange
+
+\bugonpage 4f1.197 line $-5$ (09.10.14)
+the properly \becomes the property
+\endchange
+
+\improvepage 4f1.200 line 1 of answer 87 (10.10.04)
+Sort \becomes Sort the given pointer values $f$, $g$, $h$
+\endchange
+
+\bugonpage 4f1.204 in answer 115 (10.04.04)
+lines 4 and 5: Every such branch corresponds to some subtable of order $n-k$.
+\becomes Every subtable of order~$n-k$ corresponds to some such branch.\nl
+last line: `zead' in these arguments. \becomes
+`zead', and `$q\losub k$' to `$q'_k$'.
+\endchange
+
+\bugonpage 4f1.205 line 6 (10.01.24)
+{\sl Conf.\ Design Automation} \becomes {\sl Design Automation Conf.}
+\endchange
+
+\bugonpage 4f1.205 step H2 in answer 124 (10.04.20)
+Set $v={}$ \becomes Set $v\gets{}$
+\endchange
+
+\bugonpage 4f1.212 lines 9--10 (10.01.24)
+{\sl Conf.\ Design Automation} \becomes {\sl Design Automation Conf.}
+\endchange
+
+\improvepage 4f1.212 line 12 of answer 142 (10.01.24)
+$i\in I,j\in J$ \becomes $i\in I$, \ $j\in J$
+\endchange
+
+\bugonpage 4f1.213 line $-3$ (10.01.30)
+1, 2,\dots, $n$ \becomes 1, 2, \dots, $n$
+\endchange
+
+\amendpage 4f1.214 in answer 152 (10.09.29)
+are made. The \dots 5\quad2\quad1 \becomes
+are made:
+1,342,191,700 nodes after one sift reduce eventually to
+208,478,228 after 139,245 total swaps. Moreover, Filip Stappers used
+sifting together with random swapping in September 2010 to get the value of
+$B(h_{100}^\pi)$ down to only 198,961,868, with the following ``current
+champion'' permutation~$\pi$:
+$$\vcenter{\ninepoint\halign{&\hbox to15pt{\hss#\hss}\cr
+3&4&6&8&10&12&14&16&18&20&22&24&27&28&30&32&35&37&39&41\cr
+43&45&47&49&51&53&54&83&85&98&99&100&79&77&81&75&73&95&71&97\cr
+69&96&57&91&67&59&65&60&63&62&64&61&66&87&58&68&56&94&93&70\cr
+92&72&90&74&76&78&80&89&88&86&84&82&55&52&50&48&46&44&42&40\cr
+38&36&34&33&31&29&26&25&23&21&19&17&15&13&11&9&7&5&1&2\cr
+}}$$
+\endchange
+
+\bugonpage 4f1.215 line 1 (09.09.10)
+variables $h_{100}$ \becomes variables of $h_{100}$
+\endchange
+
+\amendpage 4f1.216 replacement for last two lines of answer 160 (10.11.18)
+\noindent
+has no $8\times8$
+predecessor; but it does, for example, have the $9\times10$ in (A8):
+$$\advance\abovedisplayskip-3.6pt
+\def\\#1{\hfil\vbox{\halign{\hfil##\hfil\cr
+          \epsfbox{\figdir/ch7a.140#1}\cr
+          \eightpoint\hfil(A#1)\cr}}\hfil}
+\centerline{\\0\\1\\2\\3\\4\\5\\6\\7\\8\\9}$$
+\endchange
+
+\amendpage 4f1.218 reference for line $-4$ of answer 168 (10.04.06)
+[See G. Bennett, {\sl AMM\/ \bf117} (2010), 334--351.]
+\endchange
+
+\improvepage 4f1.220 line 5 (10.11.29)
+$q\__k$, $q^{-2}_k$ \becomes $q\__k$, $q\__{q\__k}$
+\endchange
+
+\improvepage 4f1.222 line 3 of answer 176{(c)} (10.01.30)
+$\mod(2^{@l-1})$ \becomes $\mod2^{@l-1}$ (twice)
+\endchange
+
+\bugonpage 4f1.222 line $-2$ of answer 176 (10.06.16)
+$B_{\min}(Z_{n,y})$ \becomes $B_{\min}(Z_{n,a})$
+\endchange
+
+\amendpage 4f1.222 new sentence for end of answer 177 (10.11.11)
+[M.~Sauerhoff, in {\sl Discrete Applied Math.\ \bf158} (2010), 1195--1204,
+has proved the lower bound $\Omega(2^{6n/5})$ for this ordering.]
+\endchange
+
+\bugonpage 4f1.224 line 3 of answer 191 (10.02.11)
+(1, 2, 6, 1806, 3263442, \dots) \becomes
+(1, 2, 6, 42, 1806, 3263442, 10650056950806, \dots)
+\endchange
+
+\amendpage 4f1.229 last lines of answer 215 (09.06.10)
+413--420.] \dots $(1-z^{m-1}-z^{m+1})$. \becomes
+413--420. The set of all tatami tilings has been characterized by 
+Dean Hickerson;
+the corresponding generating functions have been obtained by Frank Ruskey
+and Jennifer Woodcock,
+ {\sl Electronic J. Combinatorics\/ \bf16},\thinspace1 (2009), \#R126.]
+\endchange
+
+\bugonpage 4f1.230 last three lines of answer 217 (10.11.20)
+There are 42,159,777,732 \dots\ this problem.) \becomes
+There are 554,626,216 strongly separated coverings,
+findable after 245 gigamems with a ZDD of size 4,785,236. % 774MB
+(But standard backtracking finds them faster and with neglible memory.)
+\endchange
+
+\amendpage 4f1.236 line 1 of answer 240 (09.12.01)
+of \eq(67) \becomes of \eq(68)
+\endchange
+
+\bugonpage 4f1.236 line 7 of answer 240 (10.02.07)
+$\bigvee_v(e_v\sqcup\bigsqcup_{u\subadj v}e_u)$ \becomes
+$\bigcup_v(e_v\sqcup\bigsqcup_{u\subadj v}e_u)$
+\endchange
+
+\bugonpage 4f1.237 line 1 of answer 241 (09.03.05)
+Let $g$ the \becomes Let $g$ be the
+\endchange
+
+\bugonpage 4f1.238 line $-3$ of answer 241 (09.03.05)
+295--200 \becomes 295--300
+\endchange
+
+\bugonpage 4f1.238 line $-6$ of answer 242 (09.05.17)
+including 51 \becomes including 57
+\endchange
+
+\bugonpage 4f1.240 line $-1$ of answer 255 (10.02.07)
+3--10 \becomes 4--11
+\endchange
+
+\amendpage 4f1.241 line 7 of answer 260 (09.06.10)
+for $n\ge5$ \becomes for $n\ge2$
+\endchange
+
+\bugonpage 4f1.241 line 12 of answer 260 (09.06.10)
+$n=10$ \becomes $n=100$
+\endchange
+
+\bugonpage 4f1.243 line 6 (09.12.24)
+2042--2047 \becomes 2042--2048
+\endchange
+
+\amendpage 4f1.243 new answer (09.10.01)
+{\advance\parindent by4pt
+\ans265. Compute counts $c_j$ bottom-up as in Algorithm C, using $n$-bit
+arithmetic. Then proceed top-down, by starting with $k\gets s-1$, $j\gets 1$,
+$m\gets m-1$, and repeating the following steps (during which we will have
+$0\le m<2^{v_k-j}c_k$): If $v_k>j$, set
+$x_j\gets\lfloor m/ 2^{v_k-j-1}c_k\rfloor$,
+$m\gets m\mod 2^{v_k-j-1}c_k$,
+$j\gets j+1$;
+otherwise if $k=1$, terminate;
+otherwise set $l\gets l_k$, $h\gets h_k$, and if
+$m< 2^{v_l-v_k-1}c_l$ set $x_j\gets 0$, $k\gets l$, $j\gets j+1$;
+otherwise set $x_j\gets 1$, $m\gets m-2^{v_l-v_k-1}c_l$,
+$k\gets h$, $j\gets j+1$.\par}
+\endchange
+
+\expandafter\ifx\csname indexeject\endcsname\relax\else\vfill\eject\fi
+\amendpage 4f1.244 and following (09.01.03)
+Miscellaneous changes to the existing index of Volume~4 Fascicle~1
+are collected here,
+including corrections and amendments to the old entries as well as new entries
+that are occasioned by the new material. Thus, the lines of the full index
+that have changed serve also as an index to the present document. However,
+when a correction or amendment has caused an old index entry to be deleted,
+the deletion is usually not indicated.
+
+\input exotic
+\begindoublecolumns
+\indexformat
+\gdef\Uni1.08:{\bitmap24:1.08:}
+\hangindent2em
+\.\# (number sign or hash mark), vi. % 3rd
+\.{4ADDU} (times 4 and add unsigned), 155. % 4th
+Ashar, Pranav Navinchandra \indexbreak({\dn \char"FEZv nvFn\char99\char6\lower0.1em\hbox{\char125}\kern-0.6emd aAfr}), 197. % 3rd
+$B_{\max }(f_1,\ldots ,f_m)$, 107--108, 136. % 3rd
+$B_{\min }(f_1,\ldots ,f_m)$, 107--108, 136--137. % 3rd
+Backtrack method, 230. % 4th
+Batcher, Kenneth Edward, 57. % 2nd
+Bennett, Grahame, 218. % 3rd
+Bit reversal, 12--13, 17, 25, 27, 55, 56, 159, 174, 175. % 2nd
+Bit slices, 19, 70, 161. % 2nd
+Bitonic permutations, 57, 161. % 2nd
+Boolean chains, 65, 147. % 3rd
+Briggs, Henry, 244. % 3rd
+Butterfly networks, 56, 161. % 2nd
+Byte: An 8-bit quantity, 7--8, 182. % 3rd
+{\mc COMPOSE} subroutine, 100, 133, 199. % 3rd
+Compression of scattered bits, 16--17, 57, 161. % 2nd
+Cyclic shifts, 17, 56, 159, 161, 164. % 2nd
+Dallos, J\'ozsef, 9, 157. % 4th
+{\mc EXISTS} subroutine, 98, 133, 199. % 3rd
+Feynman, Richard Phillips, 244. % 3rd
+Forests, oriented, 33--35. % 3rd
+Gather-flip operation, 17, 57, 58. % 2nd
+Gathering bits, 16--17, 57, 161. % 2nd
+Gray, Frank, binary code, 151, 161, 167. % 2nd
+Grouping bits, \see Gather-flip operation, Sheep-and-goats operation. % 2nd
+Hickerson, Dean Robert, 229. % 2nd
+Hilewitz, Yedidya, 57. % 2nd
+Inclusive ancestors of a node: The node itself together with its proper ancestors, 33. % 4th
+Induced $k$-partite subgraphs, 145. % 3rd
+Infinite binary trees, 32, 53. % 3rd
+Inverse of an odd integer mod $2^n$, 244. % 3rd
+Lee, Ruby Bei-Loh (\GC72:74:-5:61% G3278
+<00000000f00000000000000000fc0000000000000000fe0000000000000000ff80000000%
+ 00000000ff8000000000000000ff8000000000000000ff0000000000000000fc00000000%
+ 00000000fc0000038000000000fc000007c000000000fc00000fe000000000fc00001ff0%
+ fffffffffffffffff87ffffffffffffffffc3ffffffffffffffffc0c00001ffce0000000%
+ 0000003ffcf00000000000007ffc780000000000007ffc38000000000000fefc3c000000%
+ 000000fcfc1e000000000001f8fc1f000000000003f8fc0f800000000003f0fc07c00000%
+ 000007e0fc07e0000000000fc0fc03f8000000001f80fc01ff000000003f00fc00ffc000%
+ 00007e00fc00fff0000000fc00fc007ffe000001f800fc003fff800003e000fc000ffffe%
+ 0007c000f80077ffff000f8000f800f9fffc003f00000001fcfffc007ffffffffffe1ff0%
+ 01f8ffffffffff07c007e07fffffffff00801f801000000fff00003f000000001ffe0000%
+ fc000000003ff80000f0000000007ff000004000000000ff800000000000003ffe000000%
+ 000000003ff0000000000000003fe0000000000000003fe0000000000000003f800001c0%
+ 000000003f000003e0000000003f000007f0000000003f00000ff8fffffffffffffffffc%
+ 7ffffffffffffffffe1ffffffffffffffffe040000003f00000000000000003f00000000%
+ 000000003f00000000000000003f00000000000000003f00000000000000003f00000000%
+ 000000003f00000000000000003f00000000000000003f00000000000000003f00000000%
+ 000000003f00000000000000003f00000000000000f83f00000000000000ffff00000000%
+ 0000001fff000000000000000fff0000000000000003ff0000000000000001fe00000000%
+ 00000000fc0000000000000000f000000000>%% Unicode char "674e
+\GC77:78:-1:63% G3769
+<0001c0000000000000000001f8000000000000000003fe000000000000000003fe000000%
+ 000000000003fc000000000000000003fc000000000700000003f9c00000000f80000007%
+ f9e00000000fc0000007f1f80000001fe0000007f1fffffffffff0000007e1ffffffffff%
+ f0000007e1ffffffffffc000000fc1f80000000f8000000fc1f80000000f8000000f81f8%
+ 0000000f8000000f81f80000000f8000001f01f80000000f8000001f01f800000e0f8000%
+ 003e01f800001f8f8000003e01f800003fcf8000007c01ffffffffef8000007f01f9ffff%
+ ffef8000007fc1f8807c000f800000ffc1f8007c000f800000ff81f8007c000f800001ff%
+ 01f8007c000f800001ff01f8007c000f800003ff01f8007c000f800003ff01f8007c000f%
+ c00007ff01f8007c0e0fc00007bf01f9c07c1f0fc0000fbf01f9e07c3f8fc0000f3f01f9%
+ ffffffcfc0001f3f01f9ffffffefc0001e3f01f9ffffffefc0003e3f01f9f87c1f8fc000%
+ 3c3f01f9f87c1f8fc0007c3f01f9f87c1f8fc000783f01f9f87c1f8fc000f03f01f9f87c%
+ 1f8fc000e03f01f9f87c1f8fc000c03f01f9f87c1f8fc000803f01f9f87c1f8fc000803f%
+ 01f9f87c1f8fc000003f01f9f87c1f8fc000003f01f9f87c1f8fc000003f01f9f87c1f8f%
+ c000003f01f9f87c1f8fc000003f01f9f87c1f8fc000003f01f9f87c1f8fc000003f01f9%
+ f87c1f8fc000003f01f9f87c1f8fc000003f01f9f87c1f87c000003f01f9f87c1f87e000%
+ 003f03f9f87c1f87e030003f03f9f87c1f87e030003f03f9f87c1f83f030003f03f1f87c%
+ 1f83f030003f03f1f87c1f83f030003f03e1f87fff83f030003f03e1f87fff81f870003f%
+ 07e1f87c7f81f870003f07c1f87c3f81f870003f07c1f87c3f81fcf0003f07c1f07c3e00%
+ fcf0003f0f80007c3800fff0003f0f80007c00007ff8003f0f00007c00007ff8007f1f00%
+ 007c00003ff8007f1e00007c00003ff8007f3e00007c00001ff8007f3c00007c00000ff8%
+ 007f7800007e00000ff8007f7000007e000007f8007fe00000fe000003f8007ec00000fe%
+ 000001f8007e800000fc000000780000800000fc00000000>%% Unicode char "4f69
+\GC77:78:-2:63% G3422
+<000000000000000380000000000000000007c000000000000000000fe000000000000000%
+ 001ff000000000000000003ff80000fffffffffffffffc00007ffffffffffffffc000020%
+ 00001f0000000000000000001f0000000000000000001f0000000e00006000001f000000%
+ 1f00006000001f0000003f80007fffffffffffffffc0007fffffffffffffffe0007fffff%
+ fffffffffff000e000001f0000003ff801e000001f0000003fc001e000001f0000007f00%
+ 03e000001f000000fc0007e000001f000003f0001fe1fffc1f0ffff380003fe1fffc1f0f%
+ fff200003fe1fffc1f0ffff000003f8000001f00000000001f0000001f00000000001e00%
+ 00001f0000000000040000001f80000000000003fffc1f8ffff800000003fffc3f8ffff8%
+ 00000003fffc3f3ffff80000000000003f3e0000000003c00038007f8000000003e0003c%
+ 007f8007000003f0007c00ff800f800003fffffe00ff801f800003ffffff01ffffffc000%
+ 03f000ff01ffffffe00003f000fe03fc007ff00003f000fc03fe007fc00003f000fc079f%
+ 007f800003f000fc0f9f00ff000003f000fc0f0f81fe000003f000fc1f07c3fc000003f0%
+ 00fc3e07eff8000003f000fc7c03ffe0000003fffffcf801ffc0000003fffffdf000ffc0%
+ 000003f07cffc0007ff0000003f07cff8000fff8000003f07c060003f3fe000003f07c02%
+ 0007e1ffe00007007c00000fc07ffc0007e07c0e001f803ffff007f87c1f007f0007ffe0%
+ 07f87c3f83fe0003ffe007f07fffcff80007ff8007e07ffffffc000fcf0007e07c01ffff%
+ ffffe00007e07c0ffdffffffe00007e07c7ff9f8000fe00007e07c7fc1f8000fc00007e0%
+ 7c3f01f8000fc00007e07c0001f8000fc00007e07c0001f8000fc00007e07c00f1f8000f%
+ c00007e07c01f1f8000fc00007e07c3f81f8000fc00007e0fffc01f8000fc00007e0fff0%
+ 01f8000fc00007ffffc001f8000fc00007fffc0001ffffffc000ffffe00001ffffffc000%
+ 7ffe000001f8000fc0003ff0000001f8000fc0001f00000001f8000fc0000800000001f8%
+ 000fc0000000000001f8000fc0000000000001f800000000>%% Unicode char "9732
+), 19, 161. % 2nd
+Lexicographically $m$th smallest solution, 148. % 3rd
+Magic masks ($\mu_k$ and $\mu_{d,k}$), 9, 11--13, 16, 22, 37, 54, 149, 152--154, 156--162, 164, 166, 167, 174, 181. % 2nd
+M\'er\H{o}, L\'aszl\'o, 184. % 2nd
+Nybble: A 4-bit quantity, 12, 182. % 3rd
+Nyp: A 2-bit quantity, 12, 182. % 3rd
+Radix sorting, 161. % 2nd
+Reciprocal of an odd integer mod $2^n$, 244. % 3rd
+{\mc REF} field, \see Reference counters. % 3rd
+Reversal of bits, 12--13, 17, 25, 27, 55, 56, 159, 174, 175. % 2nd
+Ruskey, Frank, 229. % 2nd
+$S_m$ (a symmetric Boolean function), 130, 140, 142, 192, 202, 207. % 4th
+Sauerhoff, Martin Paul, 106, 114, 201, 207, 218, 222. % 3rd
+Scatter-flip operation, 161. % 2nd
+Sorting, networks for, 57, 58. % 2nd
+Selasky, Hans Petter, 70. % 3rd
+Sheep-and-goats operation, 17--18, 57--58. % 4th
+Stappers, Filip Jan Jos, 214. % 4th
+Stockton, Fred Grant, 180. % 3rd
+Subword parallelism, 19--23, 59--61. % 2nd
+Suffix parity function, 55, 69, 161, 169. % 3rd
+Sylow, Peter Ludvig Mejdell, $2$-subgroup, 152, 159. % 2nd
+von Seidel, Philipp Ludwig, 220--221. % 3rd
+Welter, Cornelis Petrus, 152, 153. % 3rd
+Woodcock, Jennifer Roselynn, 229. % 2nd
+Woodrum, Luther Jay, 10, 155. % 4th
+Wordsize scalability, \see Broadword computations. % 2nd
+Zipper function ($x\zip y$), 15--16, 99, 110, 200. % 3rd
+\enddoublecolumns
+\endchange
+
+\bye
+
+[The next printing would have been the 4th.]
+not listed above:
+page 14, improved wording at end of first paragraph
+page 17, discovered -> introduced
+page 69, punctuation in display of exercise 203
+page 101, no comma in 25579 (cf page 114)
+page 126, ACM/IEEE taken out of the ICCAD reference
+page 152, some exponents lowered in answer 16(c) and (d)
+page 153, slightly better square root sign in line 3 of answer 18
+page 155, (c,\thinspace d,\thinspace, e)
+page 169, S[\.u] in answer 131
+page 178, line 7, "pixels x1...xN of each row"
+pages 185 and 186, more consistent typography in answers 208, 209, 215
+page 197, ACM/IEEE inserted into ICCAD reference in ans 73
+page 202, no comma in 25579
+page 203, line 2 of ans 107, "f is a Krom function"
+page 204, line 2 of answer 117, "f's"
+page 212, subscripts aligned in line 4 of ans 142
+page 227, spacing after big {s in answer 205(d)
+page 227, quote the item going into memo cache (answer 205(d) line -3)
+page 228, quote the item going into memo cache (answer 207 line -2)
+page 231, 2 -> 2.00 in last line of answer 221
+page 240, last line of ans 253, C--24 -> C-24
+L\"auter and Seal leave the index
+
+ARTICLES "TO APPEAR" THAT ARE STILL PENDING:
+Chang and Spitkovsky and/or others on the "curious sequence"?
+
+CROSS-REFERENCES TO "00":

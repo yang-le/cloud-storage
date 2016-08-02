@@ -1,0 +1,803 @@
+% CHANGES TO FASCICLE V4F4 OF THE ART OF COMPUTER PROGRAMMING
+%
+% Copyright (C) 2006,2007,2008,2009,2010 by Donald E. Knuth
+% This file may be freely copied provided that no modifications are made.
+% All other rights are reserved.
+%
+% Three levels of changes to the books are distinguished here:
+%
+% "\bugonpage" introduces the correction of an error;
+% "\amendpage" introduces new material for future editions;
+% "\improvepage" introduces ameliorations of lesser importance.
+%
+% (Changes introduced by \improvepage do not appear in the hardcopy listing.)
+%
+% Also, "\planforpage" introduces some of the author's half-baked intentions.
+%
+
+% NOTE: TO PUT THE INDEX ON A SEPARATE PAGE, RUN THIS WITH THE COMMAND LINE
+%   tex "\let\indexeject+ \input err4f4"
+
+\newif\ifall % \alltrue means show the trivial items too
+\relax % hook
+
+\def\vertical{|}
+\def\inref#1 #{\expandafter\def\csname\vertical#1\endcsname}
+\catcode`|=\active
+\let|\inref \input \jobname.ref
+\catcode`|=12
+
+\input taocpmac % use the format for TAOCP, with modifications below
+
+\def\becomes{\ifmmode\ \hbox\fi{\manfnt y}\ } % wiggly arrow indicates a change
+
+\def\bugonpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt\llap{\manfnt x}% print a black triangle in left margin
+   {\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\amendpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\improvepage#1.#2 #3 (#4) {\ifall
+  \medbreak\ninepoint
+  \line{\kern-6pt{\sl Page #2\enspace #3\/}
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\noindent}
+\def\planforpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hbox to 5pt{\hss.\hss}\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\begingroup\let\endchange=\endgroup\sl\noindent}
+\let\endchange=\fi
+\def\nl{\par\noindent}
+\def\nlh{\par\noindent\hangit}
+\def\hangit{\hangindent2em}
+\def\cutpar{{\parfillskip=0pt\par}}
+
+\def\date#1.#2.#3.{% convert "yy.mm.dd." to "dd Mon 19yy"
+  #3
+  \ifcase#2\or Jan\or Feb\or Mar\or Apr\or May\or Jun\or
+               Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi
+  \ \ifnum #1<97 \hundred#1\else19#1\fi}
+\def\hundred{20} % the "century" for dates before '97
+
+\def\ex #1. [#2]{\ninepoint
+  \textindent{\bf#1.}[{\it#2\/}]\kern6pt}
+\def\EX #1. [#2]{\ninepoint
+  \textindent{\llap{\manfnt x}\bf#1.}[{\it#2\/}]\kern6pt}
+
+\def\foottext#1{\medskip
+        \hrule height\ruleht width5pc \kern-\ruleht \kern3pt \eightpoint
+        \smallskip\textindent{#1}}
+\def\volheadline#1{\line{\hss\cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill
+       \titlefont\ #1\ \cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill\hss}}
+\def\refin#1 {\let|\inref \input #1.ref \let|\crossref}
+
+\let\defaultpointsize=\tenpoint
+
+%%%%%%%%%%%%%% opening remarks %%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{INTRODUCTION}
+\let\rhead=\lhead
+\titlepage
+\volheadline{THE ART OF COMPUTER PROGRAMMING}
+\bigskip
+\volheadline{ERRATA TO VOLUME 4 FASCICLE 4}
+\bigskip
+
+\noindent This document is a transcript of the notes that I have been making
+in my personal copy of {\sl The Art of Computer Programming}, Volume~4,
+Fascicle~4, since it was first printed in 2006.
+
+\ifall Four levels of updates\dash---``errors,'' ``amendments,'' ``plans,''
+   and ``improvements''\dash---appear, indicated by four
+\else Three levels of updates\dash---``errors,'' ``amendments,'' and
+   ``plans''\dash---appear, indicated by three \fi
+different typographic conventions:
+\begingroup\def\hundred{17}
+
+\bugonpage 0.666 line 1 (76.07.04)
+Technical or typographical errors (aka bugs) are the most critical items, so
+they are flagged with a `\thinspace{\manfnt x}\thinspace' preceding the page
+number. The date on which I first was told about the bug is shown; this is the
+effective date on which I paid the finder's fee. The necessary
+corrections are indicated in
+a straightforward way. If,~for example, the book says
+`$n$' where it should have said `$n+1$', the change is shown thus:
+\smallskip
+$n$ \becomes $n+1$
+\endchange
+
+\amendpage 0.666 line 2 (89.07.14)
+Amendments to the text appear in the same format as bugs, but without
+the~`\thinspace{\manfnt x}\thinspace'. These are things I wish I had known
+about or thought of when I wrote the original text, so I added them later.
+The date is the date I drafted the new text.
+\endchange
+
+\def\hundred{19}
+
+\planforpage 0.666 line 3 (17.11.20)
+Plans for the future represent a third kind of item. In such notes I~sketched
+my intentions about things that I wasn't ready to flesh out further when
+I~wrote them down. You can identify these items because they're written in
+slanted type, and preceded by a bunch of dots
+`\hbox to 6em{\leaders\hbox to 5pt{\hss.\hss}\hfill}' leading to the date on
+which I recorded the plan in my files.
+\endchange
+
+\improvepage 0.666 line 4 (38.01.10)
+The fourth and final category\dash---indicated by page and line number in
+smaller, slanted type\dash---consists of minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+You wouldn't even
+be seeing these items if you hadn't specifically chosen to print the complete
+errata list in all its gory details.
+Are you sure you wanted to do that?
+\endchange
+
+\endgroup
+\ifall\else\medskip\ninepoint
+My personal file of updates also includes a fourth category of items, not
+shown in this list. They are miscellaneous minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+If you really want to see all of the gory details,
+you can download the full list from Internet webpage
+$$\.{http://www-cs-faculty.stanford.edu/\char`\~knuth/taocp.html}$$
+by selecting the ``long form'' of the errata.
+\fi
+
+\medskip
+\tenpoint
+\beginconstruction
+The ultimate, glorious, future editions of Volumes 1--5 are works in progress.
+Please let me know of any improvements that you think I ought to make.
+Send your comments either by snail mail to D.~E. Knuth, Computer
+Science, Gates Building 4B, Stanford University, Stanford CA~94305-9045,
+or by email to
+{\tt taocp{\char`\@}cs.stanford.edu}. (Use email for book suggestions
+only, please\dash---all
+other correspondence is returned unread to the sender, or discarded,
+because I have no time to
+read ordinary email.) Although I'm working full time on
+Volume~4 these days, I~will try to reply to all such messages
+within a year of receipt. Current news about {\sl The Art of Computer
+Programming\/} is posted on
+$$\.{http://www-cs-faculty.stanford.edu/\char`~knuth/taocp.html}$$
+and updated regularly.
+\par\endconstruction
+\rightline{\dash---Don Knuth, March 2006}
+
+\bigskip
+\bigskip
+{\quoteformat
+He did a lot of editing. That's how he liked to work.
+Sometimes he even made alterations between printings.
+\author P. D. JAMES, {\sl The Lighthouse\/} (2005)
+% page 148 (within Chapter 7)
+\vfill\eject
+}
+
+\def\today{\number\day\space\ifcase\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi
+  \space\number\year}
+
+%%%%%%%%%%%%%%% CHANGES FOR VOLUME 4 FASCICLE 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{\kern-16ptCHANGES TO V4F4: GENERATING ALL TREES; HISTORY OF GENERATION}
+\def\rhead{CHANGES TO V4F4: GENERATING ALL TREES; HISTORY OF GENERATION\kern-16pt}
+\titlepage
+\volheadline{GENERATING TREES; HISTORY} % the fascicle title
+\bigskip
+\rightline{Copyright \copyright\ 2006, 2007, 2008, 2009, 2010, Addison\with Wesley; all rights reserved}
+\rightline{Last updated \today}
+\bigskip
+\rightline{\sl Most of these corrections have already been made in
+                  recent printings.}
+\medskip
+\noindent Important note: The changes below include nearly every difference
+between the paperback fascicle and the first printing of Volume 4A,
+published in January 2011. All subsequent changes can be found in
+the errata list for that volume.
+
+\smallskip
+\let\defaultpointsize=\tenpoint
+
+\improvepage 4f4.iv line 27 (08.10.28)
+I shall happily pay a finder's fee of \$2.56 \becomes
+I happily offer a ``finder's fee'' of \$2.56
+\endchange
+
+\improvepage 4f4.iv lines 31 and 32 (08.10.28)
+reward you with immortal glory instead of mere money \becomes
+do my best to give you immortal glory
+\endchange
+
+\amendpage 4f4.v replacement for lines 1--18 (09.01.09)
+\noindent {\bf A note on notation.}
+Near the beginning of Chapter 7, some operations on graphs are defined
+for which many different notations are presently rampant.
+If $G$ is a graph on the vertices
+$U=\{u_1,\ldots,u_m\}$ and if $H$ is a graph on the vertices
+$V=\{v_1,\ldots,v_n\}$, larger graphs can be constructed in two
+``additive'' and five ``multiplicative'' ways, as follows.
+\def\\{\smallskip\item{$\bullet$}}
+\\$G\dirsum H$ is the direct sum, aka juxtaposition, of $G$ and $H$:
+It has the
+$m+n$ vertices $U\cup V$ and the edges of $G$ and $H$.
+\\$G\join H$ is the join of $G$ and $H$: On the vertices $U\cup V$,
+its edges are those of $G$ and $H$, plus all $u_j\adj v_k$ for $1\le j\le m$
+and $1\le k\le n$.
+\\$G\cprod H$ is the Cartesian product of $G$ and $H$: It has
+the $mn$ vertices $U\times V$; its edges are $(u,v)\adj(u',v)$ when
+$u\adj u'$ in~$G$, and $(u,v)\adj(u,v')$ when $v\adj v'$ in~$H$.
+\\$G\dprod H$ is the direct product, aka conjunction, of $G$ and~$H$:
+Again its vertices are $U\times V$, but its edges are
+$(u,v)\adj(u',v')$ if and only if $u\adj u'$ in~$G$ and $v\adj v'$ in~$H$.
+\\$G\sprod H$ is the strong product of $G$ and~$H$: As its symbol
+implies, it combines the edges of $G\cprod H$ and $G\dprod H$.
+\\$G\oprod H$ is the odd product of $G$ and $H$:
+On the vertices $U\times V$, its edges are $(u,v)\adj(u',v')$ if and only if
+$u\adj u'$ in~$G$ or $v\adj v'$ in~$H$, but not both.
+\\$G\lprod H$ is the lexicographic product, aka composition, of
+$G$ and $H$: Again on vertices $U\times V$, it has the edge
+$(u,v)\adj(u',v')$ if and only if we have either
+(i)~$u\adj u'$ in~$G$ or
+(ii)~$u=u'$ and $v\adj v'$ in~$H$.
+\endchange
+
+\amendpage 4f4.1 replacement for line 4 (08.10.11)
+{\sl 2006 and 2007\/} \becomes {\sl 2008 and 2009\/}
+\endchange
+
+\improvepage 4f4.5 line 4 (10.07.09)
+$2n-1$. \becomes $2n-1$. (We use $a_0$ as a sentinel in step P4.)
+\endchange
+
+\improvepage 4f4.6 line 4 (10.09.29)
+a descendant \becomes a proper descendant
+\endchange
+
+\bugonpage 4f4.12 line 8 (06.08.26)
+508--515 \becomes 508--516
+\endchange
+
+\bugonpage 4f4.15 {(and throughout this section!)} (08.04.04)
+\ninepoint{\bf Fig.\ 36} \becomes {\bf Fig.\ 57} [and all figure
+numbers within section 7.2.1.6 need to increase by 21]
+\endchange
+
+\amendpage 4f4.19 line $-9$ (06.10.18)
+Section 7.1 \becomes Section 7.1.3
+\endchange
+
+\bugonpage 4f4.21 line $-2$ (06.07.25)
+Table 8 \becomes Table 4
+\endchange
+
+\bugonpage 4f4.25 line 8 (07.12.08)
+(1999) \becomes (1997)
+\endchange
+
+\improvepage 4f4.25 line $-9$ (09.09.21)
+contains $q$ \becomes contains $\{q\}$
+\endchange
+
+\bugonpage 4f4.28 replacement for {\eq(54)} (09.09.09)
+$$\advance\abovedisplayskip-1.5pt\advance\belowdisplayskip-7.5pt
+A=\ \vcenter{\epsfbox{\figdir/v4a.597}\kern6pt}\ ,\quad
+B=\ \vcenter{\epsfbox{\figdir/v4a.596}\kern6pt}\ ,\quad
+C=\ \vcenter{\epsfbox{\figdir/v4a.595}\kern5pt}\ ,\quad
+D=\ \vcenter{\epsfbox{\figdir/v4a.594}\kern9pt}\ ,
+\eqno(54)$$
+\endchange
+
+\amendpage 4f4.31 notational changes in Table 5 (07.02.02)
+$P_4\times P_4$ \becomes $P_4\cprod P_4$,
+$P_5\times P_5$ \becomes $P_5\cprod P_5$, etc.
+\endchange
+
+\bugonpage 4f4.31 in the column for Algorithm S in Table 5 (10.07.09)
+\ninepoint 3,168.16 \becomes 3,172.19
+\endchange
+
+\bugonpage 4f4.31 in the column for Algorithm S$'$ in Table 5 (10.07.09)
+\ninepoint 49.09\thinspace K$\mu$ \becomes 49.09\thinspace M$\mu$
+\endchange
+
+\bugonpage 4f4.32 line 16 (06.04.24)
+137--142 \becomes 137--140
+\endchange
+
+\bugonpage 4f4.32 lines 19--21 (09.02.02)
+\noindent[The text of Theorem S should appear in {\sl slanted\/} type.]
+\endchange
+
+\amendpage 4f4.32 {(not an error)} (08.06.12)
+\eightpoint
+[The index refers to a ``pun resisted'' on this page. I was thinking
+of ``preposterous''\dots]
+\endchange
+
+\bugonpage 4f4.35 line 5 of exercise 26 (10.07.18)
+\ninepoint
+of \eq(9) and~\eq(10) \becomes of \eq(10) and~\eq(11)
+\endchange
+
+\amendpage 4f4.45 notational changes in exercises 105 and 106 (07.02.02)
+\ninepoint $G'\times G''$ \becomes $G'\cprod G''$,
+$G'\cnj G''$ \becomes $G'\dprod G''$,
+$G'\scnj G''$ \becomes $G'\sprod G''$, etc.
+(These changes also affect the answers to exercises 105--108.)
+\endchange
+
+\amendpage 4f4.45 new parts to exercise 105 (07.04.05)
+\ninepoint
+\item{h)} $G=G'\?\oprod G''$ is the odd product of regular graphs
+$G'$ and $G''$.
+\item{i)} $G=G'\?\lprod G''$ is the lexicographic product of regular graphs
+$G'$ and $G''$.
+\smallskip\noindent[Also the rating changes from [{\it\HM37\/}] to
+[{\it\HM38\/}].]
+\endchange
+
+\amendpage 4f4.46 the rating of exercise 121 (06.05.29)
+\ninepoint [{\it M32\/}] \becomes [{\it M34\/}]
+\endchange
+
+\improvepage 4f4.50 line $-5$ (06.01.12)
+code-names \becomes code names
+\endchange
+
+\bugonpage 4f4.54 lines 21 and 23 (06.01.12)
+line 21 (in Eq.~\eq(10)): $3@1@2@4-4@3@2@1$ \becomes $3@1@2@4-4@3@1@2$\nl
+line 23: ${}-a_4b_3c_2d_1$ \becomes ${}-a_4b_3c_1d_2$
+\endchange
+
+\improvepage 4f4.54 bottom line (06.01.12)
+{\eightssi Bh\=askara\/} \becomes {\eightss BH\=ASKARA}
+\endchange
+
+\bugonpage 4f4.55 last two lines of {\eq(11)} (10.10.16)
+\font\arabten=arab8 at 10pt
+{\arabten\char"A2\kern2pt\char"90}\enspace and\enspace
+{\arabten\char"DD\kern2pt\char"90} \qquad\becomes\qquad
+{\arabten\char"A2\kern2pt\char"8E}\enspace and\enspace
+{\arabten\char"DD\kern2pt\char"8E}
+\endchange
+
+\bugonpage 4f4.57 {(and throughout this section!)} (08.11.12)
+\ninepoint{\bf Fig.\ 44} \becomes {\bf Fig.\ 64} [and all figure
+numbers within section 7.2.1.7 need to increase by 20]
+\endchange
+
+\improvepage 4f4.61 line 7 (06.03.19)
+radix-2 arithmetic \becomes radix-2 numbers
+\endchange
+
+\amendpage 4f4.67 line $-14$ or $-15$ (09.11.29)
+Bishop Wibold \becomes We saw above that Bishop Wibold
+\endchange
+
+\amendpage 4f4.67 line $-11$ (09.01.18)
+order.] \becomes
+order.] Thomas Harriot, in unpublished work a few years earlier, had
+considered up to six dice [see J.~Stedall, {\sl Historia Math.\
+\bf34} (2007), 398].
+\endchange
+
+\amendpage 4f4.70 line 13 (10.09.25)
+J. C. Burkhardt \becomes J. K. Burckhardt
+\endchange
+
+\bugonpage 4f4.70 lines 18--19 (10.07.18)
+{\sl Archiv f\"ur\/} \dots\ 194 \becomes
+{\sl Archiv der reinen und angewandten Mathematik\/ \bf1} (1794), 154--195
+\endchange
+
+\improvepage 4f4.71 line $-6$ (08.03.24)
+Erd\H{o}s \becomes Erd\"os \qquad[to agree with the English spelling
+in the paper cited]
+\endchange
+
+\bugonpage 4f4.74 new wording for exercise 15 (06.03.19)
+\ninepoint
+\ex 15. [15] If all $n$-combinations $x_1\ldots x_n$ of $\{1,\ldots,m\}$
+with repetition
+are listed in lexicographic order, with $x_1\le\cdots\le x_n$,
+how many of them begin with the number~$j$?
+\endchange
+
+\bugonpage 4f4.74 in exercise 17 (06.01.12)
+\ninepoint algorithm of exercise 15 \becomes algorithm of exercise 16
+\endchange
+
+\bugonpage 4f4.75 line 2 of exercise 28 (10.03.17)
+$bcaaa\cdot b$ \becomes $cbaaa\cdot b$
+\endchange
+
+\let\defaultpointsize=\ninepoint % get ready for answer pages
+
+\bugonpage 4f4.76 line 1 of answer 9 (10.09.29)
+an ancestor of node $k$ if and only if \becomes
+a (proper) ancestor of node $k$ if and only if $j<k$ and $s_j+j\ge k$.
+\endchange
+
+\bugonpage 4f4.78 in answer 19 (10.03.20)
+line 7: preorder \becomes postorder\nl
+line 8: if $x<n$ \becomes $x>1$\nl
+line 9: $x+1$, \dots, $n$ \becomes $x-1$, \dots,~1
+\endchange
+
+\bugonpage 4f4.78 line $-6$ (09.09.22)
+make $j$ and its siblings \becomes
+make $j$ and its right siblings
+\endchange
+
+\bugonpage 4f4.79 line 4 (10.03.20)
+The forest $F^{RT\!@R}$ is called the {\it dual\/} of $F$; see
+exercise 26(f). Several \becomes Several
+\endchange
+
+\amendpage 4f4.80 line 5 (07.01.01)
+488--497] \becomes
+488--497; {\bf49} (2006), 351--357]
+\endchange
+
+\bugonpage 4f4.80 line 1 of answer 25 (10.06.10)
+Algorithms N and R \becomes Algorithms N and L
+\endchange
+
+\bugonpage 4f4.84 line 1 of answer 33{(c)} (10.03.26)
+$\rho@@\sigma\?\lambda\rho$ \becomes $\rho@@\sigma\?\lambda(F)@\rho$
+\endchange
+
+\bugonpage 4f4.86 line 4 (10.03.21)
+answer 26 \becomes answer 36
+\endchange
+
+\amendpage 4f4.87 line 2 of answer 40 (06.10.18)
+7.1--\eq(00) \becomes 7.1.3--\eq(36)
+\endchange
+
+\amendpage 4f4.88 new sentence for the end of answer 45 (07.04.26)
+{\sl[See the addendum on page 105.]}
+\endchange
+
+\bugonpage 4f4.90 near the top (10.10.23)
+line 5: path length \becomes level of a leaf\nl
+line 6: hit a leaf \becomes hit the leftmost leaf\nl
+line 10: to a leaf \becomes to the leftmost left
+\endchange
+
+\improvepage 4f4.92 line 10 (10.07.18)
+If $a_k$ \dots\ to I5. \becomes
+If $k=0$, go to I5; if $a_k={}$`\.)', go to I3; if $a_k={}$`\.(', go to I4.
+\endchange
+
+\bugonpage 4f4.98 line 3 {(not line 2)} of step F4 in answer 99 (10.03.26)
+$v_q\gets k\oplus1$ \becomes $v_q\gets k$
+\endchange
+
+\amendpage 4f4.100 line $-2$ of answer 103 (10.07.18)
+7--00 \becomes 7--137
+\endchange
+
+\amendpage 4f4.100 line $-2$ (07.04.03)
+Kronecker product \becomes direct product
+\endchange
+
+\amendpage 4f4.101 in answer 105{(e)} (07.04.05)
+line 1: $d'$\becomes$d$ \quad(twice)\nl
+line 2: $e_{ij}$\becomes$a_{ij}$
+\endchange
+
+\amendpage 4f4.101 new paragraphs for answer 105 (07.04.05)
+\indent(h) When $G'$ is regular, we can make $S^-A'S$ a diagonal matrix with
+entries $d'-\alpha'_j$, while simultaneously $S^-J_{n'}S$ is a diagonal matrix
+with entries $(n',0,\ldots,0)$, because $(1,\ldots,1)^T$ is an eigenvector
+of both $A'$ and $J_{n'}$. Thus, by the formula of answer 7--96(c),
+the aspects turn out to be
+$\{d+(d'\?-\alpha'_j\-n'\[j=0])(d''\?-\alpha''_k)
+    +(d'\?-\alpha'_j)(d''\?-\alpha''_k-n''\[k=0])\mid 0\le j<n',0\le k<n''\}$,
+where $d=d'(n''-d'')+(n'-d')d''$.\par
+(i) A similar argument yields the scaled aspects
+$\{n''\alpha'_j\mid 0\le j<n'\}$ of~$G'$, together with
+$n'$ copies of shifted aspects $\{d'n''+\alpha''_k\mid 1\le k<n''\}$ of~$G''$.
+\endchange
+
+\amendpage 4f4.102 notational changes in answer 108 (07.03.27)
+line 7: $T_n$ \becomes $K\orie_n$\nl
+line 10: $T_3$ \becomes $K\orie_3$\nl
+line 13: $T_3$ \becomes $K\orie_3$\nl
+line 22: $Q_n$ \becomes $P\orie_{\!n}$\nl
+line 23: $O_n$ \becomes $C\orie_{\!n}$
+\endchange
+
+\amendpage 4f4.103 more notational changes (07.03.27)
+line 4: $O_m\times O_n$ \becomes $C\orie_{\!m}\cprod C\orie_{\!n}$
+\endchange
+
+\bugonpage 4f4.104 line 3 of answer 119 (06.08.26)
+7.2.1.1--5 \becomes 7.2.1.1--\eq(5)
+\endchange
+
+\bugonpage 4f4.104 in answer 122 (10.01.09)
+line 7: 1640 \becomes 1641\nl
+line 11: 3365 \becomes 3366\nl
+line 16: 96,504 \becomes 97,221
+\endchange
+
+\bugonpage 4f4.105 line $-4$ of answer 122 (10.01.09)
+(a)~2,747,275 cases; (b)~6,834,708; (c)~741,167,401. \becomes\nl
+(a)~2,735,136 cases; (b)~6,813,760; (c)~739,361,319.
+\endchange
+
+\bugonpage 4f4.105 line 4 of answer 123 (10.01.09)
+1361, 2758, and 85054 \becomes
+1362, 2759, and 85597
+\endchange
+
+\bugonpage 4f4.105 line 4 of answer 123 (06.08.26)
+120(a) \becomes 122(a)
+\endchange
+
+\amendpage 4f4.105 new copy for bottom of page (07.04.26)
+\textindent{\bf45,} continued. \pageref|addendum-page|%
+Skarbek has, however, improved Algorithm B to the following
+Algorithm~B*, which generates the trees in reverse order and uses an
+auxiliary table $c_1\ldots c_n$:
+\algindentset{B1*}%
+\algstep B1*. [Initialize.] Set $l_k\gets c_k\gets 0$ and $r_k\gets k+1$
+for $1\le k<n$;
+also set $l_n\gets r_n\gets0$, and set $r_{n+1}\gets1$ (for
+convenience in step B3*).
+\algstep B2*. [Visit.] Visit the binary tree represented by $l_1l_2\ldots l_n$
+and $r_1r_2\ldots r_n$.
+\algstep B3*. [Find $j$.] Set $j\gets1$. While $r_j=0$, set
+$l_j\gets c_j\gets0$, $r_j\gets j+1$, and $j\gets j+1$.
+Then terminate the algorithm if $j>n$.
+\algstep B4*. [Demote $r_j$.] Set $x\gets r_j$, $r_j\gets r_x$, $r_x\gets0$,
+$z\gets c_j$, $c_j\gets x$. If $z>0$, set $r_z\gets x$; otherwise
+set $l_j\gets x$. Return to B2*.\quad\slug
+\smallskip\noindent If the values of $r_1$ and $c_1$ are maintained in
+registers, this algorithm needs only
+$4C_n+C_{n-1}+4(C_{n-1}+C_{n-2}+\cdots+C_0)+3n-6
+=(67/12+73/(24n)+O(n^{-2}))@C_n$ mems to generate all $C_n$ trees.
+[See W.~Skarbek, {\sl Fundamenta Informatic{\ae} \bf75} (2007), 505--536.]
+\endchange
+
+\amendpage 4f4.106 lines 1--4 of answer 4 (07.04.26)
+this glitch \dots~this flaw. \becomes
+similarly, one
+$\vcenter{\epsfbox{\figdir/donnolo-30721.eps}}$ on line 8 should be
+$\vcenter{\epsfbox{\figdir/donnolo-37021.eps}}@$.
+And the six cases with rightmost letters
+$\vcenter{\epsfbox{\figdir/donnolo-73.eps}}$ appear twice, in lines
+3 and~4, while the cases with rightmost
+$\vcenter{\epsfbox{\figdir/donnolo-23.eps}}$ are missing. These glitches
+are probably typographical and/or scribal errors, not made by
+Donnolo himself.
+\endchange
+
+\amendpage 4f4.106 line 4 of answer 6 (07.07.03)
+1975 \becomes 1963
+\endchange
+
+\bugonpage 4f4.107 line 2 of answer 8 (06.01.12)
+$ a_1a_{n-1}\ldots a_na_3a_2$ \becomes $ a_1a_4\ldots a_na_3a_2$
+\endchange
+
+\improvepage 4f4.107 replacement for the last line of answer 8 (06.01.12)
+$\pm a_1\ldots a_{n-1}$ of $\{1,\ldots,n-1\}$ yields
+$n$~others, $\pm a_1\ldots a_{n-1}a_n\mp a_1\ldots a_{n-2}a_na_{n-1}
+\pm\cdots{}$.
+\endchange
+
+\bugonpage 4f4.107 line 2 of answer 9 (10.10.16)
+\font\arabnine=arab8 at 9pt
+for example, `{\arabnine\char"90}' \becomes
+for example, `{\arabnine\char"8E}'
+\endchange
+
+\bugonpage 4f4.108 answer 12 (09.11.29)
+by 5 \becomes by 5 and add 2
+\endchange
+
+\bugonpage 4f4.109 answer 22 (06.01.12)
+line 11: exercise 20(c) \becomes exercise 21(c)\nl
+line 14: exercise 18 \becomes exercise 19
+\endchange
+
+\amendpage 4f4.110 line $-3$ of answer 26 (06.12.27)
+closed form. \becomes
+closed form, although it does satisfy the interesting functional relation
+$1+zB(z)=B(z/(1+z))$.
+\endchange
+
+\amendpage 4f4.111 new quotations for bottom of page (10.11.11)
+{\quoteformat
+\author HARPO MARX, {\sl The Cocoanuts\/} (1925)
+% Broadmay musical
+\author MARCEL MARCEAU, {\sl Baptiste\/} (1946)
+% beginning of his career as a mime
+}
+\endchange
+
+\expandafter\ifx\csname indexeject\endcsname\relax\else\vfill\eject\fi
+\amendpage 4f4.112 and following (06.03.19)
+Miscellaneous changes to the existing index of Volume~4 Fascicle~4
+are collected here,
+including corrections and amendments to the old entries as well as new entries
+that are occasioned by the new material. Thus, the lines of the full index
+that have changed serve also as an index to the present document. However,
+when a correction or amendment has caused an old index entry to be deleted,
+the deletion is usually not indicated.
+
+\input exotic
+\begindoublecolumns
+\indexformat
+\gdef\Uni1.08:{\bitmap24:1.08:}
+\hangindent2em
+Bh\=askara II, \=Ac\=arya, son of Mahe\'svara ({\dn BA\char45krA\char99A\hbox{y\kern-0.3em\hbox{\char13}}}, {\dn mh\kern-.85em{\char3}\char'230rp\llap{\lower.15em\hbox{\char0}\kern.3em}/}), 53, 54. % 6th
+Burckhardt, Johann Karl (= Jean Charles), 70. % 7th
+$C_n$ (cycle graph), 43, 98, 101. % 2nd
+Combinations, null, 61. % 2nd
+Combinations, of a multiset, 60, 74, 111. % 2nd
+Composition of graphs, v, 45. % 2nd
+Cycle graph ($C_n$), 43, 98, 101. % 2nd
+Direct product of matrices, 100. % 2nd
+Direct sum of graphs, v, 45. % 2nd
+Empty quotation, 111. % 3rd
+Errors, 49, 52--54, 60, 64--65, 67, 73--75, 109, 111. % 2nd
+Feussner, Friedrich Wilhelm, 24. % 2nd
+Fibonacci, Leonardo, of Pisa (= Leonardo filio Bonacii Pisano), numbers, 50, 106. % 2nd
+Gr\"atzer, Gy\"orgy (= George), 83. % 3rd
+Hariharan, Ramesh ({\tm\\205\\125\kern-.1em\\203\\161 \\213\\235\\213\\205\\150}), 99. % 2nd
+Harriot, Thomas, 67. % 3rd
+Ibn Mun`im, A\d{h}mad al-`Abdar\ii\indexbreak
+ ({\arab\Afm/\Amai/\Amn/\Aim/ \Afn/\Aib/ \Ay/\Ar/\Afd/\Amb/\Amai/\Ail/\Aa/ \Afd/\Amm/\Aihh/\Aha/}), 61. % 2nd
+Inclusion and exclusion principle, 106. % 3rd
+Japanese mathematics, 54, 65--67, 75. % 2nd
+Jesus of Nazareth, son of Joseph\indexbreak % John 1:45, cf also Mt 21:11, Mk 1:9, Ac 10:38
+({\heb\Htv/\Hrr/\Hts/\Hnn/ \Hfn/\Hbb/ \Hfp/\Hss/\Hvv/\Hyy/ \Hfn/\Hbb/
+  \Hai/\Hvv/\Hsh/\Hyy/}, % from Peshitta
+ {\grk >Ihso=us \indexbreak u>i`os to=u >Iws`hf <o >ap`o Nazar'ej}), 53. % 2nd
+Jewish mathematics, 52, 59, 108. % 2nd
+Lexicographic order, 4--5, 21, 23, 33, 39, 42, 49, 53, 55, 56, 61, 67, 68, 70, 71, 74, 108, 110, 111. % 2nd
+Lexicographic product of graphs, v, 45. % 2nd
+Marceau (= Mangel), Marcel, 111. % 3rd
+Marx, Adolph (= Arthur = Harpo), 111. % 3rd
+Meters, poetic, 49--52, 54, 62--65, 70, 74--75. % 2nd
+Metrical feet, 51, 63, 74--75. % 2nd
+Multicombinations: Combinations with repetition, 55--56, 61, 74. % 2nd
+Multiset combinations, 60, 74, 111. % 2nd
+Multiset permutations, 53, 62, 64, 69. % 2nd
+Needham, Noel Joseph Terence Montgomery (\GC72:74:-5:61% G3278
+<00000000f00000000000000000fc0000000000000000fe0000000000000000ff80000000%
+ 00000000ff8000000000000000ff8000000000000000ff0000000000000000fc00000000%
+ 00000000fc0000038000000000fc000007c000000000fc00000fe000000000fc00001ff0%
+ fffffffffffffffff87ffffffffffffffffc3ffffffffffffffffc0c00001ffce0000000%
+ 0000003ffcf00000000000007ffc780000000000007ffc38000000000000fefc3c000000%
+ 000000fcfc1e000000000001f8fc1f000000000003f8fc0f800000000003f0fc07c00000%
+ 000007e0fc07e0000000000fc0fc03f8000000001f80fc01ff000000003f00fc00ffc000%
+ 00007e00fc00fff0000000fc00fc007ffe000001f800fc003fff800003e000fc000ffffe%
+ 0007c000f80077ffff000f8000f800f9fffc003f00000001fcfffc007ffffffffffe1ff0%
+ 01f8ffffffffff07c007e07fffffffff00801f801000000fff00003f000000001ffe0000%
+ fc000000003ff80000f0000000007ff000004000000000ff800000000000003ffe000000%
+ 000000003ff0000000000000003fe0000000000000003fe0000000000000003f800001c0%
+ 000000003f000003e0000000003f000007f0000000003f00000ff8fffffffffffffffffc%
+ 7ffffffffffffffffe1ffffffffffffffffe040000003f00000000000000003f00000000%
+ 000000003f00000000000000003f00000000000000003f00000000000000003f00000000%
+ 000000003f00000000000000003f00000000000000003f00000000000000003f00000000%
+ 000000003f00000000000000003f00000000000000f83f00000000000000ffff00000000%
+ 0000001fff000000000000000fff0000000000000003ff0000000000000001fe00000000%
+ 00000000fc0000000000000000f000000000>%%  Unicode char "674e
+\JC47:48:0:40% J4483
+<00600018000000f8001e000000fc001f8000007c001f80000078001f00000070003f0000%
+ 00f0003f000000e0003e0000c1c7003e0000738f807c00183e0fc07c003c3c0fc07ffffe%
+ 1f0f807ffffe1f8f80f8003c0fcf00f0003c0fcf01e0003c079e01e0003c031c01c0003c%
+ 003b0380003c00738380003c00e1c300003c0381e660003cc60ff438003cfffff01c003c%
+ fffef01e003c7ff0600f003c7ef0000f803c30f0000f803c00f00007c03c00f20007c03c%
+ 38f30007c03c1cf18007c03c1ef1c003803c1ef1e001803c1ef0f000003c1ef0f000003c%
+ 1ef0f000007c1cf0600000783cf00000007838f0000000f838f0000000f030f0000001f0%
+ 60f0000003f0c0f0000fffe000f00001ffc000f000007fc000f000003f80006000001f00%
+ >%% Unicode char "7d04
+\GC80:75:0:60% G4110
+<00000000380000000380000000007c0000000fc0000000007c0000001fe000000000feff%
+ fffffff00fffffffff7ffffffff807fffffffffffffffff8038007c0000807e000000000%
+ 07c0000007e00000000007c0000007e00000000007c0000007e00000000007c0000007e0%
+ 0000000007c0000007e00000000007c0000007e00000000007c0700007e01e00000007c0%
+ fc0007e03f00000007c1fe3fffffff8003ffffffff3fffffffc001ffffffff1fffffffc0%
+ 008007c0000e07e00000000007c0000007e00000000007c0000007e00000000007c00000%
+ 07e00000000007c0000007e00000000007c0000007e00000000007c0000007e000000000%
+ 07c0000007e00000000007c0380007e000f0000007c07c0007e001f8000007c0fe0007e0%
+ 03f87ffffffffffffffffffc7ffffffffffffffffffe3fffffffffffffffffff1c000000%
+ 0038000000000000000000000000000000000001e0000000000000000001f80001e00000%
+ 00000000ff0001f00000000000007fc003fc0000000000003fe007fe0000000000001fe0%
+ 07fe0000000000000ff00ffc00000000000007f00ff80000000001e007f01fe000000000%
+ 01f803f03fc00000000001fc03f07f800000000001ff01f0ff000000000601fe01e1fe00%
+ 0000000701fe0063fc0fc000000701f80007f807f000000701f8000fe003fc00000f01f8%
+ 001fc000ff00000f01f8003f80007fc0001f01f8007f00003fe0003f01f800fe00601ff0%
+ 007f01f801fc00700ff8007f01f803f800700ff801fe01f807e0007007fc07fe01f81fc0%
+ 007003fc1ffc01f87f80007001fc1ffc01f8ff00007000fc1ff801fbfc00007000f80ff8%
+ 01fff800007000780ff001ffe00000780010060001ff800000f80000000007ff000000fc%
+ 000000000ffe000001fe000000003ffe00000ffe000000007ffffffffffe00000003fdff%
+ fffffffe0000000ff0fffffffffc0000007fc0fffffffffc00000fff003fffffffe00000%
+ fff80000000000000000ffe0000000000000000040000000000000000000>%% Unicode "745f
+), 49. % 3rd
+Notational conventions:\indexnoperiod % 2nd
+\sub $G\dirsum H$, $G\join H$, $G\cprod H$, $G\dprod H$, $G\sprod H$, $G\oprod H$, $G\lprod H$, v. % 2nd
+Null case, 61, 93, 100, 111. % 3rd
+Odd product of graphs, v, 45.
+Permutations of a Latin verse, 62--65, 74--75. % 2nd
+Permutations of a multiset, 53, 62, 64, 69. % 2nd
+Permutations, restricted, 63--65, 74--75. % 2nd
+Poetry, meters for, 49--52, 54, 62--65, 70, 74--75. % 2nd
+Radix-2 number system, 49, 52, 61. % 2nd
+Ramesh, Hariharan ({\tm\\205\\125\kern-.1em\\203\\161 \\213\\235\\213\\205\\150}), 99. % 2nd
+Recursive algorithms, 68--69, 73, 75. % 2nd
+Reverse lexicographic order, 56, 67, 68, 111. % 2nd
+\'S\=ar\:ngadeva, son of So\d{d}haladeva ({\dn fA\kern-.1em\char'263\kern-.25em\char'15\kern.05em\llap{\raise.35em\hbox{\char'24}}\kern-.09emd\kern-.1em\llap{\char3}v}, {\dn soYld\kern-.02em\llap{\char3}v-y p\llap{\lower.15em\hbox{\char0}\kern.3em}/,}), 53, 62, 108. % 6th
+Scoins, Hubert Ian, 23, 73. % 2nd (there were two entries, one in wrong spot)
+Seki, Takakazu (\JC46:48:-2:40% J7980
+<c00060c00060e000f0e000f0fffff8fffff8fffffcfffffcf000f8f000f8f000f0f000f0%
+ f000f0f000f0fffff0fffff0fffff0fffff0f000f0f000f0f000f0f000f0f000f0f000f0%
+ fffff0fffff0fffff0fffff0f001000400f0f001800600f0f001c00700f0f003c00f00f0%
+ f0c3830e00f0f07701dc00f0f03e20f880f0f01c7071c0f0f01ce07380f0f00dc03700f0%
+ f003800e00f0f007201c80f0f00e3038c0f0f01c3870e0f0f039f8e7e0f0f0fffffff0f0%
+ f07e0df830f0f0300cc030f0f000f0f000f0f000f0f000f0f030f0f0c0f0f030f0f0c0f0%
+ f030f0f0c0f0f030e0f0c0f0f03fe0ffc0f0f03fe0ffc0f0f000c0f000f0f001c0f000f0%
+ f00180f000f0f00300f001f0f00e00f03fe0f03800600fe0f000000003c0f00000000180%
+ >%% Unicode char "95dc
+\JC48:48:0:40% J2507
+<00003c00000000003e00000000001f00000000000f80000000000f001c0000000f001f00%
+ 00000f031fc000000f079fc003ffffffffc001ffffffff8000000f007f0000000f007e00%
+ 00000f00fc0000000f01f80000000f07f01c00000f0fe03effffffffffff7fffffffffff%
+ 0000007e0000000001f80000000003e0000000000fc0000000003f0030000000fe007800%
+ 00fffffffc00007ffffffc00000f8001f800000f0001f000007c0303c00003f003878000%
+ ffc003fe0000fc0003fc0000000003c00030000003c000783ffffffffffc0ffffffffffc%
+ 000003c00000000003c00000000003c00000000003c00000000003c00000000003c00000%
+ 000003c00000000003c0000000007fc0000000003fc0000000001f80000000000f000000%
+ >%% Unicode char "5b5d
+\JC45:47:0:39% J4734
+<0001800000000003e00000000007f0000000000ff8000000003ff8000000007fe0600060%
+ 01ff807800f007fc007ffff83fbc007ffff8f83c007800f0003c007800f0003c007800f0%
+ 003c007800f0003c007800f0003c307800f0003c787800f0fffffc7800f07ffffc7800f0%
+ 003c007800f0003c007800f0007c007800f0007c007800f0007f007800f000ffc07800f0%
+ 00fde07800f000fdf07800f001fcf87800f001fcfc7800f001fc7c7800f003fc7c7800f0%
+ 03fc3c7800f007bc387800f007bc007800f00f3c007800f01e3c007800f01c3c007800f0%
+ 383c007800f0703c007ffff0c03c007ffff0003c007800f0003c007800f0003c00780060%
+ 003c00300000003c00000000003c00000000003c00000000001800000000>%% Unicode char "548c
+), 54, 66, 74. % 5th
+Singh, Parmanand ({\dn prmAn\char6d Es\kern-0.6em\raise0.4em\hbox{\char21}h}), 50, 61. % 6th
+Skarbek, W{\l}adys{\l}aw Kazimierz, 6, 105. % 2nd
+Stedall, Jacqueline Anne, 67. % 3rd
+Symmetric polynomials, 68, 110. % 2nd
+Tamari, Dov ({\heb\Hyy/\Hrr/\Hmm/\Htv/ \Hbb/\Hdd/}), born Bernhard Teitler, 82. % 3rd
+Tetragrams, 49. % 2nd
+Vakhovsky, Evgenii Borisovich ({\rus Vakhovskii0, Evgenii0 Borisovich}), 101. % 2nd
+Variations, 61, 74. % 2nd
+
+\vfill
+\enddoublecolumns
+\endchange
+
+\bye
+
+[The next printing would have been the 7th.]
+not listed above:
+page 13, insert thin space near beginning of (26)
+page 14, delete quote marks on line 5
+page 16, make O term of (30) match that of (31) on page 17
+page 54, line -5, make parens of numerator match those of denominator
+page 61, line -8, .)'' -> ).''
+page 103, less space after commas in answer 115
+page 107, line -2 of answer 8, less space before B\'ezout
+
+ARTICLES "TO APPEAR" THAT ARE STILL PENDING:

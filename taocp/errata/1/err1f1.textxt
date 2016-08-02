@@ -1,0 +1,903 @@
+% CHANGES TO FASCICLE V1F1 OF THE ART OF COMPUTER PROGRAMMING
+%
+% Copyright (C) 2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015 by Donald E. Knuth
+% This file may be freely copied provided that no modifications are made.
+% All other rights are reserved.
+%
+% Three levels of changes to the books are distinguished here:
+%
+% "\bugonpage" introduces the correction of an error;
+% "\amendpage" introduces new material for future editions;
+% "\improvepage" introduces ameliorations of lesser importance.
+%
+% (Changes introduced by \improvepage do not appear in the hardcopy listing.)
+%
+% Also, "\planforpage" introduces some of the author's half-baked intentions.
+%
+
+% NOTE: TO PUT THE INDEX ON A SEPARATE PAGE, RUN THIS WITH THE COMMAND LINE
+%   tex "\let\indexeject+ \input err1f1"
+
+\newif\ifall % \alltrue means show the trivial items too
+\relax % hook
+
+\def\vertical{|}
+\def\inref#1 #{\expandafter\def\csname\vertical#1\endcsname}
+\catcode`|=\active
+\let|\inref \input \jobname.ref
+\catcode`|=12
+
+\input taocpmac % use the format for TAOCP, with modifications below
+
+\def\becomes{\ifmmode\ \hbox\fi{\manfnt y}\ } % wiggly arrow indicates a change
+
+\def\bugonpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt\llap{\manfnt x}% print a black triangle in left margin
+   {\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\amendpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\improvepage#1.#2 #3 (#4) {\ifall
+  \medbreak\ninepoint
+  \line{\kern-6pt{\sl Page #2\enspace #3\/}
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\noindent}
+\def\planforpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hbox to 5pt{\hss.\hss}\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\begingroup\let\endchange=\endgroup\sl\noindent}
+\let\endchange=\fi
+\def\nl{\par\noindent}
+\def\nlh{\par\noindent\hangit}
+\def\hangit{\hangindent2em}
+\def\cutpar{{\parfillskip=0pt\par}}
+
+\def\date#1.#2.#3.{% convert "yy.mm.dd." to "dd Mon 19yy"
+  #3
+  \ifcase#2\or Jan\or Feb\or Mar\or Apr\or May\or Jun\or
+               Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi
+  \ \ifnum #1<97 \hundred#1\else19#1\fi}
+\def\hundred{20} % the "century" for dates before '97
+
+\def\ex #1. [#2]{\ninepoint
+  \textindent{\bf#1.}[{\it#2\/}]\kern6pt}
+\def\EX #1. [#2]{\ninepoint
+  \textindent{\llap{\manfnt x}\bf#1.}[{\it#2\/}]\kern6pt}
+
+\def\foottext#1{\medskip
+        \hrule height\ruleht width5pc \kern-\ruleht \kern3pt \eightpoint
+        \smallskip\textindent{#1}}
+\def\volheadline#1{\line{\hss\cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill
+       \titlefont\ #1\ \cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill\hss}}
+\def\refin#1 {\let|\inref \input #1.ref \let|\crossref}
+
+\let\defaultpointsize=\tenpoint
+
+%%%%%%%%%%%%%% opening remarks %%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{INTRODUCTION}
+\let\rhead=\lhead
+\titlepage
+\volheadline{THE ART OF COMPUTER PROGRAMMING}
+\bigskip
+\volheadline{ERRATA TO VOLUME 1 FASCICLE 1}
+\bigskip
+
+\noindent This document is a transcript of the notes that I have been making
+in my personal copy of {\sl The Art of Computer Programming}, Volume~1,
+Fascicle~1, since it was first printed in 2005.
+
+\ifall Four levels of updates\dash---``errors,'' ``amendments,'' ``plans,''
+   and ``improvements''\dash---appear, indicated by four
+\else Three levels of updates\dash---``errors,'' ``amendments,'' and
+   ``plans''\dash---appear, indicated by three \fi
+different typographic conventions:
+\begingroup\def\hundred{17}
+
+\bugonpage 0.666 line 1 (76.07.04)
+Technical or typographical errors (aka bugs) are the most critical items, so
+they are flagged with a `\thinspace{\manfnt x}\thinspace' preceding the page
+number. The date on which I first was told about the bug is shown; this is the
+effective date on which I paid the finder's fee. The necessary
+corrections are indicated in
+a straightforward way. If,~for example, the book says
+`$n$' where it should have said `$n+1$', the change is shown thus:
+\smallskip
+$n$ \becomes $n+1$
+\endchange
+
+\amendpage 0.666 line 2 (89.07.14)
+Amendments to the text appear in the same format as bugs, but without
+the~`\thinspace{\manfnt x}\thinspace'. These are things I wish I had known
+about or thought of when I wrote the original text, so I added them later.
+The date is the date I drafted the new text.
+\endchange
+
+\def\hundred{19}
+
+\planforpage 0.666 line 3 (17.11.20)
+Plans for the future represent a third kind of item. In such notes I~sketched
+my intentions about things that I wasn't ready to flesh out further when
+I~wrote them down. You can identify these items because they're written in
+slanted type, and preceded by a bunch of dots
+`\hbox to 6em{\leaders\hbox to 5pt{\hss.\hss}\hfill}' leading to the date on
+which I recorded the plan in my files.
+\endchange
+
+\improvepage 0.666 line 4 (38.01.10)
+The fourth and final category\dash---indicated by page and line number in
+smaller, slanted type\dash---consists of minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+You wouldn't even
+be seeing these items if you hadn't specifically chosen to print the complete
+errata list in all its gory details.
+Are you sure you wanted to do that?
+\endchange
+
+\endgroup
+\ifall\else\medskip\ninepoint
+My personal file of updates also includes a fourth category of items, not
+shown in this list. They are miscellaneous minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+If you really want to see all of the gory details,
+you can download the full list from Internet webpage
+$$\.{http://www-cs-faculty.stanford.edu/\char`\~knuth/taocp.html}$$
+by selecting the ``long form'' of the errata.
+\fi
+
+\medskip
+\tenpoint
+\beginconstruction
+The ultimate, glorious, future editions of Volumes 1--5 are works in progress.
+Please let me know of any improvements that you think I ought to make.
+Send your comments either by snail mail to D.~E. Knuth, Computer
+Science, Gates Building 4B, Stanford University, Stanford CA~94305-9045,
+or by email to
+{\tt taocp{\char`\@}cs.stanford.edu}. (Use email for book suggestions
+only, please\dash---all
+other correspondence is returned unread to the sender, or discarded,
+because I have no time to
+read ordinary email.) Although I'm working full time on
+Volume~4 these days, I~will try to reply to all such messages
+within a year of receipt. Current news about {\sl The Art of Computer
+Programming\/} is posted on
+$$\.{http://www-cs-faculty.stanford.edu/\char`~knuth/taocp.html}$$
+and updated regularly.
+\par\endconstruction
+\rightline{\dash---Don Knuth, February 2005}
+
+\bigskip
+\bigskip
+{\quoteformat
+For a work of such scope as this,
+the first word of the author should be an apology
+for what is doubtless the too ambitious effort
+of a single writer.
+\author EDWARD W. BYRN (1900)
+% The Progress of Invention in the Nineteenth Century, page i
+\vfill\eject
+}
+
+\def\today{\number\day\space\ifcase\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi
+  \space\number\year}
+
+%%%%%%%%%%%%%%% CHANGES FOR VOLUME 1 FASCICLE 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{CHANGES TO V1F1: MMIX}
+\let\rhead=\lhead
+\titlepage
+\volheadline{MMIX} % the fascicle title
+\bigskip
+\rightline{Copyright \copyright\ 2005, 2006, \dots, 2015, Addison\with Wesley; all rights reserved}
+\rightline{Last updated \today}
+\bigskip
+%\rightline{\sl Most of these corrections have already been made in
+%                  recent printings.}
+\smallskip
+\let\defaultpointsize=\tenpoint
+
+\amendpage 1f1.ii new line to follow line 6 (06.01.01)
+\ninepoint\noindent Unicode is a trademark of Unicode, Inc.
+\endchange
+
+\amendpage 1f1.ii line $-15$ (13.08.07)
+\ninepoint {\tt http://mmixmasters.sourceforge.net}  \becomes
+ {\tt http://mmix.cs.hm.edu/}
+\endchange
+
+\amendpage 1f1.iii line $-11$ (15.10.09)
+gratefully pay a reward of \$2.56 \becomes
+gratefully award one hexadecimal dollar ($\Hex{}\.{\$1.00}=\$2.56$)
+\endchange
+
+\amendpage 1f1.v line 20 (13.08.07)
+\.{mmixmasters.sourceforge.net} \becomes
+\.{mmix.cs.hm.edu/mmixmasters/}.
+\endchange
+
+\amendpage 1f1.v new material to insert before the quotation (15.02.20)
+\noindent \em News flash, August 2013:
+I'm pleased to report that the first phase of the \MMIX masters
+project was successfully completed in September 2012, under the inspired
+leadership of Martin Ruckert. Every instance of \MIX\ code in Volumes
+1, 2, and~3 now has a suitable \MMIX\ equivalent. Martin's book,
+{\sl The {\sltt MMIX}~Supplement\/} (Addison--Wesley, 2015), makes it
+easy for readers to substitute this 21st-century material wherever needed.
+Volunteers are still, however,
+encouraged to submit improvements, so that the ultimate programs will have the
+highest possible quality.\tighten
+\endchange
+
+\improvepage 1f1.2 line 24 (06.12.14)
+100\% natural \becomes 100\% natural, organic
+\endchange
+
+\bugonpage 1f1.3 lines $-11$, $-10$, and $-9$ (07.02.22)
+became an international \dots\ includes \becomes
+has also been
+developed. This code, known informally as Unicode, includes
+\endchange
+
+\amendpage 1f1.3 line $-1$ (07.02.22)
+{\it \`a~l'Unicode}. \becomes
+{\it \`a~l'Unicode}.
+[The mature Unicode Standard has in fact outgrown its 16-bit origins;
+it now contains many more than $2^{16}$ code points, which can be represented
+in 8-bit, 16-bit, or 32-bit encodings, as discussed in Section~7.1.3.
+But its 16-bit ``Basic Multilingual Plane'' does include most of the common
+characters.]
+\endchange
+
+\amendpage 1f1.4 line 2 (07.02.22)
+Unicode \becomes Unicode's basic plane
+\endchange
+
+\improvepage 1f1.6 line 13 (09.05.07)
+if $N$ is too large or too small to fit \becomes
+if the representation of $N$ needs too many bits to fit
+\endchange
+
+\improvepage 1f1.9 line 5 (07.09.23)
+the divisor, \becomes the divisor \$Z
+\endchange
+
+\improvepage 1f1.10 lines 6, 10, 17, 21 (06.06.01)
+s(\char`\$Y)$\mod2$ \becomes \char`\$Y$\mod2$
+\endchange
+
+\amendpage 1f1.10 lines $-17$ through $-4$ (05.05.19)
+change all occurrences of `$@\land@$' to `$@\band@$' and
+       all occurrences of `$@\lor@$' to `$@\bor@$'
+(16 changes altogether)
+\endchange
+
+\amendpage 1f1.11 near the top (06.09.11)
+\def\v{{\rm v}}%
+\def\X{{\rm X}}\def\Y{{\rm Y}}\def\Z{{\rm Z}}%
+line 1: $\v(\$\X)\gets\bigl(\v(\$\Y)\land\v({\rm rM})\bigr)\lor
+               \bigl(\v(\$\Z)\land\bar\v({\rm rM})\bigr)$ \becomes\nl\hskip5em
+ $\v(\$\X)\gets\bigl(\v(\$\Y)\band\v({\rm rM})\bigr)\bor
+               \bigl(\v(\$\Z)\band\bar\v({\rm rM})\bigr)$\nl
+line 4: $\sum\bigl(\v(\$\Y)\land\bar\v(\$\Z)\bigr)$ \becomes
+ $\nu\bigl(\v(\$\Y)\band\bar\v(\$\Z)\bigr)$
+\endchange
+
+\amendpage 1f1.11 line 15 (06.07.09)
+denotes the operation of {\it saturating subtraction}, \becomes
+denotes {\it saturating subtraction},
+also known as ``dot minus'' or ``monus'':
+\endchange
+
+\amendpage 1f1.12 near the top (05.05.19)
+\def\gmp#1#2{\mathbin{^{\smash{#1}}_#2}}%
+lines 1 and 2: $\lor$ \becomes $\bor$\qquad(four changes)\nl
+lines 6, 7, and 9: $\gmp\lor\times$ \becomes
+  $\gmp{{\mskip4.5mu\vert}}\times$\qquad (three changes)
+\endchange
+
+\amendpage 1f1.12 line 20 (08.03.04)
+Exercises 33--37 \becomes Exercises 31--37
+\endchange
+
+\amendpage 1f1.12 line $-11$ (06.07.16)
+(denormal) \becomes (subnormal)
+\endchange
+
+\improvepage 1f1.14 line 2 in the first printing (05.09.17)
+{\sl by the number\/} Z \becomes {\sl the nonnegative number\/} Z
+\endchange
+
+\improvepage 1f1.14 line 5 in the first printing (05.09.17)
+`\.{SRU} \becomes
+`\.{NEG} \.{\$X,\$Z}' has a counterpart `\.{NEG} \.{\$X,Z}' meaning
+${\rm s}(\$\X)\gets-\Z$; `\.{SRU}
+\endchange
+
+\amendpage 1f1.14 lines $-18$ through $-7$ (05.05.19)
+change all occurrences of `$@\land@$' to `$@\band@$' and
+       all occurrences of `$@\lor@$' to `$@\bor@$'
+(eight changes altogether)
+\endchange
+
+\improvepage 1f1.15 lines $-14$, $-10$, $-2$ (06.07.15)
+s(\char`\$Y)$\mod2$ \becomes \char`\$Y$\mod2$
+\endchange
+
+\improvepage 1f1.16 line 3 (06.07.15)
+s(\char`\$Y)$\mod2$ \becomes \char`\$Y$\mod2$
+\endchange
+
+\amendpage 1f1.19 line 5 (05.05.19)
+$\rm rK\land rQ\ne0$ \becomes $\rm rK\band rQ\ne0$
+\endchange
+
+\amendpage 1f1.19 lines $-4$ and $-3$ (11.06.03)
+a ``clock register'' \dots advancing; \becomes
+a {\it continuation register},~rC, used by the operating system for
+stack overflow;
+a {\it failure register},~rF, to help diagnose hardware errors;
+\endchange
+
+\amendpage 1f1.21 line 6 (11.06.03)
+\ninepoint cycle counter \becomes continuation register
+\endchange
+
+\amendpage 1f1.25 line $-2$ (05.05.19)
+\ninepoint $\land$ and $\lor$ \becomes $\band$ and $\bor$
+\endchange
+
+\bugonpage 1f1.29 line 7 (05.05.17)
+\eightpoint \Hex{55\,00\,ff\,fa} \becomes \Hex{55\,02\,ff\,fa}
+\endchange
+
+\improvepage 1f1.30 line 20 (07.04.23)
+set to 100. \becomes
+set to 100. Using principles
+explained below in Section 1.4.1\mm,
+\endchange
+
+\improvepage 1f1.32 step P1 (05.05.21)
+In this program \dots~keeps track \becomes
+In the following steps, $n$~will run
+through the odd numbers that are candidates for primes; $j$~will keep track
+\endchange
+
+\improvepage 1f1.34 line 7 (05.05.21)
+\ninepoint Initialize $m$. \becomes Initialize $m$ by setting $\.{mm}\gets-2$.
+\endchange
+
+\improvepage 1f1.37 line $-17$ (10.01.22)
+hash mark~\.\# \becomes
+number sign or hash mark~\.\#
+\endchange
+
+\bugonpage 1f1.39 lines 12--15 from the bottom (06.09.21)
+equivalent to the largest \dots~not change that global register. \becomes
+equivalent to the number of a global register that
+will contain~$x$ when the program begins. If $x\ne0$,
+the value of~$x$ is considered to be a {\it base address}, and the program
+should not change that global register. If $x=0$, or if $x$ is a base address
+that hasn't already occurred,
+a new global register is allocated (as large as possible).
+\endchange
+
+\improvepage 141.40 line 11 (06.07.29)
+\ninepoint \.{TRAP 0,Halt,0}
+\becomes   \.{TRAP 0,Halt,0;}
+\endchange
+
+\amendpage 1f1.42 line 5 (07.02.22)
+an error \becomes a serious error
+\endchange
+
+\bugonpage 1f1.44 line 2 of exercise 12 (09.01.05)
+\.{Blank} \becomes \.{Blanks}
+\endchange
+
+\bugonpage 1f1.44 replacement for line 2 of exercise 13 (10.01.10)
+{\font\arabnine=arab8 at 9pt
+\input exotic
+\nobreak\vskip-\baselineskip
+$$\hbox{\arabnine\Afy/\Ail/\Aw/\Aha/ \Ar/\Afd/\Aiai/
+ \Aftm/\Aihy/\Afa/\Amm/\Ams/\Amm/\Aikh/ \Al/\Aw/\Aha/}$$}%
+\endchange
+
+\amendpage 1f1.50 line 7 (11.03.21)
+\ninepoint two-bit codes \becomes individual codes
+\endchange
+
+\amendpage 1f1.50 lines 8 and 9 become like RGB codes (11.06.03)
+\ninepoint
+\Hex{80} amber \becomes \Hex{c0} amber\nl
+\Hex{c0} red \becomes \Hex{80} red\nl
+\Hex{20} amber \becomes \Hex{30} amber\nl
+\Hex{30} red \becomes \Hex{20} red
+\endchange
+
+\amendpage 1f1.50 next-to-last line of exercise 34 (11.06.04)
+\ninepoint special clock register rC increases \becomes
+interval counter rI decreases
+\endchange
+
+\amendpage 1f1.51 line $-3$ (13.09.01)
+{\sl in Chapters\/} \becomes
+{\sl in Section 1.4.4 and in Chapters\/}
+\endchange
+
+\improvepage 1f1.52 line 14 (05.09.17)
+by having less space \becomes by occupying less space
+\endchange
+
+\improvepage 1f1.53 line 8 (05.09.17)
+These \MMIX\ instructions \becomes
+We'll see shortly that these \MMIX\ instructions
+\endchange
+
+\bugonpage 1f1.60 line $-3$ of {\eq(16)} (05.06.08)
+{\tt BNZ\kern10pt kk,2F} \qquad \becomes\qquad
+{\tt BN\phantom{Z}\kern10pt kk,2F}
+\endchange
+
+\amendpage 1f1.65 the rating of exercise 9 (07.01.10)
+\ninepoint {\it20} \becomes {\it28}
+\endchange
+
+\improvepage 1f1.67 line $-13$ (05.10.24)
+the ASCII code for \.{' '} \becomes
+which is the character constant~\.{' '} in \.{MMIXAL} programs
+\endchange
+
+\improvepage 1f1.74 line 26 (10.04.06)
+multiple precision arithmetic \becomes multiple-precision arithmetic
+\endchange
+
+\improvepage 1f1.75 line 14 (05.11.08)
+{\sl simulator\/} (or sometimes an {\sl emulator\/})
+\becomes 
+{\it simulator\/} (or sometimes an {\it emulator\/})
+\endchange
+
+\amendpage 1f1.76 line $-17$ (11.06.03)
+Table 1.3.1\mm--2;
+one of those special registers will be the simulated clock,~rC\null.
+\becomes Table 1.3.1\mm--2.
+\endchange
+
+\amendpage 1f1.76 lines $-15$ and $-14$ (11.06.03)
+simulated rC \becomes simulated clock \quad(twice)
+\endchange
+
+\amendpage 1f1.80 line {\it062\/} of the program (11.06.03)
+\ninepoint cycle counter, rC \becomes clock
+\endchange
+
+\bugonpage 1f1.80 line {\it068\/} of the program (09.04.19)
+\ninepoint $\.t\gets{}$[$\$k$ is local]. \becomes
+Set \.t negative if $\$k$ is local.
+\endchange
+
+\amendpage 1f1.82 line 6 (05.05.19)
+$\.f\land\Hex{40}$ \becomes $\.f\band\Hex{40}$
+\endchange
+
+\amendpage 1f1.82 lines {\it142--144\/} of the program (05.05.19)
+\ninepoint ${}\land\Hex{ff}$ \becomes ${}\band\Hex{ff}$
+\endchange
+
+\amendpage 1f1.83 line {\it158\/} of the program (05.05.19)
+\ninepoint $\.{inst}\land\Hex{ffffff}$ \becomes $\.{inst}\band\Hex{ffffff}$
+\endchange
+
+\bugonpage 1f1.84 lines {\it227--228\/} of the program (09.04.19)
+\ninepoint [Remove the comment on line {\it227\/}; say
+`Branch if \.{op} is a load instruction.' on line {\it228\/}.]
+\endchange
+
+\amendpage 1f1.85 lines {\it254--255\/} of the program (11.06.03)
+\ninepoint rC \becomes the clock \quad(twice)
+\endchange
+
+\improvepage 1f1.88 line 2 from the bottom (08.01.15)
+\ninepoint easily deduced \becomes easy to infer
+\endchange
+
+\amendpage 1f1.89 line {\it505\/} of the program (05.05.19)
+\ninepoint $\.{exc}\gets\.{exc}\lor\.t$ \becomes $\.{exc}\gets\.{exc}\bor\.t$
+\endchange
+
+\amendpage 1f1.89 line $-6$ (06.07.16)
+denormal \becomes subnormal
+\endchange
+
+\amendpage 1f1.90 line 1 (11.06.03)
+\ninepoint clock, rC. \becomes clock.
+\endchange
+
+\amendpage 1f1.90 lines {\it580--584\/} of the program (11.06.04)
+\ninepoint \.{90} \becomes \.{f0} \quad(four times)
+\endchange
+
+\amendpage 1f1.91 line 4 (11.06.04)
+\Hex{90} \becomes \Hex{f0}
+\endchange
+
+\let\defaultpointsize=\ninepoint % get ready for answer pages
+
+\amendpage 1f1.94 answer 4: {\it not\/} an error! (06.03.17)
+[A widely disregarded ``international standard'' has also been adopted
+for binary-based units. But I think it is so preposterous, I've chosen
+not to even mention it. See
+\.{http:/{\kern-.1em}/www-cs-faculty.stanford.edu/\char`\~knuth/news99.html}
+for further comments.]
+\endchange
+
+\amendpage 1f1.94 new sentence at end of answer 9 (11.12.02)
+occurs. \becomes occurs. (In this
+answer and several others below, `$\X=\Y$' means that the registers have
+the same {\it name}, while $\$\X=\$\Y$ means that they have
+the same {\it contents}.)
+\endchange
+
+\bugonpage 1f1.95 line 5 of answer 19 (06.10.26)
+$0<\epsilon<2/z$ \becomes $0\le\epsilon<2/z$
+\endchange
+
+\amendpage 1f1.96 line 4 of answer 37 (06.05.29)
+respectively. \becomes
+respectively. This construction works because $x^8+x^6+x^5+x^4+1$
+is a primitive polynomial modulo~2 (see Section 3.2.2).
+\endchange
+
+\bugonpage 1f1.97 answer 42 (06.12.08)
+\.{NEGU} \becomes \.{NEG}
+\endchange
+
+\improvepage 1f1.97 line $-2$ (09.01.10)
+\$X~is marginal \becomes \$X~is marginal
+\endchange
+
+\amendpage 1f1.99 improvement to answer 8 (07.10.13)
+\ans8. \.{LOC} \.{-@/16*-16} or \.{LOC} \.{(@+15)\&-16} or
+\.{LOC} \.{-(-@>>4<<4)}, etc.
+\endchange
+
+\bugonpage 1f1.100 line 1 of answer 12 (09.01.10)
+\.{Blank} \becomes \.{Blanks}
+\endchange
+
+\bugonpage 1f1.100 replacement for lines 6--9 of answer 13 (10.01.10)
+{\font\arabnine=arab8 at 9pt
+\input exotic
+\nobreak\vskip-\baselineskip
+$$\hbox{\.{Title \ \ WYDE \ "\hair{\arabnine
+\Afy/\Ail/\Aw/\Aha/ \Ar/\Afd/\Aiai/
+ \Aftm/\Aihy/\Afa/\Amm/\Ams/\Amm/\Aikh/ \Al/\Aw/\Aha/}\hair"}}$$
+when it is printed bidirectionally, but in the computer file the individual
+characters actually appear in ``logical'' order without ligatures.
+Thus a spelled-out sequence like
+\def\\#1/{{\arabnine#1/}}
+$$\advance\belowdisplayskip-12pt
+\hbox{\.{Title \ \ WYDE \ '\\\Aha/','\\\Aw/','\\\Al/',' ',%
+     '\\\Akh/','\\\Am/','\\\As/','\\\Am/',...,'\\\Aw/','\\\Al/','\\\Ay/'}}$$}
+\endchange
+
+\bugonpage 1f1.104 line 7 (12.05.26)
+{\tt PBP} {\tt ii,3B} \becomes
+{\tt PBNN} {\tt ii,3B}
+\endchange
+
+\amendpage 1f1.111 line 10 (14.08.27)
+Victorius of Aquitania \becomes
+Victorius of Aquitaine
+\endchange
+
+\amendpage 1f1.111 replacement for answer 34 {(continues to page 113)} (11.06.04)
+\ans34. The following program follows the protocol to within a few hundred
+$\upsilon@$; this slight discrepancy is negligible, since $\rho$ is
+typically more than $10^8$, and $\rho\upsilon=1\,\rm sec$.
+All of the computation takes place in registers, except when a byte is input.
+\par
+An interrupt occurs when rI reaches zero. We assume that the operating system
+will return soon after, resetting rI to some not-too-small value.
+\par
+\begingroup\let\ninepoint=\flexninepoint
+\smallskip\ansmmixthree
+* Traffic Signal Problem\hidewidth\cr
+rho&GREG&250000000&Assume 250 MHz clock rate\cr
+t&IS&$255\cr
+Sensor_Buf&IS&Data_Segment\cr
+&GREG&Sensor_Buf\cr
+\noalign{\smallbreak}
+      &LOC&#100\cr
+      &GREG&@\cr
+delta &GREG&&Number of cycles to delay\cr
+ref_time&GREG&&Internal register for \.{Delay}\cr
+delay_go&GREG&&Exit location for \.{Delay}\cr
+\noalign{\smallbreak}
+2H&SUBU&delta,delta,t&Decrease $\delta$ by rI.\cr
+1H&SET&ref_time,t&Remember previous value of rI.\cr
+  &GET&t,rI\cr
+  &CMPU&ref_time,ref_time,t\cr
+  &PBP &ref_time,1B&Repeat until rI increases.\cr
+Delay&GET&t,rI&Wait busily for $\delta$ cycles:\cr
+     &SUBU&ref_time,t,delta&Compute $\rm rI-\delta$.\cr
+     &BN  &t,1F&Branch if $\rm rI\ge2^{63}$.\cr
+     &BN  &ref_time,2B&Branch if rI is less than $\delta$.\cr
+1H   &GET &t,rI\cr
+     &SUBU&t,t,ref_time&(N.B. {\it Not\/} \.{CMPU}\hair; see below)\cr
+     &PBP &t,1B&Repeat until rI passes \.{ref\_time}.\cr
+     &GO  &delay_go,delay_go,0&Return to caller.\cr
+\noalign{\smallbreak}
+Lights&IS&3&Handle for \.{/dev/lights}\cr % apologies to grammarians of English
+Sensor&IS&4&Handle for \.{/dev/sensor}\cr
+Lights_Name&BYTE&"/dev/lights",0\hidewidth\cr
+Sensor_Name&BYTE&"/dev/sensor",0\hidewidth\cr
+Lights_Args&OCTA&Lights_Name,BinaryWrite\hidewidth\cr
+Sensor_Args&OCTA&Sensor_Name,BinaryRead\hidewidth\cr
+Read_Sensor&OCTA&Sensor_Buf,1\cr
+\noalign{\smallbreak}
+\sdol Dg IS \#40 ;Da IS \#c0 ;Dr IS \#80 ;Dw IS \#4 ;Dd IS \#c\hidewidth\cr
+\sdol Bg IS \#10 ;Ba IS \#30 ;Br IS \#20 ;Bw IS \#1 ;Bd IS \#3\hidewidth\cr
+Boulevard&BYTE&\catcode`\|=12 Dg|Dw|Br|Bd,0,Dg|Dd|Br|Bd,0,Dg|Br|Bd,0,Da|Dd|Br|Bd,0\hidewidth\cr
+Avenue   &BYTE&\catcode`\|=12 Bg|Bw|Dr|Dd,0,Bg|Bd|Dr|Dd,0,Bg|Dr|Dd,0,Ba|Bd|Dr|Dd,0\hidewidth\cr
+\noalign{\smallbreak}
+flash_go&GREG\cr
+n    &GREG&0&Iteration counter\cr
+green&GREG&0&\.{Boulevard} or \.{Avenue}\cr
+Flash&SET  &n,8&Subroutine to flash the lights:\cr
+1H   &ADDU &t,green,2*1\cr
+     &TRAP &0,Fputs,Lights&\.{DON'T WALK}\cr
+     &SR   &delta,rho,1\cr
+     &GO   &delay_go,Delay\cr
+     &ADDU &t,green,2*2\cr
+     &TRAP &0,Fputs,Lights&(off)\cr
+     &SR   &delta,rho,1\cr
+     &GO   &delay_go,Delay\cr
+     &SUB  &n,n,1\cr
+     &PBP  &n,1B&Repeat eight times.\cr
+     &ADDU &t,green,2*1\cr
+     &TRAP &0,Fputs,Lights&\.{DON'T WALK}\cr
+     &MUL  &delta,rho,4\cr
+     &GO   &delay_go,Delay&Hold for 4 sec.\cr
+     &ADDU &t,green,2*3\cr
+     &TRAP &0,Fputs,Lights&\.{DON'T WALK}, amber\cr
+     &GO   &flash_go,flash_go,0&Return to caller.\cr
+\noalign{\smallbreak}
+Main&GETA&t,Lights_Args&Open the files: \.{Fopen(Lights,}\cr
+    &TRAP&0,Fopen,Lights&\quad\.{"/dev/lights",BinaryWrite)}\cr
+    &GETA&t,Sensor_Args&\.{Fopen(Sensor,}\cr
+    &TRAP&0,Fopen,Sensor&\quad\.{"/dev/sensor",BinaryRead)}\cr
+    &JMP &2F&Begin with green on the boulevard.\cr
+\noalign{\smallbreak}
+Wait &GETA &t,Read_Sensor&Extend the 18 sec green.\cr
+     &TRAP &0,Fread,Sensor\cr
+     &LDB  &t,Sensor_Buf\cr
+     &BZ   &t,Wait&Repeat until sensor is nonzero.\cr
+     &GETA &green,Boulevard\cr
+     &GO   &flash_go,Flash&Finish the boulevard cycle.\cr
+     &MUL  &delta,rho,8\cr
+     &GO   &delay_go,Delay&Amber for 8 sec.\cr
+     &GETA &t,Avenue\cr
+     &TRAP &0,Fputs,Lights&Green light for Berkeley.\cr
+     &MUL  &delta,rho,8\cr
+     &GO   &delay_go,Delay\cr
+     &GETA &green,Avenue\cr
+     &GO   &flash_go,Flash&Finish the avenue cycle.\cr
+     &GETA &t,Read_Sensor\cr
+     &TRAP &0,Fread,Sensor&Ignore sensor during green time.\cr
+     &MUL  &delta,rho,5\cr
+     &GO   &delay_go,Delay&Amber for 5 sec.\cr
+2H   &GETA &t,Boulevard\cr
+     &TRAP &0,Fputs,Lights&Green light for Del Mar.\cr
+     &MUL  &delay,rho,18\cr
+     &GO   &delay_go,Delay&At least 18 sec to \.{WALK}.\cr
+     &JMP  &Wait&\qquad\slug\cr
+\endmmix
+\endgroup
+\smallskip\noindent
+The final \.{SUBU} instruction in the \.{Delay} subroutine is an interesting
+example of a case where the comparison should be done
+with \.{SUBU}, {\it not\/} with \.{CMPU}, in spite
+of the comments in exercise 1.3.1\mm--22.
+The reason is that the two quantities being compared, rI and \.{ref\_time},
+``wrap around'' modulo~$2^{64}$.
+\endchange
+
+\bugonpage 1f1.114 lines 2 and 3 of answer 9 (07.01.07)
+two additional instructions
+``\.{GET}~\.{\$255,rB;} \.{RESUME}\hair'' will \becomes\nl
+``\.{PUT}~\.{rJ,\$255;} \.{GET} \.{\$255,rB;} \.{RESUME}\hair''
+after the \.{PUSHJ} will
+\endchange
+
+\improvepage 1f1.115 last line of answer 16 (09.01.11)
+of \eq(15) \becomes of exercise 15
+\endchange
+
+\amendpage 1f1.118 line 7 of answer 8 (11.06.03)
+[delete this line, which begins `\.{STOU} \ \.{cc}']
+\endchange
+
+\amendpage 1f1.125 line 2 of answer 19 (05.05.19)
+$\.l+((\.{oo}+\.{ll})\land\.{lring\_mask})$ \becomes
+$\.l+((\.{oo}+\.{ll})\band\.{lring\_mask})$
+\endchange
+
+\expandafter\ifx\csname indexeject\endcsname\relax\else\vfill\eject\fi
+\amendpage 1f1.127 and following (05.02.25)
+Miscellaneous changes to the existing index of Volume~1 Fascicle~1
+are collected here,
+including corrections and amendments to the old entries as well as new entries
+that are occasioned by the new material. Thus, the lines of the full index
+that have changed serve also as an index to the present document. However,
+when a correction or amendment has caused an old index entry to be deleted,
+the deletion is usually not indicated.
+
+\input exotic
+\begindoublecolumns
+\indexformat
+\gdef\Uni1.08:{\bitmap24:1.08:}
+\hangindent2em
+\.\# (number sign or hash mark), 37. % 2nd
+\Hex{f0} (alternative starting location), 90--91. % 2nd
+@ (at sign), 15, 35, 38, 81, 97. % 2nd
+$\nu@x$ (number of 1s in the binary representation of~$x$), 11. % 2nd
+\.{ADD} (add), 8. % 2nd
+At sign (@), 15, 35, 38, 81, 97. % 2nd
+\.{BDIF} (byte difference), 11, 26, 95, 101. % 2nd
+\.{BinaryRead} mode, 41--43, 112. % 2nd
+\.{BinaryReadWrite} mode, 41--43. % 2nd
+\.{BinaryWrite} mode, 41--43, 112. % 2nd
+Character constant, 37, 67. % 2nd
+Comments, 29, 34, 40. % 2nd
+Constants in \.{MMIXAL}, 37, 67. % 2nd
+Continuation register, 19. % 2nd
+Coxeter, Harold Scott MacDonald, 48. % 2nd
+Cycle counter, \see rI. % 2nd
+\.{Data\_Segment}, 33, 36. % 2nd
+Dijkstra, Edsger Wybe, 63. % 2nd
+Division, 8--9, 13, 24--25, 49, 91. % 2nd
+Dot minus, 11. % 2nd
+Failure register, 19. % 2nd
+Fibonacci, Leonardo, of Pisa (= Leonardo filio Bonacii Pisano). % 2nd
+\.{FSQRT} (floating square root), 13, 100. % 2nd
+Golden ratio ($\phi$), 8, 47. % 2nd
+Hamming, Richard Wesley, distance, 26. % 2nd
+Hexadecimal constants, iii, 37. % 2nd
+Input-output operations, 18, 31, 40--43, 92. % 2nd
+\.{IS} (define a symbol), 29--30, 34, 39. % 2nd
+Knuth, Donald Ervin (\GC75:75:-3:62% G2463
+<0000001f0000000000000000001ff8000000000000000007ff000000000000000003ff80%
+ 00000000000000007f8000000000000000007f8000000000000000003f8000003c000000%
+ 00003f8000007e00000000001f800000ff00000000000f800001ff00ffffffffffffffff%
+ ff80ffffffffffffffffffc07fffffffffffffffffe03800000000000000000000000000%
+ 00000000000000000000000070000000000078000000f800000000007f000001fc000000%
+ 00007ffffffffe00000000007fffffffff00000000003ffffffffe00000000003f000000%
+ fc00000000003f000000fc00000000003f000000fc00000000003f000000fc0000000000%
+ 3f000000fc00000000003f000000fc00000000003f000000fc00000000003f000000fc00%
+ 000000003ffffffffc00000000003ffffffffc00000000003ffffffffc00000000003f00%
+ 0000fc00000000003f000000fc00000000003f000000fc00000001c03e0000000003c000%
+ 01e03e0000000007e00001f800000000000ff00001fffffffffffffff00001ffffffffff%
+ fffff80001f8000000000007f80001f8000000000007e00001f8000000000007e00001f8%
+ 000000000007e00001f801c000078007e00001f801e00007e007e00001f801f8000ff007%
+ e00001f801fffffff007e00001f801fffffff007e00001f801ffffffc007e00001f801f8%
+ 000fc007e00001f801f8000fc007e00001f801f8000fc007e00001f801f8000fc007e000%
+ 01f801f8000fc007e00001f801f8000fc007e00001f801f8000fc007e00001f801f8000f%
+ c007e00001f801f8000fc007e00001f801ffffffc007e00001f801ffffffc007e00001f8%
+ 01ffffffc007e00001f801f8000fc007e00001f801f0000fc007e00001f801f0000f0007%
+ e00001f801f000000007e00001f8000000000007e00001f800000000ffcfe00001f80000%
+ 00007fffc00001f8000000000fffc00001f80000000000ffc00001f800000000007f8000%
+ 01f800000000003f800001f000000000001f000001f00000000000100000>%% Unicode char "9ad8
+\GC73:74:-4:61% G2134
+<00006000001c000000000000f000001f000000000000f800001fc00000000001fc00001f%
+ e00000000001fe00001fe00000000003fe00001fc00000000003f800001fc00000000007%
+ f000001f800070000007e000003f0000f800000fc000003f0001fc00001f8000007e0003%
+ fe00001f07ffffffffffff00003e03ffffffffffff80007c0100007c0000000000f80000%
+ 00780000000000f0000000780000000001e0000000700000000003c03838007000070000%
+ 07807c3c00f0000f80001f007f3f00e0001f80003e00ffbfffffffffc0007c00ffbfffff%
+ ffffe000f801ff1fffffffffe000c001fe1f03e0780f80000003fe1f03e0780f80000003%
+ fc1f03e0780f80000007f81f03e0780f80000007f01f03e0780f8000000fe01f03e0780f%
+ 8000000fc01f03e0780fc000001f801f03e0780fc000003f001f03e0780fc000003fe01f%
+ 03e0780fc000007fe01f03e0780fc00000ffe01f03e0780fc00000ffc01fffffffffc000%
+ 01ffc01fffffffffc00001ff803fffffffffc00001ff803f0000000f800003df803f0000%
+ 000f8000079f803f0000000038000f9f803f000000007c001f1f800000000000fe003e1f%
+ 800000000001ff007c1fbfffffffffffff80f81f9fffffffffffff80e01f880000000000%
+ 0000801f8000003000000000001f8000001c00000000001f8000f01e00000000001f8000%
+ fc0f001e0000001f8000ff0f801f0000001f8060ff07c00f8000001f8060ff07e00fe000%
+ 001f8060fe03e007f000001f8060fc03e003f800001f8060fc03f003fc00001f80e0fc03%
+ f0c1fe00001f81e0fc03f0c0ff00001f81e0fc03e0e0ff00001f83e0fc01e0e07f00001f%
+ 83e0fc0000e07f00001f87e0fc0000e03f00001f9fe0fc0001f03f00001fbfe0fc0001f0%
+ 1f00001fbfe0fc0003f01f00001f9fe0fe0003f81800001f9fc0fffffff80000001f8380%
+ fffffff80000001f80007ffffff80000001f80003ffffff00000001f80001ffffff00000%
+ 001f8000000000000000001f0000000000000000>%% Unicode char "5fb7
+\GC71:74:-3:61% G3641
+<000000000003800000000000000003f00000000300000003fc00000003c0000003fc0000%
+ 0003e0000003f800000007f0000003f800000007f0000003f000000007e0000003f00000%
+ 0007e0000003f000000007c0000003f00000000fc0000003f00000000f80000003f00000%
+ 001f00000003e00000001f00000003e000e0003e00038003e001f0003e00c3e003e001f8%
+ 007c00e1f803e003fc007800f1fffffffffe00f801f9fffffffffe00f001fdf003e003fc%
+ 01e003fff003e003f801e007fff003e003f001c007fdf003e003f003800ff9f003e003f0%
+ 03001ff1f003e003f00f003fe1f003e003f01e01ffc1f003e003f0ffffff81f003e003f0%
+ ffffff01f003e003f07ffcfe01f007e003f07ff0fc01f007c003f03fc1f801f007c003f0%
+ 3c01f001f007e003f00003e001f00ff003f00003c001f00ff803f00007c001f00ffc03f0%
+ 000f8001f00f9e03f0001f0001f01f9f83f0001e0001f01f0fc3f0003e0001f01f07e3f0%
+ 007c0001f03e07e3f000f80001f03e03f3f001f00001f03c03f3f007e00ff9f07c03fbf0%
+ 0fc3fff9f07803fbf01fffffc1f0f801fbf01fffff01f0f001fbf00ffff001f1f001fbf0%
+ 0ffc0001f1e001fbf007f00001f3c000fbf007c00001f30000fbf002000001f600007bf0%
+ 00000001f4000003f000000001f4000003f000000001f0000003f000000001f0000003f0%
+ 000003fff0000003f00001fffff0000003f000fffff1f0000003f07fffffe1f0000003f0%
+ 7ffffc01f0000003f07fffe001f0000003f03fff8001f0000003f03ff00001f0000003f0%
+ 3f800001f0000007f01e000001f0003c07f010000001f0000ffff000000001f00003fff0%
+ 00000001f000007ff000000001f000003ff000000001f000001ff000000001f000001fc0%
+ 00000003f000000f80000000000000000e00>%% Unicode char "7eb3
+), i, ii, v, 45, 65, 74. % 2nd
+\.{LABEL} field of\/ \.{MMIXAL} line, 29, 38, 89. % 2nd
+Lilius, Aloysius (= Aloigi Giglio, Luigi Lilio), 49. % 2nd
+\.{LOC} (change location), 29--30, 39. % 2nd
+Location, current, \see At sign. % 2nd
+Meton of Athens ({\grk M'etwn <o~>Ajhna=ios}), cycle, 49. % 2nd
+Monus, 11. % 2nd
+\MMIX masters, v, 51, 105, 109, 111. % 2nd
+\.{MUX} (multiplex), 11, 96, 98. % 2nd
+\.{NEG} (negate), 9, 14. % 2nd
+Notational conventions:\indexnoperiod % 2nd
+\sub $\nu(x)$, 11, 127. % 2nd
+\sub $x\band y$, 10. % 2nd
+\sub $x\bor y$, 10. % 2nd
+O'Beirne, Thomas Hay, 94, 111. % 2nd
+Parsing Machine, 73--74. % 2nd
+\.{Pool\_Segment}, 36. % 2nd
+Primitive polynomial modulo 2, 96. % 2nd
+Program counter, \see At sign. % 2nd
+\.{PUSHJ} (push registers and jump), 16, 53, 59, 73, 85--86, 114. % 2nd
+rC (continuation register), 19. % 2nd
+rF (failure register), 19. % 2nd
+rJ (return-jump register), 16, 60, 80, 81, 114. % 2nd
+Ruckert, Martin, v. % 2nd
+\.{SADD} (sideways add), 11, 95, 97. % 2nd
+Serial number register, 19--20. % 2nd
+\.{Stack\_Segment}, 36, 117. % 2nd
+Subnormal floating point numbers, 12, 89. % 2nd
+\.{TextRead} mode, 41--43. % 2nd
+\.{TextWrite} mode, 41--43. % 2nd
+Timing estimates, 20--23. % 2nd
+Tricky coding, 97. % 2nd
+Unicode, ii, 3--4, 26, 37, 44. % 2nd
+Usage counter, 20. % 2nd
+Victorius of Aquitaine, 111. % 2nd
+\vfill
+\enddoublecolumns
+\endchange
+
+\bye
+
+% DON'T CHANGE "1indexmm", CHANGE "1indexv1f1" henceforth!!
+
+[The next printing will be the 2nd.]
+not listed above:
+page ii, Unicode trademark
+page iv and 18, dots within a quote should come from the cmssqi font
+page 3, better Armenian font
+page 43, slightly changed the spacing in (10)
+page 57, made the \vdots all have the same weight
+changed double quotes to single quotes on pp 46, 50, 53, 54, 55, 62, 66, 67, 71, 72, 84, 85, 86, 87, 90, 92, 114, 115, 116, 125
+page 83, shortened the comment on program line 180
+page 110, slightly better spacing in answer 31
+index entry for ASCII no longer refers to page 67
+index entry for Clock register goes away
+index entry for Denormal goes away
+index entries for FREM and remainder now say page 12--13 not 13
+index entry for IEC goes away
+index entry for UCS goes away
+index entry for UTF goes away
+index entries for BDIF, ODIF, TDIF, WDIF now say "difference/monus"
+
+ARTICLES "TO APPEAR" THAT ARE STILL PENDING:

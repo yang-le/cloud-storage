@@ -1,0 +1,927 @@
+% CHANGES TO VOLUME 2 OF THE ART OF COMPUTER PROGRAMMING
+%
+% Copyright (C) 2011, 2012, 2013, 2014, 2015 by Donald E. Knuth
+% This file may be freely copied provided that no modifications are made.
+% All other rights are reserved.
+%
+% Three levels of changes to the books are distinguished here:
+%
+% "\bugonpage" introduces the correction of an error;
+% "\amendpage" introduces new material for future editions;
+% "\improvepage" introduces ameliorations of lesser importance.
+%
+% (Changes introduced by \improvepage do not appear in the hardcopy listing.)
+%
+% Also, "\planforpage" introduces some of the author's half-baked intentions.
+%
+
+% NOTE: TO PUT THE INDEX ON A SEPARATE PAGE, RUN THIS WITH THE COMMAND LINE
+%   tex "\let\indexeject+ \input err2"
+
+\newif\ifall % \alltrue means show the trivial items too
+\relax % hook
+
+\def\vertical{|}
+\def\inref#1 #{\expandafter\def\csname\vertical#1\endcsname}
+\catcode`|=\active
+\let|\inref \input \jobname.ref
+\catcode`|=12
+
+\input taocpmac % use the format for TAOCP, with modifications below
+
+\def\becomes{\ifmmode\ \hbox\fi{\manfnt y}\ } % wiggly arrow indicates a change
+
+\def\bugonpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt\llap{\manfnt x}% print a black triangle in left margin
+   {\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\amendpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\iftrue\noindent}
+\def\improvepage#1.#2 #3 (#4) {\ifall
+  \medbreak\ninepoint
+  \line{\kern-6pt{\sl Page #2\enspace #3\/}
+   \leaders\hrule\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\noindent}
+\def\planforpage#1.#2 #3 (#4) {
+  \medbreak\defaultpointsize
+  \line{\kern-5pt{\bf Page #2}\enspace #3
+   \leaders\hbox to 5pt{\hss.\hss}\hfill\ \eightrm\date#4.}
+  \nobreak\smallskip\begingroup\let\endchange=\endgroup\sl\noindent}
+\let\endchange=\fi
+\def\nl{\par\noindent}
+\def\nlh{\par\noindent\hangit}
+\def\hangit{\hangindent2em}
+\def\cutpar{{\parfillskip=0pt\par}}
+
+\def\date#1.#2.#3.{% convert "yy.mm.dd." to "dd Mon 19yy"
+  #3
+  \ifcase#2\or Jan\or Feb\or Mar\or Apr\or May\or Jun\or
+               Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi
+  \ \ifnum #1<97 \hundred#1\else19#1\fi}
+\def\hundred{20} % the "century" for dates before '97
+
+\def\ex #1. [#2]{\ninepoint
+  \textindent{\bf#1.}[{\it#2\/}]\kern6pt}
+\def\EX #1. [#2]{\ninepoint
+  \textindent{\llap{\manfnt x}\bf#1.}[{\it#2\/}]\kern6pt}
+
+\def\foottext#1{\medskip
+        \hrule height\ruleht width5pc \kern-\ruleht \kern3pt \eightpoint
+        \smallskip\textindent{#1}}
+\def\volheadline#1{\line{\cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill
+       \titlefont\ #1\ \cleaders\hbox{\raise3pt\hbox{\manfnt\char'36}}\hfill}}
+\def\refin#1 {\let|\inref \input #1.ref \let|\crossref}
+
+\let\defaultpointsize=\tenpoint
+
+%%%%%%%%%%%%%% opening remarks %%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{INTRODUCTION}
+\let\rhead=\lhead
+\titlepage
+\volheadline{THE ART OF COMPUTER PROGRAMMING}
+\bigskip
+\volheadline{ERRATA TO VOLUME 2 (after 2010)}
+\bigskip
+
+\noindent This document is a transcript of the notes that I have been making
+in my personal copy of {\sl The Art of Computer Programming}, Volume~2 (third
+edition, 26th printing) since it was first printed in 2011.
+Previous errata are recorded in another file `{\tt all2-pre.ps}'.
+
+\ifall Four levels of updates\dash---``errors,'' ``amendments,'' ``plans,''
+   and ``improvements''\dash---appear, indicated by four
+\else Three levels of updates\dash---``errors,'' ``amendments,'' and
+   ``plans''\dash---appear, indicated by three \fi
+different typographic conventions:
+\begingroup\def\hundred{17}
+
+\bugonpage 0.666 line 1 (76.07.04)
+Technical or typographical errors (aka bugs) are the most critical items, so
+they are flagged with a `\thinspace{\manfnt x}\thinspace' preceding the page
+number. The date on which I first was told about the bug is shown; this is the
+effective date on which I paid the finder's fee. The necessary
+corrections are indicated in
+a straightforward way. If,~for example, the book says
+`$n$' where it should have said `$n+1$', the change is shown thus:
+\smallskip
+$n$ \becomes $n+1$
+\endchange
+
+\amendpage 0.666 line 2 (89.07.14)
+Amendments to the text appear in the same format as bugs, but without
+the~`\thinspace{\manfnt x}\thinspace'. These are things I wish I had known
+about or thought of when I wrote the original text, so I added them later.
+The date is the date I drafted the new text.
+\endchange
+
+\def\hundred{19}
+
+\planforpage 0.666 line 3 (17.11.20)
+Plans for the future represent a third kind of item. In such notes I~sketched
+my intentions about things that I wasn't ready to flesh out further when
+I~wrote them down. You can identify these items because they're written in
+slanted type, and preceded by a bunch of dots
+`\hbox to 6em{\leaders\hbox to 5pt{\hss.\hss}\hfill}' leading to the date on
+which I recorded the plan in my files.
+\endchange
+
+\improvepage 0.666 line 4 (38.01.10)
+The fourth and final category\dash---indicated by page and line number in
+smaller, slanted type\dash---consists of minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+You wouldn't even
+be seeing these items if you hadn't specifically chosen to print the complete
+errata list in all its gory details.
+Are you sure you wanted to do that?
+\endchange
+
+\endgroup
+\ifall\else\medskip\ninepoint
+My personal file of updates also includes a fourth category of items, not
+shown in this list. They are miscellaneous minor corrections or improvements
+that most readers don't want to know about, because they are so trivial.
+If you really want to see all of the gory details,
+you can download the full list from Internet webpage
+$$\.{http://www-cs-faculty.stanford.edu/\char`\~knuth/taocp.html}$$
+by selecting the ``long form'' of the errata.
+\fi
+
+\medskip
+\tenpoint
+My shelves at home are
+bursting with preprints and reprints of significant research results that I
+want to digest and summarize, where appropriate, in the ultimate edition of
+Volume~2. I didn't do that in the third edition because I would surely have to do
+it over again later: New results continue to pour forth at a great rate, and I
+will have time to rewrite that volume only~once. Volumes 4 and~5 need to be
+finished first. So I've put most of my effort so far into writing up
+those parts of the total picture that seem to have converged to their
+near-final form. It follows, somewhat paradoxically, that the updates in this
+document are most current in the areas where there has been least activity.
+
+On the other hand I do believe that the changes listed here bring Volume~2
+completely up to date in two respects: (1)~All of the research problems in the
+previous edition\dash---i.e., all exercises that were rated 46 and
+above\dash---have received new ratings of 45 or less whenever I learned of a
+solution; and in such cases, the answer now refers to that solution.
+(2)~All of the historical information about pioneering developments has been
+amended whenever new details have come to my attention.
+
+\beginconstruction
+The ultimate, glorious, 100\% perfect editions of Volumes 1--4A are works in progress.
+Please let me know of any improvements that you think I ought to make.
+Send your comments either by snail mail to D.~E. Knuth, Computer
+Science, Gates Building 4B, Stanford University, Stanford CA~94305-9045,
+or by email to
+{\tt taocp{\char`\@}cs.stanford.edu}. (Use email for book suggestions
+only, please\dash---all
+other correspondence is returned unread to the sender, or discarded,
+because I have no time to
+read ordinary email.) Although I'm working full time on
+Volume~4B these days, I~will try to reply to all such messages
+within a year of receipt. Current news about {\sl The Art of Computer
+Programming\/} is posted on
+$$\.{http://www-cs-faculty.stanford.edu/\char`~knuth/taocp.html}$$
+and updated regularly.
+\par\endconstruction
+\rightline{\dash---Don Knuth, January 2011}
+
+\bigskip
+\bigskip
+{\quoteformat
+Oh! If only someone would give me time, time,
+time to do everything\/ {\rm properly},
+to read everything at\/ {\rm my own\/} tempo,
+to take it apart and put it together again.
+\author KARL BARTH (1922)
+% letter to Edvard Thurneysen, spring 1922
+% found in Revolutionary Theology in the Making: Barth-Thurneysen
+% Correspondence 1914--1925, tr by Jas. D. Smart
+% Richmond VA: John Knox Press, 1964, p43
+\vfill\eject
+}
+
+\def\today{\number\day\space\ifcase\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi
+  \space\number\year}
+
+%%%%%%%%%%%%%%% CHANGES FOR VOLUME 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lhead{CHANGES TO VOLUME 2: SEMINUMERICAL ALGORITHMS}
+\let\rhead=\lhead
+\titlepage
+\volheadline{SEMINUMERICAL ALGORITHMS}
+\bigskip
+\rightline{Copyright \copyright\ 2011, 2012, 2013, 2014, 2015
+ Addison\with Wesley; all rights reserved}
+\rightline{Last updated \today}
+\bigskip
+\rightline{\sl Most of these corrections have already been made in
+                  recent printings.}
+\smallskip
+\let\defaultpointsize=\tenpoint
+
+\bugonpage 2.0 (on the back page of the dustcover, line 23) (12.09.10)
+{\eightss Whatever your backgound, \becomes Whatever your background,}
+\endchange
+
+\improvepage 2.vii line 5 before the author's signature (15.09.23)
+nobody noticed \becomes nobody else noticed
+\endchange
+
+\amendpage 2.x line 16 (11.06.16)
+a {\it 45\/} rating \becomes
+a {\it 40\/} rating
+\endchange
+
+\amendpage 2.x line 20 (13.01.30)
+creativity.\ \becomes
+creativity. All exercises with ratings of {\it46\/} or more are open problems
+for future research, rated according to the number of
+different attacks that they've resisted so far.
+\endchange
+
+\amendpage 2.xi new rating of exercise 3 (14.01.24)
+\ninepoint[{\it34\/}] \becomes [{\it M34\/}]
+\endchange
+
+\improvepage 2.13 lines 1 and 2 (11.09.15)
+overflow will be on after program \eq(2) if and only if the result equals~$w$
+\becomes
+the result equals $w$ if and only if program~\eq(2) turns overflow on
+\endchange
+
+\improvepage 2.17 after the statement of Theorem A (14.03.13)
+\indent The ideas \becomes {\it Proof}.\enspace The ideas
+\endchange
+
+\amendpage 2.20 lines 8 and 14 (16.05.13)
+smallest integer $\lambda$ \becomes smallest positive integer $\lambda$
+\endchange
+
+\improvepage 2.20 new sentence at the beginning of Theorem C (16.05.13)
+{\sl Let $p$ be a prime number.}
+\endchange
+
+\amendpage 2.24 in the line before {\eq(4)} (16.05.14)
+the least integer $s$ \becomes the least positive integer $s$
+\endchange
+
+\improvepage 2.34 two lines after \eq(14) (14.09.16)
+of overhead \becomes of additional overhead
+\endchange
+
+\bugonpage 2.39 line 1 of exercise 19 (16.05.18)
+\ninepoint [{\it M41\/}] \becomes [{\it M40\/}]\nl
+specified in the first column \becomes specified by the first two columns
+\endchange
+
+\amendpage 2.56 lines 2 and 3 after \eq(20) (14.04.29)
+over the interior of a $(k - 1)$-dimensional hypersphere \becomes\nl
+over a $(k - 1)$-dimensional ball
+\endchange
+
+\amendpage 2.117 line $-4$ (13.04.02)
+\ninepoint [\HM47] (I. Borosh.) \becomes 
+[\HM48] (I. Borosh and H. Niederreiter.)
+\endchange
+
+\amendpage 2.135 line $-12$ (14.04.29)
+{\it Random point on an $n$-dimensional sphere\/} \becomes
+{\it Random point on the surface of an $n$-dimensional ball}
+\endchange
+
+\amendpage 2.136 line 1 (14.04.29)
+$n$-sphere \becomes $n$-ball
+\endchange
+
+\improvepage 2.145 line 25 (12.02.23)
+Let $X_1$, $X_2$, \dots, $X_t$ be a set \becomes
+Let $(X_1,X_2,\ldots,X_t)$ be a sequence
+\endchange
+
+\amendpage 2.189 a new quotation to insert before the exercises (13.02.06)
+{\quoteformat
+Almost all good computer programs 
+contain at least one random-number generator.
+\author DONALD E. KNUTH, {\sl Seminumerical Algorithms\/} (1969)
+% first edition p157
+}
+\endchange
+
+\bugonpage 2.196 line $-11$ (11.06.08)
+Pratiche del calcolo \becomes Pratiche di calcolo
+\endchange
+
+\bugonpage 2.196 line $-8$ (15.11.20)
+sand and/or pebbles \becomes sand or pebbles
+\endchange
+
+\bugonpage 2.200 line 20 (13.01.24)
+an appendix to his little book {\sl Rhabdologia\/} \becomes
+part three of his little book {\sl Rabdologi\ae\/}
+\endchange
+
+\bugonpage 2.200 line $-15$ (11.09.13)
+K. Gehrhardt \becomes C. I. Gerhardt
+\endchange
+
+\amendpage 2.245 new exercise (14.01.17)
+\ninepoint
+\ex32. [M21] For what pairs $(a,b)$ is
+${\catcode`\_=\other\rm round_@to_@even}(x)=
+\lfloor ax+b\rfloor+\lceil ax-b\rceil$ for all~$x$?
+\endchange
+
+\improvepage 2.255 line 6 (15.04.09)
+Dept of \becomes Dept.\ of
+\endchange
+
+\bugonpage 2.275 line 19 (11.04.04)
+$235@M$ \becomes $23.5@M$
+\endchange
+
+\amendpage 2.280 line 26 (13.03.08)
+Stay tuned for new records as we move into a new millennium. \becomes
+By 2011 the world record had risen to ten {\it trillion\/} digits(!),
+obtained by A.~J. Yee and S.~Kondo using the Chudnovsky formula
+together with exercise~39.
+\endchange
+
+\amendpage 2.293 line 4 of exercise 13 (12.11.26)
+{\bf 218} \becomes
+{\bf 218},\thinspace1
+\endchange
+
+\improvepage 2.308 line $-16$ (15.03.12)
+column for $\hat v_s$ \becomes
+column for $2^7@\hat v_s$
+\endchange
+
+\amendpage 2.311 line $-5$ (11.03.02)
+(1988) \becomes (International Supercomputing Institute, 1988)
+\endchange
+
+\amendpage 2.329 exercise 19 is now ``recommended'' (13.09.06)
+\ninepoint {\bf19.} \becomes {\manfnt x\hskip3pt\bf19.}
+\endchange
+
+\improvepage 2.334 line $-2$ (15.03.17)
+2250 years \becomes 2300 years
+\endchange
+
+\amendpage 2.339 lines 1 and 2 after Fig.~9 (13.09.06)
+just a little more code than for Algorithm~A\null. \becomes
+a bit more code than for
+Algorithm~A, but the steps are elementary.
+\endchange
+
+\amendpage 2.352 replacement for the paragraph that contains {\eq(61)} (16.02.08)
+All of these calculations are highly plausible, but they rely on unproved
+assumptions. By introducing a slightly different model, and applying
+deep~methods from the theory of dynamical systems,
+Brigitte Vall\'ee was finally able to complete the first
+rigorous analysis of Algorithm~B
+[see {\sl Algorithmica\/ \bf22} (1998), 660--685]. Her results
+led her to suspect that the constants $\lambda$ and~$b$ might be related by
+the remarkable formula
+$${\lambda\over b}\;=\;{2\ln2\over\pi^2}\,;\eqno(61)$$
+and indeed, she was right! More than a decade later, Ian~D. Morris
+found a proof of~\eq(61), as a byproduct of an analytic
+{\it tour de force\/} with which he successfully demonstrated the
+complete validity of Brent's model [see exercise~34].
+\endchange
+
+\amendpage 2.355 replacement for exercise 31 (16.02.08)
+\ninepoint \ex31. [\HM46] Prove or disprove the ``wild conjecture'' in the
+answer to exercise~25.
+\endchange
+
+\amendpage 2.355 replacement for exercise 34 (16.02.08)
+\ninepoint
+\ex 34. [\HM44] Find a rigorous proof that Brent's model describes the
+asymptotic behavior of Algorithm~B, and indeed that
+$G(z)$ is an analytic function when $\Re z>0$.
+\endchange
+
+\amendpage 2.367 replacement for line $-8$ (11.09.18)
+Furthermore $r_n\le\vert{\cal I}\cap P_n\vert\le r_n+t_n$, because
+${\cal I}_N\subseteq{\cal I}\subseteq{\cal I}_N\cup{\cal K}$. Consequently
+\endchange
+
+\amendpage 2.367 replacement for line $-5$ (11.09.18)
+Given $\epsilon$, this holds for all $n$; so
+$\lim_{@n\to \infty } r_n/n =
+\lim_{@n\to \infty } (r_n+t_n)/n = \mu ({\cal I})$.\quad\slug\tighten
+\endchange
+
+\amendpage 2.382 replacement for {\eq(5)} (11.12.09)
+$$\pi(x)\;\approx\;\sum_{k=1}^{\lg x}
+{\mu(k)\over k}L\bigl(\!\root k\of x\,\bigr)
+\;=\; L(x) - {1\over2}L\bigl(\sqrt x\,\bigr)
+   - {1\over3}L\bigl(\root3\of x\,\bigr) + \cdots \eqno (5)$$
+\endchange
+
+%\amendpage 2.395 line 8 (12.10.23)
+%$1<x<n$ \becomes $1<x<n-1$
+%\endchange
+
+\improvepage 2.404 line 18 (11.11.06)
+is between 0 and $N$ \becomes lies in the range $0\le x_i<N$
+\endchange
+
+\improvepage 2.404 line 22 (11.10.05)
+$(x^3)^d\mod N=x$ \becomes
+each secret component $(x_i^3\mod N)^d\mod N=x_i$
+\endchange
+
+\amendpage 2.409 another Mersenne prime (13.02.16)
+[add `57885161' to \eq(26), and use it instead of 43112609 in the
+remarks below, noting that $2^{57885161}-1$ has 17,425,170 decimal digits]
+\endchange
+
+\amendpage 2.409 well, yet another Mersenne prime (16.04.15)
+[add `74207281' to \eq(26), and use it instead of 43112609 in the
+remarks below, noting that $2^{74207281}-1$ has 22,338,618 decimal digits]
+\endchange
+
+\amendpage 2.417 replacement for lines 3--9 of exercise 47 (12.10.23)
+\ninepoint\noindent$$\advance\baselineskip-1pt
+\vcenter{\halign{\seventt #\cr
+\llap{\sevenrm(}8372e6cadf564a9ee347092daefc242058b804422859%
+7e5f2326bbbff1583ea4200d895d9564d39229c79af8\cr
+72a72e38bb92852a22679080e269c30690fab0ec19f7%
+8e9ef8bae74b600f4ebef42a1dd5a6d806dc70b96de2\cr
+bf4a6c7d2ebb51bfd156dd8ac3cb0ae1c1c38d76a342%
+7bcc3f12af7d4d04314c0d8377a0c79db1b1f0cd1702\rlap{\sevenrm,}\cr
+2aabcd0f9f1f9fb382313246de168bae6a28d177963a%
+8ebe6023f1c5bd8632caee9604f63c6a6e33ceb1e1bd\cr
+4732a2973f5021e96e05e0da932b5b1d2bc618351ca5%
+84bb6e49255ba22dca55ebd6b93a9c94d8749bb53be2\cr
+90650878b17f4fe30bbb08453929a94a2efe3367e2cd%
+92ea31a5e0d9f466870b162272e9e164e8c3238da519\rlap{\sevenrm)}\cr}}$$
+in hexadecimal notation, where $N$ is
+$$\advance\baselineskip-1pt
+\vcenter{\halign{\seventt #\cr
+c97d1cbcc3b67d1ba197100df7dbd2d2864c4fef4a78%
+e62ddd1423d972bc7a420f66046386462d260d68a8b2\cr
+3fbf12354705d874f79c22698f750c1b4435bc99174e%
+58180bd18560a5c69c4eafb573446f79f588f624ec18\cr
+4c3e7098e65ac7b88f89e1fadcdc3558c878dde6bc7c%
+32be57c5e7e8d95d697ad3c6c343485132dcbb74f411\rlap{\sevenrm.}\cr}}$$
+\endchange
+
+\amendpage 2.435 lines 6 and 7 (13.03.09)
+{\sl derived by C.~L. Dodgson (aka Lewis Carroll) from a theorem
+of Jacobi, is also highly relevant to these methods.} \becomes
+{\sl published in 1853 by Felice Chi\`o and rediscovered
+by C.~L. Dodgson (aka Lewis Carroll), is also
+highly relevant.}
+\endchange
+
+\bugonpage 2.453 replacement for line 5 (12.04.22)
+\noindent$$\textstyle\deg(v_{i_1})+\cdots+\deg(v_{i_d})\in\bigcap D_j.$$
+\endchange
+
+\amendpage 2.453 line 24 (15.01.22)
+in practice. \becomes in practice.
+Mark van~Hoeij [{\sl J.~Number Theory\/ \bf95} (2002), 167--189] has found
+an efficient way to apply LLL when those heuristics fail; its running time
+depends on~$r$, not~$n$.
+\endchange
+
+\bugonpage 2.478 line 6 (11.08.30)
+$c(33)$ \becomes $c(39)$
+\endchange
+
+\amendpage 2.478 lines $-11$ through $-5$ (11.08.30)
+Computer calculations \dots~Arnold Scholz \becomes\nl
+Notice that $2^n-1$ is the worst case for the binary method, because
+$\nu(2^n-1)=n$. E.~G. Thurber
+[{\sl Discrete Math.\ \bf 16} (1976), 279--289] has shown that several of
+these values, including the case $n = 32$, can actually be calculated by hand.
+Computer calculations by Neill Clift [{\sl Computing\/ \bf91} (2011), 265--284]
+show that $l(2^n-1)$ is in fact exactly equal to
+$n-1+l(n)$ for $1\le n\le64$. % but he doesn't think it will hold in general
+Arnold Scholz
+\endchange
+
+\bugonpage 2.478 line $-3$ (11.03.30)
+{\sl deutschen\/} \becomes {\sl Deutschen}
+\endchange
+
+\bugonpage 2.482 line 2 of exercise 11 (15.04.16)
+\ninepoint all $i$ in the chain \becomes all $a_i$ in the chain
+\endchange
+
+\improvepage 2.490 line 6 after {\eq(9)} (13.04.29)
+savings is worthwhile \becomes change is worthwhile
+\endchange
+
+\amendpage 2.537 a new quotation to append here (12.12.03)
+\vskip3pt
+{\quoteformat
+This business of series, the most disagreeable thing in mathematics,
+is no more than a game for the English;
+Stirling's book, and the one by de Moivre, are proof.
+\author PIERRE DE MAUPERTUIS, letter to d'Ortous de Mairan (30 Oct 1730)
+% "Cette affaire de suites qui est tout ce qu'il y a de plus d\'esagr\'eable
+% dans les math\'ematiques n'est qu'un jeu pour les Anglois;
+% ce livre [of Stirling] et celui de M. de Moivre en sont une preuve."
+% see Mary Terrall, The Man Who Flattened the Earth (2002), p43
+}
+\endchange
+
+\amendpage 2.537 another new quotation to append here (12.10.23)
+{\quoteformat
+He was daunted and bewildered by their almost infinite series.
+\author G. K. CHESTERTON, {\sl The Man Who Was Thursday\/} (1907)
+%early in chapter 9
+}
+\endchange
+
+\amendpage 2.524 last line of exercise 73 (11.02.16)
+\ninepoint steps. \becomes steps. How big can their determinants be?
+\endchange
+
+\let\defaultpointsize=\ninepoint % get ready for answer pages
+
+\amendpage 2.538 line 2 of answer 3 (14.01.24)
+$422481^4$. \becomes
+$422481^4$ and (therefore) $191600^4+435038^4+829120^4=844962^4$.
+\endchange
+
+\amendpage 2.547 line 11 of answer 14 (16.05.13)
+$x_{j@\mod@\lambda}$, where \becomes
+$x_{j@\mod@\lambda}$, where $\lambda$ is the least positive integer with
+\endchange
+
+\improvepage 2.551 line 2 (16.05.14)
+$Y_{n+1}\approx{}$ \becomes $Y_{n+1}={}$
+\endchange
+
+\amendpage 2.555 new answer (13.09.05)
+\ans20. For $k=64$ one can use $\.{CONTENTS(A)}=(\.{243F6A8885A308D3})_{16}$
+(the bits of~$\pi$!).
+\endchange
+
+\bugonpage 2.579 bottom line (12.07.10)
+{\bf 5} (1848) \becomes {\bf 13} (1848)
+\endchange
+
+\amendpage 2.584 line 5 of answer 31 (13.04.02)
+172. \becomes
+172, and an excellent survey of later work has been prepared by
+A.~Kontorovich in {\sl Bull.\ Amer.\ Math.\ Soc.\ \bf50} (2013), 187--228.
+\endchange
+
+\bugonpage 2.584 line $-3$ of answer 31 (13.04.02)
+{\sl BIT\/ \bf25} (1980), 193--208 \becomes
+{\sl BIT\/ \bf23} (1983), 65--74
+\endchange
+
+\improvepage 2.591 lines 6 and 7 of answer 8 (11.09.17)
+$(N-j-k)/(N-j)$ \becomes $\bigl((N-j-k)/(N-j)\bigr)$
+\endchange
+
+\amendpage 2.617 new answer (14.01.17)
+\ans32.  (J. Ziegler Hunts, 2014.) $a=1/2$ and $b\mod1=1/4$.
+\endchange
+
+\bugonpage 2.618 first line of answer 5 (12.11.24)
+lines 22 \becomes lines 23
+\endchange
+
+\bugonpage 2.618 line 4 of answer 7 (12.11.24)
+.99999999 \becomes $-.99999999$
+\endchange
+
+\bugonpage 2.619 line $-2$ of answer 8 (12.11.24)
+better then \becomes better than
+\endchange
+
+\bugonpage 2.626 line {\it 008\/} of answer 25 (11.04.04)
+\.{V+N+1} \becomes \.{TEMP}
+\qquad and\qquad $(v+1)$ \becomes $(v_{n-1}+1)$
+\endchange
+
+\bugonpage 2.626 lines {\it 110\/} and {\it 111\/} of answer 26 (11.04.04)
+\.{DEC2} \becomes \.{DEC1}
+\qquad and\qquad
+$j+1$ \becomes $j-1$
+\qquad and\qquad
+\.{J2NN} \becomes \.{J1NN}
+\endchange
+
+\bugonpage 2.633 line 5 of answer 4 (12.07.09)
+$\half\bigl(W(j)-W(-j)\bigr)$ \becomes
+$\bigl(W(j)-W(-j)\bigr)/(2j)$.
+\endchange
+
+\amendpage 2.635 line 1 of answer 3 (11.02.19)
+Jon L. White \becomes Jon L White
+\endchange
+
+\amendpage 2.645 replacement for answer 34 (16.02.08)
+\ans34. Ian D. Morris [{\sl Advances in Mathematics\/ \bf290} (2016),
+73--145, whose function~$\xi(z)$ is $G'(z)$]
+has successfully resolved this long-standing problem
+by applying and extending delicate methods of dynamical systems theory.
+Thus the problem of analyzing the binary gcd algorithm,
+now solved rigorously by Valle\'e and Morris
+in two quite different ways, continues to lead to ever
+more tantalizing questions of higher mathematics.
+\endchange
+
+\bugonpage 2.645 line $-2$ (13.12.13)
+simulated odd operand \becomes simulated even operand
+\endchange
+
+\amendpage 2.646 line 1 of answer 39 (14.01.23)
+Penk.) \becomes Penk.) Assume that $u$ and $v$ are positive.
+\endchange
+
+\amendpage 2.646 line $-2$ of answer 39 (15.05.20)
+{\sl Computers and Math.\ \bf14} (1987), 233 \becomes
+{\sl Computers and Mathematics with Applications\/ \bf14} (1987), 233--238
+\endchange
+
+\improvepage 2.658 in the top paragraph (15.05.22)
+$=1.98277\sqrt m$ \becomes $\approx1.98277\sqrt m$\qquad and\qquad
+$\sim1.92600\sqrt m$ \becomes $\approx1.92600\sqrt m$
+\endchange
+
+\bugonpage 2.663 line 2 of answer 25 (11.12.10)
+if $n$ \becomes if $x$
+\endchange
+
+\bugonpage 2.667 last line of answer 41 (15.05.25)
+impracticably large. \becomes impracticably large.]
+\endchange
+
+\amendpage 2.671 new answer (12.10.23)
+\ans47. Earlier printings of this book had a 211-digit~$N$, which was cracked
+in 2012 using the elliptic curve method and the general number field
+method by Greg Childers and about 500 volunteers(!).
+\endchange
+
+\amendpage 2.683 line 10 (15.05.30)
+Graeffe, {\sl Auf{\kern.05em}l\"osung\/} \becomes
+Gr\"affe, {\sl Die Auf{\kern.05em}l\"osung\/}
+\endchange
+
+\improvepage 2.691 in answer 2 (14.09.16)
+line 25: $L=\lambda(n)$ \becomes $L=\lambda n=\lfloor\lg n\rfloor$\nl
+line 26: $K=\nu(n)$ \becomes $K=\nu n$
+\endchange
+
+\bugonpage 2.709 line $-3$ (15.06.15)
+one of the $F$'s or $S$'s \becomes one of the $F$'s or $s$'s
+\endchange
+
+\bugonpage 2.715 replacement for lines 2, 3, 4 of answer 64 (11.12.21)
+\noindent $(x_{k1}+u^2x_{k2})(y_{2k}+u^2y_{1k})@z_{kk}
+  +(x_{k1}+u^2x_{k3})@y_{3k}\bigl((1+u)@z_{kk}-u(z_{1k}+z_{2k}+z_{3k})\bigr)
+       -x_{k1}(y_{2k}+y_{3k})(z_{k1}+z_{k2}+z_{k3})$ and
+$g_{jk}(u)=(x_{k1}+u^2x_{j3})(y_{3k}+uy_{1j})(z_{kj}+uz_{jk})
+       +   (x_{k1}+u^2x_{j2})(y_{2k}-uy_{1j}) z_{kj}$.
+[The best upper bound known for $\\(T(3,3,3))$ is 23;{\parfillskip=0pt\par}
+\endchange
+
+\amendpage 2.717 replacement for last paragraph of answer 67 (14.10.12)
+\indent
+[See {\sl SICOMP\/ \bf11} (1982), 472--492. Sophisticated refinements yield
+$\omega<2.3729$. However, this method cannot be extended to prove that
+$\omega<2.3078$; see A.~Ambainis, Y.~Filmus, and F. Le~Gall, ``Fast
+matrix multiplication,''
+{\ninepoint{\tt arXiv:1411.\allowbreak5414} [cs.CC]}
+ (2014), 38~pages.] % to appear
+\endchange
+
+\let\defaultpointsize=\tenpoint % begin appendices
+
+\amendpage 2.730 through page 734 (12.04.07)
+[replace the notation $(R\Relbar\joinrel\joinrel\joinrel\Rightarrow x;\;y)$
+ by $(R{?}\ x{:}\ y)$ in fourteen places]
+\endchange
+
+\amendpage 2.735 and 736 new entries for Appendix C (11.04.17)
+\ninepoint\noindent
+Program 4.3.1A$'$, 623.\nl
+Program 4.3.1B, 624.\nl
+Program 4.5.2A$'$, 373.
+\endchange
+
+\bugonpage 2.735 in Appendix C (11.04.17)
+\ninepoint\noindent
+Algorithm 3.3.4S, 101--103.\nl
+Program 4.2.3D, 251--252.\nl
+Program 4.3.1D, 273--275, 626.\nl
+Algorithm 4.5.4F, 659--660.\nl
+Theorem 4.6.4C, 496.\nl
+Theorem 4.6.4W, 513--514.
+\endchange
+
+\expandafter\ifx\csname indexeject\endcsname\relax\else\vfill\eject\fi
+\amendpage 2.737 and following (11.01.01)
+Miscellaneous changes to the existing index of Volume~2 are collected here,
+including corrections and amendments to the old entries as well as new entries
+that are occasioned by the new material. Thus, the lines of the full index
+that have changed serve also as an index to the present document. However,
+when a correction or amendment has caused an old index entry to be deleted,
+the deletion is usually not indicated.
+
+\input exotic
+\begindoublecolumns
+\indexformat
+\gdef\Uni1.08:{\bitmap24:1.08:}
+\hangindent 2em
+$\pi$ (circle ratio), as ``random'' example, 21, 25, 33, 47, 52, 89, 103, 106, 108, 184, 238, 243, 252, 324--325, 555, 593, 599, 665. % 31st
+Alt, Helmut Gustav, 706. % 33rd
+Ambainis, Andris, 717. % 32nd
+Arney, James William, 385. % 33rd
+Berkowitz, Stuart Jeffrey, 718. % 33rd
+Charles XII of Sweden (Karl XII), 200. % 33rd
+Chebyshev (= Tschebyscheff), Pafnutii Lvovich ({\rus Chebyshevp2, Pafnut{\char12}i0 Lp1vovichp2} = {\rus Chebyshev, Pafnutii0 Lp1vovich}), inequality, 183, 669. % 30th
+Chesterton, Gilbert Keith, 417, 537. % 29th
+Childers, James Gregory, 671. % 29th
+Chi\`o, Felice, 435. % 30th
+Chor, Benny ({\heb\Hrr/\Hvv/\Hsh/ \Hfn/\Hvv/\Hyy/\Hts/}\thinspace-{\heb\Hfn/\Hbb/}), 669. % 27th
+de Mairan, Jean-Jacques d'Ortous, 537. % 30th
+de Maupertuis, Pierre-Louis Moreau, 537. % 30th
+de Moivre, Abraham, 537. % 30th
+Dynamical systems, 35, 352, 645. % 33rd
+$e$ (base of natural logarithms), 12, 76, 359, 726--727, 733. % 29th
+Elliptic curve method, 402, 671. % 29th
+Eulerian trail, 597. % 32nd
+Filmus, Yuval ({\heb\Hss/\Hvv/\Hmm/\Hll/\Hyy/\Hpp/ \Hll/\Hbb/\Hvv/\Hyy/}), 717. % 32nd
+Fuss, Paul Heinrich von ({\rus Fuss, Pavel Nikolaevich}), 392, 651. % 29th
+Geek art, 2, 94, 206. % 32nd
+Generalized binomial series, 723. % 32nd
+Gerhardt, Carl Immanuel, 200. % 28th
+Gonz\'alez-Arce, Te\'ofilo Francisco, 60. % 32nd
+Gray, Herbert Lee Roy, 242. % 29th
+Hoeij, Marinus Hubertus Franciscus [= Mark] van, 455. % 32nd
+Ja'Ja' (= JaJa), Joseph Farid \indexbreak ({\arab\Afai/\Amj/\Amai/\Aij/ \Afd/\Aiy/\Afr/\Aif/ \Aff/\Aiy/\Az/\Afw/\Aij/}), 514. % 27th
+Kannan, Ravindran ({\tm\\205\\270\\151\\227\\205\\150 \\170\\146\\176\\150}), 599. % 30th
+Kondo, Shigeru (\JC48:48:0:40% J2265
+<0000000000800000000001800000000007c0000000003ff038000c00ffe01f000e0ffe00%
+ 0fc00fffe00007e00ffc000003f00f00000003f80f00000001f80f00000001f80f000000%
+ 00f00f00000000000f00000000000f00000c00000f00001e00000fffffff00000fffffff%
+ 00000f003c0000600f003c0000f00f003c00fff80f003c007ff80f003c0000f00f003c00%
+ 00f00f003c0000f00f003c0000f00f003c0000f00f003c0000f00f003c0000f00f003c00%
+ 00f01e003c0000f01e003c0000f01e003c0000f03c003c0000f03c003c0000f078003c00%
+ 00f070003c0000f0e0003c0000f1c0003c0001fb8000180003dc000000000fcf00000000%
+ 3f87ffffffffff03fffffffffe00fffffffe7c003ffffffe780000000000300000000000%
+ >%% unicode char "8fd1
+\JC48:48:0:40% J3803
+<0000c00c00000000f00f00000000f80f800c0000f00f001effffffffffff7fffffffffff%
+ 0000f00f00000000f00f00000000f00600000000600000000c06000c03000f0f3e0f07c0%
+ 0fff8f8f8fe00fff87cf1f800f0f07ef3e000f0f03ef38000f0f01cf60300f0f000f0078%
+ 0f0f3ffffffc0f0f1ffffffc0f0f001f60000f0f003e70000fff003e300c0fff007c381e%
+ 0f0fffffffff0f0f7fffffff0f0f01f00f800f0f03e607c00f0f07c787f80f0f0f07c3ff%
+ 0f0f1fe7c1ff0f0f39f784ff0fffe0ff8e7f0fff00ff9f1e0f0f007fbf800f0f0037f000%
+ 1f0f000780001e0f000780001e0f003ff0001e0f03f7be001c0f1fe79f803c0f0fc78fc0%
+ 380f0f878fe0381f060787e031ff043f83e0707e001f81c0603e000f8000c01c00070000%
+ >%% unicode char "85e4
+\JC48:48:0:40% J4448
+<0001800600000001e00780000001f007c0000001f007c0000001e007800c0001e007801e%
+ ffffffffffff7fffffffffff0001e00780000001e00780000001e00780000001e0078000%
+ 0000c003000000000003c00000001c00f00000001f00780000001e007c0000001f007e00%
+ 00000f003e0006000f803e1807800f800c3c07fffffffffe07fffffffffe078007c00000%
+ 078003e00000078003e01800078001f01e00078001f03f80078001f83f00078000f87e00%
+ 078000fc7c000780007cf8000780003ff0040780003fe0040780001fe0040780000fc00c%
+ 0780000fc00c0780001fe00c0780003ff01c0700007ff81c0f0000fcfe1e0e0001f87f9e%
+ 1e0007e03fff1c000fc01fff38003f0007ff3800fc0003fe7007c000007cc00000000000%
+ >%% unicode char "8302
+), 280. % 30th
+Kontorovich, Alex Vladimir ({\rus Kontorovich, Aleksandr Vladimirovich}), 584. % 30th
+Lalescu, Gheorghe Liviu, 186. % 28th
+Le Gall, Fran{\c c}ois Pierre Marcel, 717. % 32nd
+Left multiple, least common, 437--438. % 29th
+Lindholm, James Harold, 79. % 33rd
+MacMillan, Donald Bashford, 226. % 30th
+Mairan, Jean-Jacques d'Ortous de, 537. % 30th
+Maupertuis, Pierre-Louis Moreau de, 537. % 30th
+Moivre, Abraham de, 537. % 30th
+Morris, Ian David, 352, 645. % 33rd
+Neumann, John von (= Neumann J\'anos Lajos = Margittai Neumann J\'anos), 1, 3--4, 26, 36, 119, 125, 128, 138, 140, 202, 226, 278, 327. % 33rd
+Nowak, Martin Richard, 409. % 33rd
+Number field sieve, 403, 671. %29th
+Pearson, Karl (= Carl), 55, 56. % 32nd
+Pi ($\pi$), as ``random'' example, 21, 25, 33, 47, 52, 89, 103, 106, 108, 184, 238, 243, 252, 324--325, 555, 593, 599, 665. % 31st
+Ramaswami, Vammi ({\tm\\210\\153\\233 \\205\\127\\203\\172\\210\\127\\233}), 383. % 32nd
+Rejection method, 125--126, 128--129, 134, 138, 139, 584, 591. % 33rd
+Right divisor, greatest common, 437--438. % 29th
+Round to even, 237, 241, 245. % 31st
+Sahni, Sartaj Kumar ({\dn srtAj k\kern-0.4em\char0\kern.45emmAr sAhnF}), 60. % 32nd
+Sieve ({\grk k'oskinon}) of Eratosthenes, 412, 416, 667. % 32nd
+Singular value decomposition, 562. % 33rd
+Stirling, James, 537. % 30th
+van Hoeij, Marinus Hubertus Franciscus [= Mark], 455.
+von Neumann, John (= Neumann J\'anos Lajos = Margittai Neumann J\'anos), 1, 3--4, 26, 36, 119, 125, 128, 138, 140, 202, 226, 278, 327. % 33rd
+Ville, Jean Andr\'e, 597. % 29th
+Wald, Abraham (= \'Abrah\'am), 163, 177--178. % 30th
+Yee, Alexander Jih-Hing (\GC79:80:-1:64% G5164
+<000000001e0000000000000000001f8000000000000000003fc000000000000000003ff0%
+ 00000000000000007ff000000000000000007ff00000000000000000ffe0000000000000%
+ 0000fff00000000000000001ff780000000000000001fc7c0000000000000003f83c0000%
+ 000000000003f83e0000000000000007f01f000000000000000fe01f000000000000001f%
+ c00f800000000000001f800fc00000000000003f8007f00000000000007f0007f8000000%
+ 000000fe0003fc000000000001fc0001fe000000000003f80000ff800000000003f00000%
+ ffc00000000007e000007ff0000000000fc000003ff8000000001fc000001ffe00000000%
+ 3f80000007ff000000007f00000003ffc0000000fe0000000fffe0000001fc0000001fff%
+ fc000001f80000003fbfff800003f00000007fdfffe00007ffffffffffe7fffc000f8fff%
+ ffffffe3fffe001f04001f800000fff8003e00001f8000003ff000fc00001f8000000fc0%
+ 01f800001f800000078007e000001f80000001000fc000001f80000000001f0000001f80%
+ 000000007e0000001f8000070000f80000001f80000f8000f00000001f80001fc000c000%
+ 00001f80003fc000007fffffffffffffe000003ffffffffffffff000003fffffffffffff%
+ f000000000001f8000000000000000001f8000000000000000001f8000000000000001c0%
+ 1f8000000000000001e01f8000000000000003f81f8380000000000003fc1f87e0000000%
+ 000007fe1f83f8000000000007fe1f81fe00000000000ffc1f807f00000000000ff81f80%
+ 3fc0000000001fc01f801ff0000000003f801f800ffc000000007f801f8007ff00000000%
+ 7f001f8003ff80000000fe001f8001ffe0000001fc001f8000fff0000003fc001f80007f%
+ f8000007f8001f80003ff800001ff0001f80001ffc00003fc0001f80000ffc00007f8000%
+ 1f800007fc0000ff0fe01f800003fe0003fc1ffc1f800003fe0007f803ffff800001fe00%
+ 1fe000ffff800000fc003f00003fff800000fc003c00001fff800000700010000007ff80%
+ 0000000010000003ff000000000000000003fe000000000000000001f800000000000000%
+ 0001f00000000000>%% unicode "4f59
+\GC72:79:-2:63% G5439
+<0003c00000000000000003f80000000000000003f80000000000000007f8000000000000%
+ 0007f80000000000000007f00000000000000007f00007000000700007e0000f83c000f8%
+ 0007e0001fc3f801fc000f80003fe3fffffe000ffffffff3ffffff001ffffffffbffffff%
+ 001ffffffffbe0007e003e03f00003e0007c003c03f00003e0007c007c03f00003e0007c%
+ 007c07f00003e0007c00f807f00003e0007c01f007f00383e0007c01e007f007c3e0007c%
+ 038007f00fe3e0007c030007e01ff3e0007c7ffffffffffbe0007c3fffffffffffe0007c%
+ 1fffffffffffe0007c000007e00003e0007c000007c00003e0007c000007f00003e0007c%
+ 000007fc0003e0007c00000fff0003e0007c00000fbfc003e0007c00001f1ff003e0007c%
+ 00001f07fc03fffffc00003e03fe03fffffc00007e00ff83fffffc0000fc007f83e0007e%
+ 0001fc003f87e0007e0003f8001fc7e0007e0007f0000fc7e0007e000fe00007c7e0007e%
+ 003fc00007c7e0007c00ff1c000307e0e00003fe1e00000001f0000ff81f80000003f800%
+ 3fe01ffffffffffc00ff801ffffffffffe00fe001ffffffffffe0040001f80000001fc00%
+ 00000f80000001f80000000f80000001f80000000f80000001f80000000f80000001f800%
+ 00000f80000001f80000000f80000001f80000000f80000001f80000000f80000001f800%
+ 00000f80000001f80000000ffffffffff80000000ffffffffff80000000f80000001f800%
+ 00000f80000001f80000000f80000001f80000000f80000001f80000000f80000001f800%
+ 00000f80000001f80000000f80000001f80000000f80000001f80000000f80000001f800%
+ 00001f80000001f80000001ffffffffff80000001ffffffffff80000001ffffffffffc00%
+ 00001f80000001fc0000001f80000001fc0000003f80000001fc0000003f80000001fc00%
+ 00003f80000001fc0000003f00000001f80000003f00000001f800>%% unicode "667a
+\GC78:78:-1:63% G2667
+<000e0000000000000000000fc000000000000000000ff000000000000000000ff8000000%
+ 00000000000ff800000000000000000ff000000000000e00000fe000000000003f00000f%
+ c000000000007f80000fc00000000000ffc0000fc03fffffffffffe0000fc01fffffffff%
+ fff0000fc00ffffffffffff0000fc00e000000000000000fc000000000000000000fc000%
+ 000000000000000fc000000000000000000fc000000000000000000fc000000000000000%
+ 000ff800700000078000000fff007800000fc000000fffc07e00000fe000020fdfe07f00%
+ 001ff000030fcff07ffffffff800030fc7f87ffffffffc00030fc3f87ffffffffc00038f%
+ c1fc7e00000ff000038fc1fc7e00000fc000078fc0fc7e00000fc000078fc0fc7e00000f%
+ c0000f8fc0787e00000fc0000f8fc0707e00000fc0001f8fc0007e00000fc0001f8fc000%
+ 7e00000fe0003f0fc0007e00000fe0007f0fc0007e00000fe000ff0fc0007e00000fe000%
+ ff0fc0007e00000fe0007f0fc0007e00000fe0007f0fc0007fffffffe0003c0fc0007fff%
+ ffffe000000fc0007e00000fe000000fc0007e00000fe000000fc0007e00000fe000000f%
+ c0007e00000fe000000fc0007e00000fe000000fc0007e00000fe000000fc0007e00000f%
+ e000000fc0007e00000fe000000fc0007e00000fe000000fc0007e00000fe000000fc000%
+ 7e00000fe000000fc0007e00000fe000000fc0007e00000fe000000fc0007e00000fe000%
+ 000fc0007fffffffe000000fc0007fffffffe000000fc0007fffffffe000000fc0007e00%
+ 000fe000000fc0007e00000fe000000fc0007e00000fc000000fc0007e00000fc000000f%
+ c0007c0000000000000fc0007c0000000000000fc000000000000000000fc00000000000%
+ 0380000fc0000000000007c0000fc000000000000fe0000fc000000000001ff0000fc000%
+ 000000003ff8000fcffffffffffffffc000fc7fffffffffffffc000fc200000000000000%
+ 000fc000000000000000000fc000000000000000001fc000000000000000001fc0000000%
+ 00000000001fc000000000000000001e0000000000000000>%% unicode "6052
+), 280. % 30th
+Ziegler Hunts, Julian James, 617. % 31st
+
+\vfill
+\enddoublecolumns
+\endchange
+
+\bye
+
+[The next printing will be the 34th.]
+not listed above:
+page 28, (Ph.D...) -> [Ph.D...] in line -6
+page 172, better wording in proof of Lemma P4
+page 209, line before exercises, 7.2.1 -> 7.2.1.1
+page 240, better ref to the Ashenhurst--Metropolis paper
+page 348, four lines after (33): ", but" -> ". But"
+page 396, \"\i in Kraitchik
+page 407, \"\i in Kraitchik
+page 562, better spacing in $UDV^T$
+page 568, line 1, 7.2.1 -> 7.2.1.1
+page 622, reformat PhD reference on line 7
+page 644, slightly better spacing on last line of answer 29
+page 676, reformat PhD reference on line 7
+page 708, (Ph.D...) -> [Ph.D...] in answer 47
+page 738, fix AMM entry
+
+ARTICLES "TO APPEAR" THAT ARE STILL PENDING:
+Ambainis/Filmus/LeGall paper on Coppersmith--Winograd method
