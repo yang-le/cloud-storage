@@ -91,7 +91,7 @@ Syntactic Algorithms
 
 * 来自互联网的资料
 ** 第1卷分册翻译
-<<translation-of-vol1fasc>>
+#+NAME: translation-of-vol1fasc
 
 苏运霖，计算机程序设计艺术 第1卷第1册（双语版） MMIX:新千年的RISC计算机（北京：机械工业出版社，2006），268页 ISBN 7-111-18031-3
 
