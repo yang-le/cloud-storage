@@ -85,6 +85,11 @@ Syntactic Algorithms
 
 ** 勘误和增补
 *** 第1卷
+[[file:errata/1/1-appc.ps.gz][附录C]]
+
+[[file:errata/1/all1.ps.gz][2010年之后的勘误]]
+
+
 *** 第2卷
 *** 第3卷
 *** 第4A卷
