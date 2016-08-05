@@ -15,7 +15,7 @@ Volume 1 Fascicle 1, MMIX: A RISC Computer for the New Millennium (2005), v+134p
 苏运霖，计算机程序设计艺术，第1卷：基本算法（北京：国防工业出版社，2002），xx+625页
 
 *** 分册翻译
-参见[[%E7%AC%AC1%E5%8D%B7%E5%88%86%E5%86%8C%E7%BF%BB%E8%AF%91][第1卷分册翻译]]
+参见[[第1卷分册翻译]]
 
 ** 第2卷
 Seminumerical Algorithms, Third Edition (Reading, Massachusetts: Addison-Wesley, 1997), xiv+762pp. ISBN 0-201-89684-2
@@ -56,7 +56,7 @@ Volume 4 Fascicle 4, Generating All Trees; History of Combinatorial Generation (
 
 Volume 4 Fascicle 0, under the direction of Lin Peng Huang (Beijing: Chinese Machine Press, 2010), xii+432pp.
 
-更多分册翻译，参见[[%E7%AC%AC4A%E5%8D%B7%E5%88%86%E5%86%8C%E7%BF%BB%E8%AF%91][第4A卷分册翻译]]
+更多分册翻译，参见[[第4A卷分册翻译]]
 
 ** 第4B卷
 第4B卷现有一个分册已出版，其将作为该卷的中间三分之一的内容，如下
