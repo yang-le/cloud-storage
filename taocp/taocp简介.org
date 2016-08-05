@@ -15,7 +15,7 @@ Volume 1 Fascicle 1, MMIX: A RISC Computer for the New Millennium (2005), v+134p
 苏运霖，计算机程序设计艺术，第1卷：基本算法（北京：国防工业出版社，2002），xx+625页
 
 *** 分册翻译
-无(但实际上应该是有，待查)
+参见[[translation-of-vol1fasc][第1卷分册翻译]]
 
 ** 第2卷
 Seminumerical Algorithms, Third Edition (Reading, Massachusetts: Addison-Wesley, 1997), xiv+762pp. ISBN 0-201-89684-2
@@ -56,7 +56,7 @@ Volume 4 Fascicle 4, Generating All Trees; History of Combinatorial Generation (
 
 Volume 4 Fascicle 0, under the direction of Lin Peng Huang (Beijing: Chinese Machine Press, 2010), xii+432pp.
 
-(应该还有更多分册翻译，待查)
+更多分册翻译，参见[[translation-of-vol4afasc][第4A卷分册翻译]]
 
 ** 第4B卷
 第4B卷现有一个分册已出版，其将作为该卷的中间三分之一的内容，如下
@@ -90,10 +90,10 @@ Syntactic Algorithms
 *** 第4A卷
 
 * 来自互联网的资料
-** 第1卷分册翻译
+** 第1卷分册翻译 #<<translation-of-vol1fasc>>
 苏运霖，计算机程序设计艺术 第1卷第1册（双语版） MMIX:新千年的RISC计算机（北京：机械工业出版社，2006），268页 ISBN 7-111-18031-3
 
-** 第4A卷分册翻译
+** 第4A卷分册翻译 #<<translation-of-vol4afasc>>
 黄林鹏 等，计算机程序设计艺术 第4卷第0册（双语版） 组合算法与布尔函数概论（北京：机械工业出版社，2010），432页 ISBN 7-111-30334-3
 
 苏运霖，计算机程序设计艺术 第4卷第2册（双语版） 生成所有元组和排列（北京：机械工业出版社，2006），267页 ISBN 7-111-17773-8
@@ -101,6 +101,7 @@ Syntactic Algorithms
 苏运霖，计算机程序设计艺术 第4卷第3册（双语版） 生成所有组合和分划（北京：机械工业出版社，2006），317页 ISBN 7-111-17774-6
 
 苏运霖，计算机程序设计艺术 第4卷第4册（双语版） 生成所有树 组合生成的历史（北京：机械工业出版社，2007），230页 ISBN 7-111-20825-9
+
 ** 关于所有分册的资料
 互联网网址
 http://www.cs.utsa.edu/~wagner/knuth/
