@@ -84,11 +84,18 @@ Syntactic Algorithms
 如果一切顺利，在1--5卷完成之后，Knuth计划发布第6卷和第7卷
 
 ** 勘误和增补
+Knuth的勘误包括error（错误），amendments（修订），plans（计划），improvements（改进）四种类型，其严重程度依次降低。
+
+如下的链接中，标注``全''的为上述四种类型都包含的勘误版本，未标明的仅包含前三种类型的勘误。
+
 *** 第1卷
+[[file:errata/1/all1-pre.ps.gz][第3版勘误]]
+
 [[file:errata/1/1-appc.ps.gz][附录C]]
 
-[[file:errata/1/all1.ps.gz][2010年之后的勘误]]
+[[file:errata/1/all1.ps.gz][2010年之后的勘误（全）]]
 
+[[file:errata/1/all1f1.ps.gz][第1分册勘误]]
 
 *** 第2卷
 *** 第3卷
