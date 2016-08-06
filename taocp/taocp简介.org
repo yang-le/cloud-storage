@@ -216,7 +216,7 @@ Knuth的勘误包括error（错误），amendments（修订），plans（计划�
 http://www.cs.utsa.edu/~wagner/knuth/
 中有关于目前释出的所有分册的下载链接。
 
-其中没有处理到的分册是第8a分册。
+其中没有处理到的分册是[[file:fascicle/fasc8a.ps.gz][第8a分册]]。
 
 当然，也许还有其他一些分册释出，但我也还没找到...
 
