@@ -164,35 +164,35 @@ Knuth的勘误包括error（错误），amendments（修订），plans（计划�
 
 **** 勘误
 
-[[file:errata/4a/err4f0.ps.gz][第0分册勘误]]
+[[file:errata/4A/err4f0.ps.gz][第0分册勘误]]
 
-[[file:errata/4a/all4f0.ps.gz][第0分册勘误（全）]]
+[[file:errata/4A/all4f0.ps.gz][第0分册勘误（全）]]
 
-[[file:errata/4a/err4f1.ps.gz][第1分册勘误]]
+[[file:errata/4A/err4f1.ps.gz][第1分册勘误]]
 
-[[file:errata/4a/all4f1.ps.gz][第1分册勘误（全）]]
+[[file:errata/4A/all4f1.ps.gz][第1分册勘误（全）]]
 
-[[file:errata/4a/err4f2.ps.gz][第2分册勘误]]
+[[file:errata/4A/err4f2.ps.gz][第2分册勘误]]
 
-[[file:errata/4a/all4f2.ps.gz][第2分册勘误（全）]]
+[[file:errata/4A/all4f2.ps.gz][第2分册勘误（全）]]
 
-[[file:errata/4a/err4f3.ps.gz][第3分册勘误]]
+[[file:errata/4A/err4f3.ps.gz][第3分册勘误]]
 
-[[file:errata/4a/all4f3.ps.gz][第3分册勘误（全）]]
+[[file:errata/4A/all4f3.ps.gz][第3分册勘误（全）]]
 
-[[file:errata/4a/err4f4.ps.gz][第4分册勘误]]
+[[file:errata/4A/err4f4.ps.gz][第4分册勘误]]
 
-[[file:errata/4a/all4f4.ps.gz][第4分册勘误（全）]]
-
-
-[[file:errata/4a/err4a.ps.gz][第1版勘误]]
-
-[[file:errata/4a/all4a.ps.gz][第1版勘误（全）]]
+[[file:errata/4A/all4f4.ps.gz][第4分册勘误（全）]]
 
 
-[[file:errata/4a/err4f6.ps.gz][第6分册勘误]]
+[[file:errata/4A/err4a.ps.gz][第1版勘误]]
 
-[[file:errata/4a/all4f6.ps.gz][第6分册勘误（全）]]
+[[file:errata/4A/all4a.ps.gz][第1版勘误（全）]]
+
+
+[[file:errata/4A/err4f6.ps.gz][第6分册勘误]]
+
+[[file:errata/4A/all4f6.ps.gz][第6分册勘误（全）]]
 
 * 来自互联网的资料
 
