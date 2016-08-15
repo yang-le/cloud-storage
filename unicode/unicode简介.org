@@ -7,9 +7,15 @@ UNICODE为4字节的一个字符编码空间，目的是把全世界所有文字
 
 截至2016年6月，UNICODE发布了9.0版本，共收录字符128237个。为了对这么多的字符进行有效的分类，UNICODE引入了字符平面的概念。
 
-UNICODE中，每65536（$2^16$）个字符为一组，称为一个平面(Plane)。目前的UNICODE空间共有17个平面，如下表所示
+UNICODE中，每65536（2^{16}）个字符为一组，称为一个平面(Plane)。目前的UNICODE空间共有17个平面，如下表所示
 
-
-
-
-
+| 平面                | 范围                | 名称              | 英文                                | 缩写  |
+|---------------------+---------------------+-------------------+-------------------------------------+-------|
+| 0号平面             | U+0000 - U+FFFF     | 基本多文种平面    | Basic Multilingual Plane            | BMP   |
+| 1号平面             | U+10000 - U+1FFFF   | 多文种补充平面    | Supplementary Multilingual Plane    | SMP   |
+| 2号平面             | U+20000 - U+2FFFF   | 表意文字补充平面  | Supplementary Ideographic Plane     | SIP   |
+| 3号平面             | U+30000 - U+3FFFF   | 表意文字第三平面  | Tertiary Ideographic Plane          | TIP   |
+| 4号平面 至 13号平面 | U+40000 - U+DFFFF   | （尚未使用）      |                                     |       |
+| 14号平面            | U+E0000 - U+EFFFF   | 特别用途补充平面  | Supplementary Special-purpose Plane | SSP   |
+| 15号平面            | U+F0000 - U+FFFFF   | 私人使用区（A区） | Private Use Area-A                  | PUA-A |
+| 16号平面            | U+100000 - U+10FFFF | 私人使用区（B区） | Private Use Area-B                  | PUA-B |
