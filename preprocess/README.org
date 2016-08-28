@@ -1,0 +1,145 @@
+#+TITLE: C/C++ 预处理元编程初步
+
+* 基础概念
+
+** 宏展开的规则
+
+*** 规则1
+预处理器会用宏的内容替换宏的名字，替换的顺序是从左至右的
+
+#+BEGIN_SRC C
+#define SIMPLE_DEFINITION REPLACEMENT
+#+END_SRC
+
+*** 规则2
+宏函数的参数被替换到宏体内时，会被完全地展开;
+除非参数被字符串化(使用‘#’)或者被与其他标识符粘连(使用"##")。
+替换完成后，整个宏体，包括被替换的参数，会被再次扫描和展开。
+结果就是，宏函数的参数需要被扫描两次才会完全展开。
+
+#+BEGIN_SRC C
+#define MACRO(params) STUFF_TO_REPLACE_MACRO_WITH
+#+END_SRC
+
+让我们来考虑一个简单的例子，看看宏是如何展开的
+
+#+BEGIN_SRC C
+#define MULTIPLY(x, y) x * y
+MULTIPLY(x, y) // 被展开为 x * y
+
+MULTIPLY(x, MULTIPLY(y, z)) // 被展开为 x * y * z
+// 展开的过程是这样的
+// (1) 展开参数 -> MULTIPLY(x, y * z)
+// (2) 替换宏体 -> x * y * z
+
+MULTIPLY(x + y, z) // 被展开为 x + y * z
+MULTIPLY((x + y), z) // 被展开为 (x + y) * z
+#+END_SRC
+
+*** 规则3
+宏函数仅当其后有括号时才会被展开。
+
+事情从这里开始变得有趣起来，例如
+
+#+BEGIN_SRC C
+#define EMPTY() // 这个宏什么都不做
+#define EVAL(...) __VA_ARGS__ // 这个宏用来做参数的展开
+#define HELLO() "Hello World"
+
+HELLO() // 如你所愿，这个宏被展开为"Hello World"
+
+HELLO EMPTY() () // 由于规则3, 这个宏被展开为 HELLO () 而不是 "Hello World"
+
+EVAL ( HELLO EMPTY() () ) // 这个宏被展开为"Hello World"
+// 基于规则2
+// 首先是参数被展开，如前一个例子所述，参数被展开为 HELLO ()
+// 然后是第二遍扫描，这次HELLO ()被展开为"Hello World"
+#+END_SRC
+
+如果你明白了，尝试理解下面的例子
+
+#+BEGIN_SRC C
+HELLO() // "Hello World"
+HELLO EMPTY() () // HELLO ()
+HELLO EMPTY EMPTY() () () // HELLO EMPTY () ()
+
+EVAL(HELLO EMPTY () ()) // "Hello World"
+EVAL(HELLO EMPTY EMPTY() () ()) // HELLO ()
+EVAL(EVAL(HELLO EMPTY EMPTY() () ())) // "Hello World"
+#+END_SRC
+
+*** 规则4
+当宏名出现在该宏的定义中时，该宏名会被原样输出，不会被展开
+
+#+BEGIN_SRC C
+#define RECURSE(x) x RECURSE(x)
+RECURSE(x) // 被展开为 x RECURSE(x)
+
+EVAL(RECURESE(x)) // 仍然被展开为 x RECURSE(x)
+
+#define MUTA() a MUTB()
+#define MUTB() b MUTA()
+
+MUTA() // 被展开为 a b MUTA()
+#+END_SRC
+
+** 展开和延迟宏调用
+
+通过展开和延迟宏调用，我们可以做很多技巧性的东西，首先来看一些例子
+
+#+BEGIN_SRC C
+#define FOO(x, y) x y
+#define BAR() x, y
+
+FOO(BAR()) // 这个宏调用会报错，因为FOO需要两个参数，但我们只传给他一个
+
+DEFER(FOO) (BAR()) // 延迟对FOO的调用，展开的结果为FOO(x, y)
+
+EVAL(DEFER(FOO) (BAR())) // 展开为 x y
+#+END_SRC
+
+DEFER的实现实际上很简单，通过在宏名和其参数之间加入EMPTY()，我们就可以阻止其首先被展开。
+
+#+BEGIN_SRC C
+#define DEFER(...) __VA_ARGS__ EMPTY()
+#+END_SRC
+
+DEFER两次通常也是很有用的，称之为OBSTRUCT
+
+#+BEGIN_SRC C
+#define OBSTRUCT(...) __VA_ARGS__ DEFER(EMPTY)()
+#+END_SRC
+
+** 递归
+
+根据规则4,似乎我们无法在宏函数中实现递归;但通过一些技巧，我们仍然可以在一定程度上实现它
+
+#+BEGIN_SRC C
+#define RECURSE(x) x DEFER(RECURSE_INDIRECT) () (x)
+#define RECURSE_INDIRECT() RECURSE
+
+RECURSE(x) //被展开为 x RECURSE_INDIRECT() (x)
+
+EVAL(RECURSE(x)) //被展开为 x x RECURSE_INDIRECT() (x)
+// 这相当于将x RECURSE_INDIRECT() (x)再展开一次
+// 首先RECURSE_INDIRECT()被展开为RECURSE，然后RECURSE与其后紧随的(x)构成宏函数调用
+// 因此又被展开为 x RECURSE_INDIRECT() (x)，加上最前面的x，最终结果为
+// x x RECURSE_INDIRECT() (x)
+
+EVAL(EVAL(RECURSE(x))) //被展开为 x x x RECURSE_INDIRECT() (x)
+#+END_SRC
+
+要注意的是，INDIRECT宏一定*不要*直接调用其替代的那个原始宏。
+否则在某一时刻，INDIRECT宏就会出现在其展开式中，而这将阻止该宏被再次展开。例如
+
+#+BEGIN_SRC C
+#define RECURSE(x) x DEFER(RECURSE_INDIRECT)(x)
+#define RECURSE_INDIRECT(x) RECURSE(x)
+
+RECURSE(x) //被展开为 x RECURSE_INDIRECT(x)
+
+EVAL(RECURSE(x)) //被展开为 x x RECURSE_INDIRECT(x)
+EVAL(EVAL(RECURSE(x))) // 抱歉，仍然会被展开为 x x RECURSE_INDIRECT(x)
+// 这里的RECURSE_INDIRECT展开式中出现了其自身
+// 因此不会被再次展开了
+#+END_SRC
