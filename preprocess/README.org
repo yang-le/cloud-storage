@@ -1,6 +1,6 @@
 #+TITLE: C/C++ 预处理元编程初步
 
-* 基础概念
+* 基础
 
 ** 宏展开的规则
 
@@ -143,3 +143,155 @@ EVAL(EVAL(RECURSE(x))) // 抱歉，仍然会被展开为 x x RECURSE_INDIRECT(x)
 // 这里的RECURSE_INDIRECT展开式中出现了其自身
 // 因此不会被再次展开了
 #+END_SRC
+
+* 进阶概念
+
+** 模式匹配初步
+
+*** 使用CAT和宏名的模式匹配
+
+一般的形式下，我们令我们的宏调用一个粘连版本的宏;其参数就是我们想要匹配的值。
+
+例如，我们可以按照如下的方法实现AND
+
+#+BEGIN_SRC C
+#define CAT(x. y) PRIMITIVE_CAT(x, y)
+#define PRIMITIVE_CAT(x, y) x ## y
+
+#define AND(x, y) CAT(AND_, CAT(x, y))
+#define AND_00 0
+#define AND_10 0
+#define AND_01 0
+#define AND_11 1
+
+AND(0, 0) // 0
+AND(0, 1) // 0
+AND(1, 0) // 0
+AND(1, 1) // 1
+#+END_SRC
+
+*** If 条件
+
+If条件是一个用模式匹配来返回函数的例子。
+我们用1和0来表示TRUE和FALSE。我们的IF宏只需简单地返回对应的函数即可。
+
+#+BEGIN_SRC C
+#define IF(value) CAT(IF_, value)
+#define IF_1(true, ...) true
+#define IF_0(true, ...) __VA_ARGS__
+
+IF(1) (a, b) // a
+IF(0) (a, b) // b
+
+IF(1) (a) // a
+IF(0) (a) // return nothing
+#+END_SRC
+
+*** 模式查找
+
+现在，我们的模式匹配有两个问题。
+第一个发生在没有有效的模式可被匹配时，例如
+
+#+BEGIN_SRC C
+AND(1, 2) // 展开为AND_12
+#+END_SRC
+
+第二个问题是我们需要写出所有可能的输入/输出组合。
+我们知道AND(x, y)等于1当且仅当x和y都等于1。因此其他三组模式是冗余的。
+
+为了解决这些问题，我们需要知道一个给定的模式是否存在。
+如果这个模式存在，我们就返回其值;否则，我们就返回一个默认值。
+
+(方法一) 这里的想法是，我们令我们的宏在通常情况下返回默认值。
+但是，在匹配到模式的时候，我们需要在宏展开之前更新其返回值。
+这样就可以区分这两种情况。举例来说
+
+#+BEGIN_SRC C
+#define EAT(...) // 这个宏“吃掉”其所有的参数
+
+// 默认情况下，我们返回0
+#define IS_MATCH(val) (CAT(IS_MATCH_, val), 0)
+
+// 除非在MATCH的情况下，我们返回1，并把原来的0吃掉
+#define IS_MATCH_MATCH IS_MATCH_MATCH, 1) EAT (
+
+IS_MATCH(MATCH) // 展开为(IS_MATCH_MATCH, 1)
+IS_MATCH(OTHER) // 展开为(IS_MATCH_OTHER, 0)
+
+#define SECOND(a, b, ...) b
+#define _IS_MATCH(val) EVAL(SECOND IS_MATCH(val))
+
+_IS_MATCH(MATCH) // 返回1
+_IS_MATCH(OTHER) // 返回0
+#+END_SRC
+
+(方法二) 利用可变参数
+
+*** 使用模式匹配默认值
+
+好了，现在我们能够区分一个模式是否存在匹配了。让我们做完剩下的事情
+
+#+BEGIN_SRC C
+#define BIT_AND_11 MATCH
+#define BIT_AND(x, y) _IS_MATCH(CAT(AND_, CAT(x, y)))
+
+BIT_AND(0, 0) // 0
+BIT_AND(0, 1) // 0
+BIT_AND(1, 0) // 0
+BIT_AND(1, 1) // 1
+
+#define NOT_0 MATCH
+#define NOT(x) _IS_MATCH(CAT(NOT_, x))
+
+NOT(0) // 1
+NOT(1) // 0
+
+#define BIT_OR_00 MATCH
+#define BIT_OR(x, y) NOT(_IS_MATCH(CAT(OR_, CAT(x, y))))
+
+BIT_OR(0, 0) // 0
+BIT_OR(0, 1) // 1
+BIT_OR(1, 0) // 1
+BIT_OR(1, 1) // 1
+#+END_SRC
+
+注意我们再也不需要列举所有的输入/输出值了。不过，
+目前我们的逻辑运算仍然有些需要解决的问题，例如
+
+#+BEGIN_SRC C
+BIT_AND(2, 1) // 返回0，但我们希望返回1
+NOT(-1) // 报错，因为不能把NOT_和-粘连起来;但我们希望返回0
+#+END_SRC
+
+因为我们的逻辑运算仅在二进制范围内是有效的。
+要解决上面的问题，我们需要把参数先转换到二进制范围内。
+
+即我们需要一个宏，该宏永远返回1，除非宏的参数是0。
+
+#+BEGIN_SRC C
+#define BOOL(x) NOT(NOT(x))
+BOOL(32) // 1
+BOOL(1)  // 1
+BOOL(0)  // 0
+BOOL(a)  // 1
+
+#define AND(x, y) BIT_AND(BOOL(x), BOOL(y))
+#define OR(x, y) BIT_OR(BOOL(x), BOOL(y))
+#+END_SRC
+
+在进行运算前，先将参数BOOL一下，然后再进行运算，这就解决了第一个问题。
+
+至于第二个问题...，目前貌似没有很好的办法，我们暂且认为是无效参数错误。
+
+判断一个宏的参数是否在括号中通常是很有用的，利用前面的工具，我们很容易实现这个目的
+
+#+BEGIN_SRC C
+#define IS_ENCLOSED_TEST(...) MATCH
+#define IS_ENCLOSED(x, ...) _IS_MATCH(IS_ENCLOSED_TEST x)
+IS_ENCLOSED(Foo, Bar)   // 0
+IS_ENCLOSED((Foo, Bar)) // 1
+#+END_SRC
+
+*** 一个略复杂一些的CAT
+
+** 算术和循环
