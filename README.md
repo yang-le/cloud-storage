@@ -40,3 +40,5 @@ TODO
 ====
 
 - [ ] An introduce to TeX and friends
+- [ ] An introduce to CERN
+- [ ] An introduce to quantum computing (from quantum gates to D-Wave Systems)
