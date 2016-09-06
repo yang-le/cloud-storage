@@ -4,5 +4,5 @@
 
 经典比特有一个状态，或者是0，或者是1
 
-量子比特也有一个状态，其可能的两种取值为\left|0\left\rangle，\left|1\left\rangle。
+量子比特也有一个状态，其可能的两种取值为$\left|0\left\rangle$，$\left|1\left\rangle$。
 
