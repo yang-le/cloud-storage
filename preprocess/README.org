@@ -225,7 +225,17 @@ _IS_MATCH(MATCH) // 返回1
 _IS_MATCH(OTHER) // 返回0
 #+END_SRC
 
-(方法二) 利用可变参数
+(方法二) 利用可变参数，使其在不同的情况下展开为不同数量的参数。
+其核心逻辑如下
+
+#+BEGIN_SRC C
+#define CHECK_N(x, n, ...) n
+#define CHECK(...) CHECK_N(__VA_ARGS__, 0,)
+#define MATCH ~, 1,
+
+CHECK(MATCH) // 展开为1
+CHECK(OTHER) // 展开为0
+#+END_SRC
 
 *** 使用模式匹配默认值
 
@@ -294,4 +304,77 @@ IS_ENCLOSED((Foo, Bar)) // 1
 
 *** 一个略复杂一些的CAT
 
+CAT的一个问题是，当你尝试诸如CAT(pattern, (x, y))的操作时，预处理器会抱怨说不能将pattern和括号粘连在一起。
+而利用前面的一些技术，我们可以绕过这一限制。
+
+#+BEGIN_SRC C
+#define CAT_1(a, b) a b
+#define CAT_0(a, b) a ## b
+#define NEW_CAT(a, b) CAT(CAT_, IS_ENCLOSED(b)) (a, b)
+#+END_SRC
+
 ** 算术和循环
+
+预处理器并不支持算数运算。当我说“不支持”时，我的意思是，如果你这样定义加法
+
+#+BEGIN_SRC C
+#define ADD(a, b) a + b
+ADD(1, 2) // 返回 1 + 2
+#+END_SRC
+
+这不是我们想要的，我们希望ADD(1, 2)最好能返回3。然而这是可能的吗？
+
+现在让我们尝试来实现一些基本的算数，例如加减等等。
+在此基础上，我们最终将实现简单的循环操作。
+
+*** 计数
+
+至少有两种方法来实现一定范围内的计数操作。
+
+方法一是利用前面定义的逻辑操作实现一个全加器。
+通过把十进制数字转换为二进制数字，然后用全加器完成算数运算，然后再转换回十进制表示。
+
+方法二是先定义增1和减1操作，再利用递归实现加法和减法。
+我们先来看看这种方式
+
+#+BEGIN_SRC C
+#define INC_N2 N1 // -2 增1 为 -1
+#define INC_N1 0  // -1 增1 为 0
+#define INC_0  1
+#define INC_1  2
+#define INC_2  N2 // 让我们的计数系统回绕
+
+#define INC(n) CAT(INC_, n)
+
+#define DEC_N2 2  // 让我们的计数系统回绕
+#define DEC_N1 N2
+#define DEC_0  N1
+#define DEC_1  0
+#define DEC_2  1
+
+#define DEC(n) CAT(DEC_, n)
+#+END_SRC
+
+上面定义的模式很容易用脚本来生成，
+这样我们就可以将计算范围扩展到其他特定的区间，例如 -1024 ～ 1024。
+
+关键部分来了，使用递归定义，我们可以这样实现加法：
+
+ADD(a, 0) = a
+
+ADD(a, b) = ADD(a + 1, b -1)
+
+也就是通过减少b，递归地调用ADD，直到b为0，我们就得出了最终的结果。
+这提示我们写出如下的宏
+
+#+BEGIN_SRC C
+#define ADD(a, b) IF(BOOL(b)) (ADD(INC(a), DEC(b)), a)
+#+END_SRC
+
+然而很遗憾，这个方法有些问题。
+如前面所说，因为在ADD的定义中又出现了ADD本身，这个宏不会被递归地展开下去。
+不过，通过引入一个间接调用，我们可以绕过这个问题
+
+#+BEGIN_SRC C
+
+#+END_SRC
