@@ -1,0 +1,94 @@
+\section{量子比特}
+
+\subsection{单量子比特}
+
+经典比特有一个状态，或者是0，或者是1。
+
+量子比特也有一个状态，其可能的两种取值为$\ket{0}$，$\ket{1}$。
+
+量子比特与经典比特的区别在于，量子比特可以是上述两个状态的线性组合，称为叠加态(superposition)。例如
+
+\begin{equation}
+\ket{\psi} = \alpha\ket{0} + \beta\ket{1}
+\end{equation}
+
+其中$\alpha$和$\beta$是复数。在测量量子比特时，我们得到0的概率是$|\alpha|^2$;得到1的概率是$|\beta|^2$。
+
+因此我们有$|\alpha|^2 + |\beta|^2 = 1$。
+
+一个今后常用的状态称之为$\ket{+}$，其定义为
+
+\begin{equation}
+\ket{+} = \frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}
+\end{equation}
+
+因为$\alpha$和$\beta$是模长和为1的复数，假定其幅角之差为$\phi$,我们就可以将两者写作$\alpha = \cos\frac{\theta}{2}e^{i\delta}$, $\beta = \sin\frac{\theta}{2}e^{i(\delta + \phi)}$。故而
+
+\begin{equation}
+\begin{aligned}
+\ket{\psi} &= \cos\frac{\theta}{2}e^{i\delta}\ket{0} + \sin\frac{\theta}{2}e^{i(\delta + \phi)}\ket{1} \\
+&= e^{i\delta}(\cos\frac{\theta}{2}\ket{0} + \sin\frac{\theta}{2}e^{i\phi}\ket{1})
+\end{aligned}
+\end{equation}
+
+\begin{figure}
+  \centering
+  \input{BlochSphere.pdf_tex}
+  \caption{Bloch Sphere}
+\end{figure}
+
+其中$e^{i\delta}$,称作共同相位（global phase）。因为对$\ket{0}$、对$\ket{1}$都一样影响，不具有观测效应，故可以将之舍弃不看。
+
+至于相对相位(relative phase)$e^{i\phi}$,就不同了，它的影响可以在球面上表现出来。故得
+
+\begin{equation}
+\ket{\psi} = \cos\frac{\theta}{2}\ket{0} + \sin\frac{\theta}{2}e^{i\phi}\ket{1}
+\end{equation}
+
+\subsection{多量子比特}
+
+\begin{quote}
+Hilbert空间很大。
+
+--- Calton Caves
+\end{quote}
+
+一个双量子比特有四种基态，分别记为$\ket{00}$，$\ket{01}$，$\ket{10}$，$\ket{11}$。
+因此，描述双量子比特的状态向量为
+
+\begin{equation}
+\ket{\psi} = a_{00}\ket{00} + a_{01}\ket{01} + a_{10}\ket{10} + a_{11}\ket{11}
+\end{equation}
+
+类似单比特的情况，测量得到$\ket{x}$的概率为$|a_x|^2$，故有归一化条件
+
+\begin{equation}
+\sum_{x\in\{0,1\}^2}|a_x|^2 = 1
+\end{equation}
+
+不过，对于双量子比特，我们还有可能只测量其中一个比特，例如第一个。如你所想，测量第一个比特得到0的概率为$|a_{00}|^2 + |a_{01}|^2$。
+而测量后的状态为
+
+\begin{equation}
+\ket{\psi'} = \frac{a_{00}\ket{00} + a_{01}\ket{01}}{\sqrt{|a_{00}|^2 + |a_{01}|^2}}
+\end{equation}
+
+注意这里的概率幅仍满足归一化条件。
+
+双量子比特中有一个重要的状态，称之为Bell态或EPR对，其定义为
+
+\begin{equation}
+\frac{\ket{00} + \ket{11}}{\sqrt{2}}
+\end{equation}
+
+Bell态的性质是当测量第一量子比特时，以1/2概率得到0,进入测后状态$\ket{\psi'} = \ket{00}$;
+同样也会以1/2概率得到1,进入测后状态$\ket{\psi'} = \ket{11}$。
+结果是，测量第二量子比特总会得到与第一量子比特一样的结果。也就是说，测量结果是相关的。
+
+更一般地，可以考虑n量子比特系统。其基态形如$\ket{x_1x_2\cdots x_n}$。
+其状态由$2^n$个概率幅所确定。n = 500时，这个数字就已经超过了整个宇宙中原子的估算总数。
+所以Hilbert空间确实是个巨大的空间。然而即使是包含几百个原子的系统，大自然也要处理如此巨量的数据。
+看起来为了进一步的计算系统的演化，大自然需要在手边放上$2^{500}$张看不见的草稿纸。
+
+一个大胆的设想是，我们是否能够---以及如何才能---利用如此强大的计算能力呢？
+

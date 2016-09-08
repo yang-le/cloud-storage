@@ -1,4 +1,4 @@
-\documentclass[UTF8]{ctexart}
+\documentclass[hyperref, UTF8]{ctexart}
 
 \usepackage{braket}
 \usepackage{amsmath}
@@ -15,51 +15,11 @@ yangle0125@qq.com
 
 %\tableofcontents
 
+\part{基本概念}
 
-\section{量子比特}
+\input{qubit.tex}
 
-经典比特有一个状态，或者是0，或者是1。
-
-量子比特也有一个状态，其可能的两种取值为$\ket{0}$，$\ket{1}$。
-
-量子比特与经典比特的区别在于，量子比特可以是上述两个状态的线性组合，称为叠加态(superposition)。例如
-
-\begin{equation}
-\ket{\psi} = \alpha\ket{0} + \beta\ket{1}
-\end{equation}
-
-其中$\alpha$和$\beta$是复数。在测量量子比特时，我们得到0的概率是$|\alpha|^2$;得到1的概率是$|\beta|^2$。
-
-因此我们有$|\alpha|^2 + |\beta|^2 = 1$。
-
-一个今后常用的状态称之为$\ket{+}$，其定义为
-
-\begin{equation}
-\ket{+} = \frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}
-\end{equation}
-
-因为$\alpha$和$\beta$是模长和为1的复数，假定其幅角之差为$\phi$,我们就可以将两者写作$\alpha = \cos\frac{\theta}{2}e^{i\delta}$, $\beta = \sin\frac{\theta}{2}e^{i(\delta + \phi)}$。故而
-
-\begin{equation}
-\begin{aligned}
-\ket{\psi} &= \cos\frac{\theta}{2}e^{i\delta}\ket{0} + \sin\frac{\theta}{2}e^{i(\delta + \phi)}\ket{1} \\
-&= e^{i\delta}(\cos\frac{\theta}{2}\ket{0} + \sin\frac{\theta}{2}e^{i\phi}\ket{1})
-\end{aligned}
-\end{equation}
-
-\begin{figure}
-  \centering
-  \input{BlochSphere.pdf_tex}
-  \caption{Bloch Sphere}
-\end{figure}
-
-其中$e^{i\delta}$,称作共同相位（global phase）。因为对$\ket{0}$、对$\ket{1}$都一样影响，不具有观测效应，故可以将之舍弃不看。
-
-至于相对相位(relative phase)$e^{i\phi}$,就不同了，它的影响可以在球面上表现出来。故得
-
-\begin{equation}
-\ket{\psi} = \cos\frac{\theta}{2}\ket{0} + \sin\frac{\theta}{2}e^{i\phi}\ket{1}
-\end{equation}
+\input{quantum_computation.tex}
 
 \end{document}
 
