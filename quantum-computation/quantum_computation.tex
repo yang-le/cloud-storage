@@ -2,3 +2,71 @@
 
 \subsection{单量子比特门}
 
+量子状态$\alpha\ket{0} + \beta\ket{1}$写成向量形式
+
+\begin{equation}
+\begin{bmatrix}
+\alpha \\
+\beta
+\end{bmatrix}
+\end{equation}
+
+其中上面一项代表0的幅度，而下面一项代表1的幅度。容易想到矩阵
+
+\begin{equation}
+X \equiv
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}
+\end{equation}
+
+可使两者互换，即
+
+\begin{equation}
+X
+\begin{bmatrix}
+\alpha \\
+\beta
+\end{bmatrix}
+=
+\begin{bmatrix}
+\beta \\
+\alpha
+\end{bmatrix}
+\end{equation}
+
+容易验证，$X\ket{0} = \ket{1}$，以及$X\ket{1} = \ket{0}$。因此$X$就是量子非门。
+
+如果一个矩阵可以表示一个量子门，那么对这个矩阵有什么要求呢？回忆归一化条件，归一化条件要求向量
+$\begin{bmatrix}\alpha \\ \beta\end{bmatrix}$模长为1。即$\begin{bmatrix}\alpha \\ \beta\end{bmatrix}^T\begin{bmatrix}\alpha \\ \beta\end{bmatrix} = 1$。显然，经过一个合法的量子门转换后，其结果仍应满足归一化条件，我们就有$(X\begin{bmatrix}\alpha \\ \beta\end{bmatrix})^T(X\begin{bmatrix}\alpha \\ \beta\end{bmatrix}) = \begin{bmatrix}\alpha \\ \beta\end{bmatrix}^TX^TX\begin{bmatrix}\alpha \\ \beta\end{bmatrix} = 1$。因此，$X^TX = I$。其中$I$是单位矩阵。实际上，由于$X$是复矩阵，前述的转置准确来说应该是共轭转置，即表示量子门的复矩阵应满足条件
+
+\begin{equation}
+X^{\dag}X = I
+\end{equation}
+
+其中$X^{\dag}$是$X$的共轭转置。满足上述条件的矩阵数学上称为酉矩阵。
+令人惊奇的是，酉性是对量子门的唯一限制;每一个酉矩阵都定义了一个有效的量子门。
+
+让我们继续，后面我们常会用到另外两个量子门，它们分别是$Z$门
+
+\begin{equation}
+Z \equiv
+\begin{bmatrix}
+1 & 0 \\
+0 & -1
+\end{bmatrix}
+\end{equation}
+
+它保持$\ket{0}$不变而反转$\ket{1}$为$-\ket{1}$，以及Hadamard门
+
+\begin{equation}
+H \equiv \frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 & 1 \\
+1 & -1
+\end{bmatrix}
+\end{equation}
+
+它将$\ket{0}$变为$\frac{\ket{0} + \ket{1}}{\sqrt{2}}$,且将$\ket{1}$变为$\frac{\ket{0} - \ket{1}}{\sqrt{2}}$。Hadamard门是最有用的量子门之一。
+
