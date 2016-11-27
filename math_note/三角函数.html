@@ -10,7 +10,7 @@
     TeX: { equationNumbers: {autoNumber: "AMS"} }
   });
 </script>
-<script type="text/javascript" src="node_modules/mathjax/MathJax.js?config=TeX-AMS_HTML-full"></script>
+<script src="http://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
 <style>
 h1 {text-align:center}
@@ -24,9 +24,9 @@ h2 {
 }
 </style>
 
-<script type="text/javascript" src="node_modules/mathjs/dist/math.min.js"></script>
-<script type="text/javascript" src="node_modules/d3/d3.min.js"></script>
-<script type="text/javascript" src="node_modules/function-plot/dist/function-plot.js"></script>
+<script src="http://cdn.bootcss.com/mathjs/3.8.0/math.min.js"></script>
+<script src="http://cdn.bootcss.com/d3/3.5.17/d3.min.js"></script>
+<script src="http://cdn.bootcss.com/function-plot/1.17.3/function-plot.js"></script>
 
 </head>
 <body>
@@ -496,7 +496,6 @@ function draw(tar_id, func) {
   }
   catch (err) {
     console.log(err);
-    alert(err);
   }
 }
 
