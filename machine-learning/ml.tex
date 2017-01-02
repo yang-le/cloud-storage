@@ -1,0 +1,89 @@
+\documentclass[hyperref, UTF8]{ctexart}
+
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\begin{document}
+
+\title{机器学习笔记}
+\author{
+Le Yang\\
+yangle0125@qq.com
+}
+\date{}
+\maketitle
+
+%\tableofcontents
+
+\part{监督学习}
+记号说明：
+我们将使用$x^{(i)}$表示“输入”变量,也叫做\emph{特征};使用$y^{(i)}$表示“输出”或者说\emph{目标}变量。
+$(x^{(i)}, y^{(i)})$称为一个\emph{训练样本}, 而用来训练的数据集,$\lbrace(x^{(i)}, y^{(i)}); i = 1, \dots, m\rbrace$称为\emph{训练集合}。
+注意这里的$(i)$仅仅作为索引使用，$m$是训练集合中训练样本的数量。我们也将使用$\mathcal{X}$表示输入变量所在的空间，用$\mathcal{Y}$表示输出变量所在的空间。
+
+为了更正式一点地描述监督学习的问题，我们的目标是，给定一个训练集合，尝试学习一个函数$h:\mathcal{X} \mapsto \mathcal{Y}$,使得$h(x)$相对于对应的$y$来说是一个“好”的预测。因为某些历史上的原因，这个函数$h$被称为一个\emph{hypothesis(假设)}。
+
+当要预测的目标变量是连续的时，称这个学习问题是一个\emph{回归}问题;当要预测的目标只取少量的离散值时，称这个学习问题是一个\emph{分类}问题。
+
+\section{线性回归}
+
+作为初始尝试，让我们假定$y$是$x$的线性函数：
+\begin{equation*}
+h_\theta(x) = \theta_0 + \theta_1x_1 + \theta_2x_2
+\end{equation*}
+这里，这些$\theta_i$被称为\emph{参数}(或称\emph{权重})。在不会引起误解的情况下，我们可以扔掉$h_\theta(x)$的下标$\theta$，将其简单地写作$h(x)$。
+为了简化记号，我们再引入一个约定，令$x_0 = 1$(即\emph{截距}项)，所以：
+\begin{equation}
+h(x) = \sum_{i = 0}^n\theta_ix_i = \theta^Tx
+\end{equation}
+在最右侧，请将$\theta$和$x$都看作向量;这里$n$是输入变量的个数(不包括$x_0$)。现在，给定一个训练集合，我们应该如何选择，或者说学习，参数$\theta$呢？
+一个合理的方法是，选择这样的$\theta$，使得$h(x)$尽量接近$y$，至少在训练集合内应该这样。为了说地更正式一些，我们将定义一个函数用来衡量对于每一个$\theta$的值$h(x^{(i)})$和对应的$y^{(i)}$到底有多接近。我们定义\emph{损失函数}:
+\begin{equation}
+J(\theta) = \frac{1}{2}\sum^m_{i = 1}(h_\theta(x^{(i)}) - y^{(i)})^2
+\end{equation}
+
+\subsection{LMS(最小均方)算法}
+我们要选择$\theta$来最小化$J(\theta)$。为了这样做，让我们使用一种搜索算法，其始于对$\theta$的某些“初始猜测”，然后重复地改变$\theta$来让$J(\theta)$越来越小。对于这个问题，让我们考虑\emph{梯度下降}算法。它基于某些初始的$\theta$值，重复地执行如下的更新(这个更新是对所有的$j = 0,\dots,n$同时进行的)：
+\begin{equation*}
+\theta_j := \theta_j - \alpha\frac{\partial}{\partial\theta_j}J(\theta)
+\end{equation*}
+
+这里$\alpha$被称为\emph{学习速率}。这是一个非常自然的算法，重复地向着$J(\theta)$减少最大的方向更新$\theta$。为了实现这个算法，我们需要求出最右边一项的偏导数。让我们先假设训练集合中只有一个训练样本$(x, y)$，这样我们就不用考虑$J$的定义中的求和符号了，我们有：
+\begin{equation}
+\begin{aligned}
+\frac{\partial}{\partial\theta_j}J(\theta) &= \frac{\partial}{\partial\theta_j}\frac{1}{2}(h_\theta(x) - y)^2 \\
+&= 2\cdot\frac{1}{2}(h_\theta(x) - y)\cdot\frac{\partial}{\partial\theta_j}(h_\theta(x) - y) \\
+&= (h_\theta(x) - y)\cdot\frac{\partial}{\partial\theta_j}(\sum_{i = 0}^n\theta_ix_i - y) \\
+&= (h_\theta(x) - y)x_j
+\end{aligned}
+\end{equation}
+对于单个训练样本，这就给出了更新规则：\footnote{我们使用记号“$a := b$”表示一个(计算机程序中的)操作，含义是我们将\emph{设置}一个变量$a$的值，使其等于$b$的值。换句话说，这个操作将使用$b$的值来覆盖$a$。相反的，我们使用记号"$a = b$"来断言一个事实，即$a$的值和$b$的值是相等的。}
+\begin{equation*}
+\theta_j := \theta_j + \alpha(y^{(i)} - h_\theta(x^{(i)}))x^{(i)}_j
+\end{equation*}
+
+这个规则被称为\emph{LMS}更新规则(LMS代表``least mean squares''),在某些地方，也被称为\emph{Widrow-Hoff}学习规则。
+这个规则有一些特点使其看起来很自然，例如，更新的幅度是正比于\emph{误差}项$(y^{(i)} - h_\theta(x^{(i)}))$的。
+因此，如果我们遇到一个样本，我们的预测和实际的值很接近，那么按照这个规则，$\theta$就几乎不需要做什么更新；反之，如果我们的预测和实际值相差很远，参数就会有较大幅度的更新。
+
+我们在只有一个样本的情况下推导出了LMS规则。有两种方法来修改这一规则使其适用于多于一个样本的训练集合，第一种方法是使用下面的算法：
+\begin{algorithm}
+\caption{批量梯度下降法(BGD)}  
+\begin{algorithmic}    
+\REPEAT  
+\STATE{$\theta_j := \theta_j + \alpha\sum_{i = 1}^m(y^{(i)} - h_\theta(x^{(i)}))x^{(i)}_j$ (for every $j$)}
+\UNTIL{Convergence} 
+\end{algorithmic}  
+\end{algorithm}
+
+\subsection{正则方程}
+
+\subsubsection{矩阵求导}
+\subsubsection{最小二乘}
+
+\subsection{概率解释}
+
+\end{document}
+
