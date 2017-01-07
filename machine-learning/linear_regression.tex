@@ -1,0 +1,227 @@
+\section{线性回归}
+作为初始尝试，让我们假定$y$是$x$的线性函数：
+\begin{equation*}
+h_\theta(x) = \theta_0 + \theta_1x_1 + \theta_2x_2
+\end{equation*}
+这里，这些$\theta_i$被称为\emph{参数}(或称\emph{权重})。在不会引起误解的情况下，我们可以扔掉$h_\theta(x)$的下标$\theta$，将其简单地写作$h(x)$。
+为了简化记号，我们再引入一个约定，令$x_0 = 1$(即\emph{截距}项)，所以：
+\begin{equation}
+h(x) = \sum_{i = 0}^n\theta_ix_i = \theta^Tx
+\end{equation}
+在最右侧，请将$\theta$和$x$都看作向量;这里$n$是输入变量的个数(不包括$x_0$)。现在，给定一个训练集合，我们应该如何选择，或者说学习，参数$\theta$呢？
+一个合理的方法是，选择这样的$\theta$，使得$h(x)$尽量接近$y$，至少在训练集合内应该这样。为了说地更正式一些，我们将定义一个函数用来衡量对于每一个$\theta$的值$h(x^{(i)})$和对应的$y^{(i)}$到底有多接近。我们定义\emph{损失函数}:
+\begin{equation}
+J(\theta) = \frac{1}{2}\sum^m_{i = 1}(h_\theta(x^{(i)}) - y^{(i)})^2
+\end{equation}
+
+\subsection{LMS(最小均方)算法}
+我们要选择$\theta$来最小化$J(\theta)$。为了这样做，让我们使用一种搜索算法，其始于对$\theta$的某些“初始猜测”，然后重复地改变$\theta$来让$J(\theta)$越来越小。对于这个问题，让我们考虑\emph{梯度下降}算法。它基于某些初始的$\theta$值，重复地执行如下的更新(这个更新是对所有的$j = 0,\dots,n$同时进行的)：
+\begin{equation*}
+\theta_j := \theta_j - \alpha\frac{\partial}{\partial\theta_j}J(\theta)
+\end{equation*}
+
+这里$\alpha$被称为\emph{学习速率}。这是一个非常自然的算法，重复地向着$J(\theta)$减少最大的方向更新$\theta$。为了实现这个算法，我们需要求出最右边一项的偏导数。让我们先假设训练集合中只有一个训练样本$(x, y)$，这样我们就不用考虑$J$的定义中的求和符号了，我们有：
+\begin{equation}
+\begin{split}
+\frac{\partial}{\partial\theta_j}J(\theta) &= \frac{\partial}{\partial\theta_j}\frac{1}{2}(h_\theta(x) - y)^2 \\
+&= 2\cdot\frac{1}{2}(h_\theta(x) - y)\cdot\frac{\partial}{\partial\theta_j}(h_\theta(x) - y) \\
+&= (h_\theta(x) - y)\cdot\frac{\partial}{\partial\theta_j}(\sum_{i = 0}^n\theta_ix_i - y) \\
+&= (h_\theta(x) - y)x_j
+\end{split}
+\end{equation}
+对于单个训练样本，这就给出了更新规则：\footnote{我们使用记号“$a := b$”表示一个(计算机程序中的)操作，含义是我们将\emph{设置}一个变量$a$的值，使其等于$b$的值。换句话说，这个操作将使用$b$的值来覆盖$a$。相反的，我们使用记号"$a = b$"来断言一个事实，即$a$的值和$b$的值是相等的。}
+\begin{equation*}
+\theta_j := \theta_j + \alpha(y^{(i)} - h_\theta(x^{(i)}))x^{(i)}_j
+\end{equation*}
+
+这个规则被称为\emph{LMS}更新规则(LMS代表``least mean squares''),在某些地方，也被称为\emph{Widrow-Hoff}学习规则。
+这个规则有一些特点使其看起来很自然，例如，更新的幅度是正比于\emph{误差}项$(y^{(i)} - h_\theta(x^{(i)}))$的。
+因此，如果我们遇到一个样本，我们的预测和实际的值很接近，那么按照这个规则，$\theta$就几乎不需要做什么更新；反之，如果我们的预测和实际值相差很远，参数就会有较大幅度的更新。
+
+我们在只有一个样本的情况下推导出了LMS规则。有两种方法来修改这一规则使其适用于多于一个样本的训练集合，第一种方法是使用下面的算法：
+\begin{algorithm}[H]
+\caption{批量梯度下降法(BGD)}  
+\begin{algorithmic}    
+\REPEAT  
+\STATE $\theta_j := \theta_j + \alpha\sum_{i = 1}^m(y^{(i)} - h_\theta(x^{(i)}))x^{(i)}_j$ (for every $j$)
+\UNTIL{Convergence} 
+\end{algorithmic}  
+\end{algorithm}
+该算法在做每一步更新时，都需要查看所有的数据，因此被称为\emph{batch gradient descent（批量梯度下降）}。还有另外一种算法工作地也很好:
+\begin{algorithm}[H]
+\caption{随机梯度下降法(SGD)}  
+\begin{algorithmic}    
+\REPEAT  
+\STATE $\theta_j := \theta_j + \alpha(y^{(i)} - h_\theta(x^{(i)}))x^{(i)}_j$ (for every $j$)
+\STATE $i := (i + 1) \mod m$
+\UNTIL{Convergence} 
+\end{algorithmic}  
+\end{algorithm}
+该算法在做每一步更新时，只需查看训练集合中的下一个样本即可。被称为\emph{stochastic gradient descent（随机梯度下降）}或者是\emph{incremental gradient descent（增量梯度下降）}。
+
+\subsection{正则方程}
+梯度下降是一种最小化$J(\theta)$的方法，现在让我们来讨论另外一种。这次我们将直接求解$J(\theta)$的最小值，而不需要求助于迭代算法。在这种方法中，我们将求得$J(\theta)$相对于$\theta_j$的导数，令其得零。首先让我们来引入一些矩阵求导的记号。
+
+\subsubsection{矩阵求导}
+对于一个将$m \times n$的矩阵映射到实数的函数$f:\mathbb R^{m \times n} \mapsto \mathbb R$，我们定义函数$f$对矩阵$A$的导数为:
+\begin{equation}
+\nabla_Af(A) = 
+\begin{bmatrix}
+\frac{\partial f}{\partial A_{11}} & \cdots & \frac{\partial f}{\partial A_{1n}} \\
+\vdots & \ddots & \vdots \\
+\frac{\partial f}{\partial A_{m1}} & \cdots & \frac{\partial f}{\partial A_{mn}}
+\end{bmatrix}
+\end{equation}
+因此，$\nabla_Af(A)$本身也是个$m \times n$的矩阵，它的第$(i, j)$元素是$\partial f/\partial A_{ij}$。
+我们还要引入“迹”的概念，写做``$\tr$''。对一个$n \times n$的(方)矩阵$A$，$A$的迹被定义为其对角线上元素的和：
+\begin{equation}
+\tr A = \sum_{i = 1}^nA_{ii}
+\end{equation}
+如果$a$是一个实数(也就是，一个$1 \times 1$的矩阵)，那么$\tr a = a$。迹的定义导致其有这样的属性，即对于两个矩阵$A$和$B$，如果$AB$是方阵，那么$\tr AB = \tr BA$。因此，我们还将有，比如说：
+\begin{gather*}
+\tr ABC = \tr CAB = \tr BCA \\
+\tr ABCD = \tr DABC = \tr CDAB = \tr BCDA
+\end{gather*}
+迹的如下属性也很容易验证，这里$A$和$B$都是方阵，$a$是一个实数
+\begin{align}
+\tr A &= \tr A^T \\
+\tr (A + B) &= \tr A + \tr B \\
+\tr aA &= a\tr A
+\end{align}
+我们不加证明地
+\footnote{就证明了，怎么地吧。
+
+\eqref{eq1}$(\partial /\partial A_{ij})\tr AB = (\partial /\partial A_{ij})\sum_i\sum_jA_{ij}B_{ji} = B_{ji}$
+
+\eqref{eq2}按照定义，$(\nabla_{A^T}f(A))_{ij} = (\partial /\partial A^T_{ij})f(A) = (\partial /\partial A_{ji})f(A)$
+
+\eqref{eq3}$(\partial /\partial A)\tr ABA^TC \\= (\partial /\partial A)\sum_{w,x,y,z}A_{wx}B_{xy}A_{zy}C_{zw} \\= (\partial /\partial A_{wx})\sum_{w,x,y,z}A_{wx}B_{xy}A_{zy}C_{zw} + (\partial /\partial A_{zy})\sum_{w,x,y,z}A_{wx}B_{xy}A_{zy}C_{zw} \\= B_{xy}A_{zy}C_{zw} + A_{wx}B_{xy}C_{zw} = (BA^TC)_{xw} + (CAB)_{zy} = (C^TAB^T)_{wx} + (CAB)_{zy}$。
+
+\eqref{eq4}定义$A$关于第$i$列第$j$行的余子式（记作$M_{ij}$）是去掉$A$的第$i$行第$j$列之后得到的$(n − 1)\times(n − 1)$矩阵的行列式。$A$关于第$i$列第$j$行的代数余子式是：$A'_{ij} = (-1)^{i+j}M_{ij}$。$A$的余子矩阵是一个$n \times n$的矩阵$A'$，使得其第$i$行第$j$列的元素是$A$关于第$i$行第$j$列的代数余子式。矩阵$A$的伴随矩阵是$A$的余子矩阵的转置矩阵$A'^T$。作为拉普拉斯公式的推论，关于$n \times n$矩阵$A$的行列式,有$AA'^T = |A|I$。这表明$A' = |A|(A^{-1})^T$。注意到$|A| = \sum_jA_{ij}A'_{ij}$。因为$A'_{ij}$与$A_{ij}$无关(这可以从定义看出来)，这就意味着$(\partial/\partial A_{ij})|A| = A'_{ij}$，而这就是所要证的。}
+给出矩阵求导的如下属性，\eqref{eq4}只适用于非奇异的方阵$A$，其中$|A|$代表$A$的行列式。我们有：
+\begin{align}
+\nabla_A\tr AB &= B^T  \label{eq1} \\
+\nabla_{A^T}f(A) &= (\nabla_Af(A))^T  \label{eq2} \\
+\nabla_A\tr ABA^TC &= CAB + C^TAB^T  \label{eq3} \\
+\nabla_A|A| &= |A|(A^{-1})^T \label{eq4}
+\end{align}
+
+\subsubsection{最小二乘}
+让我们继续求解$J(\theta)$的最小值，首先我们需要将$J$写成矩阵-向量记号的形式。给定一个训练集合，定义\emph{设计矩阵}$X$为一个$m \times n$的矩阵(实际上是$m \times (n + 1)$，如果包括截距项的话)。该矩阵的每一行都是一个输入变量：
+\begin{equation*}
+X =
+\begin{bmatrix}
+\text{---} (x^{(1)})^T \text{---} \\
+\text{---} (x^{(2)})^T \text{---} \\
+\vdots \\
+\text{---} (x^{(m)})^T \text{---}
+\end{bmatrix}
+\end{equation*}
+再定义$\vec{y}$为一个$m$维的向量，包含训练集合中的所有目标变量：
+\begin{equation*}
+\vec{y} =
+\begin{bmatrix}
+y^{(1)} \\
+y^{(2)} \\
+\vdots \\
+y^{(m)}
+\end{bmatrix}
+\end{equation*}
+现在，因为$h_\theta(x^{(i)}) = (x^{(i)})^T\theta$，很容易验证：
+\begin{equation*}
+\begin{split}
+X\theta - \vec{y} &=
+\begin{bmatrix}
+(x^{(1)})^T\theta \\
+\vdots \\
+(x^{(m)})^T\theta
+\end{bmatrix}
+-
+\begin{bmatrix}
+y^{(1)} \\
+\vdots \\
+y^{(m)}
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+h_\theta(x^{(1)}) - y^{(1)} \\
+\vdots \\
+h_\theta(x^{(m)}) - y^{(m)} 
+\end{bmatrix}
+\end{split}
+\end{equation*}
+注意到对于向量$z$，我们有$z^Tz = \sum_iz^2_i$，利用这一事实，就得到：
+\begin{equation*}
+\begin{split}
+\frac{1}{2}(X\theta - \vec{y})^T(X\theta - \vec{y}) &= \frac{1}{2}\sum_{i = 1}^m(h_\theta(x^{(i)}) - y^{(i)})^2 \\
+&= J(\theta)
+\end{split}
+\end{equation*}
+最后，为求得$J$的最小值，让我们对$J$求导：
+\begin{equation*}
+\begin{split}
+\nabla_\theta J(\theta) &= \nabla_\theta\frac{1}{2}(X\theta - \vec{y})^T(X\theta - \vec{y}) \\
+&= \frac{1}{2}\nabla_\theta(\theta^TX^TX\theta - \theta^TX^T\vec{y} - \vec{y}^TX\theta + \vec{y}^T\vec{y}) \\
+&= \frac{1}{2}\nabla_\theta\tr(\theta^TX^TX\theta - \theta^TX^T\vec{y} - \vec{y}^TX\theta + \vec{y}^T\vec{y}) \\
+&= \frac{1}{2}\nabla_\theta(\tr\theta^TX^TX\theta - 2\tr\vec{y}^TX\theta) \\
+&= \frac{1}{2}(X^TX\theta + X^TX\theta - 2X^T\vec{y}) \\
+&= X^TX\theta - X^T\vec{y}
+\end{split}
+\end{equation*}
+令该导数为零，我们就得到了\emph{正则方程}：
+\begin{equation}
+X^TX\theta = X^T\vec{y}
+\end{equation}
+因此，使得$J(\theta)$最小的$\theta$就是：
+\begin{equation}
+\theta = (X^TX)^{-1}X^T\vec{y}
+\end{equation}
+
+\subsection{概率解释}
+当我们面对一个回归问题时，为什么线性回归，特别是，为什么最小二乘损失函数$J$，会是一个较为合理的选择呢？在这一小节里，我们将给出一些概率假设，在这些假设下，最小二乘回归可以被很自然地推导出来。
+
+让我们假定目标变量和输入变量之间，由下式联系：
+\begin{equation}
+y^{(i)} = \theta^Tx^{(i)} + \epsilon^{(i)}
+\end{equation}
+这里的$\epsilon^{(i)}$是误差项，用来捕获那些未被纳入到模型中的影响，或者是训练集合中的随机噪声。进一步地，让我们假设$\epsilon^{(i)}$之间是互相独立的，且都服从均值为零，方差为$\sigma^2$的高斯分布(也叫正态分布)。换句话说，$\epsilon^{(i)} \sim \mathcal{N}(0, \sigma^2)$是独立同分布(IID, independently and identically distributed)的。这就是说，$\epsilon^{(i)}$的概率密度由下式给出：
+\begin{equation*}
+p(\epsilon^{(i)}) = \frac{1}{\sqrt{2\pi}\sigma}exp\left(-\frac{(\epsilon^{(i)})^2}{2\sigma^2}\right)
+\end{equation*}
+因此
+\begin{equation}
+p(y^{(i)}|x^{(i)};\theta) = \frac{1}{\sqrt{2\pi}\sigma}exp\left(-\frac{(y^{(i)} - \theta^Tx^{(i)})^2}{2\sigma^2}\right)
+\end{equation}
+$p(y^{(i)}|x^{(i)};\theta)$表示以$\theta$为参数，在给定$x^{(i)}$时，$y^{(i)}$的概率密度。注意我们不能以$\theta$为概率条件(``$p(y^{(i)}|x^{(i)},\theta)$'')，因为$\theta$不是随机变量。我们也可以将$y^{(i)}$的概率分布写作$y^{(i)}|x^{(i)};\theta \sim \mathcal{N}(\theta^Tx^{(i)}, \sigma^2)$。
+
+给定$X$(设计矩阵，它包含所有的$x^{(i)}$)和$\theta$，所有的$y^{(i)}$服从什么分布呢？整体数据的概率应该由$p(\vec{y}|X;\theta)$给出，对于一个固定的$\theta$来说，该量通常被视为$\vec{y}$(也许还应该包括$X$)的一个函数。当我们希望把它看作是关于$\theta$的函数时，我们称之为\emph{似然}函数：
+\begin{equation*}
+L(\theta) = L(\theta;X,\vec{y}) = p(\vec{y}|X;\theta)
+\end{equation*}
+注意到$\epsilon^{(i)}$之间是相互独立的(因此，给定$x^{(i)}$时$y^{(i)}$也是相互独立的)，上式还可以被写作：
+\begin{equation}
+\begin{split}
+L(\theta) &= \prod_{i = 1}^mp(y^{(i)}|x^{(i)};\theta) \\
+&= \prod_{i = 1}^m\frac{1}{\sqrt{2\pi}\sigma}exp\left(-\frac{(y^{(i)} - \theta^Tx^{(i)})^2}{2\sigma^2}\right)
+\end{split}
+\end{equation}
+现在，给定了关于$y^{(i)}$和$x^{(i)}$的概率模型，什么是选择我们对参数$\theta$的最好猜测的合理方式呢？\emph{极大似然}法则说，我们应该选择这样的$\theta$，其使得整体数据的概率越大越好。也就是说，我们需要选择$\theta$去最大化$L(\theta)$。
+
+除了最大化$L(\theta)$，我们也可以最大化任何一个关于$L(\theta)$的单调递增函数。特别是，如果我们选择最大化\emph{对数似然}函数$l(\theta)$的话，推导会更为简单一些：
+\begin{equation}
+\begin{split}
+l(\theta) &= \log{L(\theta)} \\
+&= \log\prod_{i = 1}^m\frac{1}{\sqrt{2\pi}\sigma}exp\left(-\frac{(y^{(i)} - \theta^Tx^{(i)})^2}{2\sigma^2}\right) \\
+&= \sum_{i = 1}^m\log\frac{1}{\sqrt{2\pi}\sigma}exp\left(-\frac{(y^{(i)} - \theta^Tx^{(i)})^2}{2\sigma^2}\right) \\
+&= m\log\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{\sigma^2}\frac{1}{2}\sum_{i = 1}^m(y^{(i)} - \theta^Tx^{(i)})^2
+\end{split}
+\end{equation}
+因此，最大化$l(\theta)$也就是最小化$\frac{1}{2}\sum_{i = 1}^m(y^{(i)} - \theta^Tx^{(i)})^2$，而这就是$J(\theta)$，我们原始的最小二乘损失函数。
+
+总结一下：在对于数据集的前述概率假设之下，最小二乘回归对应于寻找$\theta$的最大似然估计。因此在这种假设之下，最小二乘回归可以由寻找最大似然估计这种非常自然的方式导出。(然而，需要注意的是这些概率假设对于选用最小二乘作为合理的损失函数来说并不是必须的，实际上有很多其他的自然的假设也可以导出最小二乘回归。)
+
+另外也请注意，在我们前面的讨论中，我们对于$\theta$的最终选择并不依赖于$\sigma^2$，实际上如果不知道$\sigma^2$是多少，我们仍然会得到关于$\theta$的相同的结果。稍后讨论到指数分布族和广义线性模型时，我们会用到这一事实。
+
+\subsection{局部权重线性回归}
+有的时候，数据并不是那样直直地躺在一条线上。在这种情况下，如果使用线性回归去拟合数据集时，结果吻合得并不会特别好。
+
