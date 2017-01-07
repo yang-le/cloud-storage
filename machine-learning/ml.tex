@@ -139,6 +139,75 @@ J(\theta) = \frac{1}{2}\sum^m_{i = 1}(h_\theta(x^{(i)}) - y^{(i)})^2
 \end{align}
 
 \subsubsection{最小二乘}
+让我们继续求解$J(\theta)$的最小值，首先我们需要将$J$写成矩阵-向量记号的形式。给定一个训练集合，定义\emph{设计矩阵}$X$为一个$m \times n$的矩阵(实际上是$m \times (n + 1)$，如果包括截距项的话)。该矩阵的每一行都是一个输入变量：
+\begin{equation*}
+X =
+\begin{bmatrix}
+\text{---} (x^{(1)})^T \text{---} \\
+\text{---} (x^{(2)})^T \text{---} \\
+\vdots \\
+\text{---} (x^{(m)})^T \text{---}
+\end{bmatrix}
+\end{equation*}
+再定义$\vec{y}$为一个$m$维的向量，包含训练集合中的所有目标变量：
+\begin{equation*}
+\vec{y} =
+\begin{bmatrix}
+y^{(1)} \\
+y^{(2)} \\
+\vdots \\
+y^{(m)}
+\end{bmatrix}
+\end{equation*}
+现在，因为$h_\theta(x^{(i)}) = (x^{(i)})^T\theta$，很容易验证：
+\begin{equation*}
+\begin{split}
+X\theta - \vec{y} &=
+\begin{bmatrix}
+(x^{(1)})^T\theta \\
+\vdots \\
+(x^{(m)})^T\theta
+\end{bmatrix}
+-
+\begin{bmatrix}
+y^{(1)} \\
+\vdots \\
+y^{(m)}
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+h_\theta(x^{(1)}) - y^{(1)} \\
+\vdots \\
+h_\theta(x^{(m)}) - y^{(m)} 
+\end{bmatrix}
+\end{split}
+\end{equation*}
+注意到对于向量$z$，我们有$z^Tz = \sum_iz^2_i$，利用这一事实，就得到：
+\begin{equation*}
+\begin{split}
+\frac{1}{2}(X\theta - \vec{y})^T(X\theta - \vec{y}) &= \frac{1}{2}\sum_{i = 1}^m(h_\theta(x^{(i)}) - y^{(i)})^2 \\
+&= J(\theta)
+\end{split}
+\end{equation*}
+最后，为求得$J$的最小值，让我们对$J$求导：
+\begin{equation*}
+\begin{split}
+\nabla_\theta J(\theta) &= \nabla_\theta\frac{1}{2}(X\theta - \vec{y})^T(X\theta - \vec{y}) \\
+&= \frac{1}{2}\nabla_\theta(\theta^TX^TX\theta - \theta^TX^T\vec{y} - \vec{y}^TX\theta + \vec{y}^T\vec{y}) \\
+&= \frac{1}{2}\nabla_\theta\tr(\theta^TX^TX\theta - \theta^TX^T\vec{y} - \vec{y}^TX\theta + \vec{y}^T\vec{y}) \\
+&= \frac{1}{2}\nabla_\theta(\tr\theta^TX^TX\theta - 2\tr\vec{y}^TX\theta) \\
+&= \frac{1}{2}(X^TX\theta + X^TX\theta - 2X^T\vec{y}) \\
+&= X^TX\theta - X^T\vec{y}
+\end{split}
+\end{equation*}
+令该导数为零，我们就得到了\emph{正则方程}：
+\begin{equation}
+X^TX\theta = X^T\vec{y}
+\end{equation}
+因此，使得$J(\theta)$最小的$\theta$就是：
+\begin{equation}
+\theta = (X^TX)^{-1}X^T\vec{y}
+\end{equation}
 
 \subsection{概率解释}
 
