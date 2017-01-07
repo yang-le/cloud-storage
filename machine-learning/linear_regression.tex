@@ -88,17 +88,17 @@ J(\theta) = \frac{1}{2}\sum^m_{i = 1}(h_\theta(x^{(i)}) - y^{(i)})^2
 \tr (A + B) &= \tr A + \tr B \\
 \tr aA &= a\tr A
 \end{align}
-我们不加证明地
-\footnote{就证明了，怎么地吧。
+我们不加证明地\footnote{
+记笔记的人表示偏要证明一下。
 
 \eqref{eq1}$(\partial /\partial A_{ij})\tr AB = (\partial /\partial A_{ij})\sum_i\sum_jA_{ij}B_{ji} = B_{ji}$
 
 \eqref{eq2}按照定义，$(\nabla_{A^T}f(A))_{ij} = (\partial /\partial A^T_{ij})f(A) = (\partial /\partial A_{ji})f(A)$
 
-\eqref{eq3}$(\partial /\partial A)\tr ABA^TC \\= (\partial /\partial A)\sum_{w,x,y,z}A_{wx}B_{xy}A_{zy}C_{zw} \\= (\partial /\partial A_{wx})\sum_{w,x,y,z}A_{wx}B_{xy}A_{zy}C_{zw} + (\partial /\partial A_{zy})\sum_{w,x,y,z}A_{wx}B_{xy}A_{zy}C_{zw} \\= B_{xy}A_{zy}C_{zw} + A_{wx}B_{xy}C_{zw} = (BA^TC)_{xw} + (CAB)_{zy} = (C^TAB^T)_{wx} + (CAB)_{zy}$。
+\eqref{eq3}$(\partial /\partial A)\tr ABA^TC \\= (\partial /\partial A)\sum_{i,j,k,l}A_{ij}B_{jk}A_{lk}C_{li} \\= (\partial /\partial A_{ij})\sum_{i,j,k,l}A_{ij}B_{jk}A_{lk}C_{li} + (\partial /\partial A_{lk})\sum_{i,j,k,l}A_{ij}B_{jk}A_{lk}C_{li} \\= B_{jk}A_{lk}C_{li} + A_{ij}B_{jk}C_{li} = (BA^TC)_{ji} + (CAB)_{lk} = (C^TAB^T)_{ij} + (CAB)_{lk}$。
 
-\eqref{eq4}定义$A$关于第$i$列第$j$行的余子式（记作$M_{ij}$）是去掉$A$的第$i$行第$j$列之后得到的$(n − 1)\times(n − 1)$矩阵的行列式。$A$关于第$i$列第$j$行的代数余子式是：$A'_{ij} = (-1)^{i+j}M_{ij}$。$A$的余子矩阵是一个$n \times n$的矩阵$A'$，使得其第$i$行第$j$列的元素是$A$关于第$i$行第$j$列的代数余子式。矩阵$A$的伴随矩阵是$A$的余子矩阵的转置矩阵$A'^T$。作为拉普拉斯公式的推论，关于$n \times n$矩阵$A$的行列式,有$AA'^T = |A|I$。这表明$A' = |A|(A^{-1})^T$。注意到$|A| = \sum_jA_{ij}A'_{ij}$。因为$A'_{ij}$与$A_{ij}$无关(这可以从定义看出来)，这就意味着$(\partial/\partial A_{ij})|A| = A'_{ij}$，而这就是所要证的。}
-给出矩阵求导的如下属性，\eqref{eq4}只适用于非奇异的方阵$A$，其中$|A|$代表$A$的行列式。我们有：
+\eqref{eq4}定义$A$关于第$i$列第$j$行的余子式（记作$M_{ij}$）是去掉$A$的第$i$行第$j$列之后得到的$(n − 1)\times(n − 1)$矩阵的行列式。$A$关于第$i$列第$j$行的代数余子式是：$A'_{ij} = (-1)^{i+j}M_{ij}$。$A$的余子矩阵是一个$n \times n$的矩阵$A'$，使得其第$i$行第$j$列的元素是$A$关于第$i$行第$j$列的代数余子式。矩阵$A$的伴随矩阵是$A$的余子矩阵的转置矩阵$A'^T$。作为拉普拉斯公式的推论，关于$n \times n$矩阵$A$的行列式,有$AA'^T = |A|I$。这表明$A' = |A|(A^{-1})^T$。注意到$|A| = \sum_jA_{ij}A'_{ij}$。因为$A'_{ij}$与$A_{ij}$无关(这可以从定义看出来)，这就意味着$(\partial/\partial A_{ij})|A| = A'_{ij}$，而这就是所要证的。
+}给出矩阵求导的如下属性，\eqref{eq4}只适用于非奇异的方阵$A$，其中$|A|$代表$A$的行列式。我们有：
 \begin{align}
 \nabla_A\tr AB &= B^T  \label{eq1} \\
 \nabla_{A^T}f(A) &= (\nabla_Af(A))^T  \label{eq2} \\
@@ -106,7 +106,7 @@ J(\theta) = \frac{1}{2}\sum^m_{i = 1}(h_\theta(x^{(i)}) - y^{(i)})^2
 \nabla_A|A| &= |A|(A^{-1})^T \label{eq4}
 \end{align}
 
-\subsubsection{最小二乘}
+\subsubsection{最小平方}
 让我们继续求解$J(\theta)$的最小值，首先我们需要将$J$写成矩阵-向量记号的形式。给定一个训练集合，定义\emph{设计矩阵}$X$为一个$m \times n$的矩阵(实际上是$m \times (n + 1)$，如果包括截距项的话)。该矩阵的每一行都是一个输入变量：
 \begin{equation*}
 X =
@@ -178,7 +178,7 @@ X^TX\theta = X^T\vec{y}
 \end{equation}
 
 \subsection{概率解释}
-当我们面对一个回归问题时，为什么线性回归，特别是，为什么最小二乘损失函数$J$，会是一个较为合理的选择呢？在这一小节里，我们将给出一些概率假设，在这些假设下，最小二乘回归可以被很自然地推导出来。
+当我们面对一个回归问题时，为什么线性回归，特别是，为什么最小平方\footnote{通常叫最小二乘，但是我认为最小二乘这个表述不如最小平方直白。}损失函数$J$，会是一个较为合理的选择呢？在这一小节里，我们将给出一些概率假设，在这些假设下，最小平方回归可以被很自然地推导出来。
 
 让我们假定目标变量和输入变量之间，由下式联系：
 \begin{equation}
@@ -216,9 +216,9 @@ l(\theta) &= \log{L(\theta)} \\
 &= m\log\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{\sigma^2}\frac{1}{2}\sum_{i = 1}^m(y^{(i)} - \theta^Tx^{(i)})^2
 \end{split}
 \end{equation}
-因此，最大化$l(\theta)$也就是最小化$\frac{1}{2}\sum_{i = 1}^m(y^{(i)} - \theta^Tx^{(i)})^2$，而这就是$J(\theta)$，我们原始的最小二乘损失函数。
+因此，最大化$l(\theta)$也就是最小化$\frac{1}{2}\sum_{i = 1}^m(y^{(i)} - \theta^Tx^{(i)})^2$，而这就是$J(\theta)$，我们原始的最小平方损失函数。
 
-总结一下：在对于数据集的前述概率假设之下，最小二乘回归对应于寻找$\theta$的最大似然估计。因此在这种假设之下，最小二乘回归可以由寻找最大似然估计这种非常自然的方式导出。(然而，需要注意的是这些概率假设对于选用最小二乘作为合理的损失函数来说并不是必须的，实际上有很多其他的自然的假设也可以导出最小二乘回归。)
+总结一下：在对于数据集的前述概率假设之下，最小平方回归对应于寻找$\theta$的最大似然估计。因此在这种假设之下，最小平方回归可以由寻找最大似然估计这种非常自然的方式导出。(然而，需要注意的是这些概率假设对于选用最小平方作为合理的损失函数来说并不是必须的，实际上有很多其他的自然的假设也可以导出最小平方回归。)
 
 另外也请注意，在我们前面的讨论中，我们对于$\theta$的最终选择并不依赖于$\sigma^2$，实际上如果不知道$\sigma^2$是多少，我们仍然会得到关于$\theta$的相同的结果。稍后讨论到指数分布族和广义线性模型时，我们会用到这一事实。
 
