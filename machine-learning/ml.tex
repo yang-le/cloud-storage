@@ -71,7 +71,7 @@ J(\theta) = \frac{1}{2}\sum^m_{i = 1}(h_\theta(x^{(i)}) - y^{(i)})^2
 因此，如果我们遇到一个样本，我们的预测和实际的值很接近，那么按照这个规则，$\theta$就几乎不需要做什么更新；反之，如果我们的预测和实际值相差很远，参数就会有较大幅度的更新。
 
 我们在只有一个样本的情况下推导出了LMS规则。有两种方法来修改这一规则使其适用于多于一个样本的训练集合，第一种方法是使用下面的算法：
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{批量梯度下降法(BGD)}  
 \begin{algorithmic}    
 \REPEAT  
@@ -79,9 +79,8 @@ J(\theta) = \frac{1}{2}\sum^m_{i = 1}(h_\theta(x^{(i)}) - y^{(i)})^2
 \UNTIL{Convergence} 
 \end{algorithmic}  
 \end{algorithm}
-
-该算法在做每一步更新时，都需要查看所有的数据，因此被称为\emph{batch gradient descent（批量梯度下降）}。还有另外一种算法工作地也很好，
-\begin{algorithm}
+该算法在做每一步更新时，都需要查看所有的数据，因此被称为\emph{batch gradient descent（批量梯度下降）}。还有另外一种算法工作地也很好:
+\begin{algorithm}[H]
 \caption{随机梯度下降法(SGD)}  
 \begin{algorithmic}    
 \REPEAT  
@@ -90,7 +89,6 @@ J(\theta) = \frac{1}{2}\sum^m_{i = 1}(h_\theta(x^{(i)}) - y^{(i)})^2
 \UNTIL{Convergence} 
 \end{algorithmic}  
 \end{algorithm}
-
 该算法在做每一步更新时，只需查看训练集合中的下一个样本即可。被称为\emph{stochastic gradient descent（随机梯度下降）}或者是\emph{incremental gradient descent（增量梯度下降）}。
 
 \subsection{正则方程}
@@ -125,12 +123,18 @@ J(\theta) = \frac{1}{2}\sum^m_{i = 1}(h_\theta(x^{(i)}) - y^{(i)})^2
 我们不加证明地
 \footnote{就证明了，怎么地吧。
 
+\eqref{eq1}$(\partial /\partial A_{ij})\tr AB = (\partial /\partial A_{ij})\sum_i\sum_jA_{ij}B_{ji} = B_{ji}$
+
+\eqref{eq2}按照定义，$(\nabla_{A^T}f(A))_{ij} = (\partial /\partial A^T_{ij})f(A) = (\partial /\partial A_{ji})f(A)$
+
+\eqref{eq3}$(\partial /\partial A)\tr ABA^TC \\= (\partial /\partial A)\sum_{w,x,y,z}A_{wx}B_{xy}A_{zy}C_{zw} \\= (\partial /\partial A_{wx})\sum_{w,x,y,z}A_{wx}B_{xy}A_{zy}C_{zw} + (\partial /\partial A_{zy})\sum_{w,x,y,z}A_{wx}B_{xy}A_{zy}C_{zw} \\= B_{xy}A_{zy}C_{zw} + A_{wx}B_{xy}C_{zw} = (BA^TC)_{xw} + (CAB)_{zy} = (C^TAB^T)_{wx} + (CAB)_{zy}$。
+
 \eqref{eq4}定义$A$关于第$i$列第$j$行的余子式（记作$M_{ij}$）是去掉$A$的第$i$行第$j$列之后得到的$(n − 1)\times(n − 1)$矩阵的行列式。$A$关于第$i$列第$j$行的代数余子式是：$A'_{ij} = (-1)^{i+j}M_{ij}$。$A$的余子矩阵是一个$n \times n$的矩阵$A'$，使得其第$i$行第$j$列的元素是$A$关于第$i$行第$j$列的代数余子式。矩阵$A$的伴随矩阵是$A$的余子矩阵的转置矩阵$A'^T$。作为拉普拉斯公式的推论，关于$n \times n$矩阵$A$的行列式,有$AA'^T = |A|I$。这表明$A' = |A|(A^{-1})^T$。注意到$|A| = \sum_jA_{ij}A'_{ij}$。因为$A'_{ij}$与$A_{ij}$无关(这可以从定义看出来)，这就意味着$(\partial/\partial A_{ij})|A| = A'_{ij}$，而这就是所要证的。}
 给出矩阵求导的如下属性，\eqref{eq4}只适用于非奇异的方阵$A$，其中$|A|$代表$A$的行列式。我们有：
 \begin{align}
-\nabla_A\tr AB &= B^T \\
-\nabla_{A^T}f(A) &= (\nabla_Af(A))^T \\
-\nabla_A\tr ABA^TC &= CAB + C^TAB^T \\
+\nabla_A\tr AB &= B^T  \label{eq1} \\
+\nabla_{A^T}f(A) &= (\nabla_Af(A))^T  \label{eq2} \\
+\nabla_A\tr ABA^TC &= CAB + C^TAB^T  \label{eq3} \\
 \nabla_A|A| &= |A|(A^{-1})^T \label{eq4}
 \end{align}
 
