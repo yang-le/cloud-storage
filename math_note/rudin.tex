@@ -1,0 +1,48 @@
+%\documentclass[hyperref, UTF8]{ctexart}
+\documentclass[UTF8]{ctexbook}
+
+\usepackage{amsmath}
+
+\newtheorem{example}{例}[chapter]
+\newtheorem{definition}{定义}
+
+\begin{document}
+
+\title{数学分析原理笔记}
+\author{
+Le Yang\\
+yangle0125@qq.com
+}
+\date{}
+\maketitle
+
+\tableofcontents
+
+\chapter{实数系和复数系}
+
+\begin{example}
+我们现在证明方程
+\begin{equation}
+p^2 = 2	\label{eq1}
+\end{equation}
+不能被任何有理数$p$满足。倘若存在那样一个$p$，我们可以把它写成$p = m / n$，其中$m$和$n$都是整数\footnote{根据有理数的定义。}，而且可以选得不都是偶数\footnote{否则我们可以一直约分，即分子分母都除以2，如此这样一直进行下去，直到其中一个不是偶数。}。于是由\eqref{eq1}式得出
+\begin{equation}
+m^2 = 2n^2 \label{eq2}
+\end{equation}
+这表明$m^2$是偶数，因此$m$是偶数（如果$m$是奇数，那么$m^2$将是奇数\footnote{反证法中的反证法。}），因而$m^2$能被$4$整除。于是\eqref{eq2}式右边能被$4$整除，因而$n^2$是偶数，这又说明$n$是偶数。
+
+假定\eqref{eq1}式成立，就导致$m$和$n$都是偶数的结论，这与$m$及$n$的选择相矛盾。因此，对于有理数$p$，\eqref{eq1}式不能成立。
+
+现在我们把这种情况考察的更严密一些。令$A$是使$p^2 < 2$的一切正有理数$p$的集，$B$是使$p^2 > 2$的一切正有理数$p$的集。我们来证明$A$里没有最大数，$B$里没有最小数\footnote{rudin先生显然觉得前面的证明太简单了，不够过瘾。}。
+
+更明确地说，对于$A$中的每一个$p$，能在$A$中找到一个有理数$q$，而$p < q$，并且对于$B$中的每一个$p$，能在$B$中找到一个有理数$q$，而$q < p$。
+
+为了做这件事，给每一个有理数$p > 0$，配置一个数\footnote{对于$A$中的情况，就是我们要找这样一个$q$，使得$q = p + x$，$x > 0$， $q < \sqrt{2}$。因此$x < \sqrt{2} - p = (2 - p^2) / (\sqrt{2} + p)$。可令$x = (2 - p^2) / (2 + p)$，就得到下面的式子。对于$B$中的情况也会得到同样的式子。}
+\begin{equation}
+q = p - \frac{p^2 - 2}{p + 2} = \frac{2p + 2}{p + 2}\label{eq3}
+\end{equation}
+
+\end{example}
+
+\end{document}
+
