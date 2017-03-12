@@ -1,10 +1,11 @@
-%\documentclass[hyperref, UTF8]{ctexart}
 \documentclass[UTF8]{ctexbook}
 
-\usepackage{amsmath}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumerate}
 
 \newtheorem{example}{例}[chapter]
-\newtheorem{definition}{定义}
+\newtheorem{definition}{定义}[chapter]
+\newtheorem{theorem}{定理}[chapter]
 
 \begin{document}
 
@@ -20,12 +21,15 @@ yangle0125@qq.com
 
 \chapter{实数系和复数系}
 
+\section{导引}
+
 \begin{example}
+\label{example1}
 我们现在证明方程
 \begin{equation}
 p^2 = 2	\label{eq1}
 \end{equation}
-不能被任何有理数$p$满足。倘若存在那样一个$p$，我们可以把它写成$p = m / n$，其中$m$和$n$都是整数\footnote{根据有理数的定义。}，而且可以选得不都是偶数\footnote{否则我们可以一直约分，即分子分母都除以2，如此这样一直进行下去，直到其中一个不是偶数。}。于是由\eqref{eq1}式得出
+不能被任何有理数$p$满足。倘若存在那样一个$p$，我们可以把它写成$p = m / n$，其中$m$和$n$都是整数\footnote{根据有理数的定义。}，而且可以选得不都是偶数\footnote{否则我们可以一直约分，即分子分母都除以$2$，如此这样一直进行下去，直到其中一个不是偶数。}。于是由\eqref{eq1}式得出
 \begin{equation}
 m^2 = 2n^2 \label{eq2}
 \end{equation}
@@ -39,10 +43,77 @@ m^2 = 2n^2 \label{eq2}
 
 为了做这件事，给每一个有理数$p > 0$，配置一个数\footnote{对于$A$中的情况，就是我们要找这样一个$q$，使得$q = p + x$，$x > 0$， $q < \sqrt{2}$。因此$x < \sqrt{2} - p = (2 - p^2) / (\sqrt{2} + p)$。可令$x = (2 - p^2) / (2 + p)$，就得到下面的式子。对于$B$中的情况也会得到同样的式子。}
 \begin{equation}
-q = p - \frac{p^2 - 2}{p + 2} = \frac{2p + 2}{p + 2}\label{eq3}
+q = p - \frac{p^2 - 2}{p + 2} = \frac{2p + 2}{p + 2} \label{eq3}
 \end{equation}
+于是
+\begin{equation}
+q^2 - 2 = \frac{2(p^2 - 2)}{(p + 2)^2} \label{eq4}
+\end{equation}
+如果$p$在$A$中，那么$p^2 - 2 < 0$，\eqref{eq3}式说明$q > p$，而\eqref{eq4}式说明$q^2 < 2$，因而$q$在$A$中。
 
+如果$p$在$B$中，那么$p^2 - 2 > 0$，\eqref{eq3}式说明$0 < q < p$，而\eqref{eq4}式说明$q^2 > 2$，因而$q$在$B$中。
 \end{example}
+
+\section{有序集}
+
+\begin{definition}[序关系]
+设$S$是一个集。$S$上的序是一种关系，记作$<$，它有下面的两个性质：
+\begin{enumerate}
+\item 如果$x \in S$，并且$y \in S$，那么在$$x < y, x = y, y < x$$三种述语之中，有且只有一种成立。
+\item 如果$x, y, z \in S$，又如果$x < y$且$y < z$，那么$x < z$。
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[有序集]
+在集$S$里定义了一种序，便是一个有序集。
+\end{definition}
+
+\begin{definition}[上有界]
+设$S$是有序集，而$E \subset S$。如果存在$\beta \in S$，而每个$x \in E$，满足$x \leqslant \beta$，我们就说$E$上有界，并称$\beta$为$E$的一个上界。
+
+用类似的方法定义下界（把$\leqslant$换成$\geqslant$就行了）。
+\end{definition}
+
+\begin{definition}[最小上界]
+设$S$是有序集，$E \subset S$，且$E$上有界。设存在一个$\alpha \in S$，它具有以下性质：
+\begin{enumerate}
+\item $\alpha$是$E$的上界。
+\item 如果$\gamma < \alpha$，$\gamma$就不是$E$的上界。\label{item2}
+\end{enumerate}
+便把$\alpha$叫做$E$的最小上界（由\ref{item2}来看，显然\footnote{假设有$\alpha_1,\alpha_2$（$\alpha_1 \neq \alpha_2$）都是$E$的最小上界，根据序的性质，要么$\alpha_1 < \alpha_2$，要么$\alpha_2 < \alpha_1$，根据\ref{item2}，这就表明或者$\alpha_1$不是$E$的上界，或者$\alpha_2$不是$E$的上界，这与我们的假设矛盾。}最多有一个这样的$\alpha$）或$E$的上确界，而记作$$\alpha = \sup{E}$$
+类似地可以定义下有界集$E$的最大下界或下确界。述语$$\alpha = \inf{E}$$表示$\alpha$是$E$的一个下界，而任何合于$\beta > \alpha$的$\beta$，不能是$E$的下界。
+\end{definition}
+
+\begin{example}
+\label{example2}\hfill
+\begin{enumerate}[a]
+\item 把例\ref{example1}中的集$A$与集$B$看作有序集$Q$的子集。集$A$上有界。实际上，$A$的那些上界，刚好就是$B$的那些元。因为$B$没有最小的元，所以$A$在$Q$中没有最小上界。\label{item1}
+\item 如果$\alpha = \sup{E}$存在。这$\alpha$可以是$E$的元，也可以不是$E$的元。例如，假设$E_1$是所有合于$r \in Q$及$r < 0$的集。假设$E_2$是所有合于$r \in Q$及$r \leqslant 0$的集。于是$$\sup{E_1} = \sup{E_2} = 0,$$而$0 \notin E_1$，$0 \in E_2$。
+\end{enumerate}
+\end{example}
+
+\begin{definition}[最小上界性]
+有序集$S$，如果具有性质：
+若$E \subset S$，$E$不空，且$E$上有界时，$\sup{E}$便在$S$里。就说$S$有最小上界性。
+\end{definition}
+例\ref{example2} \ref{item1}说明$Q$没有最小上界性。
+
+\begin{theorem}[有最小上界性的有序集也有最大下界性]
+设$S$是具有最小上界性的有序集，$B \subset S$，$B$不空且$B$下有界。令$L$是$B$的所有下界的集。那么$$\alpha = sup{L}$$在$S$存在，并且$\alpha = \inf{B}$。
+
+特别地说就是$\inf{B}$在$S$存在。
+\end{theorem}
+
+\begin{proof}[证]
+（证明$\alpha$存在）因为$B$下有界，$L$不空。$L$刚好由这样一些$y \in S$组成，他们对于每个$x \in B$，满足不等式$y \leqslant x$。
+可见每个$x \in B$是$L$的上界。于是$L$上有界，因而我们对$S$的假定意味着$S$里有$L$的上确界\footnote{这里还需要保证$L \subset S$。根据$L$的定义，若$x \in L$，那么$x$就是$B$的下界。而根据下界的定义，就有$x \in S$。所以$L \subset S$是成立的。rudin先生是觉得这些太显然了就没有把它们写出来吗？}；把它叫做$\alpha$。
+
+（证明$\alpha$是$B$的下界）如果$\gamma < \alpha$，那么$\gamma$不是$L$的上界，因此$\gamma \notin B$。由此对于每个$x \in B$，$\alpha \leqslant x$。所以$\alpha \in L$。
+
+（证明$\alpha$是$B$的最大下界）如果$\alpha < \beta$，由于$\alpha$是$L$的上界，必然$\beta \notin L$。我们已证明了：$\alpha \in L$。而当$\beta > \alpha$时，就有$\beta \notin L$。换句话说，$\alpha$是$B$的下界，但若$\beta > \alpha$，$\beta$就不是$B$的下界。这就是说$\alpha = \inf{B}$。
+\end{proof}
+
+\section{域}
 
 \end{document}
 
