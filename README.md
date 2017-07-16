@@ -35,6 +35,16 @@ unicode
 
 对UNICODE的介绍
 
+general-relativity
+------------------
+
+微分几何简介与广义相对论笔记
+
+quantum-computation
+-------------------
+
+量子计算笔记
+
 
 TODO
 ====
