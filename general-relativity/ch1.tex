@@ -1,3 +1,43 @@
 \chapter{拓扑空间简介}
 \section{集论初步}
+
+\begin{definition}
+若集$A$的每一元素都属于集$X$，就说$A$是$X$的\emph{子集}，也说$A$含于$X$或$X$含$A$，记作$A \subset X$或$X \supset A$。
+规定$\emptyset$是任一集合的子集。$A$称为$X$的\emph{真子集}，若$A \subset X$且$A \neq X$。
+集$X$和$Y$称为\emph{相等}的（记作$X = Y$），若$X \subset Y$且$Y \subset X$
+\end{definition}
+
+\begin{definition}
+集合$A$，$B$的并集，交集，差集和补集定义为：
+
+\emph{并集} $A \cup B := \{x | x \in A ~ \text{或} ~ x \in B\}$
+
+\emph{交集} $A \cap B := \{x | x \in A, x \in B\}$
+
+\emph{差集} $A - B := \{x | x \in A, x \notin B\}$
+
+若$A$是$X$的子集，则$A$的\emph{补集}$-A$定义为$-A := X - A$
+
+\end{definition}
+
+\begin{theorem}
+以上集运算符合如下规律：
+
+\emph{交换律} $A \cup B = B \cup A$, $A \cap B = B \cap A$
+
+\emph{结合律} $(A \cup B) \cup C = A \cup (B \cup C)$, $(A \cap B) \cap C = A \cap (B \cap C)$
+
+\emph{分配律} $(A \cap B) \cup C = (A \cup C) \cap (B \cup C)$, $(A \cup B) \cap C = (A \cap C) \cup (B \cap C)$
+
+\emph{De Morgan律} $A - (B \cup C) = (A - B) \cap (A - C)$, $A - (B \cap C) = (A - B) \cup (A - C)$
+
+\end{theorem}
+
+\begin{definition}
+非空集合$X$,$Y$的卡氏积$X \times Y$定义为
+
+$X \times Y := \{(x, y) | x \in X, y \in Y\}$
+\end{definition}
+多个（有限个）集合的卡氏积可以类似定义，而且规定卡氏积满足结合律，即$(X \times Y) \times Z = X \times (Y \times Z)$
+
 \section{拓扑空间}
