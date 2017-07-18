@@ -38,7 +38,7 @@ unicode
 general-relativity
 ------------------
 
-微分几何简介与广义相对论笔记
+微分几何与广义相对论笔记
 
 quantum-computation
 -------------------

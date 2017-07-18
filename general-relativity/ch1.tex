@@ -10,11 +10,11 @@
 \begin{definition}
 集合$A$，$B$的并集，交集，差集和补集定义为：
 
-\emph{并集} $A \cup B := \{x | x \in A ~ \text{或} ~ x \in B\}$
+\emph{并集} $A \cup B := \{x \mid x \in A ~ \text{或} ~ x \in B\}$
 
-\emph{交集} $A \cap B := \{x | x \in A, x \in B\}$
+\emph{交集} $A \cap B := \{x \mid x \in A, x \in B\}$
 
-\emph{差集} $A - B := \{x | x \in A, x \notin B\}$
+\emph{差集} $A - B := \{x \mid x \in A, x \notin B\}$
 
 若$A$是$X$的子集，则$A$的\emph{补集}$-A$定义为$-A := X - A$
 
@@ -35,9 +35,74 @@
 
 \begin{definition}
 非空集合$X$,$Y$的卡氏积$X \times Y$定义为
-
-$X \times Y := \{(x, y) | x \in X, y \in Y\}$
+$$X \times Y := \{(x, y) \mid x \in X, y \in Y\}$$
 \end{definition}
 多个（有限个）集合的卡氏积可以类似定义，而且规定卡氏积满足结合律，即$(X \times Y) \times Z = X \times (Y \times Z)$
 
+\begin{example}
+$\mathbb{R}^2 := \mathbb{R} \times \mathbb{R}$, $\mathbb{R}^n := \mathbb{R} \times \cdots \times \mathbb{R}$（共$n$个$\mathbb{R}$）.
+既然$\mathbb{R}^2$的元素是由两个实数构成的有序对，这两个实数就称为该元素的\emph{自然坐标}。类似地，$\mathbb{R}^n$的每一个元素有$n$个自然坐标。
+可见$\mathbb{R}^n$天生就是有坐标的，但其他集合则未必。利用自然坐标可以给$\mathbb{R}^n$的任意两个元素定义距离的概念。
+\end{example}
+
+\begin{definition}
+$\mathbb{R}^n$的任意两个元素$x = (x^1, \cdots, x^n)$, $y = (y^1, \cdots, y^n)$之间的\emph{距离}$|y - x|$定义为
+$$|y - x| := \sqrt{\sum^n_{i = 1}(y^i - x^i)^2}$$
+\end{definition}
+
+\begin{definition}
+设$X$,$Y$为非空集合。一个从$X$到$Y$的\emph{映射}（记作$f \colon X \to Y$）是一个法则，它给$X$的每一个元素指定$Y$的唯一的对应元素。
+若$y \in Y$是$x \in X$的对应元素，就写$y = f(x)$，并称$y$为$x$在映射$f$下的\emph{像}，称$x$为$y$的\emph{原像}（或\emph{逆像}）。
+$X$称为映射$f$的\emph{定义域}，$X$的全体元素在映射$f$下的像的集合（记作$f[X]$）称为映射$f \colon X \to Y$的\emph{值域}。
+映射$f \colon X \to Y$和$f' \colon X \to Y$称为\emph{相等}的，若$f(x) = f'(x) ～ \forall x \in X$。
+\end{definition}
+
+\begin{note}
+从$\mathbb{R}^2$到$\mathbb{R}$的映射给出一个二元函数。同理，从$\mathbb{R}^n$到$\mathbb{R}^m$的映射给出$m$个$n$元函数。
+\end{note}
+
+\begin{definition}
+映射$f \colon X \to Y$叫\emph{一一}的，若任一$y \in Y$有不多于一个逆像（可以没有）。$f \colon X \to Y$叫\emph{到上}的，若任一$y \in Y$都有逆像（可以多于一个）。
+\end{definition}
+
+\begin{definition}
+$f \colon X \to Y$称为\emph{常值映射}，若$f(x) = f(x') ~ \forall x, x' \in X$
+\end{definition}
+
+\begin{definition}
+设$X$,$Y$,$Z$为集，$f \colon X \to Y$和$g \colon Y \to Z$为映射，则$f$和$g$的\emph{复合映射}$g \comp f$是从$X$到$Z$的映射，定义为$(g \comp f)(x) := g(f(x)) \in Z ~ \forall x \in X$
+\end{definition}
+
 \section{拓扑空间}
+
+\begin{definition}
+非空集合$X$的一个\emph{拓扑}$\mathscr{T}$是$X$的若干子集的集合，满足：
+\begin{enumerate}[（a）]
+\item $X,\emptyset \in \mathscr{T}$
+\item 若$O_i \in \mathscr{T}, i = 1, 2, \cdots, n$,则$\bigcap\limits^n_{i = 1}O_i \in \mathscr{T}$
+\item 若$O_\alpha \in \mathscr{T} ~ \forall \alpha$,则$\bigcup\limits_{\alpha}O_\alpha \in \mathscr{T}$
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+定义了拓扑$\mathscr{T}$的集合$X$称为\emph{拓扑空间}。拓扑空间$X$的子集$O$称为\emph{开子集}（简称\emph{开集}）,若$O \in \mathscr{T}$。
+\end{definition}
+
+\begin{example}
+设$X$为任意非空集合，令$\mathscr{T}$为$X$的全部子集的集合，则它满足拓扑的定义，故构成X的一个拓扑，叫\emph{离散拓扑}。
+\end{example}
+
+\begin{example}
+设$X$为任意非空集合，令$\mathscr{T} = \{X, \emptyset\}$，则它满足拓扑的定义，故构成X的一个拓扑，叫\emph{凝聚拓扑}。
+凝聚拓扑是元素最少的拓扑，而离散拓扑是元素最多的拓扑。
+\end{example}
+
+\begin{example}
+\begin{enumerate}[（1）]
+\item 设$X = \mathbb{R}$，则$\mathscr{T}_u := \{\text{空集或}\mathbb{R}\text{中能表为开区间之并的子集}\}$称为$\mathbb{R}$的\emph{通常拓扑}。
+\item 设$X = \mathbb{R}^n$，则$\mathscr{T}_u := \{\text{空集或}\mathbb{R}^n\text{中能表为开球之并的子集}\}$称为$\mathbb{R}^n$的\emph{通常拓扑},
+其中，开球的定义为$B(x_0, r) := \{x \in \mathbb{R}^n \mid |x - x_0| < r\}$，$x_0$称为球心，$r > 0$称为半径。
+$\mathbb{R}^2$中的开球亦称开圆盘，$\mathbb{R}$中的开球就是开区间。
+\end{enumerate}
+根据上述定义，$\mathbb{R}$中任一开区间用$\mathscr{T}_u$衡量都是开集。今后在把$\mathbb{R}$看做拓扑空间时，如无声明就是指$(\mathbb{R}, \mathscr{T}_u)$
+\end{example}
