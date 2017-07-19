@@ -101,8 +101,37 @@ $f \colon X \to Y$称为\emph{常值映射}，若$f(x) = f(x') ~ \forall x, x' \
 \begin{enumerate}[（1）]
 \item 设$X = \mathbb{R}$，则$\mathscr{T}_u := \{\text{空集或}\mathbb{R}\text{中能表为开区间之并的子集}\}$称为$\mathbb{R}$的\emph{通常拓扑}。
 \item 设$X = \mathbb{R}^n$，则$\mathscr{T}_u := \{\text{空集或}\mathbb{R}^n\text{中能表为开球之并的子集}\}$称为$\mathbb{R}^n$的\emph{通常拓扑},
-其中，开球的定义为$B(x_0, r) := \{x \in \mathbb{R}^n \mid |x - x_0| < r\}$，$x_0$称为球心，$r > 0$称为半径。
-$\mathbb{R}^2$中的开球亦称开圆盘，$\mathbb{R}$中的开球就是开区间。
+其中，\emph{开球}的定义为$B(x_0, r) := \{x \in \mathbb{R}^n \mid |x - x_0| < r\}$，$x_0$称为球心，$r > 0$称为半径。
+$\mathbb{R}^2$中的开球亦称\emph{开圆盘}，$\mathbb{R}$中的开球就是开区间。
 \end{enumerate}
 根据上述定义，$\mathbb{R}$中任一开区间用$\mathscr{T}_u$衡量都是开集。今后在把$\mathbb{R}$看做拓扑空间时，如无声明就是指$(\mathbb{R}, \mathscr{T}_u)$
 \end{example}
+
+\begin{example}
+设$(X_1, \mathscr{T}_1)$, $(X_2, \mathscr{T}_2)$为拓扑空间，$X = X_1 \times X_2$，定义$X$的拓扑为
+
+$\mathscr{T} := \{O \in X \mid O\text{可表示为形如}O_1 \times O_2\text{的集合之并}, O_1 \in \mathscr{T}_1, O_2 \in \mathscr{T}_2\}$
+
+则$\mathscr{T}$称为$X$的\emph{乘积拓扑}。
+\end{example}
+
+\begin{example}
+设$(X, \mathscr{T})$为拓扑空间，$A$为$X$的任一非空子集。为使$A$成为拓扑空间，为其定义拓扑$\mathscr{S}$为
+
+$\mathscr{S} := \{V \subset A \mid \exists O \in \mathscr{T} \text{使} V = A \cap O\}$
+
+这样定义的$\mathscr{S}$叫做$A$的、由$\mathscr{T}$导出的\emph{诱导拓扑}。以后在把$(X, \mathscr{T})$的子集$A$看作拓扑空间时，如无声明都指$(A, \mathscr{S})$,
+其中$\mathscr{S}$是由$\mathscr{T}$诱导的拓扑。$(A, \mathscr{S})$称为$(X, \mathscr{T})$的\emph{拓扑子空间}。
+\end{example}
+
+\begin{definition}
+\begin{enumerate}[（a）]
+\item 设$(X, \mathscr{T})$为和$(Y, \mathscr{S})$为拓扑空间。映射$f \colon X \to Y$称为\emph{连续}的，若$f^{-1}[O] \in \mathscr{T} ～ \forall O \in \mathscr{S}$。
+\item 设$(X, \mathscr{T})$为和$(Y, \mathscr{S})$为拓扑空间。映射$f \colon X \to Y$称为\emph{在点$x \in X$处连续}，若对所有满足$f(x) \in G'$的$G' \in \mathscr{S}$， 存在$G \in \mathscr{T}$使$x \in G$且$f[G] \subset G'$。
+$f \colon X \to Y$称为连续，若它在所有点$x \in X$上连续。
+\end{enumerate}
+\end{definition}
+
+\begin{note}
+不难看出，若$X = Y = \mathbb{R}$，$\mathscr{T} = \mathscr{S} = \mathscr{T}_u$，上述定义就回到$\epsilon$ -- $\delta$定义。
+\end{note}
