@@ -126,12 +126,49 @@ $\mathscr{S} := \{V \subset A \mid \exists O \in \mathscr{T} \text{使} V = A \c
 
 \begin{definition}
 \begin{enumerate}[（a）]
-\item 设$(X, \mathscr{T})$为和$(Y, \mathscr{S})$为拓扑空间。映射$f \colon X \to Y$称为\emph{连续}的，若$f^{-1}[O] \in \mathscr{T} ～ \forall O \in \mathscr{S}$。
-\item 设$(X, \mathscr{T})$为和$(Y, \mathscr{S})$为拓扑空间。映射$f \colon X \to Y$称为\emph{在点$x \in X$处连续}，若对所有满足$f(x) \in G'$的$G' \in \mathscr{S}$， 存在$G \in \mathscr{T}$使$x \in G$且$f[G] \subset G'$。
+\item 设$(X, \mathscr{T})$和$(Y, \mathscr{S})$为拓扑空间。映射$f \colon X \to Y$称为\emph{连续}的，若$f^{-1}[O] \in \mathscr{T} ～ \forall O \in \mathscr{S}$。
+\item 设$(X, \mathscr{T})$和$(Y, \mathscr{S})$为拓扑空间。映射$f \colon X \to Y$称为\emph{在点$x \in X$处连续}，若对所有满足$f(x) \in G'$的$G' \in \mathscr{S}$， 存在$G \in \mathscr{T}$使$x \in G$且$f[G] \subset G'$。
 $f \colon X \to Y$称为连续，若它在所有点$x \in X$上连续。
 \end{enumerate}
 \end{definition}
 
 \begin{note}
 不难看出，若$X = Y = \mathbb{R}$，$\mathscr{T} = \mathscr{S} = \mathscr{T}_u$，上述定义就回到$\epsilon$ -- $\delta$定义。
+\end{note}
+
+\begin{definition}
+拓扑空间$(X, \mathscr{T})$和$(Y, \mathscr{S})$称为\emph{互相同胚}，若存在映射$f \colon X \to Y$，满足（a）$f$是一一到上的；（b）$f$及$f^{-1}$都连续。
+这样的$f$称为从$(X, \mathscr{T})$到$(Y, \mathscr{S})$的\emph{同胚映射}，简称\emph{同胚}。   
+\end{definition}
+
+普通函数$y = f(x)$的连续性和可微性用$C^r$表示，其中$r$为非负整数，$C^0$代表连续，$C^r$代表$r$阶导数存在并连续，$C^\infty$代表任意阶导数存在并连续[称为\emph{光滑}]。
+
+\begin{example}
+任一开区间$(a, b) \subset \mathbb{R}$与$\mathbb{R}$同胚。
+\end{example}
+
+\begin{example}
+圆周$S^1 \subset \mathbb{R}^2$配以诱导拓扑（由$\mathbb{R}^2$的$\mathscr{T}_u$诱导）可看做拓扑空间。
+它与$\mathbb{R}$不同胚。但挖去一点的圆周与$\mathbb{R}$同胚。
+\end{example}
+
+\begin{example}
+考虑欧氏平面上的一个圆和一个椭圆（均指圆周）。从拓扑学的角度看，$(\mathbb{R}^2, \mathscr{T}_u)$是拓扑空间，圆$S^1$和椭圆$E$是$\mathbb{R}^2$的两个子集：
+$S^1, E \in \mathbb{R}^2$。可用$\mathscr{T}_u$给$S^1$和$E$分别定义诱导拓扑使成两个拓扑空间$(S^1, \mathscr{S}_{S^1})$及$(E, \mathscr{S}_E)$。
+可以证明存在同胚映射$f \colon (S^1, \mathscr{S}_{S^1}) \to (E, \mathscr{S}_E)$，所以从纯拓扑眼光看两者完全一样。
+\end{example}
+
+\begin{definition}
+$N \subset X$称为$x \in X$的一个\emph{邻域}，若存在$O \in \mathscr{T}$使$x \in O \subset N$。自身是邻域的开集称为\emph{开邻域}。  
+\end{definition}
+
+\begin{note}
+设$X = \mathbb{R}$，$N = [a, b]$，则$N$按定义是$x$的邻域，当且仅当$a < x < b$。
+请特别注意``擦边''情况：若$x = a$，则$N$并非$x$的邻域，因为$\mathbb{R}$不存在开集$O$使$x \in O \subset N$。
+直观地说，要使$[a, b]$是$x$的邻域，$x$在$[a, b]$中应有``左邻右舍''。
+而$x = a$的任何``左邻''都不属于$[a, b]$，故$[a, b]$不应是$x = a$的邻域。
+另请注意如下微妙的例子：在拓扑空间$[0, \infty) \subset \mathbb{R}$中，$[0, 1)$是$0$的开邻域，$[0, 1]$是$0$的邻域\footnote{
+将$[0, \infty)$记作$A$。视其为拓扑空间即为其配备由$\mathscr{T}_u$定义的诱导拓扑$\mathscr{T}_A = \{V \subset A \mid \exists O \in \mathscr{T}_u \text{使} V = A \cap O\}$。
+现在只要取$O = (-1, 1)$，则$V = A \cap O = [0, 1)$是$A$中的开集，且满足$x \in V \subset [0, 1]$。
+}。
 \end{note}
