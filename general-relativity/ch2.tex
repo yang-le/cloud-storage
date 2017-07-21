@@ -10,6 +10,65 @@
 \end{enumerate}
 \end{definition}
 
+\begin{note}
+\textcircled{1}$\psi_\beta \comp \psi_\alpha^{-1}$是从$\psi_\alpha[O_\alpha \cap O_\beta] \subset \mathbb{R}^n$到$\psi_\beta[O_\alpha \cap O_\beta] \subset \mathbb{R}^n$的映射。
+因$\mathbb{R}^n$的每点都有$n$个自然坐标，故$\psi_\beta \comp \psi_\alpha^{-1}$提供了$n$个$n$元函数。所谓$\psi_\beta \comp \psi_\alpha^{-1}$是$C^\infty$的，就是指这每一个$n$元函数都是$C^\infty$的。
+\textcircled{2}设$p \in O_\alpha$，则$\psi_\alpha(p) \in \mathbb{R}^n$，故$\psi_\alpha(p)$有$n$个自然坐标。很自然地把这$n$个数称为$p$点在映射$\psi_\alpha$下获得的坐标。
+$M$作为拓扑空间，其元素本来一般没有坐标，但作为流形，$M$中位于$O_\alpha$内的元素（点）就可以通过映射$\psi_\alpha$获得坐标。若$O_\alpha \cap O_\beta \neq \emptyset$，
+则$O_\alpha \cap O_\beta$内的点既可以通过$\psi_\alpha$又可以通过$\psi_\beta$获得坐标，这两组坐标一般不同。我们说$(O_\alpha, \psi_\alpha)$构成一个（局域）坐标系，其坐标域为$O_\alpha$；
+$(O_\beta, \psi_\beta)$构成另一坐标系，其坐标域为$O_\beta$。于是$O_\alpha \cap O_\beta$内的点至少有两组坐标，分别记作$\{x^\mu\}$和$\{x'^\nu\}$（$\mu, \nu = 1, \cdots, n$）。
+由映射$\psi_\beta \comp \psi_\alpha^{-1}$提供的、体现两组坐标之间关系的$n$个$n$元函数$$x'^1 = \phi^1(x^1, \cdots, x^n), \cdots, x'^n = \phi^n(x^1, \cdots, x^n)$$就称为一个坐标变换。
+定义的条件（b）保证坐标变换中的函数关系$x'^\mu = \phi^\mu(x^1, \cdots, x^n)$都是$C^\infty$的。为方便起见也常称$\{x^\mu\}$为坐标系，虽然从$\{x^\mu\}$中看不出坐标域的范围。
+物理学家也常把$x'^\mu = \phi^\mu(x^1, \cdots, x^n)$记作$x'^\mu = x'^\mu(x^1, \cdots, x^n)$。
+\end{note}
+
+\begin{definition}
+坐标系$(O_\alpha, \psi_\alpha)$在数学上又叫图，满足定义条件（a）、（b）的全体图的集合$\{(O_\alpha, \psi_\alpha)\}$叫图册。
+条件（b）又称相容性条件，因此说一个图册中的任意两个图都是相容的。
+\end{definition}
+
+\begin{example}
+设$M = (\mathbb{R}^2, \mathscr{T}_u)$。选$O_1 = \mathbb{R}^2, \psi_1 =\text{恒等映射}$，则$\{(O_1, \psi_1)\}$便是只含一个图的图册，故$\mathbb{R}^2$是$2$维流形，而且是能用一个坐标域覆盖的流形，称为平凡流形。
+根据这个图册，$\mathbb{R}^2$中每点的坐标就是它作为$\mathbb{R}^2$的元素天生就有的自然坐标。$\mathbb{R}^2$的点当然也可用其他坐标（如极坐标）描述。
+其实这无非是选择与图$(O_1, \psi_1)$相容的另一个图$(O_2, \psi_2)$，其中$\psi_2$把$p \in O_2$映为$\psi_2(p) \in \mathbb{R}^2$，再把$\psi_2(p)$的自然坐标称为$p$点的新坐标而已。
+但应注意坐标域$O_2$未必能包括$\mathbb{R}^2$的全体点（例如极坐标）。
+
+同理可知$\mathbb{R}^n$是$n$维平凡流形。
+\end{example}
+
+\begin{example}
+设$M = (S^1, \mathscr{S})$，其中$S^1 := \{x \in \mathbb{R}^2 \mid |x - o| = 1\}$是以原点$o$为心的单位圆周，$\mathscr{S}$是$\mathbb{R}^2$的$\mathscr{T}_u$在$S^1$上诱导的拓扑。则可证明$S^1$是$1$维流形。
+\end{example}
+
+\begin{example}
+设$M = (S^2, \mathscr{S})$，其中$S^2 := \{x \in \mathbb{R}^3 \mid |x - o| = 1\}$是以原点$o$为心的单位球面，$\mathscr{S}$是$\mathbb{R}^3$的$\mathscr{T}_u$在$S^2$上诱导的拓扑。则可证明$S^2$是$2$维流形。
+\end{example}
+
+设图册$\{(O_\alpha, \psi_\alpha)\}$把拓扑空间$M$定义为一个流形，则此图册中的任意两个图自然是相容的。
+但也可用另一图册$\{(O'_\beta, \psi'_\beta)\}$把同一$M$定义为流形，这时有两种可能：
+\textcircled{1}这两个图册不相容，即存在$O_\alpha$和$O'_\beta$使$O_\alpha \cap O'_\beta \neq \emptyset$，且在$O_\alpha \cap O'_\beta$上$\psi_\alpha$与$\psi'_\beta$不满足定义条件（b），
+这时就说这两个图册把$M$定义为两个不同的微分流形，并说这两个图册代表两种不同的微分结构；
+\textcircled{2}这两个图册是相容的，这时就说它们把$M$定义为同一个微分流形（只有一种微分结构）。为方便起见，不妨把$\{(O_\alpha, \psi_\alpha); (O'_\beta, \psi'_\beta)\}$看成一个图册。
+更进一步，索性把所有与$(O_\alpha, \psi_\alpha)$相容的图都放到一起造出一个最大的图册。今后说到$M$是一个流形时，总是默认已选定某一最大的图册作为微分结构。这使我们可以进行任意坐标变换。
+
+微分流形与拓扑空间的重要区别是前者除有拓扑结构外还有微分结构，因此两个流形之间的映射不但可谈及是否连续，还可谈及是否可微，乃至是否$C^\infty$。
+设$M$和$M'$是两个流形，维数依次为$n$和$n'$，$\{(O_\alpha, \psi_\alpha)\}$和$\{(O'_\beta, \psi'_\beta)\}$依次为两者的图册，$f \colon M \to M'$是一个映射。
+$\forall p \in M$，任取坐标系$(O_\alpha, \psi_\alpha)$使$p \in O_\alpha$以及坐标系$(O'_\beta, \psi'_\beta)$使$f(p) \in O'_\beta$，
+则$\psi'_\beta \comp f \comp \psi_\alpha^{-1}$是从$V_\alpha \equiv \psi_\alpha[O_\alpha]$到$\mathbb{R}^{n'}$的映射，
+因此相应于$n'$个$n$元函数，它们的$C^r$性可用以定义$f \colon M \to M'$的$C^r$性。
+
+\begin{definition}
+$f \colon M \to M'$称为$C^r$类映射，如果$\forall p \in M$，映射$\psi'_\beta \comp f \comp \psi_\alpha^{-1}$对应的$n'$个$n$元函数是$C^r$类的。
+\end{definition}
+
+\begin{note}
+由于同一图册中各图相容，上述定义与坐标系$\{(O_\alpha, \psi_\alpha)\}$及$\{(O'_\beta, \psi'_\beta)\}$的选择无关。
+\end{note}
+
+\begin{definition}
+微分流形$M$和$M'$称为互相微分同胚，若存在$f \colon M \to M'$，满足（a）$f$是一一到上的；（b）$f$及$f^{-1}$是$C^\infty$的。这样的$f$称为从$M$到$M'$的微分同胚映射，简称微分同胚。
+\end{definition}
+
 \section{切矢和切矢场}
 \subsection{切矢量}
 \subsection{流形上的矢量场}
