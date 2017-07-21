@@ -172,3 +172,68 @@ $N \subset X$称为$x \in X$的一个\emph{邻域}，若存在$O \in \mathscr{T}
 现在只要取$O = (-1, 1)$，则$V = A \cap O = [0, 1)$是$A$中的开集，且满足$x \in V \subset [0, 1]$。
 }。
 \end{note}
+
+\begin{definition}
+$N \subset X$称为$A \subset X$的一个\emph{邻域}，若存在$O \in \mathscr{T}$使$A \subset O \subset N$。
+\end{definition}
+
+\begin{theorem}
+$A \subset X$是开集，当且仅当$A$是$x$的邻域$\forall x \in A$。
+\end{theorem}
+
+\begin{definition}
+$C \subset X$叫\emph{闭集}，若$-C \in \mathscr{T}$。
+\end{definition}
+
+\begin{theorem}
+闭集有以下性质：
+\begin{enumerate}[（a）]
+\item 任意个闭集的交集是闭集
+\item 有限个闭集的并集是闭集
+\item $X$及$\emptyset$是闭集
+\end{enumerate}
+\end{theorem}
+
+可见任何拓扑空间$(X, \mathscr{T})$都有两个既开又闭的子集，即$X$和$\emptyset$
+
+\begin{definition}
+拓扑空间$(X, \mathscr{T})$称为\emph{连通}的，若它除$X$和$\emptyset$外没有既开又闭的子集。
+\end{definition}
+
+\begin{example}
+设$A$和$B$是$\mathbb{R}$的开区间，$A \cap B = \emptyset$，以$\mathscr{T}$代表由$\mathbb{R}$的通常拓扑在子集$X \equiv A \cup B$上的诱导拓扑，
+则拓扑空间$(X, \mathscr{T})$的既开又闭的子集除$X$和$\emptyset$外还有$A$和$B$（$A$和$B$在诱导拓扑下自然是开的，又因为$A$和$B$互为补集，故又都是闭的），
+所以$(X, \mathscr{T})$是不连通的。
+\end{example}
+
+设$(X, \mathscr{T})$为拓扑空间，$A \subset X$。分别定义$A$的闭包、内部和边界如下：
+
+\begin{definition}
+$A$的\emph{闭包}$\bar{A}$是所有含$A$的闭集的交集，即
+$$\bar{A} := \bigcap_\alpha C_\alpha, ~ A \subset C_\alpha, ~ -C_\alpha \in \mathscr{T}$$
+\end{definition}
+
+\begin{definition}
+$A$的\emph{内部}$\interior(A)$是所有含于$A$的开集的并集，即
+$$\interior(A) := \bigcup_\alpha O_\alpha, ~ O_\alpha \subset A, ~ O_\alpha \in \mathscr{T}$$
+\end{definition}
+
+\begin{definition}
+$A$的\emph{边界}$\dot{A} := \bar{A} - \interior(A)$，$x \in \dot{A}$称为\emph{边界点}。$\dot{A}$也记作$\partial A$
+\end{definition}
+
+\begin{theorem}
+$\bar{A}$，$\interior(A)$及$\dot{A}$有以下性质：
+\begin{enumerate}[（a）]
+\item \textcircled{1}$\bar{A}$为闭集，\textcircled{2}$A \subset \bar{A}$，\textcircled{3}$A = \bar{A}$当且仅当$A$为闭集。
+\item \textcircled{1}$\interior(A)$为开集，\textcircled{2}$\interior(A) \subset A$，\textcircled{3}$\interior(A) = A$当且仅当$A$为开集。
+\item $\dot{A}$为闭集
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+$X$的开子集的集合$\{O_\alpha\}$叫$A \subset X$的一个\emph{开覆盖}，若$A \subset \bigcup\limits_\alpha O_\alpha$。
+也可以说$\{O_\alpha\}$覆盖$A$。
+\end{definition}
+
+\section{紧致性}
