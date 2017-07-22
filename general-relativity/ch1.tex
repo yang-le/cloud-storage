@@ -2,34 +2,34 @@
 \section{集论初步}
 
 \begin{definition}
-若集$A$的每一元素都属于集$X$，就说$A$是$X$的\emph{子集}，也说$A$含于$X$或$X$含$A$，记作$A \subset X$或$X \supset A$。
-规定$\emptyset$是任一集合的子集。$A$称为$X$的\emph{真子集}，若$A \subset X$且$A \neq X$。
-集$X$和$Y$称为\emph{相等}的（记作$X = Y$），若$X \subset Y$且$Y \subset X$
+若集$A$的每一元素都属于集$X$，就说$A$是$X$的\textbf{子集}，也说$A$含于$X$或$X$含$A$，记作$A \subset X$或$X \supset A$。
+规定$\emptyset$是任一集合的子集。$A$称为$X$的\textbf{真子集}，若$A \subset X$且$A \neq X$。
+集$X$和$Y$称为\textbf{相等}的（记作$X = Y$），若$X \subset Y$且$Y \subset X$
 \end{definition}
 
 \begin{definition}
 集合$A$，$B$的并集，交集，差集和补集定义为：
 
-\emph{并集} $A \cup B := \{x \mid x \in A ~ \text{或} ~ x \in B\}$
+\textbf{并集} $A \cup B := \{x \mid x \in A ~ \text{或} ~ x \in B\}$
 
-\emph{交集} $A \cap B := \{x \mid x \in A, x \in B\}$
+\textbf{交集} $A \cap B := \{x \mid x \in A, x \in B\}$
 
-\emph{差集} $A - B := \{x \mid x \in A, x \notin B\}$
+\textbf{差集} $A - B := \{x \mid x \in A, x \notin B\}$
 
-若$A$是$X$的子集，则$A$的\emph{补集}$-A$定义为$-A := X - A$
+若$A$是$X$的子集，则$A$的\textbf{补集}$-A$定义为$-A := X - A$
 
 \end{definition}
 
 \begin{theorem}
 以上集运算符合如下规律：
 
-\emph{交换律} $A \cup B = B \cup A$, $A \cap B = B \cap A$
+\textbf{交换律} $A \cup B = B \cup A$, $A \cap B = B \cap A$
 
-\emph{结合律} $(A \cup B) \cup C = A \cup (B \cup C)$, $(A \cap B) \cap C = A \cap (B \cap C)$
+\textbf{结合律} $(A \cup B) \cup C = A \cup (B \cup C)$, $(A \cap B) \cap C = A \cap (B \cap C)$
 
-\emph{分配律} $(A \cap B) \cup C = (A \cup C) \cap (B \cup C)$, $(A \cup B) \cap C = (A \cap C) \cup (B \cap C)$
+\textbf{分配律} $(A \cap B) \cup C = (A \cup C) \cap (B \cup C)$, $(A \cup B) \cap C = (A \cap C) \cup (B \cap C)$
 
-\emph{De Morgan律} $A - (B \cup C) = (A - B) \cap (A - C)$, $A - (B \cap C) = (A - B) \cup (A - C)$
+\textbf{De Morgan律} $A - (B \cup C) = (A - B) \cap (A - C)$, $A - (B \cap C) = (A - B) \cup (A - C)$
 
 \end{theorem}
 
@@ -41,20 +41,20 @@ $$X \times Y := \{(x, y) \mid x \in X, y \in Y\}$$
 
 \begin{example}
 $\mathbb{R}^2 := \mathbb{R} \times \mathbb{R}$, $\mathbb{R}^n := \mathbb{R} \times \cdots \times \mathbb{R}$（共$n$个$\mathbb{R}$）.
-既然$\mathbb{R}^2$的元素是由两个实数构成的有序对，这两个实数就称为该元素的\emph{自然坐标}。类似地，$\mathbb{R}^n$的每一个元素有$n$个自然坐标。
+既然$\mathbb{R}^2$的元素是由两个实数构成的有序对，这两个实数就称为该元素的\textbf{自然坐标}。类似地，$\mathbb{R}^n$的每一个元素有$n$个自然坐标。
 可见$\mathbb{R}^n$天生就是有坐标的，但其他集合则未必。利用自然坐标可以给$\mathbb{R}^n$的任意两个元素定义距离的概念。
 \end{example}
 
 \begin{definition}
-$\mathbb{R}^n$的任意两个元素$x = (x^1, \cdots, x^n)$, $y = (y^1, \cdots, y^n)$之间的\emph{距离}$|y - x|$定义为
+$\mathbb{R}^n$的任意两个元素$x = (x^1, \cdots, x^n)$, $y = (y^1, \cdots, y^n)$之间的\textbf{距离}$|y - x|$定义为
 $$|y - x| := \sqrt{\sum^n_{i = 1}(y^i - x^i)^2}$$
 \end{definition}
 
 \begin{definition}
-设$X$,$Y$为非空集合。一个从$X$到$Y$的\emph{映射}（记作$f \colon X \to Y$）是一个法则，它给$X$的每一个元素指定$Y$的唯一的对应元素。
-若$y \in Y$是$x \in X$的对应元素，就写$y = f(x)$，并称$y$为$x$在映射$f$下的\emph{像}，称$x$为$y$的\emph{原像}（或\emph{逆像}）。
-$X$称为映射$f$的\emph{定义域}，$X$的全体元素在映射$f$下的像的集合（记作$f[X]$）称为映射$f \colon X \to Y$的\emph{值域}。
-映射$f \colon X \to Y$和$f' \colon X \to Y$称为\emph{相等}的，若$f(x) = f'(x) ～ \forall x \in X$。
+设$X$,$Y$为非空集合。一个从$X$到$Y$的\textbf{映射}（记作$f \colon X \to Y$）是一个法则，它给$X$的每一个元素指定$Y$的唯一的对应元素。
+若$y \in Y$是$x \in X$的对应元素，就写$y = f(x)$，并称$y$为$x$在映射$f$下的\textbf{像}，称$x$为$y$的\textbf{原像}（或\textbf{逆像}）。
+$X$称为映射$f$的\textbf{定义域}，$X$的全体元素在映射$f$下的像的集合（记作$f[X]$）称为映射$f \colon X \to Y$的\textbf{值域}。
+映射$f \colon X \to Y$和$f' \colon X \to Y$称为\textbf{相等}的，若$f(x) = f'(x) ~ \forall x \in X$。
 \end{definition}
 
 \begin{note}
@@ -62,21 +62,21 @@ $X$称为映射$f$的\emph{定义域}，$X$的全体元素在映射$f$下的像�
 \end{note}
 
 \begin{definition}
-映射$f \colon X \to Y$叫\emph{一一}的，若任一$y \in Y$有不多于一个逆像（可以没有）。$f \colon X \to Y$叫\emph{到上}的，若任一$y \in Y$都有逆像（可以多于一个）。
+映射$f \colon X \to Y$叫\textbf{一一}的，若任一$y \in Y$有不多于一个逆像（可以没有）。$f \colon X \to Y$叫\textbf{到上}的，若任一$y \in Y$都有逆像（可以多于一个）。
 \end{definition}
 
 \begin{definition}
-$f \colon X \to Y$称为\emph{常值映射}，若$f(x) = f(x') ~ \forall x, x' \in X$
+$f \colon X \to Y$称为\textbf{常值映射}，若$f(x) = f(x') ~ \forall x, x' \in X$
 \end{definition}
 
 \begin{definition}
-设$X$,$Y$,$Z$为集，$f \colon X \to Y$和$g \colon Y \to Z$为映射，则$f$和$g$的\emph{复合映射}$g \comp f$是从$X$到$Z$的映射，定义为$(g \comp f)(x) := g(f(x)) \in Z ~ \forall x \in X$
+设$X$,$Y$,$Z$为集，$f \colon X \to Y$和$g \colon Y \to Z$为映射，则$f$和$g$的\textbf{复合映射}$g \comp f$是从$X$到$Z$的映射，定义为$(g \comp f)(x) := g(f(x)) \in Z ~ \forall x \in X$
 \end{definition}
 
 \section{拓扑空间}
 
 \begin{definition}
-非空集合$X$的一个\emph{拓扑}$\mathscr{T}$是$X$的若干子集的集合，满足：
+非空集合$X$的一个\textbf{拓扑}$\mathscr{T}$是$X$的若干子集的集合，满足：
 \begin{enumerate}[（a）]
 \item $X,\emptyset \in \mathscr{T}$
 \item 若$O_i \in \mathscr{T}, i = 1, 2, \cdots, n$,则$\bigcap\limits^n_{i = 1}O_i \in \mathscr{T}$
@@ -85,24 +85,24 @@ $f \colon X \to Y$称为\emph{常值映射}，若$f(x) = f(x') ~ \forall x, x' \
 \end{definition}
 
 \begin{definition}
-定义了拓扑$\mathscr{T}$的集合$X$称为\emph{拓扑空间}。拓扑空间$X$的子集$O$称为\emph{开子集}（简称\emph{开集}）,若$O \in \mathscr{T}$。
+定义了拓扑$\mathscr{T}$的集合$X$称为\textbf{拓扑空间}。拓扑空间$X$的子集$O$称为\textbf{开子集}（简称\textbf{开集}）,若$O \in \mathscr{T}$。
 \end{definition}
 
 \begin{example}
-设$X$为任意非空集合，令$\mathscr{T}$为$X$的全部子集的集合，则它满足拓扑的定义，故构成X的一个拓扑，叫\emph{离散拓扑}。
+设$X$为任意非空集合，令$\mathscr{T}$为$X$的全部子集的集合，则它满足拓扑的定义，故构成X的一个拓扑，叫\textbf{离散拓扑}。
 \end{example}
 
 \begin{example}
-设$X$为任意非空集合，令$\mathscr{T} = \{X, \emptyset\}$，则它满足拓扑的定义，故构成X的一个拓扑，叫\emph{凝聚拓扑}。
+设$X$为任意非空集合，令$\mathscr{T} = \{X, \emptyset\}$，则它满足拓扑的定义，故构成X的一个拓扑，叫\textbf{凝聚拓扑}。
 凝聚拓扑是元素最少的拓扑，而离散拓扑是元素最多的拓扑。
 \end{example}
 
 \begin{example}
 \begin{enumerate}[（1）]
-\item 设$X = \mathbb{R}$，则$\mathscr{T}_u := \{\text{空集或}\mathbb{R}\text{中能表为开区间之并的子集}\}$称为$\mathbb{R}$的\emph{通常拓扑}。
-\item 设$X = \mathbb{R}^n$，则$\mathscr{T}_u := \{\text{空集或}\mathbb{R}^n\text{中能表为开球之并的子集}\}$称为$\mathbb{R}^n$的\emph{通常拓扑},
-其中，\emph{开球}的定义为$B(x_0, r) := \{x \in \mathbb{R}^n \mid |x - x_0| < r\}$，$x_0$称为球心，$r > 0$称为半径。
-$\mathbb{R}^2$中的开球亦称\emph{开圆盘}，$\mathbb{R}$中的开球就是开区间。
+\item 设$X = \mathbb{R}$，则$\mathscr{T}_u := \{\text{空集或}\mathbb{R}\text{中能表为开区间之并的子集}\}$称为$\mathbb{R}$的\textbf{通常拓扑}。
+\item 设$X = \mathbb{R}^n$，则$\mathscr{T}_u := \{\text{空集或}\mathbb{R}^n\text{中能表为开球之并的子集}\}$称为$\mathbb{R}^n$的\textbf{通常拓扑},
+其中，\textbf{开球}的定义为$B(x_0, r) := \{x \in \mathbb{R}^n \mid |x - x_0| < r\}$，$x_0$称为球心，$r > 0$称为半径。
+$\mathbb{R}^2$中的开球亦称\textbf{开圆盘}，$\mathbb{R}$中的开球就是开区间。
 \end{enumerate}
 根据上述定义，$\mathbb{R}$中任一开区间用$\mathscr{T}_u$衡量都是开集。今后在把$\mathbb{R}$看做拓扑空间时，如无声明就是指$(\mathbb{R}, \mathscr{T}_u)$
 \end{example}
@@ -112,7 +112,7 @@ $\mathbb{R}^2$中的开球亦称\emph{开圆盘}，$\mathbb{R}$中的开球就�
 
 $\mathscr{T} := \{O \in X \mid O\text{可表示为形如}O_1 \times O_2\text{的集合之并}, O_1 \in \mathscr{T}_1, O_2 \in \mathscr{T}_2\}$
 
-则$\mathscr{T}$称为$X$的\emph{乘积拓扑}。
+则$\mathscr{T}$称为$X$的\textbf{乘积拓扑}。
 \end{example}
 
 \begin{example}
@@ -120,28 +120,28 @@ $\mathscr{T} := \{O \in X \mid O\text{可表示为形如}O_1 \times O_2\text{的
 
 $\mathscr{S} := \{V \subset A \mid \exists O \in \mathscr{T} \text{使} V = A \cap O\}$
 
-这样定义的$\mathscr{S}$叫做$A$的、由$\mathscr{T}$导出的\emph{诱导拓扑}。以后在把$(X, \mathscr{T})$的子集$A$看作拓扑空间时，如无声明都指$(A, \mathscr{S})$,
-其中$\mathscr{S}$是由$\mathscr{T}$诱导的拓扑。$(A, \mathscr{S})$称为$(X, \mathscr{T})$的\emph{拓扑子空间}。
+这样定义的$\mathscr{S}$叫做$A$的、由$\mathscr{T}$导出的\textbf{诱导拓扑}。以后在把$(X, \mathscr{T})$的子集$A$看作拓扑空间时，如无声明都指$(A, \mathscr{S})$,
+其中$\mathscr{S}$是由$\mathscr{T}$诱导的拓扑。$(A, \mathscr{S})$称为$(X, \mathscr{T})$的\textbf{拓扑子空间}。
 \end{example}
 
 \begin{definition}
 \begin{enumerate}[（a）]
-\item 设$(X, \mathscr{T})$和$(Y, \mathscr{S})$为拓扑空间。映射$f \colon X \to Y$称为\emph{连续}的，若$f^{-1}[O] \in \mathscr{T} ～ \forall O \in \mathscr{S}$。
-\item 设$(X, \mathscr{T})$和$(Y, \mathscr{S})$为拓扑空间。映射$f \colon X \to Y$称为\emph{在点$x \in X$处连续}，若对所有满足$f(x) \in G'$的$G' \in \mathscr{S}$， 存在$G \in \mathscr{T}$使$x \in G$且$f[G] \subset G'$。
+\item 设$(X, \mathscr{T})$和$(Y, \mathscr{S})$为拓扑空间。映射$f \colon X \to Y$称为\textbf{连续}的，若$f^{-1}[O] \in \mathscr{T} ～ \forall O \in \mathscr{S}$。
+\item 设$(X, \mathscr{T})$和$(Y, \mathscr{S})$为拓扑空间。映射$f \colon X \to Y$称为\textbf{在点$x \in X$处连续}，若对所有满足$f(x) \in G'$的$G' \in \mathscr{S}$， 存在$G \in \mathscr{T}$使$x \in G$且$f[G] \subset G'$。
 $f \colon X \to Y$称为连续，若它在所有点$x \in X$上连续。
 \end{enumerate}
 \end{definition}
 
 \begin{note}
-不难看出，若$X = Y = \mathbb{R}$，$\mathscr{T} = \mathscr{S} = \mathscr{T}_u$，上述定义就回到$\epsilon$ -- $\delta$定义。
+不难看出，若$X = Y = \mathbb{R}$，$\mathscr{T} = \mathscr{S} = \mathscr{T}_u$，上述定义就回到$\varepsilon$ -- $\delta$定义。
 \end{note}
 
 \begin{definition}
-拓扑空间$(X, \mathscr{T})$和$(Y, \mathscr{S})$称为\emph{互相同胚}，若存在映射$f \colon X \to Y$，满足（a）$f$是一一到上的；（b）$f$及$f^{-1}$都连续。
-这样的$f$称为从$(X, \mathscr{T})$到$(Y, \mathscr{S})$的\emph{同胚映射}，简称\emph{同胚}。   
+拓扑空间$(X, \mathscr{T})$和$(Y, \mathscr{S})$称为\textbf{互相同胚}，若存在映射$f \colon X \to Y$，满足（a）$f$是一一到上的；（b）$f$及$f^{-1}$都连续。
+这样的$f$称为从$(X, \mathscr{T})$到$(Y, \mathscr{S})$的\textbf{同胚映射}，简称\textbf{同胚}。   
 \end{definition}
 
-普通函数$y = f(x)$的连续性和可微性用$C^r$表示，其中$r$为非负整数，$C^0$代表连续，$C^r$代表$r$阶导数存在并连续，$C^\infty$代表任意阶导数存在并连续[称为\emph{光滑}]。
+普通函数$y = f(x)$的连续性和可微性用$C^r$表示，其中$r$为非负整数，$C^0$代表连续，$C^r$代表$r$阶导数存在并连续，$C^\infty$代表任意阶导数存在并连续[称为\textbf{光滑}]。
 
 \begin{example}
 任一开区间$(a, b) \subset \mathbb{R}$与$\mathbb{R}$同胚。
@@ -159,7 +159,7 @@ $S^1, E \in \mathbb{R}^2$。可用$\mathscr{T}_u$给$S^1$和$E$分别定义诱�
 \end{example}
 
 \begin{definition}
-$N \subset X$称为$x \in X$的一个\emph{邻域}，若存在$O \in \mathscr{T}$使$x \in O \subset N$。自身是邻域的开集称为\emph{开邻域}。  
+$N \subset X$称为$x \in X$的一个\textbf{邻域}，若存在$O \in \mathscr{T}$使$x \in O \subset N$。自身是邻域的开集称为\textbf{开邻域}。  
 \end{definition}
 
 \begin{note}
@@ -174,7 +174,7 @@ $N \subset X$称为$x \in X$的一个\emph{邻域}，若存在$O \in \mathscr{T}
 \end{note}
 
 \begin{definition}
-$N \subset X$称为$A \subset X$的一个\emph{邻域}，若存在$O \in \mathscr{T}$使$A \subset O \subset N$。
+$N \subset X$称为$A \subset X$的一个\textbf{邻域}，若存在$O \in \mathscr{T}$使$A \subset O \subset N$。
 \end{definition}
 
 \begin{theorem}
@@ -182,7 +182,7 @@ $A \subset X$是开集，当且仅当$A$是$x$的邻域$\forall x \in A$。
 \end{theorem}
 
 \begin{definition}
-$C \subset X$叫\emph{闭集}，若$-C \in \mathscr{T}$。
+$C \subset X$叫\textbf{闭集}，若$-C \in \mathscr{T}$。
 \end{definition}
 
 \begin{theorem}
@@ -197,7 +197,7 @@ $C \subset X$叫\emph{闭集}，若$-C \in \mathscr{T}$。
 可见任何拓扑空间$(X, \mathscr{T})$都有两个既开又闭的子集，即$X$和$\emptyset$
 
 \begin{definition}
-拓扑空间$(X, \mathscr{T})$称为\emph{连通}的，若它除$X$和$\emptyset$外没有既开又闭的子集。
+拓扑空间$(X, \mathscr{T})$称为\textbf{连通}的，若它除$X$和$\emptyset$外没有既开又闭的子集。
 \end{definition}
 
 \begin{example}
@@ -209,17 +209,17 @@ $C \subset X$叫\emph{闭集}，若$-C \in \mathscr{T}$。
 设$(X, \mathscr{T})$为拓扑空间，$A \subset X$。分别定义$A$的闭包、内部和边界如下：
 
 \begin{definition}
-$A$的\emph{闭包}$\bar{A}$是所有含$A$的闭集的交集，即
+$A$的\textbf{闭包}$\bar{A}$是所有含$A$的闭集的交集，即
 $$\bar{A} := \bigcap_\alpha C_\alpha, ~ A \subset C_\alpha, ~ -C_\alpha \in \mathscr{T}$$
 \end{definition}
 
 \begin{definition}
-$A$的\emph{内部}$\interior(A)$是所有含于$A$的开集的并集，即
+$A$的\textbf{内部}$\interior(A)$是所有含于$A$的开集的并集，即
 $$\interior(A) := \bigcup_\alpha O_\alpha, ~ O_\alpha \subset A, ~ O_\alpha \in \mathscr{T}$$
 \end{definition}
 
 \begin{definition}
-$A$的\emph{边界}$\dot{A} := \bar{A} - \interior(A)$，$x \in \dot{A}$称为\emph{边界点}。$\dot{A}$也记作$\partial A$
+$A$的\textbf{边界}$\dot{A} := \bar{A} - \interior(A)$，$x \in \dot{A}$称为\textbf{边界点}。$\dot{A}$也记作$\partial A$
 \end{definition}
 
 \begin{theorem}
@@ -232,7 +232,7 @@ $\bar{A}$，$\interior(A)$及$\dot{A}$有以下性质：
 \end{theorem}
 
 \begin{definition}
-$X$的开子集的集合$\{O_\alpha\}$叫$A \subset X$的一个\emph{开覆盖}，若$A \subset \bigcup\limits_\alpha O_\alpha$。
+$X$的开子集的集合$\{O_\alpha\}$叫$A \subset X$的一个\textbf{开覆盖}，若$A \subset \bigcup\limits_\alpha O_\alpha$。
 也可以说$\{O_\alpha\}$覆盖$A$。
 \end{definition}
 

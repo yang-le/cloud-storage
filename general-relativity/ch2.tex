@@ -3,7 +3,7 @@
 \section{微分流形}
 
 \begin{definition}
-拓扑空间$(M, \mathscr{T})$称为$n$维微分流形，简称$n$维流形，若$M$有开覆盖${O_\alpha}$，即$M = \bigcup\limits_\alpha O_\alpha$，满足
+拓扑空间$(M, \mathscr{T})$称为\textbf{$n$维微分流形}，简称$n$维流形，若$M$有开覆盖${O_\alpha}$，即$M = \bigcup\limits_\alpha O_\alpha$，满足
 \begin{enumerate}[（a）]
 \item 对每一$O_\alpha$，存在同胚$\psi_\alpha \colon O_\alpha \to V_\alpha$（$V_\alpha$是$\mathbb{R}^n$用通常拓扑衡量的开子集）；
 \item 若$O_\alpha \cap O_\beta \neq \emptyset$，则复合映射$\psi_\beta \comp \psi_\alpha^{-1}$是$C^\infty$（光滑）的。
@@ -13,22 +13,22 @@
 \begin{note}
 \textcircled{1}$\psi_\beta \comp \psi_\alpha^{-1}$是从$\psi_\alpha[O_\alpha \cap O_\beta] \subset \mathbb{R}^n$到$\psi_\beta[O_\alpha \cap O_\beta] \subset \mathbb{R}^n$的映射。
 因$\mathbb{R}^n$的每点都有$n$个自然坐标，故$\psi_\beta \comp \psi_\alpha^{-1}$提供了$n$个$n$元函数。所谓$\psi_\beta \comp \psi_\alpha^{-1}$是$C^\infty$的，就是指这每一个$n$元函数都是$C^\infty$的。
-\textcircled{2}设$p \in O_\alpha$，则$\psi_\alpha(p) \in \mathbb{R}^n$，故$\psi_\alpha(p)$有$n$个自然坐标。很自然地把这$n$个数称为$p$点在映射$\psi_\alpha$下获得的坐标。
+\textcircled{2}设$p \in O_\alpha$，则$\psi_\alpha(p) \in \mathbb{R}^n$，故$\psi_\alpha(p)$有$n$个自然坐标。很自然地把这$n$个数称为$p$点在映射$\psi_\alpha$下获得的\textbf{坐标}。
 $M$作为拓扑空间，其元素本来一般没有坐标，但作为流形，$M$中位于$O_\alpha$内的元素（点）就可以通过映射$\psi_\alpha$获得坐标。若$O_\alpha \cap O_\beta \neq \emptyset$，
-则$O_\alpha \cap O_\beta$内的点既可以通过$\psi_\alpha$又可以通过$\psi_\beta$获得坐标，这两组坐标一般不同。我们说$(O_\alpha, \psi_\alpha)$构成一个（局域）坐标系，其坐标域为$O_\alpha$；
+则$O_\alpha \cap O_\beta$内的点既可以通过$\psi_\alpha$又可以通过$\psi_\beta$获得坐标，这两组坐标一般不同。我们说$(O_\alpha, \psi_\alpha)$构成一个（局域）\textbf{坐标系}，其\textbf{坐标域}为$O_\alpha$；
 $(O_\beta, \psi_\beta)$构成另一坐标系，其坐标域为$O_\beta$。于是$O_\alpha \cap O_\beta$内的点至少有两组坐标，分别记作$\{x^\mu\}$和$\{x'^\nu\}$（$\mu, \nu = 1, \cdots, n$）。
-由映射$\psi_\beta \comp \psi_\alpha^{-1}$提供的、体现两组坐标之间关系的$n$个$n$元函数$$x'^1 = \phi^1(x^1, \cdots, x^n), \cdots, x'^n = \phi^n(x^1, \cdots, x^n)$$就称为一个坐标变换。
+由映射$\psi_\beta \comp \psi_\alpha^{-1}$提供的、体现两组坐标之间关系的$n$个$n$元函数$$x'^1 = \phi^1(x^1, \cdots, x^n), \cdots, x'^n = \phi^n(x^1, \cdots, x^n)$$就称为一个\textbf{坐标变换}。
 定义的条件（b）保证坐标变换中的函数关系$x'^\mu = \phi^\mu(x^1, \cdots, x^n)$都是$C^\infty$的。为方便起见也常称$\{x^\mu\}$为坐标系，虽然从$\{x^\mu\}$中看不出坐标域的范围。
 物理学家也常把$x'^\mu = \phi^\mu(x^1, \cdots, x^n)$记作$x'^\mu = x'^\mu(x^1, \cdots, x^n)$。
 \end{note}
 
 \begin{definition}
-坐标系$(O_\alpha, \psi_\alpha)$在数学上又叫图，满足定义条件（a）、（b）的全体图的集合$\{(O_\alpha, \psi_\alpha)\}$叫图册。
-条件（b）又称相容性条件，因此说一个图册中的任意两个图都是相容的。
+坐标系$(O_\alpha, \psi_\alpha)$在数学上又叫\textbf{图}，满足定义条件（a）、（b）的全体图的集合$\{(O_\alpha, \psi_\alpha)\}$叫\textbf{图册}。
+条件（b）又称\textbf{相容性条件}，因此说一个图册中的任意两个图都是相容的。
 \end{definition}
 
 \begin{example}
-设$M = (\mathbb{R}^2, \mathscr{T}_u)$。选$O_1 = \mathbb{R}^2, \psi_1 =\text{恒等映射}$，则$\{(O_1, \psi_1)\}$便是只含一个图的图册，故$\mathbb{R}^2$是$2$维流形，而且是能用一个坐标域覆盖的流形，称为平凡流形。
+设$M = (\mathbb{R}^2, \mathscr{T}_u)$。选$O_1 = \mathbb{R}^2, \psi_1 =\text{恒等映射}$，则$\{(O_1, \psi_1)\}$便是只含一个图的图册，故$\mathbb{R}^2$是$2$维流形，而且是能用一个坐标域覆盖的流形，称为\textbf{平凡流形}。
 根据这个图册，$\mathbb{R}^2$中每点的坐标就是它作为$\mathbb{R}^2$的元素天生就有的自然坐标。$\mathbb{R}^2$的点当然也可用其他坐标（如极坐标）描述。
 其实这无非是选择与图$(O_1, \psi_1)$相容的另一个图$(O_2, \psi_2)$，其中$\psi_2$把$p \in O_2$映为$\psi_2(p) \in \mathbb{R}^2$，再把$\psi_2(p)$的自然坐标称为$p$点的新坐标而已。
 但应注意坐标域$O_2$未必能包括$\mathbb{R}^2$的全体点（例如极坐标）。
@@ -47,7 +47,7 @@ $(O_\beta, \psi_\beta)$构成另一坐标系，其坐标域为$O_\beta$。于是
 设图册$\{(O_\alpha, \psi_\alpha)\}$把拓扑空间$M$定义为一个流形，则此图册中的任意两个图自然是相容的。
 但也可用另一图册$\{(O'_\beta, \psi'_\beta)\}$把同一$M$定义为流形，这时有两种可能：
 \textcircled{1}这两个图册不相容，即存在$O_\alpha$和$O'_\beta$使$O_\alpha \cap O'_\beta \neq \emptyset$，且在$O_\alpha \cap O'_\beta$上$\psi_\alpha$与$\psi'_\beta$不满足定义条件（b），
-这时就说这两个图册把$M$定义为两个不同的微分流形，并说这两个图册代表两种不同的微分结构；
+这时就说这两个图册把$M$定义为两个不同的微分流形，并说这两个图册代表两种不同的\textbf{微分结构}；
 \textcircled{2}这两个图册是相容的，这时就说它们把$M$定义为同一个微分流形（只有一种微分结构）。为方便起见，不妨把$\{(O_\alpha, \psi_\alpha); (O'_\beta, \psi'_\beta)\}$看成一个图册。
 更进一步，索性把所有与$(O_\alpha, \psi_\alpha)$相容的图都放到一起造出一个最大的图册。今后说到$M$是一个流形时，总是默认已选定某一最大的图册作为微分结构。这使我们可以进行任意坐标变换。
 
@@ -58,7 +58,7 @@ $\forall p \in M$，任取坐标系$(O_\alpha, \psi_\alpha)$使$p \in O_\alpha$�
 因此相应于$n'$个$n$元函数，它们的$C^r$性可用以定义$f \colon M \to M'$的$C^r$性。
 
 \begin{definition}
-$f \colon M \to M'$称为$C^r$类映射，如果$\forall p \in M$，映射$\psi'_\beta \comp f \comp \psi_\alpha^{-1}$对应的$n'$个$n$元函数是$C^r$类的。
+$f \colon M \to M'$称为\textbf{$C^r$类映射}，如果$\forall p \in M$，映射$\psi'_\beta \comp f \comp \psi_\alpha^{-1}$对应的$n'$个$n$元函数是$C^r$类的。
 \end{definition}
 
 \begin{note}
@@ -66,9 +66,158 @@ $f \colon M \to M'$称为$C^r$类映射，如果$\forall p \in M$，映射$\psi'
 \end{note}
 
 \begin{definition}
-微分流形$M$和$M'$称为互相微分同胚，若存在$f \colon M \to M'$，满足（a）$f$是一一到上的；（b）$f$及$f^{-1}$是$C^\infty$的。这样的$f$称为从$M$到$M'$的微分同胚映射，简称微分同胚。
+微分流形$M$和$M'$称为\textbf{互相微分同胚}，若存在$f \colon M \to M'$，满足（a）$f$是一一到上的；（b）$f$及$f^{-1}$是$C^\infty$的。这样的$f$称为从$M$到$M'$的\textbf{微分同胚映射}，简称\textbf{微分同胚}。
 \end{definition}
 
+\begin{note}
+\textcircled{1} 微分同胚是对流形间的映射可以提出的最高要求（若流形上还有附加结构则另当别论），互相微分同胚的流形可视作相等。
+\textcircled{2} 只有维数相等的流形才可能微分同胚。
+\textcircled{3} 若把流形定义中的$O_\alpha$和$V_\alpha$看做流形，则$\psi_\alpha$也是微分同胚。
+\end{note}
+
+映射$f \colon M \to M'$的一个重要而简单的特例是$M' = \mathbb{R}$的情况。这时$M$的每点对应着一个实数，于是有如下定义：
+
+\begin{definition}
+$f \colon M \to \mathbb{R}$称为\textbf{$M$上的函数}或\textbf{$M$上的标量场}。若$f$为$C^\infty$的，则称为\textbf{$M$上的光滑函数}。
+$M$上全体光滑函数的的集合记作$\mathscr{F}_M$，在不会混淆时简记为$\mathscr{F}$。今后在提到函数而不加声明时都是指光滑函数。
+\end{definition}
+
+\begin{example}
+$\mathbb{R}^3$中位于$q$点的点电荷的电势是流形$M \equiv \mathbb{R}^3 - \{q\}$上的光滑函数。
+\end{example}
+
+\begin{example}
+坐标系$(O, \psi)$的第$\mu$坐标$x^\mu$是定义在$O$上的光滑函数。
+\end{example}
+
+函数$f \colon M \to \mathbb{R}$与坐标系$(O, \psi)$结合可得一个$n$元函数$F(x^1, \cdots, x^n)$，因为$n$个坐标决定$O$中的唯一一点$p$，
+而由$f \colon M \to \mathbb{R}$可得唯一的实数$f(p)$。然而$f$与另一坐标系$(O', \psi')$结合将给出另一$n$元函数$F'(x'^1, \cdots, x'^n)$，
+函数关系$F$和$F'$不同，因为$F = f \comp \psi^{-1}$而$F' = f \comp \psi'^{-1}$。可见与函数$f \colon M \to \mathbb{R}$相应的多元函数（指函数关系）
+是坐标系依赖的。应注意区分函数（标量场）$f$和它与坐标系结合而得的多元函数$F$。
+
+设$M, N$为流形，则它们必为拓扑空间，故$M \times N$也是拓扑空间。不难利用$M, N$的流形结构把$M \times N$进一步定义为流形。
+设$M, N$的维数分别为$m, n$，则$M \times N$的维数是$m + n$，即$\dim{(M \times N)} = \dim{M} + \dim{N}$。
+
 \section{切矢和切矢场}
+
 \subsection{切矢量}
+
+\begin{definition}
+实数域上的一个\textbf{矢量空间}是一个集合$V$配以两个映射，即$V \times V \to V$（叫\textbf{加法}）及$\mathbb{R} \times V \to V$（叫\textbf{数乘}），满足如下条件：
+\begin{enumerate}[（a）]
+\item $v_1 + v_2 = v_2 + v_1, ~ \forall v_1, v_2 \in V$;
+\item $(v_1 + v_2) + v_3 = v_1 + (v_2 + v_3), ~ \forall v_1, v_2, v_3 \in V$;
+\item $\exists \underline{0} \in V, \text{使} \underline{0} + v = v, ~ \forall v \in V$;
+\item $\alpha_1(\alpha_2v) = (\alpha_1\alpha_2)v, ~ \forall v \in V, ～ \alpha_1, \alpha_2 \in \mathbb{R}$;
+\item $(\alpha_1 + \alpha_2)v = \alpha_1v + \alpha_2v, ~ \forall v \in V, ～ \alpha_1, \alpha_2 \in \mathbb{R}$;
+\item $\alpha(v_1 + v_2) = \alpha v_1 + \alpha v_2, ~ \forall v_1, v_2 \in V, ～ \alpha \in \mathbb{R}$;
+\item $1 \cdot v = v, ~ \forall v \in V$。
+\end{enumerate}
+\end{definition}
+
+\begin{note}
+由此$7$条可以推出:（1）$0 \cdot v = \underline{0}$，（2）$\forall v \in V, ~ \exists u \in V, \text{使} v + u = \underline{0}$。
+约定把$u$记作$-v$。
+\end{note}
+
+今后也常把$V$的零元简写作$0$，即符号$0$既代表$0 \in \mathbb{R}$又代表$\underline{0} \in V$。
+
+\begin{definition}
+映射$v \colon \mathscr{F}_M \to \mathbb{R}$称为\textbf{点$p \in M$的一个矢量}，若$\forall f, g \in \mathscr{F}_M, ~ \alpha, \beta \in \mathbb{R}$，有
+\begin{enumerate}[（a）]
+\item （线性性） $v(\alpha f + \beta g) = \alpha v(f) + \beta v(g)$;
+\item （莱布尼茨律） $v(fg) = f|_p v(g) + g|_p v(f)$，其中$f|_p$代表函数$f$在$p$点的值，亦可记作$f(p)$。
+\end{enumerate}
+\end{definition}
+
+\begin{note}
+因$f$和$g$是$M$上的函数，故$fg$也是$M$上的函数，它在$M$的任一点$p$的值定义为$f(p)$与$g(p)$之积。
+\end{note}
+
+根据定义，要定义$p$点的一个矢量只须指定一个从$\mathscr{F}_M$到$\mathbb{R}$的、满足条件（a）、（b）的映射，
+就是说，指定一个对应规律（法则），根据这一规律，每一$f \in \mathscr{F}_M$对应于一个确定的实数。
+因为这种映射很多，所以$p$点有很多（无限多）矢量。
+例如，设$(O, \psi)$是坐标系，其坐标为$x^\mu$，则$M$上任一光滑函数$f \in \mathscr{F}_M$与$(O, \psi)$结合得$n$元函数
+$F(x^1, \cdots, x^n)$，借此可给$O$中任一点$p$定义$n$个矢量，记作$X_\mu$（其中$\mu = 1, \cdots, n$）,
+它（们）作用于任一$f \in \mathscr{F}_M$的结果$X_\mu(f)$定义为如下实数：
+$$X_\mu(f) := \left.\frac{\partial F(x^1, \cdots, x^n)}{\partial x^\mu}\right|_p, ~ \forall f \in \mathscr{F}_M$$
+其中$\partial F(x^1, \cdots, x^n)/\partial x^\mu|_p$是$\partial F/\partial x^\mu|_{(x^1(p), \cdots, x^n(p))}$的简写。
+今后也把$\partial F(x^1, \cdots, x^n)/\partial x^\mu$简写为$\partial f(x^1, \cdots, x^n)/\partial x^\mu$或$\partial f(x)/\partial x^\mu$甚至$\partial f/\partial x^\mu$。
+应认出$\partial f/\partial x^\mu$中的$f$代表$n$元函数$F(x^1, \cdots, x^n)$而非标量场$f$。于是上式可简写为
+$$X_\mu(f) := \left.\frac{\partial f(x)}{\partial x^\mu}\right|_p, ~ \forall f \in \mathscr{F}_M$$
+
+\begin{theorem}
+以$V_p$代表$M$中点$p$所有矢量的集合，则$V_p$是$n$维矢量空间（$n$是$M$的维数），即$\dim V_p = \dim M \equiv n$。
+\end{theorem}
+
+\begin{definition}
+坐标域内任一点$p$的$\{X_1, \cdots, X_n\}$称为$V_p$的一个\textbf{坐标基底}，
+每个$X_\mu$称为一个\textbf{坐标基矢}，$v \in V_p$用$\{X_\mu\}$线性表出的系数$v^{\mu}$称为$v$的\textbf{坐标分量}。
+\end{definition}
+
+\begin{theorem}
+设$\{x^\mu\}$和$\{x'^\nu\}$为两个坐标系，其坐标域的交集非空，
+$p$为交集中的一点，$v \in V_p$，$\{v^\mu\}$和$\{v'^\nu\}$是$v$在这两个系的坐标分量，则
+$$v'^\nu = \left.\frac{\partial x'^\nu}{\partial x^\mu}\right|_pv^\mu$$
+其中$x'^\nu$是两系间坐标变换函数$x'^\nu(x^\mu)$的简写。
+\end{theorem}
+
+\begin{proof}[证明]
+根据坐标分量的定义，$v = v^\mu X_\mu = v'^\nu X'_\nu$。
+因此可以通过$X_\mu$和$X'_\nu$之间的关系来找到$v^\mu$和$v'^\nu$之间的关系。
+为此，设$q$是两坐标域交集内的任一点，则标量场$f$在$q$点的值$f|_q$满足$f|_q = f(x(q)) = f'(x'(q))$，简记为$f(x) = f'(x')$。
+另一方面，每一$x'^\nu$又是$n$个$x^\mu$的函数（坐标变换关系），简记为$x'^\nu = x'^\nu(x)$，故$f(x) = f'(x'(x))$。于是
+$$
+X_\mu(f) = \left.\frac{\partial f(x)}{\partial x^\mu}\right|_p \\
+= \left.\frac{\partial f'(x'(x))}{\partial x^\mu}\right|_p \\
+= \left(\frac{\partial f'(x')}{\partial x'^\nu}\frac{\partial x'^\nu}{\partial x^\mu}\right)_p \\
+= \left.\frac{\partial x'^\nu}{\partial x^\mu}\right|_pX'_\nu(f), ～ \forall f \in \mathscr{F}_M
+$$
+上式表明映射$X_\mu$和$\partial x'^\nu/\partial x^\mu|_pX'_\nu$相等，即
+$$X_\mu = \left.\frac{\partial x'^\nu}{\partial x^\mu}\right|_pX'_\nu$$
+所以$v = v^\mu X_\mu = v'^\nu X'_\nu$可表为
+$$v^\mu\left.\frac{\partial x'^\nu}{\partial x^\mu}\right|_pX'_\nu = v'^\nu X'_\nu$$
+因$\{X'_\nu\}$中的$n$个基矢彼此线性独立，故得证。
+\end{proof}
+
+上述定理称为\textbf{矢量}（的分量）\textbf{变换式}，许多书籍采用此式作为矢量的定义。
+
+\begin{definition}
+设$I$为$\mathbb{R}$的一个区间，则$C^r$类映射$C \colon I \to M$称为$M$上的一条$C^r$类的\textbf{曲线}。
+今后如无声明，``曲线''均指光滑（$C^\infty$类）曲线。对任一$t \in I$，有唯一的点$C(t) \in M$与之对应。
+$t$称为曲线的\textbf{参数}。
+\end{definition}
+
+\begin{note}
+此处的曲线与直观的曲线概念有密切联系，但也有差别。
+直观的曲线往往是指上述映射$C \colon I \to M$的像，即$M$的子集$C[I]$,并且不提及参数。
+上述定义的曲线则是指映射本身，是``带参数的曲线''。
+设映射$C \colon I \to M$和$C' \colon I' \to M$的像重合，则直观上往往认为它们是同一曲线，但只要$C$和$C'$是不同映射，根据定义，它们就是不同曲线。
+不过在大多数情况下可以说$C$和$C'$是``同一曲线''的两种参数化，准确地说，曲线$C' \colon I' \to M$称为曲线$C \colon I \to M$的\textbf{重参数化}，若存在到上映射$\alpha \colon I \to I'$，满足
+（a）$C = C' \comp \alpha$；（b）由$\alpha$诱导的函数$t' = \alpha(t)$有处处非零的导数。
+解释：由$C = C' \comp \alpha$得$$C(t) = C'(\alpha(t)) = C'(t'), ~ \forall t \in I$$
+映射$\alpha$的到上性保证$C'[I'] = C[I]$，即两曲线映射有相同的像。
+\end{note}
+
+\begin{note}
+\textcircled{1}曲线$C$的像也常记作$C(t)$（而不是$C[I]$），以表明曲线的参数为$t$。
+应注意，若$t$为某一具体值（``死的''），则$C(t)$只代表曲线像中的一点；
+只当把$t$理解为``可跑遍$I$''时（``活的''），$C(t)$才代表曲线的像。
+往往也把曲线的像简称为曲线。
+\textcircled{2}设$(O, \psi)$是坐标系，$C[I] \in O$，则$\psi \comp C$是从$I \subset \mathbb{R}$到$\mathbb{R}^n$的映射，相当于$n$个一元函数$x^\mu = x^\mu(t), \mu = 1, \cdots, n$。
+这$n$个等式称为曲线的\textbf{参数方程}或\textbf{参数表达式}或\textbf{参数式}。一个简单的例子是$\mathbb{R}^n$中以原点为心的单位圆周，其在自然坐标系中的参数式为$x^1 = \cos t, x^2 = \sin t$。
+\end{note}
+
+\begin{definition}
+设$(O, \psi)$为坐标系，$x^\mu$为坐标，则$O$的子集
+$$\{p \in O \mid x^2(p) = \text{常数}, \cdots, x^n(p) = \text{常数}\}$$
+可以看成以$x^1$为参数的一条曲线（的像）（改变$x^2, \cdots, x^n$的常数值则得另一曲线），叫做\textbf{$x^1$坐标线}。
+\textbf{$x^\mu$坐标线}可仿此定义。
+\end{definition}
+
+\begin{example}
+在$2$维欧氏空间中，笛卡儿系$\{x, y\}$的$x$及$y$坐标线是互相正交的两组平行直线，
+极坐标系$\{r, \varphi\}$的$\varphi$坐标线是以原点为心的无数同心圆，$r$坐标线是从原点出发的无数半直线。
+\end{example}
+
 \subsection{流形上的矢量场}
