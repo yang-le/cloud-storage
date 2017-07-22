@@ -171,7 +171,7 @@ $$
 X_\mu(f) = \left.\frac{\partial f(x)}{\partial x^\mu}\right|_p \\
 = \left.\frac{\partial f'(x'(x))}{\partial x^\mu}\right|_p \\
 = \left(\frac{\partial f'(x')}{\partial x'^\nu}\frac{\partial x'^\nu}{\partial x^\mu}\right)_p \\
-= \left.\frac{\partial x'^\nu}{\partial x^\mu}\right|_pX'_\nu(f), ～ \forall f \in \mathscr{F}_M
+= \left.\frac{\partial x'^\nu}{\partial x^\mu}\right|_pX'_\nu(f), ~ \forall f \in \mathscr{F}_M
 $$
 上式表明映射$X_\mu$和$\partial x'^\nu/\partial x^\mu|_pX'_\nu$相等，即
 $$X_\mu = \left.\frac{\partial x'^\nu}{\partial x^\mu}\right|_pX'_\nu$$
@@ -220,4 +220,102 @@ $$\{p \in O \mid x^2(p) = \text{常数}, \cdots, x^n(p) = \text{常数}\}$$
 极坐标系$\{r, \varphi\}$的$\varphi$坐标线是以原点为心的无数同心圆，$r$坐标线是从原点出发的无数半直线。
 \end{example}
 
+直观的想法认为曲线上一点有无限多个彼此平行的切矢。但若把曲线定义为映射（``带参数的曲线''），则一条曲线的一点只有一个切矢。定义如下：
+
+\begin{definition}
+设$C(t)$是流形$M$上的$C^1$曲线，则线上$C(t_0)$点切于$C(t)$的切矢$T$是$C(t_0)$点的矢量，它对$f \in \mathscr{F}_M$的作用定义为：
+$$T(f) := \left.\frac{\diff (f \comp C)}{\diff t}\right|_{t_0}, ~ \forall f \in \mathscr{F}_M$$
+\end{definition}
+
+\begin{note}
+\textcircled{1}$f \colon M \to \mathbb{R}$是$M$上的函数（标量场），不是什么一元函数，
+但与曲线$C \colon I \to M$的结合$f \comp C$便是以$t$为自变数的一元函数（也可记作$f(C(t))$）。
+在不会混淆的情况下，$\diff (f \comp C) / \diff t$也可简写成$\diff f / \diff t$。
+\textcircled{2}$C(t_0)$点切于$C(t)$的切矢$T$也常记作$\partial / \partial t|_{C(t_0)}$，于是上式也可写成
+$$\left.\frac{\partial}{\partial t}\right|_{C(t_0)}(f) := \left.\frac{\diff (f \comp C)}{\diff t}\right|_{t_0} := \left.\frac{\diff f(C(t))}{\diff t}\right|_{t_0}, ~ \forall f \in \mathscr{F}_M$$
+\end{note}
+
+\begin{example}
+$x^\mu$坐标线是以$x^\mu$为参数的曲线，又$p$点的坐标基矢$X_\mu$就是过$p$的$x^\mu$坐标线的切矢，故也常记作$\partial / \partial x^\mu|_p$，于是坐标基矢$X_\mu$对$f$的作用又可表为
+$$\left.\frac{\partial}{\partial x^\mu}\right|_p(f) := \left.\frac{\partial f(x)}{\partial x^\mu}\right|_p, ~ \forall f \in \mathscr{F}_M$$
+可见符号$\partial f / \partial x^\mu$既可理解为$\partial F(x^1, \cdots, x^n) / \partial x^\mu$，又可理解为坐标线的切矢$\partial / \partial x^\mu$对标量场$f$的作用。
+\end{example}
+
+\begin{theorem}
+设曲线$C(t)$在某坐标系中的参数式为$x^\mu = x^\mu(t)$，则线上任一点的切矢$\partial / \partial t$在该坐标基底的展开式为
+$$\frac{\partial}{\partial t} = \frac{\diff x^\mu(t)}{\diff t}\frac{\partial}{\partial x^\mu}$$
+就是说，曲线$C(t)$的切矢$\partial / \partial t$的坐标分量是$C(t)$在该系的参数式$x^\mu(t)$对$t$的导数。
+\end{theorem}
+
+\begin{proof}[证明]
+注意到$f(C(t_0)) = f(x^\mu(t_0)) \equiv f(p), ~ \forall f \in \mathscr{F}_M$，因此
+$$\left.\frac{\partial}{\partial t}\right|_{C(t_0)}(f) = \left.\frac{\diff f(C(t))}{\diff t}\right|_{t_0}
+= \left.\frac{\diff f(x^\mu(t))}{\diff t}\right|_{t_0} = \left.\frac{\partial f}{\partial x^\mu}\frac{\diff x^\mu(t)}{\diff t}\right|_{t_0}, ~ \forall f \in \mathscr{F}_M$$
+对比等式的两边，可以发现$\partial / \partial t$和$\frac{\diff x^\mu(t)}{\diff t}\partial / \partial x^\mu$在同一点$p = C(t_0)$上对任一$f$的作用是相等的，故定理得证。
+\end{proof}
+
+\begin{definition}
+非零矢量$u, v \in V_p$称为\textbf{互相平行}的，若存在$\alpha \in \mathbb{R}$使$v = \alpha u$。
+\end{definition}
+
+由定义可知曲线的切矢依赖于曲线的参数化，一条曲线$C(t)$的一点$C(t_0)$只有一个切于$C(t)$的切矢。直观上之所以认为曲线上一点有无数（互相平行的）切矢，
+是因为把曲线理解为映射的像而不是映射本身（把无数个有相同像的曲线映射``简并化''为一条曲线）。
+下面的定理表明，若两条曲线$C$和$C'$的像相同，则它们在任一像点的切矢互相平行。
+
+\begin{theorem}
+设曲线$C' \colon I' \to M$是$C \colon I \to M$的重参数化，则两者在任一像点的切矢$\partial / \partial t$和$\partial / \partial t'$有如下关系：
+$$\frac{\partial}{\partial t} = \frac{\diff t'(t)}{\diff t}\frac{\partial}{\partial t'}$$
+其中$t'(t)$是由映射$\alpha \colon I \to I'$诱导而得的一元函数，即$\alpha(t)$。
+\end{theorem}
+
+根据定义，$\forall p \in M$，若指定任一曲线$C(t)$使$p = C(t_0)$，则$V_p$中必有一元素可被视为该曲线在$C(t_0)$点的切矢。
+现在问：指定$V_p$中任一元素$v$，可否找到过$p$的曲线，其在$p$点的切矢是$v$。答案是肯定的：这种曲线不但存在，而且很多。
+例如，任选坐标系$\{x^\mu\}$使$p$含于其坐标域内，则以$x^\mu(t) = x^\mu|_p + v^\mu(t)$为参数式的曲线便是所需曲线，
+其中$v^\mu$是$v$在该系的坐标分量。
+
+综上所述，$V_p$中任一元素可视为过$p$的某曲线的切矢，因此$p$点的矢量亦称\textbf{切矢量}，$V_p$则称为$p$点的\textbf{切空间}。
+
 \subsection{流形上的矢量场}
+
+\begin{definition}
+设$A$为$M$的子集。若给$A$中每点指定一个矢量，就得到一个定义在$A$上的\textbf{矢量场}。
+\end{definition}
+
+\begin{example}
+非自相交曲线$C(t)$上每点的切矢构成$C(t)$（看作$M$的子集）上的一个矢量场。
+\end{example}
+
+设$v$是$M$上的矢量场，$f$是$M$上的函数，则$v$在$M$的任一点$p$的值$v|_p$将按定义把$f$映射为一个实数$v|_p(f)$，
+它在$p$点跑遍$M$时构成$M$上的一个函数$v(f)$。因此，矢量场$v$可视为把函数$f$变为函数$v(f)$的映射。
+
+\begin{definition}
+$M$上的矢量场$v$称为\textbf{$C^\infty$类（光滑）}的，若$v$作用于$C^\infty$类函数的结果仍为$C^\infty$类函数，
+即$v(f) \in \mathscr{F}_M, ~ \forall f \in \mathscr{F}_M$。$v$称为\textbf{$C^r$类}的，若$v$作用于$C^\infty$类函数得$C^r$类函数。
+\end{definition}
+
+今后如无声明，``矢量场''均指光滑（$C^\infty$）矢量场。
+
+\begin{example}
+\begin{enumerate}[（1）]
+\item 坐标基矢$\{X_\mu \equiv \partial / \partial x^\mu\}$构成坐标域上的$n$个光滑矢量场，叫\textbf{坐标基矢场}。
+\item $\mathbb{R}^3$中位于$q$的点电荷的静电场强$\vec{E}$是流形$M \equiv \mathbb{R}^3 - {q}$上的光滑矢量场。
+\end{enumerate}
+\end{example}
+
+\begin{theorem}
+$M$上的矢量场$v$是$C^\infty$（或$C^r$）类的充要条件是它在任一坐标基底的分量$v^\mu$为$C^\infty$（或$C^r$）类函数。
+\end{theorem}
+
+设$v$为$M$上的光滑矢量场，则$v(f) \in \mathscr{F}_M, ~ \forall f \in \mathscr{F}_M$。
+若$u$为$M$上另一光滑矢量场，则$u(v(f)) \in \mathscr{F}_M$。但函数$u(v(f))$未必等于$v(u(f))$，于是有如下定义
+
+\begin{definition}
+两个光滑矢量场$u$和$v$的\textbf{对易子}是一个光滑矢量场$[u, v]$，定义为
+$$[u, v](f) := u(v(f)) - v(u(f)), ~ \forall f \in \mathscr{F}_M$$
+\end{definition}
+
+\begin{note}
+上式是对易子$[u, v]$（作为矢量场）的定义式，它在每点$p \in M$的值$[u, v]|_p$（作为$p$点的矢量，即从$\mathscr{F}_M$到$\mathbb{R}$的映射）的定义应理解为
+$$[u, v]|_p(f) := u|_p(v(f)) - v|_p(u(f)), ~ \forall f \in \mathscr{F}_M$$
+要确信上式定义的$[u, v]|_p$是$p$点的矢量，还应证明它满足矢量定义的两个条件。
+\end{note}
