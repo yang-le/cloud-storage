@@ -319,3 +319,66 @@ $$[u, v](f) := u(v(f)) - v(u(f)), ~ \forall f \in \mathscr{F}_M$$
 $$[u, v]|_p(f) := u|_p(v(f)) - v|_p(u(f)), ~ \forall f \in \mathscr{F}_M$$
 要确信上式定义的$[u, v]|_p$是$p$点的矢量，还应证明它满足矢量定义的两个条件。
 \end{note}
+
+\begin{theorem}
+设$\{x^\mu\}$为任一坐标系，则$[\partial / \partial x^\mu, \partial / \partial x^\nu] = 0, ~ \mu,\nu = 1, \cdots, n$。
+\end{theorem}
+
+上述定理表明任一坐标系的任意两个基矢场都互相对易。
+
+\begin{definition}
+曲线$C(t)$叫矢量场$v$的\textbf{积分曲线}，若其上每点的切矢等于该点的$v$值。
+\end{definition}
+
+\begin{theorem}
+设$v$是$M$上的光滑矢量场，则$M$的任一点$p$必有$v$的唯一的积分曲线$C(t)$经过（满足$C(0) = p$）。
+\end{theorem}
+
+下面要用到群论的初步知识，故补充如下定义：
+
+\begin{definition}
+一个\textbf{群}是一个集合$G$配以满足以下条件的映射$G \times G \to G$（叫\textbf{群乘法}，元素$g_1$和$g_2$的乘积记作$g_1g_2$）:
+\begin{enumerate}[（a）]
+\item $(g_1g_2)g_3 = g_1(g_2g_3), ~ \forall g_1, g_2, g_3 \in G$；
+\item 存在\textbf{恒等元}$e \in G$使$eg = ge = g, ~ \forall g \in G$；
+\item $\forall g \in G$，存在\textbf{逆元}$g^{-1} \in G$使$g^{-1}g = gg^{-1} = e$。
+\end{enumerate}
+\end{definition}
+
+对称性在物理学中有重要意义，群论是研究对称性的有力工具。如果某一对象在某一变换下不变，就说它有该变换下的对称性。
+考虑带电面上的一个动点，它沿$x$（或$y$）轴平移。由于动点的电荷面密度$\sigma$在平移时不变，我们说$\sigma$具有沿$x$（或$y$）轴的平移对称性。
+更明确地说，$\sigma$沿$x$轴的平移对称性是指函数$\sigma(x, y, z)$满足
+$$\sigma(x, y, z) = \sigma(x + a, y, z), ~ \forall a \in \mathbb{R},$$
+其中$x \mapsto x + a, y \mapsto y, z \mapsto z$所代表的平移变换称为沿$x$轴的一个\textbf{平移}。
+设$G$是沿$x$轴的所有平移的集合，则$G$中的元素由实数$a$表征，记作$\phi_a \in G$。
+把$p \equiv (x, y, z)$和$q \equiv (x + a, y, z)$看做$\mathbb{R}^3$的点，则上述变换式相当于映射$\phi_a \colon \mathbb{R}^3 \to \mathbb{R}^3$（满足$\phi_a(p) = q$），而且是微分同胚映射。
+再者，对$G$用下式定义群乘法
+$$\phi_a\phi_b := \phi_{a + b}, ~ \forall \phi_a, \phi_b \in G$$
+则$G$构成群（$\phi_0$是恒等元，$\phi_{-a}$是$\phi_a$的逆元）。
+这个群的无限多个元素可用实数$a$表征，因此称$a$为\textbf{参数}，称$G$为\textbf{单参数群}。
+又因每一群元素$\phi_a \in G$都是$\mathbb{R}^3$上的一个微分同胚，故又称$G$为$\mathbb{R}^3$上的\textbf{单参微分同胚群}。
+
+设$M$是流形，则$\mathbb{R} \times M$是比$M$高一维的流形。
+设有映射$\phi \colon \mathbb{R} \times M \to M$，则它能把一个实数$t \in \mathbb{R}$和一个点$p \in M$变为一个点$\phi(t, p) \in M$。
+若给定$t$，记$\phi_t \equiv \phi(t, \bullet)$，则有映射$\phi_t \colon M \to M$。
+同理，若给定$p$，记$\phi_p \equiv \phi(\bullet, p)$，则有映射$\phi_p \colon \mathbb{R} \to M$。
+
+\begin{definition}
+$C^\infty$映射$\phi \colon \mathbb{R} \times M \to M$称为$M$上的一个\textbf{单参微分同胚群}，若
+\begin{enumerate}[（a）]
+\item $\phi_t \colon M \to M$是微分同胚$\forall t \in \mathbb{R}$；
+\item $\phi_t \comp \phi_s = \phi_{t + s}, ~ \forall t, s \in \mathbb{R}$。
+\end{enumerate}
+\end{definition}
+
+\begin{note}
+集合$\{\phi_t \mid t \in \mathbb{R}\}$是以复合映射为乘法的群，各群元$\phi_t$是从$M$到$M$的微分同胚映射，$\phi_0$为恒等元（由定义知$\phi_t \comp \phi_0 = \phi_t$，故$\phi_0$是恒等映射）。
+所谓$\phi \colon \mathbb{R} \times M \to M$是$M$上的一个单参微分同胚群，其实是指集合$\{\phi_t \mid t \in \mathbb{R}\}$是一个单参微分同胚群。
+\end{note}
+
+设$\phi \colon \mathbb{R} \times M \to M$是单参微分同胚群，则$\forall p \in M$，$\phi_p \colon \mathbb{R} \to M$是过$p$点的一条光滑曲线（满足$\phi_p(0) = p$），叫做这个单参微分同胚群过$p$点的\textbf{轨道}。
+把这条曲线在点$\phi_p(0)$的切矢记作$v|_p$，便得$M$上的一个光滑矢量场$v$。可见$M$上的一个单参微分同胚群给出$M$上的一个光滑矢量场。
+再看逆命题是否成立。设$v$是$M$上的光滑矢量场，看来$\forall t \in \mathbb{R}$可以借用其积分曲线定义从$M$到$M$的微分同胚映射$\phi_t$（$\forall p \in M$，定义$\phi_t(p)$为这样一个点，它位于过$p$的积分曲线上，其参数值与$p$的参数值之差为$t$）。于是似乎可以得到一个单参微分同胚群。
+然而可能出现如下问题：某条积分曲线当参数取某些值时像点不存在（人为挖去$M$的某一区域就可造出这种情况），因此只能说$M$上的一个光滑矢量场给出一个\textbf{单参微分同胚局部群}。
+
+\section{对偶矢量场}
