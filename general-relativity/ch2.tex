@@ -382,3 +382,73 @@ $C^\infty$映射$\phi \colon \mathbb{R} \times M \to M$称为$M$上的一个\tex
 然而可能出现如下问题：某条积分曲线当参数取某些值时像点不存在（人为挖去$M$的某一区域就可造出这种情况），因此只能说$M$上的一个光滑矢量场给出一个\textbf{单参微分同胚局部群}。
 
 \section{对偶矢量场}
+
+\begin{definition}
+设$V$是$\mathbb{R}$上的有限维矢量空间。线性映射$\omega \colon V \to \mathbb{R}$称为$V$上的对偶矢量。
+$V$上全体对偶矢量的集合称为$V$的对偶空间，记作$V^*$。
+\end{definition}
+
+\begin{note}
+由于$V$上有加法和数乘，对映射$\omega$的线性要求有确切含义，即
+$$\omega(\alpha v + \beta u) = \alpha\omega(v) + \beta\omega(u), ~ \forall v, u \in V, ~ \alpha, \beta \in \mathbb{R}$$
+\end{note}
+
+\begin{example}
+设$V$为全体$2 \times 1$实矩阵的集合，则它在矩阵加法和数乘规则下构成$2$维矢量空间。
+以$\omega$代表任一$1 \times 2$实矩阵$(c, d)$，其对$V$的任一元素
+$v = \begin{pmatrix}a \\ b\end{pmatrix}$
+的作用可用矩阵乘法定义：$\omega(v) := (c, d)\begin{pmatrix}a \\ b\end{pmatrix} = (ac + bd)$，
+结果是一个$1 \times 1$矩阵，可认同为一个实数$ac + bd$。这样定义的映射$\omega \colon V \to \mathbb{R}$
+显然是线性的，可见任一$1 \times 2$实矩阵都是$V$上的对偶矢量。推广可知：若把列矩阵（$n \times 1$矩阵）看做矢量，
+则行矩阵（$1 \times n$矩阵）就是对偶矢量。
+\end{example}
+
+\begin{theorem}
+$V^*$是矢量空间，且$\dim V^* = \dim V$。
+\end{theorem}
+
+\begin{proof}
+易证$V^*$是矢量空间，只需定义合适的加法、数乘和零元即可。
+
+设$\{e_\mu\}$是$V$的一组基矢，今定义$e^{\mu*}$为$e^{\mu*}(e_\nu) := \delta^\mu{}_\nu, ~ \mu, \nu = 1, \cdots, n$。
+下面证明$\{e^{\mu*}\}$是$V^*$的一组基矢。
+
+易证$e^{1*}, \cdots, e^{n*}$彼此线性独立。
+
+$\forall \omega \in V^*$，令$\omega_\mu \equiv \omega(e_\mu), ~ \mu = 1, \cdots, n$，则易证$\omega = \omega_\mu e^{\mu*}$。
+
+因此$V^*$中任一元素可用$\{e^{\mu*}\}$线性表出，故$\{e^{\mu*}\}$是$V^*$的一个基底，叫做$\{e_\mu\}$的对偶基底。于是可知$\dim V^* = \dim V$。
+\end{proof}
+
+两个矢量空间叫同构的，若两者之间存在一一到上的线性映射（这种映射称为同构映射）。两矢量空间同构的充要条件是维数相同。
+
+由于$\dim V^* = \dim V$，$V^*$与$V$当然同构。同构映射不难找到。
+例如，设$\{e_\mu\}$是$V$的一个基底，$\{e^{\mu*}\}$是其对偶基底，则由$e_\mu \mapsto e^{\mu*}$定义的线性映射就是一个同构映射。
+但$\{e_\mu\}$的选择十分任意，而基底改变后按上述方式定义的同构映射随之而变，故$V^*$与$V$之间不存在一个特殊的（与众不同的）同构映射，除非在$V$上另加结构。
+
+$V^*$既然是矢量空间，自然也有对偶空间，记作$V^{**}$。有别于$V$与$V^*$的关系，$V$与$V^{**}$间存在一个自然的、与众不同的同构映射，定义如下：
+$\forall v \in V$，欲给它自然地定义一个像$v^{**} \in V^{**}$。因为$V^{**}$是$V^*$的对偶空间，$v^{**}$应该是从$V^*$到$\mathbb{R}$的线性映射。
+对它下定义无非是给出一个规律，按照这一规律，每一$\omega \in V^*$对应于唯一的实数$v^{**}(\omega)$。
+因为$v^{**}$有待定义为$v$的像，所以$v^{**}(\omega)$与$v$和$\omega$都应有关，而由$v$和$\omega$构造的最简单的实数就是$\omega(v)$，自然把$v^{**}$定义为
+$$v^{**}(\omega) := \omega(v), ~ \forall \omega \in V^*$$
+这一映射$V \to V^{**}$是同构映射。这一自然同构关系表明$V$和$V^{**}$可视为同一空间（把每一$v \in V$与其像$v^{**} \in V^{**}$认同）。
+所以，真正有用的是$V$和$V^*$，再取对偶（不论多少次）也得不到更多有用的空间。
+
+\begin{theorem}
+若矢量空间$V$中有一基底变换$e'_\mu = A^\nu{}_\mu e_\nu$（$A^\nu{}_\mu$无非是新基矢$e'_\mu$用原基底展开的第$\nu$分量），
+以$A^\nu{}_\mu$为元素排成的（非退化）方阵记作$A$，则相应的对偶基底变换为
+$$e'^{\mu*} = (\tilde{A}^{-1})_\nu{}^\mu e^{\nu*}$$
+其中$\tilde{A}$是$A$的转置矩阵，$\tilde{A}^{-1}$是$\tilde{A}$之逆。
+\end{theorem}
+
+\begin{proof}
+只须证明等式两边作用于$e'_\alpha$所得结果相同，证明如下
+$$\begin{aligned}
+(\tilde{A}^{-1})_\nu{}^\mu e^{\nu*}(e'_\alpha) & = (\tilde{A}^{-1})_\nu{}^\mu e^{\nu*}(A^\beta{}_\alpha e_\beta) \\
+& = (\tilde{A}^{-1})_\nu{}^\mu A^\beta{}_\alpha e^{\nu*}(e_\beta) \\
+& = (A^{-1})^\mu{}_\nu A^\beta{}_\alpha \delta^{\nu}{}_\beta \\
+& = (A^{-1})^\mu{}_\nu A^\nu{}_\alpha \\
+& = \delta^\mu{}_\alpha \\
+& = e'^{\mu*}(e'_\alpha)
+\end{aligned}$$
+\end{proof}
