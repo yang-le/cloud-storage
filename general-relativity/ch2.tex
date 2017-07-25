@@ -452,3 +452,61 @@ $$\begin{aligned}
 & = e'^{\mu*}(e'_\alpha)
 \end{aligned}$$
 \end{proof}
+
+以上属代数范畴，下面回到流形$M$。因$p \in M$有矢量空间$V_p$，故也有${V_p}^*$。
+若在$M$（或$A \in M$）上每点指定一个对偶矢量，就得到$M$（或$A$）上的一个对偶矢量场。
+$M$上的对偶矢量场$\omega$叫做光滑的，若对所有光滑矢量场$v$有$\omega(v) \in \mathscr{F}_M$。
+
+设$f \in \mathscr{F}_M$，我们来说明$f$自然诱导出$M$上的一个对偶矢量场，记作$\diff f$。
+要定义$\diff f$只须说明它在$M$的任一点$p$的值$\diff f|_p \in {V_p}^*$的定义，
+而要定义$\diff f|_p$只须给出它对$p$点任一矢量$v \in V$作用所得的实数，这个实数应与$f$和$v$都有关，
+而由$f$和$v$能构造的最自然（最简单）的实数便是$v(f)$，因此定义$\diff f|_p$为
+$$\diff f|_p(v) := v(f), ~ \forall v \in V_p$$
+由此易证
+$$\diff (fg)|_p = f|_p(\diff g)|_p + g|_p(\diff f)|_p$$
+这正是微分算符$\diff$所满足的莱布尼茨律。
+
+设$(O, \psi)$是一坐标系，则第$\mu$个坐标$x^\mu$可以看作$O$上的函数，
+于是$\diff x^\mu$（看作特殊的$\diff f$）是定义在$O$上的对偶矢量场。
+设$p \in O$，$\partial / \partial x^\nu$是$V_p$的第$\nu$个坐标基矢，
+则在$p$点有$$\diff x^\mu\left(\frac{\partial}{\partial x^\nu}\right) = \frac{\partial}{\partial x^\nu}(x^\mu) = \delta^\mu{}_\nu$$
+由此可见$\{\diff x^\mu\}$正是与坐标基底$\{\partial / \partial x^\nu\}$对应的对偶坐标基底。
+上式对$O$的任一点成立，因此，同$\partial / \partial x^\nu$是$O$上的第$\nu$个坐标基矢场类似，
+$\diff x^\mu$是$O$上的第$\mu$个对偶坐标基矢场，$\{\diff x^\mu\}$则是$O$上的第$\mu$个对偶坐标基底场。
+$O$上任一对偶矢量场$\omega$可借$\{\diff x^\mu\}$展开：$$\omega = \omega_\mu\diff x^\mu$$
+其中$\omega_\mu$称为$\omega$在该系的坐标分量，其表达式为：$$\omega_\mu = \omega(\partial / \partial x^\mu)$$
+
+\begin{theorem}
+设$(O, \psi)$是一坐标系，$f$是$O$上的光滑函数，$f(x)$是$f \comp \psi^{-1}$对应的$n$元函数$f(x^1, \cdots, x^n)$的简写，
+则$\diff f$可用对偶坐标基底$\{\diff x^\mu\}$展开如下：
+$$\diff f = \frac{\partial f(x)}{\partial x^\mu}\diff x^\mu, ~ \forall f \in \mathscr{F}_O$$
+\end{theorem}
+
+\begin{proof}
+只须验证两边作用于任一坐标基矢$\partial / \partial x^\nu$得相同结果，甚易。
+\end{proof}
+
+\begin{theorem}
+设坐标系$\{x^\mu\}$和$\{x'^\nu\}$的坐标域有交，则交域中任一点$p$的对偶矢量$\omega$在两坐标系中的分量$\omega_\mu$和$\omega'_\nu$的变换关系为
+$$\omega'_\nu = \left.\frac{\partial x^\mu}{\partial x'^\nu}\right|_p\omega_\mu$$
+\end{theorem}
+
+\section{张量场}
+
+\begin{definition}
+矢量空间$V$上的一个$(k, l)$型张量是一个多重线性映射
+$$T \colon \underbrace{V^* \times \cdots \times V^*}_\text{$k$个} \times \underbrace{V \times \cdots \times V}_\text{$l$个} \to \mathbb{R}$$
+\end{definition}
+
+\begin{note}
+$T$可比喻为一部机器，有$k$个``上槽''和$l$个``下槽''，只要在上、下槽分别输入$k$个对偶矢量和$l$个矢量，便生产出一个实数，且此实数对每个输入量都线性依赖（多重线性映射的含义）。
+\end{note}
+
+\begin{example}
+\begin{enumerate}[（1）]
+\item $V$上的对偶矢量是$V$上的$(0, 1)$型张量。
+\item $V$的元素$v$可看作$V$上的$(1, 0)$型张量（因$v$可被认同为$v^{**}$，而$v^{**}$是从$V^*$到$\mathbb{R}$的线性映射）。
+\end{enumerate}
+\end{example}
+
+今后用$\mathscr{T}_V(k, l)$表示$V$上全体$(k, l)$型张量的集合，于是$V = \mathscr{T}_V(1, 0)$，$V^* = \mathscr{T}_V(0, 1)$。
