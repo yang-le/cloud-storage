@@ -384,8 +384,8 @@ $C^\infty$映射$\phi \colon \mathbb{R} \times M \to M$称为$M$上的一个\tex
 \section{对偶矢量场}
 
 \begin{definition}
-设$V$是$\mathbb{R}$上的有限维矢量空间。线性映射$\omega \colon V \to \mathbb{R}$称为$V$上的对偶矢量。
-$V$上全体对偶矢量的集合称为$V$的对偶空间，记作$V^*$。
+设$V$是$\mathbb{R}$上的有限维矢量空间。线性映射$\omega \colon V \to \mathbb{R}$称为$V$上的\textbf{对偶矢量}。
+$V$上全体对偶矢量的集合称为$V$的\textbf{对偶空间}，记作$V^*$。
 \end{definition}
 
 \begin{note}
@@ -417,10 +417,10 @@ $V^*$是矢量空间，且$\dim V^* = \dim V$。
 
 $\forall \omega \in V^*$，令$\omega_\mu \equiv \omega(e_\mu), ~ \mu = 1, \cdots, n$，则易证$\omega = \omega_\mu e^{\mu*}$。
 
-因此$V^*$中任一元素可用$\{e^{\mu*}\}$线性表出，故$\{e^{\mu*}\}$是$V^*$的一个基底，叫做$\{e_\mu\}$的对偶基底。于是可知$\dim V^* = \dim V$。
+因此$V^*$中任一元素可用$\{e^{\mu*}\}$线性表出，故$\{e^{\mu*}\}$是$V^*$的一个基底，叫做$\{e_\mu\}$的\textbf{对偶基底}。于是可知$\dim V^* = \dim V$。
 \end{proof}
 
-两个矢量空间叫同构的，若两者之间存在一一到上的线性映射（这种映射称为同构映射）。两矢量空间同构的充要条件是维数相同。
+两个矢量空间叫\textbf{同构}的，若两者之间存在一一到上的线性映射（这种映射称为\textbf{同构映射}）。两矢量空间同构的充要条件是维数相同。
 
 由于$\dim V^* = \dim V$，$V^*$与$V$当然同构。同构映射不难找到。
 例如，设$\{e_\mu\}$是$V$的一个基底，$\{e^{\mu*}\}$是其对偶基底，则由$e_\mu \mapsto e^{\mu*}$定义的线性映射就是一个同构映射。
@@ -454,8 +454,8 @@ $$\begin{aligned}
 \end{proof}
 
 以上属代数范畴，下面回到流形$M$。因$p \in M$有矢量空间$V_p$，故也有${V_p}^*$。
-若在$M$（或$A \in M$）上每点指定一个对偶矢量，就得到$M$（或$A$）上的一个对偶矢量场。
-$M$上的对偶矢量场$\omega$叫做光滑的，若对所有光滑矢量场$v$有$\omega(v) \in \mathscr{F}_M$。
+若在$M$（或$A \in M$）上每点指定一个对偶矢量，就得到$M$（或$A$）上的一个\textbf{对偶矢量场}。
+$M$上的对偶矢量场$\omega$叫做\textbf{光滑}的，若对所有光滑矢量场$v$有$\omega(v) \in \mathscr{F}_M$。
 
 设$f \in \mathscr{F}_M$，我们来说明$f$自然诱导出$M$上的一个对偶矢量场，记作$\diff f$。
 要定义$\diff f$只须说明它在$M$的任一点$p$的值$\diff f|_p \in {V_p}^*$的定义，
@@ -470,7 +470,7 @@ $$\diff (fg)|_p = f|_p(\diff g)|_p + g|_p(\diff f)|_p$$
 于是$\diff x^\mu$（看作特殊的$\diff f$）是定义在$O$上的对偶矢量场。
 设$p \in O$，$\partial / \partial x^\nu$是$V_p$的第$\nu$个坐标基矢，
 则在$p$点有$$\diff x^\mu\left(\frac{\partial}{\partial x^\nu}\right) = \frac{\partial}{\partial x^\nu}(x^\mu) = \delta^\mu{}_\nu$$
-由此可见$\{\diff x^\mu\}$正是与坐标基底$\{\partial / \partial x^\nu\}$对应的对偶坐标基底。
+由此可见$\{\diff x^\mu\}$正是与坐标基底$\{\partial / \partial x^\nu\}$对应的\textbf{对偶坐标基底}。
 上式对$O$的任一点成立，因此，同$\partial / \partial x^\nu$是$O$上的第$\nu$个坐标基矢场类似，
 $\diff x^\mu$是$O$上的第$\mu$个对偶坐标基矢场，$\{\diff x^\mu\}$则是$O$上的第$\mu$个对偶坐标基底场。
 $O$上任一对偶矢量场$\omega$可借$\{\diff x^\mu\}$展开：$$\omega = \omega_\mu\diff x^\mu$$
@@ -494,7 +494,7 @@ $$\omega'_\nu = \left.\frac{\partial x^\mu}{\partial x'^\nu}\right|_p\omega_\mu$
 \section{张量场}
 
 \begin{definition}
-矢量空间$V$上的一个$(k, l)$型张量是一个多重线性映射
+矢量空间$V$上的一个\textbf{$(k, l)$型张量}是一个多重线性映射
 $$T \colon \underbrace{V^* \times \cdots \times V^*}_\text{$k$个} \times \underbrace{V \times \cdots \times V}_\text{$l$个} \to \mathbb{R}$$
 \end{definition}
 
@@ -510,3 +510,54 @@ $T$可比喻为一部机器，有$k$个``上槽''和$l$个``下槽''，只要在
 \end{example}
 
 今后用$\mathscr{T}_V(k, l)$表示$V$上全体$(k, l)$型张量的集合，于是$V = \mathscr{T}_V(1, 0)$，$V^* = \mathscr{T}_V(0, 1)$。
+
+设$T \in \mathscr{T}_V(1, 1)$，则$T \colon V^* \times V \to \mathbb{R}$。但$T$也可看成另一映射。
+因为$\forall \omega \in V^*, v \in V$有$T(\omega; v) \in \mathbb{R}$，
+所以$T(\omega; \bullet)$是一部只有下槽的机器，能把一个矢量线性地变为实数，这表明$T(\omega; \bullet)$是$V$上的对偶矢量，即$T(\omega; \bullet) \in V^*$。
+给定$T$后，再给一个$\omega \in V^*$便能造出$T(\omega; \bullet) \in V^*$，故$T$也可看作把对偶矢量$\omega$变为对偶矢量$T(\omega; \bullet)$的映射（而且是线性映射），
+即$T \colon V^* \xrightarrow[\text{线性地}]{} V^*$。类似地还可以把$T$看成$T \colon V \xrightarrow[\text{线性地}]{} V$。
+对同一$T \in \mathscr{T}_V(1, 1)$的这$3$种看法是等价的。为便于陈述，我们称这种把同一张量看成不同映射的做法为``张量面面观''。
+能够用``面面观''想问题是用映射定义张量的重要好处之一。今后将常用到。
+
+\begin{definition}
+$V$上的$(k, l)$和$(k', l')$型张量$T$和$T'$的\textbf{张量积}$T \otimes T'$是一个$(k + k', l + l')$型张量，定义如下：
+$$\begin{aligned}
+& T \otimes T'(\omega^1, \cdots, \omega^k, \omega^{k + 1}, \cdots, \omega^{k + k'}; v_1, \cdots, v_l, v_{l + 1}, \cdots, v_{l + l'}) \\
+:= & T(\omega^1, \cdots, \omega^k; v_1, \cdots, v_l)T'(\omega^{k + 1}, \cdots, \omega^{k + k'}; v_{l + 1}, \cdots, v_{l + l'})
+\end{aligned}$$
+\end{definition}
+
+欧氏空间矢量场论中的并矢$\vec{v}\vec{u}$其实就是矢量$\vec{v}$和$\vec{u}$的张量积，只不过略去$\otimes$号。\footnote{
+类似地，量子力学的$\ket{\psi}\ket{\phi}$也是$\ket{\psi}$和$\ket{\phi}$的张量积，只不过略去$\otimes$号。
+但量子力学中$\ket{\psi}$所在的矢量空间是复数域上的无限维矢量空间，比现在讨论的实数域上的有限维矢量空间复杂。
+}
+
+张量积是否满足交换律？设$\omega \in V^*, v \in V \equiv V^{**}$，则$v \otimes \omega \in \mathscr{T}_V(1, 1), \omega \otimes v \in \mathscr{T}_V(1, 1)$。
+由定义知$\forall \mu \in V^*, u \in V$有$v \otimes \omega(\mu; u) = v(\mu)\omega(u) = \omega(u)v(\mu) = \omega \otimes v(\mu; u)$（其中$v(\mu)$应理解为$v^{**}(\mu)$）,
+故$v \otimes \omega = \omega \otimes v$。但两个矢量（或两个对偶矢量）的张量积在交换顺序后一般成为另一张量，即$v \otimes u \neq u \otimes v, \omega \otimes \mu \neq \mu \otimes \omega$。
+例如，欧氏空间的并矢就不满足交换律。
+
+\begin{theorem}
+$\mathscr{T}_V(k, l)$是矢量空间，$\dim\mathscr{T}_V(k, l) = n^{k + l}$。
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}[（A）]
+\item 用自然的方法定义加法、数乘和零元使$\mathscr{T}_V(k, l)$成为矢量空间。
+\item 证明其基矢共$n^{k + l}$个。以$n = 2, k = 2, l = 1$为例（不难推广至一般情况）。
+设$\{e_1, e_2\}$为$V$的一个基底，$\{e^{1*}, e^{2*}\}$为其对偶基底。
+只须证明以下$8$个元素构成$\mathscr{T}_V(2, 1)$的一个基底：
+$$\begin{aligned}
+e_1 \otimes e_1 \otimes e^{1*}, ~ e_1 \otimes e_1 \otimes e^{2*}, ~ e_1 \otimes e_2 \otimes e^{1*}, ~ e_1 \otimes e_2 \otimes e^{2*}, \\
+e_2 \otimes e_1 \otimes e^{1*}, ~ e_2 \otimes e_1 \otimes e^{2*}, ~ e_2 \otimes e_2 \otimes e^{1*}, ~ e_2 \otimes e_2 \otimes e^{2*}.
+\end{aligned}$$
+先证它们线性独立，再证任意$T \in \mathscr{T}_V(2, 1)$可表为：
+$$T = T^{\mu\nu}{}_\sigma e_\mu \otimes e_\nu \otimes e^{\sigma*},$$
+其中
+$$T^{\mu\nu}{}_\sigma = T(e^{\mu*}, e^{\nu*}; e_\sigma).$$
+\end{enumerate}
+\end{proof}
+
+\begin{note}
+$T^{\mu\nu}{}_\sigma$是张量$T$在基底$\{e_\mu \otimes e_\nu \otimes e^{\sigma*}\}$的分量，简称为$T$在基底$\{e_\mu\}$的分量。
+\end{note}
