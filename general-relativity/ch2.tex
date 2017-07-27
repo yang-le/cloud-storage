@@ -561,3 +561,38 @@ $$T^{\mu\nu}{}_\sigma = T(e^{\mu*}, e^{\nu*}; e_\sigma).$$
 \begin{note}
 $T^{\mu\nu}{}_\sigma$是张量$T$在基底$\{e_\mu \otimes e_\nu \otimes e^{\sigma*}\}$的分量，简称为$T$在基底$\{e_\mu\}$的分量。
 \end{note}
+
+下面介绍张量的另一重要运算，即缩并。如前所述，$(1, 1)$型张量$T$可看作从$V$到$V$的线性映射，其实它就是线性代数所讲的线性变换。
+$T$在任一基底${e_\mu \otimes e^{\nu*}}$的分量排成的矩阵（$T^\mu{}_\nu$）显然与基底有关，不难证明同一$T$在任意两个基底的分量对应的两个矩阵（$T^\mu{}_\nu$）和（$T'^\mu{}_\nu$）互为相似矩阵，证明如下：
+$$\begin{aligned}
+T'^\mu{}_\nu & = T(e'^{\mu*}; e'_\nu) = T((\tilde{A}^{-1})_\rho{}^\mu e^{\rho*};A^\sigma{}_\nu e_\sigma) = (\tilde{A}^{-1})_\rho{}^\mu A^\sigma{}_\nu T(e^{\rho*}; e_\sigma) \\
+& = (\tilde{A}^{-1})_\rho{}^\mu A^\sigma{}_\nu T^\rho{}_\sigma = (A^{-1})^\mu{}_\rho T^\rho{}_\sigma A^\sigma{}_\nu = (A^{-1}TA)^\mu{}_\nu
+\end{aligned}$$
+于是有矩阵等式$T' = A^{-1}TA$（其中$T'$，$A$，$T$都代表矩阵。$T$有时代表张量，有时代表矩阵，读者应能根据上下文识别。）。
+可见$T'$与$T$互为相似矩阵。以$T'^\mu{}_\mu$（是$\sum_{\mu = 1}^n T'^\mu{}_\mu$的简写）和$T^\rho{}_\rho$分别代表矩阵$T'$和$T$的迹，则由上式易得：
+$$T'^\mu{}_\mu = (A^{-1})^\mu{}_\rho T^\rho{}_\sigma A^\sigma{}_\mu = A^\sigma{}_\mu(A^{-1})^\mu{}_\rho T^\rho{}_\sigma = \delta^\sigma{}_\rho T^\rho{}_\sigma = T^\rho{}_\rho$$
+这就证明了同一$(1, 1)$型张量在不同基底的矩阵有相同的迹。在关心张量时，应该抓住其与基底无关的性质，$(1, 1)$型张量$T$的迹$T^\mu{}_\mu$就是这样一种性质，通常把它称为$T$的缩并或收缩，暂记作$\contraction T$，即
+$$\contraction T := T^\mu{}_\mu = T(e^{\mu*}; e_\mu)$$
+
+再讨论$(2, 1)$型张量$T$的缩并。$T$可记作$T(\bullet, \bullet; \bullet)$，它有两个上槽和一个下槽，故有两种可能的缩并：
+\textcircled{1}第一上槽与下槽的缩并$\contraction^1_1T := T(e^{\mu*}, \bullet; e_\mu)$；
+\textcircled{2}第二上槽与下槽的缩并$\contraction^2_1T := T(\bullet, e^{\mu*}; e_\mu)$。
+若改用另一基底${e'_\rho}$定义这两种缩并，分别记作$(\contraction^1_1T)'$和$(\contraction^2_1T)'$，则易证$\contraction^1_1T = (\contraction^1_1T)'$，$\contraction^2_1T = (\contraction^2_1T)'$。
+由``张量面面观''可知$\contraction^1_1T$和$\contraction^2_1T$都是$(1, 0)$型张量，它们在任一基底的分量可用$T$在该基底的分量表为$(\contraction^1_1T)^\nu = T(e^{\mu*}, e^{\nu*}; e_\mu) = T^{\mu\nu}{}_\mu$，$(\contraction^2_1T)^\nu = T^{\nu\mu}{}_\mu$（已略去求和号）。
+不难推广上述讨论而得出$(k, l)$型张量的缩并定义如下：
+
+\begin{definition}
+$T \in \mathscr{T}_V(k, l)$的第$i$上标（$i \leq k$）与第$j$下标（$j \leq l$）的缩并定义为：
+$$\begin{aligned}
+\contraction^i_jT := T(\bullet, \cdots, & e^{\mu*}, \bullet, \cdots; & \bullet, \cdots, e&_\mu, \bullet, \cdots) \in \mathscr{T}_V(k - 1, l - 1) ~ \text{（要对$\mu$求和）} \\
+& \uparrow & \uparrow & \\
+& \text{第$i$上槽} & \text{第$j$下槽} &
+\end{aligned}$$
+\end{definition}
+
+\begin{note}
+\textcircled{1}$\contraction^i_jT$与基底选择无关。
+\textcircled{2}由上式易见$(k, l)$型张量的每一缩并都是一个$(k - 1, l - 1)$型张量。
+\textcircled{3}联合使用张量积和缩并运算可从原有张量得到各种类型的新张量。
+例如，设$v \in V$，$\omega \in V^*$，则$v \otimes \omega$是$(1, 1)$型张量，而$\contraction(v \otimes \omega)$则是$(0, 0)$型张量（标量）。
+\end{note}
