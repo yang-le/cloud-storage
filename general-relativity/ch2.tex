@@ -596,3 +596,45 @@ $$\begin{aligned}
 \textcircled{3}联合使用张量积和缩并运算可从原有张量得到各种类型的新张量。
 例如，设$v \in V$，$\omega \in V^*$，则$v \otimes \omega$是$(1, 1)$型张量，而$\contraction(v \otimes \omega)$则是$(0, 0)$型张量（标量）。
 \end{note}
+
+后面经常遇到先求张量积再做缩并的运算，其结果可看做张量对矢量（或对偶矢量）的作用。
+作为例子，请考虑如下$3$个等式。
+
+\begin{enumerate}[（a）]
+\item $\contraction(v \otimes \omega) = \omega_\mu v^\mu = \omega(v) = v(\omega), ~ \forall v \in V, \omega \in V^*$。
+\item $\contraction^1_2(T \otimes v) = T(\bullet, v), ~ \forall v \in V, T \in \mathscr{T}_V(0, 2)$。
+\item $\contraction^2_2(T \otimes \omega) = T(\bullet, \omega; \bullet), ~ \forall \omega \in V^*, T \in \mathscr{T}_V(2, 1)$。
+\end{enumerate}
+
+我们只给出（b）的证明。待证等式左边的$T \otimes v$是$(1, 2)$型张量，是一部有$1$个上槽、$2$个下槽的机器，可表为$T \otimes v(\bullet; \bullet, \bullet)$，故
+$$\contraction^1_2(T \otimes v) = T \otimes v(e^{\mu*}; \bullet, e_\mu)$$
+所以只须证明下式
+$$T \otimes v(e^{\mu*}; \bullet, e_\mu) = T(\bullet, v)$$
+而此式是对偶矢量的等式，只须证明两边作用于任一$(u \in V)$给出相同实数。
+$$T \otimes v(e^{\mu*}; u, e_\mu) = T(u, e_\mu)v(e^{\mu*}) = T(u, e_\mu)v^\mu = T(u, v)$$
+
+除以上三式外还有许多类似等式。这些等式是如下规律的表现：``$T$对$\omega$（或$v$）的作用就是先求$T$与$\omega$（或$v$）的张量积再缩并''，或者粗略地说，``作用就是先积后并''。
+对两个张量先求张量积再缩并的操作常又简称为对它们做缩并，因此上述粗略提法还可简化为``作用就是缩并''。
+
+下面回到流形$M$。$M$中任一点$p$的切空间$V_p$的全体$(k, l)$型张量的集合自然记作$\mathscr{T}_{V_p}(k, l)$。
+设$\{e_\mu\}$和$\{e^{\mu*}\}$是$V_p$的任一基底及对偶基底，则$T$同样可写成展开式。
+若选坐标系$\{x^\mu\}$使坐标域含$p$，则可用坐标基矢$\partial / \partial x^\mu$和对偶坐标基矢$\diff x^\mu$充当$e_\mu$和$e^{\mu*}$，即
+$$T = T^{\mu\nu}{}_\sigma\frac{\partial}{\partial x^\mu}\otimes\frac{\partial}{\partial x^\nu}\otimes\diff x^\sigma$$
+其中坐标分量$T^{\mu\nu}{}_\sigma$可表为
+$$T^{\mu\nu}{}_\sigma = T(\diff x^\mu, \diff x^\nu; \partial / \partial x^\sigma)$$
+
+若在流形$M$（或$A \subset M$）上每点指定一个$(k, l)$型张量，就得到$M$（或$A$）上的一个$(k, l)$型张量场。
+$M$上张量场$T$称为光滑的，若对所有光滑对偶矢量场$\omega^1, \cdots, \omega^k$及光滑矢量场$v_1, \cdots, v_l$有$T(\omega^1, \cdots, \omega^k; v_1, \cdots, v_l) \in \mathscr{F}_M$。
+今后如无声明，``张量场''均指光滑（$C^\infty$）张量场。
+
+\begin{theorem}
+$(k, l)$型张量在两个坐标系中的分量的变换关系为（简称张量变换律）
+$$T'^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l} = \frac{\partial x'^{\mu_1}}{\partial x^{\rho_1}}\cdots\frac{\partial x'^{\mu_k}}{\partial x^{\rho_k}}\frac{\partial x^{\sigma_1}}{\partial x'^{\nu_1}}\cdots\frac{\partial x^{\sigma_l}}{\partial x'^{\nu_l}}T^{\rho_1\cdots\rho_k}{}_{\sigma_1\cdots\sigma_l}$$
+\end{theorem}
+
+\begin{note}
+许多教科书采用上式作为张量定义。
+\end{note}
+
+\section{度规张量场}
+
