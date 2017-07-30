@@ -638,3 +638,188 @@ $$T'^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l} = \frac{\partial x'^{\mu_1}}{\parti
 
 \section{度规张量场}
 
+\begin{definition}
+矢量空间$V$上的一个度规$g$是$V$上的一个对称、非退化的$(0, 2)$型张量。
+对称是指$g(v, u) = g(u, v) ~ \forall v, u \in V$，非退化是指$g(v, u) = 0 ~ \forall u \in V \Rightarrow v = 0 \in V$。
+\end{definition}
+
+\begin{note}
+这一抽象的非退化性定义与矩阵的非退化性（行列式非零）有密切联系。
+可以证明，若$g$非退化，则它在$V$的任一基底$\{e_\mu\}$的分量$g_{\mu\nu} \equiv g(e_\mu, e_\nu)$排成的矩阵也非退化。
+反之，若$V$有基底使$g$的分量矩阵非退化，则$g$非退化。
+\end{note}
+
+度规很像内积。但上述度规$g$与一般内积的区别在于$g(v, v)$可以为负，且$g(v, v) = 0$不意味着$v = 0$。
+今后也常把$g(v, u)$称为$v$和$u$在度规$g$下的内积。矢量空间$V$一旦定义了度规$g$，其元素的长度及元素间的正交性就可以定义如下：
+
+\begin{definition}
+$v \in V$的长度或大小定义为$|v| := \sqrt{|g(v, v)|}$。矢量$v, u \in V$叫相互正交的，若$g(v, u) = 0$。
+$V$的基底$\{e_\mu\}$叫正交归一的，若任二基矢正交且每一基矢$e_\mu$满足$g(e_\mu, e_\mu) = \pm 1$（不对$\mu$求和）。
+\end{definition}
+
+\begin{note}
+上述定义表明度规$g$在正交归一基底的分量满足
+$$
+g_{\mu\nu} =
+\begin{cases}
+0, & \mu \neq \nu \\
+\pm 1, & \mu = \nu
+\end{cases}
+$$
+因此，度规在正交归一基底的分量排成的矩阵是对角矩阵，且对角元为$+1$或$-1$。
+\end{note}
+
+\begin{theorem}
+任何带度规的矢量空间都有正交归一基底。
+度规写成对角矩阵时对角元中$+1$和$-1$的个数与所选正交归一基底无关。
+\end{theorem}
+
+\begin{definition}
+用正交归一基底写成对角矩阵后，对角元全为$+1$的度规叫正定的或黎曼的，
+对角元全为$-1$的度规叫负定的，其他度规叫不定的，只有一个对角元为$-1$的不定度规叫洛伦兹的。
+对角元之和叫度规的号差。相对论中用得最多的是洛伦兹度规和正定度规。
+\end{definition}
+
+\begin{definition}
+带洛伦兹度规$g$的矢量空间$V$的元素可分为三类：
+\textcircled{1}满足$g(v, v) > 0$的$v$称为类空矢量；
+\textcircled{2}满足$g(v, v) < 0$的$v$称为类时矢量；
+\textcircled{3}满足$g(v, v) = 0$的$v$称为类光矢量。
+\end{definition}
+
+\begin{note}
+若度规是洛伦兹的，则$g(v, v) = 0$未必导致$v = \underline{0}$。
+非零的$4$维类光矢量在相对论中有重要地位，例如便于描写电磁波及引力波在$4$维时空中的传播。
+\end{note}
+
+度规$g$是$(0, 2)$型张量，即由$V \times V$到$\mathbb{R}$的双重线性映射，所以$\forall v, u \in V$有$g(v, u) \in \mathbb{R}$，因而$g(v, \bullet) \in V^*$。
+给定$g$后，再给一个$v \in V$便可造出$g(v, \bullet) \in V^*$，故$g$可看作由$V$到$V^*$的线性映射，即$g \colon V \xrightarrow[\text{线性地}]{} V^*$，这是一个同构映射。
+因此，在$V$选定度规后就有了一个自然的、与众不同的从$V$到$V^*$的同构映射，我们很自然地用这一映射把$V$与$V^*$认同。
+小结：无论有无度规，$V$都与$V^{**}$自然认同；如果有度规，则$V$与$V^*$也自然认同。
+
+下面回到流形$M$上来。
+
+\begin{definition}
+$M$上的对称的、处处非退化的$(0, 2)$型张量场称为度规张量场。
+\end{definition}
+
+\begin{note}
+这里我们只关心号差处处一样的度规场。
+\end{note}
+
+度规场的一大用处就是定义曲线长度。先讨论$2$维欧氏空间。
+设曲线$C(t)$在自然坐标系$\{x, y\}$的参数式为$x = x(t), y = y(t)$，则曲线元段线长的平方$\diff l^2$（是$(\diff l)^2$的简写）为
+
+$\diff l^2 = \diff x^2 + \diff y^2 = [(\diff x / \diff t)^2 + (\diff y / \diff t)^2]\diff t^2 = [(T^1)^2 + (T^2)^2]\diff t^2 = |T|^2\diff t^2$，
+
+其中$T$是$C(t)$的切矢。由上式得
+$$\diff l = |T|\diff t$$
+于是$C(t)$的线长为
+$$l = \int |T| \diff t$$
+上式可推广至带有正定度规场$g$的任意流形$M$上。
+设$C(t)$是$M$上任一$C^1$曲线，$T$是其切矢，即$T \equiv \partial / \partial t$，则$|T| = \sqrt{g(T, T)}$，故$C(t)$的线长自然定义为
+$$l := \int \sqrt{g(T, T)}\diff t$$
+
+对有洛伦兹度规场$g$的流形$M$，在定义线长前应注意曲线的类型。
+若$C^1$曲线$C(t)$各点的切矢都类空，则$C(t)$叫类空曲线。
+类似地可定义类时曲线和类光曲线。
+类空和类光曲线的线长仍由上式定义（因此类光曲线的线长恒为零）。
+注意到类时曲线有$g(T, T) < 0$，其元线长应定义为$\diff l := \sqrt{-g(T, T)}\diff t$。
+于是有如下定义：
+
+\begin{definition}
+设流形$M$上有洛伦兹度规场$g$，则$M$上的类空、类光及类时曲线$C(t)$的线长定义为
+$$l := \int\sqrt{|g(T, T)|}\diff t, ～ \text{其中}T \equiv \partial / \partial t$$
+\end{definition}
+
+对于从类时转向类空（或相反）的曲线（``不伦不类''的曲线），线长没有定义。
+下面对线长的讨论虽是就洛伦兹度规而言的，但对正定度规也适用（把所有曲线看作类空曲线）。
+
+不难证明曲线的线长与其参数化无关，就是说，曲线重参数化（保持映射的像不变而适当改变参数）不改变线长。
+此外，由于线长的定义不涉及坐标系，线长当然与坐标系无关。但是，如果曲线位于坐标系$\{x^\mu\}$的坐标域内，线长也可借助于坐标系计算。因为
+
+$g(T, T) = g(T^\mu\partial / \partial x^\mu, T^\nu\partial / \partial x^\nu) = T^\mu T^\nu g(\partial / \partial x^\mu, \partial / \partial x^\nu) = (\diff x^\mu / \diff t)(\diff x^\nu / \diff t)g_{\mu\nu}$
+
+（最后一步用到``曲线切矢的坐标分量等于曲线在该系的参数式对参数的导数''，即$T^\mu = \diff x^\mu / \diff t$。）所以元线长
+$$dl = \sqrt{|g_{\mu\nu}\diff x^\mu\diff x^\nu|}$$
+引入记号$\diff s^2 \equiv g_{\mu\nu}\diff x^\mu\diff x^\nu$，则线长
+$$l = \int\sqrt{\diff s^2} ~ \text{（对类空曲线）} $$
+$$l = \int\sqrt{-\diff s^2} ~ \text{（对类时曲线）} $$
+记号$\diff s^2$在微分几何中经常出现，通常称为线元。
+对类空曲线，$\diff s^2$等于元段长$\diff l$的平方$\diff l^2$;
+对类时曲线，$\diff s^2$等于$-\diff l^2$，因而不是任何实数的平方。
+实际上，$\diff s^2$只是一个记号，对类时曲线它根本不是任何实数的平方，
+但因$\diff s^2 \equiv g_{\mu\nu}\diff x^\mu \diff x^\nu$右边含有度规$g$在所涉及的坐标系的全部分量$g_{\mu\nu}$，
+从线元表达式可以直接``读出''度规的全体坐标分量。例如，设$2$维流形上的度规$g$在某坐标系$\{t, x\}$的线元表达式为
+$$\diff s^2 = -x\diff t^2 + \diff x^2 + 4\diff t\diff x$$
+便可读出$g$在该系的分量为$g_{tt} = -x, g_{xx} = 1, g_{tx} = g_{xt} = 2$。可见给定线元（表达式）相当于给定度规场。
+
+设$C \colon I \to M$是类空或类时曲线，则线上任一点$C(t)$的切矢$T$的长度$|T|$是$t$的函数，可记作$|T|(t)$。
+任意指定线上一点$C(t_0)$作为测量线长的起点，则介于$C(t_0)$点和$C(t)$点的曲线段的线长$l(t) = \int^t_{t_0}|T|(t')\diff t'$是$t$的函数。
+$l$也可充当该线的参数，称为线长参数。由$dl \equiv \sqrt{|g(T, T)|}\diff t$可知，以线长为参数的曲线切矢满足$|g(T, T)| = 1$，即有单位长。
+
+\begin{definition}
+设流形$M$上给定度规场$g$，则$(M, g)$叫广义黎曼空间（若$g$为正定，叫黎曼空间；若$g$为洛伦兹，叫伪黎曼空间，物理上叫时空。）
+\end{definition}
+
+下面介绍广义黎曼空间的两个简单而重要的例子，即欧氏空间和闵氏空间。
+
+\begin{definition}
+设$\{x^\mu\}$是$\mathbb{R}^n$的自然坐标，在$\mathbb{R}^n$上定义度规张量场$\delta$为
+$$\delta := \delta_{\mu\nu}\diff x^\mu\otimes\diff x^\nu$$
+则$(\mathbb{R}^n, \delta)$称为$n$维欧氏空间，$\delta$称为欧氏度规。
+\end{definition}
+
+上式表明$\delta$在自然坐标系的对偶坐标基底$\{\diff x^\mu\otimes\diff x^\nu\}$的分量为
+$
+\delta_{\mu\nu} \equiv
+\begin{cases}
+0, & \mu \neq \nu, \\
++1, & \mu = \nu,
+\end{cases}
+$
+因此，欧氏度规在自然坐标系的线元表达式应为$\diff s^2 = \delta_{\mu\nu}\diff x^\mu\diff x^\nu$。
+若$n = 2$，便有$\diff s^2 = (\diff x^1)^2 + (\diff x^2)^2$。这正是熟知的$2$维欧氏空间的线元表达式。
+由定义可知自然坐标基底用欧氏度规衡量是正交归一的，因为由
+
+$\delta(\partial / \partial x^\alpha, \partial / \partial x^\beta) = \delta_{\mu\nu}\diff x^\mu\otimes\diff x^\nu(\partial / \partial  x^\alpha, \partial / \partial x^\beta) = \delta_{\mu\nu}\diff x^\mu(\partial / \partial x^\alpha)\diff x^\nu(\partial / \partial x^\beta)$
+
+易见$$\delta(\partial / \partial x^\alpha, \partial / \partial x^\beta) = \delta_{\alpha\beta}$$
+但满足上式的坐标系未必是自然坐标系。例如，对$2$维欧氏空间，由自然坐标系按下式定义的坐标系
+$$x' = x + a, ~ y' = y +b ～ \text{（$a, b$为常数）}$$
+的基底$\{\partial / \partial x', \partial / \partial y'\}$也满足上式（因而也正交归一）。
+进一步，不难验证由以下三式分别定义的$\{x', y'\}$的坐标基底$\{\partial / \partial x', \partial / \partial y'\}$也满足上式：
+\begin{gather*}
+x' = x\cos\alpha + y\sin\alpha, ~ y' = -x\sin\alpha + y\cos\alpha ~ \text{（$\alpha$为常数）}, \\
+x' = -x, ~ y' = y, \\
+x' = x, ~ y' = -y.
+\end{gather*}
+
+\begin{definition}
+$n$维欧氏空间中满足
+$\delta(\partial / \partial x^\alpha, \partial / \partial x^\beta) = \delta_{\alpha\beta}$
+的坐标系叫笛卡尔坐标系或直角坐标系。换句话说，一个坐标系叫笛卡尔系，若其坐标基底用欧氏度规$\delta$衡量为正交归一。
+\end{definition}
+
+\begin{note}
+\textcircled{1}因$\delta := \delta_{\mu\nu}\diff x^\mu\otimes\diff x^\nu$与上述定义等价，也可说满足此式的坐标系是笛卡尔系。
+\textcircled{2}自然坐标系当然是笛卡尔系。
+\textcircled{3}$2$维欧氏空间中任意两个笛卡尔系之间的关系只能取上述四式中的一种形式（或它们的复合）。
+前二种分别称为平移和转动，后二种的每一种称为反射。
+\textcircled{4}要分清符号$\delta$和$\delta_{\mu\nu}$。
+$\delta$代表欧氏度规，是张量场；而$\delta_{\mu\nu}$则是$\delta$在笛卡尔系的分量。
+还要注意$\delta$在非笛卡尔系的分量不是$\delta_{\mu\nu}$。
+\end{note}
+
+极坐标系$\{r, \varphi\}$是$2$维欧氏空间中非笛卡尔系的一例。
+物理书中使用极坐标系时，相应的基底常用$\{\hat{e}_r, \hat{e}_\varphi\}$（顶上加$\hat{}$表示单位矢），它是正交归一的，但却不是极坐标系的坐标基底$\{\partial / \partial r, \partial / \partial\varphi\}$，
+关键在于$\partial / \partial\varphi$不归一，因$\delta(\partial / \partial\varphi, \partial / \partial\varphi) = r^2 \neq 1$\footnote{
+按照矢量的分量变换律，有$\partial / \partial\varphi = (\diff x^\mu / \diff\varphi)(\partial / \partial x^\mu)$。
+再根据极坐标与直角坐标的关系$x^1 = r\cos\varphi, ~ x^2 = r\sin\varphi$，带入即可求出。
+}。
+实际上，$\hat{e}_\varphi$是对$\partial / \partial\varphi$归一化的产物，即$\hat{e}_\varphi := r^{-1}\partial / \partial\varphi$。
+可见物理书中常用的$\{\hat{e}_r, \hat{e}_\varphi\}$不是极坐标系的坐标基底而是与极坐标系相应的正交归一基底。
+
+欧氏空间是最简单的黎曼空间。下面介绍最简单的伪黎曼空间---闵氏空间。
+$4$维洛伦兹度规在对角化后的对角元为$(-1, 1, 1, 1)$，为了突出这个唯一的$-1$，我们把它所在的行、列记为$0$行$0$列，三个$+1$所在行、列分别记为$1, 2, 3$行和$1, 2, 3$列。
+这种对角矩阵的元素记作
