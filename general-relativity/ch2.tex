@@ -571,7 +571,7 @@ T'^\mu{}_\nu & = T(e'^{\mu*}; e'_\nu) = T((\tilde{A}^{-1})_\rho{}^\mu e^{\rho*};
 于是有矩阵等式$T' = A^{-1}TA$（其中$T'$，$A$，$T$都代表矩阵。$T$有时代表张量，有时代表矩阵，读者应能根据上下文识别。）。
 可见$T'$与$T$互为相似矩阵。以$T'^\mu{}_\mu$（是$\sum_{\mu = 1}^n T'^\mu{}_\mu$的简写）和$T^\rho{}_\rho$分别代表矩阵$T'$和$T$的迹，则由上式易得：
 $$T'^\mu{}_\mu = (A^{-1})^\mu{}_\rho T^\rho{}_\sigma A^\sigma{}_\mu = A^\sigma{}_\mu(A^{-1})^\mu{}_\rho T^\rho{}_\sigma = \delta^\sigma{}_\rho T^\rho{}_\sigma = T^\rho{}_\rho$$
-这就证明了同一$(1, 1)$型张量在不同基底的矩阵有相同的迹。在关心张量时，应该抓住其与基底无关的性质，$(1, 1)$型张量$T$的迹$T^\mu{}_\mu$就是这样一种性质，通常把它称为$T$的缩并或收缩，暂记作$\contraction T$，即
+这就证明了同一$(1, 1)$型张量在不同基底的矩阵有相同的迹。在关心张量时，应该抓住其与基底无关的性质，$(1, 1)$型张量$T$的迹$T^\mu{}_\mu$就是这样一种性质，通常把它称为$T$的\textbf{缩并}或\textbf{收缩}，暂记作$\contraction T$，即
 $$\contraction T := T^\mu{}_\mu = T(e^{\mu*}; e_\mu)$$
 
 再讨论$(2, 1)$型张量$T$的缩并。$T$可记作$T(\bullet, \bullet; \bullet)$，它有两个上槽和一个下槽，故有两种可能的缩并：
@@ -582,7 +582,7 @@ $$\contraction T := T^\mu{}_\mu = T(e^{\mu*}; e_\mu)$$
 不难推广上述讨论而得出$(k, l)$型张量的缩并定义如下：
 
 \begin{definition}
-$T \in \mathscr{T}_V(k, l)$的第$i$上标（$i \leq k$）与第$j$下标（$j \leq l$）的缩并定义为：
+$T \in \mathscr{T}_V(k, l)$的第$i$上标（$i \leq k$）与第$j$下标（$j \leq l$）的\textbf{缩并}定义为：
 $$\begin{aligned}
 \contraction^i_jT := T(\bullet, \cdots, & e^{\mu*}, \bullet, \cdots; & \bullet, \cdots, e&_\mu, \bullet, \cdots) \in \mathscr{T}_V(k - 1, l - 1) ~ \text{（要对$\mu$求和）} \\
 & \uparrow & \uparrow & \\
@@ -623,12 +623,12 @@ $$T = T^{\mu\nu}{}_\sigma\frac{\partial}{\partial x^\mu}\otimes\frac{\partial}{\
 其中坐标分量$T^{\mu\nu}{}_\sigma$可表为
 $$T^{\mu\nu}{}_\sigma = T(\diff x^\mu, \diff x^\nu; \partial / \partial x^\sigma)$$
 
-若在流形$M$（或$A \subset M$）上每点指定一个$(k, l)$型张量，就得到$M$（或$A$）上的一个$(k, l)$型张量场。
-$M$上张量场$T$称为光滑的，若对所有光滑对偶矢量场$\omega^1, \cdots, \omega^k$及光滑矢量场$v_1, \cdots, v_l$有$T(\omega^1, \cdots, \omega^k; v_1, \cdots, v_l) \in \mathscr{F}_M$。
+若在流形$M$（或$A \subset M$）上每点指定一个$(k, l)$型张量，就得到$M$（或$A$）上的一个$(k, l)$型\textbf{张量场}。
+$M$上张量场$T$称为\textbf{光滑的}，若对所有光滑对偶矢量场$\omega^1, \cdots, \omega^k$及光滑矢量场$v_1, \cdots, v_l$有$T(\omega^1, \cdots, \omega^k; v_1, \cdots, v_l) \in \mathscr{F}_M$。
 今后如无声明，``张量场''均指光滑（$C^\infty$）张量场。
 
 \begin{theorem}
-$(k, l)$型张量在两个坐标系中的分量的变换关系为（简称张量变换律）
+$(k, l)$型张量在两个坐标系中的分量的变换关系为（简称\textbf{张量变换律}）
 $$T'^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l} = \frac{\partial x'^{\mu_1}}{\partial x^{\rho_1}}\cdots\frac{\partial x'^{\mu_k}}{\partial x^{\rho_k}}\frac{\partial x^{\sigma_1}}{\partial x'^{\nu_1}}\cdots\frac{\partial x^{\sigma_l}}{\partial x'^{\nu_l}}T^{\rho_1\cdots\rho_k}{}_{\sigma_1\cdots\sigma_l}$$
 \end{theorem}
 
@@ -639,7 +639,7 @@ $$T'^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l} = \frac{\partial x'^{\mu_1}}{\parti
 \section{度规张量场}
 
 \begin{definition}
-矢量空间$V$上的一个度规$g$是$V$上的一个对称、非退化的$(0, 2)$型张量。
+矢量空间$V$上的一个\textbf{度规}$g$是$V$上的一个对称、非退化的$(0, 2)$型张量。
 对称是指$g(v, u) = g(u, v) ~ \forall v, u \in V$，非退化是指$g(v, u) = 0 ~ \forall u \in V \Rightarrow v = 0 \in V$。
 \end{definition}
 
@@ -653,8 +653,8 @@ $$T'^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l} = \frac{\partial x'^{\mu_1}}{\parti
 今后也常把$g(v, u)$称为$v$和$u$在度规$g$下的内积。矢量空间$V$一旦定义了度规$g$，其元素的长度及元素间的正交性就可以定义如下：
 
 \begin{definition}
-$v \in V$的长度或大小定义为$|v| := \sqrt{|g(v, v)|}$。矢量$v, u \in V$叫相互正交的，若$g(v, u) = 0$。
-$V$的基底$\{e_\mu\}$叫正交归一的，若任二基矢正交且每一基矢$e_\mu$满足$g(e_\mu, e_\mu) = \pm 1$（不对$\mu$求和）。
+$v \in V$的\textbf{长度}或\textbf{大小}定义为$|v| := \sqrt{|g(v, v)|}$。矢量$v, u \in V$叫\textbf{相互正交}的，若$g(v, u) = 0$。
+$V$的基底$\{e_\mu\}$叫\textbf{正交归一}的，若任二基矢正交且每一基矢$e_\mu$满足$g(e_\mu, e_\mu) = \pm 1$（不对$\mu$求和）。
 \end{definition}
 
 \begin{note}
@@ -675,16 +675,16 @@ $$
 \end{theorem}
 
 \begin{definition}
-用正交归一基底写成对角矩阵后，对角元全为$+1$的度规叫正定的或黎曼的，
-对角元全为$-1$的度规叫负定的，其他度规叫不定的，只有一个对角元为$-1$的不定度规叫洛伦兹的。
-对角元之和叫度规的号差。相对论中用得最多的是洛伦兹度规和正定度规。
+用正交归一基底写成对角矩阵后，对角元全为$+1$的度规叫\textbf{正定}的或\textbf{黎曼}的，
+对角元全为$-1$的度规叫\textbf{负定}的，其他度规叫\textbf{不定}的，只有一个对角元为$-1$的不定度规叫\textbf{洛伦兹}的。
+对角元之和叫度规的\textbf{号差}。相对论中用得最多的是洛伦兹度规和正定度规。
 \end{definition}
 
 \begin{definition}
 带洛伦兹度规$g$的矢量空间$V$的元素可分为三类：
-\textcircled{1}满足$g(v, v) > 0$的$v$称为类空矢量；
-\textcircled{2}满足$g(v, v) < 0$的$v$称为类时矢量；
-\textcircled{3}满足$g(v, v) = 0$的$v$称为类光矢量。
+\textcircled{1}满足$g(v, v) > 0$的$v$称为\textbf{类空矢量}；
+\textcircled{2}满足$g(v, v) < 0$的$v$称为\textbf{类时矢量}；
+\textcircled{3}满足$g(v, v) = 0$的$v$称为\textbf{类光矢量}。
 \end{definition}
 
 \begin{note}
@@ -700,7 +700,7 @@ $$
 下面回到流形$M$上来。
 
 \begin{definition}
-$M$上的对称的、处处非退化的$(0, 2)$型张量场称为度规张量场。
+$M$上的对称的、处处非退化的$(0, 2)$型张量场称为\textbf{度规张量场}。
 \end{definition}
 
 \begin{note}
@@ -721,8 +721,8 @@ $$l = \int |T| \diff t$$
 $$l := \int \sqrt{g(T, T)}\diff t$$
 
 对有洛伦兹度规场$g$的流形$M$，在定义线长前应注意曲线的类型。
-若$C^1$曲线$C(t)$各点的切矢都类空，则$C(t)$叫类空曲线。
-类似地可定义类时曲线和类光曲线。
+若$C^1$曲线$C(t)$各点的切矢都类空，则$C(t)$叫\textbf{类空曲线}。
+类似地可定义\textbf{类时曲线}和\textbf{类光曲线}。
 类空和类光曲线的线长仍由上式定义（因此类光曲线的线长恒为零）。
 注意到类时曲线有$g(T, T) < 0$，其元线长应定义为$\diff l := \sqrt{-g(T, T)}\diff t$。
 于是有如下定义：
@@ -745,7 +745,7 @@ $$dl = \sqrt{|g_{\mu\nu}\diff x^\mu\diff x^\nu|}$$
 引入记号$\diff s^2 \equiv g_{\mu\nu}\diff x^\mu\diff x^\nu$，则线长
 $$l = \int\sqrt{\diff s^2} ~ \text{（对类空曲线）} $$
 $$l = \int\sqrt{-\diff s^2} ~ \text{（对类时曲线）} $$
-记号$\diff s^2$在微分几何中经常出现，通常称为线元。
+记号$\diff s^2$在微分几何中经常出现，通常称为\textbf{线元}。
 对类空曲线，$\diff s^2$等于元段长$\diff l$的平方$\diff l^2$;
 对类时曲线，$\diff s^2$等于$-\diff l^2$，因而不是任何实数的平方。
 实际上，$\diff s^2$只是一个记号，对类时曲线它根本不是任何实数的平方，
@@ -756,10 +756,10 @@ $$\diff s^2 = -x\diff t^2 + \diff x^2 + 4\diff t\diff x$$
 
 设$C \colon I \to M$是类空或类时曲线，则线上任一点$C(t)$的切矢$T$的长度$|T|$是$t$的函数，可记作$|T|(t)$。
 任意指定线上一点$C(t_0)$作为测量线长的起点，则介于$C(t_0)$点和$C(t)$点的曲线段的线长$l(t) = \int^t_{t_0}|T|(t')\diff t'$是$t$的函数。
-$l$也可充当该线的参数，称为线长参数。由$dl \equiv \sqrt{|g(T, T)|}\diff t$可知，以线长为参数的曲线切矢满足$|g(T, T)| = 1$，即有单位长。
+$l$也可充当该线的参数，称为\textbf{线长参数}。由$dl \equiv \sqrt{|g(T, T)|}\diff t$可知，以线长为参数的曲线切矢满足$|g(T, T)| = 1$，即有单位长。
 
 \begin{definition}
-设流形$M$上给定度规场$g$，则$(M, g)$叫广义黎曼空间（若$g$为正定，叫黎曼空间；若$g$为洛伦兹，叫伪黎曼空间，物理上叫时空。）
+设流形$M$上给定度规场$g$，则$(M, g)$叫\textbf{广义黎曼空间}（若$g$为正定，叫\textbf{黎曼空间}；若$g$为洛伦兹，叫\textbf{伪黎曼空间}，物理上叫\textbf{时空}。）
 \end{definition}
 
 下面介绍广义黎曼空间的两个简单而重要的例子，即欧氏空间和闵氏空间。
@@ -767,7 +767,7 @@ $l$也可充当该线的参数，称为线长参数。由$dl \equiv \sqrt{|g(T, 
 \begin{definition}
 设$\{x^\mu\}$是$\mathbb{R}^n$的自然坐标，在$\mathbb{R}^n$上定义度规张量场$\delta$为
 $$\delta := \delta_{\mu\nu}\diff x^\mu\otimes\diff x^\nu$$
-则$(\mathbb{R}^n, \delta)$称为$n$维欧氏空间，$\delta$称为欧氏度规。
+则$(\mathbb{R}^n, \delta)$称为\textbf{$n$维欧氏空间}，$\delta$称为\textbf{欧氏度规}。
 \end{definition}
 
 上式表明$\delta$在自然坐标系的对偶坐标基底$\{\diff x^\mu\otimes\diff x^\nu\}$的分量为
@@ -798,14 +798,14 @@ x' = x, ~ y' = -y.
 \begin{definition}
 $n$维欧氏空间中满足
 $\delta(\partial / \partial x^\alpha, \partial / \partial x^\beta) = \delta_{\alpha\beta}$
-的坐标系叫笛卡尔坐标系或直角坐标系。换句话说，一个坐标系叫笛卡尔系，若其坐标基底用欧氏度规$\delta$衡量为正交归一。
+的坐标系叫\textbf{笛卡尔坐标系}或\textbf{直角坐标系}。换句话说，一个坐标系叫笛卡尔系，若其坐标基底用欧氏度规$\delta$衡量为正交归一。
 \end{definition}
 
 \begin{note}
 \textcircled{1}因$\delta := \delta_{\mu\nu}\diff x^\mu\otimes\diff x^\nu$与上述定义等价，也可说满足此式的坐标系是笛卡尔系。
 \textcircled{2}自然坐标系当然是笛卡尔系。
 \textcircled{3}$2$维欧氏空间中任意两个笛卡尔系之间的关系只能取上述四式中的一种形式（或它们的复合）。
-前二种分别称为平移和转动，后二种的每一种称为反射。
+前二种分别称为\textbf{平移}和\textbf{转动}，后二种的每一种称为\textbf{反射}。
 \textcircled{4}要分清符号$\delta$和$\delta_{\mu\nu}$。
 $\delta$代表欧氏度规，是张量场；而$\delta_{\mu\nu}$则是$\delta$在笛卡尔系的分量。
 还要注意$\delta$在非笛卡尔系的分量不是$\delta_{\mu\nu}$。
@@ -822,4 +822,48 @@ $\delta$代表欧氏度规，是张量场；而$\delta_{\mu\nu}$则是$\delta$�
 
 欧氏空间是最简单的黎曼空间。下面介绍最简单的伪黎曼空间---闵氏空间。
 $4$维洛伦兹度规在对角化后的对角元为$(-1, 1, 1, 1)$，为了突出这个唯一的$-1$，我们把它所在的行、列记为$0$行$0$列，三个$+1$所在行、列分别记为$1, 2, 3$行和$1, 2, 3$列。
-这种对角矩阵的元素记作
+这种对角矩阵的元素记作$\eta_{\mu\nu}$（以区别于$\delta_{\mu\nu}$）,即$\eta_{00} \equiv -1, \eta_{11} \equiv \eta_{22} \equiv \eta_{33} \equiv 1$。
+推广到$n$维则有
+$$
+\eta_{\mu\nu} \equiv
+\begin{cases}
+0, ~ \mu \neq \nu, \\
+-1, ~ \mu = \nu = 0, \\
++1, ~ \mu = \nu = 1, \cdots, n -1.
+\end{cases}
+$$
+下面给出闵氏空间的定义。
+
+\begin{definition}
+设$\{x^\mu\}$是$\mathbb{R}^n$的自然坐标，在$\mathbb{R}^n$上定义度规张量场$\eta$为
+$$\eta := \eta_{\mu\nu}\diff x^\mu\otimes\diff x^\nu$$
+则$(\mathbb{R}^n, \eta)$称为\textbf{$n$维闵氏空间}（物理上称为\textbf{$n$维闵氏时空}），$\eta$称为\textbf{闵氏度规}。
+\end{definition}
+
+由定义可知闵氏度规在自然坐标系的线元表达式为$\diff s^2 = \eta_{\mu\nu}\diff x^\mu\diff x^\nu$。
+以$n = 4$为例，有$\diff s^2 = -(\diff x^0)^2 + (\diff x^1)^2 + (\diff x^2)^2 + (\diff x^3)^2$。
+这正是熟知的$4$维闵氏时空的线元（狭义相对论中的元间隔）表达式。不难证明
+$$\eta(\partial / \partial x^\alpha, \partial / \partial x^\beta) = \eta_{\alpha\beta}$$
+可见自然坐标基底$\{\partial / \partial x^\mu\}$用闵氏度规衡量也是正交归一的（第$0$坐标基矢归$-1$，其他归$+1$）。
+但满足上式的却不一定是自然坐标系。例如，以$2$维闵氏空间为例，设$\{t, x\}$是自然坐标，则
+$$t' = t + a, ~ x' = x + b ~ \text{（$a, b$为常数）}$$
+的坐标基底$\{\partial / \partial t', \partial / \partial x'\}$也满足上式。
+不难验证，由以下三式分别定义的$\{t', x'\}$系的坐标基底$\{\partial / \partial t', \partial / \partial x'\}$也满足上式：
+\begin{gather*}
+t' = t\ch\lambda + x\sh\lambda, ~ x' = t\sh\lambda + x\ch\lambda ~ \text{（$\lambda$为常数）}, \\
+t' = -t, ~ x' = x, \\
+t' = t, ~ x' = -x.
+\end{gather*}
+
+\begin{definition}
+$n$维闵氏空间中满足$\eta(\partial / \partial x^\alpha, \partial / \partial x^\beta) = \eta_{\alpha\beta}$的坐标系叫\textbf{洛伦兹坐标系}或\textbf{伪笛卡尔坐标系}，也有文献称之为笛卡尔坐标系。
+\end{definition}
+
+\begin{note}
+\textcircled{1}闵氏空间的自然坐标当然是洛伦兹坐标。
+\textcircled{2}$2$维闵氏空间中的任意两个洛伦兹坐标系之间的关系只能取上述四式中的一种形式（或它们的复合）。
+第一种称为\textbf{平移}，第二种称为\textbf{伪转动}，后两种的每一种称为\textbf{反射}。
+\textcircled{3}闵氏度规张量$\eta$在非洛伦兹坐标基底的分量不等于$\eta_{\mu\nu}$
+\end{note}
+
+\section{抽象指标记号}
