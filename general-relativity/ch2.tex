@@ -867,3 +867,34 @@ $n$维闵氏空间中满足$\eta(\partial / \partial x^\alpha, \partial / \parti
 \end{note}
 
 \section{抽象指标记号}
+表示张量的常用方法有两种。第一种是用不带指标的字母（如$T$）代表张量，这有两个缺点：
+\textcircled{1} 看不出张量类型；
+\textcircled{2} 不易表明哪一上槽与哪一下槽做缩并（前面所用的记号$C^i_jT$是暂时的，在运算中有诸多不便。）
+第二种表示法是用分量（如$T^{\mu\nu}{}_\sigma$）代表张量，用分量服从的等式代表张量服从的等式。
+分量等式是数量等式，因此在采用这种表示法的文献中所有等式都是数量等式。这种表示法可以克服第一种表示法的两个困难，但自身却有一严重缺点：
+有时由于选用某一（或某类）特殊基底而得到较为简单的分量等式，它只对特殊基底成立，因而不代表张量等式。
+我们希望知道哪些等式能够代表张量等式而哪些不能，然而在分量表示法中难以区分。
+为了克服这一缺点（同时保留分量表示法的所有优点），Penrose首创``抽象指标记号''，要点如下：
+\begin{enumerate}[1.]
+\item $(k, l)$型张量用带有$k$个上标和$l$个下标的字母表示，上下标为小写拉丁字母，只表示张量类型，故称\textbf{抽象指标}。
+例如，$v^a$代表矢量，上标$a$与$\vec{v}$中的$\vec{}$作用一样（故不能谈及$a = 1$或$a = 2$的问题），$\omega_a$代表对偶矢量，$T^{ab}{}_c$代表$(2, 1)$型张量，等等。
+$v^a$和$v^b$代表相同的矢量（即矢量$\vec{v}$），但写等式时要注意``指标平衡''，例如可以写$\alpha u^a + v^a = w^a$或$\alpha u^b + v^b = w^b$而不可以写$\alpha u^a + v^b = w^a$。
+\item 重复上下抽象指标表示对这两个指标求缩并。例如
+$$T^a{}_a = T(e^{\mu*}; e_\mu) = T^\mu{}_\mu, T^{ab}{}_a = T(e^{\mu*}, \bullet; e_\mu), T^{ab}{}_b = T(\bullet, e^{\mu*}; e_\mu)$$
+\item 张量积记号省略。例如，设$T \in \mathscr{T}_V(2, 1), S \in \mathscr{T}_V(1, 1)$，则$T \otimes S$写成$T^{ab}{}_cS^d{}_e$。
+在不用指标的张量表示法中，一般来说$\omega \otimes \mu \neq \mu \otimes \omega$，因为当作用于对象$(v, u)$时，$\omega$作用于$v$还是$u$的问题由字母顺序决定（$\omega \otimes \mu$的第一字母$\omega$作用于$(v, u)$的第一字母$v$）。
+在抽象指标记号中，由于重复上下指标代表缩并，$\omega \otimes \mu(v, u)$既可写成$\omega_a\mu_bv^au^b$又可写成$\mu_b\omega_av^au^b$（都代表$\omega(v)\mu(u)$）。
+既然在这种写法中$\omega_a\mu_b$和$\mu_b\omega_a$的作用对象都是$v^au^b$，便有$\omega_a\mu_b = \mu_b\omega_a$。
+就是说，代表张量的字母\CJKunderdot{带着}自己的\CJKunderdot{抽象指标}可以交换。
+张量积顺序的不可交换性体现为$\omega_a\mu_b \neq \omega_b\mu_a$。
+\item 涉及张量分量时，相应指标用小写希腊字母$\mu$，$\nu$，$\alpha$，$\beta$等（正如前面一直用的），这种指标称为\textbf{具体指标}，可以问及$\mu = 1$还是$\mu = 2$的问题。
+张量在基矢上的展开式$T = T^{\mu\nu}{}_\sigma e_\mu \otimes e_\nu \otimes e^{\sigma*}$现在写成
+$$T^{ab}{}_c = T^{\mu\nu}{}_\sigma(e_\mu)^a(e_\nu)^b(e^\sigma)_c$$（$(e^\sigma)_c$的抽象下标$c$已表明它是对偶基矢，无须写为$(e^{\sigma*})_c$。）
+而$T^{\mu\nu}{}_\sigma = T(e^{\mu*}, e^{\nu*}; e_\sigma)$现在写成
+$$T^{\mu\nu}{}_\sigma = T^{ab}{}_c(e^\mu)_a(e^\nu)_b(e_\sigma)^c$$
+注意，上两式的指标（无论抽象的还是具体的）都是``平衡''的。
+设$T \in \mathscr{T}_V(0, 2)$，则$T$应记作$T_{ab}$。
+令$e_\mu$为某基底的第$\mu$基矢，则可知$T(\bullet, e_\mu) = C^1_2(T \otimes e_\mu)$，而$T \otimes e_\mu$用抽象指标应记为$T_{ab}(e_\mu)^c$，故$T(\bullet, e_\mu)$应记作$T_{ab}(e_\mu)^b$，也可简记作$T_{a\mu}$，即
+$$T(\bullet, e_\mu) \equiv T_{ab}(e_\mu)^b \equiv T_{a\mu}$$
+这是既有抽象指标又有具体指标的张量的表达方式，不妨认为$T_{a1}, \cdots, T_{an}$代表$n$个对偶矢量，其中$T_{a\mu}$代表``第$\mu$个对偶矢量''。
+\end{enumerate}
