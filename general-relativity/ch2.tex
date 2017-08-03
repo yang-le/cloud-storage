@@ -897,4 +897,51 @@ $$T^{\mu\nu}{}_\sigma = T^{ab}{}_c(e^\mu)_a(e^\nu)_b(e_\sigma)^c$$
 令$e_\mu$为某基底的第$\mu$基矢，则可知$T(\bullet, e_\mu) = C^1_2(T \otimes e_\mu)$，而$T \otimes e_\mu$用抽象指标应记为$T_{ab}(e_\mu)^c$，故$T(\bullet, e_\mu)$应记作$T_{ab}(e_\mu)^b$，也可简记作$T_{a\mu}$，即
 $$T(\bullet, e_\mu) \equiv T_{ab}(e_\mu)^b \equiv T_{a\mu}$$
 这是既有抽象指标又有具体指标的张量的表达方式，不妨认为$T_{a1}, \cdots, T_{an}$代表$n$个对偶矢量，其中$T_{a\mu}$代表``第$\mu$个对偶矢量''。
+\item 由``张量面面观''可知，$V$上的$(1, 1)$型张量$T^a{}_b$既可看作从$V$到$V$的线性映射又可看作从$V^*$到$V^*$的线性映射。
+就是说，$T^a{}_b$作用于矢量$v^b \in V$仍为矢量，记作$u^a \equiv T^a{}_bv^b \in V$；
+$T^a{}_b$作用于对偶矢量$\omega_a \in V^*$仍为对偶矢量，记作$\mu_b \equiv T^a{}_b\omega_a \in V^*$。
+其实，由抽象指标也可一望而知$T^a{}_bv^b$和$T^a{}_b\omega_a$分别是矢量和对偶矢量，可见抽象指标记号是``张量面面观''的一种简单而直观的体现。
+以$\delta^a{}_b$代表从$V$到$V$的恒等映射，即$\delta^a{}_bv^b := v^a ~ \forall v^b \in V$，则易见它也是从$V^*$到$V^*$的恒等映射，即$\delta^a{}_b\omega_a = \omega_b ~ \forall \omega_a \in V^*$。
+进一步不难证明$\delta^a{}_b$与任一张量缩并的结果是把该张量的上标$b$换为$a$（或把下标$a$换为$b$），例如$\delta^a{}_bT_{ac} = T_{bc}, \delta^a{}_bT^{cb}{}_e = T^{ca}{}_e$。
+设$\{(e_\mu)^a\}$是$V$的基底，$\{(e^\mu)_a\}$是其对偶基底，则
+$$(e^\mu)_a(e_\mu)^b = \delta^b{}_a$$
+这是$(1, 1)$型张量等式，证明时只须验证两边作用于任一矢量$v^a$得相同结果。
+设$\{(e_\mu)^a\}$是$V$的基底，$\{(e^\mu)_a\}$是其对偶基底，则$\delta^a{}_b$在此基底的分量$\delta^\mu{}_\nu \equiv \delta^a{}_b(e^\mu)_a(e_\nu)^b$满足$\delta^\mu{}_\nu = \begin{cases}+1, ~ (\mu = \nu) \\0, ~ (\mu \neq \nu)\end{cases}$。
+证明很简单，以$\delta^1{}_1$为例，$\delta^1{}_1 = \delta^a{}_b(e^1)_a(e_1)^b = (e^1)_a(e_1)^a = 1$。
+请注意，即使是洛伦兹号差的情况下也有$\delta^0{}_0 = +1$。
+\item 因度规$g \in \mathscr{T}_V(0, 2)$，故应记为$g_{ab}$。设$v \in V$，则$g(\bullet, v) \in V^*$。
+把$g$看作$T$，便得$g(\bullet, v) = C^1_2(g \otimes v) = C^1_2(g_{ab}v^c) = g_{ab}v^b$，故$g(\bullet, v)$应记作$g_{ab}v^b$。
+又因有度规$g$时$V$与$V^*$在同构映射$g \colon V \to V^*$下自然认同，而$g_{ab}v^b \equiv g(\bullet, v)$正是$v^a$在这一映射下的像，故应与$v^a$认同，索性就把$g_{ab}v^b$记作$v_a$（可看作$v_a$的定义）。
+就是说，虽然在数学上$v^a$与$v_a$是两种不同性质的量（矢量和对偶矢量），但在应用上两者代表的是同一事物（故都用$v$表示）。
+于是常写
+$$v_a = g_{ab}v^b$$
+又由于$g \colon V \to V^*$是同构映射，其逆映射$g^{-1}$自然存在。
+不难论证$g^{-1}$是$(2, 0)$型张量，本应记作$(g^{-1})^{ab}$，但通常都简记为$g^{ab}$（有上指标就不会与$g_{ab}$混淆）。
+根据类似推理，任一$\omega_b \in V^*$在$g^{ab}$映射下的像为$g^{ab}\omega_b$，索性记作$\omega^a$，以表示与$\omega_a$代表同一事物，于是
+$$\omega^a = g^{ab}\omega_b$$
+上述两式表明可用$g_{ab}$及$g^{ab}$对上、下指标分别做``下降''和``上升''处理。
+这种升降指标操作适用于任何张量中的任何抽象指标。
+例如，$(1, 1)$型张量$T$在抽象指标记号中可表为$T^a{}_b$，所谓用度规对它降指标，其实是用$g$和$T$通过张量积及缩并运算求得一个$(0, 2)$型张量$g(\bullet, e_\mu) \otimes T(e^{\mu*}; \bullet)$，在抽象指标记号中就把它记作$T_{ab}$，即$T_{ab} \equiv g_{ac}T^c{}_b$。
 \end{enumerate}
+
+依次使用上述两式得
+$$\omega^a = g^{ab}\omega_b = g^{ab}(g_{bc}\omega^c), ~ \forall \omega^a \in V$$
+故
+$$g^{ab}g_{bc} = \delta^a{}_c$$
+其实这是$g^{ab}$作为$g_{ab}$的逆映射的必然结果。
+
+设$\{(e_\mu)^a\}$是$V$的任一基底，$\{(e^\mu)_a\}$是其对偶基底，以$g_{\mu\nu}$和$g^{\mu\nu}$分别代表$g_{ab}$和$g^{ab}$在这一基底的分量，则
+$$g^{\mu\nu}g_{\nu\sigma} = g^{ab}(e^\mu)_a(e^\nu)_bg_{cd}(e_\nu)^c(e_\sigma)^d = g^{ab}(e^\mu)_ag_{bd}(e_\sigma)^d = (e^\mu)_a(e_\sigma)^a = \delta^\mu{}_\sigma$$
+其中第二、三步分别用到$(e^\mu)_a(e_\mu)^b = \delta^b{}_a$和$g^{ab}g_{bc} = \delta^a{}_c$。
+上式表明度规$g_{ab}$在任一基底的分量$g_{\mu\nu}$的矩阵有逆（逆矩阵就是度规$g_{ab}$之逆$g^{ab}$在同一基底的分量$g^{\mu\nu}$的矩阵），因而非退化。
+可见$g_{ab}$的非退化性保证它在任一基底的矩阵$(g_{\mu\nu})$的非退化性。
+反之，设存在基底$\{(e_\mu)^a\}$及其对偶基底$\{(e^\mu)_a\}$使$(g_{\mu\nu})$为非退化，则$(g_{\mu\nu})$有逆矩阵$(g^{\mu\nu})$，令$g^{ab} \equiv g^{\mu\nu}(e_\mu)^a(e_\nu)^b$，则由$g^{\mu\nu}g_{\nu\sigma} = \delta^\mu{}_\sigma$易证$g^{ab}g_{bc} = \delta^a{}_c$，
+可见$g_{ab} \colon V \to V^*$有逆映射$g^{ab}$，因而非退化（$g_{ab} \colon V \to V^*$有逆表明它是一一映射，而如果$g_{ab}$退化，则$V$中除零元外还有$v^a \neq 0$，其像也为$\underline{0} \in V^*$，与一一性矛盾。）。
+
+不难看出，用度规及其逆的分量$g_{\mu\nu}$及$g^{\mu\nu}$可对张量分量的上、下具体指标做下降和上升处理。
+例如，可把$g_{\mu\nu}v^\nu$写成$v_\mu$，因为
+$$g_{\mu\nu}v^\nu = g_{ab}(e_\mu)^a(e_\nu)^bv^\nu = g_{ab}(e_\mu)^av^b = v_a(e_\mu)^a = v_\mu$$
+
+作为抽象指标记号的例子，此处介绍$4$维闵氏度规$\eta_{ab}$的抽象指标表达式。
+闵氏度规的定义式在抽象指标记号中应表为
+
