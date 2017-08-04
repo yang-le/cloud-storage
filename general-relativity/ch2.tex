@@ -944,4 +944,28 @@ $$g_{\mu\nu}v^\nu = g_{ab}(e_\mu)^a(e_\nu)^bv^\nu = g_{ab}(e_\mu)^av^b = v_a(e_\
 
 作为抽象指标记号的例子，此处介绍$4$维闵氏度规$\eta_{ab}$的抽象指标表达式。
 闵氏度规的定义式在抽象指标记号中应表为
+$$\eta_{ab} := \eta_{\mu\nu}(\diff x^\mu)_a(\diff x^\nu)_b$$
+其中$\{(\diff x^\mu)_a\}$是洛伦兹坐标系的对偶基底。以$\{t, x, y, z\}$代表$\{x^0, x^1, x^2, x^3\}$，则因为非零的$\eta_{\mu\nu}$只有$\eta_{00} = -1, \eta_{11} = \eta_{22} = \eta_{33} = 1$，上式可表为
+$$\eta_{ab} = -(\diff t)_a(\diff t)_b + (\diff x)_a(\diff x)_b + (\diff y)_a(\diff y)_b + (\diff z)_a(\diff z)_b$$
+与线元表达式$\diff s^2 = -\diff t^2 + \diff x^2 + \diff y^2 + \diff z^2$相应。如果改用球坐标系$\{t, r, \theta, \varphi\}$，则由
+$$x = r\sin\theta\cos\varphi, y = r\sin\theta\sin\varphi, z = r\cos\theta$$
+不难从前式导出
+$$\eta_{ab} = -(\diff t)_a(\diff t)_b + (\diff r)_a(\diff r)_b + r^2(\diff \theta)_a(\diff \theta)_b + r^2\sin^2\theta(\diff \varphi)_a(\diff \varphi)_b$$
+与线元表达式$\diff s^2 = -\diff t^2 + \diff r^2 + r^2(\diff \theta^2 + \sin^2\theta\diff\varphi^2)$相应。
 
+在许多不用抽象指标记号的文献中，$4$维时空和$3$维黎曼空间的分量指标分别用希腊字母$\mu, \nu, \cdots$（都从$0$取到$3$）和拉丁字母$i, j, k, \cdots$（都从$1$取到$3$）。
+拉丁字母在本书中本应代表抽象指标，然而为区分$4$维和$3$维的分量指标，我们允许一个例外，即凡涉及$3$维黎曼空间时用拉丁字母中从$i$起的若干字母$i, j, k, \cdots$充当具体指标（都从$1$取到$3$），其他拉丁字母（如$a, b, c$等）仍作为抽象指标。
+例如$3$维矢量$\vec{v}$可表为$v^a = v^i(\partial / \partial x^i)^a$（$i$从$1$到$3$取和）。
+
+在抽象指标记号中，坐标基矢记作$(\partial / \partial x^\mu)^a$，对偶坐标基矢记作$(\diff x^\mu)_a$。
+用度规$g_{ab}$和$g^{ab}$对前者和后者分别降、升指标，得对偶矢量$g_{ab}(\partial / \partial x^\mu)^b$和矢量$g^{ab}(\diff x^\mu)_b$。
+以$\omega_a$简记$g_{ab}(\partial / \partial x^\mu)^b$并用对偶坐标基矢展开为$\omega_a = \omega_\nu(\diff x^\nu)_a$，两边作用于$(\partial / \partial x^\sigma)^a$后得$g_{\sigma\mu} = \omega_\sigma$\footnote{
+左边 = $g_{ab}(\partial / \partial x^\mu)^b(\partial / \partial x^\sigma)^a = g_{a\mu}(\partial / \partial x^\sigma)^a = g_{\sigma\mu}$，
+右边 = $\omega_\nu(\diff x^\nu)_a(\partial / \partial x^\sigma)^a = \omega_\nu\delta^\nu{}_\sigma = \omega_\sigma$
+}，故
+$$g_{ab}(\partial / \partial x^\mu)^b = g_{\mu\nu}(\diff x^\nu)_a$$
+可见$g_{ab}(\partial / \partial x^\mu)^b$一般不等于$(\diff x^\mu)_a$。类似可得
+$$g^{ab}(\diff x^\mu)_b = g^{\mu\nu}(\partial / \partial x^\nu)^a$$
+当$g_{ab} = \delta_{ab}$（欧氏度规）且$\{x^\mu\}$为笛卡尔系时上二式简化为
+$$\delta_{ab}(\partial / \partial x^\mu)^b = (\diff x^\mu)_a, ~ \delta^{ab}(\diff x^\mu)_b = (\partial / \partial x^\mu)^a$$
+当$g_{ab} = \eta_{ab}$（以$4$维闵氏度规为例）且$\{x^\mu\}$为洛伦兹系时则有
