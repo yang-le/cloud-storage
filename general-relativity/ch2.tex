@@ -969,3 +969,90 @@ $$g^{ab}(\diff x^\mu)_b = g^{\mu\nu}(\partial / \partial x^\nu)^a$$
 当$g_{ab} = \delta_{ab}$（欧氏度规）且$\{x^\mu\}$为笛卡尔系时上二式简化为
 $$\delta_{ab}(\partial / \partial x^\mu)^b = (\diff x^\mu)_a, ~ \delta^{ab}(\diff x^\mu)_b = (\partial / \partial x^\mu)^a$$
 当$g_{ab} = \eta_{ab}$（以$4$维闵氏度规为例）且$\{x^\mu\}$为洛伦兹系时则有
+$$\begin{aligned}
+\eta_{ab}(\partial / \partial x^0)^b = -(\diff x^0)_a, ~ & \eta_{ab}(\partial / \partial x^i)^b = (\diff x^i)_a; \\
+\eta^{ab}(\diff x^0)_b = -(\partial / \partial x^0)^a, ~ & \eta^{ab}(\diff x^i)_b = (\partial / \partial x^i)^a.
+\end{aligned}$$
+其中的$i = 1, 2, 3$，此时的$i$不是抽象指标。
+
+张量的上指标和下指标在文献中又常分别称为逆变指标和协变指标。相应地，矢量$v^a$和对偶矢量$\omega_a$也分别称为逆变矢量和协变矢量。
+
+张量的对称性可方便地用抽象指标表述如下：
+
+\begin{definition}
+$T \in \mathscr{T}_V(0, 2)$称为对称的，若$T(u, v) = T(v, u), ~ \forall u, v \in V$。
+\end{definition}
+
+由于$T(u, v) = T_{ab}u^av^b, T(v, u) = T_{ab}v^au^b = T_{ba}u^av^b$，故在抽象指标记号中$T$为对称的充要条件是$T_{ab} = T_{ba}$。
+$(0, 2)$型张量在抽象指标记号中本来既可记作$T_{ab}$又可记作$T_{ba}$，两者代表同一张量。
+然而只当$T$为对称张量时才允许写为$T_{ab} = T_{ba}$，可见用抽象指标写等式时比用它单独表示一个张量时要更为小心。
+同理，$(1, 1)$型张量既可表为$T^a{}_b$，也可表为$T_b{}^a$，用度规降指标后分别为$g_{ca}T^a{}_b = T_{cb}$和$g_{ca}T_b{}^a = T_{bc}$。
+虽然两者代表同一张量，但只有降指标后为对称张量的$(1, 1)$型张量才允许写为$T^a{}_b = T_b{}^a$。
+在不用度规升降指标时，$(k, l)$型张量的上、下指标各排各的序，两个上下指标之间没有顺序问题。
+因此，如果愿意，$(1, 1)$型张量可写为$T^a_b$，$(2, 1)$型张量可写为$T^{ab}_c$等。
+然而这种写法在用度规升降指标时出现不确定性。由于经常要升降指标，本书从一开始就把上、下两排指标错开，例如写成$T^{ab}{}_c$。
+
+以上讨论表明抽象指标记号在形式上与具体指标记号极为相似，这正是抽象指标记号的一大好处：它既可表示张量等式，又保留了具体指标记号的许多优点。
+
+\begin{definition}
+$(0, 2)$型张量$T_{ab}$的对称部分（记作$T_{(ab)}$）和反称部分（记作$T_{[ab]}$）分别定义为
+$$T_{(ab)} := \frac{1}{2}(T_{ab} + T_{ba}), ~ T_{[ab]} := \frac{1}{2}(T_{ab} - T_{ba})$$
+\end{definition}
+
+一般地，$(0, l)$型张量$T_{a_1 \cdots a_l}$的对称和反称部分定义为
+\begin{gather*}
+T_{(a_1 \cdots a_l)} := \frac{1}{l!}\sum_\pi T_{a_{\pi(1)} \cdots a_{\pi(l)}}, \\
+T_{[a_1 \cdots a_l]} := \frac{1}{l!}\sum_\pi \delta_\pi T_{a_{\pi(1)} \cdots a_{\pi(l)}},
+\end{gather*}
+其中$\pi$代表$(1, \cdots, l)$的一种排列，$\pi(1)$是指$\pi$所代表的那种排列中的第$1$个数字，$\sum\limits_\pi$代表对各种排列取和，$\delta_\pi \equiv \pm 1$（偶排列取$+$，奇排列取$-$。）。例如
+\begin{gather*}
+T_{(a_1 a_2 a_3)} := \frac{1}{6}(T_{a_1a_2a_3} + T_{a_3a_1a_2} + T_{a_2a_3a_1} + T_{a_1a_3a_2} + T_{a_3a_2a_1} + T_{a_2a_1a_3}), \\
+T_{[a_1 a_2 a_3]} := \frac{1}{6}(T_{a_1a_2a_3} + T_{a_3a_1a_2} + T_{a_2a_3a_1} - T_{a_1a_3a_2} - T_{a_3a_2a_1} - T_{a_2a_1a_3}).
+\end{gather*}
+
+\begin{definition}
+$T \in \mathscr{T}_V(0, l)$称为全对称的，若$T_{a_1 \cdots a_l} = T_{(a_1 \cdots a_l)}$；
+$T$称为全反称的，若$T_{a_1 \cdots a_l} = T_{[a_1 \cdots a_l]}$。
+\end{definition}
+
+以上三个定义也适用于$(k, 0)$型张量。例如，$T$叫全对称的，若$T^{a_1 \cdots a_l} = T^{(a_1 \cdots a_l)}$。
+
+\begin{note}
+任一$(0, 2)$型张量可表为其对称和反称部分之和，即$T_{ab} = T_{(ab)} + T_{[ab]}$，但对$l > 2$的$(0, l)$型张量不成立。
+例如，$T_{abc} \neq T_{(abc)} + T_{[abc]}$，然而$T_{abc} = T_{(abc)} \Rightarrow T_{[abc]} = 0$（见下文定理）。
+\end{note}
+
+\begin{theorem}
+\begin{enumerate}[（a）]
+\item 设$T_{a_1 \cdots a_l} = T_{(a_1 \cdots a_l)}$，则
+$$T_{a_1 \cdots a_l} = T_{a_\pi(1) \cdots a_\pi(l)}\text{（$\pi$代表任一种排列）}$$
+即$T_{(a_1 \cdots a_l)}$展开式（共$l!$项）中每一项都等于$T_{a_1 \cdots a_l}$，例如
+$$T_{abc} = T_{(abc)} \Rightarrow T_{abc} = T_{acb} = T_{cab} = T_{cba} = T_{bca} = T_{bac}$$
+\item 设$T_{a_1 \cdots a_l} = T_{[a_1 \cdots a_l]}$，则
+$$T_{a_1 \cdots a_l} = \delta_\pi T_{a_\pi(1) \cdots a_\pi(l)}$$
+即$T_{[a_1 \cdots a_l]}$展开式中的偶排列项等于$T_{a_1 \cdots a_l}$，奇排列项等于$-T_{a_1 \cdots a_l}$，例如
+$$T_{abc} = T_{[abc]} \Rightarrow T_{abc} = -T_{acb} = T_{cab} = -T_{cba} = T_{bca} = -T_{bac}$$
+\end{enumerate}
+对$(k, 0)$型（上指标）全对称和全反称张量也有类似结论。
+\end{theorem}
+
+今后会经常遇到对带有圆、方括号的指标的运算，下面的定理对许多运算将带来很大方便。
+
+\begin{theorem}
+\begin{enumerate}[（a）]
+\item 缩并时括号有``传染性''，即
+$$T_{[a_1 \cdots a_l]}S^{a_1 \cdots a_l} = T_{[a_1 \cdots a_l]}S^{[a_1 \cdots a_l]} = T_{a_1 \cdots a_l}S^{[a_1 \cdots a_l]}$$
+对圆括号亦然。
+\item 括号内的同种子括号可随意增删，例如
+$$T_{[[ab]c]} = T_{[abc]}, ～ \text{其中} ～ T_{[[ab]c]} \equiv \frac{1}{2}(T_{[abc]} - T_{[bac]})$$
+\item 括号内加异种子括号得零，例如
+$$T_{[(ab)c]} = 0, ~ T_{(a[bcd])} = 0$$
+\item 异种子括号缩并得零，例如
+$$T^{(abc)}S_{[abc]} = 0$$
+\item \begin{gather*}
+T_{a_1 \cdots a_l} = T_{(a_1 \cdots a_l)} \Rightarrow T_{[a_1 \cdots a_l]} = 0 \\
+T_{a_1 \cdots a_l} = T_{[a_1 \cdots a_l]} \Rightarrow T_{(a_1 \cdots a_l)} = 0
+\end{gather*}
+\end{enumerate}
+对$(k, 0)$型（上指标）全对称和全反称张量也有类似结论。
+\end{theorem}
