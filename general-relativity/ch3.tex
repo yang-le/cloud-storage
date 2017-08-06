@@ -17,8 +17,47 @@ $\mathscr{F}(k, l)$可放宽为全体$C^1$类$(k, l)$型张量场的集合。就
 }，若它满足如下条件：
 \begin{enumerate}[（a）]
 \item 具有线性性：
+$$\begin{aligned}
+& \nabla_a(\alpha T^{b_1 \cdots b_k}{}_{c_1 \cdots c_l} + \beta S^{b_1 \cdots b_k}{}_{c_1 \cdots c_l}) = \alpha\nabla_aT^{b_1 \cdots b_k}{}_{c_1 \cdots c_l} + \beta\nabla_aS^{b_1 \cdots b_k}{}_{c_1 \cdots c_l} \\
+& \forall T^{b_1 \cdots b_k}{}_{c_1 \cdots c_l}, S^{b_1 \cdots b_k}{}_{c_1 \cdots c_l} \in \mathscr{F}_M(k, l), ~ \alpha, \beta \in \mathbb{R}
+\end{aligned}$$
+\item 满足莱布尼茨律：
+$$\begin{aligned}
+& \nabla_a(T^{b_1 \cdots b_k}{}_{c_1 \cdots c_l}S^{d_1 \cdots d_{k'}}{}_{e_1 \cdots e_{l'}}) = T^{b_1 \cdots b_k}{}_{c_1 \cdots c_l} \nabla_a S^{d_1 \cdots d_{k'}}{}_{e_1 \cdots e_{l'}} + S^{d_1 \cdots d_{k'}}{}_{e_1 \cdots e_{l'}} \nabla_a T^{b_1 \cdots b_k}{}_{c_1 \cdots c_l} \\
+& \forall T^{b_1 \cdots b_k}{}_{c_1 \cdots c_l} \in \mathscr{F}_M(k, l), ~ S^{d_1 \cdots d_{k'}}{}_{e_1 \cdots e_{l'}} \in \mathscr{F}_M(k', l')
+\end{aligned}$$
+\item 与缩并可交换顺序
+\item $v(f) = v^a\nabla_af, ~ \forall f \in \mathscr{F}_M, v \in \mathscr{F}_M(1, 0)$
+\item 具有无挠性：$\nabla_a\nabla_bf = \nabla_b\nabla_af, ~ \forall f \in \mathscr{F}_M$
 \end{enumerate}
 \end{definition}
+
+\begin{note}
+\begin{enumerate}[（1）]
+\item 条件（c）又可表为$\nabla \comp C = C \comp \nabla$，其中$C$代表缩并。今后将常写
+$$\nabla_a(v^b\omega_b) = v^b\nabla_a\omega_b + \omega_b\nabla_av^b$$
+一类的式子，这就要用到条件（c），因为上式的导出过程为
+$$\begin{aligned}
+\nabla_a(v^b\omega_b) & = \nabla_a[C(v^b\omega_c)] = C^1_2[\nabla_a(v^b\omega_c)] \\
+& = C^1_2(v^b\nabla_a\omega_c) + C^1_2[(\nabla_av^b)\omega_c] = v^b\nabla_a\omega_b + \omega_b\nabla_av^b
+\end{aligned}$$
+\item 条件（d）左边的函数$v(f)$不宜记作$v^a(f)$，因$v^a(f)$易被误以为矢量场。
+这是应写而不写抽象指标的少数例子之一。对条件（d）可用欧氏空间的$\vec{\nabla}$为例理解。
+设$v^a$为欧氏空间中任一矢量场，其在笛卡尔系坐标基底的展开式为
+$$v^a = v^1(\partial / \partial x)^a + v^2(\partial / \partial y)^a + v^3(\partial / \partial z)^a$$
+则它对函数$f$的作用可表为
+$$v(f) = v^1(\partial f / \partial x)^a + v^2(\partial f / \partial y)^a + v^3(\partial f / \partial z)^a = \vec{v}\cdot\vec{\nabla}f = v^a\nabla_af$$
+可见条件（d）是这一性质对任意流形的推广。
+\item 设$\nabla_a$是任一导数算符，则由条件（d）易证
+$$\nabla_af = (\diff f)_a, ~ \forall f \in \mathscr{F}_M$$
+其中，$(\diff f)_a$是函数$f$生成的对偶矢量场$\diff f$的抽象指标表示。
+\item 条件（e）实质上是下式的抽象指标表述：
+$$(\nabla\nabla f)(u, v) = (\nabla\nabla f)(v, u), ~ \forall u, v \in \mathscr{F}_M(1, 0)$$
+亦即$\nabla\nabla f$是个对称的$(0, 2)$型张量。
+\item 满足条件（a）～（d）而不满足条件（e）的导数算符叫有挠导数算符。广义相对论中只用无挠导数算符。
+本书的$\nabla_a$在不加声明时一律代表无挠导数算符。
+\end{enumerate}
+\end{note}
 
 \section{矢量场沿曲线的导数和平移}
 
