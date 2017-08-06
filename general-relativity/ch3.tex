@@ -59,6 +59,44 @@ $$(\nabla\nabla f)(u, v) = (\nabla\nabla f)(v, u), ~ \forall u, v \in \mathscr{F
 \end{enumerate}
 \end{note}
 
+任何流形必定存在满足上述定义的导数算符。事实上，导数算符不但存在，而且很多。下面讨论多到什么程度。
+由$\nabla_af = (\diff f)_a$可知任意两个导数算符$\nabla_a$和$\tilde\nabla_a$作用于同一函数的结果相同，即
+$$\nabla_af = \tilde\nabla_af = (\diff f)_a, ~ \forall f \in \mathscr{F}_M$$
+可见$\nabla_a$与$\tilde\nabla_a$的不同只能体现在对非$(0, 0)$型张量场的作用上。先讨论$(0, 1)$型张量场（对偶矢量场）。
+设在点$p \in M$给定一个对偶矢量$\mu_b \in V_p^*$，考虑$M$上的任意两个对偶矢量场$\omega_b, \omega'_b \in \mathscr{F}_M(0, 1)$，满足$\omega'_b|_p = \omega_b|_p = \mu_b$（$\omega_b$和$\omega'_b$称为$\mu_b$在$M$上的两个延拓）。
+设$\nabla_a$为导数算符，则$\nabla_a\omega'_b|_p$与$\nabla_a\omega_b|_p$一般并不相同。这类似于以下事实：
+两个一元函数$f(x)$和$f'(x)$在$x_0$点取值相同（$f'(x_0) = f(x_0)$）并不保证$(\diff f' /\diff x)|_{x_0} = (\diff f /\diff x)|_{x_0}$。
+然而下面要证明，对$M$上任意两个导数算符$\nabla_a$和$\tilde\nabla_a$，只要$\omega'_b|_p = \omega_b|_p$就有
+$$[(\tilde\nabla_a - \nabla_a)\omega'_b]_p = [(\tilde\nabla_a - \nabla_a)\omega_b]_p$$
+其中$(\tilde\nabla_a - \nabla_a)\omega_b$是$\tilde\nabla_a\omega_b - \nabla_a\omega_b$的简写。
+
+\begin{theorem}
+设$p \in M, ~ \omega_b, \omega'_b \in \mathscr{F}(0, 1)$满足$\omega'_b|_p = \omega_b|_p$，则
+$$[(\tilde\nabla_a - \nabla_a)\omega'_b]_p = [(\tilde\nabla_a - \nabla_a)\omega_b]_p$$
+\end{theorem}
+
+\begin{proof}
+只须证明
+$$[\nabla_a(\omega'_b - \omega_b)]_p = [\tilde\nabla_a(\omega'_b - \omega_b)]_p$$
+设$\Omega_b \equiv \omega'_b - \omega_b$，选坐标系$\{x^\mu\}$使其坐标域含$p$，则$\omega'_b|_p = \omega_b|_p$导致$\Omega_\mu(p) = 0$，其中$\Omega_\mu$是$\Omega_b$的坐标分量。
+于是对$p$点有
+$$\begin{aligned}[]
+[\nabla_a(\omega'_b - \omega_b)]_p & = [\nabla_a\Omega_b]_p = \{\nabla_a[\Omega_\mu(\diff x^\mu)_b]\}|_p \\
+& = \Omega_\mu(p)[\nabla_a(\diff x^\mu)_b]_p + [(\diff x^\mu)_b\nabla_a\Omega_\mu]_p = [(\diff x^\mu)_b\nabla_a\Omega_\mu]_p
+\end{aligned}$$
+同理有$[\tilde\nabla_a(\omega'_b - \omega_b)]_p = [(\diff x^\mu)_b\tilde\nabla_a\Omega_\mu]_p$。又$[\nabla_a\Omega_\mu]_p = [\tilde\nabla_a\Omega_\mu]_p$，得证。
+\end{proof}
+
+虽然导数$[\nabla_a\omega_b]_p$和$[\tilde\nabla_a\omega_b]_p$依赖于$\omega_b$在$p$点的一个邻域内的值，然而上述定理表明$[(\tilde\nabla_a - \nabla_a)\omega_b]_p$只依赖于$\omega_b$在$p$点的值，这说明$(\tilde\nabla_a - \nabla_a)$是把$p$点的对偶矢量$\omega_b|_p$变为$p$点的$(0, 2)$型张量（$[(\tilde\nabla_a - \nabla_a)\omega_b]_p$）的线性映射
+（给定$p$点的任一对偶矢量$\mu_b$，任选对偶矢量场$\omega_b$使它在$p$点的值$\omega_b|_p = \mu_b$，则$[(\tilde\nabla_a - \nabla_a)\omega_b]_p$便是$\mu_b$在该映射下的像。）。
+所以$(\tilde\nabla_a - \nabla_a)$在$p$点对应于一个$(1, 2)$型张量$C^c{}_{ab}$，满足
+$$[(\tilde\nabla_a - \nabla_a)\omega_b]_p = C^c{}_{ab}\omega_c|_p$$
+
+因为$p$点可任选，所以$M$上的两个导数算符$\nabla_a$和$\tilde\nabla_a$在对$\omega_b$的作用上的差别体现为$M$上的一个$(1, 2)$型张量场$C^c{}_{ab}$，即
+\begin{theorem}
+$$\nabla_a\omega_b = \tilde\nabla_a\omega_b - C^c{}_{ab}\omega_c, ~ \forall \omega_b \in \mathscr{F}(0, 1)$$
+\end{theorem}
+
 \section{矢量场沿曲线的导数和平移}
 
 \subsection{矢量场沿曲线的平移}
