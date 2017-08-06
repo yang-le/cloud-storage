@@ -37,7 +37,7 @@
 非空集合$X$,$Y$的卡氏积$X \times Y$定义为
 $$X \times Y := \{(x, y) \mid x \in X, y \in Y\}$$
 \end{definition}
-多个（有限个）集合的卡氏积可以类似定义，而且规定卡氏积满足结合律，即$(X \times Y) \times Z = X \times (Y \times Z)$
+多个（有限个\footnote{无限多个集合的卡氏积也可定义，但已超出本书范围。}）集合的卡氏积可以类似定义，而且规定卡氏积满足结合律，即$(X \times Y) \times Z = X \times (Y \times Z)$
 
 \begin{example}
 $\mathbb{R}^2 := \mathbb{R} \times \mathbb{R}$, $\mathbb{R}^n := \mathbb{R} \times \cdots \times \mathbb{R}$（共$n$个$\mathbb{R}$）.
@@ -62,7 +62,9 @@ $X$称为映射$f$的\textbf{定义域}，$X$的全体元素在映射$f$下的�
 \end{note}
 
 \begin{definition}
-映射$f \colon X \to Y$叫\textbf{一一}的，若任一$y \in Y$有不多于一个逆像（可以没有）。$f \colon X \to Y$叫\textbf{到上}的，若任一$y \in Y$都有逆像（可以多于一个）。
+映射$f \colon X \to Y$叫\textbf{一一}的，若任一$y \in Y$有不多于一个逆像（可以没有）。$f \colon X \to Y$叫\textbf{到上}的，若任一$y \in Y$都有逆像（可以多于一个）。\footnote{
+不少数学书把本书的一一和到上映射分别叫\textbf{单射}和\textbf{满射}，把既是单射又是满射的映射叫\textbf{一一映射}（又称\textbf{双射}）。于是它们的一一映射强于本书的一一映射。
+}
 \end{definition}
 
 \begin{definition}
@@ -137,7 +139,9 @@ $f \colon X \to Y$称为连续，若它在所有点$x \in X$上连续。
 \end{note}
 
 \begin{definition}
-拓扑空间$(X, \mathscr{T})$和$(Y, \mathscr{S})$称为\textbf{互相同胚}，若存在映射$f \colon X \to Y$，满足（a）$f$是一一到上的；（b）$f$及$f^{-1}$都连续。
+拓扑空间$(X, \mathscr{T})$和$(Y, \mathscr{S})$称为\textbf{互相同胚}，若存在映射$f \colon X \to Y$，满足（a）$f$是一一到上的；（b）$f$及$f^{-1}$都连续。\footnote{
+的确存在其逆不连续的一一到上的连续映射（用离散和凝聚拓扑）。
+}
 这样的$f$称为从$(X, \mathscr{T})$到$(Y, \mathscr{S})$的\textbf{同胚映射}，简称\textbf{同胚}。   
 \end{definition}
 
@@ -203,7 +207,9 @@ $C \subset X$叫\textbf{闭集}，若$-C \in \mathscr{T}$。
 \begin{example}
 设$A$和$B$是$\mathbb{R}$的开区间，$A \cap B = \emptyset$，以$\mathscr{T}$代表由$\mathbb{R}$的通常拓扑在子集$X \equiv A \cup B$上的诱导拓扑，
 则拓扑空间$(X, \mathscr{T})$的既开又闭的子集除$X$和$\emptyset$外还有$A$和$B$（$A$和$B$在诱导拓扑下自然是开的，又因为$A$和$B$互为补集，故又都是闭的），
-所以$(X, \mathscr{T})$是不连通的。
+所以$(X, \mathscr{T})$是不连通的。这同$A$和$B$在直观上互不连通相吻合\footnote{
+与直观感觉更一致的是称为``弧连通''的概念。它与连通概念有微妙差别。
+}。
 \end{example}
 
 设$(X, \mathscr{T})$为拓扑空间，$A \subset X$。分别定义$A$的闭包、内部和边界如下：

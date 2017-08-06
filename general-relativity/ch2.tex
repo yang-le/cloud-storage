@@ -6,13 +6,17 @@
 拓扑空间$(M, \mathscr{T})$称为\textbf{$n$维微分流形}，简称$n$维流形，若$M$有开覆盖${O_\alpha}$，即$M = \bigcup\limits_\alpha O_\alpha$，满足
 \begin{enumerate}[（a）]
 \item 对每一$O_\alpha$，存在同胚$\psi_\alpha \colon O_\alpha \to V_\alpha$（$V_\alpha$是$\mathbb{R}^n$用通常拓扑衡量的开子集）；
-\item 若$O_\alpha \cap O_\beta \neq \emptyset$，则复合映射$\psi_\beta \comp \psi_\alpha^{-1}$是$C^\infty$（光滑）的。
+\item 若$O_\alpha \cap O_\beta \neq \emptyset$，则复合映射$\psi_\beta \comp \psi_\alpha^{-1}$是$C^\infty$（光滑）的。\footnote{
+此定义是光滑流形的一般定义。本书（以及通常在物理中）涉及的流形$M$还满足以下附加条件：作为拓扑空间，$M$是Hausdorff的和第二可数的。今后谈到流形都指这种流形。
+}
 \end{enumerate}
 \end{definition}
 
 \begin{note}
 \textcircled{1}$\psi_\beta \comp \psi_\alpha^{-1}$是从$\psi_\alpha[O_\alpha \cap O_\beta] \subset \mathbb{R}^n$到$\psi_\beta[O_\alpha \cap O_\beta] \subset \mathbb{R}^n$的映射。
-因$\mathbb{R}^n$的每点都有$n$个自然坐标，故$\psi_\beta \comp \psi_\alpha^{-1}$提供了$n$个$n$元函数。所谓$\psi_\beta \comp \psi_\alpha^{-1}$是$C^\infty$的，就是指这每一个$n$元函数都是$C^\infty$的。
+因$\mathbb{R}^n$的每点都有$n$个自然坐标，故$\psi_\beta \comp \psi_\alpha^{-1}$提供了$n$个$n$元函数。所谓$\psi_\beta \comp \psi_\alpha^{-1}$是$C^\infty$的，就是指这每一个$n$元函数都是$C^\infty$的（$n$元函数的$C^\infty$性在微积分中早有定义）。\footnote{
+上述定义中的流形是光滑流形的简称，把条件（b）的$C^\infty$改为$C^r$（$r$为含零自然数）就成为$C^r$流形的定义。
+}
 \textcircled{2}设$p \in O_\alpha$，则$\psi_\alpha(p) \in \mathbb{R}^n$，故$\psi_\alpha(p)$有$n$个自然坐标。很自然地把这$n$个数称为$p$点在映射$\psi_\alpha$下获得的\textbf{坐标}。
 $M$作为拓扑空间，其元素本来一般没有坐标，但作为流形，$M$中位于$O_\alpha$内的元素（点）就可以通过映射$\psi_\alpha$获得坐标。若$O_\alpha \cap O_\beta \neq \emptyset$，
 则$O_\alpha \cap O_\beta$内的点既可以通过$\psi_\alpha$又可以通过$\psi_\beta$获得坐标，这两组坐标一般不同。我们说$(O_\alpha, \psi_\alpha)$构成一个（局域）\textbf{坐标系}，其\textbf{坐标域}为$O_\alpha$；
@@ -191,12 +195,16 @@ $t$称为曲线的\textbf{参数}。
 \begin{note}
 此处的曲线与直观的曲线概念有密切联系，但也有差别。
 直观的曲线往往是指上述映射$C \colon I \to M$的像，即$M$的子集$C[I]$,并且不提及参数。
-上述定义的曲线则是指映射本身，是``带参数的曲线''。
+上述定义的曲线则是指映射本身，是``带参数的曲线''。\footnote{
+但也存在这样的曲线映射$C \colon I \to M$，其像竟然铺满整个$M$，很不像直观上的曲线。
+}
 设映射$C \colon I \to M$和$C' \colon I' \to M$的像重合，则直观上往往认为它们是同一曲线，但只要$C$和$C'$是不同映射，根据定义，它们就是不同曲线。
 不过在大多数情况下可以说$C$和$C'$是``同一曲线''的两种参数化，准确地说，曲线$C' \colon I' \to M$称为曲线$C \colon I \to M$的\textbf{重参数化}，若存在到上映射$\alpha \colon I \to I'$，满足
 （a）$C = C' \comp \alpha$；（b）由$\alpha$诱导的函数$t' = \alpha(t)$有处处非零的导数。
 解释：由$C = C' \comp \alpha$得$$C(t) = C'(\alpha(t)) = C'(t'), ~ \forall t \in I$$
-映射$\alpha$的到上性保证$C'[I'] = C[I]$，即两曲线映射有相同的像。
+映射$\alpha$的到上性保证$C'[I'] = C[I]$，即两曲线映射有相同的像。\footnote{
+$\alpha$满足条件（b）保证$\alpha$有一一性，加上到上性便知$C$也是$C'$的重参数化。
+}
 \end{note}
 
 \begin{note}
@@ -324,7 +332,11 @@ $$[u, v]|_p(f) := u|_p(v(f)) - v|_p(u(f)), ~ \forall f \in \mathscr{F}_M$$
 设$\{x^\mu\}$为任一坐标系，则$[\partial / \partial x^\mu, \partial / \partial x^\nu] = 0, ~ \mu,\nu = 1, \cdots, n$。
 \end{theorem}
 
-上述定理表明任一坐标系的任意两个基矢场都互相对易。
+上述定理表明任一坐标系的任意两个基矢场都互相对易。\footnote{
+反之，设$X_1, \cdots, X_n$是点$p \in M$的某邻域$N$上的$n$个处处线性独立的$C^\infty$矢量场，且
+$$[X_\mu, X_\nu] = 0, ~ \mu, \nu = 1, \cdots, n$$
+则必存在坐标系$\{x^\mu\}$，其坐标域$O \subset N$含$p$，且在$O$上有$X_\mu = \partial / \partial x^\mu, ~ \mu = 1, \cdots, n$。
+}
 
 \begin{definition}
 曲线$C(t)$叫矢量场$v$的\textbf{积分曲线}，若其上每点的切矢等于该点的$v$值。
@@ -385,7 +397,9 @@ $C^\infty$映射$\phi \colon \mathbb{R} \times M \to M$称为$M$上的一个\tex
 
 \begin{definition}
 设$V$是$\mathbb{R}$上的有限维矢量空间。线性映射$\omega \colon V \to \mathbb{R}$称为$V$上的\textbf{对偶矢量}。
-$V$上全体对偶矢量的集合称为$V$的\textbf{对偶空间}，记作$V^*$。
+$V$上全体对偶矢量的集合称为$V$的\textbf{对偶空间}，记作$V^*$。\footnote{
+今后谈及$V$上的对偶矢量（及张量）时如无声明一律默认$V$是实数域上的有限维矢量空间。
+}
 \end{definition}
 
 \begin{note}
@@ -759,7 +773,9 @@ $$\diff s^2 = -x\diff t^2 + \diff x^2 + 4\diff t\diff x$$
 $l$也可充当该线的参数，称为\textbf{线长参数}。由$dl \equiv \sqrt{|g(T, T)|}\diff t$可知，以线长为参数的曲线切矢满足$|g(T, T)| = 1$，即有单位长。
 
 \begin{definition}
-设流形$M$上给定度规场$g$，则$(M, g)$叫\textbf{广义黎曼空间}（若$g$为正定，叫\textbf{黎曼空间}；若$g$为洛伦兹，叫\textbf{伪黎曼空间}，物理上叫\textbf{时空}。）
+设流形$M$上给定度规场$g$，则$(M, g)$叫\textbf{广义黎曼空间}（若$g$为正定，叫\textbf{黎曼空间}；若$g$为洛伦兹，叫\textbf{伪黎曼空间}，物理上叫\textbf{时空}。\footnote{
+准确地说，$(M, g)$称为时空，\CJKunderdot{若}$M$为\CJKunderdot{连通}流形，$g$为有足够可微程度的洛伦兹度规场。
+}）。
 \end{definition}
 
 下面介绍广义黎曼空间的两个简单而重要的例子，即欧氏空间和闵氏空间。
@@ -1044,7 +1060,7 @@ $$T_{abc} = T_{[abc]} \Rightarrow T_{abc} = -T_{acb} = T_{cab} = -T_{cba} = T_{b
 $$T_{[a_1 \cdots a_l]}S^{a_1 \cdots a_l} = T_{[a_1 \cdots a_l]}S^{[a_1 \cdots a_l]} = T_{a_1 \cdots a_l}S^{[a_1 \cdots a_l]}$$
 对圆括号亦然。
 \item 括号内的同种子括号可随意增删，例如
-$$T_{[[ab]c]} = T_{[abc]}, ～ \text{其中} ～ T_{[[ab]c]} \equiv \frac{1}{2}(T_{[abc]} - T_{[bac]})$$
+$$T_{[[ab]c]} = T_{[abc]}, ~ \text{其中} ~ T_{[[ab]c]} \equiv \frac{1}{2}(T_{[abc]} - T_{[bac]})$$
 \item 括号内加异种子括号得零，例如
 $$T_{[(ab)c]} = 0, ~ T_{(a[bcd])} = 0$$
 \item 异种子括号缩并得零，例如
