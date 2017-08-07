@@ -94,8 +94,68 @@ $$[(\tilde\nabla_a - \nabla_a)\omega_b]_p = C^c{}_{ab}\omega_c|_p$$
 
 因为$p$点可任选，所以$M$上的两个导数算符$\nabla_a$和$\tilde\nabla_a$在对$\omega_b$的作用上的差别体现为$M$上的一个$(1, 2)$型张量场$C^c{}_{ab}$，即
 \begin{theorem}
-$$\nabla_a\omega_b = \tilde\nabla_a\omega_b - C^c{}_{ab}\omega_c, ~ \forall \omega_b \in \mathscr{F}(0, 1)$$
+$\nabla_a\omega_b = \tilde\nabla_a\omega_b - C^c{}_{ab}\omega_c, ~ \forall \omega_b \in \mathscr{F}(0, 1)$
 \end{theorem}
+
+$\nabla_a$的无挠性导致张量场$C^c{}_{ab}$的如下对称性：
+\begin{theorem}
+$C^c{}_{ab} = C^c{}_{ba}$
+\end{theorem}
+
+\begin{proof}
+令$\omega_b = \nabla_bf = \tilde\nabla_bf$，其中$f \in \mathscr{F}_M$，则上式给出$\nabla_a\nabla_bf = \tilde\nabla_a\tilde\nabla_bf - C^c{}_{ab}\nabla_cf$。
+交换指标$a$，$b$得$\nabla_b\nabla_af = \tilde\nabla_b\tilde\nabla_af - C^c{}_{ba}\nabla_cf$。
+两式相减，注意到无挠性条件，便有$C^c{}_{ab}\nabla_cf = C^c{}_{ba}\nabla_cf$。
+令$T^c{}_{ab} \equiv C^c{}_{ab} - C^c{}_{ba}$，则对所有的$f \in \mathscr{F}_M$有$T^c{}_{ab}\nabla_cf = 0$，于是$T^c{}_{ab}$在任一坐标基底的分量$T^\sigma{}_{\mu\nu} = T^c{}_{ab}(\diff x^\sigma)_c(\partial / \partial x^\mu)_a(\partial / \partial x^\nu)_b = 0$（其中第二步是因为$T^c{}_{ab}(\diff x^\sigma)_c = T^c{}_{ab}\nabla_cx^\sigma = 0$（把$x^\sigma$看作$f$）），因而$T^c{}_{ab} = 0$。
+\end{proof}
+
+\begin{theorem}
+$\nabla_av^b = \tilde\nabla_av^b + C^b{}_{ac}v^c, ~ \forall v^b \in \mathscr{F}_M(1, 0)$
+\end{theorem}
+
+\begin{proof}
+设$\omega_b$为$M$上任一对偶矢量场，则
+$$\nabla_a(\omega_bv^b) = \omega_b\nabla_av^b + v^b\nabla_a\omega_b = \omega_b\nabla_av^b + v^b(\tilde\nabla_a\omega_b - C^c{}_{ab}\omega_c)$$
+另一方面，$\tilde\nabla_a(\omega_bv^b) = \omega_b\tilde\nabla_av^b + v^b\tilde\nabla_a\omega_b$。
+而$\omega_bv^b$为标量场，故$\nabla_a(\omega_bv^b) = \tilde\nabla_a(\omega_bv^b)$，故以上两式右边相等，因而得
+$$\omega_b\nabla_av^b = \omega_b\tilde\nabla_av^b + C^c{}_{ab}v^b\omega_c = \omega_b\tilde\nabla_av^b + C^b{}_{ac}v^c\omega_b, ~ \forall \omega_b \in \mathscr{F}_M(0, 1)$$
+于是有定理结论。
+\end{proof}
+
+用类似方法可以证明$\nabla_a$与$\tilde\nabla_a$作用于任一$(k, l)$型张量场$T^{a_1 \cdots a_k}{}_{b_1 \cdots b_l}$所得结果之差$\nabla_aT^{a_1 \cdots a_k}{}_{b_1 \cdots b_l} - \tilde\nabla_aT^{a_1 \cdots a_k}{}_{b_1 \cdots b_l}$可表为$k + l$项，每项都含$C^c{}_{ab}$，与$T$的某一上指标缩并的$k$项前面为$+$号，与$T$的某一下指标缩并的$l$项前面为$-$号，例如
+$$\nabla_aT^b{}_{c} = \tilde\nabla_aT^b{}_{c} + C^b{}_{ad}T^d{}_{c} - C^d{}_{ac}T^b{}_{d}$$
+一般形式见下面的定理：
+\begin{theorem}
+$$\nabla_aT^{b_1 \cdots b_k}{}_{c_1 \cdots c_l} = \tilde\nabla_aT^{b_1 \cdots b_k}{}_{c_1 \cdots c_l} + \sum_iC^{b_i}{}_{ad}T^{b_1 \cdots d \cdots b_k}{}_{c_1 \cdots c_l} - \sum_jC^d{}_{ac_j}T^{b_1 \cdots b_k}{}_{c_1 \cdots d \cdots c_l}, ~ \forall T \in \mathscr{F}_M(k, l)$$
+\end{theorem}
+
+上述定理表明任意两个导数算符的差别仅体现在一个张量场$C^c{}_{ab}$上。
+反之也不难验证，任给一个导数算符$\tilde\nabla_a$和一个下标对称的光滑张量场$C^c{}_{ab}$，由上式定义的$\nabla_a$必满足导数算符的全部条件，因而也是一个导数算符。
+可见流形上只要有一个导数算符就会有许多导数算符。
+选定导数算符$\nabla_a$后的流形$M$可记作$(M, \nabla_a)$，它比$M$本身有更多结构（$\nabla_a$提供附加结构），例如可谈及矢量沿曲线的平移及$(M, \nabla_a)$的曲率。
+
+设$\{x^\mu\}$是$M$的一个坐标系，其坐标基底和对偶坐标基底分别为$\{(\partial / \partial x^\mu)^a\}$和$\{(\diff x^\mu)_a\}$。
+在坐标域$O$上定义映射$\partial_a \colon \mathscr{F}_O(k, l) \to \mathscr{F}_O(k, l + 1)$如下（仅以$T^b{}_c \in \mathscr{F}_O(1, 1)$为例写出）：
+$$\partial_aT^b{}_c := (\diff x^\mu)_a(\partial / \partial x^\nu)^b(\diff x^\sigma)_c\partial_\mu T^\nu{}_\sigma$$
+其中$T^\nu{}_\sigma$是$T^b{}_c$在该坐标系的分量，$\partial_\mu$是对坐标$x^\mu$求偏导数的符号$\partial / \partial x^\mu$的简写。
+不难验证$\partial_a$满足导数算符定义的$5$个条件，可见$\partial_a$是$O$上的一个导数算符。
+这是一个从定义起就依赖于坐标系的导数算符，而且只在该坐标系的坐标域上有定义，称为该坐标系的普通导数算符。
+上式表明$\partial_\mu T^\nu{}_\sigma$是张量场$\partial_aT^b{}_c$在该坐标系的分量，所以$\partial_a$的定义亦可表为：
+张量场$T^{b_1 \cdots b_k}{}_{c_1 \cdots c_l}$的普通导数$\partial_aT^{b_1 \cdots b_k}{}_{c_1 \cdots c_l}$的坐标分量等于该张量场的坐标分量对坐标的偏导数$\partial(T^{\nu_1 \cdots \nu_k}{}_{\sigma_1 \cdots \sigma_l}) / \partial x^\mu$。
+由此易见：
+
+\begin{enumerate}[（1）]
+\item 任一坐标系的$\partial_a$作用于该系的任一坐标基矢和任一对偶坐标基矢结果为零\footnote{
+坐标基矢场的坐标分量为常函数，其偏导数为零。
+}，即
+$$\partial_a(\partial / \partial x^\nu)^b = 0, ~ \partial_a(\diff x^\nu)_b = 0$$
+\item $\partial_a$满足比导数算符的无挠性条件强得多的条件，即
+$$\partial_a\partial_bT^{\cdots}{}_{\cdots} = \partial_b\partial_aT^{\cdots}{}_{\cdots}, ～ \text{或} \partial_{[a}\partial_{b]}T^{\cdots}{}_{\cdots} = 0$$
+其中$T^{\cdots}{}_{\cdots}$是任意型张量场。
+\end{enumerate}
+
+$\partial_a$虽可看作$\nabla_a$的特例，但其定义依赖于坐标系。
+我们把与坐标系（或其他人为因素）无关的那些$\nabla_a$称为协变导数算符，$\partial_a$不在此列。
 
 \section{矢量场沿曲线的导数和平移}
 
