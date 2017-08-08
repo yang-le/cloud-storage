@@ -157,6 +157,29 @@ $$\partial_a\partial_bT^{\cdots}{}_{\cdots} = \partial_b\partial_aT^{\cdots}{}_{
 $\partial_a$虽可看作$\nabla_a$的特例，但其定义依赖于坐标系。
 我们把与坐标系（或其他人为因素）无关的那些$\nabla_a$称为协变导数算符，$\partial_a$不在此列。
 
+\begin{definition}
+设$\partial_a$是$(M, \nabla_a)$上任给的坐标系的普通导数算符，则体现$\nabla_a$与$\partial_a$的差别的张量场$C^c{}_{ab}$（把$\partial_a$看作$\tilde\nabla_a$）称为$\nabla_a$在该坐标系的克氏符（Christoffel symbol），记作$\Gamma^c{}_{ab}$。
+\end{definition}
+
+\begin{note}
+一般书强调克氏符不是张量，本书却说它是张量。这没有实质性矛盾，只是克氏符的定义有微妙的不同。
+不用抽象指标的书把克氏符定义为与坐标系有关的一堆数，在坐标变换下不服从张量变换律，故不构成张量。
+我们一开始就用映射语言把克氏符$\Gamma^c{}_{ab}$定义为张量，但因它与$\partial_a$相应，而$\partial_a$依赖于坐标系，故克氏符是依赖于坐标系的张量（坐标系改变时张量\CJKunderdot{本身}要变）。
+设$\nabla_a$是$M$上指定的导数算符，$\{x^\mu\}$和$\{x'^\mu\}$是$M$上的两个坐标系，坐标域之交为$U$，$\nabla_a$在两系中的克氏符分别为$\Gamma^c{}_{ab}$和$\bar\Gamma^c{}_{ab}$，
+它们（在$U$中）既可用$\{x^\mu\}$系也可用$\{x'^\mu\}$系求分量，设$\Gamma^c{}_{ab}$在$\{x^\mu\}$和$\{x'^\mu\}$系的分量为$\{\Gamma^\sigma{}_{\mu\nu}\}$和$\{\Gamma'^\sigma{}_{\mu\nu}\}$（这两堆数当然满足张量变换律），
+$\bar\Gamma^c{}_{ab}$在$\{x^\mu\}$和$\{x'^\mu\}$系的分量为$\{\bar\Gamma^\sigma{}_{\mu\nu}\}$和$\{\bar\Gamma'^\sigma{}_{\mu\nu}\}$（也满足张量变换律），但$\{\Gamma^\sigma{}_{\mu\nu}\}$和$\{\bar\Gamma'^\sigma{}_{\mu\nu}\}$不满足张量变换律。
+而一般书恰恰是把$\{\Gamma^\sigma{}_{\mu\nu}\}$和$\{\bar\Gamma'^\sigma{}_{\mu\nu}\}$分别定义为$\{x^\mu\}$系和$\{x'^\mu\}$系的克氏符，自然不构成张量。
+一般书强调``克氏符不是张量''是对的，本书则应强调``克氏符是\CJKunderdot{坐标系依赖}的张量''。
+只要采用抽象指标并按照上述思路讨论（包括使用``张量面面观''的优雅论辩），自然要承认反映两个导数算符$\nabla_a$与$\tilde\nabla_a$之差的$C^c{}_{ab}$是张量。
+在$M$指定了一个导数算符$\nabla_a$的前提下，选定坐标系就有导数算符$\partial_a$，把$\partial_a$看作$\tilde\nabla_a$，则反映$\nabla_a$与$\partial_a$之差的$C^c{}_{ab}$（此时记作$\Gamma^c{}_{ab}$）当然是张量。
+然而与此同时应该强调$\Gamma^c{}_{ab}$是坐标系依赖的张量（有多少个坐标系就有多少个不同的$\partial_a$，因而有多少个不同的$\Gamma^c{}_{ab}$。）。
+这种强调的实质就是在强调一般书所强调的``克氏符不是张量''。两种强调只是同一问题的两种提法。重要的不在于提法而在于充分注意问题的实质，即切记两组分量$\{\Gamma^\sigma{}_{\mu\nu}\}$和$\{\bar\Gamma'^\sigma{}_{\mu\nu}\}$之间不遵守张量变换律。
+\end{note}
+
+类似地，设$v^b$是矢量场，则$\partial_av^b$也是坐标系依赖的张量场，把$\partial_av^b$在$\partial_a$所在坐标系展开：
+$$\partial_av^b = (\diff x^\mu)_a(\partial / \partial x^\nu)^bv^\nu{}_{,\mu}$$
+其中$v^\nu{}_{,\mu} \equiv \partial_\mu v^\nu \equiv \partial v^\nu / \partial x^\mu$（逗号代表求偏导数），一般书强调$v^\nu{}_{,\mu}$不构成张量，我们说$\partial_av^b$是坐标系依赖的张量，也是同一问题的两种提法。
+
 \section{矢量场沿曲线的导数和平移}
 
 \subsection{矢量场沿曲线的平移}
