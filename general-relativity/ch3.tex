@@ -12,7 +12,7 @@
 
 \begin{definition}
 以$\mathscr{F}_M(k, l)$代表流形$M$上全体$C^\infty$的$(k, l)$型张量场的集合（函数$f$可看作$(0, 0)$型张量场（标量场），故$\mathscr{F}_M(0, 0) \equiv \mathscr{F}_M$）。
-映射$\nabla \colon \mathscr{F}_M(k, l) \to \mathscr{F}_M(k, l + 1)$称为$M$上的（无挠）导数算符\footnote{
+映射$\nabla \colon \mathscr{F}_M(k, l) \to \mathscr{F}_M(k, l + 1)$称为$M$上的\textbf{（无挠）导数算符}\footnote{
 $\mathscr{F}(k, l)$可放宽为全体$C^1$类$(k, l)$型张量场的集合。就是说，$\nabla_a$可作用于任一$C^1$类张量场。
 }，若它满足如下条件：
 \begin{enumerate}[（a）]
@@ -54,7 +54,7 @@ $$\nabla_af = (\diff f)_a, ~ \forall f \in \mathscr{F}_M$$
 \item 条件（e）实质上是下式的抽象指标表述：
 $$(\nabla\nabla f)(u, v) = (\nabla\nabla f)(v, u), ~ \forall u, v \in \mathscr{F}_M(1, 0)$$
 亦即$\nabla\nabla f$是个对称的$(0, 2)$型张量。
-\item 满足条件（a）～（d）而不满足条件（e）的导数算符叫有挠导数算符。广义相对论中只用无挠导数算符。
+\item 满足条件（a）～（d）而不满足条件（e）的导数算符叫\textbf{有挠导数算符}。广义相对论中只用无挠导数算符。
 本书的$\nabla_a$在不加声明时一律代表无挠导数算符。
 \end{enumerate}
 \end{note}
@@ -139,26 +139,28 @@ $$\nabla_aT^{b_1 \cdots b_k}{}_{c_1 \cdots c_l} = \tilde\nabla_aT^{b_1 \cdots b_
 $$\partial_aT^b{}_c := (\diff x^\mu)_a(\partial / \partial x^\nu)^b(\diff x^\sigma)_c\partial_\mu T^\nu{}_\sigma$$
 其中$T^\nu{}_\sigma$是$T^b{}_c$在该坐标系的分量，$\partial_\mu$是对坐标$x^\mu$求偏导数的符号$\partial / \partial x^\mu$的简写。
 不难验证$\partial_a$满足导数算符定义的$5$个条件，可见$\partial_a$是$O$上的一个导数算符。
-这是一个从定义起就依赖于坐标系的导数算符，而且只在该坐标系的坐标域上有定义，称为该坐标系的普通导数算符。
+这是一个从定义起就依赖于坐标系的导数算符，而且只在该坐标系的坐标域上有定义，称为该坐标系的\textbf{普通导数算符}。
 上式表明$\partial_\mu T^\nu{}_\sigma$是张量场$\partial_aT^b{}_c$在该坐标系的分量，所以$\partial_a$的定义亦可表为：
 张量场$T^{b_1 \cdots b_k}{}_{c_1 \cdots c_l}$的普通导数$\partial_aT^{b_1 \cdots b_k}{}_{c_1 \cdots c_l}$的坐标分量等于该张量场的坐标分量对坐标的偏导数$\partial(T^{\nu_1 \cdots \nu_k}{}_{\sigma_1 \cdots \sigma_l}) / \partial x^\mu$。
 由此易见：
 
 \begin{enumerate}[（1）]
 \item 任一坐标系的$\partial_a$作用于该系的任一坐标基矢和任一对偶坐标基矢结果为零\footnote{
-坐标基矢场的坐标分量为常函数，其偏导数为零。
+例如，第$\nu$坐标基矢$(\partial / \partial x^\nu)$的第$\sigma$坐标分量为$(\partial / \partial x^\nu)^\sigma \equiv (\partial / \partial x^\nu)^b(\diff x^\sigma)_b = \delta^\sigma{}_\nu$，故其偏导数为零。
 }，即
 $$\partial_a(\partial / \partial x^\nu)^b = 0, ~ \partial_a(\diff x^\nu)_b = 0$$
 \item $\partial_a$满足比导数算符的无挠性条件强得多的条件，即
 $$\partial_a\partial_bT^{\cdots}{}_{\cdots} = \partial_b\partial_aT^{\cdots}{}_{\cdots}, ～ \text{或} \partial_{[a}\partial_{b]}T^{\cdots}{}_{\cdots} = 0$$
-其中$T^{\cdots}{}_{\cdots}$是任意型张量场。
+其中$T^{\cdots}{}_{\cdots}$是任意型张量场。\footnote{
+任意型张量场的坐标分量都是标量场（即$n$元函数），故求偏导数的结果与求导顺序无关。
+}
 \end{enumerate}
 
 $\partial_a$虽可看作$\nabla_a$的特例，但其定义依赖于坐标系。
-我们把与坐标系（或其他人为因素）无关的那些$\nabla_a$称为协变导数算符，$\partial_a$不在此列。
+我们把与坐标系（或其他人为因素）无关的那些$\nabla_a$称为\textbf{协变导数算符}，$\partial_a$不在此列。
 
 \begin{definition}
-设$\partial_a$是$(M, \nabla_a)$上任给的坐标系的普通导数算符，则体现$\nabla_a$与$\partial_a$的差别的张量场$C^c{}_{ab}$（把$\partial_a$看作$\tilde\nabla_a$）称为$\nabla_a$在该坐标系的克氏符（Christoffel symbol），记作$\Gamma^c{}_{ab}$。
+设$\partial_a$是$(M, \nabla_a)$上任给的坐标系的普通导数算符，则体现$\nabla_a$与$\partial_a$的差别的张量场$C^c{}_{ab}$（把$\partial_a$看作$\tilde\nabla_a$）称为$\nabla_a$在该坐标系的\textbf{克氏符}（Christoffel symbol），记作$\Gamma^c{}_{ab}$。
 \end{definition}
 
 \begin{note}
@@ -179,6 +181,48 @@ $\bar\Gamma^c{}_{ab}$在$\{x^\mu\}$和$\{x'^\mu\}$系的分量为$\{\bar\Gamma^\
 类似地，设$v^b$是矢量场，则$\partial_av^b$也是坐标系依赖的张量场，把$\partial_av^b$在$\partial_a$所在坐标系展开：
 $$\partial_av^b = (\diff x^\mu)_a(\partial / \partial x^\nu)^bv^\nu{}_{,\mu}$$
 其中$v^\nu{}_{,\mu} \equiv \partial_\mu v^\nu \equiv \partial v^\nu / \partial x^\mu$（逗号代表求偏导数），一般书强调$v^\nu{}_{,\mu}$不构成张量，我们说$\partial_av^b$是坐标系依赖的张量，也是同一问题的两种提法。
+说得更具体些，设$\partial_a$和$\partial'_a$分别是坐标系$\{x^\mu\}$和$\{x'_\mu\}$的普通导数算符，则一般有$\partial_av^b \neq \partial'_av^b$（所以说$\partial_av^b$是坐标系依赖的张量）。
+把$\partial_av^b$和$\partial'_av^b$在各自坐标基底展开：
+$$\partial_av^b = (\diff x^\mu)_a(\partial / \partial x^\nu)^bv^\nu{}_{,\mu}， ～ \partial'_av^b = (\diff x'^\mu)_a(\partial / \partial x'^\nu)^bv'^\nu{}_{,\mu}$$
+其中$v'^\nu{}_{,\mu} \equiv \partial v'^\nu / \partial x'^\mu$，则$\partial_av^b \neq \partial'_av^b$导致$v^\nu{}_{,\mu}$与$v'^\nu{}_{,\mu}$之间一般不满足张量分量变换律。
+所以一般书说$v^\nu{}_{,\mu}$不是张量。至于$\nabla_av^b$，则是与坐标系无关的张量，它在坐标系中的分量通常记为$v^\nu{}_{;\mu}$，即$\nabla_av^b = v^\nu{}_{;\mu}(\diff x^\mu)_a(\partial / \partial x^\nu)^b$。
+由于$\nabla_av^b$与坐标系无关，$v^\nu{}_{;\mu}$满足张量变换律，故一般书说它是张量（其实是张量的分量），并称之为$v^\nu$的\textbf{协变导数}（其实是协变导数$\nabla_av^b$的坐标分量）。
+类似地，$\nabla_a\omega_b$的坐标分量$\omega_{\nu;\mu}$也被称为$\omega_\nu$的协变导数。
+
+\begin{theorem}
+$v^\nu{}_{;\mu} = v^\nu{}_{,\mu} + \Gamma^\nu{}_{\mu\sigma}v^\sigma, ~ \omega_{\nu;\mu} = \omega_{\nu,\mu} - \Gamma^\sigma{}_{\mu\nu}\omega_\sigma$
+
+其中$v^\nu$及$\omega_\nu$为任意矢量场和对偶矢量场在任一坐标基底的分量，$\Gamma^\nu{}_{\mu\sigma}$是该系的克氏符$\Gamma^b{}_{ac}$在该基底的分量（一般书的说法是``$\Gamma^\nu{}_{\mu\sigma}$是该系的克氏符''，本书后面为简单起见也常用这一说法。）。
+\end{theorem}
+
+\begin{theorem}
+导数算符定义中与缩并可交换顺序的条件等价于
+$$\nabla_a\delta^b{}_c = 0$$
+其中$\delta^b{}_c$看作$(1, 1)$型张量场，其在每点$p \in M$的定义为$\delta^b{}_cv^c = v^b, ~ \forall v^c \in V_p$。
+\end{theorem}
+
+流形$M$上矢量场对易子$[u, v]^a$的定义无需$M$有附加结构，但该式的不方便之处在于它不能脱离被作用对象（标量场$f$）。
+现在，在有了导数算符的概念之后，就可借助于随便一个导数算符$\nabla_a$写出矢量场对易子$[u, v]^a$的显表达式，见如下定理：
+\begin{theorem}
+$[u, v]^a = u^b\nabla_bv^a - v^b\nabla_bu^a$
+
+其中$\nabla_b$是\CJKunderdot{任一}无挠导数算符。
+\end{theorem}
+
+\begin{proof}
+对所有$f \in \mathscr{F}$有
+$$\begin{aligned}[]
+[u, v](f) & = u(v(f)) - v(u(f)) = u^b\nabla_b(v^a\nabla_af) - v^b\nabla_b(u^a\nabla_af) \\
+& = u^b(\nabla_bv^a)\nabla_af + u^bv^a\nabla_b\nabla_af - v^b(\nabla_bu^a)\nabla_af - v^bu^a\nabla_b\nabla_af \\
+& = (u^b\nabla_bv^a - v^b\nabla_bu^a)\nabla_af
+\end{aligned}$$
+而$[u, v](f) = [u, v]^a\nabla_af$，证毕。
+\end{proof}
+
+\begin{note}
+取任一坐标系$\{x^\mu\}$的普通导数算符$\partial_b$作为上式的$\nabla_b$，便有
+$$[u, v]^\mu = (\diff x^\mu)_a[u, v]^a = u^\nu\partial_\nu v^\mu - v^\nu\partial_\nu u^\mu$$
+\end{note}
 
 \section{矢量场沿曲线的导数和平移}
 
