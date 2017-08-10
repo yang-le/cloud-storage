@@ -227,6 +227,49 @@ $$[u, v]^\mu = (\diff x^\mu)_a[u, v]^a = u^\nu\partial_\nu v^\mu - v^\nu\partial
 \section{矢量场沿曲线的导数和平移}
 
 \subsection{矢量场沿曲线的平移}
+在流形$M$上选定一个导数算符$\nabla_a$后，就有矢量沿曲线平移的概念。
+
+\begin{definition}
+设$v^a$是沿曲线$C(t)$的矢量场。
+$v^a$称为沿$C(t)$平移的，若$T^b\nabla_bv^a = 0$，其中$T^a \equiv (\partial / \partial t)^a$是曲线的切矢。
+\end{definition}
+
+正如$T^a\nabla_af = T(f)$可解释为函数$f$沿$T^a$（即沿$C(t)$）的导数那样，$T^b\nabla_av^b$可解释为矢量场$v^a$沿$T^b$的导数。
+于是上述定义也可解释为：$v^a$沿$C(t)$平移的充要条件是它沿$T^b$的导数为零。
+
+\begin{theorem}
+设曲线$C(t)$位于坐标系$\{x^\mu\}$的坐标域内，曲线的参数式为$x^\mu(t)$。
+令$T^a \equiv (\partial / \partial t)^a$，则沿$C(t)$的矢量场$v^a$满足
+$$T^b\nabla_bv^a = (\partial / \partial x^\mu)^a(\diff v^\mu / \diff t + \Gamma^\mu{}_{\nu\sigma}T^\nu v^\sigma)$$
+\end{theorem}
+
+\begin{proof}
+以$\partial_a$代表坐标系$\{x^\mu\}$的普通导数算符，则
+$$\begin{aligned}
+T^b\nabla_bv^a & = T^b(\partial_bv^a + \Gamma^a{}_{bc}v^c) = T^b[(\diff x^\nu)_b(\partial / \partial x^\mu)^a\partial_\nu v^\mu + \Gamma^a{}_{bc}v^c] \\
+& = T^\nu(\partial / \partial x^\mu)^a(\partial v^\mu / \partial x^\nu) + \Gamma^a{}_{bc}T^bv^c = (\partial / \partial x^\mu)^a[T^\nu(\partial v^\mu / \partial x^\nu) + \Gamma^\mu{}_{\nu\sigma}T^\nu v^\sigma]
+\end{aligned}$$
+其中$T^\nu$是曲线切矢$T^b$的坐标分量。又$T^\nu = \diff x^\nu(t) / \diff t$，故
+$$T^\nu(\partial v^\mu / \partial x^\nu) = [\diff x^\nu(t) / \diff t][\partial v^\mu(t(x)) / \partial x^\nu] = \diff v^\nu(t) / \diff t$$
+证毕。
+\end{proof}
+
+\begin{theorem}
+曲线上一点$C(t_0)$及该点的一个矢量决定唯一的沿曲线平移的矢量场。
+\end{theorem}
+
+\begin{proof}
+若存在把整条曲线含于其坐标域内的坐标系，则由前述定理可知平移定义$T^b\nabla_bv^a = 0$等价于
+$$\diff v^\nu / \diff t + \Gamma^\mu{}_{\nu\sigma}T^\nu v^\sigma = 0, ~ \mu = 1, \cdots, n$$
+这是关于$n$个待求函数$v^\mu(t)$的$n$个一阶常微分方程（注意$\Gamma^\mu{}_{\nu\sigma}$及$T^\nu$均为$t$的已知函数），而给定$C(t_0)$点的一个矢量就是给定初始条件$v^\nu(t_0)$，故有唯一解$v^\nu(t)$。
+使用``接力法''不难把上述证明推广至曲线不能被一个坐标域覆盖的情况。
+\end{proof}
+
+设$p, q \in M$，则$V_p$和$V_q$是两个矢量空间，两者的元素无法比较。
+但若有一曲线$C(t)$联接$p, q$，就可用下法定义一个由$V_p$到$V_q$的映射：
+对所有的$v^a \in V_p$，由上述定理知在$C(t)$上有唯一的平移矢量场（其在$p$点的值为$v^a$），它在$q$点的值就定义为$v^a$的像。
+注意，这是一个曲线依赖的映射，另选一条联接$p, q$的曲线，$v^a$的像可能不同。
+然而，无论如何，$\nabla_a$的存在毕竟使原来毫无联系的$V_p$与$V_q$发生了某种联系（虽然曲线依赖），因此也把$\nabla_a$叫做联络。
 
 \subsection{与度规相适配的导数算符}
 
