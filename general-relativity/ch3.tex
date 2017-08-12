@@ -231,7 +231,7 @@ $$[u, v]^\mu = (\diff x^\mu)_a[u, v]^a = u^\nu\partial_\nu v^\mu - v^\nu\partial
 
 \begin{definition}
 设$v^a$是沿曲线$C(t)$的矢量场。
-$v^a$称为沿$C(t)$平移的，若$T^b\nabla_bv^a = 0$，其中$T^a \equiv (\partial / \partial t)^a$是曲线的切矢。
+$v^a$称为\textbf{沿$C(t)$平移}的，若$T^b\nabla_bv^a = 0$，其中$T^a \equiv (\partial / \partial t)^a$是曲线的切矢。
 \end{definition}
 
 正如$T^a\nabla_af = T(f)$可解释为函数$f$沿$T^a$（即沿$C(t)$）的导数那样，$T^b\nabla_av^b$可解释为矢量场$v^a$沿$T^b$的导数。
@@ -269,11 +269,115 @@ $$\diff v^\nu / \diff t + \Gamma^\mu{}_{\nu\sigma}T^\nu v^\sigma = 0, ~ \mu = 1,
 但若有一曲线$C(t)$联接$p, q$，就可用下法定义一个由$V_p$到$V_q$的映射：
 对所有的$v^a \in V_p$，由上述定理知在$C(t)$上有唯一的平移矢量场（其在$p$点的值为$v^a$），它在$q$点的值就定义为$v^a$的像。
 注意，这是一个曲线依赖的映射，另选一条联接$p, q$的曲线，$v^a$的像可能不同。
-然而，无论如何，$\nabla_a$的存在毕竟使原来毫无联系的$V_p$与$V_q$发生了某种联系（虽然曲线依赖），因此也把$\nabla_a$叫做联络。
+然而，无论如何，$\nabla_a$的存在毕竟使原来毫无联系的$V_p$与$V_q$发生了某种联系（虽然曲线依赖），因此也把$\nabla_a$叫做\textbf{联络}。
+
+为什么说$\nabla_a$是$3$维欧氏空间中熟知的$\vec{\nabla}$在一般流形上的某种推广？
+为什么把$T^b\nabla_bv^a$解释为$v^a$沿$T^b$的导数？
+为什么把满足$T^b\nabla_bv^a = 0$的$v^a$称为沿曲线平移的矢量场？
+下面我们就来回答这些问题。
 
 \subsection{与度规相适配的导数算符}
+从本章开始至今未涉及度规，只假定$M$上选了一个联络$\nabla_a$。
+如果$M$上还指定了度规$g_ab$，矢量之间就可以谈及内积。
+为使平移概念与欧氏空间中熟知的平移一致，应补充以下要求：
+设$u^a$，$v^a$为沿$C(t)$平移的矢量场，则$u^av_a$（$\equiv g_{ab}u^av^b$）在$C(t)$上是常数（两个矢量平移时``内积''不变）。
+设$T^a$为曲线$C(t)$的切矢，则这一要求等价于
+$$0 = T^c\nabla_c(g_{ab}u^av^b) = g_{ab}u^aT^c\nabla_cv^b + g_{ab}v^bT^c\nabla_cu^a + u^av^bT^c\nabla_cg_{ab} = u^av^bT^c\nabla_cg_{ab}$$
+上式对所有曲线以及沿它平移的任意两个矢量场$u^a$，$v^a$成立的充要条件为
+$$\nabla_cg_{ab} = 0$$
+没有度规时，$\nabla_c$的选择非常任意。指定度规后，选$\nabla_c$时就宜满足附加要求$\nabla_cg_{ab} = 0$。
+下面证明这一要求决定了唯一的$\nabla_a$。
+
+\begin{theorem}
+流形$M$上选定度规场$g_{ab}$后，存在唯一的$\nabla_a$使$\nabla_ag_{bc} = 0$。
+\end{theorem}
+
+\begin{proof}
+设$\tilde\nabla_a$为任一导数算符，欲求适当的$C^c{}_{ab}$使它与$\tilde\nabla_a$决定的$\nabla_a$满足$\nabla_ag_{bc} = 0$。
+已知$$\nabla_ag_{bc} = \tilde\nabla_ag_{bc} - C^d{}_{ab}g_{dc} - C^d{}_{ac}g_{bd} = \tilde\nabla_ag_{bc} - C_{cab} - C_{bac}$$
+故由$\nabla_ag_{bc} = 0$得$$C_{cab} + C_{bac} = \tilde\nabla_ag_{bc}$$
+同理有\begin{gather*}
+C_{cba} + C_{abc} = \tilde\nabla_bg_{ac} \\
+C_{bca} + C_{acb} = \tilde\nabla_cg_{ab}
+\end{gather*}
+前两式相加减第三式并利用$C_{cab} = C_{cba}$，得
+$$2C_{cab} = \tilde\nabla_ag_{bc} + \tilde\nabla_bg_{ac} - \tilde\nabla_cg_{ab}$$
+或
+$$C^c_{ab} = \frac{1}{2}g^{cd}(\tilde\nabla_ag_{bd} + \tilde\nabla_bg_{ad} - \tilde\nabla_dg_{ab})$$
+这$C^c_{ab}$与$\tilde\nabla_a$结合而得的$\nabla_a$便是方程$\nabla_ag_{bc} = 0$的解。
+这必定是唯一解，因若$\nabla'_a$也满足$\nabla'_ag_{bc} = 0$，把$\nabla'_a$作为上式中的$\tilde\nabla_a$便知反映$\nabla_a$与$\nabla'_a$差别的$C^c{}_{ab}$为零。
+\end{proof}
+
+满足$\nabla_ag_{bc} = 0$的$\nabla_a$称为\textbf{与$g_{ab}$适配（或相容）的导数算符}。
+今后如无声明，在有$g_{ab}$时谈到$\nabla_a$都是指与$g_{ab}$适配的导数算符。
+可以证明，$\nabla_ag_{bc} = 0$保证$\nabla_ag^{bc} = 0$（反之亦然）。这为计算带来很大方便。
+
+\begin{example}
+欧氏空间存在无数满足定义的导数算符，但与欧式度规$\delta_{ab}$相适配的导数算符只有一个，这就是笛卡尔坐标系$\{x^\mu\}$的普通导数算符$\partial_a$（所有笛卡尔系的$\partial_a$都相同）,因为由$\delta_{ab}$的定义式得$\partial_c\delta_{ab} = (\diff x^\sigma)_c(\diff x^\mu)_a(\diff x^\nu)_b\partial_\sigma\delta_{\mu\nu} = 0$。
+对$3$维欧氏空间，笛卡尔坐标系的$\partial_a$就是普通矢量场论中熟知的$\vec{\nabla}$。
+\end{example}
+
+设$\nabla_a$与$g_{bc}$相适配，取$\tilde\nabla_a$为任一坐标系的$\partial_a$，则前述定理中的$C^c{}_{ab}$便是$\nabla_a$在该坐标系的克氏符$\Gamma^c{}_{ab}$，由该定理不难推得$\Gamma^c{}_{ab}$在该系的分量$\Gamma^\sigma{}_{\mu\nu}$的如下表达式:
+$$\Gamma^\sigma{}_{\mu\nu} = \frac{1}{2}g^{\sigma\rho}(g_{\rho\mu,\nu} + g_{\nu\rho,\mu} - g_{\mu\nu,\rho})$$
+推导如下：把$\partial_a$看作前述定理中的$\tilde\nabla_a$，则式中的$C^c{}_{ab}$就是$\Gamma^c{}_{ab}$，故
+$$\Gamma^c{}_{ab} = \frac{1}{2}g^{cd}(\partial_ag_{bd} + \partial_bg_{ad} - \partial_dg_{ab})$$
+$$\begin{aligned}
+\Gamma^\sigma{}_{\mu\nu} & = \Gamma^c{}_{ab}(\diff x^\sigma)_c(\partial / \partial x^\mu)^a(\partial / \partial x^\nu)^b \\
+& = \frac{1}{2}(\diff x^\sigma)_c(\partial / \partial x^\mu)^a(\partial / \partial x^\nu)^bg^{cd}(\partial_ag_{bd} + \partial_bg_{ad} - \partial_dg_{ab}) \\
+& = \frac{1}{2}(\partial / \partial x^\mu)^a(\partial / \partial x^\nu)^bg^{\sigma\rho}(\partial_ag_{b\rho} + \partial_bg_{a\rho} - \partial_\rho g_{ab}) \\
+& = \frac{1}{2}g^{\sigma\rho}(\partial_\mu g_{\nu\rho} + \partial_\nu g_{\mu\rho} - \partial_\rho g_{\mu\nu}) \\
+& = \frac{1}{2}g^{\sigma\rho}(g_{\nu\rho,\mu} + g_{\mu\rho,\nu} - g_{\mu\nu,\rho})
+\end{aligned}$$
+利用对称性$g_{ab} = g_{ba}$不难看出这就是要推的结果。
+此式与
+$v^\nu{}_{;\mu} = v^\nu{}_{,\mu} + \Gamma^\nu{}_{\mu\sigma}v^\sigma, ~ \omega_{\nu;\mu} = \omega_{\nu,\mu} - \Gamma^\sigma{}_{\mu\nu}\omega_\sigma$
+结合可方便地求得矢量场$v^a$和对偶矢量场$\omega_a$的协变导数$\nabla_av^b$和$\nabla_a\omega_b$的坐标分量$v^\nu{}_{;\mu}$和$\omega_{\nu;\mu}$。
+
+\begin{note}
+$\Gamma^\sigma{}_{\mu\nu}$既依赖于$M$上选定的$\nabla_a$又依赖于坐标系。
+若$M$有度规$g_{ab}$，则不加声明时$\nabla_a$就是指同$g_{ab}$适配的导数算符，而``某系的克氏符''就是指这个$\nabla_a$在该系的克氏符。
+例如，谈到$3$维欧氏空间中某坐标系的克氏符时，指的就是同欧氏度规相适配的$\nabla_a$（即笛卡尔系的$\partial_a$）在该系的克氏符。
+一个笛卡尔系的$\partial_a$在任一笛卡尔系的克氏符显然为零。
+\end{note}
+
+设$\vec{T}$是$3$维欧氏空间的矢量场，则$\vec{T}\cdot\vec{\nabla}f$是梯度$\vec{\nabla}f$在$\vec{T}$方向的分量，即$f$沿$\vec{T}$方向的导数。
+另一方面，由导数算符的条件（d）有$T^a\partial_af = T(f)$，而右边正是$f$沿$T^a$的导数。可见$T^a\partial_af = \vec{T}\cdot\vec{\nabla}f$。
+进一步的问题是：$T^b\partial_bv^a$代表什么？答案自然是$v^a$沿$T^a$的导数。详见下节。
 
 \subsection{矢量场沿曲线的导数与沿曲线的平移的关系}
+
+先讨论最简单的特例，即欧氏空间。欧氏空间有一类特殊坐标系（笛卡尔系），用它可定义矢量的绝对（非曲线依赖）平移。
+
+\begin{definition}
+欧氏空间中$p$点的矢量$\vec{\tilde{v}}$称为$q$点的矢量$\vec{v}$\textbf{平移}至$p$点的结果，若两者在同一笛卡尔系的分量相等（注：对某一笛卡尔系为平移则对任意笛卡尔系也为平移）。
+\end{definition}
+
+\begin{definition}
+欧氏空间中曲线$C(t)$上的矢量场$\vec{v}$沿线的导数$\diff\vec{v} / \diff t$定义为
+$$\left.\frac{\diff \vec{v}}{\diff t}\right|_p := \lim_{\Delta t \to 0}\frac{1}{\Delta t}(\vec{\tilde v}|_p - \vec{v}|_p) ~ \forall p \in C(t)$$
+其中$\vec{\tilde v}|_p$是把$\vec{v}|_q$（$q$为$p$在线上的邻点）平移至$p$点的结果，$\Delta t \equiv t(q) - t(p)$。
+\end{definition}
+
+现在证明$\diff \vec{v} / \diff t$在抽象指标记号中就是$T^b\partial_bv^a$（其中$T^b$是$C(t)$的切矢，$\partial_b$是笛卡尔系的普通导数算符。），为此只须证明两者在笛卡尔系$\{x^i\}$的分量相等：
+$$T^b\partial_bv^a\text{的第$i$分量} = T^b\partial_bv^a(\diff x^i)_a = T^b\partial_bv^i = T(v^i) = \diff v^i / \diff t$$
+另一方面，由上述定义可知
+$$\left.\frac{\diff \vec{v}}{\diff t}\right|_p\text{的第$i$分量} = \lim_{\Delta t \to 0}\frac{1}{\Delta t}(\tilde v^i|_p - v^i|_p) = \lim_{\Delta t \to 0}\frac{1}{\Delta t}(\tilde v^i|_q - v^i|_p) = \left.\frac{\diff v^i}{\diff t}\right|_p$$
+（最后一步无非是函数$v^i(t)$的导数的定义）对比两式可见
+$$\diff\vec{v} / \diff t = T^b\nabla_bv^a$$
+推广到带任意$\nabla_a$的任意流形$M$的任意曲线$C(t)$，便自然地把$T^b\nabla_bv^a$称为$v^a$沿$T^b$（或沿$C(t)$）的导数。有时也用记号$\Diff v^a / \diff t$代表这一导数，即
+$$\Diff v^a / \diff t \equiv T^b\nabla_bv^a$$
+然而上述绝对平移的定义不能推广到带有任意联络$\nabla_a$的任意流形$(M, \nabla_a)$。
+后面我们将介绍流形的内禀曲率概念（并将看到欧氏和闵氏空间的内禀曲率为零），还将指出只有内禀曲率为零的空间才有绝对的（即与曲线无关的）平移概念。
+不过，鉴于欧氏空间中$\diff\vec{v} / \diff t = 0$与$\vec{v}$沿$C(t)$平移等价（见上述定义），可以自然地把$T^b\nabla_bv^a = 0$作为$(M, \nabla_a)$中曲线$C(t)$上的矢量场$v^a$的平移定义，这就解释了本节一开始给出的平移定义提出的动机（但应特别注意这样定义的平移一般是曲线依赖的）。
+在这种讲法中，我们是先定义$v^a$沿曲线的导数$T^b\nabla_bv^a$再用它定义$v^a$沿曲线的平移（与欧氏空间的顺序相反）。
+由于$v^a$沿曲线的导数$T^b\nabla_bv^a$毕竟比较抽象，在有了曲线依赖的平移概念后，借用平移这一术语反过来对$T^b\nabla_bv^a$作一解释是有益的。
+这一解释的实质就是上述定义所表达的含义，见如下定理。
+
+\begin{theorem}
+设$v^a$是$(M, \nabla_a)$的曲线$C(t)$上的矢量场，$T^b$是$C(t)$的切矢，$p, q$是$C(t)$上的邻点，则
+$$T^b\nabla_bv^a|_p = \lim_{\Delta t \to 0}\frac{1}{\Delta t}(\tilde v^a|_p - v^a|_p)$$
+其中$\Delta t \equiv t(q) - t(p)$，$\tilde v^a|_p$是$v^a|_q$沿$C(t)$平移至$p$点的结果。
+\end{theorem}
 
 \section{测地线}
 
