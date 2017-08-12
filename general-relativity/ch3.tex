@@ -381,6 +381,86 @@ $$T^b\nabla_bv^a|_p = \lim_{\Delta t \to 0}\frac{1}{\Delta t}(\tilde v^a|_p - v^
 
 \section{测地线}
 
+\begin{definition}
+$(M, \nabla_a)$上的曲线$\gamma(t)$叫测地线，若其切矢$T^a$满足$T^b\nabla_bT^a = 0$。
+\end{definition}
+
+\begin{note}
+\textcircled{1} 可见测地线的充要条件是其切矢沿曲线平移。
+\textcircled{2} $T^b\nabla_bT^a = 0$称为测地线方程。
+\textcircled{3} 设流形$M$上有度规场$g_{ab}$，则$(M, g_{ab})$的测地线是指$(M, \nabla_a)$的测地线，其中$\nabla_a$与$g_{ab}$适配。
+\end{note}
+
+设测地线$\gamma(t)$位于某坐标系的坐标域内，则以$T^a$代替上节第一个定理中的$v^a$便得
+$$\frac{\diff T^\mu}{\diff t} + \Gamma^\mu{}_{\nu\sigma}T^\nu T^\sigma = 0, ~ \mu = 1, \cdots, n$$
+设$x^\nu = x^\nu(t)$是测地线$\gamma(t)$的参数式，则$T^\mu = \diff x^\mu / \diff t$，故上式可改写为
+$$\frac{\diff^2x^\mu}{\diff t^2} + \Gamma^\mu{}_{\nu\sigma}\frac{\diff x^\nu}{\diff t}\frac{\diff x^\sigma}{\diff t} = 0, ~ \mu = 1, \cdots, n$$
+这就是测地线方程的坐标分量表达式。
+
+\begin{example}
+欧（闵）氏度规在笛卡尔（洛伦兹）系的克氏符为零，测地线方程的通解为$x^\mu(t) = a^\mu t + b^\mu$（其中$a^\mu, b^\mu$是常数）。
+如果把欧（闵）氏空间中在笛卡尔（洛伦兹）系的参数式为$x^\mu(t) = a^\mu t + b^\mu$的曲线称为直线（段），欧（闵）氏空间的测地线便同义于直线（段）。
+可见测地线可看作欧氏空间直线概念向广义黎曼空间的推广。
+\end{example}
+
+\begin{example}
+设$S^2$是$3$维欧氏空间的$2$维球面，以球心为原点建球坐标系，则$3$维欧氏线元为$\diff s^2 = \diff r^2 + r^2(\diff \theta^2 + \sin^2\theta\diff\varphi^2)$。
+若元线段躺在$S^2$上，则$r = R$（球半径）导致$\diff r = 0$，故球面上的``诱导线元''（称为标准球面线元）为$\diff\hat{s}^2 = R^2(\diff \theta^2 + \sin^2\theta\diff\varphi^2)$，就是说，$3$维欧氏度规$\delta_{ab}$在球面$S^2$上诱导出$2$维度规$g_{ab}$，其在坐标基底$\{(\partial / \partial\theta)^a, (\partial / \partial\varphi)^a\}$的分量为$g_{\theta\theta} = R^2, g_{\varphi\varphi} = R^2\sin^2\theta, g_{\theta\varphi} = g_{\varphi\theta} = 0$。
+从测地线方程的坐标分量表达式出发可以证明，以这个度规衡量，球面上的曲线为测地线当且仅当它是大圆弧（并配以适当的参数化）。
+\end{example}
+
+\begin{theorem}
+设$\gamma(t)$为测地线，则其重参数化$\gamma'(t')[= \gamma(t)]$的切矢$T'^a$满足
+$$T'^b\nabla_bT'^a = \alpha T'^a\text{（$\alpha$为$\gamma(t)$上的某个函数）}$$
+\end{theorem}
+
+\begin{proof}
+$$T^a = \left(\frac{\partial}{\partial t}\right)^a = \left(\frac{\partial}{\partial t'}\right)^a\frac{\diff t'}{\diff t} = \frac{\diff t'}{\diff t}T'^a$$
+$$0 = T^b\nabla_bT^a = \frac{\diff t'}{\diff t}T'^b\nabla_b\left(\frac{\diff t'}{\diff t}T'^a\right) = \left(\frac{\diff t'}{\diff t}\right)^2T'^b\nabla_bT'^a + T'^a\frac{\diff t'}{\diff t}T'^b\nabla_b\left(\frac{\diff t'}{\diff t}\right)$$
+右边第二项$= T'^a\frac{\diff t'}{\diff t}\frac{\diff}{\diff t'}\left(\frac{\diff t'}{\diff t}\right) = T'^a\frac{\diff^2t'}{\diff t^2}$，故$T'^b\nabla_bT'^a = -\left(\frac{\diff t}{\diff t'}\right)^2\frac{\diff^2t'}{\diff t^2}T'^a$。
+令$\alpha \equiv -\left(\frac{\diff t}{\diff t'}\right)^2\frac{\diff^2t'}{\diff t^2}$，得证。
+\end{proof}
+
+\begin{theorem}
+设曲线$\gamma(t)$的切矢$T^a$满足$T^b\nabla_bT^a = \alpha T^a$（$\alpha$为$\gamma(t)$上的函数），则存在$t' = t'(t)$使得$\gamma'(t')[= \gamma(t)]$为测地线。
+\end{theorem}
+
+\begin{definition}
+能使曲线成为测地线的参数叫该曲线的仿射参数。
+\end{definition}
+
+\begin{note}
+有时也把满足$T^b\nabla_bT^a = \alpha T^a$的曲线叫测地线。
+不过，为避免混淆，最好称之为``非仿射参数化的测地线''。
+\end{note}
+
+\begin{theorem}
+若$t$是某测地线的仿射参数，则该线的任一参数$t'$是仿射参数的充要条件为$t' = at +b$（其中$a, b$为常数且$a \neq 0$）。
+\end{theorem}
+
+\begin{theorem}
+流形$M$的一点$p$及$p$点的一个矢量$v^a$决定唯一的测地线$\gamma(t)$，满足
+\begin{enumerate}[（1）]
+\item $\gamma(0) = p$；
+\item $\gamma(t)$在$p$点的切矢等于$v^a$。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+任取一坐标系$\{x^\mu\}$使坐标域含$p$，则测地线方程的坐标分量表达式可看作关于$n$个待求函数$x^\mu(t)$的$n$个二阶常微分方程，则给定$p \in M$及$v^a \in V_p$就是给定初始条件$x^\mu(0) = x^\mu|_p$及$(\diff x^\mu / \diff t)|_0 = v^a$，故有唯一解。
+\end{proof}
+
+\begin{theorem}
+测地线的线长参数必为仿射参数。
+\end{theorem}
+
+众所周知，欧氏空间中两点之间直线（段）最短。
+现在讨论这一结论在多大程度上适用于带洛伦兹度规的流形（时空）。
+
+\begin{theorem}
+设$g_{ab}$是流形$M$上的洛伦兹度规场，$p, q \in M$，则$p, q$间的光滑类空（类时）曲线为测地线当且仅当其线长取极值。
+\end{theorem}
+
 \section{黎曼曲率张量}
 
 \subsection{黎曼曲率的定义和性质}
