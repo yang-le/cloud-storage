@@ -503,7 +503,28 @@ $$0 = T^b\nabla_bT^a = \frac{\diff t'}{\diff t}T'^b\nabla_b\left(\frac{\diff t'}
 \subsection{黎曼曲率的定义和性质}
 
 导数算符$\nabla_a$的无挠性保证$(\nabla_a\nabla_b - \nabla_b\nabla_a)f = 0$，即$\nabla_a\nabla_bf$是个对称的$(0, 2)$型张量。
+把算符$(\nabla_a\nabla_b - \nabla_b\nabla_a)$称为导数算符$\nabla_a$的对易子，则$\nabla_a$的无挠性体现为其对易子对函数的作用结果为零。
+然而无挠导数算符的对易子对其他型号的张量场的作用结果却未必为零，黎曼曲率张量正是这种非对易性的表现。
 
+\begin{theorem}
+设$f \in \mathscr{F}, \omega_a \in \mathscr{F}(0, 1)$，则
+$$(\nabla_a\nabla_b - \nabla_b\nabla_a)(f\omega_c) = f(\nabla_a\nabla_b - \nabla_b\nabla_a)\omega_c$$
+\end{theorem}
+
+\begin{proof}
+把$\nabla_a\nabla_b(f\omega_c)$和$\nabla_b\nabla_a(f\omega_c)$分别展为$4$项，两者相减，注意到无挠性条件，便可得证。
+\end{proof}
+
+\begin{theorem}
+设$\omega_c, \omega'_c \in \mathscr{F}(0, 1)$且$\omega'_c|_p = \omega_c|_p$，则
+$$[(\nabla_a\nabla_b - \nabla_b\nabla_a)\omega'_c]|_p = [(\nabla_a\nabla_b - \nabla_b\nabla_a)\omega_c]|_p$$
+\end{theorem}
+
+\begin{proof}
+令$\Omega_c \equiv \omega'_c - \omega_c$，则要证的结果等价于
+$[(\nabla_a\nabla_b - \nabla_b\nabla_a)\Omega_c]|_p = 0$，
+将其中的$\Omega_c$展开为坐标分量表达式，利用前一定理的结果即可得证。
+\end{proof}
 
 \subsection{由度规计算黎曼曲率}
 
