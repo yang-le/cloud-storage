@@ -382,12 +382,12 @@ $$T^b\nabla_bv^a|_p = \lim_{\Delta t \to 0}\frac{1}{\Delta t}(\tilde v^a|_p - v^
 \section{测地线}
 
 \begin{definition}
-$(M, \nabla_a)$上的曲线$\gamma(t)$叫测地线，若其切矢$T^a$满足$T^b\nabla_bT^a = 0$。
+$(M, \nabla_a)$上的曲线$\gamma(t)$叫\textbf{测地线}，若其切矢$T^a$满足$T^b\nabla_bT^a = 0$。
 \end{definition}
 
 \begin{note}
 \textcircled{1} 可见测地线的充要条件是其切矢沿曲线平移。
-\textcircled{2} $T^b\nabla_bT^a = 0$称为测地线方程。
+\textcircled{2} $T^b\nabla_bT^a = 0$称为\textbf{测地线方程}。
 \textcircled{3} 设流形$M$上有度规场$g_{ab}$，则$(M, g_{ab})$的测地线是指$(M, \nabla_a)$的测地线，其中$\nabla_a$与$g_{ab}$适配。
 \end{note}
 
@@ -426,7 +426,7 @@ $$0 = T^b\nabla_bT^a = \frac{\diff t'}{\diff t}T'^b\nabla_b\left(\frac{\diff t'}
 \end{theorem}
 
 \begin{definition}
-能使曲线成为测地线的参数叫该曲线的仿射参数。
+能使曲线成为测地线的参数叫该曲线的\textbf{仿射参数}。
 \end{definition}
 
 \begin{note}
@@ -503,7 +503,7 @@ $$0 = T^b\nabla_bT^a = \frac{\diff t'}{\diff t}T'^b\nabla_b\left(\frac{\diff t'}
 \subsection{黎曼曲率的定义和性质}
 
 导数算符$\nabla_a$的无挠性保证$(\nabla_a\nabla_b - \nabla_b\nabla_a)f = 0$，即$\nabla_a\nabla_bf$是个对称的$(0, 2)$型张量。
-把算符$(\nabla_a\nabla_b - \nabla_b\nabla_a)$称为导数算符$\nabla_a$的对易子，则$\nabla_a$的无挠性体现为其对易子对函数的作用结果为零。
+把算符$(\nabla_a\nabla_b - \nabla_b\nabla_a)$称为导数算符$\nabla_a$的\textbf{对易子}，则$\nabla_a$的无挠性体现为其对易子对函数的作用结果为零。
 然而无挠导数算符的对易子对其他型号的张量场的作用结果却未必为零，黎曼曲率张量正是这种非对易性的表现。
 
 \begin{theorem}
@@ -525,6 +525,21 @@ $$[(\nabla_a\nabla_b - \nabla_b\nabla_a)\omega'_c]|_p = [(\nabla_a\nabla_b - \na
 $[(\nabla_a\nabla_b - \nabla_b\nabla_a)\Omega_c]|_p = 0$，
 将其中的$\Omega_c$展开为坐标分量表达式，利用前一定理的结果即可得证。
 \end{proof}
+
+上述定理表明$(\nabla_a\nabla_b - \nabla_b\nabla_a)$是把$p$点的对偶矢量$\omega_c|_p$变为$p$点的$(0, 3)$型张量$[(\nabla_a\nabla_b - \nabla_b\nabla_a)\omega_c]|_p$的线性映射，做法是：
+把$\omega_c|_p$任意延拓而得一个定义于$p$点某邻域的对偶矢量场$\omega_c$，求出$(\nabla_a\nabla_b - \nabla_b\nabla_a)\omega_c$，再取其在$p$点的值便得映射的像。
+该定理保证这个像与延拓方式无关。于是$(\nabla_a\nabla_b - \nabla_b\nabla_a)$对应于$p$点的一个$(1, 3)$型张量，叫\textbf{黎曼曲率张量}，记作$R_{abc}{}^d$。
+又因$p$点任意，故$R_{abc}{}^d$是张量场。于是有
+
+\begin{definition}
+导数算符$\nabla_a$的\textbf{黎曼曲率张量场}$R_{abc}{}^d$由下式定义
+$$(\nabla_a\nabla_b - \nabla_b\nabla_a)\omega_c = R_{abc}{}^d\omega_d, ~ \forall \omega_c \in \mathscr{F}(0, 1)$$
+\end{definition}
+
+黎曼张量场反映导数算符的非对易性，是描述$(M, \nabla_a)$内禀性质的张量场。
+只要选定导数算符就可谈及其黎曼张量。
+当然，对广义黎曼空间$(M, g_{ab})$也可谈及黎曼张量，亦称$g_{ab}$的黎曼张量，是指与$g_{ab}$适配的那个导数算符$\nabla_a$的黎曼张量场。
+黎曼张量场为零的度规称为\textbf{平直度规}。下面证明欧氏和闵氏度规都是平直度规。
 
 \subsection{由度规计算黎曼曲率}
 
