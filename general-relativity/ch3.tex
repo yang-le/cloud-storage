@@ -541,6 +541,88 @@ $$(\nabla_a\nabla_b - \nabla_b\nabla_a)\omega_c = R_{abc}{}^d\omega_d, ~ \forall
 当然，对广义黎曼空间$(M, g_{ab})$也可谈及黎曼张量，亦称$g_{ab}$的黎曼张量，是指与$g_{ab}$适配的那个导数算符$\nabla_a$的黎曼张量场。
 黎曼张量场为零的度规称为\textbf{平直度规}。下面证明欧氏和闵氏度规都是平直度规。
 
+\begin{theorem}
+欧氏空间$(\mathbb{R}^n, \delta_{ab})$和闵氏空间$(\mathbb{R}^n, \eta_{ab})$的黎曼曲率张量场为零。
+\end{theorem}
+
+\begin{proof}
+欧（闵）氏空间任一笛卡尔（洛伦兹）系的普通导数算符$\partial_a$是与$\delta_{bc}$适配的那个特定的导数算符。而
+$$(\partial_a\partial_b - \partial_b\partial_a)\omega_c = (\diff x^\mu)_a(\diff x^\nu)_b(\diff x^\sigma)_c(\partial_\mu\partial_\nu\omega_\sigma - \partial_\nu\partial_\mu\omega_\sigma) = 0, ~ \forall \omega_c$$
+故$\partial_a$的$R_{abc}{}^d$为零。
+\end{proof}
+
+因此欧氏空间和闵氏空间都称为平直空间。事实上，闵氏空间在许多方面类似于欧氏空间，故又称为伪欧空间。
+
+黎曼曲率张量反映导数算符作用于对偶矢量场的非对易性。由此可推知导数算符作用于任意型张量场$T^{c_1 \cdots c_k}{}_{d_1 \cdots d_l}$的非对易性，即推出用$R_{abc}{}^d$表述$(\nabla_a\nabla_b - \nabla_b\nabla_a)T^{c_1 \cdots c_k}{}_{d_1 \cdots d_l}$的公式。
+我们有如下定理：
+
+\begin{theorem}
+$(\nabla_a\nabla_b - \nabla_b\nabla_a)v^c = -R_{abd}{}^cv^d, \forall v^c \in \mathscr{F}(1, 0)$
+\end{theorem}
+
+\begin{proof}
+对所有的$\omega_c \in \mathscr{F}(0, 1)$，有$v^c\omega_c \in \mathscr{F}$，故由无挠性条件得
+$$\begin{aligned}
+0 & = (\nabla_a\nabla_b - \nabla_b\nabla_a)(v^c\omega_c) = \nabla_a(v^c\nabla_b\omega_c + \omega_c\nabla_bv^c) - \nabla_b(v^c\nabla_a\omega_c + \omega_c\nabla_av^c) \\
+& = v^c\nabla_a\nabla_b\omega_c + \omega_c\nabla_a\nabla_bv^c - v^c\nabla_b\nabla_a\omega_c - \omega_c\nabla_b\nabla_av^c
+\end{aligned}$$
+从而$\omega_c(\nabla_a\nabla_b - \nabla_b\nabla_a)v^c = -v^c(\nabla_a\nabla_b - \nabla_b\nabla_a)\omega_c = -v^cR_{abc}{}^d\omega_d = -\omega_cR_{abd}{}^cv^d$
+于是定理得证。
+\end{proof}
+
+\begin{theorem}
+对于所有的$T^{c_1 \cdots c_k}{}_{d_1 \cdots d_l} \in \mathscr{F}(k, l)$有
+$$(\nabla_a\nabla_b - \nabla_b\nabla_a)T^{c_1 \cdots c_k}{}_{d_1 \cdots d_l} = -\sum^k_{i = 1}R_{abe}{}^{c_i}T^{c_1 \cdots e \cdots c_k}{}_{d_1 \cdots d_l} + \sum^l_{j = 1}R_{abd_j}{}^eT^{c_1 \cdots c_k}{}_{d_1 \cdots e \cdots d_l}$$
+\end{theorem}
+
+\begin{theorem}
+黎曼曲率张量有以下性质
+\begin{enumerate}[（1）]
+\item $R_{abc}{}^d = -R_{bac}{}^d$
+\item $R_{[abc]}{}^d = 0$（循环恒等式）
+\item $\nabla_{[a}R_{bc]d}{}^e = 0$（Bianchi恒等式）
+
+若$M$上有度规场$g_{ab}$且$\nabla_ag_{bc} = 0$，则可定义$R_{abcd} \equiv g_{de}R_{abc}{}^e$，且$R_{abcd}$还满足
+
+\item $R_{abcd} = -R_{abdc}$
+\item $R_{abcd} = R_{cdab}$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}[（1）]
+\item 由定义显见。
+\item 因$R_{[abc]}{}^d\omega_d = \nabla_{[a}\nabla_b\omega_{c]} - \nabla_{[b}\nabla_a\omega_{c]} = 2\nabla_{[a}\nabla_b\omega_{c]}$，故只须证
+$$\nabla_{[a}\nabla_b\omega_{c]} = 0, ~ \forall \omega_c \in \mathscr{F}(0, 1)$$
+而（取$\tilde\nabla_a$为$\partial_a$）
+$$\begin{aligned}
+\nabla_a(\nabla_b\omega_c) & = \partial_a(\nabla_b\omega_c) - \Gamma^d{}_{ab}\nabla_d\omega_c - \Gamma^d{}_{ac}\nabla_b\omega_d \\
+& = \partial_a(\partial_b\omega_c - \Gamma^e{}_{bc}\omega_e) - \Gamma^d{}_{ab}\nabla_d\omega_c - \Gamma^d{}_{ac}\nabla_b\omega_d \\
+& = (\partial_a\partial_b\omega_c - \partial_a\Gamma^e{}_{bc}\omega_e - \Gamma^e{}_{bc}\partial_a\omega_e) - \Gamma^d{}_{ab}\nabla_d\omega_c - \Gamma^d{}_{ac}\nabla_b\omega_d
+\end{aligned}$$
+故$\nabla_{[a}\nabla_b\omega_{c]} = \partial_{[a}\partial_b\omega_{c]} - \partial_{[a}\Gamma^e{}_{bc]}\omega_e - \Gamma^e{}_{[bc}\partial_{a]}\omega_e - \Gamma^d{}_{[ab}\nabla_{|d|}\omega_{c]} - \Gamma^d{}_{[ac}\nabla_{b]}\omega_d$
+下标$[ab|d|c]$中的$|d|$表明$d$不参与反称化。注意到$\nabla_a\nabla_b\omega_c = \nabla_b\nabla_a\omega_c$和$\Gamma^e{}_{bc} = \Gamma^e{}_{cb}$，可知上式右边每项都为零。
+\item 只须证$\nabla_{[a}R_{bc]d}{}^e\omega_e = 0, ~ \forall \omega_e \in \mathscr{F}(0, 1)$，而
+$$\begin{aligned}
+\nabla_{a}R_{bcd}{}^e\omega_e & = \nabla_a(R_{bcd}{}^e\omega_e) - R_{bcd}{}^e\nabla_a\omega_e \\
+& = \nabla_a(\nabla_b\nabla_c\omega_d - \nabla_c\nabla_b\omega_d) - R_{bcd}{}^e\nabla_a\omega_e \\
+& = \nabla_a\nabla_b\nabla_c\omega_d - \nabla_a\nabla_c\nabla_b\omega_d - R_{bcd}{}^e\nabla_a\omega_e \\
+& = \nabla_a\nabla_b\nabla_c\omega_d - \nabla_b\nabla_a\nabla_c\omega_d - R_{bcd}{}^e\nabla_a\omega_e \\
+& = (\nabla_a\nabla_b - \nabla_b\nabla_a)\nabla_c\omega_d - R_{bcd}{}^e\nabla_a\omega_e \\
+& = R_{abd}{}^e\nabla_c\omega_e + R_{abc}{}^e\nabla_e\omega_d - R_{bcd}{}^e\nabla_a\omega_e
+\end{aligned}$$
+现在取反称化，并注意到循环恒等式，有
+$$\begin{aligned}
+\nabla_{[a}R_{bc]d}{}^e\omega_e & = R_{[ab|d|}{}^e\nabla_{c]}\omega_e + R_{[abc]}{}^e\nabla_e\omega_d - R_{[bc|d|}{}^e\nabla_{a]}\omega_e \\
+& = R_{[ab|d|}{}^e\nabla_{c]}\omega_e - R_{[ab|d|}{}^e\nabla_{c]}\omega_e \\
+& = 0
+\end{aligned}$$
+\item 由$\nabla_ag_{cd} = 0$得
+$$0 = (\nabla_a\nabla_b - \nabla_b\nabla_a)g_{cd} = R_{abc}{}^eg_{ed} + R_{abd}{}^eg_{ce} = R_{abcd} + R_{abdc}$$
+\item 略
+\end{enumerate}
+\end{proof}
+
 \subsection{由度规计算黎曼曲率}
 
 \section{内禀曲率和外曲率}
