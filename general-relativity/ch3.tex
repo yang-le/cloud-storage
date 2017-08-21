@@ -619,11 +619,76 @@ $$\begin{aligned}
 \end{aligned}$$
 \item 由$\nabla_ag_{cd} = 0$得
 $$0 = (\nabla_a\nabla_b - \nabla_b\nabla_a)g_{cd} = R_{abc}{}^eg_{ed} + R_{abd}{}^eg_{ce} = R_{abcd} + R_{abdc}$$
-\item 略
+\item 把循环恒等式展开，即$R_{abc}{}^d + R_{cab}{}^d + R_{bca}{}^d - R_{acb}{}^d - R_{cba}{}^d - R_{bac}{}^d = 0$，而带负号的每一项都等于带正号的对应项，所以
+$R_{abc}{}^d + R_{cab}{}^d + R_{bca}{}^d = 0$，因此$R_{abc}{}^d = R_{cad}{}^b + R_{cba}{}^d$。
+为了让等式中出现$R_{cda}{}^b$，我们分别交换$a,d$和$b,d$，得到$R_{dbc}{}^a = R_{cda}{}^b + R_{cbd}{}^a$和$R_{adc}{}^b = R_{cab}{}^d + R_{cda}{}^b$。
+将此三式相加，得$R_{abc}{}^d + R_{dbc}{}^a + R_{adc}{}^b = 2R_{cda}{}^b$。
+把等号左边的$c$都调到最后，即$R_{bad}{}^c + R_{bda}{}^c + R_{dab}{}^c = R_{bad}{}^c - R_{abd}{}^c = 2R_{bad}{}^c = 2R_{cda}{}^b$，而这就等价于我们要证的。
 \end{enumerate}
 \end{proof}
 
+\begin{note}
+设$\dim M = n$，则$R_{abc}{}^d$的分量$R_{\mu\nu\sigma}{}^\rho$共有$n^4$个。但由于满足前述定理中的代数等式，独立分量数仅为
+$$N = n^2(n^2 - 1) / 12$$
+\end{note}
+
+选定度规后，每个$(0, 2)$型张量$T_{ab}$对应于一个$(1, 1)$型张量$T^a{}_b \equiv g^{ac}T_{cb}$，即矢量空间上的一个线性变换，其在任意基底的分量组成一个矩阵，不同基底对应的矩阵互为相似矩阵，故有相同的迹，其值为$T^a{}_a = g^{ac}T_{ac}$，称为张量$T^a{}_b$的迹，也称为$T_{ab}$的迹。
+类似地，给定$(0, 4)$型张量$R_{abcd}$，原则上可通过缩并得到以下六个``迹''（每个``迹''是一个$(0, 2)$型张量）：$g^{ab}R_{abcd}$，$g^{ac}R_{abcd}$，$g^{ad}R_{abcd}$，$g^{bc}R_{abcd}$，$g^{bd}R_{abcd}$及$g^{cd}R_{abcd}$。
+然而，由于黎曼张量$R_{abc}{}^d$降指标后所得$R_{abcd}$的性质及$g^{ac}$的对称性，易见上述六个缩并中的第一、六个为零；第二、五个相等（理由：$g^{ac}R_{abcd} = g^{ac}R_{badc}$，与$g^{bd}R_{abcd}$实质一样，只因要照顾指标平衡而不写$g^{ac}R_{abcd} = g^{bd}R_{abcd}$）；
+第三、四个相等并等于第二、五个之负，故六个缩并中只有一个独立，例如可取$g^{bd}R_{abcd} = R_{abc}{}^b$，记作$R_{ac}$，称为里奇张量。
+应该强调的是为定义里奇张量无需借用度规，因为$R_{ac} \equiv R_{abc}{}^b$天生就有明确意义。
+$R_{ac}$还可借度规求迹，即$g^{ac}R_{ac}$，记作$R$，称为标量曲率。易证$R_{ac} = R_{ca}$。
+此外还应掌握$R_{abc}{}^d$的无迹部分，叫外尔张量，定义如下：
+
+\begin{definition}
+对维数$n \geq 3$的广义黎曼空间，外尔张量$C_{abcd}$由下式定义：
+$$C_{abcd} := R_{abcd} - \frac{2}{n - 2}(g_{a[c}R_{d]b} - g_{b[c}R_{d]a}) + \frac{2}{(n - 1)(n - 2)}Rg_{a[c}g_{d]b}$$
+\end{definition}
+
+\begin{theorem}
+外尔张量有以下性质：
+\begin{enumerate}[（1）]
+\item $C_{abcd} = -C_{bacd} = -C_{abdc} = C_{cdab}, ~ C_{[abc]d} = 0$
+\item $C_{abcd}$的各种迹都为零，例如$g^{ac}C_{abcd} = 0$
+\end{enumerate}
+\end{theorem}
+
+\begin{note}
+外尔张量的定义说明$R_{abcd}$是其无迹部分$C_{abcd}$与有迹部分
+$$\frac{2}{n - 2}(g_{a[c}R_{d]b} - g_{b[c}R_{d]a}) + \frac{2}{(n - 1)(n - 2)}Rg_{a[c}g_{d]b}$$
+之和。
+\end{note}
+
+\begin{definition}
+广义黎曼空间的爱因斯坦张量$G_{ab}$由下式定义
+$$G_{ab} := R_{ab} - \frac{1}{2}Rg_{ab}$$
+\end{definition}
+
+\begin{theorem}
+$\nabla^aG_{ab} = 0$（其中$\nabla^aG_{ab} \equiv g^{ac}\nabla_cG_{ab}$）。
+\end{theorem}
+
+\begin{proof}
+由Bianchi恒等式有$0 = \nabla_aR_{bcd}{}^e + \nabla_cR_{abd}{}^e + \nabla_bR_{cad}{}^e$。
+指标$a$同$e$缩并得$0 = \nabla_aR_{bcd}{}^a + \nabla_cR_{abd}{}^a + \nabla_bR_{cad}{}^a = \nabla_aR_{bcd}{}^a - \nabla_cR_{bd} + \nabla_bR_{cd}$。
+以$g^{bd}$作用得
+$$\begin{aligned}
+0 & = g^{bd}\nabla_aR_{bcd}{}^a - g^{bd}\nabla_cR_{bd} + g^{bd}\nabla_bR_{cd} \\
+& = \nabla_aR_{c}{}^a - \nabla_cR + \nabla_bR_c{}^b = 2\nabla_aR_c{}^a - \nabla_cR
+\end{aligned}$$
+故$\nabla^aG_{ab} = \nabla^aR_{ab} - \frac{1}{2}R\nabla^ag_{ab} = \nabla_aR_{b}{}^a - \frac{1}{2}R\nabla_b = 0$，其中第二步用到$R_{ab} = R_{ba}$以及$\nabla^aG_{ab}$的定义，第三步用到上式。
+\end{proof}
+
+爱因斯坦张量$G_{ab}$及其满足的上述定理对建立广义相对论的爱因斯坦方程有重要作用。
+
 \subsection{由度规计算黎曼曲率}
+
+设$M$上给定度规$g_{ab}$，由$\nabla_ag_{bc} = 0$便决定唯一的联络$\nabla_a$，因而有黎曼张量$R_{abc}{}^d$。
+常见的问题是已知$g_{ab}$欲求$R_{abc}{}^d$。
+所谓计算某张量，就是求出它在某基底的分量。
+基底分为坐标基底和非坐标基底两大类，本小节只讲用坐标基底求曲率的方法，用非坐标基底的方法将在后面的章节介绍。
+
+
 
 \section{内禀曲率和外曲率}
 
