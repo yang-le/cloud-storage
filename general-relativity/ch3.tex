@@ -688,7 +688,29 @@ $$\begin{aligned}
 所谓计算某张量，就是求出它在某基底的分量。
 基底分为坐标基底和非坐标基底两大类，本小节只讲用坐标基底求曲率的方法，用非坐标基底的方法将在后面的章节介绍。
 
+任选坐标系后，度规分量$g_{\mu\nu}$便是已知量，满足$\nabla_ag_{bc} = 0$的联络$\nabla_a$在此坐标系下的体现就是它在该系的克氏符
+$$\Gamma^\sigma{}_{\mu\nu} = \frac{1}{2}g^{\sigma\rho}(-g_{\mu\nu,\rho} + g_{\rho\mu,\nu} + g_{\nu\rho,\mu})$$
+$\Gamma^\sigma{}_{\mu\nu}$有三个具体指标，故${\Gamma^\sigma{}_{\mu\nu}}$含$n^3$个数。
+对称性$\Gamma^\sigma{}_{\mu\nu} = \Gamma^\sigma{}_{\nu\mu}$使这$n^3$个数中只有$n^2(n + 1)/2$个独立
+（当$n = 4$时有$40$个数独立，其分别为$\Gamma^0{}_{00}, \Gamma^0{}_{01}, \Gamma^0{}_{02}, \Gamma^0{}_{03}, \Gamma^0{}_{11}, \Gamma^0{}_{12}, \Gamma^0{}_{13}, \Gamma^0{}_{22}, \Gamma^0{}_{23}, \Gamma^0{}_{33}; \Gamma^1{}_{00}, \cdots; \Gamma^2{}_{00}, \cdots; \Gamma^3{}_{00}, \cdots$）。
+计算的第一步就是从已知的$g_{\mu\nu}$求出全部非零的$\Gamma^\sigma{}_{\mu\nu}$。
 
+由黎曼张量定义有$R_{abc}{}^d\omega_d = 2\nabla_{[a}\nabla_{b]}\omega_c$，其中$\nabla_a\nabla_b\omega_c$可借前面证明中的等式表为$6$项（原式共$5$项，第$5$项的$\nabla_b\omega_d$又可展为两项，即$\partial_b\omega_d - \Gamma^e{}_{bd}\omega_e$），
+对每项的指标$a, b$反称化，注意到$\partial_{[a}\partial_{b]}\omega_c = 0$，$\Gamma^d{}_{[ab]} = \Gamma^d{}_{[(ab)]} = 0$，便得
+$$\begin{aligned}
+R_{abc}{}^d\omega_d & = 2(\partial_{[a}\partial_{b]}\omega_c - \partial_{[a}\Gamma^e{}_{b]c}\omega_e - \Gamma^e{}_{c[b}\partial_{a]}\omega_e - \Gamma^d{}_{[ab]}\nabla_d\omega_c - \Gamma^d{}_{c[a}\nabla_{b]}\omega_d) \\
+& = 2(-\partial_{[a}\Gamma^e{}_{b]c}\omega_e - \Gamma^e{}_{c[b}\partial_{a]}\omega_e - \Gamma^d{}_{c[a}\partial_{b]}\omega_d + \Gamma^d{}_{c[a}\Gamma^e{}_{b]d}\omega_e) \\
+& = -2\partial_{[a}\Gamma^d{}_{b]c}\omega_d + 2\Gamma^e{}_{c[a}\Gamma^d{}_{b]e}\omega_d, ~ \forall \omega_d \in \mathscr{F}(0, 1)
+\end{aligned}$$
+故$R_{abc}{}^d = -2\partial_{[a}\Gamma^d{}_{b]c} + 2\Gamma^e{}_{c[a}\Gamma^d{}_{b]e}$，
+其坐标分量为
+$$\begin{aligned}
+R_{\mu\nu\sigma}{}^\rho & = -2\partial_{[\mu}\Gamma^\rho{}_{\nu]\sigma} + 2\Gamma^\lambda{}_{\sigma[\mu}\Gamma^\rho{}_{\nu]\lambda}\\
+& = \Gamma^\rho{}_{\mu\sigma, \nu} - \Gamma^\rho{}_{\nu\sigma, \mu} + \Gamma^\lambda{}_{\sigma\mu}\Gamma^\rho{}_{\nu\lambda} - \Gamma^\lambda{}_{\sigma\nu}\Gamma^\rho{}_{\mu\lambda}
+\end{aligned}$$
+其中$\Gamma^\rho{}_{\mu\sigma, \nu} \equiv \partial\Gamma^\rho{}_{\mu\sigma} / \partial x^\nu$。
+由上式又可得里奇张量的坐标分量表达式
+$$R_{\mu\sigma} = R_{\mu\nu\sigma}{}^\nu = \Gamma^\nu{}_{\mu\sigma, \nu} - \Gamma^\nu{}_{\nu\sigma, \mu} + \Gamma^\lambda{}_{\sigma\mu}\Gamma^\nu{}_{\nu\lambda} - \Gamma^\lambda{}_{\sigma\nu}\Gamma^\nu{}_{\mu\lambda}$$
 
 \section{内禀曲率和外曲率}
 
