@@ -10,6 +10,11 @@ cl
 
 对OpenCL API的探索
 
+general-relativity
+------------------
+
+微分几何与广义相对论笔记
+
 gmp
 ---
 
@@ -20,10 +25,30 @@ lisp
 
 LISP语言学习和探索
 
+machine-learning
+----------------
+
+机器学习笔记
+
 math_note
 ---------
 
 一些数学笔记
+
+music
+-----
+
+关于音乐（以及其与数学的关系）
+
+preprocess
+----------
+
+预处理元编程探索
+
+quantum-computation
+-------------------
+
+量子计算笔记
 
 taocp
 -----
@@ -34,16 +59,6 @@ unicode
 -------
 
 对UNICODE的介绍
-
-general-relativity
-------------------
-
-微分几何与广义相对论笔记
-
-quantum-computation
--------------------
-
-量子计算笔记
 
 
 TODO
