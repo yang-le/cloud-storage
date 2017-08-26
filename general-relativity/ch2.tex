@@ -232,15 +232,15 @@ $$\{p \in O \mid x^2(p) = \text{常数}, \cdots, x^n(p) = \text{常数}\}$$
 
 \begin{definition}
 设$C(t)$是流形$M$上的$C^1$曲线，则线上$C(t_0)$点切于$C(t)$的切矢$T$是$C(t_0)$点的矢量，它对$f \in \mathscr{F}_M$的作用定义为：
-$$T(f) := \left.\frac{\diff (f \comp C)}{\diff t}\right|_{t_0}, ~ \forall f \in \mathscr{F}_M$$
+$$T(f) := \left.\frac{\mathrm{d}(f \comp C)}{\mathrm{d}t}\right|_{t_0}, ~ \forall f \in \mathscr{F}_M$$
 \end{definition}
 
 \begin{note}
 \textcircled{1}$f \colon M \to \mathbb{R}$是$M$上的函数（标量场），不是什么一元函数，
 但与曲线$C \colon I \to M$的结合$f \comp C$便是以$t$为自变数的一元函数（也可记作$f(C(t))$）。
-在不会混淆的情况下，$\diff (f \comp C) / \diff t$也可简写成$\diff f / \diff t$。
+在不会混淆的情况下，$\mathrm{d}(f \comp C) / \mathrm{d}t$也可简写成$\mathrm{d}f / \mathrm{d}t$。
 \textcircled{2}$C(t_0)$点切于$C(t)$的切矢$T$也常记作$\partial / \partial t|_{C(t_0)}$，于是上式也可写成
-$$\left.\frac{\partial}{\partial t}\right|_{C(t_0)}(f) := \left.\frac{\diff (f \comp C)}{\diff t}\right|_{t_0} := \left.\frac{\diff f(C(t))}{\diff t}\right|_{t_0}, ~ \forall f \in \mathscr{F}_M$$
+$$\left.\frac{\partial}{\partial t}\right|_{C(t_0)}(f) := \left.\frac{\mathrm{d}(f \comp C)}{\mathrm{d}t}\right|_{t_0} := \left.\frac{\mathrm{d}f(C(t))}{\mathrm{d}t}\right|_{t_0}, ~ \forall f \in \mathscr{F}_M$$
 \end{note}
 
 \begin{example}
@@ -251,15 +251,15 @@ $$\left.\frac{\partial}{\partial x^\mu}\right|_p(f) := \left.\frac{\partial f(x)
 
 \begin{theorem}
 设曲线$C(t)$在某坐标系中的参数式为$x^\mu = x^\mu(t)$，则线上任一点的切矢$\partial / \partial t$在该坐标基底的展开式为
-$$\frac{\partial}{\partial t} = \frac{\diff x^\mu(t)}{\diff t}\frac{\partial}{\partial x^\mu}$$
+$$\frac{\partial}{\partial t} = \frac{\mathrm{d}x^\mu(t)}{\mathrm{d}t}\frac{\partial}{\partial x^\mu}$$
 就是说，曲线$C(t)$的切矢$\partial / \partial t$的坐标分量是$C(t)$在该系的参数式$x^\mu(t)$对$t$的导数。
 \end{theorem}
 
 \begin{proof}[证明]
 注意到$f(C(t_0)) = f(x^\mu(t_0)) \equiv f(p), ~ \forall f \in \mathscr{F}_M$，因此
-$$\left.\frac{\partial}{\partial t}\right|_{C(t_0)}(f) = \left.\frac{\diff f(C(t))}{\diff t}\right|_{t_0}
-= \left.\frac{\diff f(x^\mu(t))}{\diff t}\right|_{t_0} = \left.\frac{\partial f}{\partial x^\mu}\frac{\diff x^\mu(t)}{\diff t}\right|_{t_0}, ~ \forall f \in \mathscr{F}_M$$
-对比等式的两边，可以发现$\partial / \partial t$和$\frac{\diff x^\mu(t)}{\diff t}\partial / \partial x^\mu$在同一点$p = C(t_0)$上对任一$f$的作用是相等的，故定理得证。
+$$\left.\frac{\partial}{\partial t}\right|_{C(t_0)}(f) = \left.\frac{\mathrm{d}f(C(t))}{\mathrm{d}t}\right|_{t_0}
+= \left.\frac{\mathrm{d}f(x^\mu(t))}{\mathrm{d}t}\right|_{t_0} = \left.\frac{\partial f}{\partial x^\mu}\frac{\mathrm{d}x^\mu(t)}{\mathrm{d}t}\right|_{t_0}, ~ \forall f \in \mathscr{F}_M$$
+对比等式的两边，可以发现$\partial / \partial t$和$\frac{\mathrm{d}x^\mu(t)}{\mathrm{d}t}\partial / \partial x^\mu$在同一点$p = C(t_0)$上对任一$f$的作用是相等的，故定理得证。
 \end{proof}
 
 \begin{definition}
@@ -272,7 +272,7 @@ $$\left.\frac{\partial}{\partial t}\right|_{C(t_0)}(f) = \left.\frac{\diff f(C(t
 
 \begin{theorem}
 设曲线$C' \colon I' \to M$是$C \colon I \to M$的重参数化，则两者在任一像点的切矢$\partial / \partial t$和$\partial / \partial t'$有如下关系：
-$$\frac{\partial}{\partial t} = \frac{\diff t'(t)}{\diff t}\frac{\partial}{\partial t'}$$
+$$\frac{\partial}{\partial t} = \frac{\mathrm{d}t'(t)}{\mathrm{d}t}\frac{\partial}{\partial t'}$$
 其中$t'(t)$是由映射$\alpha \colon I \to I'$诱导而得的一元函数，即$\alpha(t)$。
 \end{theorem}
 
@@ -471,29 +471,29 @@ $$\begin{aligned}
 若在$M$（或$A \in M$）上每点指定一个对偶矢量，就得到$M$（或$A$）上的一个\textbf{对偶矢量场}。
 $M$上的对偶矢量场$\omega$叫做\textbf{光滑}的，若对所有光滑矢量场$v$有$\omega(v) \in \mathscr{F}_M$。
 
-设$f \in \mathscr{F}_M$，我们来说明$f$自然诱导出$M$上的一个对偶矢量场，记作$\diff f$。
-要定义$\diff f$只须说明它在$M$的任一点$p$的值$\diff f|_p \in {V_p}^*$的定义，
-而要定义$\diff f|_p$只须给出它对$p$点任一矢量$v \in V$作用所得的实数，这个实数应与$f$和$v$都有关，
-而由$f$和$v$能构造的最自然（最简单）的实数便是$v(f)$，因此定义$\diff f|_p$为
-$$\diff f|_p(v) := v(f), ~ \forall v \in V_p$$
+设$f \in \mathscr{F}_M$，我们来说明$f$自然诱导出$M$上的一个对偶矢量场，记作$\mathrm{d}f$。
+要定义$\mathrm{d}f$只须说明它在$M$的任一点$p$的值$\mathrm{d}f|_p \in {V_p}^*$的定义，
+而要定义$\mathrm{d}f|_p$只须给出它对$p$点任一矢量$v \in V$作用所得的实数，这个实数应与$f$和$v$都有关，
+而由$f$和$v$能构造的最自然（最简单）的实数便是$v(f)$，因此定义$\mathrm{d}f|_p$为
+$$\mathrm{d}f|_p(v) := v(f), ~ \forall v \in V_p$$
 由此易证
-$$\diff (fg)|_p = f|_p(\diff g)|_p + g|_p(\diff f)|_p$$
-这正是微分算符$\diff$所满足的莱布尼茨律。
+$$\mathrm{d}(fg)|_p = f|_p(\mathrm{d}g)|_p + g|_p(\mathrm{d}f)|_p$$
+这正是微分算符$\mathrm{d}$所满足的莱布尼茨律。
 
 设$(O, \psi)$是一坐标系，则第$\mu$个坐标$x^\mu$可以看作$O$上的函数，
-于是$\diff x^\mu$（看作特殊的$\diff f$）是定义在$O$上的对偶矢量场。
+于是$\mathrm{d}x^\mu$（看作特殊的$\mathrm{d}f$）是定义在$O$上的对偶矢量场。
 设$p \in O$，$\partial / \partial x^\nu$是$V_p$的第$\nu$个坐标基矢，
-则在$p$点有$$\diff x^\mu\left(\frac{\partial}{\partial x^\nu}\right) = \frac{\partial}{\partial x^\nu}(x^\mu) = \delta^\mu{}_\nu$$
-由此可见$\{\diff x^\mu\}$正是与坐标基底$\{\partial / \partial x^\nu\}$对应的\textbf{对偶坐标基底}。
+则在$p$点有$$\mathrm{d}x^\mu\left(\frac{\partial}{\partial x^\nu}\right) = \frac{\partial}{\partial x^\nu}(x^\mu) = \delta^\mu{}_\nu$$
+由此可见$\{\mathrm{d}x^\mu\}$正是与坐标基底$\{\partial / \partial x^\nu\}$对应的\textbf{对偶坐标基底}。
 上式对$O$的任一点成立，因此，同$\partial / \partial x^\nu$是$O$上的第$\nu$个坐标基矢场类似，
-$\diff x^\mu$是$O$上的第$\mu$个对偶坐标基矢场，$\{\diff x^\mu\}$则是$O$上的第$\mu$个对偶坐标基底场。
-$O$上任一对偶矢量场$\omega$可借$\{\diff x^\mu\}$展开：$$\omega = \omega_\mu\diff x^\mu$$
+$\mathrm{d}x^\mu$是$O$上的第$\mu$个对偶坐标基矢场，$\{\mathrm{d}x^\mu\}$则是$O$上的第$\mu$个对偶坐标基底场。
+$O$上任一对偶矢量场$\omega$可借$\{\mathrm{d}x^\mu\}$展开：$$\omega = \omega_\mu\mathrm{d}x^\mu$$
 其中$\omega_\mu$称为$\omega$在该系的坐标分量，其表达式为：$$\omega_\mu = \omega(\partial / \partial x^\mu)$$
 
 \begin{theorem}
 设$(O, \psi)$是一坐标系，$f$是$O$上的光滑函数，$f(x)$是$f \comp \psi^{-1}$对应的$n$元函数$f(x^1, \cdots, x^n)$的简写，
-则$\diff f$可用对偶坐标基底$\{\diff x^\mu\}$展开如下：
-$$\diff f = \frac{\partial f(x)}{\partial x^\mu}\diff x^\mu, ~ \forall f \in \mathscr{F}_O$$
+则$\mathrm{d}f$可用对偶坐标基底$\{\mathrm{d}x^\mu\}$展开如下：
+$$\mathrm{d}f = \frac{\partial f(x)}{\partial x^\mu}\mathrm{d}x^\mu, ~ \forall f \in \mathscr{F}_O$$
 \end{theorem}
 
 \begin{proof}
@@ -585,43 +585,43 @@ T'^\mu{}_\nu & = T(e'^{\mu*}; e'_\nu) = T((\tilde{A}^{-1})_\rho{}^\mu e^{\rho*};
 于是有矩阵等式$T' = A^{-1}TA$（其中$T'$，$A$，$T$都代表矩阵。$T$有时代表张量，有时代表矩阵，读者应能根据上下文识别。）。
 可见$T'$与$T$互为相似矩阵。以$T'^\mu{}_\mu$（是$\sum_{\mu = 1}^n T'^\mu{}_\mu$的简写）和$T^\rho{}_\rho$分别代表矩阵$T'$和$T$的迹，则由上式易得：
 $$T'^\mu{}_\mu = (A^{-1})^\mu{}_\rho T^\rho{}_\sigma A^\sigma{}_\mu = A^\sigma{}_\mu(A^{-1})^\mu{}_\rho T^\rho{}_\sigma = \delta^\sigma{}_\rho T^\rho{}_\sigma = T^\rho{}_\rho$$
-这就证明了同一$(1, 1)$型张量在不同基底的矩阵有相同的迹。在关心张量时，应该抓住其与基底无关的性质，$(1, 1)$型张量$T$的迹$T^\mu{}_\mu$就是这样一种性质，通常把它称为$T$的\textbf{缩并}或\textbf{收缩}，暂记作$\contraction T$，即
-$$\contraction T := T^\mu{}_\mu = T(e^{\mu*}; e_\mu)$$
+这就证明了同一$(1, 1)$型张量在不同基底的矩阵有相同的迹。在关心张量时，应该抓住其与基底无关的性质，$(1, 1)$型张量$T$的迹$T^\mu{}_\mu$就是这样一种性质，通常把它称为$T$的\textbf{缩并}或\textbf{收缩}，暂记作$\operatorname{C} T$，即
+$$\operatorname{C} T := T^\mu{}_\mu = T(e^{\mu*}; e_\mu)$$
 
 再讨论$(2, 1)$型张量$T$的缩并。$T$可记作$T(\bullet, \bullet; \bullet)$，它有两个上槽和一个下槽，故有两种可能的缩并：
-\textcircled{1}第一上槽与下槽的缩并$\contraction^1_1T := T(e^{\mu*}, \bullet; e_\mu)$；
-\textcircled{2}第二上槽与下槽的缩并$\contraction^2_1T := T(\bullet, e^{\mu*}; e_\mu)$。
-若改用另一基底${e'_\rho}$定义这两种缩并，分别记作$(\contraction^1_1T)'$和$(\contraction^2_1T)'$，则易证$\contraction^1_1T = (\contraction^1_1T)'$，$\contraction^2_1T = (\contraction^2_1T)'$。
-由``张量面面观''可知$\contraction^1_1T$和$\contraction^2_1T$都是$(1, 0)$型张量，它们在任一基底的分量可用$T$在该基底的分量表为$(\contraction^1_1T)^\nu = T(e^{\mu*}, e^{\nu*}; e_\mu) = T^{\mu\nu}{}_\mu$，$(\contraction^2_1T)^\nu = T^{\nu\mu}{}_\mu$（已略去求和号）。
+\textcircled{1}第一上槽与下槽的缩并$\operatorname{C}^1_1T := T(e^{\mu*}, \bullet; e_\mu)$；
+\textcircled{2}第二上槽与下槽的缩并$\operatorname{C}^2_1T := T(\bullet, e^{\mu*}; e_\mu)$。
+若改用另一基底${e'_\rho}$定义这两种缩并，分别记作$(\operatorname{C}^1_1T)'$和$(\operatorname{C}^2_1T)'$，则易证$\operatorname{C}^1_1T = (\operatorname{C}^1_1T)'$，$\operatorname{C}^2_1T = (\operatorname{C}^2_1T)'$。
+由``张量面面观''可知$\operatorname{C}^1_1T$和$\operatorname{C}^2_1T$都是$(1, 0)$型张量，它们在任一基底的分量可用$T$在该基底的分量表为$(\operatorname{C}^1_1T)^\nu = T(e^{\mu*}, e^{\nu*}; e_\mu) = T^{\mu\nu}{}_\mu$，$(\operatorname{C}^2_1T)^\nu = T^{\nu\mu}{}_\mu$（已略去求和号）。
 不难推广上述讨论而得出$(k, l)$型张量的缩并定义如下：
 
 \begin{definition}
 $T \in \mathscr{T}_V(k, l)$的第$i$上标（$i \leq k$）与第$j$下标（$j \leq l$）的\textbf{缩并}定义为：
 $$\begin{aligned}
-\contraction^i_jT := T(\bullet, \cdots, & e^{\mu*}, \bullet, \cdots; & \bullet, \cdots, e&_\mu, \bullet, \cdots) \in \mathscr{T}_V(k - 1, l - 1) ~ \text{（要对$\mu$求和）} \\
+\operatorname{C}^i_jT := T(\bullet, \cdots, & e^{\mu*}, \bullet, \cdots; & \bullet, \cdots, e&_\mu, \bullet, \cdots) \in \mathscr{T}_V(k - 1, l - 1) ~ \text{（要对$\mu$求和）} \\
 & \uparrow & \uparrow & \\
 & \text{第$i$上槽} & \text{第$j$下槽} &
 \end{aligned}$$
 \end{definition}
 
 \begin{note}
-\textcircled{1}$\contraction^i_jT$与基底选择无关。
+\textcircled{1}$\operatorname{C}^i_jT$与基底选择无关。
 \textcircled{2}由上式易见$(k, l)$型张量的每一缩并都是一个$(k - 1, l - 1)$型张量。
 \textcircled{3}联合使用张量积和缩并运算可从原有张量得到各种类型的新张量。
-例如，设$v \in V$，$\omega \in V^*$，则$v \otimes \omega$是$(1, 1)$型张量，而$\contraction(v \otimes \omega)$则是$(0, 0)$型张量（标量）。
+例如，设$v \in V$，$\omega \in V^*$，则$v \otimes \omega$是$(1, 1)$型张量，而$\operatorname{C}(v \otimes \omega)$则是$(0, 0)$型张量（标量）。
 \end{note}
 
 后面经常遇到先求张量积再做缩并的运算，其结果可看做张量对矢量（或对偶矢量）的作用。
 作为例子，请考虑如下$3$个等式。
 
 \begin{enumerate}[（a）]
-\item $\contraction(v \otimes \omega) = \omega_\mu v^\mu = \omega(v) = v(\omega), ~ \forall v \in V, \omega \in V^*$。
-\item $\contraction^1_2(T \otimes v) = T(\bullet, v), ~ \forall v \in V, T \in \mathscr{T}_V(0, 2)$。
-\item $\contraction^2_2(T \otimes \omega) = T(\bullet, \omega; \bullet), ~ \forall \omega \in V^*, T \in \mathscr{T}_V(2, 1)$。
+\item $\operatorname{C}(v \otimes \omega) = \omega_\mu v^\mu = \omega(v) = v(\omega), ~ \forall v \in V, \omega \in V^*$。
+\item $\operatorname{C}^1_2(T \otimes v) = T(\bullet, v), ~ \forall v \in V, T \in \mathscr{T}_V(0, 2)$。
+\item $\operatorname{C}^2_2(T \otimes \omega) = T(\bullet, \omega; \bullet), ~ \forall \omega \in V^*, T \in \mathscr{T}_V(2, 1)$。
 \end{enumerate}
 
 我们只给出（b）的证明。待证等式左边的$T \otimes v$是$(1, 2)$型张量，是一部有$1$个上槽、$2$个下槽的机器，可表为$T \otimes v(\bullet; \bullet, \bullet)$，故
-$$\contraction^1_2(T \otimes v) = T \otimes v(e^{\mu*}; \bullet, e_\mu)$$
+$$\operatorname{C}^1_2(T \otimes v) = T \otimes v(e^{\mu*}; \bullet, e_\mu)$$
 所以只须证明下式
 $$T \otimes v(e^{\mu*}; \bullet, e_\mu) = T(\bullet, v)$$
 而此式是对偶矢量的等式，只须证明两边作用于任一$(u \in V)$给出相同实数。
@@ -632,10 +632,10 @@ $$T \otimes v(e^{\mu*}; u, e_\mu) = T(u, e_\mu)v(e^{\mu*}) = T(u, e_\mu)v^\mu = 
 
 下面回到流形$M$。$M$中任一点$p$的切空间$V_p$的全体$(k, l)$型张量的集合自然记作$\mathscr{T}_{V_p}(k, l)$。
 设$\{e_\mu\}$和$\{e^{\mu*}\}$是$V_p$的任一基底及对偶基底，则$T$同样可写成展开式。
-若选坐标系$\{x^\mu\}$使坐标域含$p$，则可用坐标基矢$\partial / \partial x^\mu$和对偶坐标基矢$\diff x^\mu$充当$e_\mu$和$e^{\mu*}$，即
-$$T = T^{\mu\nu}{}_\sigma\frac{\partial}{\partial x^\mu}\otimes\frac{\partial}{\partial x^\nu}\otimes\diff x^\sigma$$
+若选坐标系$\{x^\mu\}$使坐标域含$p$，则可用坐标基矢$\partial / \partial x^\mu$和对偶坐标基矢$\mathrm{d}x^\mu$充当$e_\mu$和$e^{\mu*}$，即
+$$T = T^{\mu\nu}{}_\sigma\frac{\partial}{\partial x^\mu}\otimes\frac{\partial}{\partial x^\nu}\otimes\mathrm{d}x^\sigma$$
 其中坐标分量$T^{\mu\nu}{}_\sigma$可表为
-$$T^{\mu\nu}{}_\sigma = T(\diff x^\mu, \diff x^\nu; \partial / \partial x^\sigma)$$
+$$T^{\mu\nu}{}_\sigma = T(\mathrm{d}x^\mu, \mathrm{d}x^\nu; \partial / \partial x^\sigma)$$
 
 若在流形$M$（或$A \subset M$）上每点指定一个$(k, l)$型张量，就得到$M$（或$A$）上的一个$(k, l)$型\textbf{张量场}。
 $M$上张量场$T$称为\textbf{光滑的}，若对所有光滑对偶矢量场$\omega^1, \cdots, \omega^k$及光滑矢量场$v_1, \cdots, v_l$有$T(\omega^1, \cdots, \omega^k; v_1, \cdots, v_l) \in \mathscr{F}_M$。
@@ -722,28 +722,28 @@ $M$上的对称的、处处非退化的$(0, 2)$型张量场称为\textbf{度规�
 \end{note}
 
 度规场的一大用处就是定义曲线长度。先讨论$2$维欧氏空间。
-设曲线$C(t)$在自然坐标系$\{x, y\}$的参数式为$x = x(t), y = y(t)$，则曲线元段线长的平方$\diff l^2$（是$(\diff l)^2$的简写）为
+设曲线$C(t)$在自然坐标系$\{x, y\}$的参数式为$x = x(t), y = y(t)$，则曲线元段线长的平方$\mathrm{d}l^2$（是$(\mathrm{d}l)^2$的简写）为
 
-$\diff l^2 = \diff x^2 + \diff y^2 = [(\diff x / \diff t)^2 + (\diff y / \diff t)^2]\diff t^2 = [(T^1)^2 + (T^2)^2]\diff t^2 = |T|^2\diff t^2$，
+$\mathrm{d}l^2 = \mathrm{d}x^2 + \mathrm{d}y^2 = [(\mathrm{d}x / \mathrm{d}t)^2 + (\mathrm{d}y / \mathrm{d}t)^2]\mathrm{d}t^2 = [(T^1)^2 + (T^2)^2]\mathrm{d}t^2 = |T|^2\mathrm{d}t^2$，
 
 其中$T$是$C(t)$的切矢。由上式得
-$$\diff l = |T|\diff t$$
+$$\mathrm{d}l = |T|\mathrm{d}t$$
 于是$C(t)$的线长为
-$$l = \int |T| \diff t$$
+$$l = \int |T| \mathrm{d}t$$
 上式可推广至带有正定度规场$g$的任意流形$M$上。
 设$C(t)$是$M$上任一$C^1$曲线，$T$是其切矢，即$T \equiv \partial / \partial t$，则$|T| = \sqrt{g(T, T)}$，故$C(t)$的线长自然定义为
-$$l := \int \sqrt{g(T, T)}\diff t$$
+$$l := \int \sqrt{g(T, T)}\mathrm{d}t$$
 
 对有洛伦兹度规场$g$的流形$M$，在定义线长前应注意曲线的类型。
 若$C^1$曲线$C(t)$各点的切矢都类空，则$C(t)$叫\textbf{类空曲线}。
 类似地可定义\textbf{类时曲线}和\textbf{类光曲线}。
 类空和类光曲线的线长仍由上式定义（因此类光曲线的线长恒为零）。
-注意到类时曲线有$g(T, T) < 0$，其元线长应定义为$\diff l := \sqrt{-g(T, T)}\diff t$。
+注意到类时曲线有$g(T, T) < 0$，其元线长应定义为$\mathrm{d}l := \sqrt{-g(T, T)}\mathrm{d}t$。
 于是有如下定义：
 
 \begin{definition}
 设流形$M$上有洛伦兹度规场$g$，则$M$上的类空、类光及类时曲线$C(t)$的线长定义为
-$$l := \int\sqrt{|g(T, T)|}\diff t, ～ \text{其中}T \equiv \partial / \partial t$$
+$$l := \int\sqrt{|g(T, T)|}\mathrm{d}t, ～ \text{其中}T \equiv \partial / \partial t$$
 \end{definition}
 
 对于从类时转向类空（或相反）的曲线（``不伦不类''的曲线），线长没有定义。
@@ -752,25 +752,25 @@ $$l := \int\sqrt{|g(T, T)|}\diff t, ～ \text{其中}T \equiv \partial / \partia
 不难证明曲线的线长与其参数化无关，就是说，曲线重参数化（保持映射的像不变而适当改变参数）不改变线长。
 此外，由于线长的定义不涉及坐标系，线长当然与坐标系无关。但是，如果曲线位于坐标系$\{x^\mu\}$的坐标域内，线长也可借助于坐标系计算。因为
 
-$g(T, T) = g(T^\mu\partial / \partial x^\mu, T^\nu\partial / \partial x^\nu) = T^\mu T^\nu g(\partial / \partial x^\mu, \partial / \partial x^\nu) = (\diff x^\mu / \diff t)(\diff x^\nu / \diff t)g_{\mu\nu}$
+$g(T, T) = g(T^\mu\partial / \partial x^\mu, T^\nu\partial / \partial x^\nu) = T^\mu T^\nu g(\partial / \partial x^\mu, \partial / \partial x^\nu) = (\mathrm{d}x^\mu / \mathrm{d}t)(\mathrm{d}x^\nu / \mathrm{d}t)g_{\mu\nu}$
 
-（最后一步用到``曲线切矢的坐标分量等于曲线在该系的参数式对参数的导数''，即$T^\mu = \diff x^\mu / \diff t$。）所以元线长
-$$dl = \sqrt{|g_{\mu\nu}\diff x^\mu\diff x^\nu|}$$
-引入记号$\diff s^2 \equiv g_{\mu\nu}\diff x^\mu\diff x^\nu$，则线长
-$$l = \int\sqrt{\diff s^2} ~ \text{（对类空曲线）} $$
-$$l = \int\sqrt{-\diff s^2} ~ \text{（对类时曲线）} $$
-记号$\diff s^2$在微分几何中经常出现，通常称为\textbf{线元}。
-对类空曲线，$\diff s^2$等于元段长$\diff l$的平方$\diff l^2$;
-对类时曲线，$\diff s^2$等于$-\diff l^2$，因而不是任何实数的平方。
-实际上，$\diff s^2$只是一个记号，对类时曲线它根本不是任何实数的平方，
-但因$\diff s^2 \equiv g_{\mu\nu}\diff x^\mu \diff x^\nu$右边含有度规$g$在所涉及的坐标系的全部分量$g_{\mu\nu}$，
+（最后一步用到``曲线切矢的坐标分量等于曲线在该系的参数式对参数的导数''，即$T^\mu = \mathrm{d}x^\mu / \mathrm{d}t$。）所以元线长
+$$\mathrm{d}l = \sqrt{|g_{\mu\nu}\mathrm{d}x^\mu\mathrm{d}x^\nu|}$$
+引入记号$\mathrm{d}s^2 \equiv g_{\mu\nu}\mathrm{d}x^\mu\mathrm{d}x^\nu$，则线长
+$$l = \int\sqrt{\mathrm{d}s^2} ~ \text{（对类空曲线）} $$
+$$l = \int\sqrt{-\mathrm{d}s^2} ~ \text{（对类时曲线）} $$
+记号$\mathrm{d}s^2$在微分几何中经常出现，通常称为\textbf{线元}。
+对类空曲线，$\mathrm{d}s^2$等于元段长$\mathrm{d}l$的平方$\mathrm{d}l^2$;
+对类时曲线，$\mathrm{d}s^2$等于$-\mathrm{d}l^2$，因而不是任何实数的平方。
+实际上，$\mathrm{d}s^2$只是一个记号，对类时曲线它根本不是任何实数的平方，
+但因$\mathrm{d}s^2 \equiv g_{\mu\nu}\mathrm{d}x^\mu \mathrm{d}x^\nu$右边含有度规$g$在所涉及的坐标系的全部分量$g_{\mu\nu}$，
 从线元表达式可以直接``读出''度规的全体坐标分量。例如，设$2$维流形上的度规$g$在某坐标系$\{t, x\}$的线元表达式为
-$$\diff s^2 = -x\diff t^2 + \diff x^2 + 4\diff t\diff x$$
+$$\mathrm{d}s^2 = -x\mathrm{d}t^2 + \mathrm{d}x^2 + 4\mathrm{d}t\mathrm{d}x$$
 便可读出$g$在该系的分量为$g_{tt} = -x, g_{xx} = 1, g_{tx} = g_{xt} = 2$。可见给定线元（表达式）相当于给定度规场。
 
 设$C \colon I \to M$是类空或类时曲线，则线上任一点$C(t)$的切矢$T$的长度$|T|$是$t$的函数，可记作$|T|(t)$。
-任意指定线上一点$C(t_0)$作为测量线长的起点，则介于$C(t_0)$点和$C(t)$点的曲线段的线长$l(t) = \int^t_{t_0}|T|(t')\diff t'$是$t$的函数。
-$l$也可充当该线的参数，称为\textbf{线长参数}。由$dl \equiv \sqrt{|g(T, T)|}\diff t$可知，以线长为参数的曲线切矢满足$|g(T, T)| = 1$，即有单位长。
+任意指定线上一点$C(t_0)$作为测量线长的起点，则介于$C(t_0)$点和$C(t)$点的曲线段的线长$l(t) = \int^t_{t_0}|T|(t')\mathrm{d}t'$是$t$的函数。
+$l$也可充当该线的参数，称为\textbf{线长参数}。由$dl \equiv \sqrt{|g(T, T)|}\mathrm{d}t$可知，以线长为参数的曲线切矢满足$|g(T, T)| = 1$，即有单位长。
 
 \begin{definition}
 设流形$M$上给定度规场$g$，则$(M, g)$叫\textbf{广义黎曼空间}（若$g$为正定，叫\textbf{黎曼空间}；若$g$为洛伦兹，叫\textbf{伪黎曼空间}，物理上叫\textbf{时空}。\footnote{
@@ -782,11 +782,11 @@ $l$也可充当该线的参数，称为\textbf{线长参数}。由$dl \equiv \sq
 
 \begin{definition}
 设$\{x^\mu\}$是$\mathbb{R}^n$的自然坐标，在$\mathbb{R}^n$上定义度规张量场$\delta$为
-$$\delta := \delta_{\mu\nu}\diff x^\mu\otimes\diff x^\nu$$
+$$\delta := \delta_{\mu\nu}\mathrm{d}x^\mu\otimes\mathrm{d}x^\nu$$
 则$(\mathbb{R}^n, \delta)$称为\textbf{$n$维欧氏空间}，$\delta$称为\textbf{欧氏度规}。
 \end{definition}
 
-上式表明$\delta$在自然坐标系的对偶坐标基底$\{\diff x^\mu\otimes\diff x^\nu\}$的分量为
+上式表明$\delta$在自然坐标系的对偶坐标基底$\{\mathrm{d}x^\mu\otimes\mathrm{d}x^\nu\}$的分量为
 $
 \delta_{\mu\nu} \equiv
 \begin{cases}
@@ -794,11 +794,11 @@ $
 +1, & \mu = \nu,
 \end{cases}
 $
-因此，欧氏度规在自然坐标系的线元表达式应为$\diff s^2 = \delta_{\mu\nu}\diff x^\mu\diff x^\nu$。
-若$n = 2$，便有$\diff s^2 = (\diff x^1)^2 + (\diff x^2)^2$。这正是熟知的$2$维欧氏空间的线元表达式。
+因此，欧氏度规在自然坐标系的线元表达式应为$\mathrm{d}s^2 = \delta_{\mu\nu}\mathrm{d}x^\mu\mathrm{d}x^\nu$。
+若$n = 2$，便有$\mathrm{d}s^2 = (\mathrm{d}x^1)^2 + (\mathrm{d}x^2)^2$。这正是熟知的$2$维欧氏空间的线元表达式。
 由定义可知自然坐标基底用欧氏度规衡量是正交归一的，因为由
 
-$\delta(\partial / \partial x^\alpha, \partial / \partial x^\beta) = \delta_{\mu\nu}\diff x^\mu\otimes\diff x^\nu(\partial / \partial  x^\alpha, \partial / \partial x^\beta) = \delta_{\mu\nu}\diff x^\mu(\partial / \partial x^\alpha)\diff x^\nu(\partial / \partial x^\beta)$
+$\delta(\partial / \partial x^\alpha, \partial / \partial x^\beta) = \delta_{\mu\nu}\mathrm{d}x^\mu\otimes\mathrm{d}x^\nu(\partial / \partial  x^\alpha, \partial / \partial x^\beta) = \delta_{\mu\nu}\mathrm{d}x^\mu(\partial / \partial x^\alpha)\mathrm{d}x^\nu(\partial / \partial x^\beta)$
 
 易见$$\delta(\partial / \partial x^\alpha, \partial / \partial x^\beta) = \delta_{\alpha\beta}$$
 但满足上式的坐标系未必是自然坐标系。例如，对$2$维欧氏空间，由自然坐标系按下式定义的坐标系
@@ -818,7 +818,7 @@ $\delta(\partial / \partial x^\alpha, \partial / \partial x^\beta) = \delta_{\al
 \end{definition}
 
 \begin{note}
-\textcircled{1}因$\delta := \delta_{\mu\nu}\diff x^\mu\otimes\diff x^\nu$与上述定义等价，也可说满足此式的坐标系是笛卡尔系。
+\textcircled{1}因$\delta := \delta_{\mu\nu}\mathrm{d}x^\mu\otimes\mathrm{d}x^\nu$与上述定义等价，也可说满足此式的坐标系是笛卡尔系。
 \textcircled{2}自然坐标系当然是笛卡尔系。
 \textcircled{3}$2$维欧氏空间中任意两个笛卡尔系之间的关系只能取上述四式中的一种形式（或它们的复合）。
 前二种分别称为\textbf{平移}和\textbf{转动}，后二种的每一种称为\textbf{反射}。
@@ -830,7 +830,7 @@ $\delta$代表欧氏度规，是张量场；而$\delta_{\mu\nu}$则是$\delta$�
 极坐标系$\{r, \varphi\}$是$2$维欧氏空间中非笛卡尔系的一例。
 物理书中使用极坐标系时，相应的基底常用$\{\hat{e}_r, \hat{e}_\varphi\}$（顶上加$\hat{}$表示单位矢），它是正交归一的，但却不是极坐标系的坐标基底$\{\partial / \partial r, \partial / \partial\varphi\}$，
 关键在于$\partial / \partial\varphi$不归一，因$\delta(\partial / \partial\varphi, \partial / \partial\varphi) = r^2 \neq 1$\footnote{
-按照矢量的分量变换律，有$\partial / \partial\varphi = (\diff x^\mu / \diff\varphi)(\partial / \partial x^\mu)$。
+按照矢量的分量变换律，有$\partial / \partial\varphi = (\mathrm{d}x^\mu / \mathrm{d}\varphi)(\partial / \partial x^\mu)$。
 再根据极坐标与直角坐标的关系$x^1 = r\cos\varphi, ~ x^2 = r\sin\varphi$，带入即可求出。
 }。
 实际上，$\hat{e}_\varphi$是对$\partial / \partial\varphi$归一化的产物，即$\hat{e}_\varphi := r^{-1}\partial / \partial\varphi$。
@@ -852,12 +852,12 @@ $$
 
 \begin{definition}
 设$\{x^\mu\}$是$\mathbb{R}^n$的自然坐标，在$\mathbb{R}^n$上定义度规张量场$\eta$为
-$$\eta := \eta_{\mu\nu}\diff x^\mu\otimes\diff x^\nu$$
+$$\eta := \eta_{\mu\nu}\mathrm{d}x^\mu\otimes\mathrm{d}x^\nu$$
 则$(\mathbb{R}^n, \eta)$称为\textbf{$n$维闵氏空间}（物理上称为\textbf{$n$维闵氏时空}），$\eta$称为\textbf{闵氏度规}。
 \end{definition}
 
-由定义可知闵氏度规在自然坐标系的线元表达式为$\diff s^2 = \eta_{\mu\nu}\diff x^\mu\diff x^\nu$。
-以$n = 4$为例，有$\diff s^2 = -(\diff x^0)^2 + (\diff x^1)^2 + (\diff x^2)^2 + (\diff x^3)^2$。
+由定义可知闵氏度规在自然坐标系的线元表达式为$\mathrm{d}s^2 = \eta_{\mu\nu}\mathrm{d}x^\mu\mathrm{d}x^\nu$。
+以$n = 4$为例，有$\mathrm{d}s^2 = -(\mathrm{d}x^0)^2 + (\mathrm{d}x^1)^2 + (\mathrm{d}x^2)^2 + (\mathrm{d}x^3)^2$。
 这正是熟知的$4$维闵氏时空的线元（狭义相对论中的元间隔）表达式。不难证明
 $$\eta(\partial / \partial x^\alpha, \partial / \partial x^\beta) = \eta_{\alpha\beta}$$
 可见自然坐标基底$\{\partial / \partial x^\mu\}$用闵氏度规衡量也是正交归一的（第$0$坐标基矢归$-1$，其他归$+1$）。
@@ -866,7 +866,7 @@ $$t' = t + a, ~ x' = x + b ~ \text{（$a, b$为常数）}$$
 的坐标基底$\{\partial / \partial t', \partial / \partial x'\}$也满足上式。
 不难验证，由以下三式分别定义的$\{t', x'\}$系的坐标基底$\{\partial / \partial t', \partial / \partial x'\}$也满足上式：
 \begin{gather*}
-t' = t\ch\lambda + x\sh\lambda, ~ x' = t\sh\lambda + x\ch\lambda ~ \text{（$\lambda$为常数）}, \\
+t' = t\operatorname{ch}\lambda + x\operatorname{sh}\lambda, ~ x' = t\operatorname{sh}\lambda + x\operatorname{ch}\lambda ~ \text{（$\lambda$为常数）}, \\
 t' = -t, ~ x' = x, \\
 t' = t, ~ x' = -x.
 \end{gather*}
@@ -910,7 +910,7 @@ $$T^{ab}{}_c = T^{\mu\nu}{}_\sigma(e_\mu)^a(e_\nu)^b(e^\sigma)_c$$（$(e^\sigma)
 $$T^{\mu\nu}{}_\sigma = T^{ab}{}_c(e^\mu)_a(e^\nu)_b(e_\sigma)^c$$
 注意，上两式的指标（无论抽象的还是具体的）都是``平衡''的。
 设$T \in \mathscr{T}_V(0, 2)$，则$T$应记作$T_{ab}$。
-令$e_\mu$为某基底的第$\mu$基矢，则可知$T(\bullet, e_\mu) = C^1_2(T \otimes e_\mu)$，而$T \otimes e_\mu$用抽象指标应记为$T_{ab}(e_\mu)^c$，故$T(\bullet, e_\mu)$应记作$T_{ab}(e_\mu)^b$，也可简记作$T_{a\mu}$，即
+令$e_\mu$为某基底的第$\mu$基矢，则可知$T(\bullet, e_\mu) = \operatorname{C}^1_2(T \otimes e_\mu)$，而$T \otimes e_\mu$用抽象指标应记为$T_{ab}(e_\mu)^c$，故$T(\bullet, e_\mu)$应记作$T_{ab}(e_\mu)^b$，也可简记作$T_{a\mu}$，即
 $$T(\bullet, e_\mu) \equiv T_{ab}(e_\mu)^b \equiv T_{a\mu}$$
 这是既有抽象指标又有具体指标的张量的表达方式，不妨认为$T_{a1}, \cdots, T_{an}$代表$n$个对偶矢量，其中$T_{a\mu}$代表``第$\mu$个对偶矢量''。
 \item 由``张量面面观''可知，$V$上的$(1, 1)$型张量$T^a{}_b$既可看作从$V$到$V$的线性映射又可看作从$V^*$到$V^*$的线性映射。
@@ -960,34 +960,34 @@ $$g_{\mu\nu}v^\nu = g_{ab}(e_\mu)^a(e_\nu)^bv^\nu = g_{ab}(e_\mu)^av^b = v_a(e_\
 
 作为抽象指标记号的例子，此处介绍$4$维闵氏度规$\eta_{ab}$的抽象指标表达式。
 闵氏度规的定义式在抽象指标记号中应表为
-$$\eta_{ab} := \eta_{\mu\nu}(\diff x^\mu)_a(\diff x^\nu)_b$$
-其中$\{(\diff x^\mu)_a\}$是洛伦兹坐标系的对偶基底。以$\{t, x, y, z\}$代表$\{x^0, x^1, x^2, x^3\}$，则因为非零的$\eta_{\mu\nu}$只有$\eta_{00} = -1, \eta_{11} = \eta_{22} = \eta_{33} = 1$，上式可表为
-$$\eta_{ab} = -(\diff t)_a(\diff t)_b + (\diff x)_a(\diff x)_b + (\diff y)_a(\diff y)_b + (\diff z)_a(\diff z)_b$$
-与线元表达式$\diff s^2 = -\diff t^2 + \diff x^2 + \diff y^2 + \diff z^2$相应。如果改用球坐标系$\{t, r, \theta, \varphi\}$，则由
+$$\eta_{ab} := \eta_{\mu\nu}(\mathrm{d}x^\mu)_a(\mathrm{d}x^\nu)_b$$
+其中$\{(\mathrm{d}x^\mu)_a\}$是洛伦兹坐标系的对偶基底。以$\{t, x, y, z\}$代表$\{x^0, x^1, x^2, x^3\}$，则因为非零的$\eta_{\mu\nu}$只有$\eta_{00} = -1, \eta_{11} = \eta_{22} = \eta_{33} = 1$，上式可表为
+$$\eta_{ab} = -(\mathrm{d}t)_a(\mathrm{d}t)_b + (\mathrm{d}x)_a(\mathrm{d}x)_b + (\mathrm{d}y)_a(\mathrm{d}y)_b + (\mathrm{d}z)_a(\mathrm{d}z)_b$$
+与线元表达式$\mathrm{d}s^2 = -\mathrm{d}t^2 + \mathrm{d}x^2 + \mathrm{d}y^2 + \mathrm{d}z^2$相应。如果改用球坐标系$\{t, r, \theta, \varphi\}$，则由
 $$x = r\sin\theta\cos\varphi, y = r\sin\theta\sin\varphi, z = r\cos\theta$$
 不难从前式导出
-$$\eta_{ab} = -(\diff t)_a(\diff t)_b + (\diff r)_a(\diff r)_b + r^2(\diff \theta)_a(\diff \theta)_b + r^2\sin^2\theta(\diff \varphi)_a(\diff \varphi)_b$$
-与线元表达式$\diff s^2 = -\diff t^2 + \diff r^2 + r^2(\diff \theta^2 + \sin^2\theta\diff\varphi^2)$相应。
+$$\eta_{ab} = -(\mathrm{d}t)_a(\mathrm{d}t)_b + (\mathrm{d}r)_a(\mathrm{d}r)_b + r^2(\mathrm{d}\theta)_a(\mathrm{d}\theta)_b + r^2\sin^2\theta(\mathrm{d}\varphi)_a(\mathrm{d}\varphi)_b$$
+与线元表达式$\mathrm{d}s^2 = -\mathrm{d}t^2 + \mathrm{d}r^2 + r^2(\mathrm{d}\theta^2 + \sin^2\theta\mathrm{d}\varphi^2)$相应。
 
 在许多不用抽象指标记号的文献中，$4$维时空和$3$维黎曼空间的分量指标分别用希腊字母$\mu, \nu, \cdots$（都从$0$取到$3$）和拉丁字母$i, j, k, \cdots$（都从$1$取到$3$）。
 拉丁字母在本书中本应代表抽象指标，然而为区分$4$维和$3$维的分量指标，我们允许一个例外，即凡涉及$3$维黎曼空间时用拉丁字母中从$i$起的若干字母$i, j, k, \cdots$充当具体指标（都从$1$取到$3$），其他拉丁字母（如$a, b, c$等）仍作为抽象指标。
 例如$3$维矢量$\vec{v}$可表为$v^a = v^i(\partial / \partial x^i)^a$（$i$从$1$到$3$取和）。
 
-在抽象指标记号中，坐标基矢记作$(\partial / \partial x^\mu)^a$，对偶坐标基矢记作$(\diff x^\mu)_a$。
-用度规$g_{ab}$和$g^{ab}$对前者和后者分别降、升指标，得对偶矢量$g_{ab}(\partial / \partial x^\mu)^b$和矢量$g^{ab}(\diff x^\mu)_b$。
-以$\omega_a$简记$g_{ab}(\partial / \partial x^\mu)^b$并用对偶坐标基矢展开为$\omega_a = \omega_\nu(\diff x^\nu)_a$，两边作用于$(\partial / \partial x^\sigma)^a$后得$g_{\sigma\mu} = \omega_\sigma$\footnote{
+在抽象指标记号中，坐标基矢记作$(\partial / \partial x^\mu)^a$，对偶坐标基矢记作$(\mathrm{d}x^\mu)_a$。
+用度规$g_{ab}$和$g^{ab}$对前者和后者分别降、升指标，得对偶矢量$g_{ab}(\partial / \partial x^\mu)^b$和矢量$g^{ab}(\mathrm{d}x^\mu)_b$。
+以$\omega_a$简记$g_{ab}(\partial / \partial x^\mu)^b$并用对偶坐标基矢展开为$\omega_a = \omega_\nu(\mathrm{d}x^\nu)_a$，两边作用于$(\partial / \partial x^\sigma)^a$后得$g_{\sigma\mu} = \omega_\sigma$\footnote{
 左边 = $g_{ab}(\partial / \partial x^\mu)^b(\partial / \partial x^\sigma)^a = g_{a\mu}(\partial / \partial x^\sigma)^a = g_{\sigma\mu}$，
-右边 = $\omega_\nu(\diff x^\nu)_a(\partial / \partial x^\sigma)^a = \omega_\nu\delta^\nu{}_\sigma = \omega_\sigma$
+右边 = $\omega_\nu(\mathrm{d}x^\nu)_a(\partial / \partial x^\sigma)^a = \omega_\nu\delta^\nu{}_\sigma = \omega_\sigma$
 }，故
-$$g_{ab}(\partial / \partial x^\mu)^b = g_{\mu\nu}(\diff x^\nu)_a$$
-可见$g_{ab}(\partial / \partial x^\mu)^b$一般不等于$(\diff x^\mu)_a$。类似可得
-$$g^{ab}(\diff x^\mu)_b = g^{\mu\nu}(\partial / \partial x^\nu)^a$$
+$$g_{ab}(\partial / \partial x^\mu)^b = g_{\mu\nu}(\mathrm{d}x^\nu)_a$$
+可见$g_{ab}(\partial / \partial x^\mu)^b$一般不等于$(\mathrm{d}x^\mu)_a$。类似可得
+$$g^{ab}(\mathrm{d}x^\mu)_b = g^{\mu\nu}(\partial / \partial x^\nu)^a$$
 当$g_{ab} = \delta_{ab}$（欧氏度规）且$\{x^\mu\}$为笛卡尔系时上二式简化为
-$$\delta_{ab}(\partial / \partial x^\mu)^b = (\diff x^\mu)_a, ~ \delta^{ab}(\diff x^\mu)_b = (\partial / \partial x^\mu)^a$$
+$$\delta_{ab}(\partial / \partial x^\mu)^b = (\mathrm{d}x^\mu)_a, ~ \delta^{ab}(\mathrm{d}x^\mu)_b = (\partial / \partial x^\mu)^a$$
 当$g_{ab} = \eta_{ab}$（以$4$维闵氏度规为例）且$\{x^\mu\}$为洛伦兹系时则有
 $$\begin{aligned}
-\eta_{ab}(\partial / \partial x^0)^b = -(\diff x^0)_a, ~ & \eta_{ab}(\partial / \partial x^i)^b = (\diff x^i)_a; \\
-\eta^{ab}(\diff x^0)_b = -(\partial / \partial x^0)^a, ~ & \eta^{ab}(\diff x^i)_b = (\partial / \partial x^i)^a.
+\eta_{ab}(\partial / \partial x^0)^b = -(\mathrm{d}x^0)_a, ~ & \eta_{ab}(\partial / \partial x^i)^b = (\mathrm{d}x^i)_a; \\
+\eta^{ab}(\mathrm{d}x^0)_b = -(\partial / \partial x^0)^a, ~ & \eta^{ab}(\mathrm{d}x^i)_b = (\partial / \partial x^i)^a.
 \end{aligned}$$
 其中的$i = 1, 2, 3$，此时的$i$不是抽象指标。
 

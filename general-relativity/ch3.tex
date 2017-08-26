@@ -49,8 +49,8 @@ $$v^a = v^1(\partial / \partial x)^a + v^2(\partial / \partial y)^a + v^3(\parti
 $$v(f) = v^1(\partial f / \partial x)^a + v^2(\partial f / \partial y)^a + v^3(\partial f / \partial z)^a = \vec{v}\cdot\vec{\nabla}f = v^a\nabla_af$$
 可见条件（d）是这一性质对任意流形的推广。
 \item 设$\nabla_a$是任一导数算符，则由条件（d）易证
-$$\nabla_af = (\diff f)_a, ~ \forall f \in \mathscr{F}_M$$
-其中，$(\diff f)_a$是函数$f$生成的对偶矢量场$\diff f$的抽象指标表示。
+$$\nabla_af = (\mathrm{d}f)_a, ~ \forall f \in \mathscr{F}_M$$
+其中，$(\mathrm{d}f)_a$是函数$f$生成的对偶矢量场$\mathrm{d}f$的抽象指标表示。
 \item 条件（e）实质上是下式的抽象指标表述：
 $$(\nabla\nabla f)(u, v) = (\nabla\nabla f)(v, u), ~ \forall u, v \in \mathscr{F}_M(1, 0)$$
 亦即$\nabla\nabla f$是个对称的$(0, 2)$型张量。
@@ -60,12 +60,12 @@ $$(\nabla\nabla f)(u, v) = (\nabla\nabla f)(v, u), ~ \forall u, v \in \mathscr{F
 \end{note}
 
 任何流形必定存在满足上述定义的导数算符。事实上，导数算符不但存在，而且很多。下面讨论多到什么程度。
-由$\nabla_af = (\diff f)_a$可知任意两个导数算符$\nabla_a$和$\tilde\nabla_a$作用于同一函数的结果相同，即
-$$\nabla_af = \tilde\nabla_af = (\diff f)_a, ~ \forall f \in \mathscr{F}_M$$
+由$\nabla_af = (\mathrm{d}f)_a$可知任意两个导数算符$\nabla_a$和$\tilde\nabla_a$作用于同一函数的结果相同，即
+$$\nabla_af = \tilde\nabla_af = (\mathrm{d}f)_a, ~ \forall f \in \mathscr{F}_M$$
 可见$\nabla_a$与$\tilde\nabla_a$的不同只能体现在对非$(0, 0)$型张量场的作用上。先讨论$(0, 1)$型张量场（对偶矢量场）。
 设在点$p \in M$给定一个对偶矢量$\mu_b \in V_p^*$，考虑$M$上的任意两个对偶矢量场$\omega_b, \omega'_b \in \mathscr{F}_M(0, 1)$，满足$\omega'_b|_p = \omega_b|_p = \mu_b$（$\omega_b$和$\omega'_b$称为$\mu_b$在$M$上的两个延拓）。
 设$\nabla_a$为导数算符，则$\nabla_a\omega'_b|_p$与$\nabla_a\omega_b|_p$一般并不相同。这类似于以下事实：
-两个一元函数$f(x)$和$f'(x)$在$x_0$点取值相同（$f'(x_0) = f(x_0)$）并不保证$(\diff f' /\diff x)|_{x_0} = (\diff f /\diff x)|_{x_0}$。
+两个一元函数$f(x)$和$f'(x)$在$x_0$点取值相同（$f'(x_0) = f(x_0)$）并不保证$(\mathrm{d}f' /\mathrm{d}x)|_{x_0} = (\mathrm{d}f /\mathrm{d}x)|_{x_0}$。
 然而下面要证明，对$M$上任意两个导数算符$\nabla_a$和$\tilde\nabla_a$，只要$\omega'_b|_p = \omega_b|_p$就有
 $$[(\tilde\nabla_a - \nabla_a)\omega'_b]_p = [(\tilde\nabla_a - \nabla_a)\omega_b]_p$$
 其中$(\tilde\nabla_a - \nabla_a)\omega_b$是$\tilde\nabla_a\omega_b - \nabla_a\omega_b$的简写。
@@ -81,10 +81,10 @@ $$[\nabla_a(\omega'_b - \omega_b)]_p = [\tilde\nabla_a(\omega'_b - \omega_b)]_p$
 设$\Omega_b \equiv \omega'_b - \omega_b$，选坐标系$\{x^\mu\}$使其坐标域含$p$，则$\omega'_b|_p = \omega_b|_p$导致$\Omega_\mu(p) = 0$，其中$\Omega_\mu$是$\Omega_b$的坐标分量。
 于是对$p$点有
 $$\begin{aligned}[]
-[\nabla_a(\omega'_b - \omega_b)]_p & = [\nabla_a\Omega_b]_p = \{\nabla_a[\Omega_\mu(\diff x^\mu)_b]\}|_p \\
-& = \Omega_\mu(p)[\nabla_a(\diff x^\mu)_b]_p + [(\diff x^\mu)_b\nabla_a\Omega_\mu]_p = [(\diff x^\mu)_b\nabla_a\Omega_\mu]_p
+[\nabla_a(\omega'_b - \omega_b)]_p & = [\nabla_a\Omega_b]_p = \{\nabla_a[\Omega_\mu(\mathrm{d}x^\mu)_b]\}|_p \\
+& = \Omega_\mu(p)[\nabla_a(\mathrm{d}x^\mu)_b]_p + [(\mathrm{d}x^\mu)_b\nabla_a\Omega_\mu]_p = [(\mathrm{d}x^\mu)_b\nabla_a\Omega_\mu]_p
 \end{aligned}$$
-同理有$[\tilde\nabla_a(\omega'_b - \omega_b)]_p = [(\diff x^\mu)_b\tilde\nabla_a\Omega_\mu]_p$。又$[\nabla_a\Omega_\mu]_p = [\tilde\nabla_a\Omega_\mu]_p$，得证。
+同理有$[\tilde\nabla_a(\omega'_b - \omega_b)]_p = [(\mathrm{d}x^\mu)_b\tilde\nabla_a\Omega_\mu]_p$。又$[\nabla_a\Omega_\mu]_p = [\tilde\nabla_a\Omega_\mu]_p$，得证。
 \end{proof}
 
 虽然导数$[\nabla_a\omega_b]_p$和$[\tilde\nabla_a\omega_b]_p$依赖于$\omega_b$在$p$点的一个邻域内的值，然而上述定理表明$[(\tilde\nabla_a - \nabla_a)\omega_b]_p$只依赖于$\omega_b$在$p$点的值，这说明$(\tilde\nabla_a - \nabla_a)$是把$p$点的对偶矢量$\omega_b|_p$变为$p$点的$(0, 2)$型张量（$[(\tilde\nabla_a - \nabla_a)\omega_b]_p$）的线性映射
@@ -106,7 +106,7 @@ $C^c{}_{ab} = C^c{}_{ba}$
 令$\omega_b = \nabla_bf = \tilde\nabla_bf$，其中$f \in \mathscr{F}_M$，则上式给出$\nabla_a\nabla_bf = \tilde\nabla_a\tilde\nabla_bf - C^c{}_{ab}\nabla_cf$。
 交换指标$a$，$b$得$\nabla_b\nabla_af = \tilde\nabla_b\tilde\nabla_af - C^c{}_{ba}\nabla_cf$。
 两式相减，注意到无挠性条件，便有$C^c{}_{ab}\nabla_cf = C^c{}_{ba}\nabla_cf$。
-令$T^c{}_{ab} \equiv C^c{}_{ab} - C^c{}_{ba}$，则对所有的$f \in \mathscr{F}_M$有$T^c{}_{ab}\nabla_cf = 0$，于是$T^c{}_{ab}$在任一坐标基底的分量$T^\sigma{}_{\mu\nu} = T^c{}_{ab}(\diff x^\sigma)_c(\partial / \partial x^\mu)_a(\partial / \partial x^\nu)_b = 0$（其中第二步是因为$T^c{}_{ab}(\diff x^\sigma)_c = T^c{}_{ab}\nabla_cx^\sigma = 0$（把$x^\sigma$看作$f$）），因而$T^c{}_{ab} = 0$。
+令$T^c{}_{ab} \equiv C^c{}_{ab} - C^c{}_{ba}$，则对所有的$f \in \mathscr{F}_M$有$T^c{}_{ab}\nabla_cf = 0$，于是$T^c{}_{ab}$在任一坐标基底的分量$T^\sigma{}_{\mu\nu} = T^c{}_{ab}(\mathrm{d}x^\sigma)_c(\partial / \partial x^\mu)_a(\partial / \partial x^\nu)_b = 0$（其中第二步是因为$T^c{}_{ab}(\mathrm{d}x^\sigma)_c = T^c{}_{ab}\nabla_cx^\sigma = 0$（把$x^\sigma$看作$f$）），因而$T^c{}_{ab} = 0$。
 \end{proof}
 
 \begin{theorem}
@@ -134,9 +134,9 @@ $$\nabla_aT^{b_1 \cdots b_k}{}_{c_1 \cdots c_l} = \tilde\nabla_aT^{b_1 \cdots b_
 可见流形上只要有一个导数算符就会有许多导数算符。
 选定导数算符$\nabla_a$后的流形$M$可记作$(M, \nabla_a)$，它比$M$本身有更多结构（$\nabla_a$提供附加结构），例如可谈及矢量沿曲线的平移及$(M, \nabla_a)$的曲率。
 
-设$\{x^\mu\}$是$M$的一个坐标系，其坐标基底和对偶坐标基底分别为$\{(\partial / \partial x^\mu)^a\}$和$\{(\diff x^\mu)_a\}$。
+设$\{x^\mu\}$是$M$的一个坐标系，其坐标基底和对偶坐标基底分别为$\{(\partial / \partial x^\mu)^a\}$和$\{(\mathrm{d}x^\mu)_a\}$。
 在坐标域$O$上定义映射$\partial_a \colon \mathscr{F}_O(k, l) \to \mathscr{F}_O(k, l + 1)$如下（仅以$T^b{}_c \in \mathscr{F}_O(1, 1)$为例写出）：
-$$\partial_aT^b{}_c := (\diff x^\mu)_a(\partial / \partial x^\nu)^b(\diff x^\sigma)_c\partial_\mu T^\nu{}_\sigma$$
+$$\partial_aT^b{}_c := (\mathrm{d}x^\mu)_a(\partial / \partial x^\nu)^b(\mathrm{d}x^\sigma)_c\partial_\mu T^\nu{}_\sigma$$
 其中$T^\nu{}_\sigma$是$T^b{}_c$在该坐标系的分量，$\partial_\mu$是对坐标$x^\mu$求偏导数的符号$\partial / \partial x^\mu$的简写。
 不难验证$\partial_a$满足导数算符定义的$5$个条件，可见$\partial_a$是$O$上的一个导数算符。
 这是一个从定义起就依赖于坐标系的导数算符，而且只在该坐标系的坐标域上有定义，称为该坐标系的\textbf{普通导数算符}。
@@ -146,9 +146,9 @@ $$\partial_aT^b{}_c := (\diff x^\mu)_a(\partial / \partial x^\nu)^b(\diff x^\sig
 
 \begin{enumerate}[（1）]
 \item 任一坐标系的$\partial_a$作用于该系的任一坐标基矢和任一对偶坐标基矢结果为零\footnote{
-例如，第$\nu$坐标基矢$(\partial / \partial x^\nu)$的第$\sigma$坐标分量为$(\partial / \partial x^\nu)^\sigma \equiv (\partial / \partial x^\nu)^b(\diff x^\sigma)_b = \delta^\sigma{}_\nu$，故其偏导数为零。
+例如，第$\nu$坐标基矢$(\partial / \partial x^\nu)$的第$\sigma$坐标分量为$(\partial / \partial x^\nu)^\sigma \equiv (\partial / \partial x^\nu)^b(\mathrm{d}x^\sigma)_b = \delta^\sigma{}_\nu$，故其偏导数为零。
 }，即
-$$\partial_a(\partial / \partial x^\nu)^b = 0, ~ \partial_a(\diff x^\nu)_b = 0$$
+$$\partial_a(\partial / \partial x^\nu)^b = 0, ~ \partial_a(\mathrm{d}x^\nu)_b = 0$$
 \item $\partial_a$满足比导数算符的无挠性条件强得多的条件，即
 $$\partial_a\partial_bT^{\cdots}{}_{\cdots} = \partial_b\partial_aT^{\cdots}{}_{\cdots}, ～ \text{或} \partial_{[a}\partial_{b]}T^{\cdots}{}_{\cdots} = 0$$
 其中$T^{\cdots}{}_{\cdots}$是任意型张量场。\footnote{
@@ -179,13 +179,13 @@ $\bar\Gamma^c{}_{ab}$在$\{x^\mu\}$和$\{x'^\mu\}$系的分量为$\{\bar\Gamma^\
 \end{note}
 
 类似地，设$v^b$是矢量场，则$\partial_av^b$也是坐标系依赖的张量场，把$\partial_av^b$在$\partial_a$所在坐标系展开：
-$$\partial_av^b = (\diff x^\mu)_a(\partial / \partial x^\nu)^bv^\nu{}_{,\mu}$$
+$$\partial_av^b = (\mathrm{d}x^\mu)_a(\partial / \partial x^\nu)^bv^\nu{}_{,\mu}$$
 其中$v^\nu{}_{,\mu} \equiv \partial_\mu v^\nu \equiv \partial v^\nu / \partial x^\mu$（逗号代表求偏导数），一般书强调$v^\nu{}_{,\mu}$不构成张量，我们说$\partial_av^b$是坐标系依赖的张量，也是同一问题的两种提法。
 说得更具体些，设$\partial_a$和$\partial'_a$分别是坐标系$\{x^\mu\}$和$\{x'_\mu\}$的普通导数算符，则一般有$\partial_av^b \neq \partial'_av^b$（所以说$\partial_av^b$是坐标系依赖的张量）。
 把$\partial_av^b$和$\partial'_av^b$在各自坐标基底展开：
-$$\partial_av^b = (\diff x^\mu)_a(\partial / \partial x^\nu)^bv^\nu{}_{,\mu}， ～ \partial'_av^b = (\diff x'^\mu)_a(\partial / \partial x'^\nu)^bv'^\nu{}_{,\mu}$$
+$$\partial_av^b = (\mathrm{d}x^\mu)_a(\partial / \partial x^\nu)^bv^\nu{}_{,\mu}， ～ \partial'_av^b = (\mathrm{d}x'^\mu)_a(\partial / \partial x'^\nu)^bv'^\nu{}_{,\mu}$$
 其中$v'^\nu{}_{,\mu} \equiv \partial v'^\nu / \partial x'^\mu$，则$\partial_av^b \neq \partial'_av^b$导致$v^\nu{}_{,\mu}$与$v'^\nu{}_{,\mu}$之间一般不满足张量分量变换律。
-所以一般书说$v^\nu{}_{,\mu}$不是张量。至于$\nabla_av^b$，则是与坐标系无关的张量，它在坐标系中的分量通常记为$v^\nu{}_{;\mu}$，即$\nabla_av^b = v^\nu{}_{;\mu}(\diff x^\mu)_a(\partial / \partial x^\nu)^b$。
+所以一般书说$v^\nu{}_{,\mu}$不是张量。至于$\nabla_av^b$，则是与坐标系无关的张量，它在坐标系中的分量通常记为$v^\nu{}_{;\mu}$，即$\nabla_av^b = v^\nu{}_{;\mu}(\mathrm{d}x^\mu)_a(\partial / \partial x^\nu)^b$。
 由于$\nabla_av^b$与坐标系无关，$v^\nu{}_{;\mu}$满足张量变换律，故一般书说它是张量（其实是张量的分量），并称之为$v^\nu$的\textbf{协变导数}（其实是协变导数$\nabla_av^b$的坐标分量）。
 类似地，$\nabla_a\omega_b$的坐标分量$\omega_{\nu;\mu}$也被称为$\omega_\nu$的协变导数。
 
@@ -221,7 +221,7 @@ $$\begin{aligned}[]
 
 \begin{note}
 取任一坐标系$\{x^\mu\}$的普通导数算符$\partial_b$作为上式的$\nabla_b$，便有
-$$[u, v]^\mu = (\diff x^\mu)_a[u, v]^a = u^\nu\partial_\nu v^\mu - v^\nu\partial_\nu u^\mu$$
+$$[u, v]^\mu = (\mathrm{d}x^\mu)_a[u, v]^a = u^\nu\partial_\nu v^\mu - v^\nu\partial_\nu u^\mu$$
 \end{note}
 
 \section{矢量场沿曲线的导数和平移}
@@ -240,17 +240,17 @@ $v^a$称为\textbf{沿$C(t)$平移}的，若$T^b\nabla_bv^a = 0$，其中$T^a \e
 \begin{theorem}
 设曲线$C(t)$位于坐标系$\{x^\mu\}$的坐标域内，曲线的参数式为$x^\mu(t)$。
 令$T^a \equiv (\partial / \partial t)^a$，则沿$C(t)$的矢量场$v^a$满足
-$$T^b\nabla_bv^a = (\partial / \partial x^\mu)^a(\diff v^\mu / \diff t + \Gamma^\mu{}_{\nu\sigma}T^\nu v^\sigma)$$
+$$T^b\nabla_bv^a = (\partial / \partial x^\mu)^a(\mathrm{d}v^\mu / \mathrm{d}t + \Gamma^\mu{}_{\nu\sigma}T^\nu v^\sigma)$$
 \end{theorem}
 
 \begin{proof}
 以$\partial_a$代表坐标系$\{x^\mu\}$的普通导数算符，则
 $$\begin{aligned}
-T^b\nabla_bv^a & = T^b(\partial_bv^a + \Gamma^a{}_{bc}v^c) = T^b[(\diff x^\nu)_b(\partial / \partial x^\mu)^a\partial_\nu v^\mu + \Gamma^a{}_{bc}v^c] \\
+T^b\nabla_bv^a & = T^b(\partial_bv^a + \Gamma^a{}_{bc}v^c) = T^b[(\mathrm{d}x^\nu)_b(\partial / \partial x^\mu)^a\partial_\nu v^\mu + \Gamma^a{}_{bc}v^c] \\
 & = T^\nu(\partial / \partial x^\mu)^a(\partial v^\mu / \partial x^\nu) + \Gamma^a{}_{bc}T^bv^c = (\partial / \partial x^\mu)^a[T^\nu(\partial v^\mu / \partial x^\nu) + \Gamma^\mu{}_{\nu\sigma}T^\nu v^\sigma]
 \end{aligned}$$
-其中$T^\nu$是曲线切矢$T^b$的坐标分量。又$T^\nu = \diff x^\nu(t) / \diff t$，故
-$$T^\nu(\partial v^\mu / \partial x^\nu) = [\diff x^\nu(t) / \diff t][\partial v^\mu(t(x)) / \partial x^\nu] = \diff v^\nu(t) / \diff t$$
+其中$T^\nu$是曲线切矢$T^b$的坐标分量。又$T^\nu = \mathrm{d}x^\nu(t) / \mathrm{d}t$，故
+$$T^\nu(\partial v^\mu / \partial x^\nu) = [\mathrm{d}x^\nu(t) / \mathrm{d}t][\partial v^\mu(t(x)) / \partial x^\nu] = \mathrm{d}v^\nu(t) / \mathrm{d}t$$
 证毕。
 \end{proof}
 
@@ -260,7 +260,7 @@ $$T^\nu(\partial v^\mu / \partial x^\nu) = [\diff x^\nu(t) / \diff t][\partial v
 
 \begin{proof}
 若存在把整条曲线含于其坐标域内的坐标系，则由前述定理可知平移定义$T^b\nabla_bv^a = 0$等价于
-$$\diff v^\nu / \diff t + \Gamma^\mu{}_{\nu\sigma}T^\nu v^\sigma = 0, ~ \mu = 1, \cdots, n$$
+$$\mathrm{d}v^\nu / \mathrm{d}t + \Gamma^\mu{}_{\nu\sigma}T^\nu v^\sigma = 0, ~ \mu = 1, \cdots, n$$
 这是关于$n$个待求函数$v^\mu(t)$的$n$个一阶常微分方程（注意$\Gamma^\mu{}_{\nu\sigma}$及$T^\nu$均为$t$的已知函数），而给定$C(t_0)$点的一个矢量就是给定初始条件$v^\nu(t_0)$，故有唯一解$v^\nu(t)$。
 使用``接力法''不难把上述证明推广至曲线不能被一个坐标域覆盖的情况。
 \end{proof}
@@ -313,7 +313,7 @@ $$C^c_{ab} = \frac{1}{2}g^{cd}(\tilde\nabla_ag_{bd} + \tilde\nabla_bg_{ad} - \ti
 可以证明，$\nabla_ag_{bc} = 0$保证$\nabla_ag^{bc} = 0$（反之亦然）。这为计算带来很大方便。
 
 \begin{example}
-欧氏空间存在无数满足定义的导数算符，但与欧式度规$\delta_{ab}$相适配的导数算符只有一个，这就是笛卡尔坐标系$\{x^\mu\}$的普通导数算符$\partial_a$（所有笛卡尔系的$\partial_a$都相同）,因为由$\delta_{ab}$的定义式得$\partial_c\delta_{ab} = (\diff x^\sigma)_c(\diff x^\mu)_a(\diff x^\nu)_b\partial_\sigma\delta_{\mu\nu} = 0$。
+欧氏空间存在无数满足定义的导数算符，但与欧式度规$\delta_{ab}$相适配的导数算符只有一个，这就是笛卡尔坐标系$\{x^\mu\}$的普通导数算符$\partial_a$（所有笛卡尔系的$\partial_a$都相同）,因为由$\delta_{ab}$的定义式得$\partial_c\delta_{ab} = (\mathrm{d}x^\sigma)_c(\mathrm{d}x^\mu)_a(\mathrm{d}x^\nu)_b\partial_\sigma\delta_{\mu\nu} = 0$。
 对$3$维欧氏空间，笛卡尔坐标系的$\partial_a$就是普通矢量场论中熟知的$\vec{\nabla}$。
 \end{example}
 
@@ -322,8 +322,8 @@ $$\Gamma^\sigma{}_{\mu\nu} = \frac{1}{2}g^{\sigma\rho}(g_{\rho\mu,\nu} + g_{\nu\
 推导如下：把$\partial_a$看作前述定理中的$\tilde\nabla_a$，则式中的$C^c{}_{ab}$就是$\Gamma^c{}_{ab}$，故
 $$\Gamma^c{}_{ab} = \frac{1}{2}g^{cd}(\partial_ag_{bd} + \partial_bg_{ad} - \partial_dg_{ab})$$
 $$\begin{aligned}
-\Gamma^\sigma{}_{\mu\nu} & = \Gamma^c{}_{ab}(\diff x^\sigma)_c(\partial / \partial x^\mu)^a(\partial / \partial x^\nu)^b \\
-& = \frac{1}{2}(\diff x^\sigma)_c(\partial / \partial x^\mu)^a(\partial / \partial x^\nu)^bg^{cd}(\partial_ag_{bd} + \partial_bg_{ad} - \partial_dg_{ab}) \\
+\Gamma^\sigma{}_{\mu\nu} & = \Gamma^c{}_{ab}(\mathrm{d}x^\sigma)_c(\partial / \partial x^\mu)^a(\partial / \partial x^\nu)^b \\
+& = \frac{1}{2}(\mathrm{d}x^\sigma)_c(\partial / \partial x^\mu)^a(\partial / \partial x^\nu)^bg^{cd}(\partial_ag_{bd} + \partial_bg_{ad} - \partial_dg_{ab}) \\
 & = \frac{1}{2}(\partial / \partial x^\mu)^a(\partial / \partial x^\nu)^bg^{\sigma\rho}(\partial_ag_{b\rho} + \partial_bg_{a\rho} - \partial_\rho g_{ab}) \\
 & = \frac{1}{2}g^{\sigma\rho}(\partial_\mu g_{\nu\rho} + \partial_\nu g_{\mu\rho} - \partial_\rho g_{\mu\nu}) \\
 & = \frac{1}{2}g^{\sigma\rho}(g_{\nu\rho,\mu} + g_{\mu\rho,\nu} - g_{\mu\nu,\rho})
@@ -353,22 +353,22 @@ $\Gamma^\sigma{}_{\mu\nu}$既依赖于$M$上选定的$\nabla_a$又依赖于坐�
 \end{definition}
 
 \begin{definition}
-欧氏空间中曲线$C(t)$上的矢量场$\vec{v}$沿线的导数$\diff\vec{v} / \diff t$定义为
-$$\left.\frac{\diff \vec{v}}{\diff t}\right|_p := \lim_{\Delta t \to 0}\frac{1}{\Delta t}(\vec{\tilde v}|_p - \vec{v}|_p) ~ \forall p \in C(t)$$
+欧氏空间中曲线$C(t)$上的矢量场$\vec{v}$沿线的导数$\mathrm{d}\vec{v} / \mathrm{d}t$定义为
+$$\left.\frac{\mathrm{d}\vec{v}}{\mathrm{d}t}\right|_p := \lim_{\Delta t \to 0}\frac{1}{\Delta t}(\vec{\tilde v}|_p - \vec{v}|_p) ~ \forall p \in C(t)$$
 其中$\vec{\tilde v}|_p$是把$\vec{v}|_q$（$q$为$p$在线上的邻点）平移至$p$点的结果，$\Delta t \equiv t(q) - t(p)$。
 \end{definition}
 
-现在证明$\diff \vec{v} / \diff t$在抽象指标记号中就是$T^b\partial_bv^a$（其中$T^b$是$C(t)$的切矢，$\partial_b$是笛卡尔系的普通导数算符。），为此只须证明两者在笛卡尔系$\{x^i\}$的分量相等：
-$$T^b\partial_bv^a\text{的第$i$分量} = T^b\partial_bv^a(\diff x^i)_a = T^b\partial_bv^i = T(v^i) = \diff v^i / \diff t$$
+现在证明$\mathrm{d}\vec{v} / \mathrm{d}t$在抽象指标记号中就是$T^b\partial_bv^a$（其中$T^b$是$C(t)$的切矢，$\partial_b$是笛卡尔系的普通导数算符。），为此只须证明两者在笛卡尔系$\{x^i\}$的分量相等：
+$$T^b\partial_bv^a\text{的第$i$分量} = T^b\partial_bv^a(\mathrm{d}x^i)_a = T^b\partial_bv^i = T(v^i) = \mathrm{d}v^i / \mathrm{d}t$$
 另一方面，由上述定义可知
-$$\left.\frac{\diff \vec{v}}{\diff t}\right|_p\text{的第$i$分量} = \lim_{\Delta t \to 0}\frac{1}{\Delta t}(\tilde v^i|_p - v^i|_p) = \lim_{\Delta t \to 0}\frac{1}{\Delta t}(\tilde v^i|_q - v^i|_p) = \left.\frac{\diff v^i}{\diff t}\right|_p$$
+$$\left.\frac{\mathrm{d}\vec{v}}{\mathrm{d}t}\right|_p\text{的第$i$分量} = \lim_{\Delta t \to 0}\frac{1}{\Delta t}(\tilde v^i|_p - v^i|_p) = \lim_{\Delta t \to 0}\frac{1}{\Delta t}(\tilde v^i|_q - v^i|_p) = \left.\frac{\mathrm{d}v^i}{\mathrm{d}t}\right|_p$$
 （最后一步无非是函数$v^i(t)$的导数的定义）对比两式可见
-$$\diff\vec{v} / \diff t = T^b\nabla_bv^a$$
-推广到带任意$\nabla_a$的任意流形$M$的任意曲线$C(t)$，便自然地把$T^b\nabla_bv^a$称为$v^a$沿$T^b$（或沿$C(t)$）的导数。有时也用记号$\Diff v^a / \diff t$代表这一导数，即
-$$\Diff v^a / \diff t \equiv T^b\nabla_bv^a$$
+$$\mathrm{d}\vec{v} / \mathrm{d}t = T^b\nabla_bv^a$$
+推广到带任意$\nabla_a$的任意流形$M$的任意曲线$C(t)$，便自然地把$T^b\nabla_bv^a$称为$v^a$沿$T^b$（或沿$C(t)$）的导数。有时也用记号$\mathrm{D}v^a / \mathrm{d}t$代表这一导数，即
+$$\mathrm{D}v^a / \mathrm{d}t \equiv T^b\nabla_bv^a$$
 然而上述绝对平移的定义不能推广到带有任意联络$\nabla_a$的任意流形$(M, \nabla_a)$。
 后面我们将介绍流形的内禀曲率概念（并将看到欧氏和闵氏空间的内禀曲率为零），还将指出只有内禀曲率为零的空间才有绝对的（即与曲线无关的）平移概念。
-不过，鉴于欧氏空间中$\diff\vec{v} / \diff t = 0$与$\vec{v}$沿$C(t)$平移等价（见上述定义），可以自然地把$T^b\nabla_bv^a = 0$作为$(M, \nabla_a)$中曲线$C(t)$上的矢量场$v^a$的平移定义，这就解释了本节一开始给出的平移定义提出的动机（但应特别注意这样定义的平移一般是曲线依赖的）。
+不过，鉴于欧氏空间中$\mathrm{d}\vec{v} / \mathrm{d}t = 0$与$\vec{v}$沿$C(t)$平移等价（见上述定义），可以自然地把$T^b\nabla_bv^a = 0$作为$(M, \nabla_a)$中曲线$C(t)$上的矢量场$v^a$的平移定义，这就解释了本节一开始给出的平移定义提出的动机（但应特别注意这样定义的平移一般是曲线依赖的）。
 在这种讲法中，我们是先定义$v^a$沿曲线的导数$T^b\nabla_bv^a$再用它定义$v^a$沿曲线的平移（与欧氏空间的顺序相反）。
 由于$v^a$沿曲线的导数$T^b\nabla_bv^a$毕竟比较抽象，在有了曲线依赖的平移概念后，借用平移这一术语反过来对$T^b\nabla_bv^a$作一解释是有益的。
 这一解释的实质就是上述定义所表达的含义，见如下定理。
@@ -392,9 +392,9 @@ $(M, \nabla_a)$上的曲线$\gamma(t)$叫\textbf{测地线}，若其切矢$T^a$�
 \end{note}
 
 设测地线$\gamma(t)$位于某坐标系的坐标域内，则以$T^a$代替上节第一个定理中的$v^a$便得
-$$\frac{\diff T^\mu}{\diff t} + \Gamma^\mu{}_{\nu\sigma}T^\nu T^\sigma = 0, ~ \mu = 1, \cdots, n$$
-设$x^\nu = x^\nu(t)$是测地线$\gamma(t)$的参数式，则$T^\mu = \diff x^\mu / \diff t$，故上式可改写为
-$$\frac{\diff^2x^\mu}{\diff t^2} + \Gamma^\mu{}_{\nu\sigma}\frac{\diff x^\nu}{\diff t}\frac{\diff x^\sigma}{\diff t} = 0, ~ \mu = 1, \cdots, n$$
+$$\frac{\mathrm{d}T^\mu}{\mathrm{d}t} + \Gamma^\mu{}_{\nu\sigma}T^\nu T^\sigma = 0, ~ \mu = 1, \cdots, n$$
+设$x^\nu = x^\nu(t)$是测地线$\gamma(t)$的参数式，则$T^\mu = \mathrm{d}x^\mu / \mathrm{d}t$，故上式可改写为
+$$\frac{\mathrm{d}^2x^\mu}{\mathrm{d}t^2} + \Gamma^\mu{}_{\nu\sigma}\frac{\mathrm{d}x^\nu}{\mathrm{d}t}\frac{\mathrm{d}x^\sigma}{\mathrm{d}t} = 0, ~ \mu = 1, \cdots, n$$
 这就是测地线方程的坐标分量表达式。
 
 \begin{example}
@@ -404,8 +404,8 @@ $$\frac{\diff^2x^\mu}{\diff t^2} + \Gamma^\mu{}_{\nu\sigma}\frac{\diff x^\nu}{\d
 \end{example}
 
 \begin{example}
-设$S^2$是$3$维欧氏空间的$2$维球面，以球心为原点建球坐标系，则$3$维欧氏线元为$\diff s^2 = \diff r^2 + r^2(\diff \theta^2 + \sin^2\theta\diff\varphi^2)$。
-若元线段躺在$S^2$上，则$r = R$（球半径）导致$\diff r = 0$，故球面上的``诱导线元''（称为标准球面线元）为$\diff\hat{s}^2 = R^2(\diff \theta^2 + \sin^2\theta\diff\varphi^2)$，就是说，$3$维欧氏度规$\delta_{ab}$在球面$S^2$上诱导出$2$维度规$g_{ab}$，其在坐标基底$\{(\partial / \partial\theta)^a, (\partial / \partial\varphi)^a\}$的分量为$g_{\theta\theta} = R^2, g_{\varphi\varphi} = R^2\sin^2\theta, g_{\theta\varphi} = g_{\varphi\theta} = 0$。
+设$S^2$是$3$维欧氏空间的$2$维球面，以球心为原点建球坐标系，则$3$维欧氏线元为$\mathrm{d}s^2 = \mathrm{d}r^2 + r^2(\mathrm{d}\theta^2 + \sin^2\theta\mathrm{d}\varphi^2)$。
+若元线段躺在$S^2$上，则$r = R$（球半径）导致$\mathrm{d}r = 0$，故球面上的``诱导线元''（称为标准球面线元）为$\mathrm{d}\hat{s}^2 = R^2(\mathrm{d}\theta^2 + \sin^2\theta\mathrm{d}\varphi^2)$，就是说，$3$维欧氏度规$\delta_{ab}$在球面$S^2$上诱导出$2$维度规$g_{ab}$，其在坐标基底$\{(\partial / \partial\theta)^a, (\partial / \partial\varphi)^a\}$的分量为$g_{\theta\theta} = R^2, g_{\varphi\varphi} = R^2\sin^2\theta, g_{\theta\varphi} = g_{\varphi\theta} = 0$。
 从测地线方程的坐标分量表达式出发可以证明，以这个度规衡量，球面上的曲线为测地线当且仅当它是大圆弧（并配以适当的参数化）。
 \end{example}
 
@@ -415,10 +415,10 @@ $$T'^b\nabla_bT'^a = \alpha T'^a\text{（$\alpha$为$\gamma(t)$上的某个函�
 \end{theorem}
 
 \begin{proof}
-$$T^a = \left(\frac{\partial}{\partial t}\right)^a = \left(\frac{\partial}{\partial t'}\right)^a\frac{\diff t'}{\diff t} = \frac{\diff t'}{\diff t}T'^a$$
-$$0 = T^b\nabla_bT^a = \frac{\diff t'}{\diff t}T'^b\nabla_b\left(\frac{\diff t'}{\diff t}T'^a\right) = \left(\frac{\diff t'}{\diff t}\right)^2T'^b\nabla_bT'^a + T'^a\frac{\diff t'}{\diff t}T'^b\nabla_b\left(\frac{\diff t'}{\diff t}\right)$$
-右边第二项$= T'^a\frac{\diff t'}{\diff t}\frac{\diff}{\diff t'}\left(\frac{\diff t'}{\diff t}\right) = T'^a\frac{\diff^2t'}{\diff t^2}$，故$T'^b\nabla_bT'^a = -\left(\frac{\diff t}{\diff t'}\right)^2\frac{\diff^2t'}{\diff t^2}T'^a$。
-令$\alpha \equiv -\left(\frac{\diff t}{\diff t'}\right)^2\frac{\diff^2t'}{\diff t^2}$，得证。
+$$T^a = \left(\frac{\partial}{\partial t}\right)^a = \left(\frac{\partial}{\partial t'}\right)^a\frac{\mathrm{d}t'}{\mathrm{d}t} = \frac{\mathrm{d}t'}{\mathrm{d}t}T'^a$$
+$$0 = T^b\nabla_bT^a = \frac{\mathrm{d}t'}{\mathrm{d}t}T'^b\nabla_b\left(\frac{\mathrm{d}t'}{\mathrm{d}t}T'^a\right) = \left(\frac{\mathrm{d}t'}{\mathrm{d}t}\right)^2T'^b\nabla_bT'^a + T'^a\frac{\mathrm{d}t'}{\mathrm{d}t}T'^b\nabla_b\left(\frac{\mathrm{d}t'}{\mathrm{d}t}\right)$$
+右边第二项$= T'^a\frac{\mathrm{d}t'}{\mathrm{d}t}\frac{\mathrm{d}}{\mathrm{d}t'}\left(\frac{\mathrm{d}t'}{\mathrm{d}t}\right) = T'^a\frac{\mathrm{d}^2t'}{\mathrm{d}t^2}$，故$T'^b\nabla_bT'^a = -\left(\frac{\mathrm{d}t}{\mathrm{d}t'}\right)^2\frac{\mathrm{d}^2t'}{\mathrm{d}t^2}T'^a$。
+令$\alpha \equiv -\left(\frac{\mathrm{d}t}{\mathrm{d}t'}\right)^2\frac{\mathrm{d}^2t'}{\mathrm{d}t^2}$，得证。
 \end{proof}
 
 \begin{theorem}
@@ -447,7 +447,7 @@ $$0 = T^b\nabla_bT^a = \frac{\diff t'}{\diff t}T'^b\nabla_b\left(\frac{\diff t'}
 \end{theorem}
 
 \begin{proof}
-任取一坐标系$\{x^\mu\}$使坐标域含$p$，则测地线方程的坐标分量表达式可看作关于$n$个待求函数$x^\mu(t)$的$n$个二阶常微分方程，则给定$p \in M$及$v^a \in V_p$就是给定初始条件$x^\mu(0) = x^\mu|_p$及$(\diff x^\mu / \diff t)|_0 = v^a$，故有唯一解。
+任取一坐标系$\{x^\mu\}$使坐标域含$p$，则测地线方程的坐标分量表达式可看作关于$n$个待求函数$x^\mu(t)$的$n$个二阶常微分方程，则给定$p \in M$及$v^a \in V_p$就是给定初始条件$x^\mu(0) = x^\mu|_p$及$(\mathrm{d}x^\mu / \mathrm{d}t)|_0 = v^a$，故有唯一解。
 \end{proof}
 
 \begin{theorem}
@@ -484,8 +484,8 @@ $$0 = T^b\nabla_bT^a = \frac{\diff t'}{\diff t}T'^b\nabla_b\left(\frac{\diff t'}
 由于$\gamma$的参数式$x^\mu(t)$为线性函数，可通过洛伦兹坐标的平移和伪转动选择洛伦兹系$\{x^0, x^1\}$使其$x^0$坐标线与$\gamma$重合。
 设$C$是$p, q$间的任一类时非测地线，用许多等$x^0$线把$\gamma$分成许多元段，由闵氏线元表达式可知$\gamma$和$C$的元段的线长依次为
 \begin{gather*}
-\diff l_\gamma = \sqrt{-\diff s^2} = \sqrt{-[-(\diff x^0)^2 + 0]} = \diff x^0 \\
-\diff l_C = \sqrt{-[-(\diff x^0)^2 + (\diff x^1)^2]} < \diff x^0 = \diff l_\gamma
+\mathrm{d}l_\gamma = \sqrt{-\mathrm{d}s^2} = \sqrt{-[-(\mathrm{d}x^0)^2 + 0]} = \mathrm{d}x^0 \\
+\mathrm{d}l_C = \sqrt{-[-(\mathrm{d}x^0)^2 + (\mathrm{d}x^1)^2]} < \mathrm{d}x^0 = \mathrm{d}l_\gamma
 \end{gather*}
 上述结果也适用于其他任一对元段，可见$l_\gamma > l_C$，即闵氏时空的类时测地线是最长类时线。
 换句话说，闵氏时空中两点之间（类时）直线（段）最长。
@@ -547,7 +547,7 @@ $$(\nabla_a\nabla_b - \nabla_b\nabla_a)\omega_c = R_{abc}{}^d\omega_d, ~ \forall
 
 \begin{proof}
 欧（闵）氏空间任一笛卡尔（洛伦兹）系的普通导数算符$\partial_a$是与$\delta_{bc}$适配的那个特定的导数算符。而
-$$(\partial_a\partial_b - \partial_b\partial_a)\omega_c = (\diff x^\mu)_a(\diff x^\nu)_b(\diff x^\sigma)_c(\partial_\mu\partial_\nu\omega_\sigma - \partial_\nu\partial_\mu\omega_\sigma) = 0, ~ \forall \omega_c$$
+$$(\partial_a\partial_b - \partial_b\partial_a)\omega_c = (\mathrm{d}x^\mu)_a(\mathrm{d}x^\nu)_b(\mathrm{d}x^\sigma)_c(\partial_\mu\partial_\nu\omega_\sigma - \partial_\nu\partial_\mu\omega_\sigma) = 0, ~ \forall \omega_c$$
 故$\partial_a$的$R_{abc}{}^d$为零。
 \end{proof}
 
