@@ -118,6 +118,28 @@ $\mathscr{L}_vT^{a_1 \cdots a_k}{}_{b_1 \cdots b_l} := \lim\limits_{t \to 0}\fra
 称为张量场$T^{a_1 \cdots a_k}{}_{b_1 \cdots b_l}$沿矢量场$v^a$的李导数（$\mathscr{L}_v$中的$v$不写为$v^a$，以免误解。）。
 \end{definition}
 
+\begin{note}
+因$\phi^*_t$为线性映射，故李导数是由$\mathscr{F}_M(k, l)$到$\mathscr{F}_M(k, l)$的线性映射。还可证明$\mathscr{L}_v$同缩并可交换顺序。
+\end{note}
+
+\begin{theorem}
+$\mathscr{L}_vf = v(f), ~ \forall f \in \mathscr{F}$
+\end{theorem}
+
+\begin{proof}
+$\forall p \in M$，设$C(t)$是$\phi$过$p$点的轨道，$p = C(0)$，则$\phi_t(p) = C(t)$且$v^a|_p \equiv (\partial / \partial t)^a|_p$是$C(t)$在$p$点的切矢，故
+$$\begin{aligned}
+\mathscr{L}_vf|_p & = \lim_{t \to 0}\frac{1}{t}(\phi_t^*f - f)|_p = \lim_{t \to 0}\frac{1}{t}[f(\phi_t(p)) - f(p)] \\
+& = \lim_{t \to 0}\frac{1}{t}[f(C(t)) - f(C(0))] = \frac{\mathrm{d}}{\mathrm{d}t}(f \comp C)|_{t = 0} = v(f)|_p
+\end{aligned}$$
+\end{proof}
+
+下面以$n = 2$为例介绍一种对计算李导数很有用的坐标系。
+设$\{x^1, x^2\}$为坐标系，则$x^1$坐标线和$x^2$坐标线组成坐标``网格''，欲知坐标域中某点的坐标，只须看它位于网格的哪两条坐标线的交点。
+求李导数时总要给定矢量场$v^a$，可以选定它的积分曲线为$x^1$坐标线（$t$充当$x^1$），再相当任意地选定另一组与这组曲线横截（即交点上两线切矢不平行）的曲线作为$x^2$坐标线，这样得到的坐标系称为矢量场$v^a$的适配坐标系。
+换句话说，矢量场$v^a$就是其适配坐标系的第一坐标基矢场，即$v^a = (\partial / \partial x^1)^a$。
+以上讨论可推广至任意维流形。
+
 \section{Killing矢量场}
 
 \section{超曲面}
