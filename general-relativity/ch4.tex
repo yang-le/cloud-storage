@@ -140,6 +140,46 @@ $$\begin{aligned}
 换句话说，矢量场$v^a$就是其适配坐标系的第一坐标基矢场，即$v^a = (\partial / \partial x^1)^a$。
 以上讨论可推广至任意维流形。
 
+\begin{theorem}
+张量场$T^{a_1 \cdots a_k}{}_{b_1 \cdots b_l}$沿$v^a$的李导数在$v^a$的适配坐标系的分量
+$$(\mathscr{L}_vT)^{\mu_1 \cdots \mu_k}{}_{\nu_1 \cdots \nu_l} = \frac{\partial T^{\mu_1 \cdots \mu_k}{}_{\nu_1 \cdots \nu_l}}{\partial x^1}$$
+\end{theorem}
+
+\begin{note}
+上式左边在坐标变换时满足张量变换律而右边则否，故不能改写为张量等式。
+\end{note}
+
+\begin{proof}
+仅以$n = 2, k = l = 1$为例（容易推广至一般情况）。
+因$\phi_t^* = (\phi_t^{-1})_* = \phi_{-t*}$，李导数定义式在任一坐标系（现在取适配坐标系）的分量式为
+$$(\mathscr{L}_vT)^{\mu}{}_{\nu}|_p = \lim\limits_{t \to 0}\frac{1}{t}[(\phi_{-t*}T)^{\mu}{}_{\nu}|_p - T^{\mu}{}_{\nu}|_p], ~ \forall p \in M$$
+令$q \equiv \phi_t(p)$，因上式只涉及$p$点附近的情况，总可以认为$p, q$点都在同一适配坐标域内。
+对$\phi_{-t}$而言，$q$为老点，$p$为新点，故由坐标变换``主动观点''和``被动观点''的等价性得
+$$(\phi_{-t*}T)^{\mu}{}_{\nu}|_p = T'^{\mu}{}_{\nu}|_q = \left[\frac{\partial x'^{\mu}}{\partial x^{\rho}}\frac{\partial x^{\sigma}}{\partial x'^{\nu}}T^{\rho}{}_{\sigma}\right]_q$$
+其中第二步用到张量的分量变换律。式中$x^{\sigma}$为适配（老）坐标，$x'^{\mu}$是由$\phi_{-t}$诱导的新坐标。
+上式右边涉及新老坐标间的偏导数在$q$点的值，要计算就必须找出$q$点的一个小邻域$N$内的坐标变换。
+$\forall \bar{q} \in N$，记$\bar{p} \equiv \phi_{-t}(\bar{q})$。
+由适配坐标的定义知$x^1(\bar{q}) = x^1(\bar{p}) + t, x^2(\bar{q}) = x^2(\bar{p})$，而按定义，$\phi_{-t}$在$\bar{q}$诱导的新坐标则为$x'^1(\bar{q}) \equiv x^1(\bar{p}), x'^2(\bar{q}) \equiv x^2(\bar{p})$，故$x'^1(\bar{q}) = x^1(\bar{q}) - t, x'^2(\bar{q}) = x^2(\bar{q})$。
+因为$\bar{q}$为$N$内任一点，故对$N$有$x'^1 = x^1 - t, x'^2 = x^2$，求导得$(\partial x'^{\mu} / \partial x^{\rho})|_q = \delta^{\mu}{}_{\rho}, (\partial x^{\sigma} / \partial x'^{\nu})|_q = \delta^{\sigma}{}_{\nu}$，于是上式成为$(\phi_{-t*}T)^{\mu}{}_{\nu}|_p = T^{\mu}{}_{\nu}|_q$，带入前式便得$(\mathscr{L}_vT)^{\mu}{}_{\nu}|_p = \partial T^{\mu}{}_{\nu} / \partial x^1|_p$。
+\end{proof}
+
+由上述定理可知$\mathscr{L}_v$满足莱布尼茨律。
+
+\begin{theorem}
+$\mathscr{L}_vu^a = [v, u]^a, ~ \forall u^a, v^a \in \mathscr{F}(1, 0)$
+
+或者，借助于对易子的表达式，有
+$$\mathscr{L}_vu^a = v^b\nabla_bu^a - u^b\nabla_bv^a$$
+其中$\nabla_a$为任一无挠导数算符。
+\end{theorem}
+
+\begin{proof}
+待证命题是矢量等式，只须证明它在某一坐标系的分量等式$(\mathscr{L}_vu)^{\mu} = [v, u]^{\mu}$成立。
+最方便的当然是适配坐标系。设$v^a$的适配坐标系$\{x^\mu\}$的普通导数算符是$\partial_a$，则
+$$[v, u]^\mu = (\mathrm{d}x^\mu)_a[v, u]^a = (\mathrm{d}x^\mu)_a(v^b\partial_bu^a - u^b\partial_bv^a) = v^b\partial_bu^\mu = v(u^\mu) = \partial u^\mu / \partial x^1 = (\mathscr{L}_vu)^\mu$$
+其中第三步是因为$v^a = (\partial / \partial x^1)^a$，而普通导数算符作用于任一坐标基矢为零，第四步用到导数算符的定义条件，最后一步用到前面的定理。
+\end{proof}
+
 \section{Killing矢量场}
 
 \section{超曲面}
