@@ -180,6 +180,145 @@ $$[v, u]^\mu = (\mathrm{d}x^\mu)_a[v, u]^a = (\mathrm{d}x^\mu)_a(v^b\partial_bu^
 其中第三步是因为$v^a = (\partial / \partial x^1)^a$，而普通导数算符作用于任一坐标基矢为零，第四步用到导数算符的定义条件，最后一步用到前面的定理。
 \end{proof}
 
+\begin{theorem}
+$\mathscr{L}_v\omega_a = v^b\nabla_b\omega_a + \omega_b\nabla_av^b, ~ \forall \omega^a \in \mathscr{F}(0, 1), v^a \in \mathscr{F}(1, 0)$
+
+其中$\nabla_a$为任一无挠导数算符。
+\end{theorem}
+
+\begin{proof}
+一方面$\mathscr{L}_v(\omega_au^a) = v^b\nabla_b(\omega_au^a) = v^b\nabla_b\omega_au^a + v^b\omega_a\nabla_bu^a$。
+另一方面$\mathscr{L}_v(\omega_au^a) = \mathscr{L}_v\omega_au^a + \omega_a\mathscr{L}_vu^a = \mathscr{L}_v\omega_au^a + \omega_av^b\nabla_bu^a - \omega_au^b\nabla_bv^a$。
+因此，$\mathscr{L}_v\omega_au^a = v^b\nabla_b\omega_au^a + \omega_au^b\nabla_bv^a$。该式对任意的$u^a$都成立，因此命题得证。
+\end{proof}
+
+\begin{theorem}
+$$\mathscr{L}_vT^{a_1 \cdots a_k}{}_{b_1 \cdots b_l} = v^c\nabla_cT^{a_1 \cdots a_k}{}_{b_1 \cdots b_l} - \sum^k_{i = 1}T^{a_1 \cdots c \cdots a_k}{}_{b_1 \cdots b_l}\nabla_cv^{a_i} + \sum^l_{j = 1}T^{a_1 \cdots a_k}{}_{b_1 \cdots c \cdots b_l}\nabla_{b_j}v^c$$
+$\forall T \in \mathscr{F}(k, l), v \in \mathscr{F}(1, 0)$，$\nabla_a$为任一导数算符。
+\end{theorem}
+
 \section{Killing矢量场}
+
+本章至此未涉及度规及与之适配的导数算符，李导数的定义不要求流形$M$有附加结构。
+但若$M$上选定了度规场$g_{ab}$，则对微分同胚映射$\phi \colon M \to M$还可提出更高的要求，即$\phi^*g_{ab} = g_{ab}$。
+于是有如下定义：
+
+\begin{definition}
+微分同胚$\phi \colon M \to M$称为等度规映射，简称等度规，若$\phi^*g_{ab} = g_{ab}$。
+\end{definition}
+
+\begin{note}
+\textcircled{1} 等度规映射是特殊的微分同胚映射，其特殊性在于``保度规''性，即$\phi^*g_{ab} = g_{ab}$。
+注意这是张量场的等式，其含义是每点$p$的两个张量$g_{ab}|_p$和$\phi^*g_{ab}|_p$相等。
+\textcircled{2} 由$\phi^{-1*} \comp \phi^* = (\phi \comp \phi^{-1})^* = \text{恒等映射}$易见$\phi \colon M \to M$为等度规映射当且仅当$\phi^{-1} \colon M \to M$为等度规映射。
+\end{note}
+
+流形$M$上众多矢量场中有一类特殊矢量场，即光滑矢量场。
+每一光滑矢量场给出一个单参微分同胚群。
+如果$M$上指定了度规场$g_{ab}$，则众多光滑矢量场中还可挑出特殊的一个子类，其中每个矢量场给出的单参微分同胚群是单参等度规群，即每个群元$\phi_t \colon M \to M$是$M$上的一个等度规映射。
+于是有以下定义：
+
+\begin{definition}
+$(M, g_{ab})$上的矢量场$\xi^a$称为Killing矢量场，若它给出的单参微分同胚（局部）群是单参等度规（局部）群。
+等价地（还可以证明），$\xi^a$称为Killing矢量场，若$\mathscr{L}_{\xi}g_{ab} = 0$。
+\end{definition}
+
+\begin{theorem}
+$\xi^a$为Killing矢量场的充要条件是$\xi^a$满足如下的Killing方程：
+$$\nabla_a\xi_b + \nabla_b\xi_a = 0, ～ \text{或} \nabla_{(a}\xi_{b)} = 0, ～ \text{或} \nabla_a\xi_b = \nabla_{[a}\xi_{b]}$$
+（其中$\nabla_a$满足$\nabla_ag_{bc} = 0$）
+\end{theorem}
+
+\begin{proof}
+$0 = \mathscr{L}_{\xi}g_{ab} = \xi^c\nabla_cg_{ab} + g_{cb}\nabla_a\xi^c + g_{ac}\nabla_b\xi^c = \nabla_a\xi_b + \nabla_b\xi_a$
+\end{proof}
+
+\begin{theorem}
+若存在坐标系$\{x^\mu\}$使$g_{ab}$的全部分量满足$\partial g_{\mu\nu} / \partial x^1 = 0$，则$(\partial / \partial x^1)^a$是坐标域上的Killing矢量场。
+\end{theorem}
+
+\begin{proof}
+$\{x^\mu\}$是$(\partial / \partial x^1)^a$的适配坐标系。
+因此，$(\mathscr{L}_{\partial / \partial x^1}g)_{\mu\nu} = \partial g_{\mu\nu} / \partial x^1 = 0$，故$\mathscr{L}_{\partial / \partial x^1}g_{ab} = 0$，即$(\partial / \partial x^1)^a$为Killing矢量场。
+\end{proof}
+
+\begin{theorem}
+设$\xi^a$为Killing矢量场，$T^a$为测地线的切矢，则$T^a\nabla_a(T^b\xi_b) = 0$，即$T^b\xi_b$在测地线上为常数。
+\end{theorem}
+
+\begin{proof}
+$$T^a\nabla_a(T^b\xi_b) = T^a\nabla_aT^b\xi_b + T^aT^b\nabla_a\xi_b = T^{(a}T^{b)}\nabla_{a}\xi_{b} = T^{a}T^{b}\nabla_{(a}\xi_{b)} = 0$$
+其中用到测地线方程和Killing方程。
+\end{proof}
+
+设$\xi^a, \eta^a$是Killing矢量场，$\alpha, \beta$是常实数，则由Killing方程的线性性知$\alpha\xi^a + \beta\eta^a$也是Killing矢量场。
+不难看出$M$上所有Killing矢量场的集合是个矢量空间。还可证明对易子$[\xi, \eta]^a$也是Killing矢量场。
+
+\begin{theorem}
+$(M, g_{ab})$上最多有$n(n + 1) / 2$个独立的Killing矢量场（$n \equiv \dim M$），即$M$上所有Killing矢量场的集合（作为矢量空间）的维数小于等于$n(n + 1) / 2$。
+\end{theorem}
+
+\begin{note}
+\textcircled{1} 等度规映射可看作一种``保度规''的对称变换，所以一个Killing矢量场代表$(M, g_{ab})$的一个对称性，具有$n(n + 1) / 2$个独立Killing矢量场的广义黎曼空间$(M, g_{ab})$称为最高对称性空间。
+\textcircled{2} 寻找$(M, g_{ab})$的全体Killing矢量场的一般方法是求Killing方程的通解。然而对某些简单的$(M, g_{ab})$还存在容易得多的方法。下面仅举数例。
+\end{note}
+
+\begin{example}
+找出下列广义黎曼空间的全体独立的Killing矢量场。
+\begin{enumerate}[（1）]
+\item $2$维欧氏空间$(\mathbb{R}^2, \delta_{ab})$。
+设$\{x, y\}$为笛卡尔坐标系，则$\mathrm{d}s^2 = \mathrm{d}x^2 + \mathrm{d}y^2$，即欧氏度规$\delta_{ab}$在此系中的全部分量为常数，故由前述定理知$(\partial / \partial x)^a$和$(\partial / \partial y)^a$为Killing矢量场。
+我们相信欧氏空间有最高对称性，$n = 2$时应有$3$个独立的Killing矢量场。
+果然，若改用极坐标系，便有$\mathrm{d}s^2 = \mathrm{d}r^2 + r^2\mathrm{d}\varphi^2$，可见欧氏度规$\delta_{ab}$在此系中的全部分量与$\varphi$无关，所以$(\partial / \partial \varphi)^a$为Killing矢量场，它在笛卡尔系的坐标基底的展开式为$(\partial / \partial \varphi)^a = -y(\partial / \partial x)^a + x(\partial / \partial y)^a$。
+展开系数与坐标有关，由此不难证明$(\partial / \partial \varphi)^a$独立于前两个Killing场。
+$(\partial / \partial x)^a$和$(\partial / \partial y)^a$的Killing性反映$2$维欧氏度规沿$x$和$y$轴的平移不变性，$(\partial / \partial \varphi)^a$的Killing性表明它有旋转不变性。
+\item $3$维欧氏空间$(\mathbb{R}^3, \delta_{ab})$。
+因为$n = 3$，故有$6$个独立的Killing矢量场，即$(\partial / \partial x)^a, (\partial / \partial y)^a, (\partial / \partial z)^a, -y(\partial / \partial x)^a + x(\partial / \partial y)^a, -z(\partial / \partial y)^a + y(\partial / \partial z)^a$和$-x(\partial / \partial z)^a + z(\partial / \partial x)^a$。
+前$3$个反映$3$维欧氏度规沿$x, y, z$轴的平移不变性；后$3$个反映它绕$z, x, y$轴的旋转不变性。
+\item $2$维闵氏空间$(\mathbb{R}^2, \eta_{ab})$。
+在洛伦兹坐标系$\{t, x\}$中有$\mathrm{d}s^2 = -\mathrm{d}t^2 + \mathrm{d}x^2$，故知$(\partial / \partial t)^a$和$(\partial / \partial x)^a$为Killing场。
+为求第三个，用下式定义新坐标$\psi, \eta$：
+$$x = \psi\operatorname{ch}\eta, ~ t = \psi\operatorname{sh}\eta, ~ 0 < \psi < \infty, ~ -\infty < \eta < \infty$$
+闵氏线元可用新坐标表为$\mathrm{d}s^2 = \mathrm{d}\psi^2 - \psi^2\mathrm{d}\eta^2$。
+上式表明$\eta_{ab}$在新坐标系的全体分量与坐标$\eta$无关，故$(\partial / \partial \eta)^a$也是Killing矢量场（其积分曲线是双曲线），它在洛伦兹坐标基底的展开式为
+$$(\partial / \partial \eta)^a = t(\partial / \partial x)^a + x(\partial / \partial t)^a$$
+由展开系数与坐标有关可知$(\partial / \partial \eta)^a$与前两个Killing场独立。
+不难验证$(\partial / \partial \eta)^a$是$\mathbb{R}^2$上的Killing矢量场，叫做伪转动（boost）Killing矢量场，表明闵氏度规具有伪转动下的不变性，对应于洛伦兹变换。
+\item $4$维闵氏空间$(\mathbb{R}^4, \eta_{ab})$。
+因$n = 4$，故独立的Killing场共$10$个，分三组：
+\begin{enumerate}[（a）]
+\item $4$个平移$(\partial / \partial t)^a, (\partial / \partial x)^a, (\partial / \partial y)^a, (\partial / \partial z)^a$;
+\item $3$个空间转动$-y(\partial / \partial x)^a + x(\partial / \partial y)^a, -z(\partial / \partial y)^a + y(\partial / \partial z)^a, -x(\partial / \partial z)^a + z(\partial / \partial x)^a$;
+\item $3$个伪转动$t(\partial / \partial x)^a + x(\partial / \partial t)^a, t(\partial / \partial y)^a + y(\partial / \partial t)^a, t(\partial / \partial z)^a + z(\partial / \partial t)^a$
+\end{enumerate}
+组（a）反映闵氏度规沿$t, x, y, z$轴的平移不变性，组（b）反映它绕$z, y, x$轴的空间旋转不变性，组（c）反映它在$tx, ty, tz$面内的伪转动下的不变性。
+\end{enumerate}
+\end{example}
+
+\begin{theorem}
+设$\{x, t\}$是$2$维闵氏空间$(\mathbb{R}^2, \eta_{ab})$的洛伦兹坐标系，$\phi_\lambda \colon \mathbb{R}^2 \to \mathbb{R}^2$是伪转动Killing场$\xi^a \equiv t(\partial / \partial x)^a + x(\partial / \partial t)^a$对应的单参等度规群的一个群元（即以参数$\lambda \in \mathbb{R}$刻画的那个等度规映射），则由$\phi_\lambda$诱导的坐标变换$\{x, t\} \mapsto \{x', t'\}$是洛伦兹变换。
+\end{theorem}
+
+\begin{note}
+本定理表明伪转动和洛伦兹变换是同一变换的两种（主动与被动）提法。
+类似地，欧氏空间的转动Killing场$-y(\partial / \partial x)^a + x(\partial / \partial y)^a$与坐标变换
+$$x' = x\cos\alpha - y\sin\alpha, ~ y' = x\sin\alpha + y\cos\alpha$$
+也是同一变换的两种提法。
+\end{note}
+
+\begin{proof}
+矢量场$\xi^a \equiv (\partial / \partial\eta)^a$的积分曲线的参数方程为$\mathrm{d}x^\mu(\eta) / \mathrm{d}\eta = \xi^\mu$（$\mu = 0, 1$）。
+注意到$\xi^a \equiv t(\partial / \partial x)^a + x(\partial / \partial t)^a$，便得
+$$\frac{\mathrm{d}x(\eta)}{\mathrm{d}\eta} = t(\eta), ~ \frac{\mathrm{d}t(\eta)}{\mathrm{d}\eta} = x(\eta)$$
+$\forall p \in \mathbb{R}^2$，设$C(\eta)$是满足$p = C(0)$的积分曲线，即$x(0) = x_p, t(0) = t_p$，则不难证明上述方程的特解（即该线的参数式）为
+$$x(\eta) = x_p\operatorname{ch}\eta + t_p\operatorname{sh}\eta, ~ t(\eta) = x_p\operatorname{sh}\eta + t_p\operatorname{ch}\eta$$
+设$q \equiv \phi_\lambda(p)$，则$q$就是$C(\eta)$上参数值$\eta = \lambda$的点，即$q = C(\lambda)$，故由$\phi_\lambda$诱导的新坐标$t'$和$x'$满足
+$$x'_p \equiv x_q = x_p\operatorname{ch}\lambda + t_p\operatorname{sh}\lambda, ~ t'_p \equiv t_q = x_p\operatorname{sh}\lambda + t_p\operatorname{ch}\lambda$$
+因$p$点任意，故可去掉下标$p$而写成
+$$x' = x\operatorname{ch}\lambda + t\operatorname{sh}\lambda = \operatorname{ch}\lambda(x + t\operatorname{th}\lambda), ~ t' = t\operatorname{ch}\lambda + x\operatorname{sh}\lambda = \operatorname{ch}\lambda(t + x\operatorname{th}\lambda)$$
+令$v \equiv \operatorname{th}\lambda, \gamma \equiv (1 - v^2)^{-1/2} = \operatorname{ch}\lambda$，则
+$$x' = \gamma(x + vt), ~ t'= \gamma(t + vx)$$
+这便是熟知的洛伦兹变换（注意，我们用几何单位制，其中光速$c = 1$。）。
+\end{proof}
 
 \section{超曲面}
