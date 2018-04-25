@@ -7,71 +7,71 @@
 $\phi$自然诱导出一系列映射如下。
 
 \begin{definition}
-\textbf{拉回映射}$\phi^* \colon \mathscr{F}_N \to \mathscr{F}_M$定义为
-$$(\phi^*f)|_p := f|_{\phi(p)}, ~ \forall f \in \mathscr{F}_N, p \in M$$
-即$\phi^*f = f \comp \phi$。
+	\textbf{拉回映射}$\phi^* \colon \mathscr{F}_N \to \mathscr{F}_M$定义为
+	$$(\phi^*f)|_p := f|_{\phi(p)}, ~ \forall f \in \mathscr{F}_N, p \in M$$
+	即$\phi^*f = f \comp \phi$。
 \end{definition}
 
 由定义不难证明：
 \begin{enumerate}[（1）]
-\item $\phi^* \colon \mathscr{F}_N \to \mathscr{F}_M$是线性映射，即
-$$\phi^*(\alpha f + \beta g) = \alpha\phi^*(f) + \beta\phi^*(g)， ~ \forall f,g \in \mathscr{F}_N, ～ \alpha,\beta \in \mathbb{R}$$
-\item $\phi^*(fg) = \phi^*(f)\phi^*(g), ~ \forall f,g \in \mathscr{F}_N$
+	\item $\phi^* \colon \mathscr{F}_N \to \mathscr{F}_M$是线性映射，即
+	      $$\phi^*(\alpha f + \beta g) = \alpha\phi^*(f) + \beta\phi^*(g)， ~ \forall f,g \in \mathscr{F}_N, ～ \alpha,\beta \in \mathbb{R}$$
+	\item $\phi^*(fg) = \phi^*(f)\phi^*(g), ~ \forall f,g \in \mathscr{F}_N$
 \end{enumerate}
 
 \begin{definition}
-对$M$中任一点$p$可定义\textbf{推前映射}$\phi_* \colon V_p \to V_{\phi(p)}$如下：$\forall v^a \in V_p$，定义其像$\phi_*v^a \in V_{\phi(p)}$为
-$$(\phi_*v)(f) := v(\phi*f), ~ \forall f \in \mathscr{F}_N$$
+	对$M$中任一点$p$可定义\textbf{推前映射}$\phi_* \colon V_p \to V_{\phi(p)}$如下：$\forall v^a \in V_p$，定义其像$\phi_*v^a \in V_{\phi(p)}$为
+	$$(\phi_*v)(f) := v(\phi*f), ~ \forall f \in \mathscr{F}_N$$
 \end{definition}
 
 还应证明这样定义的$\phi_*v^a$满足矢量定义的两个要求，从而确是$\phi(p)$点的矢量。许多文献也把$\phi_*$称为$\phi$的\textbf{切映射}。
 
 \begin{theorem}
-$\phi_* \colon V_p \to V_{\phi(p)}$是线性映射，即
-$$\phi_*(\alpha u^a + \beta v^a) = \alpha\phi_*u^a + \beta\phi_*v^a， ~ \forall u^a,v^a \in V_p, ～ \alpha,\beta \in \mathbb{R}$$
+	$\phi_* \colon V_p \to V_{\phi(p)}$是线性映射，即
+	$$\phi_*(\alpha u^a + \beta v^a) = \alpha\phi_*u^a + \beta\phi_*v^a， ~ \forall u^a,v^a \in V_p, ～ \alpha,\beta \in \mathbb{R}$$
 \end{theorem}
 
 \begin{theorem}
-设$C(t)$是$M$中的曲线，$T^a$为曲线在$C(t_0)$点的切矢，则$\phi_*T^a \in V_{\phi(C(t_0))}$是曲线$\phi(C(t))$在$\phi(C(t_0))$点的切矢（曲线的切矢的像是曲线像的切矢）。
+	设$C(t)$是$M$中的曲线，$T^a$为曲线在$C(t_0)$点的切矢，则$\phi_*T^a \in V_{\phi(C(t_0))}$是曲线$\phi(C(t))$在$\phi(C(t_0))$点的切矢（曲线的切矢的像是曲线像的切矢）。
 \end{theorem}
 
 \begin{proof}
-根据推前映射、曲线切矢以及拉回映射的定义
-$$\phi_*T^a(f)
-= T^a(\phi^*f)
-= \left.\frac{\mathrm{d}(\phi^*f(C))}{\mathrm{d}t}\right|_{t_0}
-= \left.\frac{\mathrm{d}f(\phi(C))}{\mathrm{d}t}\right|_{t_0}$$
-而这就是曲线$\phi(C(t))$在$\phi(C(t_0))$点的切矢。
+	根据推前映射、曲线切矢以及拉回映射的定义
+	$$\phi_*T^a(f)
+		= T^a(\phi^*f)
+		= \left.\frac{\mathrm{d}(\phi^*f(C))}{\mathrm{d}t}\right|_{t_0}
+		= \left.\frac{\mathrm{d}f(\phi(C))}{\mathrm{d}t}\right|_{t_0}$$
+	而这就是曲线$\phi(C(t))$在$\phi(C(t_0))$点的切矢。
 \end{proof}
 
 \begin{definition}
-拉回映射可按如下方式延拓至$\phi^* \colon \mathscr{F}_N(0, l) \to \mathscr{F}_M(0, l)$：
-$\forall T \in \mathscr{F}_N(0, l)$，定义$\phi^*(T) \in \mathscr{F}_M(0, l)$为
-$$(\phi^*T)_{a_1 \cdots a_l}|_p(v_1)^{a_1}\cdots(v_l)^{a_l} := T_{a_1 \cdots a_l}|_{\phi(p)}(\phi_*v_1)^{a_1}\cdots(\phi_*v_l)^{a_l}, ~ \forall p \in M, v_1, \cdots, v_l \in V_p$$
+	拉回映射可按如下方式延拓至$\phi^* \colon \mathscr{F}_N(0, l) \to \mathscr{F}_M(0, l)$：
+	$\forall T \in \mathscr{F}_N(0, l)$，定义$\phi^*(T) \in \mathscr{F}_M(0, l)$为
+	$$(\phi^*T)_{a_1 \cdots a_l}|_p(v_1)^{a_1}\cdots(v_l)^{a_l} := T_{a_1 \cdots a_l}|_{\phi(p)}(\phi_*v_1)^{a_1}\cdots(\phi_*v_l)^{a_l}, ~ \forall p \in M, v_1, \cdots, v_l \in V_p$$
 \end{definition}
 
 \begin{definition}
-$\forall p \in M$，推前映射$\phi_*$可按如下方式延拓至$\phi_* \colon \mathscr{T}_{V_p}(k, 0) \to \mathscr{T}_{V_{\phi(p)}}(k, 0)$（即$\phi_*$是把$p$点的$(k, 0)$型张量变为$\phi(p)$点的同型张量的映射）：
-$\forall T \in \mathscr{T}_{V_p}(k, 0)$，其像$\phi_*(T) \in \mathscr{T}_{V_{\phi(p)}}(k, 0)$由下式定义：
-$$(\phi_*T)^{a_1 \cdots a_l}(\omega^1)_{a_1}\cdots(\omega^k)_{a_k} := T^{a_1 \cdots a_l}(\phi^*\omega^1)_{a_1}\cdots(\phi^*\omega^k)_{a_k}, ~ \forall \omega^1, \cdots, \omega^k \in V^*_{\phi(p)}$$
-其中$(\phi^*\omega)_a$定义为$(\phi^*\omega)_av^a := \omega_a(\phi_*v)^a, ~ \forall v^a \in V_p$。
+	$\forall p \in M$，推前映射$\phi_*$可按如下方式延拓至$\phi_* \colon \mathscr{T}_{V_p}(k, 0) \to \mathscr{T}_{V_{\phi(p)}}(k, 0)$（即$\phi_*$是把$p$点的$(k, 0)$型张量变为$\phi(p)$点的同型张量的映射）：
+	$\forall T \in \mathscr{T}_{V_p}(k, 0)$，其像$\phi_*(T) \in \mathscr{T}_{V_{\phi(p)}}(k, 0)$由下式定义：
+	$$(\phi_*T)^{a_1 \cdots a_l}(\omega^1)_{a_1}\cdots(\omega^k)_{a_k} := T^{a_1 \cdots a_l}(\phi^*\omega^1)_{a_1}\cdots(\phi^*\omega^k)_{a_k}, ~ \forall \omega^1, \cdots, \omega^k \in V^*_{\phi(p)}$$
+	其中$(\phi^*\omega)_a$定义为$(\phi^*\omega)_av^a := \omega_a(\phi_*v)^a, ~ \forall v^a \in V_p$。
 \end{definition}
 
 \begin{note}
-拉回映射$\phi^*$能把$N$上的$(0, l)$型张量场变为$M$上的同型张量场，是\CJKunderdot{场}变为\CJKunderdot{场}的映射；
-推前映射$\phi_*$只能把$M$中一点$p$的$(k, 0)$型张量变为其像点$\phi(p)$的同型张量。
-可否将$\phi_*$延拓为把$M$上的$(k, 0)$型张量\CJKunderdot{场}变为$N$上的同型张量\CJKunderdot{场}的映射？
-在一般情况下不能。以矢量场为例。关键在于，给定$M$上一个矢量场$v$后，要定义$N$上的像矢场$\phi_*v$就要对$N$的任一点$q$定义一个矢量，而这势必涉及$q$点的逆像$\phi^{-1}(q)$。
-如果$\phi$不是到上映射，则$\phi^{-1}(q)$可能不存在，从而无法用$\phi^{-1}(q)$点的$v$作为右边的$v$；
-如果$\phi$不是一一映射，则逆像$\phi^{-1}(q)$可能多于一点，从而无法确定该用哪一逆像点的$v$作为右边的$v$。
-这暗示，如果$\phi$只是光滑映射，则$\phi_*$未必能把场推前为场。
-然而，如果$\phi \colon M \to N$是微分同胚映射，则上述困难不复存在，推前映射$\phi_*$可看作把$M$上的$(k, 0)$型张量\CJKunderdot{场}变为$N$上同型张量\CJKunderdot{场}的映射，即$\phi_* \colon \mathscr{F}_M(k, 0) \to \mathscr{F}_N(k, 0)$。
-再者，由于$\phi^{-1}$存在而且光滑，其拉回映射$\phi^{-1*}$把$\mathscr{F}_M(0, l)$映到$\mathscr{F}_N(0, l)$，这可看作$\phi$的推前映射$\phi_*$，于是$\phi_*$又可进一步推广为$\phi_* \colon \mathscr{F}_M(k, l) \to \mathscr{F}_N(k, l)$。
-例如，设$T^a{}_b \in \mathscr{F}_M(1, 1)$，则$(\phi_*T)^a{}_b \in \mathscr{F}_N(1, 1)$定义为
-$$(\phi_*T)^a{}_b|_q\omega_av^b := T^a{}_b|_{\phi^{-1}(q)}(\phi^*\omega)_a(\phi^*v)^b, ~ \forall q \in N, \omega_a \in V^*_q, v^b \in V_q$$
-其中，$(\phi^*v)^b$应理解为$(\phi^{-1}_*v)^b$。
-同理，拉回映射也可推广为$\phi^* \colon \mathscr{F}_N(k, l) \to \mathscr{F}_M(k, l)$。
-推广后的$\phi_*$和$\phi^*$仍为线性映射，而且互逆。
+	拉回映射$\phi^*$能把$N$上的$(0, l)$型张量场变为$M$上的同型张量场，是\CJKunderdot{场}变为\CJKunderdot{场}的映射；
+	推前映射$\phi_*$只能把$M$中一点$p$的$(k, 0)$型张量变为其像点$\phi(p)$的同型张量。
+	可否将$\phi_*$延拓为把$M$上的$(k, 0)$型张量\CJKunderdot{场}变为$N$上的同型张量\CJKunderdot{场}的映射？
+	在一般情况下不能。以矢量场为例。关键在于，给定$M$上一个矢量场$v$后，要定义$N$上的像矢场$\phi_*v$就要对$N$的任一点$q$定义一个矢量，而这势必涉及$q$点的逆像$\phi^{-1}(q)$。
+	如果$\phi$不是到上映射，则$\phi^{-1}(q)$可能不存在，从而无法用$\phi^{-1}(q)$点的$v$作为右边的$v$；
+	如果$\phi$不是一一映射，则逆像$\phi^{-1}(q)$可能多于一点，从而无法确定该用哪一逆像点的$v$作为右边的$v$。
+	这暗示，如果$\phi$只是光滑映射，则$\phi_*$未必能把场推前为场。
+	然而，如果$\phi \colon M \to N$是微分同胚映射，则上述困难不复存在，推前映射$\phi_*$可看作把$M$上的$(k, 0)$型张量\CJKunderdot{场}变为$N$上同型张量\CJKunderdot{场}的映射，即$\phi_* \colon \mathscr{F}_M(k, 0) \to \mathscr{F}_N(k, 0)$。
+	再者，由于$\phi^{-1}$存在而且光滑，其拉回映射$\phi^{-1*}$把$\mathscr{F}_M(0, l)$映到$\mathscr{F}_N(0, l)$，这可看作$\phi$的推前映射$\phi_*$，于是$\phi_*$又可进一步推广为$\phi_* \colon \mathscr{F}_M(k, l) \to \mathscr{F}_N(k, l)$。
+	例如，设$T^a{}_b \in \mathscr{F}_M(1, 1)$，则$(\phi_*T)^a{}_b \in \mathscr{F}_N(1, 1)$定义为
+	$$(\phi_*T)^a{}_b|_q\omega_av^b := T^a{}_b|_{\phi^{-1}(q)}(\phi^*\omega)_a(\phi^*v)^b, ~ \forall q \in N, \omega_a \in V^*_q, v^b \in V_q$$
+	其中，$(\phi^*v)^b$应理解为$(\phi^{-1}_*v)^b$。
+	同理，拉回映射也可推广为$\phi^* \colon \mathscr{F}_N(k, l) \to \mathscr{F}_M(k, l)$。
+	推广后的$\phi_*$和$\phi^*$仍为线性映射，而且互逆。
 \end{note}
 
 设$\phi \colon M \to N$是微分同胚，$p \in M$，$\{x^\mu\}$和$\{y^\mu\}$分别是$M$和$N$的局域坐标系，坐标域$O_1$和$O_2$满足$p \in O_1, \phi(p) \in O_2$。
@@ -90,48 +90,48 @@ $$\phi_*[(\mathrm{d}x'^\mu)^a|_q] = (\mathrm{d}y^\mu)^a|_{\phi(q)}$$
 下面的定理可以看作等价性的某种表现。
 
 \begin{theorem}
-$(\phi_*T)^{\mu_1 \cdots \mu_k}{}_{\nu_1 \cdots \nu_l}|_{\phi(p)} = T'^{\mu_1 \cdots \mu_k}{}_{\nu_1 \cdots \nu_l}|_p, ~ \forall T \in \mathscr{F}_M(k, l)$
+	$(\phi_*T)^{\mu_1 \cdots \mu_k}{}_{\nu_1 \cdots \nu_l}|_{\phi(p)} = T'^{\mu_1 \cdots \mu_k}{}_{\nu_1 \cdots \nu_l}|_p, ~ \forall T \in \mathscr{F}_M(k, l)$
 
-式中左边是新点$\phi(p)$的新张量$\phi_*T$在老坐标系$\{y^\mu\}$的分量，右边是老点$p$的老张量$T$在新坐标系$\{x'^\mu\}$的分量。
+	式中左边是新点$\phi(p)$的新张量$\phi_*T$在老坐标系$\{y^\mu\}$的分量，右边是老点$p$的老张量$T$在新坐标系$\{x'^\mu\}$的分量。
 \end{theorem}
 
 \begin{note}
-上式是实数等式，左边是由主动观点（认为点和张量变了而坐标系没变）所得的数，右边是由被动观点（认为点和张量没变但坐标系变了）所得的数。
-两边相等就表明两种观点在实用上等价。
+	上式是实数等式，左边是由主动观点（认为点和张量变了而坐标系没变）所得的数，右边是由被动观点（认为点和张量没变但坐标系变了）所得的数。
+	两边相等就表明两种观点在实用上等价。
 \end{note}
 
 \begin{example}
-设$v^a \in V_p$，令$u^a \equiv \phi_*v^a \in V_{\phi(p)}$，则由上述定理不难证明
-$$u^\mu = v^\nu(\partial x'^\mu / \partial x^\nu)|_p$$
+	设$v^a \in V_p$，令$u^a \equiv \phi_*v^a \in V_{\phi(p)}$，则由上述定理不难证明
+	$$u^\mu = v^\nu(\partial x'^\mu / \partial x^\nu)|_p$$
 \end{example}
 
 \section{李导数}
 
 根据前面的知识我们知道$M$上的一个光滑矢量场$v^a$给出一个单参微分同胚群$\phi$。\footnote{
-若$v^a$不完备，则只能给出单参微分同胚局部群。本节只涉及局部性质，无须明确区分局部和整体。
+	若$v^a$不完备，则只能给出单参微分同胚局部群。本节只涉及局部性质，无须明确区分局部和整体。
 }设$T^{\cdots}{}_{\cdots}$是$M$上的光滑张量场，则$\phi^*_tT^{\cdots}{}_{\cdots}$也是同型光滑张量场，其中$\phi_t$是单参微分同胚群$\phi$的一个群元。
 这两个张量场在点$p \in M$的值之差$\phi^*_tT^{\cdots}{}_{\cdots}|_p - T^{\cdots}{}_{\cdots}|_p$是$p$点的张量，它与$t$之商$(\phi^*_tT^{\cdots}{}_{\cdots}|_p - T^{\cdots}{}_{\cdots}|_p) / t$在$t$趋于零时的极限可看作张量场$T^{\cdots}{}_{\cdots}$在$p$点的某种导数，于是有以下定义：
 
 \begin{definition}
-$\mathscr{L}_vT^{a_1 \cdots a_k}{}_{b_1 \cdots b_l} := \lim\limits_{t \to 0}\frac{1}{t}(\phi^*_tT^{a_1 \cdots a_k}{}_{b_1 \cdots b_l} - T^{a_1 \cdots a_k}{}_{b_1 \cdots b_l})$
+	$\mathscr{L}_vT^{a_1 \cdots a_k}{}_{b_1 \cdots b_l} := \lim\limits_{t \to 0}\frac{1}{t}(\phi^*_tT^{a_1 \cdots a_k}{}_{b_1 \cdots b_l} - T^{a_1 \cdots a_k}{}_{b_1 \cdots b_l})$
 
-称为张量场$T^{a_1 \cdots a_k}{}_{b_1 \cdots b_l}$沿矢量场$v^a$的\textbf{李导数}（$\mathscr{L}_v$中的$v$不写为$v^a$，以免误解。）。
+	称为张量场$T^{a_1 \cdots a_k}{}_{b_1 \cdots b_l}$沿矢量场$v^a$的\textbf{李导数}（$\mathscr{L}_v$中的$v$不写为$v^a$，以免误解。）。
 \end{definition}
 
 \begin{note}
-因$\phi^*_t$为线性映射，故李导数是由$\mathscr{F}_M(k, l)$到$\mathscr{F}_M(k, l)$的线性映射。还可证明$\mathscr{L}_v$同缩并可交换顺序。
+	因$\phi^*_t$为线性映射，故李导数是由$\mathscr{F}_M(k, l)$到$\mathscr{F}_M(k, l)$的线性映射。还可证明$\mathscr{L}_v$同缩并可交换顺序。
 \end{note}
 
 \begin{theorem}
-$\mathscr{L}_vf = v(f), ~ \forall f \in \mathscr{F}$
+	$\mathscr{L}_vf = v(f), ~ \forall f \in \mathscr{F}$
 \end{theorem}
 
 \begin{proof}
-$\forall p \in M$，设$C(t)$是$\phi$过$p$点的轨道，$p = C(0)$，则$\phi_t(p) = C(t)$且$v^a|_p \equiv (\partial / \partial t)^a|_p$是$C(t)$在$p$点的切矢，故
-$$\begin{aligned}
-\mathscr{L}_vf|_p & = \lim_{t \to 0}\frac{1}{t}(\phi_t^*f - f)|_p = \lim_{t \to 0}\frac{1}{t}[f(\phi_t(p)) - f(p)] \\
-& = \lim_{t \to 0}\frac{1}{t}[f(C(t)) - f(C(0))] = \frac{\mathrm{d}}{\mathrm{d}t}(f \comp C)|_{t = 0} = v(f)|_p
-\end{aligned}$$
+	$\forall p \in M$，设$C(t)$是$\phi$过$p$点的轨道，$p = C(0)$，则$\phi_t(p) = C(t)$且$v^a|_p \equiv (\partial / \partial t)^a|_p$是$C(t)$在$p$点的切矢，故
+	$$\begin{aligned}
+			\mathscr{L}_vf|_p & = \lim_{t \to 0}\frac{1}{t}(\phi_t^*f - f)|_p = \lim_{t \to 0}\frac{1}{t}[f(\phi_t(p)) - f(p)]                \\
+			                  & = \lim_{t \to 0}\frac{1}{t}[f(C(t)) - f(C(0))] = \frac{\mathrm{d}}{\mathrm{d}t}(f \comp C)|_{t = 0} = v(f)|_p
+		\end{aligned}$$
 \end{proof}
 
 下面以$n = 2$为例介绍一种对计算李导数很有用的坐标系。
@@ -141,60 +141,60 @@ $$\begin{aligned}
 以上讨论可推广至任意维流形。
 
 \begin{theorem}
-张量场$T^{a_1 \cdots a_k}{}_{b_1 \cdots b_l}$沿$v^a$的李导数在$v^a$的适配坐标系的分量
-$$(\mathscr{L}_vT)^{\mu_1 \cdots \mu_k}{}_{\nu_1 \cdots \nu_l} = \frac{\partial T^{\mu_1 \cdots \mu_k}{}_{\nu_1 \cdots \nu_l}}{\partial x^1}$$
+	张量场$T^{a_1 \cdots a_k}{}_{b_1 \cdots b_l}$沿$v^a$的李导数在$v^a$的适配坐标系的分量
+	$$(\mathscr{L}_vT)^{\mu_1 \cdots \mu_k}{}_{\nu_1 \cdots \nu_l} = \frac{\partial T^{\mu_1 \cdots \mu_k}{}_{\nu_1 \cdots \nu_l}}{\partial x^1}$$
 \end{theorem}
 
 \begin{note}
-上式左边在坐标变换时满足张量变换律而右边则否，故不能改写为张量等式。
+	上式左边在坐标变换时满足张量变换律而右边则否，故不能改写为张量等式。
 \end{note}
 
 \begin{proof}
-仅以$n = 2, k = l = 1$为例（容易推广至一般情况）。
-因$\phi_t^* = (\phi_t^{-1})_* = \phi_{-t*}$，李导数定义式在任一坐标系（现在取适配坐标系）的分量式为
-$$(\mathscr{L}_vT)^{\mu}{}_{\nu}|_p = \lim\limits_{t \to 0}\frac{1}{t}[(\phi_{-t*}T)^{\mu}{}_{\nu}|_p - T^{\mu}{}_{\nu}|_p], ~ \forall p \in M$$
-令$q \equiv \phi_t(p)$，因上式只涉及$p$点附近的情况，总可以认为$p, q$点都在同一适配坐标域内。
-对$\phi_{-t}$而言，$q$为老点，$p$为新点，故由坐标变换``主动观点''和``被动观点''的等价性得
-$$(\phi_{-t*}T)^{\mu}{}_{\nu}|_p = T'^{\mu}{}_{\nu}|_q = \left[\frac{\partial x'^{\mu}}{\partial x^{\rho}}\frac{\partial x^{\sigma}}{\partial x'^{\nu}}T^{\rho}{}_{\sigma}\right]_q$$
-其中第二步用到张量的分量变换律。式中$x^{\sigma}$为适配（老）坐标，$x'^{\mu}$是由$\phi_{-t}$诱导的新坐标。
-上式右边涉及新老坐标间的偏导数在$q$点的值，要计算就必须找出$q$点的一个小邻域$N$内的坐标变换。
-$\forall \bar{q} \in N$，记$\bar{p} \equiv \phi_{-t}(\bar{q})$。
-由适配坐标的定义知$x^1(\bar{q}) = x^1(\bar{p}) + t, x^2(\bar{q}) = x^2(\bar{p})$，而按定义，$\phi_{-t}$在$\bar{q}$诱导的新坐标则为$x'^1(\bar{q}) \equiv x^1(\bar{p}), x'^2(\bar{q}) \equiv x^2(\bar{p})$，故$x'^1(\bar{q}) = x^1(\bar{q}) - t, x'^2(\bar{q}) = x^2(\bar{q})$。
-因为$\bar{q}$为$N$内任一点，故对$N$有$x'^1 = x^1 - t, x'^2 = x^2$，求导得$(\partial x'^{\mu} / \partial x^{\rho})|_q = \delta^{\mu}{}_{\rho}, (\partial x^{\sigma} / \partial x'^{\nu})|_q = \delta^{\sigma}{}_{\nu}$，于是上式成为$(\phi_{-t*}T)^{\mu}{}_{\nu}|_p = T^{\mu}{}_{\nu}|_q$，带入前式便得$(\mathscr{L}_vT)^{\mu}{}_{\nu}|_p = \partial T^{\mu}{}_{\nu} / \partial x^1|_p$。
+	仅以$n = 2, k = l = 1$为例（容易推广至一般情况）。
+	因$\phi_t^* = (\phi_t^{-1})_* = \phi_{-t*}$，李导数定义式在任一坐标系（现在取适配坐标系）的分量式为
+	$$(\mathscr{L}_vT)^{\mu}{}_{\nu}|_p = \lim\limits_{t \to 0}\frac{1}{t}[(\phi_{-t*}T)^{\mu}{}_{\nu}|_p - T^{\mu}{}_{\nu}|_p], ~ \forall p \in M$$
+	令$q \equiv \phi_t(p)$，因上式只涉及$p$点附近的情况，总可以认为$p, q$点都在同一适配坐标域内。
+	对$\phi_{-t}$而言，$q$为老点，$p$为新点，故由坐标变换``主动观点''和``被动观点''的等价性得
+	$$(\phi_{-t*}T)^{\mu}{}_{\nu}|_p = T'^{\mu}{}_{\nu}|_q = \left[\frac{\partial x'^{\mu}}{\partial x^{\rho}}\frac{\partial x^{\sigma}}{\partial x'^{\nu}}T^{\rho}{}_{\sigma}\right]_q$$
+	其中第二步用到张量的分量变换律。式中$x^{\sigma}$为适配（老）坐标，$x'^{\mu}$是由$\phi_{-t}$诱导的新坐标。
+	上式右边涉及新老坐标间的偏导数在$q$点的值，要计算就必须找出$q$点的一个小邻域$N$内的坐标变换。
+	$\forall \bar{q} \in N$，记$\bar{p} \equiv \phi_{-t}(\bar{q})$。
+	由适配坐标的定义知$x^1(\bar{q}) = x^1(\bar{p}) + t, x^2(\bar{q}) = x^2(\bar{p})$，而按定义，$\phi_{-t}$在$\bar{q}$诱导的新坐标则为$x'^1(\bar{q}) \equiv x^1(\bar{p}), x'^2(\bar{q}) \equiv x^2(\bar{p})$，故$x'^1(\bar{q}) = x^1(\bar{q}) - t, x'^2(\bar{q}) = x^2(\bar{q})$。
+	因为$\bar{q}$为$N$内任一点，故对$N$有$x'^1 = x^1 - t, x'^2 = x^2$，求导得$(\partial x'^{\mu} / \partial x^{\rho})|_q = \delta^{\mu}{}_{\rho}, (\partial x^{\sigma} / \partial x'^{\nu})|_q = \delta^{\sigma}{}_{\nu}$，于是上式成为$(\phi_{-t*}T)^{\mu}{}_{\nu}|_p = T^{\mu}{}_{\nu}|_q$，带入前式便得$(\mathscr{L}_vT)^{\mu}{}_{\nu}|_p = \partial T^{\mu}{}_{\nu} / \partial x^1|_p$。
 \end{proof}
 
 由上述定理可知$\mathscr{L}_v$满足莱布尼茨律。
 
 \begin{theorem}
-$\mathscr{L}_vu^a = [v, u]^a, ~ \forall u^a, v^a \in \mathscr{F}(1, 0)$
+	$\mathscr{L}_vu^a = [v, u]^a, ~ \forall u^a, v^a \in \mathscr{F}(1, 0)$
 
-或者，借助于对易子的表达式，有
-$$\mathscr{L}_vu^a = v^b\nabla_bu^a - u^b\nabla_bv^a$$
-其中$\nabla_a$为任一无挠导数算符。
+	或者，借助于对易子的表达式，有
+	$$\mathscr{L}_vu^a = v^b\nabla_bu^a - u^b\nabla_bv^a$$
+	其中$\nabla_a$为任一无挠导数算符。
 \end{theorem}
 
 \begin{proof}
-待证命题是矢量等式，只须证明它在某一坐标系的分量等式$(\mathscr{L}_vu)^{\mu} = [v, u]^{\mu}$成立。
-最方便的当然是适配坐标系。设$v^a$的适配坐标系$\{x^\mu\}$的普通导数算符是$\partial_a$，则
-$$[v, u]^\mu = (\mathrm{d}x^\mu)_a[v, u]^a = (\mathrm{d}x^\mu)_a(v^b\partial_bu^a - u^b\partial_bv^a) = v^b\partial_bu^\mu = v(u^\mu) = \partial u^\mu / \partial x^1 = (\mathscr{L}_vu)^\mu$$
-其中第三步是因为$v^a = (\partial / \partial x^1)^a$，而普通导数算符作用于任一坐标基矢为零，第四步用到导数算符的定义条件，最后一步用到前面的定理。
+	待证命题是矢量等式，只须证明它在某一坐标系的分量等式$(\mathscr{L}_vu)^{\mu} = [v, u]^{\mu}$成立。
+	最方便的当然是适配坐标系。设$v^a$的适配坐标系$\{x^\mu\}$的普通导数算符是$\partial_a$，则
+	$$[v, u]^\mu = (\mathrm{d}x^\mu)_a[v, u]^a = (\mathrm{d}x^\mu)_a(v^b\partial_bu^a - u^b\partial_bv^a) = v^b\partial_bu^\mu = v(u^\mu) = \partial u^\mu / \partial x^1 = (\mathscr{L}_vu)^\mu$$
+	其中第三步是因为$v^a = (\partial / \partial x^1)^a$，而普通导数算符作用于任一坐标基矢为零，第四步用到导数算符的定义条件，最后一步用到前面的定理。
 \end{proof}
 
 \begin{theorem}
-$\mathscr{L}_v\omega_a = v^b\nabla_b\omega_a + \omega_b\nabla_av^b, ~ \forall \omega^a \in \mathscr{F}(0, 1), v^a \in \mathscr{F}(1, 0)$
+	$\mathscr{L}_v\omega_a = v^b\nabla_b\omega_a + \omega_b\nabla_av^b, ~ \forall \omega^a \in \mathscr{F}(0, 1), v^a \in \mathscr{F}(1, 0)$
 
-其中$\nabla_a$为任一无挠导数算符。
+	其中$\nabla_a$为任一无挠导数算符。
 \end{theorem}
 
 \begin{proof}
-一方面$\mathscr{L}_v(\omega_au^a) = v^b\nabla_b(\omega_au^a) = v^b\nabla_b\omega_au^a + v^b\omega_a\nabla_bu^a$。
-另一方面$\mathscr{L}_v(\omega_au^a) = \mathscr{L}_v\omega_au^a + \omega_a\mathscr{L}_vu^a = \mathscr{L}_v\omega_au^a + \omega_av^b\nabla_bu^a - \omega_au^b\nabla_bv^a$。
-因此，$\mathscr{L}_v\omega_au^a = v^b\nabla_b\omega_au^a + \omega_au^b\nabla_bv^a$。该式对任意的$u^a$都成立，因此命题得证。
+	一方面$\mathscr{L}_v(\omega_au^a) = v^b\nabla_b(\omega_au^a) = v^b\nabla_b\omega_au^a + v^b\omega_a\nabla_bu^a$。
+	另一方面$\mathscr{L}_v(\omega_au^a) = \mathscr{L}_v\omega_au^a + \omega_a\mathscr{L}_vu^a = \mathscr{L}_v\omega_au^a + \omega_av^b\nabla_bu^a - \omega_au^b\nabla_bv^a$。
+	因此，$\mathscr{L}_v\omega_au^a = v^b\nabla_b\omega_au^a + \omega_au^b\nabla_bv^a$。该式对任意的$u^a$都成立，因此命题得证。
 \end{proof}
 
 \begin{theorem}
-$$\mathscr{L}_vT^{a_1 \cdots a_k}{}_{b_1 \cdots b_l} = v^c\nabla_cT^{a_1 \cdots a_k}{}_{b_1 \cdots b_l} - \sum^k_{i = 1}T^{a_1 \cdots c \cdots a_k}{}_{b_1 \cdots b_l}\nabla_cv^{a_i} + \sum^l_{j = 1}T^{a_1 \cdots a_k}{}_{b_1 \cdots c \cdots b_l}\nabla_{b_j}v^c$$
-$\forall T \in \mathscr{F}(k, l), v \in \mathscr{F}(1, 0)$，$\nabla_a$为任一导数算符。
+	$$\mathscr{L}_vT^{a_1 \cdots a_k}{}_{b_1 \cdots b_l} = v^c\nabla_cT^{a_1 \cdots a_k}{}_{b_1 \cdots b_l} - \sum^k_{i = 1}T^{a_1 \cdots c \cdots a_k}{}_{b_1 \cdots b_l}\nabla_cv^{a_i} + \sum^l_{j = 1}T^{a_1 \cdots a_k}{}_{b_1 \cdots c \cdots b_l}\nabla_{b_j}v^c$$
+	$\forall T \in \mathscr{F}(k, l), v \in \mathscr{F}(1, 0)$，$\nabla_a$为任一导数算符。
 \end{theorem}
 
 \section{Killing矢量场}
@@ -204,13 +204,13 @@ $\forall T \in \mathscr{F}(k, l), v \in \mathscr{F}(1, 0)$，$\nabla_a$为任一
 于是有如下定义：
 
 \begin{definition}
-微分同胚$\phi \colon M \to M$称为\textbf{等度规映射}，简称\textbf{等度规}，若$\phi^*g_{ab} = g_{ab}$。
+	微分同胚$\phi \colon M \to M$称为\textbf{等度规映射}，简称\textbf{等度规}，若$\phi^*g_{ab} = g_{ab}$。
 \end{definition}
 
 \begin{note}
-\textcircled{1} 等度规映射是特殊的微分同胚映射，其特殊性在于``保度规''性，即$\phi^*g_{ab} = g_{ab}$。
-注意这是张量场的等式，其含义是每点$p$的两个张量$g_{ab}|_p$和$\phi^*g_{ab}|_p$相等。
-\textcircled{2} 由$\phi^{-1*} \comp \phi^* = (\phi \comp \phi^{-1})^* = \text{恒等映射}$易见$\phi \colon M \to M$为等度规映射当且仅当$\phi^{-1} \colon M \to M$为等度规映射。
+	\textcircled{1} 等度规映射是特殊的微分同胚映射，其特殊性在于``保度规''性，即$\phi^*g_{ab} = g_{ab}$。
+	注意这是张量场的等式，其含义是每点$p$的两个张量$g_{ab}|_p$和$\phi^*g_{ab}|_p$相等。
+	\textcircled{2} 由$\phi^{-1*} \comp \phi^* = (\phi \comp \phi^{-1})^* = \text{恒等映射}$易见$\phi \colon M \to M$为等度规映射当且仅当$\phi^{-1} \colon M \to M$为等度规映射。
 \end{note}
 
 流形$M$上众多矢量场中有一类特殊矢量场，即光滑矢量场。
@@ -219,133 +219,197 @@ $\forall T \in \mathscr{F}(k, l), v \in \mathscr{F}(1, 0)$，$\nabla_a$为任一
 于是有以下定义：
 
 \begin{definition}
-$(M, g_{ab})$上的矢量场$\xi^a$称为\textbf{Killing矢量场}，若它给出的单参微分同胚（局部）群是单参等度规（局部）群。
-等价地（还可以证明），$\xi^a$称为Killing矢量场，若$\mathscr{L}_{\xi}g_{ab} = 0$。
+	$(M, g_{ab})$上的矢量场$\xi^a$称为\textbf{Killing矢量场}，若它给出的单参微分同胚（局部）群是单参等度规（局部）群。
+	等价地（还可以证明），$\xi^a$称为Killing矢量场，若$\mathscr{L}_{\xi}g_{ab} = 0$。
 \end{definition}
 
 \begin{theorem}
-$\xi^a$为Killing矢量场的充要条件是$\xi^a$满足如下的\textbf{Killing方程}：
-$$\nabla_a\xi_b + \nabla_b\xi_a = 0, ～ \text{或} \nabla_{(a}\xi_{b)} = 0, ～ \text{或} \nabla_a\xi_b = \nabla_{[a}\xi_{b]}$$
-（其中$\nabla_a$满足$\nabla_ag_{bc} = 0$）
+	$\xi^a$为Killing矢量场的充要条件是$\xi^a$满足如下的\textbf{Killing方程}：
+	$$\nabla_a\xi_b + \nabla_b\xi_a = 0, ～ \text{或} \nabla_{(a}\xi_{b)} = 0, ～ \text{或} \nabla_a\xi_b = \nabla_{[a}\xi_{b]}$$
+	（其中$\nabla_a$满足$\nabla_ag_{bc} = 0$）
 \end{theorem}
 
 \begin{proof}
-$0 = \mathscr{L}_{\xi}g_{ab} = \xi^c\nabla_cg_{ab} + g_{cb}\nabla_a\xi^c + g_{ac}\nabla_b\xi^c = \nabla_a\xi_b + \nabla_b\xi_a$
+	$0 = \mathscr{L}_{\xi}g_{ab} = \xi^c\nabla_cg_{ab} + g_{cb}\nabla_a\xi^c + g_{ac}\nabla_b\xi^c = \nabla_a\xi_b + \nabla_b\xi_a$
 \end{proof}
 
 \begin{theorem}
-若存在坐标系$\{x^\mu\}$使$g_{ab}$的全部分量满足$\partial g_{\mu\nu} / \partial x^1 = 0$，则$(\partial / \partial x^1)^a$是坐标域上的Killing矢量场。
+	若存在坐标系$\{x^\mu\}$使$g_{ab}$的全部分量满足$\partial g_{\mu\nu} / \partial x^1 = 0$，则$(\partial / \partial x^1)^a$是坐标域上的Killing矢量场。
 \end{theorem}
 
 \begin{proof}
-$\{x^\mu\}$是$(\partial / \partial x^1)^a$的适配坐标系。
-因此，$(\mathscr{L}_{\partial / \partial x^1}g)_{\mu\nu} = \partial g_{\mu\nu} / \partial x^1 = 0$，故$\mathscr{L}_{\partial / \partial x^1}g_{ab} = 0$，即$(\partial / \partial x^1)^a$为Killing矢量场。
+	$\{x^\mu\}$是$(\partial / \partial x^1)^a$的适配坐标系。
+	因此，$(\mathscr{L}_{\partial / \partial x^1}g)_{\mu\nu} = \partial g_{\mu\nu} / \partial x^1 = 0$，故$\mathscr{L}_{\partial / \partial x^1}g_{ab} = 0$，即$(\partial / \partial x^1)^a$为Killing矢量场。
 \end{proof}
 
 \begin{theorem}
-设$\xi^a$为Killing矢量场，$T^a$为测地线的切矢，则$T^a\nabla_a(T^b\xi_b) = 0$，即$T^b\xi_b$在测地线上为常数。
+	设$\xi^a$为Killing矢量场，$T^a$为测地线的切矢，则$T^a\nabla_a(T^b\xi_b) = 0$，即$T^b\xi_b$在测地线上为常数。
 \end{theorem}
 
 \begin{proof}
-$$T^a\nabla_a(T^b\xi_b) = T^a\nabla_aT^b\xi_b + T^aT^b\nabla_a\xi_b = T^{(a}T^{b)}\nabla_{a}\xi_{b} = T^{a}T^{b}\nabla_{(a}\xi_{b)} = 0$$
-其中用到测地线方程和Killing方程。
+	$$T^a\nabla_a(T^b\xi_b) = T^a\nabla_aT^b\xi_b + T^aT^b\nabla_a\xi_b = T^{(a}T^{b)}\nabla_{a}\xi_{b} = T^{a}T^{b}\nabla_{(a}\xi_{b)} = 0$$
+	其中用到测地线方程和Killing方程。
 \end{proof}
 
 设$\xi^a, \eta^a$是Killing矢量场，$\alpha, \beta$是常实数，则由Killing方程的线性性知$\alpha\xi^a + \beta\eta^a$也是Killing矢量场。
 不难看出$M$上所有Killing矢量场的集合是个矢量空间。还可证明对易子$[\xi, \eta]^a$也是Killing矢量场。
 
 \begin{theorem}
-$(M, g_{ab})$上最多有$n(n + 1) / 2$个独立的Killing矢量场（$n \equiv \dim M$），即$M$上所有Killing矢量场的集合（作为矢量空间）的维数小于等于$n(n + 1) / 2$。
+	$(M, g_{ab})$上最多有$n(n + 1) / 2$个独立的Killing矢量场（$n \equiv \dim M$），即$M$上所有Killing矢量场的集合（作为矢量空间）的维数小于等于$n(n + 1) / 2$。
 \end{theorem}
 
 \begin{note}
-\textcircled{1} 等度规映射可看作一种``保度规''的对称变换，所以一个Killing矢量场代表$(M, g_{ab})$的一个对称性，具有$n(n + 1) / 2$个独立Killing矢量场的广义黎曼空间$(M, g_{ab})$称为最高对称性空间。
-\textcircled{2} 寻找$(M, g_{ab})$的全体Killing矢量场的一般方法是求Killing方程的通解。然而对某些简单的$(M, g_{ab})$还存在容易得多的方法。下面仅举数例。
+	\textcircled{1} 等度规映射可看作一种``保度规''的对称变换，所以一个Killing矢量场代表$(M, g_{ab})$的一个对称性，具有$n(n + 1) / 2$个独立Killing矢量场的广义黎曼空间$(M, g_{ab})$称为最高对称性空间。
+	\textcircled{2} 寻找$(M, g_{ab})$的全体Killing矢量场的一般方法是求Killing方程的通解。然而对某些简单的$(M, g_{ab})$还存在容易得多的方法。下面仅举数例。
 \end{note}
 
 \begin{example}
-找出下列广义黎曼空间的全体独立的Killing矢量场。
-\begin{enumerate}[（1）]
-\item $2$维欧氏空间$(\mathbb{R}^2, \delta_{ab})$。
-设$\{x, y\}$为笛卡尔坐标系，则$\mathrm{d}s^2 = \mathrm{d}x^2 + \mathrm{d}y^2$，即欧氏度规$\delta_{ab}$在此系中的全部分量为常数，故由前述定理知$(\partial / \partial x)^a$和$(\partial / \partial y)^a$为Killing矢量场。
-我们相信欧氏空间有最高对称性，$n = 2$时应有$3$个独立的Killing矢量场。
-果然，若改用极坐标系，便有$\mathrm{d}s^2 = \mathrm{d}r^2 + r^2\mathrm{d}\varphi^2$，可见欧氏度规$\delta_{ab}$在此系中的全部分量与$\varphi$无关，所以$(\partial / \partial \varphi)^a$为Killing矢量场，它在笛卡尔系的坐标基底的展开式为$(\partial / \partial \varphi)^a = -y(\partial / \partial x)^a + x(\partial / \partial y)^a$。
-展开系数与坐标有关，由此不难证明$(\partial / \partial \varphi)^a$独立于前两个Killing场。
-$(\partial / \partial x)^a$和$(\partial / \partial y)^a$的Killing性反映$2$维欧氏度规沿$x$和$y$轴的平移不变性，$(\partial / \partial \varphi)^a$的Killing性表明它有旋转不变性。
-\item $3$维欧氏空间$(\mathbb{R}^3, \delta_{ab})$。
-因为$n = 3$，故有$6$个独立的Killing矢量场，即$(\partial / \partial x)^a, (\partial / \partial y)^a, (\partial / \partial z)^a, -y(\partial / \partial x)^a + x(\partial / \partial y)^a, -z(\partial / \partial y)^a + y(\partial / \partial z)^a$和$-x(\partial / \partial z)^a + z(\partial / \partial x)^a$。
-前$3$个反映$3$维欧氏度规沿$x, y, z$轴的平移不变性；后$3$个反映它绕$z, x, y$轴的旋转不变性。
-\item $2$维闵氏空间$(\mathbb{R}^2, \eta_{ab})$。
-在洛伦兹坐标系$\{t, x\}$中有$\mathrm{d}s^2 = -\mathrm{d}t^2 + \mathrm{d}x^2$，故知$(\partial / \partial t)^a$和$(\partial / \partial x)^a$为Killing场。
-为求第三个，用下式定义新坐标$\psi, \eta$：
-$$x = \psi\operatorname{ch}\eta, ~ t = \psi\operatorname{sh}\eta, ~ 0 < \psi < \infty, ~ -\infty < \eta < \infty$$
-闵氏线元可用新坐标表为$\mathrm{d}s^2 = \mathrm{d}\psi^2 - \psi^2\mathrm{d}\eta^2$。
-上式表明$\eta_{ab}$在新坐标系的全体分量与坐标$\eta$无关，故$(\partial / \partial \eta)^a$也是Killing矢量场（其积分曲线是双曲线），它在洛伦兹坐标基底的展开式为
-$$(\partial / \partial \eta)^a = t(\partial / \partial x)^a + x(\partial / \partial t)^a$$
-由展开系数与坐标有关可知$(\partial / \partial \eta)^a$与前两个Killing场独立。
-不难验证$(\partial / \partial \eta)^a$是$\mathbb{R}^2$上的Killing矢量场，叫做\textbf{伪转动}（boost）Killing矢量场，表明闵氏度规具有伪转动下的不变性，对应于洛伦兹变换。
-\item $4$维闵氏空间$(\mathbb{R}^4, \eta_{ab})$。
-因$n = 4$，故独立的Killing场共$10$个，分三组：
-\begin{enumerate}[（a）]
-\item $4$个平移$(\partial / \partial t)^a, (\partial / \partial x)^a, (\partial / \partial y)^a, (\partial / \partial z)^a$;
-\item $3$个空间转动$-y(\partial / \partial x)^a + x(\partial / \partial y)^a, -z(\partial / \partial y)^a + y(\partial / \partial z)^a, -x(\partial / \partial z)^a + z(\partial / \partial x)^a$;
-\item $3$个伪转动$t(\partial / \partial x)^a + x(\partial / \partial t)^a, t(\partial / \partial y)^a + y(\partial / \partial t)^a, t(\partial / \partial z)^a + z(\partial / \partial t)^a$
-\end{enumerate}
-组（a）反映闵氏度规沿$t, x, y, z$轴的平移不变性，组（b）反映它绕$z, y, x$轴的空间旋转不变性，组（c）反映它在$tx, ty, tz$面内的伪转动下的不变性。
-\end{enumerate}
+	找出下列广义黎曼空间的全体独立的Killing矢量场。
+	\begin{enumerate}[（1）]
+		\item $2$维欧氏空间$(\mathbb{R}^2, \delta_{ab})$。
+		      设$\{x, y\}$为笛卡尔坐标系，则$\mathrm{d}s^2 = \mathrm{d}x^2 + \mathrm{d}y^2$，即欧氏度规$\delta_{ab}$在此系中的全部分量为常数，故由前述定理知$(\partial / \partial x)^a$和$(\partial / \partial y)^a$为Killing矢量场。
+		      我们相信欧氏空间有最高对称性，$n = 2$时应有$3$个独立的Killing矢量场。
+		      果然，若改用极坐标系，便有$\mathrm{d}s^2 = \mathrm{d}r^2 + r^2\mathrm{d}\varphi^2$，可见欧氏度规$\delta_{ab}$在此系中的全部分量与$\varphi$无关，所以$(\partial / \partial \varphi)^a$为Killing矢量场，它在笛卡尔系的坐标基底的展开式为$(\partial / \partial \varphi)^a = -y(\partial / \partial x)^a + x(\partial / \partial y)^a$。
+		      展开系数与坐标有关，由此不难证明$(\partial / \partial \varphi)^a$独立于前两个Killing场。
+		      $(\partial / \partial x)^a$和$(\partial / \partial y)^a$的Killing性反映$2$维欧氏度规沿$x$和$y$轴的平移不变性，$(\partial / \partial \varphi)^a$的Killing性表明它有旋转不变性。
+		\item $3$维欧氏空间$(\mathbb{R}^3, \delta_{ab})$。
+		      因为$n = 3$，故有$6$个独立的Killing矢量场，即$(\partial / \partial x)^a, (\partial / \partial y)^a, (\partial / \partial z)^a, -y(\partial / \partial x)^a + x(\partial / \partial y)^a, -z(\partial / \partial y)^a + y(\partial / \partial z)^a$和$-x(\partial / \partial z)^a + z(\partial / \partial x)^a$。
+		      前$3$个反映$3$维欧氏度规沿$x, y, z$轴的平移不变性；后$3$个反映它绕$z, x, y$轴的旋转不变性。
+		\item $2$维闵氏空间$(\mathbb{R}^2, \eta_{ab})$。
+		      在洛伦兹坐标系$\{t, x\}$中有$\mathrm{d}s^2 = -\mathrm{d}t^2 + \mathrm{d}x^2$，故知$(\partial / \partial t)^a$和$(\partial / \partial x)^a$为Killing场。
+		      为求第三个，用下式定义新坐标$\psi, \eta$：
+		      $$x = \psi\operatorname{ch}\eta, ~ t = \psi\operatorname{sh}\eta, ~ 0 < \psi < \infty, ~ -\infty < \eta < \infty$$
+		      闵氏线元可用新坐标表为$\mathrm{d}s^2 = \mathrm{d}\psi^2 - \psi^2\mathrm{d}\eta^2$。
+		      上式表明$\eta_{ab}$在新坐标系的全体分量与坐标$\eta$无关，故$(\partial / \partial \eta)^a$也是Killing矢量场（其积分曲线是双曲线），它在洛伦兹坐标基底的展开式为
+		      $$(\partial / \partial \eta)^a = t(\partial / \partial x)^a + x(\partial / \partial t)^a$$
+		      由展开系数与坐标有关可知$(\partial / \partial \eta)^a$与前两个Killing场独立。
+		      不难验证$(\partial / \partial \eta)^a$是$\mathbb{R}^2$上的Killing矢量场，叫做\textbf{伪转动}（boost）Killing矢量场，表明闵氏度规具有伪转动下的不变性，对应于洛伦兹变换。
+		\item $4$维闵氏空间$(\mathbb{R}^4, \eta_{ab})$。
+		      因$n = 4$，故独立的Killing场共$10$个，分三组：
+		      \begin{enumerate}[（a）]
+			      \item $4$个平移$(\partial / \partial t)^a, (\partial / \partial x)^a, (\partial / \partial y)^a, (\partial / \partial z)^a$;
+			      \item $3$个空间转动$-y(\partial / \partial x)^a + x(\partial / \partial y)^a, -z(\partial / \partial y)^a + y(\partial / \partial z)^a, -x(\partial / \partial z)^a + z(\partial / \partial x)^a$;
+			      \item $3$个伪转动$t(\partial / \partial x)^a + x(\partial / \partial t)^a, t(\partial / \partial y)^a + y(\partial / \partial t)^a, t(\partial / \partial z)^a + z(\partial / \partial t)^a$
+		      \end{enumerate}
+		      组（a）反映闵氏度规沿$t, x, y, z$轴的平移不变性，组（b）反映它绕$z, y, x$轴的空间旋转不变性，组（c）反映它在$tx, ty, tz$面内的伪转动下的不变性。
+	\end{enumerate}
 \end{example}
 
 \begin{theorem}
-设$\{x, t\}$是$2$维闵氏空间$(\mathbb{R}^2, \eta_{ab})$的洛伦兹坐标系，$\phi_\lambda \colon \mathbb{R}^2 \to \mathbb{R}^2$是伪转动Killing场$\xi^a \equiv t(\partial / \partial x)^a + x(\partial / \partial t)^a$对应的单参等度规群的一个群元（即以参数$\lambda \in \mathbb{R}$刻画的那个等度规映射），则由$\phi_\lambda$诱导的坐标变换$\{x, t\} \mapsto \{x', t'\}$是洛伦兹变换。
+	设$\{x, t\}$是$2$维闵氏空间$(\mathbb{R}^2, \eta_{ab})$的洛伦兹坐标系，$\phi_\lambda \colon \mathbb{R}^2 \to \mathbb{R}^2$是伪转动Killing场$\xi^a \equiv t(\partial / \partial x)^a + x(\partial / \partial t)^a$对应的单参等度规群的一个群元（即以参数$\lambda \in \mathbb{R}$刻画的那个等度规映射），则由$\phi_\lambda$诱导的坐标变换$\{x, t\} \mapsto \{x', t'\}$是洛伦兹变换。
 \end{theorem}
 
 \begin{note}
-本定理表明伪转动和洛伦兹变换是同一变换的两种（主动与被动）提法。
-类似地，欧氏空间的转动Killing场$-y(\partial / \partial x)^a + x(\partial / \partial y)^a$与坐标变换
-$$x' = x\cos\alpha - y\sin\alpha, ~ y' = x\sin\alpha + y\cos\alpha$$
-也是同一变换的两种提法。
+	本定理表明伪转动和洛伦兹变换是同一变换的两种（主动与被动）提法。
+	类似地，欧氏空间的转动Killing场$-y(\partial / \partial x)^a + x(\partial / \partial y)^a$与坐标变换
+	$$x' = x\cos\alpha - y\sin\alpha, ~ y' = x\sin\alpha + y\cos\alpha$$
+	也是同一变换的两种提法。
 \end{note}
 
 \begin{proof}
-矢量场$\xi^a \equiv (\partial / \partial\eta)^a$的积分曲线的参数方程为$\mathrm{d}x^\mu(\eta) / \mathrm{d}\eta = \xi^\mu$（$\mu = 0, 1$）。
-注意到$\xi^a \equiv t(\partial / \partial x)^a + x(\partial / \partial t)^a$，便得
-$$\frac{\mathrm{d}x(\eta)}{\mathrm{d}\eta} = t(\eta), ~ \frac{\mathrm{d}t(\eta)}{\mathrm{d}\eta} = x(\eta)$$
-$\forall p \in \mathbb{R}^2$，设$C(\eta)$是满足$p = C(0)$的积分曲线，即$x(0) = x_p, t(0) = t_p$，则不难证明上述方程的特解（即该线的参数式）为
-$$x(\eta) = x_p\operatorname{ch}\eta + t_p\operatorname{sh}\eta, ~ t(\eta) = x_p\operatorname{sh}\eta + t_p\operatorname{ch}\eta$$
-设$q \equiv \phi_\lambda(p)$，则$q$就是$C(\eta)$上参数值$\eta = \lambda$的点，即$q = C(\lambda)$，故由$\phi_\lambda$诱导的新坐标$t'$和$x'$满足
-$$x'_p \equiv x_q = x_p\operatorname{ch}\lambda + t_p\operatorname{sh}\lambda, ~ t'_p \equiv t_q = x_p\operatorname{sh}\lambda + t_p\operatorname{ch}\lambda$$
-因$p$点任意，故可去掉下标$p$而写成
-$$x' = x\operatorname{ch}\lambda + t\operatorname{sh}\lambda = \operatorname{ch}\lambda(x + t\operatorname{th}\lambda), ~ t' = t\operatorname{ch}\lambda + x\operatorname{sh}\lambda = \operatorname{ch}\lambda(t + x\operatorname{th}\lambda)$$
-令$v \equiv \operatorname{th}\lambda, \gamma \equiv (1 - v^2)^{-1/2} = \operatorname{ch}\lambda$，则
-$$x' = \gamma(x + vt), ~ t'= \gamma(t + vx)$$
-这便是熟知的洛伦兹变换（注意，我们用几何单位制，其中光速$c = 1$。）。
+	矢量场$\xi^a \equiv (\partial / \partial\eta)^a$的积分曲线的参数方程为$\mathrm{d}x^\mu(\eta) / \mathrm{d}\eta = \xi^\mu$（$\mu = 0, 1$）。
+	注意到$\xi^a \equiv t(\partial / \partial x)^a + x(\partial / \partial t)^a$，便得
+	$$\frac{\mathrm{d}x(\eta)}{\mathrm{d}\eta} = t(\eta), ~ \frac{\mathrm{d}t(\eta)}{\mathrm{d}\eta} = x(\eta)$$
+	$\forall p \in \mathbb{R}^2$，设$C(\eta)$是满足$p = C(0)$的积分曲线，即$x(0) = x_p, t(0) = t_p$，则不难证明上述方程的特解（即该线的参数式）为
+	$$x(\eta) = x_p\operatorname{ch}\eta + t_p\operatorname{sh}\eta, ~ t(\eta) = x_p\operatorname{sh}\eta + t_p\operatorname{ch}\eta$$
+	设$q \equiv \phi_\lambda(p)$，则$q$就是$C(\eta)$上参数值$\eta = \lambda$的点，即$q = C(\lambda)$，故由$\phi_\lambda$诱导的新坐标$t'$和$x'$满足
+	$$x'_p \equiv x_q = x_p\operatorname{ch}\lambda + t_p\operatorname{sh}\lambda, ~ t'_p \equiv t_q = x_p\operatorname{sh}\lambda + t_p\operatorname{ch}\lambda$$
+	因$p$点任意，故可去掉下标$p$而写成
+	$$x' = x\operatorname{ch}\lambda + t\operatorname{sh}\lambda = \operatorname{ch}\lambda(x + t\operatorname{th}\lambda), ~ t' = t\operatorname{ch}\lambda + x\operatorname{sh}\lambda = \operatorname{ch}\lambda(t + x\operatorname{th}\lambda)$$
+	令$v \equiv \operatorname{th}\lambda, \gamma \equiv (1 - v^2)^{-1/2} = \operatorname{ch}\lambda$，则
+	$$x' = \gamma(x + vt), ~ t'= \gamma(t + vx)$$
+	这便是熟知的洛伦兹变换（注意，我们用几何单位制，其中光速$c = 1$。）。
 \end{proof}
 
 由$\mathrm{d}s^2 = -\mathrm{d}t^2 + \mathrm{d}x^2$和上述定理易得$\mathrm{d}s^2 = -\mathrm{d}t'^2 + \mathrm{d}x'^2$，可见伪转动对应的等度规映射诱导的坐标变换把洛伦兹系$\{t, x\}$变为洛伦兹系$\{t', x'\}$。
 此结果可推广为如下定理：
 
 \begin{theorem}
-设$\{x^\mu\}$是$(\mathbb{R}^n, \eta_{ab})$的洛伦兹坐标系，则$\{x'^\mu\}$也是洛伦兹坐标系的充要条件是它由$\{x^\mu\}$通过等度规映射$\phi \colon \mathbb{R}^n \to \mathbb{R}^n$诱导而得。
+	设$\{x^\mu\}$是$(\mathbb{R}^n, \eta_{ab})$的洛伦兹坐标系，则$\{x'^\mu\}$也是洛伦兹坐标系的充要条件是它由$\{x^\mu\}$通过等度规映射$\phi \colon \mathbb{R}^n \to \mathbb{R}^n$诱导而得。
 \end{theorem}
 
 \begin{proof}
-把$\eta_{ab}$记作$g_{ab}$，其在$\{x^\mu\}$和$\{x'^\mu\}$系的分量分别记作$g_{\mu\nu}$和$g'_{\mu\nu}$。
-\begin{enumerate}[（A）]
-\item 设$\phi \colon \mathbb{R}^n \to \mathbb{R}^n$是等度规映射（即$\phi^*g_{ab} = g_{ab}$），$\{x'^\mu\}$是由洛伦兹系$\{x^\mu\}$通过$\phi$诱导而得的坐标系，则$\forall p \in \mathbb{R}^n$有
-$g'_{\mu\nu}|_p = (\phi_*g)_{\mu\nu}|_{\phi(p)} = (\phi^{-1*}g)_{\mu\nu}|_{\phi(p)} = g_{\mu\nu}|_{\phi(p)} = \eta_{\mu\nu}$。
-其中第一步是坐标变换的主被动观点的等价性，最后一步用到$\{x^\mu\}$的洛伦兹性。上式说明$p$点的$g_{ab}$在$\{x'^\mu\}$系的分量为$\eta_{\mu\nu}$，故$\{x'^\mu\}$为洛伦兹系。
-\item 设$\{x^\mu\}$和$\{x'^\mu\}$都是洛伦兹系，$\phi \colon \mathbb{R}^n \to \mathbb{R}^n$是与坐标变换$\{x^\mu\} \mapsto \{x'^\mu\}$对应的微分同胚映射，则$\forall p \in \mathbb{R}^n$有
-$(\phi^{-1*}g)_{\mu\nu}|_p = (\phi_*g)_{\mu\nu}|_p = g'_{\mu\nu}|_{\phi^{-1}(p)} = \eta_{\mu\nu} = g_{\mu\nu}|_p$,
-其中，最后两步用到$\{x^\mu\}$和$\{x'^\mu\}$的洛伦兹性。上式表明$\phi^{-1*}g_{ab} = g_{ab}$，故$\phi^{-1}$（因而$\phi$）是等度规映射。
-\end{enumerate}
+	把$\eta_{ab}$记作$g_{ab}$，其在$\{x^\mu\}$和$\{x'^\mu\}$系的分量分别记作$g_{\mu\nu}$和$g'_{\mu\nu}$。
+	\begin{enumerate}[（A）]
+		\item 设$\phi \colon \mathbb{R}^n \to \mathbb{R}^n$是等度规映射（即$\phi^*g_{ab} = g_{ab}$），$\{x'^\mu\}$是由洛伦兹系$\{x^\mu\}$通过$\phi$诱导而得的坐标系，则$\forall p \in \mathbb{R}^n$有
+		      $g'_{\mu\nu}|_p = (\phi_*g)_{\mu\nu}|_{\phi(p)} = (\phi^{-1*}g)_{\mu\nu}|_{\phi(p)} = g_{\mu\nu}|_{\phi(p)} = \eta_{\mu\nu}$。
+		      其中第一步是坐标变换的主被动观点的等价性，最后一步用到$\{x^\mu\}$的洛伦兹性。上式说明$p$点的$g_{ab}$在$\{x'^\mu\}$系的分量为$\eta_{\mu\nu}$，故$\{x'^\mu\}$为洛伦兹系。
+		\item 设$\{x^\mu\}$和$\{x'^\mu\}$都是洛伦兹系，$\phi \colon \mathbb{R}^n \to \mathbb{R}^n$是与坐标变换$\{x^\mu\} \mapsto \{x'^\mu\}$对应的微分同胚映射，则$\forall p \in \mathbb{R}^n$有
+		      $(\phi^{-1*}g)_{\mu\nu}|_p = (\phi_*g)_{\mu\nu}|_p = g'_{\mu\nu}|_{\phi^{-1}(p)} = \eta_{\mu\nu} = g_{\mu\nu}|_p$,
+		      其中，最后两步用到$\{x^\mu\}$和$\{x'^\mu\}$的洛伦兹性。上式表明$\phi^{-1*}g_{ab} = g_{ab}$，故$\phi^{-1}$（因而$\phi$）是等度规映射。
+	\end{enumerate}
 \end{proof}
 
 \begin{note}
-本定理也适用于欧氏空间，只须把洛伦兹系改为笛卡尔系。可以说等度规映射保持坐标系的洛伦兹（笛卡尔）性。
+	本定理也适用于欧氏空间，只须把洛伦兹系改为笛卡尔系。可以说等度规映射保持坐标系的洛伦兹（笛卡尔）性。
 \end{note}
 
 \section{超曲面}
 
 \begin{definition}
-设
+	设$M$,$S$为流形，$\dim S \le \dim M \equiv n$。映射$\phi \colon S \to M$称为嵌入,若$\phi$是一一和$C^\infty$的,而且$\forall p \in S$，推前映射$\phi_* \colon V_p \to V_{\phi(p)}$非退化（$V_{\phi(p)}$是指$\phi(p)$作为$M$的一点的切空间）,即$\phi_*v^a = 0 \Rightarrow v^a = 0$.
 \end{definition}
+
+\begin{note}
+	嵌入的上述条件使$S$的拓扑和流形结构可自然地被带到$\phi[S]$上去,从而使$\phi \colon S \to \phi[S]$成为微分同胚。
+\end{note}
+
+\begin{definition}
+	嵌入$\phi \colon S \to M$称为$M$的一个嵌入子流形，简称子流形。也常把映射的像$\phi[S]$称为嵌入子流形。若$\dim S = n - 1$,则$\phi[S] \subset M$称为$M$的一张超曲面。
+\end{definition}
+
+
+\begin{example}
+	设$U$是$M$的开子集,把$M$的流形结构限制在$U$上，$U$便成为与$M$同维的流形。把$U$看作定义中的$S$,令$\phi \colon U \to M$为恒等映射,则$U \equiv \phi[U]$便是$M$的一个嵌入子流形（同维嵌入）。
+\end{example}
+
+\begin{example}
+	设$S$是$\mathbb{R}^3$（看作$M$）中的单位球面$S^2$,则恒等映射$\phi \colon S^2 \to \mathbb{R}^3$给出$\mathbb{R}^3$的一个嵌入子流形。注意到$S^2$比$\mathbb{R}^3$低一维,可知$S^2$是$\mathbb{R}^3$的一个超曲面。
+\end{example}
+
+设$\phi[S]$是$M$的超曲面,$q \in \phi[S] \subset M$。作为$M$的一点，$q$有$n$维切空间$V_q$。
+若$w^a \in V_q$是过$q$且躺在$\phi[S]$上的某曲线的切矢（``躺在''是指曲线每点都在$\phi[S]$上）,则说$w^a$切于$\phi[S]$。
+$V_q$中全体切于$\phi[S]$的元素构成的子集记作$W_q$。超曲面的定义保证$W_q$是$V_q$的$n - 1$维子空间。
+谈到超曲面时自然想到它的法矢。设$\phi[S]$是超曲面,$q \in \phi[S]$,则过$q$点的法矢$n^a$应定义为与$q$点所有切于$\phi[S]$的矢量正交的矢量。
+然而正交性只有在指定度规后才有意义。当$M$没有度规时，不能定义法矢$n^a$，但可定义``法余矢''$n_a$。余矢是对偶矢量的别名。由于对偶矢量作用于矢量给出实数（无需度规）,可定义法余矢如下:
+
+\begin{definition}
+	设$\phi[S]$是超曲面，$q \in \phi[S]$。非零对偶矢量$n_a \in V_q^*$称为$\phi[S]$在$q$点的法余矢,若$n_aw^a = 0 ~ \forall w^a \in W_q$。
+\end{definition}
+
+\begin{theorem}
+	超曲面$\phi[S]$上任一点$q$必有法余矢$n_a$。法余矢不唯一,但$q$点的任意两个法余矢之间只能差一实数因子。
+\end{theorem}
+
+\begin{proof}
+	设$\{(e_2)^a, \cdots , (e_n)^a\}$为$W_q$任一基底,因$dim V_q = n$，$V_q$必有与$\{(e_2)^a, \cdots , (e_n)^a\}$线性无关的元素,任取其一并记作$(e_1)^a$,则$\{(e_\mu)^a \mid \mu = 1, \cdots, n\}$为$V_q$的基底，其对偶基底记作$\{(e^\mu)_a\}$。
+	令$n_a = (e^1)_a$，则$n_a(e_\tau)^a = \delta^1{}_\tau = 0 ~ (\tau = 2, \cdots, n)$,故$n_aw^a = 0 ~ \forall w^a \in W_q$,可见$n_a$为法余矢。若存在$m_a$满足$m_a(e_\tau)^a = 0 ~ (\tau = 2, \cdots, n)$，则其在对偶基底$\{(e^\mu)_a\}$的分量$m_\tau = m_a(e_\tau)^a = 0 ~ (\tau = 2, \cdots, n)$,因而$m_a = m_1(e^1)_a = m_1n_a$,即$m_a$与$n_a$只差一因子$m_1$。
+\end{proof}
+
+\begin{note}
+	非超曲面嵌入子流形（如$3$维流形中的曲线）的法余矢没有这样好的唯一性。
+\end{note}
+
+\begin{theorem}
+	设$\phi[S]$是由$f = \text{常数}$给出的超曲面，则面上的$\nabla_af$是超曲面的法余矢。
+\end{theorem}
+
+\begin{proof}
+	只须对任一$q \in \phi[S]$证明$w^a\nabla_af = 0 ~ \forall w^a \in W_q$。
+	因$w^a$总切于过$q$并躺在$\phi[S]$上的某曲线$C(t)$,故$w^a\nabla_af = \frac{\partial}{\partial t}(f) = 0 ~ \forall w^a \in W_q$,最后一步是因$f$在$C(t)$上为常数。
+\end{proof}
+
+若$M$上有度规$g_{ab}$，则$n^a \equiv g^{ab}n_b \in V_q$与$\phi[S]$的所有矢量正交（因$g_{ab}n^aw^b = n_bw^b = 0 ~ \forall w^a \in W_q$）,故$n^a$叫超曲面$\phi[S]$在$q$点的法矢。
+若$g_{ab}$为正定度规（例如$\mathbb{R}^2$嵌入$3$维欧氏空间）,$n^a$自然不属于$W_q$,即$n^a \in V_q - W_q$;然而,若$g_{ab}$为洛伦兹度规，$n^a$却有可能属于$W_q$。以下就$g_{ab}$为洛伦兹度规的情况进行讨论。
+
+\begin{theorem}
+	$n^a \in W_q$的充要条件为$n^an_a = 0$。
+\end{theorem}
+
+\begin{proof}
+	\begin{enumerate}[（A）]
+		\item 设$n^a \in W_q$,则$n^a$可看作$n_aw^a = 0$中的$w^a$，故$n_an^a = 0$。
+		\item 由前面定理的证明知道对任一法余矢$n_a$存在基底$\{(e_\mu)^a\}$使$(e_2)^a, \cdots, (e_n)^a \in W_q$且$n_a = (e^1)_a$,故$n^a$在该基底的第一分量$n^1 = n^a(e^1)_a = n^an_a$。
+		      因此$n_an^a = 0 \Rightarrow n^1 = 0 \Rightarrow n^a = \sum^n_{\tau = 2}n^\tau(e_\tau)^a \in W_q$。
+	\end{enumerate}
+\end{proof}
