@@ -413,3 +413,20 @@ $V_q$中全体切于$\phi[S]$的元素构成的子集记作$W_q$。超曲面的�
 		      因此$n_an^a = 0 \Rightarrow n^1 = 0 \Rightarrow n^a = \sum^n_{\tau = 2}n^\tau(e_\tau)^a \in W_q$。
 	\end{enumerate}
 \end{proof}
+
+\begin{example}
+	设$S = \mathbb{R}, M = \mathbb{R}^2, M$上度规$g_{ab} = \eta_{ab}, \phi \colon \mathbb{R} \to \mathbb{R}^2$为嵌入,则$\phi[\mathbb{R}]$是$2$维闵氏时空中的超曲面。
+	设$t, x$为洛伦兹坐标，讨论以下三种有代表性的情况:
+	\begin{enumerate}[（1）]
+		\item $\phi[\mathbb{R}]$与$x$轴平行。$\forall q \in \phi[\mathbb{R}]$，令$(e_2)^a = (\partial / \partial x)^a$，选
+		$$(e_1)^a = \alpha(\partial / \partial t)^a + \beta(\partial / \partial x)^a, \text{（$\alpha, \beta$可为任意实数，但$\alpha \neq 0$。）}$$
+		则不难验证$(e^1)_a = \alpha^{-1}(\mathrm{d}t)_a$。根据前面定理的证明过程可知$(e^1)_a$为法余矢$n_a$，相应的法矢为$n^a = \alpha^{-1}g^{ab}(\mathrm{d}t)_b = -\alpha^{-1}(\partial / \partial t)^a$，满足$n^a \notin W_q$且$n_an^a < 0$（即$n^a$为类时）。
+		\item $\phi[\mathbb{R}]$与$t$轴平行。$\forall q \in \phi[\mathbb{R}]$，令$(e_2)^a = (\partial / \partial t)^a$，选
+		$$(e_1)^a = \alpha(\partial / \partial t)^a + \beta(\partial / \partial x)^a, \text{（$\alpha, \beta$可为任意实数，但$\beta \neq 0$。）}$$
+		则$(e^1)_a = \beta^{-1}(\mathrm{d}x)_a$。取$(e^1)_a$为法余矢$n_a$，相应的法矢为$n^a = \beta^{-1}(\partial / \partial x)^a$，满足$n^a \notin W_q$且$n_an^a > 0$（即$n^a$为类空）。
+		\item $\phi[\mathbb{R}]$与$x$轴夹$45\degree$角（按欧氏）。$\forall q \in \phi[\mathbb{R}]$，令$(e_2)^a = (\partial / \partial t)^a + (\partial / \partial x)^a$，选
+		$$(e_1)^a = \alpha(\partial / \partial t)^a + \beta(\partial / \partial x)^a, \alpha \neq \beta$$
+		则$(e^1)_a = (\alpha - \beta)^{-1}[(\mathrm{d}t)_a - (\mathrm{d}x)_a]$。取$(e^1)_a$为法余矢$n_a$，相应的法矢为$n^a = (\alpha - \beta)^{-1}g^{ab}[(\mathrm{d}t)_b - (\mathrm{d}x)_b] = -(\alpha - \beta)^{-1}[(\partial / \partial t)^a + (\partial / \partial x)^a] = -(\alpha - \beta)^{-1}(e_2)^a$，满足$n^a \in W_q$且$n_an^a = 0$（即$n^a$为类光）。
+		这种情况下，超曲面的法矢既与面上所有切矢垂直（法矢定义），本身又是切矢之一！
+	\end{enumerate}
+\end{example}
