@@ -347,7 +347,7 @@ $$\phi_*[(\mathrm{d}x'^\mu)^a|_q] = (\mathrm{d}y^\mu)^a|_{\phi(q)}$$
 \section{超曲面}
 
 \begin{definition}
-	设$M$,$S$为流形，$\dim S \le \dim M \equiv n$。映射$\phi \colon S \to M$称为嵌入,若$\phi$是一一和$C^\infty$的,而且$\forall p \in S$，推前映射$\phi_* \colon V_p \to V_{\phi(p)}$非退化（$V_{\phi(p)}$是指$\phi(p)$作为$M$的一点的切空间）,即$\phi_*v^a = 0 \Rightarrow v^a = 0$.
+	设$M$,$S$为流形，$\dim S \le \dim M \equiv n$。映射$\phi \colon S \to M$称为\textbf{嵌入},若$\phi$是一一和$C^\infty$的,而且$\forall p \in S$，推前映射$\phi_* \colon V_p \to V_{\phi(p)}$非退化（$V_{\phi(p)}$是指$\phi(p)$作为$M$的一点的切空间）,即$\phi_*v^a = 0 \Rightarrow v^a = 0$.
 \end{definition}
 
 \begin{note}
@@ -355,7 +355,7 @@ $$\phi_*[(\mathrm{d}x'^\mu)^a|_q] = (\mathrm{d}y^\mu)^a|_{\phi(q)}$$
 \end{note}
 
 \begin{definition}
-	嵌入$\phi \colon S \to M$称为$M$的一个嵌入子流形，简称子流形。也常把映射的像$\phi[S]$称为嵌入子流形。若$\dim S = n - 1$,则$\phi[S] \subset M$称为$M$的一张超曲面。
+	嵌入$\phi \colon S \to M$称为$M$的一个嵌入子流形，简称子流形。也常把映射的像$\phi[S]$称为\textbf{嵌入子流形}。若$\dim S = n - 1$,则$\phi[S] \subset M$称为$M$的一张\textbf{超曲面}。
 \end{definition}
 
 
@@ -371,10 +371,10 @@ $$\phi_*[(\mathrm{d}x'^\mu)^a|_q] = (\mathrm{d}y^\mu)^a|_{\phi(q)}$$
 若$w^a \in V_q$是过$q$且躺在$\phi[S]$上的某曲线的切矢（``躺在''是指曲线每点都在$\phi[S]$上）,则说$w^a$切于$\phi[S]$。
 $V_q$中全体切于$\phi[S]$的元素构成的子集记作$W_q$。超曲面的定义保证$W_q$是$V_q$的$n - 1$维子空间。
 谈到超曲面时自然想到它的法矢。设$\phi[S]$是超曲面,$q \in \phi[S]$,则过$q$点的法矢$n^a$应定义为与$q$点所有切于$\phi[S]$的矢量正交的矢量。
-然而正交性只有在指定度规后才有意义。当$M$没有度规时，不能定义法矢$n^a$，但可定义``法余矢''$n_a$。余矢是对偶矢量的别名。由于对偶矢量作用于矢量给出实数（无需度规）,可定义法余矢如下:
+然而正交性只有在指定度规后才有意义。当$M$没有度规时，不能定义法矢$n^a$，但可定义``法余矢''$n_a$。\textbf{余矢}是对偶矢量的别名。由于对偶矢量作用于矢量给出实数（无需度规）,可定义法余矢如下:
 
 \begin{definition}
-	设$\phi[S]$是超曲面，$q \in \phi[S]$。非零对偶矢量$n_a \in V_q^*$称为$\phi[S]$在$q$点的法余矢,若$n_aw^a = 0 ~ \forall w^a \in W_q$。
+	设$\phi[S]$是超曲面，$q \in \phi[S]$。非零对偶矢量$n_a \in V_q^*$称为$\phi[S]$在$q$点的\textbf{法余矢},若$n_aw^a = 0 ~ \forall w^a \in W_q$。
 \end{definition}
 
 \begin{theorem}
@@ -399,7 +399,7 @@ $V_q$中全体切于$\phi[S]$的元素构成的子集记作$W_q$。超曲面的�
 	因$w^a$总切于过$q$并躺在$\phi[S]$上的某曲线$C(t)$,故$w^a\nabla_af = \frac{\partial}{\partial t}(f) = 0 ~ \forall w^a \in W_q$,最后一步是因$f$在$C(t)$上为常数。
 \end{proof}
 
-若$M$上有度规$g_{ab}$，则$n^a \equiv g^{ab}n_b \in V_q$与$\phi[S]$的所有矢量正交（因$g_{ab}n^aw^b = n_bw^b = 0 ~ \forall w^a \in W_q$）,故$n^a$叫超曲面$\phi[S]$在$q$点的法矢。
+若$M$上有度规$g_{ab}$，则$n^a \equiv g^{ab}n_b \in V_q$与$\phi[S]$的所有矢量正交（因$g_{ab}n^aw^b = n_bw^b = 0 ~ \forall w^a \in W_q$）,故$n^a$叫超曲面$\phi[S]$在$q$点的\textbf{法矢}。
 若$g_{ab}$为正定度规（例如$\mathbb{R}^2$嵌入$3$维欧氏空间）,$n^a$自然不属于$W_q$,即$n^a \in V_q - W_q$;然而,若$g_{ab}$为洛伦兹度规，$n^a$却有可能属于$W_q$。以下就$g_{ab}$为洛伦兹度规的情况进行讨论。
 
 \begin{theorem}
@@ -432,9 +432,9 @@ $V_q$中全体切于$\phi[S]$的元素构成的子集记作$W_q$。超曲面的�
 \end{example}
 
 \begin{definition}
-	超曲面叫类空的，若其法矢处处类时（$n^an_a < 0$）;
-	超曲面叫类时的，若其法矢处处类空（$n^an_a > 0$）;
-	超曲面叫类光的，若其法矢处处类光（$n^an_a = 0$）。
+	超曲面叫\textbf{类空}的，若其法矢处处类时（$n^an_a < 0$）;
+	超曲面叫\textbf{类时}的，若其法矢处处类空（$n^an_a > 0$）;
+	超曲面叫\textbf{类光}的，若其法矢处处类光（$n^an_a = 0$）。
 \end{definition}
 
 若$n^an_a \neq 0$，今后谈法矢时都指归一化法矢，即$n^an_a = \pm 1$。
@@ -442,7 +442,7 @@ $V_q$中全体切于$\phi[S]$的元素构成的子集记作$W_q$。超曲面的�
 \begin{definition}
 	设$\phi[S]$是流形$M$中的嵌入子流形（不一定是超曲面），$q \in \phi[S], W_q$是$q$点切于$\phi[S]$的切空间。
 	$W_q$的度规$h_{ab}$叫做由$V_q$的度规$g_{ab}$生出的诱导度规，若
-	$$h_{ab}w_1^aw_2^b = g_{ab}w_1^aw_2^b, ~ \forall w_1^a, w_2^b \in W_q$$。
+	$$h_{ab}w_1^aw_2^b = g_{ab}w_1^aw_2^b, ~ \forall w_1^a, w_2^b \in W_q$$
 \end{definition}
 
 诱导度规$h_{ab}$实质上是把$V_q$上度规$g_{ab}$的作用对象限制于$W_q$的结果。
@@ -456,7 +456,7 @@ $$h^a{}_b \equiv g^{ac}h_{cb} = \delta^a{}_b \mp n^an_b$$
 $$v^a = h^a{}_bv^b \pm n^a(n_bv^b)$$
 上式代表矢量$v^a$的一种分解,其中$\pm n^a(n_bv^b)$与法矢$n^a$平行，称为法向分量,
 $h^a{}_bv^b$与法矢$n^a$垂直（因为$n_a(h^a{}_bv^b) = 0$）,称为切向分量（切于$\phi[S]$的分量）。
-$h^a{}_b$称为从$V_q$到$W_q$的投影映射。
+$h^a{}_b$称为从$V_q$到$W_q$的\textbf{投影映射}。
 
 \begin{theorem}
 	类光超曲面上的诱导``度规''是退化的（因而没有诱导度规）。
