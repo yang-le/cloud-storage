@@ -8,27 +8,27 @@ $\phi$自然诱导出一系列映射如下。
 
 \begin{definition}
 	\textbf{拉回映射}$\phi^* \colon \mathscr{F}_N \to \mathscr{F}_M$定义为
-	$$(\phi^*f)|_p := f|_{\phi(p)}, ~ \forall f \in \mathscr{F}_N, p \in M$$
+	$$(\phi^*f)|_p \coloneq f|_{\phi(p)}, ~ \forall f \in \mathscr{F}_N, p \in M$$
 	即$\phi^*f = f \comp \phi$。
 \end{definition}
 
 由定义不难证明：
 \begin{enumerate}[（1）]
 	\item $\phi^* \colon \mathscr{F}_N \to \mathscr{F}_M$是线性映射，即
-	      $$\phi^*(\alpha f + \beta g) = \alpha\phi^*(f) + \beta\phi^*(g)， ~ \forall f,g \in \mathscr{F}_N, ～ \alpha,\beta \in \mathbb{R}$$
+	      $$\phi^*(\alpha f + \beta g) = \alpha\phi^*(f) + \beta\phi^*(g)， ~ \forall f,g \in \mathscr{F}_N, ~ \alpha,\beta \in \mathbb{R}$$
 	\item $\phi^*(fg) = \phi^*(f)\phi^*(g), ~ \forall f,g \in \mathscr{F}_N$
 \end{enumerate}
 
 \begin{definition}
 	对$M$中任一点$p$可定义\textbf{推前映射}$\phi_* \colon V_p \to V_{\phi(p)}$如下：$\forall v^a \in V_p$，定义其像$\phi_*v^a \in V_{\phi(p)}$为
-	$$(\phi_*v)(f) := v(\phi*f), ~ \forall f \in \mathscr{F}_N$$
+	$$(\phi_*v)(f) \coloneq v(\phi*f), ~ \forall f \in \mathscr{F}_N$$
 \end{definition}
 
 还应证明这样定义的$\phi_*v^a$满足矢量定义的两个要求，从而确是$\phi(p)$点的矢量。许多文献也把$\phi_*$称为$\phi$的\textbf{切映射}。
 
 \begin{theorem}
 	$\phi_* \colon V_p \to V_{\phi(p)}$是线性映射，即
-	$$\phi_*(\alpha u^a + \beta v^a) = \alpha\phi_*u^a + \beta\phi_*v^a， ~ \forall u^a,v^a \in V_p, ～ \alpha,\beta \in \mathbb{R}$$
+	$$\phi_*(\alpha u^a + \beta v^a) = \alpha\phi_*u^a + \beta\phi_*v^a， ~ \forall u^a,v^a \in V_p, ~ \alpha,\beta \in \mathbb{R}$$
 \end{theorem}
 
 \begin{theorem}
@@ -47,14 +47,14 @@ $\phi$自然诱导出一系列映射如下。
 \begin{definition}
 	拉回映射可按如下方式延拓至$\phi^* \colon \mathscr{F}_N(0, l) \to \mathscr{F}_M(0, l)$：
 	$\forall T \in \mathscr{F}_N(0, l)$，定义$\phi^*(T) \in \mathscr{F}_M(0, l)$为
-	$$(\phi^*T)_{a_1 \cdots a_l}|_p(v_1)^{a_1}\cdots(v_l)^{a_l} := T_{a_1 \cdots a_l}|_{\phi(p)}(\phi_*v_1)^{a_1}\cdots(\phi_*v_l)^{a_l}, ~ \forall p \in M, v_1, \cdots, v_l \in V_p$$
+	$$(\phi^*T)_{a_1 \cdots a_l}|_p(v_1)^{a_1}\cdots(v_l)^{a_l} \coloneq T_{a_1 \cdots a_l}|_{\phi(p)}(\phi_*v_1)^{a_1}\cdots(\phi_*v_l)^{a_l}, ~ \forall p \in M, v_1, \cdots, v_l \in V_p$$
 \end{definition}
 
 \begin{definition}
 	$\forall p \in M$，推前映射$\phi_*$可按如下方式延拓至$\phi_* \colon \mathscr{T}_{V_p}(k, 0) \to \mathscr{T}_{V_{\phi(p)}}(k, 0)$（即$\phi_*$是把$p$点的$(k, 0)$型张量变为$\phi(p)$点的同型张量的映射）：
 	$\forall T \in \mathscr{T}_{V_p}(k, 0)$，其像$\phi_*(T) \in \mathscr{T}_{V_{\phi(p)}}(k, 0)$由下式定义：
-	$$(\phi_*T)^{a_1 \cdots a_l}(\omega^1)_{a_1}\cdots(\omega^k)_{a_k} := T^{a_1 \cdots a_l}(\phi^*\omega^1)_{a_1}\cdots(\phi^*\omega^k)_{a_k}, ~ \forall \omega^1, \cdots, \omega^k \in V^*_{\phi(p)}$$
-	其中$(\phi^*\omega)_a$定义为$(\phi^*\omega)_av^a := \omega_a(\phi_*v)^a, ~ \forall v^a \in V_p$。
+	$$(\phi_*T)^{a_1 \cdots a_l}(\omega^1)_{a_1}\cdots(\omega^k)_{a_k} \coloneq T^{a_1 \cdots a_l}(\phi^*\omega^1)_{a_1}\cdots(\phi^*\omega^k)_{a_k}, ~ \forall \omega^1, \cdots, \omega^k \in V^*_{\phi(p)}$$
+	其中$(\phi^*\omega)_a$定义为$(\phi^*\omega)_av^a \coloneq \omega_a(\phi_*v)^a, ~ \forall v^a \in V_p$。
 \end{definition}
 
 \begin{note}
@@ -68,7 +68,7 @@ $\phi$自然诱导出一系列映射如下。
 	然而，如果$\phi \colon M \to N$是微分同胚映射，则上述困难不复存在，推前映射$\phi_*$可看作把$M$上的$(k, 0)$型张量\CJKunderdot{场}变为$N$上同型张量\CJKunderdot{场}的映射，即$\phi_* \colon \mathscr{F}_M(k, 0) \to \mathscr{F}_N(k, 0)$。
 	再者，由于$\phi^{-1}$存在而且光滑，其拉回映射$\phi^{-1*}$把$\mathscr{F}_M(0, l)$映到$\mathscr{F}_N(0, l)$，这可看作$\phi$的推前映射$\phi_*$，于是$\phi_*$又可进一步推广为$\phi_* \colon \mathscr{F}_M(k, l) \to \mathscr{F}_N(k, l)$。
 	例如，设$T^a{}_b \in \mathscr{F}_M(1, 1)$，则$(\phi_*T)^a{}_b \in \mathscr{F}_N(1, 1)$定义为
-	$$(\phi_*T)^a{}_b|_q\omega_av^b := T^a{}_b|_{\phi^{-1}(q)}(\phi^*\omega)_a(\phi^*v)^b, ~ \forall q \in N, \omega_a \in V^*_q, v^b \in V_q$$
+	$$(\phi_*T)^a{}_b|_q\omega_av^b \coloneq T^a{}_b|_{\phi^{-1}(q)}(\phi^*\omega)_a(\phi^*v)^b, ~ \forall q \in N, \omega_a \in V^*_q, v^b \in V_q$$
 	其中，$(\phi^*v)^b$应理解为$(\phi^{-1}_*v)^b$。
 	同理，拉回映射也可推广为$\phi^* \colon \mathscr{F}_N(k, l) \to \mathscr{F}_M(k, l)$。
 	推广后的$\phi_*$和$\phi^*$仍为线性映射，而且互逆。
@@ -77,7 +77,7 @@ $\phi$自然诱导出一系列映射如下。
 设$\phi \colon M \to N$是微分同胚，$p \in M$，$\{x^\mu\}$和$\{y^\mu\}$分别是$M$和$N$的局域坐标系，坐标域$O_1$和$O_2$满足$p \in O_1, \phi(p) \in O_2$。
 于是$p \in \phi^{-1}[O_2]$。$\phi$为微分同胚保证$M$和$N$的维数相等，故$\{x^\mu\}$和$\{y^\mu\}$的$\mu$都是从$1$到$n$。
 微分同胚本是点的变换，但也可等价地看作坐标变换，因为可用$\phi \colon M \to N$在$\phi^{-1}[O_2]$上定义一组新坐标$\{x'^\mu\}$如下：
-$\forall q \in \phi^{-1}[O_2]$，定义$x'^\mu(q) := y^\mu(\phi(q))$。
+$\forall q \in \phi^{-1}[O_2]$，定义$x'^\mu(q) \coloneq y^\mu(\phi(q))$。
 可见微分同胚映射$\phi$在$p$的邻域$O_1 \cap \phi^{-1}[O_2]$上自动诱导出一个坐标变换$x^\mu \mapsto x'^\mu$。
 由前述定理不难证明$\forall q \in O_1 \cap \phi^{-1}[O_2]$有
 $$\phi_*[(\partial / \partial x'^\mu)^a|_q] = (\partial / \partial y^\mu)^a|_{\phi(q)}$$
@@ -113,7 +113,7 @@ $$\phi_*[(\mathrm{d}x'^\mu)^a|_q] = (\mathrm{d}y^\mu)^a|_{\phi(q)}$$
 这两个张量场在点$p \in M$的值之差$\phi^*_tT^{\cdots}{}_{\cdots}|_p - T^{\cdots}{}_{\cdots}|_p$是$p$点的张量，它与$t$之商$(\phi^*_tT^{\cdots}{}_{\cdots}|_p - T^{\cdots}{}_{\cdots}|_p) / t$在$t$趋于零时的极限可看作张量场$T^{\cdots}{}_{\cdots}$在$p$点的某种导数，于是有以下定义：
 
 \begin{definition}
-	$\mathscr{L}_vT^{a_1 \cdots a_k}{}_{b_1 \cdots b_l} := \lim\limits_{t \to 0}\frac{1}{t}(\phi^*_tT^{a_1 \cdots a_k}{}_{b_1 \cdots b_l} - T^{a_1 \cdots a_k}{}_{b_1 \cdots b_l})$
+	$\mathscr{L}_vT^{a_1 \cdots a_k}{}_{b_1 \cdots b_l} \coloneq \lim\limits_{t \to 0}\frac{1}{t}(\phi^*_tT^{a_1 \cdots a_k}{}_{b_1 \cdots b_l} - T^{a_1 \cdots a_k}{}_{b_1 \cdots b_l})$
 
 	称为张量场$T^{a_1 \cdots a_k}{}_{b_1 \cdots b_l}$沿矢量场$v^a$的\textbf{李导数}（$\mathscr{L}_v$中的$v$不写为$v^a$，以免误解。）。
 \end{definition}
@@ -225,7 +225,7 @@ $$\phi_*[(\mathrm{d}x'^\mu)^a|_q] = (\mathrm{d}y^\mu)^a|_{\phi(q)}$$
 
 \begin{theorem}
 	$\xi^a$为Killing矢量场的充要条件是$\xi^a$满足如下的\textbf{Killing方程}：
-	$$\nabla_a\xi_b + \nabla_b\xi_a = 0, ～ \text{或} \nabla_{(a}\xi_{b)} = 0, ～ \text{或} \nabla_a\xi_b = \nabla_{[a}\xi_{b]}$$
+	$$\nabla_a\xi_b + \nabla_b\xi_a = 0, ~ \text{或} \nabla_{(a}\xi_{b)} = 0, ~ \text{或} \nabla_a\xi_b = \nabla_{[a}\xi_{b]}$$
 	（其中$\nabla_a$满足$\nabla_ag_{bc} = 0$）
 \end{theorem}
 

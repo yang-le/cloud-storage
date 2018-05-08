@@ -41,11 +41,11 @@ $(O_\beta, \psi_\beta)$构成另一坐标系，其坐标域为$O_\beta$。于是
 \end{example}
 
 \begin{example}
-设$M = (S^1, \mathscr{S})$，其中$S^1 := \{x \in \mathbb{R}^2 \mid |x - o| = 1\}$是以原点$o$为心的单位圆周，$\mathscr{S}$是$\mathbb{R}^2$的$\mathscr{T}_u$在$S^1$上诱导的拓扑。则可证明$S^1$是$1$维流形。
+设$M = (S^1, \mathscr{S})$，其中$S^1 \coloneq \{x \in \mathbb{R}^2 \mid |x - o| = 1\}$是以原点$o$为心的单位圆周，$\mathscr{S}$是$\mathbb{R}^2$的$\mathscr{T}_u$在$S^1$上诱导的拓扑。则可证明$S^1$是$1$维流形。
 \end{example}
 
 \begin{example}
-设$M = (S^2, \mathscr{S})$，其中$S^2 := \{x \in \mathbb{R}^3 \mid |x - o| = 1\}$是以原点$o$为心的单位球面，$\mathscr{S}$是$\mathbb{R}^3$的$\mathscr{T}_u$在$S^2$上诱导的拓扑。则可证明$S^2$是$2$维流形。
+设$M = (S^2, \mathscr{S})$，其中$S^2 \coloneq \{x \in \mathbb{R}^3 \mid |x - o| = 1\}$是以原点$o$为心的单位球面，$\mathscr{S}$是$\mathbb{R}^3$的$\mathscr{T}_u$在$S^2$上诱导的拓扑。则可证明$S^2$是$2$维流形。
 \end{example}
 
 设图册$\{(O_\alpha, \psi_\alpha)\}$把拓扑空间$M$定义为一个流形，则此图册中的任意两个图自然是相容的。
@@ -112,9 +112,9 @@ $\mathbb{R}^3$中位于$q$点的点电荷的电势是流形$M \equiv \mathbb{R}^
 \item $v_1 + v_2 = v_2 + v_1, ~ \forall v_1, v_2 \in V$;
 \item $(v_1 + v_2) + v_3 = v_1 + (v_2 + v_3), ~ \forall v_1, v_2, v_3 \in V$;
 \item $\exists \underline{0} \in V, \text{使} \underline{0} + v = v, ~ \forall v \in V$;
-\item $\alpha_1(\alpha_2v) = (\alpha_1\alpha_2)v, ~ \forall v \in V, ～ \alpha_1, \alpha_2 \in \mathbb{R}$;
-\item $(\alpha_1 + \alpha_2)v = \alpha_1v + \alpha_2v, ~ \forall v \in V, ～ \alpha_1, \alpha_2 \in \mathbb{R}$;
-\item $\alpha(v_1 + v_2) = \alpha v_1 + \alpha v_2, ~ \forall v_1, v_2 \in V, ～ \alpha \in \mathbb{R}$;
+\item $\alpha_1(\alpha_2v) = (\alpha_1\alpha_2)v, ~ \forall v \in V, ~ \alpha_1, \alpha_2 \in \mathbb{R}$;
+\item $(\alpha_1 + \alpha_2)v = \alpha_1v + \alpha_2v, ~ \forall v \in V, ~ \alpha_1, \alpha_2 \in \mathbb{R}$;
+\item $\alpha(v_1 + v_2) = \alpha v_1 + \alpha v_2, ~ \forall v_1, v_2 \in V, ~ \alpha \in \mathbb{R}$;
 \item $1 \cdot v = v, ~ \forall v \in V$。
 \end{enumerate}
 \end{definition}
@@ -144,11 +144,11 @@ $\mathbb{R}^3$中位于$q$点的点电荷的电势是流形$M \equiv \mathbb{R}^
 例如，设$(O, \psi)$是坐标系，其坐标为$x^\mu$，则$M$上任一光滑函数$f \in \mathscr{F}_M$与$(O, \psi)$结合得$n$元函数
 $F(x^1, \cdots, x^n)$，借此可给$O$中任一点$p$定义$n$个矢量，记作$X_\mu$（其中$\mu = 1, \cdots, n$）,
 它（们）作用于任一$f \in \mathscr{F}_M$的结果$X_\mu(f)$定义为如下实数：
-$$X_\mu(f) := \left.\frac{\partial F(x^1, \cdots, x^n)}{\partial x^\mu}\right|_p, ~ \forall f \in \mathscr{F}_M$$
+$$X_\mu(f) \coloneq \left.\frac{\partial F(x^1, \cdots, x^n)}{\partial x^\mu}\right|_p, ~ \forall f \in \mathscr{F}_M$$
 其中$\partial F(x^1, \cdots, x^n)/\partial x^\mu|_p$是$\partial F/\partial x^\mu|_{(x^1(p), \cdots, x^n(p))}$的简写。
 今后也把$\partial F(x^1, \cdots, x^n)/\partial x^\mu$简写为$\partial f(x^1, \cdots, x^n)/\partial x^\mu$或$\partial f(x)/\partial x^\mu$甚至$\partial f/\partial x^\mu$。
 应认出$\partial f/\partial x^\mu$中的$f$代表$n$元函数$F(x^1, \cdots, x^n)$而非标量场$f$。于是上式可简写为
-$$X_\mu(f) := \left.\frac{\partial f(x)}{\partial x^\mu}\right|_p, ~ \forall f \in \mathscr{F}_M$$
+$$X_\mu(f) \coloneq \left.\frac{\partial f(x)}{\partial x^\mu}\right|_p, ~ \forall f \in \mathscr{F}_M$$
 
 \begin{theorem}
 以$V_p$代表$M$中点$p$所有矢量的集合，则$V_p$是$n$维矢量空间（$n$是$M$的维数），即$\dim V_p = \dim M \equiv n$。
@@ -232,7 +232,7 @@ $$\{p \in O \mid x^2(p) = \text{常数}, \cdots, x^n(p) = \text{常数}\}$$
 
 \begin{definition}
 设$C(t)$是流形$M$上的$C^1$曲线，则线上$C(t_0)$点切于$C(t)$的切矢$T$是$C(t_0)$点的矢量，它对$f \in \mathscr{F}_M$的作用定义为：
-$$T(f) := \left.\frac{\mathrm{d}(f \comp C)}{\mathrm{d}t}\right|_{t_0}, ~ \forall f \in \mathscr{F}_M$$
+$$T(f) \coloneq \left.\frac{\mathrm{d}(f \comp C)}{\mathrm{d}t}\right|_{t_0}, ~ \forall f \in \mathscr{F}_M$$
 \end{definition}
 
 \begin{note}
@@ -240,12 +240,12 @@ $$T(f) := \left.\frac{\mathrm{d}(f \comp C)}{\mathrm{d}t}\right|_{t_0}, ~ \foral
 但与曲线$C \colon I \to M$的结合$f \comp C$便是以$t$为自变数的一元函数（也可记作$f(C(t))$）。
 在不会混淆的情况下，$\mathrm{d}(f \comp C) / \mathrm{d}t$也可简写成$\mathrm{d}f / \mathrm{d}t$。
 \textcircled{2}$C(t_0)$点切于$C(t)$的切矢$T$也常记作$\partial / \partial t|_{C(t_0)}$，于是上式也可写成
-$$\left.\frac{\partial}{\partial t}\right|_{C(t_0)}(f) := \left.\frac{\mathrm{d}(f \comp C)}{\mathrm{d}t}\right|_{t_0} := \left.\frac{\mathrm{d}f(C(t))}{\mathrm{d}t}\right|_{t_0}, ~ \forall f \in \mathscr{F}_M$$
+$$\left.\frac{\partial}{\partial t}\right|_{C(t_0)}(f) \coloneq \left.\frac{\mathrm{d}(f \comp C)}{\mathrm{d}t}\right|_{t_0} \coloneq \left.\frac{\mathrm{d}f(C(t))}{\mathrm{d}t}\right|_{t_0}, ~ \forall f \in \mathscr{F}_M$$
 \end{note}
 
 \begin{example}
 $x^\mu$坐标线是以$x^\mu$为参数的曲线，又$p$点的坐标基矢$X_\mu$就是过$p$的$x^\mu$坐标线的切矢，故也常记作$\partial / \partial x^\mu|_p$，于是坐标基矢$X_\mu$对$f$的作用又可表为
-$$\left.\frac{\partial}{\partial x^\mu}\right|_p(f) := \left.\frac{\partial f(x)}{\partial x^\mu}\right|_p, ~ \forall f \in \mathscr{F}_M$$
+$$\left.\frac{\partial}{\partial x^\mu}\right|_p(f) \coloneq \left.\frac{\partial f(x)}{\partial x^\mu}\right|_p, ~ \forall f \in \mathscr{F}_M$$
 可见符号$\partial f / \partial x^\mu$既可理解为$\partial F(x^1, \cdots, x^n) / \partial x^\mu$，又可理解为坐标线的切矢$\partial / \partial x^\mu$对标量场$f$的作用。
 \end{example}
 
@@ -319,12 +319,12 @@ $M$上的矢量场$v$是$C^\infty$（或$C^r$）类的充要条件是它在任�
 
 \begin{definition}
 两个光滑矢量场$u$和$v$的\textbf{对易子}是一个光滑矢量场$[u, v]$，定义为
-$$[u, v](f) := u(v(f)) - v(u(f)), ~ \forall f \in \mathscr{F}_M$$
+$$[u, v](f) \coloneq u(v(f)) - v(u(f)), ~ \forall f \in \mathscr{F}_M$$
 \end{definition}
 
 \begin{note}
 上式是对易子$[u, v]$（作为矢量场）的定义式，它在每点$p \in M$的值$[u, v]|_p$（作为$p$点的矢量，即从$\mathscr{F}_M$到$\mathbb{R}$的映射）的定义应理解为
-$$[u, v]|_p(f) := u|_p(v(f)) - v|_p(u(f)), ~ \forall f \in \mathscr{F}_M$$
+$$[u, v]|_p(f) \coloneq u|_p(v(f)) - v|_p(u(f)), ~ \forall f \in \mathscr{F}_M$$
 要确信上式定义的$[u, v]|_p$是$p$点的矢量，还应证明它满足矢量定义的两个条件。
 \end{note}
 
@@ -365,7 +365,7 @@ $$\sigma(x, y, z) = \sigma(x + a, y, z), ~ \forall a \in \mathbb{R},$$
 设$G$是沿$x$轴的所有平移的集合，则$G$中的元素由实数$a$表征，记作$\phi_a \in G$。
 把$p \equiv (x, y, z)$和$q \equiv (x + a, y, z)$看做$\mathbb{R}^3$的点，则上述变换式相当于映射$\phi_a \colon \mathbb{R}^3 \to \mathbb{R}^3$（满足$\phi_a(p) = q$），而且是微分同胚映射。
 再者，对$G$用下式定义群乘法
-$$\phi_a\phi_b := \phi_{a + b}, ~ \forall \phi_a, \phi_b \in G$$
+$$\phi_a\phi_b \coloneq \phi_{a + b}, ~ \forall \phi_a, \phi_b \in G$$
 则$G$构成群（$\phi_0$是恒等元，$\phi_{-a}$是$\phi_a$的逆元）。
 这个群的无限多个元素可用实数$a$表征，因此称$a$为\textbf{参数}，称$G$为\textbf{单参数群}。
 又因每一群元素$\phi_a \in G$都是$\mathbb{R}^3$上的一个微分同胚，故又称$G$为$\mathbb{R}^3$上的\textbf{单参微分同胚群}。
@@ -411,7 +411,7 @@ $$\omega(\alpha v + \beta u) = \alpha\omega(v) + \beta\omega(u), ~ \forall v, u 
 设$V$为全体$2 \times 1$实矩阵的集合，则它在矩阵加法和数乘规则下构成$2$维矢量空间。
 以$\omega$代表任一$1 \times 2$实矩阵$(c, d)$，其对$V$的任一元素
 $v = \begin{pmatrix}a \\ b\end{pmatrix}$
-的作用可用矩阵乘法定义：$\omega(v) := (c, d)\begin{pmatrix}a \\ b\end{pmatrix} = (ac + bd)$，
+的作用可用矩阵乘法定义：$\omega(v) \coloneq (c, d)\begin{pmatrix}a \\ b\end{pmatrix} = (ac + bd)$，
 结果是一个$1 \times 1$矩阵，可认同为一个实数$ac + bd$。这样定义的映射$\omega \colon V \to \mathbb{R}$
 显然是线性的，可见任一$1 \times 2$实矩阵都是$V$上的对偶矢量。推广可知：若把列矩阵（$n \times 1$矩阵）看做矢量，
 则行矩阵（$1 \times n$矩阵）就是对偶矢量。
@@ -424,7 +424,7 @@ $V^*$是矢量空间，且$\dim V^* = \dim V$。
 \begin{proof}
 易证$V^*$是矢量空间，只需定义合适的加法、数乘和零元即可。
 
-设$\{e_\mu\}$是$V$的一组基矢，今定义$e^{\mu*}$为$e^{\mu*}(e_\nu) := \delta^\mu{}_\nu, ~ \mu, \nu = 1, \cdots, n$。
+设$\{e_\mu\}$是$V$的一组基矢，今定义$e^{\mu*}$为$e^{\mu*}(e_\nu) \coloneq \delta^\mu{}_\nu, ~ \mu, \nu = 1, \cdots, n$。
 下面证明$\{e^{\mu*}\}$是$V^*$的一组基矢。
 
 易证$e^{1*}, \cdots, e^{n*}$彼此线性独立。
@@ -444,7 +444,7 @@ $V^*$既然是矢量空间，自然也有对偶空间，记作$V^{**}$。有别�
 $\forall v \in V$，欲给它自然地定义一个像$v^{**} \in V^{**}$。因为$V^{**}$是$V^*$的对偶空间，$v^{**}$应该是从$V^*$到$\mathbb{R}$的线性映射。
 对它下定义无非是给出一个规律，按照这一规律，每一$\omega \in V^*$对应于唯一的实数$v^{**}(\omega)$。
 因为$v^{**}$有待定义为$v$的像，所以$v^{**}(\omega)$与$v$和$\omega$都应有关，而由$v$和$\omega$构造的最简单的实数就是$\omega(v)$，自然把$v^{**}$定义为
-$$v^{**}(\omega) := \omega(v), ~ \forall \omega \in V^*$$
+$$v^{**}(\omega) \coloneq \omega(v), ~ \forall \omega \in V^*$$
 这一映射$V \to V^{**}$是同构映射。这一自然同构关系表明$V$和$V^{**}$可视为同一空间（把每一$v \in V$与其像$v^{**} \in V^{**}$认同）。
 所以，真正有用的是$V$和$V^*$，再取对偶（不论多少次）也得不到更多有用的空间。
 
@@ -475,7 +475,7 @@ $M$上的对偶矢量场$\omega$叫做\textbf{光滑}的，若对所有光滑矢
 要定义$\mathrm{d}f$只须说明它在$M$的任一点$p$的值$\mathrm{d}f|_p \in {V_p}^*$的定义，
 而要定义$\mathrm{d}f|_p$只须给出它对$p$点任一矢量$v \in V$作用所得的实数，这个实数应与$f$和$v$都有关，
 而由$f$和$v$能构造的最自然（最简单）的实数便是$v(f)$，因此定义$\mathrm{d}f|_p$为
-$$\mathrm{d}f|_p(v) := v(f), ~ \forall v \in V_p$$
+$$\mathrm{d}f|_p(v) \coloneq v(f), ~ \forall v \in V_p$$
 由此易证
 $$\mathrm{d}(fg)|_p = f|_p(\mathrm{d}g)|_p + g|_p(\mathrm{d}f)|_p$$
 这正是微分算符$\mathrm{d}$所满足的莱布尼茨律。
@@ -537,7 +537,7 @@ $T$可比喻为一部机器，有$k$个``上槽''和$l$个``下槽''，只要在
 $V$上的$(k, l)$和$(k', l')$型张量$T$和$T'$的\textbf{张量积}$T \otimes T'$是一个$(k + k', l + l')$型张量，定义如下：
 $$\begin{aligned}
 & T \otimes T'(\omega^1, \cdots, \omega^k, \omega^{k + 1}, \cdots, \omega^{k + k'}; v_1, \cdots, v_l, v_{l + 1}, \cdots, v_{l + l'}) \\
-:= & T(\omega^1, \cdots, \omega^k; v_1, \cdots, v_l)T'(\omega^{k + 1}, \cdots, \omega^{k + k'}; v_{l + 1}, \cdots, v_{l + l'})
+\coloneq & T(\omega^1, \cdots, \omega^k; v_1, \cdots, v_l)T'(\omega^{k + 1}, \cdots, \omega^{k + k'}; v_{l + 1}, \cdots, v_{l + l'})
 \end{aligned}$$
 \end{definition}
 
@@ -586,11 +586,11 @@ T'^\mu{}_\nu & = T(e'^{\mu*}; e'_\nu) = T((\tilde{A}^{-1})_\rho{}^\mu e^{\rho*};
 可见$T'$与$T$互为相似矩阵。以$T'^\mu{}_\mu$（是$\sum_{\mu = 1}^n T'^\mu{}_\mu$的简写）和$T^\rho{}_\rho$分别代表矩阵$T'$和$T$的迹，则由上式易得：
 $$T'^\mu{}_\mu = (A^{-1})^\mu{}_\rho T^\rho{}_\sigma A^\sigma{}_\mu = A^\sigma{}_\mu(A^{-1})^\mu{}_\rho T^\rho{}_\sigma = \delta^\sigma{}_\rho T^\rho{}_\sigma = T^\rho{}_\rho$$
 这就证明了同一$(1, 1)$型张量在不同基底的矩阵有相同的迹。在关心张量时，应该抓住其与基底无关的性质，$(1, 1)$型张量$T$的迹$T^\mu{}_\mu$就是这样一种性质，通常把它称为$T$的\textbf{缩并}或\textbf{收缩}，暂记作$\operatorname{C} T$，即
-$$\operatorname{C} T := T^\mu{}_\mu = T(e^{\mu*}; e_\mu)$$
+$$\operatorname{C} T \coloneq T^\mu{}_\mu = T(e^{\mu*}; e_\mu)$$
 
 再讨论$(2, 1)$型张量$T$的缩并。$T$可记作$T(\bullet, \bullet; \bullet)$，它有两个上槽和一个下槽，故有两种可能的缩并：
-\textcircled{1}第一上槽与下槽的缩并$\operatorname{C}^1_1T := T(e^{\mu*}, \bullet; e_\mu)$；
-\textcircled{2}第二上槽与下槽的缩并$\operatorname{C}^2_1T := T(\bullet, e^{\mu*}; e_\mu)$。
+\textcircled{1}第一上槽与下槽的缩并$\operatorname{C}^1_1T \coloneq T(e^{\mu*}, \bullet; e_\mu)$；
+\textcircled{2}第二上槽与下槽的缩并$\operatorname{C}^2_1T \coloneq T(\bullet, e^{\mu*}; e_\mu)$。
 若改用另一基底${e'_\rho}$定义这两种缩并，分别记作$(\operatorname{C}^1_1T)'$和$(\operatorname{C}^2_1T)'$，则易证$\operatorname{C}^1_1T = (\operatorname{C}^1_1T)'$，$\operatorname{C}^2_1T = (\operatorname{C}^2_1T)'$。
 由``张量面面观''可知$\operatorname{C}^1_1T$和$\operatorname{C}^2_1T$都是$(1, 0)$型张量，它们在任一基底的分量可用$T$在该基底的分量表为$(\operatorname{C}^1_1T)^\nu = T(e^{\mu*}, e^{\nu*}; e_\mu) = T^{\mu\nu}{}_\mu$，$(\operatorname{C}^2_1T)^\nu = T^{\nu\mu}{}_\mu$（已略去求和号）。
 不难推广上述讨论而得出$(k, l)$型张量的缩并定义如下：
@@ -598,7 +598,7 @@ $$\operatorname{C} T := T^\mu{}_\mu = T(e^{\mu*}; e_\mu)$$
 \begin{definition}
 $T \in \mathscr{T}_V(k, l)$的第$i$上标（$i \leq k$）与第$j$下标（$j \leq l$）的\textbf{缩并}定义为：
 $$\begin{aligned}
-\operatorname{C}^i_jT := T(\bullet, \cdots, & e^{\mu*}, \bullet, \cdots; & \bullet, \cdots, e&_\mu, \bullet, \cdots) \in \mathscr{T}_V(k - 1, l - 1) ~ \text{（要对$\mu$求和）} \\
+\operatorname{C}^i_jT \coloneq T(\bullet, \cdots, & e^{\mu*}, \bullet, \cdots; & \bullet, \cdots, e&_\mu, \bullet, \cdots) \in \mathscr{T}_V(k - 1, l - 1) ~ \text{（要对$\mu$求和）} \\
 & \uparrow & \uparrow & \\
 & \text{第$i$上槽} & \text{第$j$下槽} &
 \end{aligned}$$
@@ -667,7 +667,7 @@ $$T'^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l} = \frac{\partial x'^{\mu_1}}{\parti
 今后也常把$g(v, u)$称为$v$和$u$在度规$g$下的内积。矢量空间$V$一旦定义了度规$g$，其元素的长度及元素间的正交性就可以定义如下：
 
 \begin{definition}
-$v \in V$的\textbf{长度}或\textbf{大小}定义为$|v| := \sqrt{|g(v, v)|}$。矢量$v, u \in V$叫\textbf{相互正交}的，若$g(v, u) = 0$。
+$v \in V$的\textbf{长度}或\textbf{大小}定义为$|v| \coloneq \sqrt{|g(v, v)|}$。矢量$v, u \in V$叫\textbf{相互正交}的，若$g(v, u) = 0$。
 $V$的基底$\{e_\mu\}$叫\textbf{正交归一}的，若任二基矢正交且每一基矢$e_\mu$满足$g(e_\mu, e_\mu) = \pm 1$（不对$\mu$求和）。
 \end{definition}
 
@@ -732,18 +732,18 @@ $$\mathrm{d}l = |T|\mathrm{d}t$$
 $$l = \int |T| \mathrm{d}t$$
 上式可推广至带有正定度规场$g$的任意流形$M$上。
 设$C(t)$是$M$上任一$C^1$曲线，$T$是其切矢，即$T \equiv \partial / \partial t$，则$|T| = \sqrt{g(T, T)}$，故$C(t)$的线长自然定义为
-$$l := \int \sqrt{g(T, T)}\mathrm{d}t$$
+$$l \coloneq \int \sqrt{g(T, T)}\mathrm{d}t$$
 
 对有洛伦兹度规场$g$的流形$M$，在定义线长前应注意曲线的类型。
 若$C^1$曲线$C(t)$各点的切矢都类空，则$C(t)$叫\textbf{类空曲线}。
 类似地可定义\textbf{类时曲线}和\textbf{类光曲线}。
 类空和类光曲线的线长仍由上式定义（因此类光曲线的线长恒为零）。
-注意到类时曲线有$g(T, T) < 0$，其元线长应定义为$\mathrm{d}l := \sqrt{-g(T, T)}\mathrm{d}t$。
+注意到类时曲线有$g(T, T) < 0$，其元线长应定义为$\mathrm{d}l \coloneq \sqrt{-g(T, T)}\mathrm{d}t$。
 于是有如下定义：
 
 \begin{definition}
 设流形$M$上有洛伦兹度规场$g$，则$M$上的类空、类光及类时曲线$C(t)$的线长定义为
-$$l := \int\sqrt{|g(T, T)|}\mathrm{d}t, ～ \text{其中}T \equiv \partial / \partial t$$
+$$l \coloneq \int\sqrt{|g(T, T)|}\mathrm{d}t, ~ \text{其中}T \equiv \partial / \partial t$$
 \end{definition}
 
 对于从类时转向类空（或相反）的曲线（``不伦不类''的曲线），线长没有定义。
@@ -782,7 +782,7 @@ $l$也可充当该线的参数，称为\textbf{线长参数}。由$dl \equiv \sq
 
 \begin{definition}
 设$\{x^\mu\}$是$\mathbb{R}^n$的自然坐标，在$\mathbb{R}^n$上定义度规张量场$\delta$为
-$$\delta := \delta_{\mu\nu}\mathrm{d}x^\mu\otimes\mathrm{d}x^\nu$$
+$$\delta \coloneq \delta_{\mu\nu}\mathrm{d}x^\mu\otimes\mathrm{d}x^\nu$$
 则$(\mathbb{R}^n, \delta)$称为\textbf{$n$维欧氏空间}，$\delta$称为\textbf{欧氏度规}。
 \end{definition}
 
@@ -802,7 +802,7 @@ $\delta(\partial / \partial x^\alpha, \partial / \partial x^\beta) = \delta_{\mu
 
 易见$$\delta(\partial / \partial x^\alpha, \partial / \partial x^\beta) = \delta_{\alpha\beta}$$
 但满足上式的坐标系未必是自然坐标系。例如，对$2$维欧氏空间，由自然坐标系按下式定义的坐标系
-$$x' = x + a, ~ y' = y +b ～ \text{（$a, b$为常数）}$$
+$$x' = x + a, ~ y' = y +b ~ \text{（$a, b$为常数）}$$
 的基底$\{\partial / \partial x', \partial / \partial y'\}$也满足上式（因而也正交归一）。
 进一步，不难验证由以下三式分别定义的$\{x', y'\}$的坐标基底$\{\partial / \partial x', \partial / \partial y'\}$也满足上式：
 \begin{gather*}
@@ -818,7 +818,7 @@ $\delta(\partial / \partial x^\alpha, \partial / \partial x^\beta) = \delta_{\al
 \end{definition}
 
 \begin{note}
-\textcircled{1}因$\delta := \delta_{\mu\nu}\mathrm{d}x^\mu\otimes\mathrm{d}x^\nu$与上述定义等价，也可说满足此式的坐标系是笛卡尔系。
+\textcircled{1}因$\delta \coloneq \delta_{\mu\nu}\mathrm{d}x^\mu\otimes\mathrm{d}x^\nu$与上述定义等价，也可说满足此式的坐标系是笛卡尔系。
 \textcircled{2}自然坐标系当然是笛卡尔系。
 \textcircled{3}$2$维欧氏空间中任意两个笛卡尔系之间的关系只能取上述四式中的一种形式（或它们的复合）。
 前二种分别称为\textbf{平移}和\textbf{转动}，后二种的每一种称为\textbf{反射}。
@@ -833,7 +833,7 @@ $\delta$代表欧氏度规，是张量场；而$\delta_{\mu\nu}$则是$\delta$�
 按照矢量的分量变换律，有$\partial / \partial\varphi = (\mathrm{d}x^\mu / \mathrm{d}\varphi)(\partial / \partial x^\mu)$。
 再根据极坐标与直角坐标的关系$x^1 = r\cos\varphi, ~ x^2 = r\sin\varphi$，带入即可求出。
 }。
-实际上，$\hat{e}_\varphi$是对$\partial / \partial\varphi$归一化的产物，即$\hat{e}_\varphi := r^{-1}\partial / \partial\varphi$。
+实际上，$\hat{e}_\varphi$是对$\partial / \partial\varphi$归一化的产物，即$\hat{e}_\varphi \coloneq r^{-1}\partial / \partial\varphi$。
 可见物理书中常用的$\{\hat{e}_r, \hat{e}_\varphi\}$不是极坐标系的坐标基底而是与极坐标系相应的正交归一基底。
 
 欧氏空间是最简单的黎曼空间。下面介绍最简单的伪黎曼空间---闵氏空间。
@@ -852,7 +852,7 @@ $$
 
 \begin{definition}
 设$\{x^\mu\}$是$\mathbb{R}^n$的自然坐标，在$\mathbb{R}^n$上定义度规张量场$\eta$为
-$$\eta := \eta_{\mu\nu}\mathrm{d}x^\mu\otimes\mathrm{d}x^\nu$$
+$$\eta \coloneq \eta_{\mu\nu}\mathrm{d}x^\mu\otimes\mathrm{d}x^\nu$$
 则$(\mathbb{R}^n, \eta)$称为\textbf{$n$维闵氏空间}（物理上称为\textbf{$n$维闵氏时空}），$\eta$称为\textbf{闵氏度规}。
 \end{definition}
 
@@ -917,7 +917,7 @@ $$T(\bullet, e_\mu) \equiv T_{ab}(e_\mu)^b \equiv T_{a\mu}$$
 就是说，$T^a{}_b$作用于矢量$v^b \in V$仍为矢量，记作$u^a \equiv T^a{}_bv^b \in V$；
 $T^a{}_b$作用于对偶矢量$\omega_a \in V^*$仍为对偶矢量，记作$\mu_b \equiv T^a{}_b\omega_a \in V^*$。
 其实，由抽象指标也可一望而知$T^a{}_bv^b$和$T^a{}_b\omega_a$分别是矢量和对偶矢量，可见抽象指标记号是``张量面面观''的一种简单而直观的体现。
-以$\delta^a{}_b$代表从$V$到$V$的恒等映射，即$\delta^a{}_bv^b := v^a ~ \forall v^b \in V$，则易见它也是从$V^*$到$V^*$的恒等映射，即$\delta^a{}_b\omega_a = \omega_b ~ \forall \omega_a \in V^*$。
+以$\delta^a{}_b$代表从$V$到$V$的恒等映射，即$\delta^a{}_bv^b \coloneq v^a ~ \forall v^b \in V$，则易见它也是从$V^*$到$V^*$的恒等映射，即$\delta^a{}_b\omega_a = \omega_b ~ \forall \omega_a \in V^*$。
 进一步不难证明$\delta^a{}_b$与任一张量缩并的结果是把该张量的上标$b$换为$a$（或把下标$a$换为$b$），例如$\delta^a{}_bT_{ac} = T_{bc}, \delta^a{}_bT^{cb}{}_e = T^{ca}{}_e$。
 设$\{(e_\mu)^a\}$是$V$的基底，$\{(e^\mu)_a\}$是其对偶基底，则
 $$(e^\mu)_a(e_\mu)^b = \delta^b{}_a$$
@@ -960,7 +960,7 @@ $$g_{\mu\nu}v^\nu = g_{ab}(e_\mu)^a(e_\nu)^bv^\nu = g_{ab}(e_\mu)^av^b = v_a(e_\
 
 作为抽象指标记号的例子，此处介绍$4$维闵氏度规$\eta_{ab}$的抽象指标表达式。
 闵氏度规的定义式在抽象指标记号中应表为
-$$\eta_{ab} := \eta_{\mu\nu}(\mathrm{d}x^\mu)_a(\mathrm{d}x^\nu)_b$$
+$$\eta_{ab} \coloneq \eta_{\mu\nu}(\mathrm{d}x^\mu)_a(\mathrm{d}x^\nu)_b$$
 其中$\{(\mathrm{d}x^\mu)_a\}$是洛伦兹坐标系的对偶基底。以$\{t, x, y, z\}$代表$\{x^0, x^1, x^2, x^3\}$，则因为非零的$\eta_{\mu\nu}$只有$\eta_{00} = -1, \eta_{11} = \eta_{22} = \eta_{33} = 1$，上式可表为
 $$\eta_{ab} = -(\mathrm{d}t)_a(\mathrm{d}t)_b + (\mathrm{d}x)_a(\mathrm{d}x)_b + (\mathrm{d}y)_a(\mathrm{d}y)_b + (\mathrm{d}z)_a(\mathrm{d}z)_b$$
 与线元表达式$\mathrm{d}s^2 = -\mathrm{d}t^2 + \mathrm{d}x^2 + \mathrm{d}y^2 + \mathrm{d}z^2$相应。如果改用球坐标系$\{t, r, \theta, \varphi\}$，则由
@@ -1012,18 +1012,18 @@ $(0, 2)$型张量在抽象指标记号中本来既可记作$T_{ab}$又可记作$
 
 \begin{definition}
 $(0, 2)$型张量$T_{ab}$的\textbf{对称部分}（记作$T_{(ab)}$）和\textbf{反称部分}（记作$T_{[ab]}$）分别定义为
-$$T_{(ab)} := \frac{1}{2}(T_{ab} + T_{ba}), ~ T_{[ab]} := \frac{1}{2}(T_{ab} - T_{ba})$$
+$$T_{(ab)} \coloneq \frac{1}{2}(T_{ab} + T_{ba}), ~ T_{[ab]} \coloneq \frac{1}{2}(T_{ab} - T_{ba})$$
 \end{definition}
 
 一般地，$(0, l)$型张量$T_{a_1 \cdots a_l}$的对称和反称部分定义为
 \begin{gather*}
-T_{(a_1 \cdots a_l)} := \frac{1}{l!}\sum_\pi T_{a_{\pi(1)} \cdots a_{\pi(l)}}, \\
-T_{[a_1 \cdots a_l]} := \frac{1}{l!}\sum_\pi \delta_\pi T_{a_{\pi(1)} \cdots a_{\pi(l)}},
+T_{(a_1 \cdots a_l)} \coloneq \frac{1}{l!}\sum_\pi T_{a_{\pi(1)} \cdots a_{\pi(l)}}, \\
+T_{[a_1 \cdots a_l]} \coloneq \frac{1}{l!}\sum_\pi \delta_\pi T_{a_{\pi(1)} \cdots a_{\pi(l)}},
 \end{gather*}
 其中$\pi$代表$(1, \cdots, l)$的一种排列，$\pi(1)$是指$\pi$所代表的那种排列中的第$1$个数字，$\sum\limits_\pi$代表对各种排列取和，$\delta_\pi \equiv \pm 1$（偶排列取$+$，奇排列取$-$。）。例如
 \begin{gather*}
-T_{(a_1 a_2 a_3)} := \frac{1}{6}(T_{a_1a_2a_3} + T_{a_3a_1a_2} + T_{a_2a_3a_1} + T_{a_1a_3a_2} + T_{a_3a_2a_1} + T_{a_2a_1a_3}), \\
-T_{[a_1 a_2 a_3]} := \frac{1}{6}(T_{a_1a_2a_3} + T_{a_3a_1a_2} + T_{a_2a_3a_1} - T_{a_1a_3a_2} - T_{a_3a_2a_1} - T_{a_2a_1a_3}).
+T_{(a_1 a_2 a_3)} \coloneq \frac{1}{6}(T_{a_1a_2a_3} + T_{a_3a_1a_2} + T_{a_2a_3a_1} + T_{a_1a_3a_2} + T_{a_3a_2a_1} + T_{a_2a_1a_3}), \\
+T_{[a_1 a_2 a_3]} \coloneq \frac{1}{6}(T_{a_1a_2a_3} + T_{a_3a_1a_2} + T_{a_2a_3a_1} - T_{a_1a_3a_2} - T_{a_3a_2a_1} - T_{a_2a_1a_3}).
 \end{gather*}
 
 \begin{definition}

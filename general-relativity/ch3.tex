@@ -54,7 +54,7 @@ $$\nabla_af = (\mathrm{d}f)_a, ~ \forall f \in \mathscr{F}_M$$
 \item 条件（e）实质上是下式的抽象指标表述：
 $$(\nabla\nabla f)(u, v) = (\nabla\nabla f)(v, u), ~ \forall u, v \in \mathscr{F}_M(1, 0)$$
 亦即$\nabla\nabla f$是个对称的$(0, 2)$型张量。
-\item 满足条件（a）～（d）而不满足条件（e）的导数算符叫\textbf{有挠导数算符}。广义相对论中只用无挠导数算符。
+\item 满足条件（a）~（d）而不满足条件（e）的导数算符叫\textbf{有挠导数算符}。广义相对论中只用无挠导数算符。
 本书的$\nabla_a$在不加声明时一律代表无挠导数算符。
 \end{enumerate}
 \end{note}
@@ -136,7 +136,7 @@ $$\nabla_aT^{b_1 \cdots b_k}{}_{c_1 \cdots c_l} = \tilde\nabla_aT^{b_1 \cdots b_
 
 设$\{x^\mu\}$是$M$的一个坐标系，其坐标基底和对偶坐标基底分别为$\{(\partial / \partial x^\mu)^a\}$和$\{(\mathrm{d}x^\mu)_a\}$。
 在坐标域$O$上定义映射$\partial_a \colon \mathscr{F}_O(k, l) \to \mathscr{F}_O(k, l + 1)$如下（仅以$T^b{}_c \in \mathscr{F}_O(1, 1)$为例写出）：
-$$\partial_aT^b{}_c := (\mathrm{d}x^\mu)_a(\partial / \partial x^\nu)^b(\mathrm{d}x^\sigma)_c\partial_\mu T^\nu{}_\sigma$$
+$$\partial_aT^b{}_c \coloneq (\mathrm{d}x^\mu)_a(\partial / \partial x^\nu)^b(\mathrm{d}x^\sigma)_c\partial_\mu T^\nu{}_\sigma$$
 其中$T^\nu{}_\sigma$是$T^b{}_c$在该坐标系的分量，$\partial_\mu$是对坐标$x^\mu$求偏导数的符号$\partial / \partial x^\mu$的简写。
 不难验证$\partial_a$满足导数算符定义的$5$个条件，可见$\partial_a$是$O$上的一个导数算符。
 这是一个从定义起就依赖于坐标系的导数算符，而且只在该坐标系的坐标域上有定义，称为该坐标系的\textbf{普通导数算符}。
@@ -150,7 +150,7 @@ $$\partial_aT^b{}_c := (\mathrm{d}x^\mu)_a(\partial / \partial x^\nu)^b(\mathrm{
 }，即
 $$\partial_a(\partial / \partial x^\nu)^b = 0, ~ \partial_a(\mathrm{d}x^\nu)_b = 0$$
 \item $\partial_a$满足比导数算符的无挠性条件强得多的条件，即
-$$\partial_a\partial_bT^{\cdots}{}_{\cdots} = \partial_b\partial_aT^{\cdots}{}_{\cdots}, ～ \text{或} \partial_{[a}\partial_{b]}T^{\cdots}{}_{\cdots} = 0$$
+$$\partial_a\partial_bT^{\cdots}{}_{\cdots} = \partial_b\partial_aT^{\cdots}{}_{\cdots}, ~ \text{或} \partial_{[a}\partial_{b]}T^{\cdots}{}_{\cdots} = 0$$
 其中$T^{\cdots}{}_{\cdots}$是任意型张量场。\footnote{
 任意型张量场的坐标分量都是标量场（即$n$元函数），故求偏导数的结果与求导顺序无关。
 }
@@ -183,7 +183,7 @@ $$\partial_av^b = (\mathrm{d}x^\mu)_a(\partial / \partial x^\nu)^bv^\nu{}_{,\mu}
 其中$v^\nu{}_{,\mu} \equiv \partial_\mu v^\nu \equiv \partial v^\nu / \partial x^\mu$（逗号代表求偏导数），一般书强调$v^\nu{}_{,\mu}$不构成张量，我们说$\partial_av^b$是坐标系依赖的张量，也是同一问题的两种提法。
 说得更具体些，设$\partial_a$和$\partial'_a$分别是坐标系$\{x^\mu\}$和$\{x'_\mu\}$的普通导数算符，则一般有$\partial_av^b \neq \partial'_av^b$（所以说$\partial_av^b$是坐标系依赖的张量）。
 把$\partial_av^b$和$\partial'_av^b$在各自坐标基底展开：
-$$\partial_av^b = (\mathrm{d}x^\mu)_a(\partial / \partial x^\nu)^bv^\nu{}_{,\mu}， ～ \partial'_av^b = (\mathrm{d}x'^\mu)_a(\partial / \partial x'^\nu)^bv'^\nu{}_{,\mu}$$
+$$\partial_av^b = (\mathrm{d}x^\mu)_a(\partial / \partial x^\nu)^bv^\nu{}_{,\mu}， ~ \partial'_av^b = (\mathrm{d}x'^\mu)_a(\partial / \partial x'^\nu)^bv'^\nu{}_{,\mu}$$
 其中$v'^\nu{}_{,\mu} \equiv \partial v'^\nu / \partial x'^\mu$，则$\partial_av^b \neq \partial'_av^b$导致$v^\nu{}_{,\mu}$与$v'^\nu{}_{,\mu}$之间一般不满足张量分量变换律。
 所以一般书说$v^\nu{}_{,\mu}$不是张量。至于$\nabla_av^b$，则是与坐标系无关的张量，它在坐标系中的分量通常记为$v^\nu{}_{;\mu}$，即$\nabla_av^b = v^\nu{}_{;\mu}(\mathrm{d}x^\mu)_a(\partial / \partial x^\nu)^b$。
 由于$\nabla_av^b$与坐标系无关，$v^\nu{}_{;\mu}$满足张量变换律，故一般书说它是张量（其实是张量的分量），并称之为$v^\nu$的\textbf{协变导数}（其实是协变导数$\nabla_av^b$的坐标分量）。
@@ -354,7 +354,7 @@ $\Gamma^\sigma{}_{\mu\nu}$既依赖于$M$上选定的$\nabla_a$又依赖于坐�
 
 \begin{definition}
 欧氏空间中曲线$C(t)$上的矢量场$\vec{v}$沿线的导数$\mathrm{d}\vec{v} / \mathrm{d}t$定义为
-$$\left.\frac{\mathrm{d}\vec{v}}{\mathrm{d}t}\right|_p := \lim_{\Delta t \to 0}\frac{1}{\Delta t}(\vec{\tilde v}|_p - \vec{v}|_p) ~ \forall p \in C(t)$$
+$$\left.\frac{\mathrm{d}\vec{v}}{\mathrm{d}t}\right|_p \coloneq \lim_{\Delta t \to 0}\frac{1}{\Delta t}(\vec{\tilde v}|_p - \vec{v}|_p) ~ \forall p \in C(t)$$
 其中$\vec{\tilde v}|_p$是把$\vec{v}|_q$（$q$为$p$在线上的邻点）平移至$p$点的结果，$\Delta t \equiv t(q) - t(p)$。
 \end{definition}
 
@@ -642,7 +642,7 @@ $R_{ac}$还可借度规求迹，即$g^{ac}R_{ac}$，记作$R$，称为\textbf{�
 
 \begin{definition}
 对维数$n \geq 3$的广义黎曼空间，\textbf{外尔张量}$C_{abcd}$由下式定义：
-$$C_{abcd} := R_{abcd} - \frac{2}{n - 2}(g_{a[c}R_{d]b} - g_{b[c}R_{d]a}) + \frac{2}{(n - 1)(n - 2)}Rg_{a[c}g_{d]b}$$
+$$C_{abcd} \coloneq R_{abcd} - \frac{2}{n - 2}(g_{a[c}R_{d]b} - g_{b[c}R_{d]a}) + \frac{2}{(n - 1)(n - 2)}Rg_{a[c}g_{d]b}$$
 \end{definition}
 
 \begin{theorem}
@@ -661,7 +661,7 @@ $$\frac{2}{n - 2}(g_{a[c}R_{d]b} - g_{b[c}R_{d]a}) + \frac{2}{(n - 1)(n - 2)}Rg_
 
 \begin{definition}
 广义黎曼空间的\textbf{爱因斯坦张量}$G_{ab}$由下式定义
-$$G_{ab} := R_{ab} - \frac{1}{2}Rg_{ab}$$
+$$G_{ab} \coloneq R_{ab} - \frac{1}{2}Rg_{ab}$$
 \end{definition}
 
 \begin{theorem}
