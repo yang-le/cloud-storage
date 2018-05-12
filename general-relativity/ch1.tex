@@ -36,9 +36,9 @@ $$X = \{x \in \mathbb{R} \mid x > 9\}$$
 
 	\textbf{并集} $A \cup B \coloneq \{x \mid x \in A ~ \text{或} ~ x \in B\}$
 
-	\textbf{交集} $A \cap B \coloneq \{x \mid x \in A, x \in B\}$
+	\textbf{交集} $A \cap B \coloneq \{x \mid x \in A, x \in B\}$ （条件``$x \in A, x \in B$''是``$x \in A \text{且} x \in B$''的简写，下同。）
 
-	\textbf{差集} $A - B \coloneq \{x \mid x \in A, x \notin B\}$
+	\textbf{差集} $A - B \coloneq \{x \mid x \in A, x \notin B\}$ （数学书常把差集记作$A \backslash B \text{或} A \sim B$，本书一律记作$A - B$。）
 
 	若$A$是$X$的子集，则$A$的\textbf{补集}$-A$定义为$-A \coloneq X - A$
 
@@ -57,11 +57,43 @@ $$X = \{x \in \mathbb{R} \mid x > 9\}$$
 
 \end{theorem}
 
+\begin{proof}
+	交换律和结合律根据定义显然。
+
+	$A \subset A \cup C, B \subset B \cup C$，所以若$x \in A, x \in B$就有$x \in A \cup C, x \in B \cup C$，即
+	$A \cap B \subset (A \cup C) \cap (B \cup C)$。同理，$C \subset (A \cup C) \cap (B \cup C)$。
+	所以有$$(A \cap B) \cup C \subset (A \cup C) \cap (B \cup C)$$
+	反过来，若$x \in (A \cup C) \cap (B \cup C)$，也即$x \in (A \cup C), x \in (B \cup C)$，而这可以有$4$种组合
+	$x \in A, x \in B \text{或}x \in A, x \in C \text{或}x \in C, x \in B \text{或}x \in C, x \in C$
+	即$x \in (A \cap B) \cup (A \cap C) \cup (B \cap C) \cup C$，注意到$(B \cap C) \cup C = C$，就有$x \in (A \cap B) \cup C$。这就说明
+	$$(A \cup C) \cap (B \cup C) \subset (A \cap B) \cup C$$
+	综上$(A \cap B) \cup C = (A \cup C) \cap (B \cup C)$。
+
+	类似地，$A \cap C \subset A, B \cap C \subset B$，可以证明
+	$$(A \cap C) \cup (B \cap C) \subset (A \cup B) \cap C$$
+	反过来，若$x \in (A \cup B) \cap C$,也即$x \in (A \cup B), x \in C$,这可以有两种情况，$x \in A, x \in C$或$x \in B, x \in C$，因此
+	$$(A \cup B) \cap C \subset (A \cap C) \cup (B \cap C)$$
+	综上$(A \cup B) \cap C = (A \cap C) \cup (B \cap C)$
+
+	对于De Morgan律，$x \in A - (B \cup C)$也即$x \in A, x \notin (B \cup C)$，即$x \in A, x \notin B, x \in A, x \notin C$。
+	因此，$x \in (A - B) \cap (A - C)$，反之也成立，这说明
+	$$A - (B \cup C) = (A - B) \cap (A - C)$$
+
+	另一方面，$A - B \subset A, A - C \subset A$，因此$(A - B) \cup (A - C) \subset A$。
+	又$x \in A - B$说明$x \notin B$，因此$x \in (A - B) \cup (A - C)$一方面说明$x \in A$，另一方面说明$x \notin B$或$x \notin C$即$x \notin B \cap C$。
+	因此，$x \in A - (B \cap C)$，反之也成立，这说明
+	$$(A - B) \cup (A - C) = A - (B \cap C)$$
+\end{proof}
+
 \begin{definition}
 	非空集合$X$,$Y$的卡氏积$X \times Y$定义为
 	$$X \times Y \coloneq \{(x, y) \mid x \in X, y \in Y\}$$
 \end{definition}
-多个（有限个\footnote{无限多个集合的卡氏积也可定义，但已超出本书范围。}）集合的卡氏积可以类似定义，而且规定卡氏积满足结合律，即$(X \times Y) \times Z = X \times (Y \times Z)$
+
+就是说，$X \times Y$是这样一个集合，它的每一个元素是由$X$的一个元素$x$和$Y$的一个元素$y$组成的一个有序对$(x, y)$。
+多个（有限个\footnote{无限多个集合的卡氏积也可定义，但已超出本书范围。}）集合的卡氏积可以类似定义，例如
+$$X \times Y \times Z \coloneq \{(x, y, z) \mid x \in X, y \in Y, z \in Z\}$$
+而且规定卡氏积满足结合律，即$(X \times Y) \times Z = X \times (Y \times Z)$
 
 \begin{example}
 	$\mathbb{R}^2 \coloneq \mathbb{R} \times \mathbb{R}$, $\mathbb{R}^n \coloneq \mathbb{R} \times \cdots \times \mathbb{R}$（共$n$个$\mathbb{R}$）.
@@ -82,6 +114,21 @@ $$X = \{x \in \mathbb{R} \mid x > 9\}$$
 \end{definition}
 
 \begin{note}
+	通常也把$y = f(x)$写成$f \colon x \mapsto y$。请注意$\mapsto$和$\to$的区别：
+	$f \colon X \to Y$中的$\to$表示$f$是从$X$到$Y$（集合到集合）的映射；
+	而$f \colon x \mapsto y$中的$\mapsto$则表示$x \in X$在映射$f$下的像是$y$（元素到元素）。
+\end{note}
+
+\begin{note}
+	设$A \subset X$，则$A$的元素在$f$下的像组成的子集记作$f[A]$，即
+	$$f[A] \equiv \{y \in Y \mid \exists x \in A \text{使得} y = f(x)\} \subset Y$$
+\end{note}
+
+\begin{example}
+	普通微积分中的单值函数$y = f(x)$就是一个由$\mathbb{R}$（或其子集）到$\mathbb{R}$的映射。
+\end{example}
+
+\begin{note}
 	从$\mathbb{R}^2$到$\mathbb{R}$的映射给出一个二元函数。同理，从$\mathbb{R}^n$到$\mathbb{R}^m$的映射给出$m$个$n$元函数。
 \end{note}
 
@@ -91,6 +138,16 @@ $$X = \{x \in \mathbb{R} \mid x > 9\}$$
 	}
 \end{definition}
 
+\begin{note}
+	\textcircled{1} $f$为到上映射的充要条件是值域$f[X] = Y$。
+	\textcircled{2} 若$f$为一一映射，则存在逆映射$f^{-1} \colon f[X] \to X$。
+	然而，不论$f \colon X \to Y$是否有逆，都可以定义任一子集$B \subset Y$在$f$下的``逆像''$f^{-1}[B]$为
+	$$f^{-1}[B] \coloneq \{x \in X \mid f(x) \in B\} \subset X$$
+	注意，这里的``逆像''是$X$的子集而不是$X$的元素。
+	例如，如果$X$有（且仅有）两个元素$x$和$x'$在$f$作用（即映射）下的像都是$y \in Y$，虽然逆映射$f^{-1} \colon Y \to X$不存在，
+	但把$y$看作$Y$的独点子集（即$\{y\}$）时$f^{-1}[\{y\}]$（简记作$f^{-1}[y]$）仍有意义，含义为$f^{-1}[y] = \{x, x'\} \subset X$。
+\end{note}
+
 \begin{definition}
 	$f \colon X \to Y$称为\textbf{常值映射}，若$f(x) = f(x') ~ \forall x, x' \in X$
 \end{definition}
@@ -99,7 +156,59 @@ $$X = \{x \in \mathbb{R} \mid x > 9\}$$
 	设$X$,$Y$,$Z$为集，$f \colon X \to Y$和$g \colon Y \to Z$为映射，则$f$和$g$的\textbf{复合映射}$g \comp f$是从$X$到$Z$的映射，定义为$(g \comp f)(x) \coloneq g(f(x)) \in Z ~ \forall x \in X$
 \end{definition}
 
+\begin{note}
+	若$X = Y = Z = \mathbb{R}$，则复合映射$g \comp f$就是熟知的一元复合函数。
+\end{note}
+
+若$X$和$Y$是一般的集合，对$X$与$Y$之间的映射就只能提出``一一''和``到上''这两个要求；
+但若$X$和$Y$还指定了某种结构，则往往可对$f \colon X \to Y$提出更多要求，例如可要求$f \colon \mathbb{R} \to \mathbb{R}$是连续的甚至光滑的。
+一元函数$f \colon \mathbb{R} \to \mathbb{R}$的连续性在微积分中早有定义（``$\epsilon$ -- $\delta$定义''），重述如下：
+\textcircled{1} 称$f$在点$x$连续，若$\forall \epsilon > 0 \exists \delta > 0$使得当$|x' - x| < \delta$时有$|f(x') - f(x)| < \epsilon$；
+\textcircled{2} 称$f$在$\mathbb{R}$上连续，若它在$\mathbb{R}$的任一点连续。
+这一定义依赖于$\mathbb{R}$中任二元素的距离概念（对$\mathbb{R}$而言距离就是坐标之差），似乎无法推广到没有距离定义的两个集合之间的映射。
+然而细想发现，$\epsilon$ -- $\delta$定义可用开区间概念（而无需距离概念）重新表述如下：
+设$X = Y = \mathbb{R}$，映射$f \colon X \to Y$叫做连续的，若$Y$中任一开区间的``逆像''都是$X$的开区间之并（或是空集）。
+以上讨论从一个侧面说明``开区间之并''这一概念的用处：可以定义映射$f \colon \mathbb{R} \to \mathbb{R}$的连续性。
+其实这一概念还有很多用处，因此往往有必要推广到除$\mathbb{R}$外的集合$X$。
+为方便起见，把$\mathbb{R}$的任一可以表为开区间之并的子集（连同空集$\emptyset$）称为开子集。
+为把开子集概念推广到任意集合$X$，应先找出$\mathbb{R}$的开子集的本质的、抽象的（因而可以推广的）性质。
+它们是：
+\begin{enumerate}[(a)]
+	\item $\mathbb{R}$和空集$\emptyset$都是开子集
+	\item 有限个开子集之交仍是开子集
+	\item 任意个开子集之并仍是开子集
+\end{enumerate}
+
+把这三个性质推广，就可给任意集合$X$定义开子集概念。
+定义了开子集的集合叫拓扑空间。
+由开子集的概念出发又可定义许多概念并证明许多定理，从而发展为一门完整丰富的学科分支 --- 点集拓扑学。
+下面将对拓扑空间的最基本内容做一介绍。
+
 \section{拓扑空间}
+
+如前所述，$\mathbb{R}$的子集分为开子集和非开子集两大类（任一子集要么是开的，要么是非开的。不要把非开子集称为闭子集。根据后面要讲的闭子集的定义，子集可以不开不闭，也可以既开又闭。）
+开子集具有上述三个性质。对任意非空集合$X$也可用适当方式指定其中的某些子集是开的，其他为非开的。
+为使这种指定有用，我们约定任何指定方式都要满足三个要求：
+\begin{enumerate}[(a)]
+	\item $X$本身和空集$\emptyset$为开子集
+	\item 有限个开子集之交为开子集
+	\item 任意个（可以有限个也可以无限个）开子集之并为开子集
+\end{enumerate}
+
+对同一集合，满足这三个要求的指定方式常常是很多的。
+例如，设$X$为任意集合，可以指定$X$及$\emptyset$为开子集，其他子集都为非开。
+这当然满足上述三要求，其特点是开子集最少，只有两个。
+然而也可采用另一种极端的指定，即指定$X$的任意子集都是开子集。
+不难看出这种指定也满足上述三要求。
+上述两种指定虽然未必有太多用处，但它们至少能说明满足上述三要求的指定方式不止一种。
+我们说，每种满足上述三要求的指定给集合$X$赋予了一种附加结构，称为拓扑结构。
+对定义了拓扑结构的集合可以指着它的任一子集问：``这是开子集吗？''答案非``是''即``否''，泾渭分明。
+反之，对没有定义拓扑结构的集合，这样的问题毫无意义。
+定义了拓扑结构的集合$X$的全体开子集也组成一个集合，称为$X$的一个拓扑，记作$\mathscr{T}$（是topology的首字母的花体大写）。
+用$\mathscr{P}$代表由$X$的全体子集组成的集合，则$X$的任一开子集$O$和任一非开子集$V$都是$\mathscr{P}$的元素。
+$X$的全体开子集组成$\mathscr{P}$的一个子集$\mathscr{T}$（注意，它不是$X$的子集），它就是$X$的拓扑。
+请注意符号$\subset$同$\in$的区别：$O \subset X$只表明$O$是$X$的子集，而$O \in \mathscr{T}$则表明$O$是$X$的开子集。
+以上铺垫有助于理解如下用数学语言表述的定义。
 
 \begin{definition}
 	非空集合$X$的一个\textbf{拓扑}$\mathscr{T}$是$X$的若干子集的集合，满足：
@@ -113,6 +222,17 @@ $$X = \{x \in \mathbb{R} \mid x > 9\}$$
 \begin{definition}
 	定义了拓扑$\mathscr{T}$的集合$X$称为\textbf{拓扑空间}。拓扑空间$X$的子集$O$称为\textbf{开子集}（简称\textbf{开集}）,若$O \in \mathscr{T}$。
 \end{definition}
+
+对同一集合$X$可以定义不同的拓扑$\mathscr{T}$（满足定义的$\mathscr{T}$可以很多）。
+设$\mathscr{T}_1$和$\mathscr{T}_2$都是$X$的拓扑，则$X$的子集$A$可能满足$A \in \mathscr{T}_1, A \notin \mathscr{T}_2$，即$A$对$\mathscr{T}_1$而言（用$\mathscr{T}_1$衡量）是开集而对$\mathscr{T}_2$而言不是开集。
+可见$\mathscr{T}_1$和$\mathscr{T}_2$把$X$定义为两个不同的拓扑空间。
+为明确所选拓扑起见，可用$(X, \mathscr{T})$代表拓扑空间。
+于是$(X, \mathscr{T}_1)$和$(X, \mathscr{T}_2)$代表不同的拓扑空间，虽然它们的``底集''都是$X$。
+在明确选定拓扑后也可只用$X$代表拓扑空间。
+
+对给定的具体集合$X$，应该选哪个拓扑使之成为一个拓扑空间？
+这取决于$X$自身的性质以及我们关心哪些方面的问题。
+例如，对集合$\mathbb{R}^n$，在通常关心的大多数问题中都选所谓的通常拓扑为拓扑。
 
 \begin{example}
 	设$X$为任意非空集合，令$\mathscr{T}$为$X$的全部子集的集合，则它满足拓扑的定义，故构成X的一个拓扑，叫\textbf{离散拓扑}。
@@ -130,25 +250,41 @@ $$X = \{x \in \mathbb{R} \mid x > 9\}$$
 		      其中，\textbf{开球}的定义为$B(x_0, r) \coloneq \{x \in \mathbb{R}^n \mid |x - x_0| < r\}$，$x_0$称为球心，$r > 0$称为半径。
 		      $\mathbb{R}^2$中的开球亦称\textbf{开圆盘}，$\mathbb{R}$中的开球就是开区间。
 	\end{enumerate}
-	根据上述定义，$\mathbb{R}$中任一开区间用$\mathscr{T}_u$衡量都是开集。今后在把$\mathbb{R}$看做拓扑空间时，如无声明就是指$(\mathbb{R}, \mathscr{T}_u)$
 \end{example}
+
+根据上述定义，$\mathbb{R}$中任一开区间用$\mathscr{T}_u$衡量都是开集。
+然而，原则上也可以选其他拓扑使$\mathbb{R}$成为不同于$(\mathbb{R}, \mathscr{T}_u)$的拓扑空间。
+例如，若以凝聚拓扑衡量，则除$\mathbb{R}$及$\emptyset$之外都不是开集；
+反之，若以离散拓扑衡量，则$\mathbb{R}$中任一子集（包括闭区间和半闭区间）都是开集。
+今后在把$\mathbb{R}$看做拓扑空间时，如无声明就是指$(\mathbb{R}, \mathscr{T}_u)$
 
 \begin{example}
 	设$(X_1, \mathscr{T}_1)$, $(X_2, \mathscr{T}_2)$为拓扑空间，$X = X_1 \times X_2$，定义$X$的拓扑为
-
-	$\mathscr{T} \coloneq \{O \in X \mid O\text{可表示为形如}O_1 \times O_2\text{的集合之并}, O_1 \in \mathscr{T}_1, O_2 \in \mathscr{T}_2\}$
-
+	$$\mathscr{T} \coloneq \{O \in X \mid O\text{可表示为形如}O_1 \times O_2\text{的集合之并}, O_1 \in \mathscr{T}_1, O_2 \in \mathscr{T}_2\}$$
 	则$\mathscr{T}$称为$X$的\textbf{乘积拓扑}。
 \end{example}
 
 \begin{example}
-	设$(X, \mathscr{T})$为拓扑空间，$A$为$X$的任一非空子集。为使$A$成为拓扑空间，为其定义拓扑$\mathscr{S}$为
-
-	$\mathscr{S} \coloneq \{V \subset A \mid \exists O \in \mathscr{T} \text{使} V = A \cap O\}$
-
+	设$(X, \mathscr{T})$为拓扑空间，$A$为$X$的任一非空子集。
+	把$A$看作集合，当然也可指定拓扑（记作$\mathscr{S}$，是S的花体）使$A$成为拓扑空间，记作$(A, \mathscr{S})$。
+	由于$A$是$X$的子集，我们希望$\mathscr{S}$与$\mathscr{T}$有尽量密切的联系。
+	如果$A \in \mathscr{T}$，问题很简单，只须定义$\mathscr{S} \coloneq \{V \subset A \mid V \subset \mathscr{T}\}$。
+	然而，如果$A \notin \mathscr{T}$，按上述定义就有$A \notin \mathscr{S}$，违背定义的条件。
+	因此$\mathscr{S}$的上述定义不合法。
+	一个巧妙的定义是
+	$$\mathscr{S} \coloneq \{V \subset A \mid \exists O \in \mathscr{T} \text{使} V = A \cap O\}$$
+	由上式可以证明即使$A \notin \mathscr{T}$也有$A \in \mathscr{S}$，而且$\mathscr{S}$满足定义的其他条件。
 	这样定义的$\mathscr{S}$叫做$A$的、由$\mathscr{T}$导出的\textbf{诱导拓扑}。以后在把$(X, \mathscr{T})$的子集$A$看作拓扑空间时，如无声明都指$(A, \mathscr{S})$,
 	其中$\mathscr{S}$是由$\mathscr{T}$诱导的拓扑。$(A, \mathscr{S})$称为$(X, \mathscr{T})$的\textbf{拓扑子空间}。
 \end{example}
+
+下面的例子有助于加深对诱导拓扑的理解。
+$\mathbb{R}^2$中以$x_0$为心的单位圆周$S^1$定义为$S^1 \coloneq \{x \in \mathbb{R}^2 \mid |x - x_0| = 1\}$。
+设$A \subset \mathbb{R}^2$是$S^1$，由于它不能表为$\mathbb{R}^2$中的开球之并（一条线窄到装不下任何开圆盘），$A$用$\mathbb{R}^2$的$\mathscr{T}_u$衡量不是开的。
+用前述定义给$A$定义诱导拓扑$\mathscr{S}$，则不但$A$用$\mathscr{S}$衡量是开的，而且，设$V$是$A$中的任意一段（不含首末两点），则虽然$V$用$\mathscr{T}_u$衡量不是开集，用$\mathscr{S}$衡量却是开的，因为存在开圆$O \in \mathscr{T}_u$使$V = A \cap O$。
+
+利用开集概念可对拓扑空间之间的映射定义连续性。
+下面给出两个等价的连续定义
 
 \begin{definition}
 	\begin{enumerate}[（a）]
@@ -170,6 +306,10 @@ $$X = \{x \in \mathbb{R} \mid x > 9\}$$
 \end{definition}
 
 普通函数$y = f(x)$的连续性和可微性用$C^r$表示，其中$r$为非负整数，$C^0$代表连续，$C^r$代表$r$阶导数存在并连续，$C^\infty$代表任意阶导数存在并连续（称为\textbf{光滑}）。
+虽然用开集概念可以巧妙地把$C^0$性推广到拓扑空间之间的映射，但$r > 0$的$C^r$性则不能。
+事实上，对拓扑空间之间的映射的最高要求已体现在同胚的定义中。
+同胚映射$f \colon X \to Y$不仅在$X$和$Y$的点之间建立了一一对应的关系，而且还在$X$的开子集和$Y$的开子集之间建立了一一对应的关系，因而一切由拓扑决定的性质都可``全息''地被$f$``携带''到$Y$中。
+因此，从纯拓扑学角度看，两个互相同胚的拓扑空间就``像得不能再像''，可以视作相等。
 
 \begin{example}
 	任一开区间$(a, b) \subset \mathbb{R}$与$\mathbb{R}$同胚。
@@ -209,6 +349,14 @@ $$X = \{x \in \mathbb{R} \mid x > 9\}$$
 	$A \subset X$是开集，当且仅当$A$是$x$的邻域$\forall x \in A$。
 \end{theorem}
 
+\begin{proof}
+	\begin{enumerate}[（A）]
+		\item 设$A$为开，则$\forall x \in A, \exists A \in \mathscr{T}$使$x \in A \subset A$，故由前述定义知$A$是$x$的邻域。
+		\item 设$A$是$x$的邻域$\forall x \in A$，令$O = \bigcup\limits_{x \in A}O_x$（$O_x \in \mathscr{T}$且满足$x \in O_x \subset A$），则$O = A$。
+		又根据定义知$O \in \mathscr{T}$，故$A \in \mathscr{T}$，即$A$为开集。
+	\end{enumerate}
+\end{proof}
+
 \begin{definition}
 	$C \subset X$叫\textbf{闭集}，若$-C \in \mathscr{T}$。
 \end{definition}
@@ -221,6 +369,10 @@ $$X = \{x \in \mathbb{R} \mid x > 9\}$$
 		\item $X$及$\emptyset$是闭集
 	\end{enumerate}
 \end{theorem}
+
+\begin{proof}
+	由定义和De Morgan律易证。
+\end{proof}
 
 可见任何拓扑空间$(X, \mathscr{T})$都有两个既开又闭的子集，即$X$和$\emptyset$
 
@@ -260,6 +412,12 @@ $$X = \{x \in \mathbb{R} \mid x > 9\}$$
 		\item $\dot{A}$为闭集
 	\end{enumerate}
 \end{theorem}
+
+\begin{proof}
+	（a）、（b）易证。（c）的证明如下：
+	$X - \dot{A} = X - [\bar{A} - \operatorname{i}(A)] = (X - \bar{A}) \cup \operatorname{i}(A)$。
+	因为$\bar{A}$为闭，故$X - \bar{A}$为开，加之$\operatorname{i}(A)$为开，故$X - \dot{A}$为开，因而$\dot{A}$为闭。
+\end{proof}
 
 \begin{definition}
 	$X$的开子集的集合$\{O_\alpha\}$叫$A \subset X$的一个\textbf{开覆盖}，若$A \subset \bigcup\limits_\alpha O_\alpha$。
