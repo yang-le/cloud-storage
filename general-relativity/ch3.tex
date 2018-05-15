@@ -278,7 +278,7 @@ $$\mathrm{d}v^\nu / \mathrm{d}t + \Gamma^\mu{}_{\nu\sigma}T^\nu v^\sigma = 0, ~ 
 
 \subsection{与度规相适配的导数算符}
 从本章开始至今未涉及度规，只假定$M$上选了一个联络$\nabla_a$。
-如果$M$上还指定了度规$g_ab$，矢量之间就可以谈及内积。
+如果$M$上还指定了度规$g_{ab}$，矢量之间就可以谈及内积。
 为使平移概念与欧氏空间中熟知的平移一致，应补充以下要求：
 设$u^a$，$v^a$为沿$C(t)$平移的矢量场，则$u^av_a$（$\equiv g_{ab}u^av^b$）在$C(t)$上是常数（两个矢量平移时``内积''不变）。
 设$T^a$为曲线$C(t)$的切矢，则这一要求等价于
@@ -303,8 +303,8 @@ C_{bca} + C_{acb} = \tilde\nabla_cg_{ab}
 前两式相加减第三式并利用$C_{cab} = C_{cba}$，得
 $$2C_{cab} = \tilde\nabla_ag_{bc} + \tilde\nabla_bg_{ac} - \tilde\nabla_cg_{ab}$$
 或
-$$C^c_{ab} = \frac{1}{2}g^{cd}(\tilde\nabla_ag_{bd} + \tilde\nabla_bg_{ad} - \tilde\nabla_dg_{ab})$$
-这$C^c_{ab}$与$\tilde\nabla_a$结合而得的$\nabla_a$便是方程$\nabla_ag_{bc} = 0$的解。
+$$C^c{}_{ab} = \frac{1}{2}g^{cd}(\tilde\nabla_ag_{bd} + \tilde\nabla_bg_{ad} - \tilde\nabla_dg_{ab})$$
+这$C^c{}_{ab}$与$\tilde\nabla_a$结合而得的$\nabla_a$便是方程$\nabla_ag_{bc} = 0$的解。
 这必定是唯一解，因若$\nabla'_a$也满足$\nabla'_ag_{bc} = 0$，把$\nabla'_a$作为上式中的$\tilde\nabla_a$便知反映$\nabla_a$与$\nabla'_a$差别的$C^c{}_{ab}$为零。
 \end{proof}
 
@@ -655,7 +655,7 @@ $$C_{abcd} \coloneq R_{abcd} - \frac{2}{n - 2}(g_{a[c}R_{d]b} - g_{b[c}R_{d]a}) 
 
 \begin{note}
 外尔张量的定义说明$R_{abcd}$是其无迹部分$C_{abcd}$与有迹部分
-$$\frac{2}{n - 2}(g_{a[c}R_{d]b} - g_{b[c}R_{d]a}) + \frac{2}{(n - 1)(n - 2)}Rg_{a[c}g_{d]b}$$
+$$\frac{2}{n - 2}(g_{a[c}R_{d]b} - g_{b[c}R_{d]a}) - \frac{2}{(n - 1)(n - 2)}Rg_{a[c}g_{d]b}$$
 之和。
 \end{note}
 
