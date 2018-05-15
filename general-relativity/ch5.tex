@@ -2,7 +2,195 @@
 
 \section{微分形式}
 
+先介绍$n$维矢量空间$V$上的``形式''，再讨论$n$维流形$M$上的``微分形式场''。
+
+\begin{definition}
+    $\omega_{a_1 \cdots a_l} \in \mathscr{T}_V(0, 1)$叫$V$上的$l$次形式（简称$l$形式），若
+    $$\omega_{a_1 \cdots a_l} = \omega_{[a_1 \cdots a_l]}$$
+\end{definition}
+
+为书写方便，有时略去下标而把$l$形式$\omega_{a_1 \cdots a_l}$写为$\omega$。
+
+\begin{theorem}
+    \begin{enumerate}[（a）]
+        \item $\omega_{a_1 \cdots a_l} = \omega_{[a_1 \cdots a_l]} \Rightarrow \text{对任意基底有} \omega_{\mu_1 \cdots \mu_l} = \omega_{[\mu_1 \cdots \mu_l]}$
+        \item $\text{存在基底使} \omega_{\mu_1 \cdots \mu_l} = \omega_{[\mu_1 \cdots \mu_l]} \Rightarrow \omega_{a_1 \cdots a_l} = \omega_{[a_1 \cdots a_l]}$
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+    \begin{enumerate}[（a）]
+        \item $\omega_{a_1 \cdots a_l} = \delta_\pi\omega_{a_{\pi(1)} \cdots a_{\pi(l)}}$
+        \item $\text{对任意基底} \omega_{\mu_1 \cdots \mu_l} = \delta_\pi\omega_{\mu_{\pi(1)} \cdots \mu_{\pi(l)}}$
+    \end{enumerate}
+    其中$\pi$代表$(1, \cdots, l)$的一种排列，$\pi(1)$是指$\pi$所代表的那种排列中的第$1$个数字，$\delta_\pi \equiv \pm 1$（偶排列取$+$，奇排列取$-$）。
+\end{theorem}
+
+由上可知，在$l$形式的分量$\omega_{\mu_1 \cdots \mu_l}$中，凡有重复具体指标者必为零，例如
+$$\omega_{112} = \omega_{133} = \omega_{212} = 0$$
+
+$V$上全体$l$形式的集合记作$\Lambda(l)$。$1$形式其实就是$V$上的对偶矢量，故$\Lambda(1) = V^*$。
+约定把任一实数称为$V$上的$0$形式，则$\Lambda(0) = \mathbb{R}$。
+$l$形式既然是$(0, l)$型张量，自然有$\Lambda(l) \subset \mathscr{T}_V(0, l)$。
+不但如此，还容易证明$\Lambda(l)$是$\mathscr{T}_V(0, l)$的线性子空间，其维数的计算可从关于$\mathscr{T}_V(k, l)$维数的计算得到启发：
+为求$\mathscr{T}_V(k, l)$的维数可先找一个基底，而为此则要先定义张量积。
+然而两个微分形式（作为两个张量）的张量积并非全反称，故不再是微分形式。
+但可对全体指标施行全反称操作使之成为微分形式，于是有如下定义
+
+\begin{definition}
+    设$\omega$和$\mu$分别为$l$形式和$m$形式，则其楔形积（简称楔积）是按下式定义的$l + m$形式：
+    $$(\omega \wedge \mu)_{a_1 \cdots a_l b_1 \cdots b_m} \coloneq \frac{(l+m)!}{l!m!}\omega_{[a_1 \cdots a_l}\mu_{b_1 \cdots b_m]}$$
+    或者说，楔积是满足上式的映射$\wedge \colon \Lambda(l) \times \Lambda(m) \to \Lambda(l + m)$
+\end{definition}
+
+楔积$(\omega \wedge \mu)_{a_1 \cdots a_l b_1 \cdots b_m}$亦可记作$\omega_{a_1 \cdots a_l} \wedge \mu_{b_1 \cdots b_m}$，也常简记为$\omega \wedge \mu$。
+
+由定义可知楔积满足结合律和分配律，即$(\omega \wedge \mu) \wedge \nu = \omega \wedge (\mu \wedge \nu)$（因而$\omega \wedge \mu \wedge \nu$有明确意义）和$\omega \wedge (\mu + \nu) = \omega \wedge \mu + \omega \wedge \nu$。
+但楔积一般不服从交换律，例如对$1$形式$\omega$和$\mu$有
+$$\omega \wedge \mu \equiv \omega_a \wedge \mu_b \equiv (\omega \wedge \mu)_{ab} = 2\omega_{[a}\mu_{b]} = \omega_a\mu_b - \omega_b\mu_a$$
+$$\mu \wedge \omega \equiv (\mu \wedge \omega)_{ab} = 2\mu_{[a}\omega_{b]} = \mu_a\omega_b - \mu_b\omega_a$$
+可见对两个$1$形式的楔积有$\omega \wedge \mu = - \mu \wedge \omega$。
+推广至一般情况，设$\omega$和$\mu$分别是$l$和$m$形式，则
+$$\omega \wedge \mu = (-1)^{lm} \mu \wedge \omega$$
+
+\begin{theorem}
+    设$\dim V = n$，则$\dim \Lambda(l) = C_n^l = \frac{n!}{l!(n - l)!}$，若$l \leq n$；
+    $\Lambda(l) = \{0\}$（只有零元），若$l > m$。
+\end{theorem}
+
+下面回到流形$M$上来。
+若对$M$（或$A \subset M$）的任一点$p$指定$V_p$上的一个$l$形式，就得到$M$（或$A$）上的一个$l$形式场（``场''字常略去）。
+$1$形式场和$0$形式场分别是对偶矢量场和标量场。
+$M$上的光滑的$l$形式场称为$l$次微分形式场，也简称作$l$形式场或$l$形式。
+
+设$(O, \psi)$为一坐标系，则$O$上的$l$形式场可方便地用对偶坐标基底场$\{(\mathrm{d}x^\mu)_a\}$逐点线性表出。
+$$\omega_{a_1 \cdots a_l} = \sum_C \omega_{\mu_1 \cdots \mu_l}(\mathrm{d}x^{\mu_1})_{a_1} \wedge \cdots \wedge (\mathrm{d}x^{\mu_l})_{a_l}$$
+其中
+$$\omega_{\mu_1 \cdots \mu_l} = \omega_{a_1 \cdots a_l}(\partial / \partial x^{\mu_1})^{a_1} \cdots (\partial / \partial x^{\mu_l})^{a_l}$$
+是$O$上的函数。
+一个重要的特例是$l = n$的情况。因为$C_n^l = C_n^n = 1$，上式右边的求和只有一项，即
+$$\omega_{a_1 \cdots a_n} = \omega_{1 \cdots n}(\mathrm{d}x^{1})_{a_1} \wedge \cdots \wedge (\mathrm{d}x^{n})_{a_n}$$
+简写为
+$$\omega = \omega_{1 \cdots n}\mathrm{d}x^{1} \wedge \cdots \wedge \mathrm{d}x^{n}$$
+上式也可以这样理解：$M$中任一点$p$的所有$n$形式的集合是$1$维矢量空间，只有一个基矢，可取为$\mathrm{d}x^{1} \wedge \cdots \wedge \mathrm{d}x^{n}|_p$，上式就是$\omega|_p$用这一基矢的展开式。
+注意，展开系数$\omega_{1 \cdots n}$对不同点可以不同，因而是坐标域上的函数，也可表为坐标的$n$元函数$\omega_{1 \cdots n}(x^1, \cdots, x^n)$。
+
+我们以$\Lambda_M(l)$代表$M$上全体$l$形式场的集合。
+
+\begin{definition}
+    流形$M$上的外微分算符是一个映射$\mathrm{d} \colon \Lambda_M(l) \to \Lambda_M(l + 1)$，定义为
+    $$(\mathrm{d}\omega)_{b a_1 \cdots a_l} \coloneq (l + 1)\nabla_{[b}\omega_{a_1 \cdots a_l]}$$
+    其中$\nabla_b$为任一导数算符（因由$C^c{}_{ab} = C^c{}_{ba}$可证对任意$\nabla_a$和$\tilde\nabla_a$有$\tilde\nabla_{[b}\omega_{\cdots]} = \nabla_{[b}\omega_{\cdots]}$）。
+    可见在定义外微分之前无须在$M$上指定导数算符（及任何其他附加结构，如度规）。
+\end{definition}
+
+\begin{example}
+    第二章曾定义过$(\mathrm{d}f)_a$，第三章又知$(\mathrm{d}f)_a = \nabla_af$，可见$(\mathrm{d}f)_a$就是$f \in \Lambda_M(0)$的外微分，这正是当时用符号$\mathrm{d}f$的原因。
+\end{example}
+
+把$l$形式场$\omega$写成对偶坐标基矢的展开式的一个好处是便于计算$\mathrm{d}\omega$，请看如下定理
+
+\begin{theorem}
+    设$\omega_{a_1 \cdots a_l} = \sum\limits_C \omega_{\mu_1 \cdots \mu_l}(\mathrm{d}x^{\mu_1})_{a_1} \wedge \cdots \wedge (\mathrm{d}x^{\mu_l})_{a_l}$，则
+    $$(\mathrm{d}\omega)_{b a_1 \cdots a_l} = \sum_C (\mathrm{d}\omega_{\mu_1 \cdots \mu_l})_b \wedge (\mathrm{d}x^{\mu_1})_{a_1} \wedge \cdots \wedge (\mathrm{d}x^{\mu_l})_{a_l}$$
+\end{theorem}
+
+\begin{proof}
+    选该系的普通导数算符$\partial_b$作为$\nabla_b$，结合$(\mathrm{d}\omega)_{b a_1 \cdots a_l}$的定义即可得证。
+\end{proof}
+
+\begin{theorem}
+    $\mathrm{d} \comp \mathrm{d} = 0$
+\end{theorem}
+
+\begin{proof}
+    选任一坐标系的导数算符$\partial_b$作为$\nabla_b$，便有
+    $$[\mathrm{d}(\mathrm{d}\omega)]_{c b a_1 \cdots a_l} = (l + 2)(l + 1)\partial_{[c}\partial_{[b}\omega_{a_1 \cdots a_l]]} = (l + 2)(l + 1)\partial_{[[c}\partial_{b]}\omega_{a_1 \cdots a_l]} = 0$$
+    其中第二步是因为同种括号内的子括号可以随意增删，最后一步是因为$\partial_{[a}\partial_{b]}T^{\cdots}{}_{\cdots} = 0$。
+\end{proof}
+
+\begin{definition}
+    设$\omega$为$M$上的$l$形式场。$\omega$叫闭的，若$\mathrm{d}\omega = 0$；$\omega$叫恰当的，若存在$l - 1$形式场$\mu$使$\omega = \mathrm{d}\mu$。
+\end{definition}
+
+因此，前述定理亦可表述为：若$\omega$是恰当的，则$\omega$是闭的。
+然而，要使逆命题成立则还须对流形$M$提出一定要求（略）。
+平凡流形$\mathbb{R}^n$满足这一要求，而流形一定局域平凡，所以对任意流形$M$而言，闭的$l$形式场至少是局域恰当的。
+就是说，设$\omega$是流形$M$上的闭的$l$形式场，则$M$的任一点$p$必有邻域$N$，在$N$上存在$l - 1$形式场$\mu$使$\omega = \mathrm{d}\mu$。
+
+\begin{theorem}
+    当$M = \mathbb{R}^2$时，上述定理及其逆定理给出普通微积分的下述命题：
+    给定函数$X(x, y)$及$Y(x, y)$，存在函数$f(x, y)$使$\mathrm{d}f = X\mathrm{d}x + Y\mathrm{d}y$的充要条件是$\partial X / \partial y = \partial Y / \partial x$。
+\end{theorem}
+
+\begin{proof}
+    由定义知$1$形式场$X\mathrm{d}x + Y\mathrm{d}y$的外微分为
+    \[\begin{split}
+        \mathrm{d}(X\mathrm{d}x + Y\mathrm{d}y) &= \mathrm{d}X \wedge \mathrm{d}x + \mathrm{d}Y \wedge \mathrm{d}y = (\frac{\partial X}{\partial x}\mathrm{d}x + \frac{\partial X}{\partial y}\mathrm{d}y)\wedge\mathrm{d}x + (\frac{\partial Y}{\partial x}\mathrm{d}x + \frac{\partial Y}{\partial y}\mathrm{d}y)\wedge\mathrm{d}y \\
+        &= \frac{\partial X}{\partial y}\mathrm{d}y \wedge \mathrm{d}x + \frac{\partial Y}{\partial x}\mathrm{d}x \wedge \mathrm{d}y = (\frac{\partial Y}{\partial x} - \frac{\partial X}{\partial y})\mathrm{d}x \wedge \mathrm{d}y
+    \end{split}\]
+    \begin{enumerate}[（A）]
+        \item 若存在函数$f$使$1$形式等式$\mathrm{d}f = X\mathrm{d}x + Y\mathrm{d}y$成立，则
+        $$(\frac{\partial Y}{\partial x} - \frac{\partial X}{\partial y})\mathrm{d}x \wedge \mathrm{d}y = \mathrm{d}\mathrm{d}f = 0$$
+        故$\partial X / \partial y = \partial Y / \partial x$。
+        \item 若$\partial X / \partial y = \partial Y / \partial x$，则$\mathrm{d}(X\mathrm{d}x + Y\mathrm{d}y) = 0$，即$1$形式场$X\mathrm{d}x + Y\mathrm{d}y$为闭，于是$X\mathrm{d}x + Y\mathrm{d}y$为恰当，即存在函数$f$使$\mathrm{d}f = X\mathrm{d}x + Y\mathrm{d}y$。
+    \end{enumerate}
+\end{proof}
+
 \section{流形上的积分}
+
+先以$3$维欧氏空间$(\mathbb{R}^3, \delta^a{}_{b})$为例。
+设$\vec{v}$为矢量场，$L$为光滑曲线，$S$为光滑曲面。
+在指定$L$的方向和$S$的法向之前，积分$\displaystyle\int_L\vec{v}\cdot\mathrm{d}\vec{l}$和$\displaystyle\iint_S\vec{v}\cdot\mathrm{d}\vec{S}$都只唯一确定到差一个负号的程度。
+要完全确定这两个积分，就要指定$L$的方向和$S$的法向。
+推而广之，计算任意流形上的积分之前应指定该流形的``定向''。
+然而，并非所有流形都是可定向的。
+
+\begin{definition}
+    $n$维流形称为可定向的，若其上存在$C^0$且处处非零的$n$形式场$\epsilon$。
+\end{definition}
+
+\begin{example}
+    $\mathbb{R}^3$是可定向流形，因为其上存在$C^\infty$的$3$形式场$\epsilon \equiv \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$，其中$x, y, z$为自然坐标。
+\end{example}
+
+\begin{example}
+    莫比乌斯带是不可定向流形。
+\end{example}
+
+\begin{definition}
+    若在$n$维可定向流形$M$上选定一个$C^0$且处处非零的$n$形式场$\epsilon$，就说$M$是定向的（``已经定向''之意）。
+    设$\epsilon_1$和$\epsilon_2$是两个$C^0$且处处非零的$n$形式场，若存在处处为正的函数$h$使$\epsilon_1 = h\epsilon_2$，就说$\epsilon_1$和$\epsilon_2$给出$M$的同一个定向。
+\end{definition}
+
+\begin{note}
+    从给出$M$的定向这个角度看，满足$\epsilon_1 = h\epsilon_2 ~ (h > 0)$的$\epsilon_1$和$\epsilon_2$是等价的。
+    由于$n$维流形$M$上每点的全体$n$形式的集合是$1$维矢量空间，任意两个$n$形式场$\epsilon_1$和$\epsilon_2$必有关系$\epsilon_1 = h\epsilon_2$其中$h$是$M$上的函数。
+    若$\epsilon_1$和$\epsilon_2$处处非零，则$h$处处非零；若$\epsilon_1$和$\epsilon_2$为$C^0$的，则$h$为$C^0$的。
+    对连通流形\footnote{
+        拓扑空间$(X, \mathscr{T})$称为连通的，若它只有两个既开又闭的子集；
+        称为弧连通的，若$X$的任意两点可被一条在$X$中的连续曲线连接。
+        流形称为连通的（或弧连通的），若其底拓扑空间是连通的（或弧连通的）。
+        对拓扑空间，弧连通必定连通，但连通不一定弧连通（存在``擦边性''反例）。
+        对流形，弧连通与连通等价。
+    }来说（我们只讨论连通流形），一个处处非零的连续函数只能处处为正或处处为负。可见连通流形只能有两种定向。
+\end{note}
+
+\begin{definition}
+    $M$上选好以$\epsilon$为代表的定向后，开域$O \subset M$上的基底场$\{(e_\mu)^a\}$叫做以$\epsilon$衡量为右手的，若$O$上存在处处为正的函数$h$使$\epsilon = h(e^1)_{a_1} \wedge \cdots \wedge (e^n)_{a_n}$，其中$\{(e^\mu)_a\}$是$\{(e_\mu)^a\}$的对偶基（否则称为左手的）。
+    一个坐标系叫右（左）手系，若其坐标基底是右（左）手的。
+\end{definition}
+
+下面介绍$n$维定向流形$M$上的$n$形式场$\omega$的积分。
+$\omega$可用对偶坐标基矢的楔形积$\mathrm{d}x^1 \wedge \cdots \wedge \mathrm{d}x^n$展开为
+$$\omega = \omega_{1 \cdots n}(x^1, \cdots, x^n)\mathrm{d}x^1 \wedge \cdots \wedge \mathrm{d}x^n$$
+可见每一$n$形式场$\omega$在坐标域上给出一个$n$元函数$\omega_{1 \cdots n}(x^1, \cdots, x^n)$，我们就把这个$n$元函数的普通$n$重积分称为$n$形式场$\omega$的积分，准确定义如下：
+
+\begin{definition}
+    设$(O, \psi)$是$n$维定向流形$M$上的右手坐标系，$\omega$是开子集$G \subset O$上的连续$n$形式场，则$\omega$在$G$上的积分定义为
+    $$\int_G\omega \coloneq \int_{\psi[G]}\omega_{1 \cdots n}(x^1, \cdots, x^n)\mathrm{d}x^1 \cdots \mathrm{d}x^n$$
+    上式右边是$n$元函数$\omega_{1 \cdots n}(x^1, \cdots, x^n)$在$\mathbb{R}^n$的开子集$\psi[G]$上的普通积分\footnote{指Riemann或Lebesgue积分}，早已有定义。
+\end{definition}
 
 \section{Stokes定理}
 
