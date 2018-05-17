@@ -192,7 +192,84 @@ $$\omega = \omega_{1 \cdots n}(x^1, \cdots, x^n)\mathrm{d}x^1 \wedge \cdots \wed
     上式右边是$n$元函数$\omega_{1 \cdots n}(x^1, \cdots, x^n)$在$\mathbb{R}^n$的开子集$\psi[G]$上的普通积分\footnote{指Riemann或Lebesgue积分}，早已有定义。
 \end{definition}
 
+\begin{note}
+    \begin{enumerate}[（1）]
+        \item 为说明上述定义的合理性，还应证明$\omega$在$G$上的积分与所选右手坐标系无关。
+        仅以$n = 2$为例证明如下。
+        
+        设$(O, \psi)$和$(O', \psi')$为右手坐标系，满足$G \subset O \cap O'$，两坐标分别记作$x^1, x^2$和$x'^1, x'^2$，则
+        $$\omega = \omega_{12}\mathrm{d}x^1 \wedge \mathrm{d}x^2 = \omega'_{12}\mathrm{d}x'^1 \wedge \mathrm{d}x'^2$$
+        令$\displaystyle\int_G\omega \equiv \int_{\psi[G]}\omega_{12}\mathrm{d}x^1\mathrm{d}x^2, ~ (\int_G\omega)' \equiv \int_{\psi'[G]}\omega'_{12}\mathrm{d}x'^1\mathrm{d}x'^2$,欲证
+        $$(\int_G\omega)' = \int_G\omega$$
+        由张量变换律知$\omega'_{12} = \displaystyle\frac{\partial x^1}{\partial x'^1}\frac{\partial x^2}{\partial x'^2}\omega_{12} + \frac{\partial x^2}{\partial x'^1} \frac{\partial x^1}{\partial x'^2}\omega_{21} = \omega_{12}\det(\frac{\partial x^\mu}{\partial x'^\nu})$,其中
+        $$\det(\frac{\partial x^\mu}{\partial x'^\nu}) \equiv \begin{vmatrix}
+            \displaystyle\frac{\partial x^1}{\partial x'^1} & \displaystyle\frac{\partial x^1}{\partial x'^2} \\
+            \\
+            \displaystyle\frac{\partial x^2}{\partial x'^1} & \displaystyle\frac{\partial x^2}{\partial x'^2}
+        \end{vmatrix}$$
+        是这个变换的雅克比行列式。根据二重积分的换元公式\footnote{
+            设$f(x, y)$在$xOy$平面上的闭区域$D$上连续，变换
+            $$T \colon x = x(u, v), ~ y = y(u, v)$$
+            将$uOv$平面上的闭区域$D'$变为$xOy$平面上的$D$,且满足
+            \begin{enumerate}[（1）]
+                \item $x(u, v), ~ y(u, v)$在$D'$上具有一阶连续偏导数
+                \item 在$D'$上雅克比行列式
+                $$J(u, v) = \frac{\partial(x, y)}{\partial(u, v)} \neq 0$$
+                \item 变换$T \colon D' \to D$是一一到上的
+            \end{enumerate}
+            则有
+            $$\iint_Df(x, y)\mathrm{d}x\mathrm{d}y = \iint_{D'}f[x(u, v), y(u, v)]|J(u,v)|\mathrm{d}u\mathrm{d}v$$
+        },
+        $$\int_{\psi[G]}\omega_{12}\mathrm{d}x^1\mathrm{d}x^2 = \int_{\psi'[G]}\omega_{12}\det(\partial x^\mu / \partial x'^\nu)\mathrm{d}x'^1\mathrm{d}x'^2 = \int_{\psi'[G]}\omega'_{12}\mathrm{d}x'^1\mathrm{d}x'^2$$
+        故得证。
+
+        然而，如果$\{x^\mu\}$和$\{x'^\mu\}$分别是右、左手系，则$\det(\partial x^\mu / \partial x'^\nu) < 0$，等号右边的$\det(\partial x^\mu / \partial x'^\nu)$应改为$|\det(\partial x^\mu / \partial x'^\nu)| = -\det(\partial x^\mu / \partial x'^\nu)$, 故上式变为
+        $$\int_{\psi[G]}\omega_{12}\mathrm{d}x^1\mathrm{d}x^2 = -\int_{\psi'[G]}\omega_{12}\det(\partial x^\mu / \partial x'^\nu)\mathrm{d}x'^1\mathrm{d}x'^2 = -\int_{\psi'[G]}\omega'_{12}\mathrm{d}x'^1\mathrm{d}x'^2$$
+        因此，为了定义出同一积分，当$\{x^\mu\}$是左手系时应把$\displaystyle\int_G\omega$定义为
+        $$\int_G\omega \coloneq -\int_{\psi[G]}\omega_{1 \cdots n}(x^1, \cdots, x^n)\mathrm{d}x^1 \cdots \mathrm{d}x^n$$
+        \item 一个坐标系是右手系还是左手系取决于流形所选的定向，故$\displaystyle\int_G\omega$是依赖于由$\epsilon$所给出的定向的，定向改变后积分变号。
+        \item 以上之定义了$\omega$在坐标域内开子集$G$上的积分。
+        $\omega$在全流形$M$上的积分$\displaystyle\int_M\omega$可由局部积分``缝合''而成，其定义涉及``单位分解'',从略。
+    \end{enumerate}
+\end{note}
+
+设$S, M$是流形，维数分别是$l$和$n(>l)$，$\phi \colon S \to M$是嵌入。
+因为$\phi[S]$是子流形，当然可谈及其上的$l$形式场$\mu$的积分。
+然而``$\phi[S]$嵌入在$M$内''的事实导致``$\phi[S]$上的$l$形式场''具有两种可能的含义。
+正如``$\phi[S]$上的切矢场''有切于和不切于$\phi[S]$之分那样，``$\phi[S]$上的$l$形式场''也可分为``切于''和不``切于''$\phi[S]$两种。
+准确地说，$\phi[S]$上的$l$形式场$\mu$称为``切于''$\phi[S]$的，如果$\forall q \in \phi[S]$，$\mu|_q$是$W_q$（而非$V_q$）上的$l$形式（能把$W_q$的任意$l$个元素变为一个实数的线性映射）。
+``$\phi[S]$上的$l$形式场''既可能是``切于''$\phi[S]$的，也可能不是``切于''$\phi[S]$的。
+因为谈及$l$形式场在$\phi[S]$上的积分时是把$\phi[S]$作为独立流形看待的（不顾及它``外面''的情况），所以只有``切于''$\phi[S]$的$l$形式场$\mu$的积分才有意义。
+不过，既然$\phi[S]$上的、不``切于''$\phi[S]$的$l$形式场$\mu$是能把每点$q \in \phi[S]$的$V_q$（而不只是$W_q$）的任意$l$个元素变为一个实数的线性映射，而$W_q$无非是$V_q$的子空间，只要把$\mu$的作用范围限制在$W_q$便得到一个``切于''$\phi[S]$的$l$形式场，我们把它记作$\tilde\mu$,并称之为$\mu$的限制。
+准确说来有如下定义
+
+\begin{definition}
+    设$\mu_{a_1 \cdots a_l}$是$l$维子流形$\phi[S] \subset M$上的$l$形式场。
+    $\phi[S]$（看作脱离$M$而独立存在的流形）上的$l$形式场$\tilde\mu_{a_1 \cdots a_l}$称为$\mu_{a_1 \cdots a_l}$在$\phi[S]$上的限制，若
+    $$\tilde\mu_{a_1 \cdots a_l}|_q(\omega_1)^{a_1} \cdots (\omega_l)^{a_l} = \mu_{a_1 \cdots a_l}|_q(\omega_1)^{a_1} \cdots (\omega_l)^{a_l}, ~ \forall q \in \phi[S], ~ (\omega_1)^a, \cdots (\omega_l)^a \in W_q$$
+\end{definition}
+
+今后凡谈及$l$形式场$\mu$在$l$维子流形$\phi[S]$上的积分时，一律理解为$\mu$的限制$\tilde\mu$的积分，即总把$\displaystyle\int_{\phi[S]}\mu$理解为$\displaystyle\int_{\phi[S]}\tilde\mu$。
+
 \section{Stokes定理}
+
+$3$维欧氏空间的Stokes定理
+$$\iint_S(\vec\nabla \times \vec{A})\cdot\mathrm{d}\vec{S} = \oint_L\vec{A}\cdot\mathrm{d}\vec{l}$$
+和Gauss定理
+$$\iiint_V(\vec\nabla\cdot\vec{A})\mathrm{d}V = \oiint_S\vec{A}\cdot\vec{n}\mathrm{d}S$$
+的共性是反映区域上的积分和它的边界上的积分的联系。
+在介绍一般的Stokes定理前，先引入``带边流形''的概念。
+$n$维带边流形的最简单例子是
+$$\mathbb{R}^{n-} \coloneq \{(x^1, \cdots, x^n) \in \mathbb{R}^n \mid x^1 \leq 0\}$$
+其中$x^1, \cdots, x^n$是自然坐标，由$x^1 = 0$的所有点组成的子集叫$\mathbb{R}^{n-}$的边界，它本身是个$n - 1$维流形（其实就是$\mathbb{R}^{n - 1}$）。
+推广至一般情况，$n$维带边流形$N$与$n$维流形定义相仿，只是把该定义中的$\mathbb{R}^n$改为$\mathbb{R}^{n-}$，即$N$的开覆盖${O_\alpha}$中的每一元素$O_\alpha$都应同胚于$\mathbb{R}^{n-}$的一个子集，$N$中全体被映射到$x^1 = 0$处的点组成$N$的边界，记作$\partial N$。
+请注意$\partial N$是$n - 1$维流形；$\operatorname{i}(N) \equiv N - \partial N$是$n$维流形。
+例如，$\mathbb{R}^3$中的实心球体$B$是$3$维带边流形，其边界（$2$维球面$S^2$）是$2$维流形，$\operatorname{i}(B)$则是$3$维流形。
+
+\begin{theorem}
+    设$n$维定向流形$M$的紧致子集$N$是个$n$维带边流形，$\omega$是$M$上的$n - 1$形式场（可微性至少为$C^1$），则
+    $$\int_{\operatorname{i}(N)}\mathrm{d}\omega = \int_{\partial N}\omega$$
+\end{theorem}
 
 \section{体元}
 
