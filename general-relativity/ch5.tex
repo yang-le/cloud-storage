@@ -271,7 +271,41 @@ $$\mathbb{R}^{n-} \coloneq \{(x^1, \cdots, x^n) \in \mathbb{R}^n \mid x^1 \leq 0
     $$\int_{\operatorname{i}(N)}\mathrm{d}\omega = \int_{\partial N}\omega$$
 \end{theorem}
 
+\begin{note}
+    把$M$的定向$\epsilon$限制在$N$上便得到$N$的定向，仍记作$\epsilon$,它在$N$的边界$\partial N$（$M$中的超曲面）上自然诱导出一个定向，记作$\bar\epsilon$,是$\bar\epsilon_{a_1 \cdots a_{n - 1}}$的简写。
+    仅以$\mathbb{R}^{2-}$为例介绍，这时$M = \mathbb{R}^2, ~ N = \mathbb{R}^{2-}, ~ \partial N = \{(x^1, x^2) \mid x^1 = 0\}$。
+    设$\mathbb{R}^2$（因而$\mathbb{R}^{2-}$）的定向为$\epsilon_{ab} = (\mathrm{d}x^1)_a \wedge (\mathrm{d}x^2)_b$，则$\{x^1, x^2\}$以$\epsilon_{ab}$衡量为右手系。
+    因$x^1|_{\partial N} = 0$，把$x^1$开除后所得的$\{x^2\}$便是$\partial N$的一个坐标系。
+    我们这样定义$\partial N$的诱导定向$\bar\epsilon_a$，使坐标系$\{x^2\}$以$\bar\epsilon_a$衡量为右手系。
+    选$\bar\epsilon_a = (\mathrm{d}x^2)_a$便可满足这一要求。
+    诱导定向的这个基本要求可以推广到任意带边流形$N$。
+    上式左边是$n$形式场$\mathrm{d}\omega$在$n$维流形$\operatorname{i}(N)$（以$\epsilon$为定向）上的积分，右边是$n - 1$形式场$\omega$在$n - 1$维流形$\partial N$（以$\bar\epsilon$为定向）上的积分。
+\end{note}
+
+\begin{example}
+    设$\vec{A}$是$2$维欧氏空间的矢量场，$L$是$\mathbb{R}^2$中的光滑闭合曲线，$S$是由$L$包围的开子集，$x^1, x^2$为笛卡尔坐标，则熟知的$2$维欧氏空间Stokes定理（又称Green定理）为
+    $$\iint_S(\partial A_2 / \partial x^1 - \partial A_1 / \partial x^2)\mathrm{d}x^1\mathrm{d}x^2 = \oint_LA_l\mathrm{d}l$$
+
+    现在说明上式是前述定理的特例。令$M = \mathbb{R}^2$，则$S \cup L$可认为是$N$，其中$S$和$L$分别对应$\operatorname{i}(N)$和$\partial N$。
+    用欧氏度规$\delta_{ab}$把$A^a$变为$1$形式场（即对偶矢量）$A_a \equiv \delta_{ab}A^b$，则$A_a$对应$\omega$。把$A_a$用笛卡尔系对偶坐标基矢展开：$\omega = A_a = A_\mu(\mathrm{d}x^\mu)_a$，则
+    $$\mathrm{d}\omega = \mathrm{d}A_\mu \wedge \mathrm{d}x^\mu = \frac{\partial A_\mu}{\partial x^\nu}\mathrm{d}x^\nu \wedge \mathrm{d}x^\mu = \frac{\partial A_1}{\partial x^2}\mathrm{d}x^2 \wedge \mathrm{d}x^1 + \frac{\partial A_2}{\partial x^1}\mathrm{d}x^1 \wedge \mathrm{d}x^2 = (\frac{\partial A_2}{\partial x^1} - \frac{\partial A_1}{\partial x^2})\mathrm{d}x^1 \wedge \mathrm{d}x^2$$
+    其中第二个等号是$\mathrm{d}f$用对偶坐标基矢的展开式，可见上式左边可以表示为$\displaystyle\int_{\operatorname{i}(N)}\mathrm{d}\omega$。
+    另一方面，$\displaystyle\int_{\partial N}\omega = \int_{\partial N}\tilde\omega$。
+    选线长$l$为$L$的局部坐标，把$\tilde\omega$用坐标基矢展开为$\tilde\omega_a = \tilde\omega_1(l)(\mathrm{d}l)_a$，两边与$(\partial / \partial l)^a$缩并得
+    $$\tilde\omega_1(l) = \tilde\omega_a(\partial / \partial l)^a = \omega_a(\partial / \partial l)^a = A_a(\partial / \partial l)^a = A_l$$
+    故$\tilde\omega = A_l\mathrm{d}l$，于是
+    $$\oint_L A_l\mathrm{d}l = \int_{\partial N}\omega$$
+    可见，上式是Stokes定理的特例。
+\end{example}
+
+以上介绍了微分形式在流形上的积分及有关定理。
+为了讲解函数在流形上的积分，先介绍体元的概念。
+
 \section{体元}
+
+\begin{definition}
+    $n$维可定向流形$M$上的任一个$C^0$而且处处非零的$n$形式场$\epsilon$称为一个体元。
+\end{definition}
 
 \section{函数在流形上的积分，Gauss定理}
 
