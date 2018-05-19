@@ -307,7 +307,116 @@ $$\mathbb{R}^{n-} \coloneq \{(x^1, \cdots, x^n) \in \mathbb{R}^n \mid x^1 \leq 0
     $n$维可定向流形$M$上的任一个$C^0$而且处处非零的$n$形式场$\epsilon$称为一个体元。
 \end{definition}
 
+\begin{note}
+    体元与定向的区别在于：若$\epsilon_1$和$\epsilon_2$是两个$C^0$且处处非零的$n$形式场，而且有处处为正的函数$h$使$\epsilon_1 = h \epsilon_2$，则$\epsilon_1$和$\epsilon_2$代表同一个定向，但只要$\epsilon_1 \neq \epsilon_2$它们就是两个不同体元。
+    对可定向连通流形，定向只有两个，而体元却有无限多个。
+    谈及定向流形上的积分和体元时不要求流形上选定度规场，这时体元的选择十分任意（只有一个要求，就是体元与定向相容，即代表体元的$\epsilon$与代表定向的$\epsilon$之间的乘子为正。），没有一个与众不同的体元。
+    然而，如果流形上给定了度规场$g_{ab}$，便存在选择特定体元的自然方法。
+\end{note}
+
+先考虑带度规$g_{ab}$的$2$维定向流形。
+设$\epsilon_{a_1a_2}$为任一体元，则$\epsilon^{a_1a_2} \equiv g^{a_1b_1}g^{a_2b_2}\epsilon_{b_1b_2}$有意义，且$\epsilon^{a_1a_2}\epsilon_{a_1a_2}$是标量场，可借任一基底计算。
+我们用正交归一基底。
+若$g_{ab}$为正定度规，则
+$$\epsilon^{a_1a_2}\epsilon_{a_1a_2} = \delta^{\mu_1\nu_1}\delta^{\mu_2\nu_2}\epsilon_{\nu_1\nu_2}\epsilon_{\mu_1\mu_2} = \delta^{11}\delta^{22}\epsilon_{12}\epsilon_{12} + \delta^{22}\delta^{11}\epsilon_{21}\epsilon_{21} = 2(\epsilon_{12})^2$$
+若$g_{ab}$为洛伦兹度规，则
+$$\epsilon^{a_1a_2}\epsilon_{a_1a_2} = \eta^{11}\eta^{22}\epsilon_{12}\epsilon_{12} + \eta^{22}\eta^{11}\epsilon_{21}\epsilon_{21} = -2(\epsilon_{12})^2$$
+推广至带任意度规$g_{ab}$的$n$维流形有
+$$\epsilon^{a_1 \cdots a_n}\epsilon_{a_1 \cdots a_n} = (-1)^sn!(\epsilon_{1 \cdots n})^2$$
+其中$\epsilon_{1 \cdots n}$是$\epsilon_{a_1 \cdots a_n}$在正交归一基底的分量，$s$是$g_{ab}$在正交归一基底的分量中$-1$的个数，例如正定度规有$s = 0$，洛伦兹度规有$s = 1$。
+所谓借用度规选择一个特定的体元，是指规定体元$\epsilon_{a_1 \cdots a_n}$在正交归一基$\{(e^\mu)_a\}$的分量满足如下的简单性要求：
+$$\epsilon_{1 \cdots n} = \pm 1$$
+即
+$$\epsilon_{a_1 \cdots a_n} = \pm(e^1)_{a1} \wedge \cdots \wedge(e^n)_{a_n} \text{（对正交归一基）}$$
+这相当于要求
+$$\epsilon^{a_1 \cdots a_n}\epsilon_{a_1 \cdots a_n} = (-1)^sn!$$
+满足上式的$\epsilon_{a_1 \cdots a_n}$称为与度规$g_{ab}$相适配（相容）的体元。
+上式只把体元确定到差一个负号的程度，加上``体元与定向相容''的要求才确定唯一的体元。
+于是上式右边的$+$和$-$号分别对应于右手和左手正交归一基。
+
+小结 ~ 涉及积分时，我们只关心可定向流形$M$。首先选好一个定向使$M$成为定向流形。
+任一基底的右（左）手性由所选定向规定。
+没有度规场$g_{ab}$（或其他可资利用的几何结构）时，体元相当任意，但要求与定向相容。
+指定$g_{ab}$后，体元$\epsilon_{a_1 \cdots a_n}$由$g_{ab}$以及``体元与定向相容''的要求唯一确定，简称适配体元。
+今后如无特别声明，在有度规时提到体元都指这个唯一的适配体元。
+
+在$3$维欧氏空间$(\mathbb{R}^3, \delta_{ab})$中任取一个符合直观含义的右手笛卡尔系$\{x, y, z\}$并指定$3$形式场$\epsilon = \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$为定向，则$\{x, y, z\}$按定义就是以$\epsilon$衡量的右手系。
+把$\epsilon = \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$与上式对比可知$\epsilon$是适配体元。
+设$G$是$\mathbb{R}^3$的开子集且普通积分$\displaystyle\iiint_G\mathrm{d}x\mathrm{d}y\mathrm{d}z$存在，则此积分自然代表$G$的体积（按普通微积分学的体积定义）。
+另一方面，$3$形式场$\epsilon$在$G \subset \mathbb{R}^3$上的积分$\displaystyle\int_G\epsilon$正是$\displaystyle\iiint_G\mathrm{d}x\mathrm{d}y\mathrm{d}z$，可见$\displaystyle\int_G\epsilon$就是$G$的体积。
+推广至任意带正定度规$g_{ab}$的定向流形$N$，设$\epsilon$为适配体元，若$\displaystyle\int_N\epsilon$存在，就称它为$N$的（用$g_{ab}$衡量的）体积（对$1, 2$维流形又分别叫长度和面积）。
+这可看作把$\epsilon$称为体元的由来。
+
+\begin{theorem}
+    设$\epsilon$为适配体元，$\{(e_\mu)^a\}$及$\{(e^\mu)_a\}$为基底及其对偶基底，$g$为$g_{ab}$在此基底的分量组成的行列式，$|g|$为$g$的绝对值，则（式中$+$、$-$号分别适用于右手和左手基底）
+    $$\epsilon_{a_1 \cdots a_n} = \pm\sqrt{|g|}(e^1)_{a_1} \wedge \cdots \wedge (e^n)_{a_n}$$
+\end{theorem}
+
+\begin{note}
+    对正交归一基底有$|g| = 1$。
+\end{note}
+
+\begin{theorem}
+    设$\nabla_a$和$\epsilon$分别是与度规相适配的导数算符和体元，则
+    $$\nabla_b\epsilon_{a_1 \cdots a_n} = 0$$
+\end{theorem}
+
+\begin{proof}
+    由$\nabla_bg_{ac} = 0$可得$\epsilon^{a_1 \cdots a_n}\nabla_b\epsilon_{a_1 \cdots a_n} = 0$\footnote{
+        因为$\epsilon^{a_1 \cdots a_n}\epsilon_{a_1 \cdots a_n} = (-1)^sn!$，两边取导数得$\nabla_b(\epsilon^{a_1 \cdots a_n}\epsilon_{a_1 \cdots a_n}) = \nabla_b\epsilon^{a_1 \cdots a_n}\epsilon_{a_1 \cdots a_n} + \epsilon^{a_1 \cdots a_n}\nabla_b\epsilon_{a_1 \cdots a_n} = 0$。
+        又$\nabla_bg_{ac} = 0$可导出$\nabla_bg^{ac} = 0$，故前式第一项为0。
+    }，于是对任一矢量场$v^b$有（两边做缩并）
+    $$\epsilon^{a_1 \cdots a_n}v^b\nabla_b\epsilon_{a_1 \cdots a_n} = 0$$
+    因$M$中任一点的$n$形式的集合是$1$维矢量空间，故该点的任意两个$n$形式只能差到一个乘子$h$（对不同点$h$可不同），因此$v^b\nabla_b\epsilon_{a_1 \cdots a_n} = h\epsilon_{a_1 \cdots a_n}$。
+    代入上式便给出$h = 0$，所以$v^b\nabla_b\epsilon_{a_1 \cdots a_n} = 0$。
+    因$v^b$为任意矢量场，故$\nabla_b\epsilon_{a_1 \cdots a_n} = 0$。
+\end{proof}
+
+下面要证明关于体元的两个十分有用的等式，为此先要介绍下述引理。
+
+\begin{theorem}
+    $\delta^{[a_1}{}_{a_1} \cdots \delta^{a_j}{}_{a_j}\delta^{a_{j + 1}}{}_{b_{j + 1}} \cdots \delta^{a_n]}{}_{b_n} = \displaystyle\frac{(n - j)!j!}{n!}\delta^{[a_{j + 1}}{}_{b_{j + 1}} \cdots \delta^{a_n]}{}_{b_n}$
+\end{theorem}
+
+根据上述引理，可以证明
+
+\begin{theorem}
+    \begin{enumerate}[（a）]
+        \item $\epsilon^{a_1 \cdots a_n}\epsilon_{b_1 \cdots b_n} = (-1)^sn!\delta^{[a_1}{}_{b_1} \cdots \delta^{a_n]}{}_{b_n}$
+        \item $\epsilon^{a_1 \cdots a_j a_{j + 1} \cdots a_n}\epsilon_{a_1 \cdots a_j b_{j + 1} \cdots b_n} = (-1)^s(n - j)!j!\delta^{[a_{j + 1}}{}_{b_{j + 1}} \cdots \delta^{a_n]}{}_{b_n}$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    $\epsilon^{a_1 \cdots a_n}\epsilon_{b_1 \cdots b_n} = \epsilon^{[a_1 \cdots a_n]}\epsilon_{[b_1 \cdots b_n]}$表明$\epsilon^{a_1 \cdots a_n}\epsilon_{b_1 \cdots b_n}$对全部上标和全部下标都为反称。
+    不难证明这种$(n, n)$型张量的集合是$1$维矢量空间，而$\delta^{[a_1}{}_{b_1} \cdots \delta^{a_n]}{}_{b_n}$属于这类张量（因为不难证明$\delta^{[a_1}{}_{b_1} \cdots \delta^{a_n]}{}_{b_n} = \delta^{[a_1}{}_{[b_1} \cdots \delta^{a_n]}{}_{b_n]}$），故任何这类张量与$\delta^{[a_1}{}_{b_1} \cdots \delta^{a_n]}{}_{b_n}$只差一个乘子，从而$\epsilon^{a_1 \cdots a_n}\epsilon_{b_1 \cdots b_n} = K\delta^{[a_1}{}_{b_1} \cdots \delta^{a_n]}{}_{b_n}$。
+    与$\epsilon_{a_1 \cdots a_n}\epsilon^{b_1 \cdots b_n}$缩并，左边结果为$(-1)^sn!(-1)^sn!$，右边结果为$K\epsilon_{b_1 \cdots b_n}\epsilon^{b_1 \cdots b_n} = K(-1)^sn!$，于是$K = (-1)^sn!$，故得式（a）。
+    两边分别对前$j$个上、下指标缩并得
+    \[\begin{split}
+        \epsilon^{a_1 \cdots a_j a_{j + 1} \cdots a_n}\epsilon_{a_1 \cdots a_j b_{j + 1} \cdots b_n} & = (-1)^sn!\delta^{[a_1}{}_{a_1} \cdots \delta^{a_j}{}_{a_j}\delta^{a_{j + 1}}{}_{b_{j + 1}} \cdots \delta^{a_n]}{}_{b_n} \\
+        & = (-1)^s(n - j)!j!\delta^{[a_{j + 1}}{}_{b_{j + 1}} \cdots \delta^{a_n]}{}_{b_n}
+    \end{split}\]
+    （其中最末一步用到上述引理）可见式（b）成立。
+\end{proof}
+
 \section{函数在流形上的积分，Gauss定理}
+
+\begin{definition}
+    设$\epsilon$为流形$M$上的任一体元，$f$为$M$上的$C^0$函数，则$f$在$M$上的积分（记作$\displaystyle\int_Mf$）定义为$n$形式场$f\epsilon$在$M$上的积分，即
+    $$\int_Mf \coloneq \int_Mf\epsilon$$
+\end{definition}
+
+由定义知函数的积分与体元的选择有关。
+只要流形上给定度规，我们约定总是用适配体元来定义函数的积分。
+这样，在带度规的定向流形上，函数给定后其积分也就确定。
+以$3$维欧氏空间$(\mathbb{R}^3, \delta_{ab})$为例。
+设$\{x, y, z\}$为右手笛卡尔系，则$\epsilon = \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$是适配体元，于是$(\mathbb{R}^3, \delta_{ab})$上的函数$f \colon \mathbb{R}^3 \to \mathbb{R}$的积分按定义为$\displaystyle\int_{\mathbb{R}^3}f = \int_{\mathbb{R}^3}f\epsilon$，而右边无非是$3$形式场$\omega = f\epsilon$的积分。
+设$f$与笛卡尔系$\{x, y, z\}$结合而得的$3$元函数为$F(x, y, z)$，则
+$$\omega = F(x, y, z)\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z$$
+故
+$$\int f = \int f\epsilon = \int \omega = \iiint F(x, y, z) \mathrm{d}x\mathrm{d}y\mathrm{d}z$$
+如果愿意，也可用（右手）球坐标系$\{r, \theta, \varphi\}$计算。由线元式$\mathrm{d}s^2$
+
 
 \section{对偶微分形式}
 
