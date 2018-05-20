@@ -415,8 +415,91 @@ $$\epsilon^{a_1 \cdots a_n}\epsilon_{a_1 \cdots a_n} = (-1)^sn!$$
 $$\omega = F(x, y, z)\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z$$
 故
 $$\int f = \int f\epsilon = \int \omega = \iiint F(x, y, z) \mathrm{d}x\mathrm{d}y\mathrm{d}z$$
-如果愿意，也可用（右手）球坐标系$\{r, \theta, \varphi\}$计算。由线元式$\mathrm{d}s^2$
+如果愿意，也可用（右手）球坐标系$\{r, \theta, \varphi\}$计算。
+由线元式$\mathrm{d}s^2 = \mathrm{d}r^2 + r^2(\mathrm{d}\theta^2 + \sin^2\theta\mathrm{d}\varphi^2)$可知$g = r^4\sin^2\theta$，故$\epsilon = r^2\sin\theta\mathrm{d}r\wedge\mathrm{d}\theta\wedge\mathrm{d}\varphi$,于是$\omega \equiv f\epsilon = \hat{F}(r, \theta, \varphi)r^2\sin\theta\mathrm{d}r \wedge\mathrm{d}\theta\wedge\mathrm{d}\varphi$（其中$\hat{F}(r, \theta, \varphi)$是由$f$与$\{r, \theta, \varphi\}$结合而得的$3$元函数），故
+$$\int f = \int f\epsilon = \int\omega = \iiint\hat{F}(r, \theta, \varphi)r^2\sin\theta\mathrm{d}r\mathrm{d}\theta\mathrm{d}\varphi$$
 
+下面介绍一般形式的Gauss定理。
+读者熟悉的Gauss定理是
+$$\iiint_V (\vec{\nabla}\cdot\vec{A})\mathrm{d}V = \oiint_S\vec{A}\cdot\vec{n}\mathrm{d}S$$
+上式左右两边可分别形象地说成是``函数$\vec\nabla \cdot \vec A$与体元$\mathrm{d}V$的乘积的积分''和``函数$\vec A \cdot \vec n$与面元（$2$维体元）$\mathrm{d}S$的乘积的积分''。
+下面分两步证明由Stokes定理可以导出一个公式，它把上式作为特例包括在内。
+第一步是导出如下定理，其左边可看作上式左边的推广。
+
+\begin{theorem}
+    设$M$是$n$维定向流形，$N$是$M$中的$n$维紧致带边嵌入子流形，$g_{ab}$是$M$上的度规，$\epsilon$和$\nabla_a$分别是适配体元和适配导数算符，$v^a$是$M$上的$C^1$矢量场，则
+    $$\int_{\operatorname{i}(N)}(\nabla_bv^b)\epsilon = \int_{\partial N}v^b\epsilon_{b a_1 \cdots a_{n - 1}}$$
+\end{theorem}
+
+\begin{note}
+    上式左边可看作上上式左边的推广。
+\end{note}
+
+\begin{proof}
+    $n - 1$形式场$\omega \equiv v^b\epsilon_{b a_1 \cdots a_{n - 1}}$的外微分$\mathrm{d}\omega = n\nabla_{[c}(v^b\epsilon_{|b|a_1 \cdots a_{n - 1}]})$是$n$形式场，其中$\nabla_c$可为任意导数算符。
+    $N$中任一点的$n$形式的集合是$1$维矢量空间，故该点的两个$n$形式$\mathrm{d}\omega$与$\epsilon$只差一个因子，即
+    $$n\nabla_{[c}(v^b\epsilon_{|b|a_1 \cdots a_{n - 1}]}) = h\epsilon_{ca_1 \cdots a_{n - 1}}$$
+    其中$h$是$N$上的函数，可求之如下：
+    上式两边与$\epsilon^{ca_1 \cdots a_{n - 1}}$缩并，右边得$(-1)^shn!$，左边得
+    \[\begin{split}
+        & n\epsilon^{ca_1 \cdots a_{n - 1}}\nabla_{[c}(v^b\epsilon_{|b|a_1 \cdots a_{n - 1}]}) = n\epsilon^{[ca_1 \cdots a_{n - 1}]}\nabla_{c}(v^b\epsilon_{ba_1 \cdots a_{n - 1}}) \\
+        = & n\epsilon^{ca_1 \cdots a_{n - 1}}\epsilon_{ba_1 \cdots a_{n - 1}}\nabla_{c}v^b = n(-1)^s(n - 1)!\delta^c{}_b\nabla_cv^b = (-1)^sn!\nabla_bv^b
+    \end{split}\]
+    （注意加入$\delta$时是把$\epsilon$的一个上标$c$换成了$b$）故$h = \nabla_bv^b, ~ \mathrm{d}\omega = \epsilon\nabla_bv^b$。
+    根据Stokes定理，上式得证。
+\end{proof}
+
+下面进一步把上式右边改写为同上上式右边类似的形式。
+由于后者涉及边界$S$上的体元$\mathrm{d}S$，我们先从$\partial N$的体元谈起。
+此处只讨论$\partial N$不是类光超曲面的情况，这时可谈及$\partial N$的归一化法矢$n^a$，满足$n^an_a = \pm 1$。
+$N$上的度规$g_{ab}$在$\partial N$上的诱导度规为$h_{ab} = g_{ab} \mp n_an_b$。
+把$\partial N$看作带度规$h_{ab}$的$n - 1$维流形，其体元（记作$\hat\epsilon_{a_1 \cdots a_{n - 1}}$）应满足两个条件：
+\textcircled{1} 与$\partial N$的诱导定向（记作$\bar\epsilon_{a_1 \cdots a_{n - 1}}$）相容；
+\textcircled{2} 与度规$h_{ab}$相适配，即
+$$\hat\epsilon^{a_1 \cdots a_{n - 1}}\hat\epsilon_{a_1 \cdots a_{n - 1}} = (-1)^{\hat s}(n - 1)!$$
+其中$\hat\epsilon^{a_1 \cdots a_{n - 1}}$是用$h_{ab}$对$\hat\epsilon_{a_1 \cdots a_{n - 1}}$升指标的结果，$\hat s$是$h_{ab}$的对角元中负数的个数。
+$\partial N$上满足这两个条件的体元$\hat\epsilon_{a_1 \cdots a_{n - 1}}$称为诱导体元。
+设$n^b$是$\partial N$的外向单位法矢（以$\operatorname{i}(N)$作为内部，``外向''有明确意义），则诱导体元$\hat\epsilon_{a_1 \cdots a_{n - 1}}$与$N$上体元$\epsilon_{a_1 \cdots a_{n - 1}}$有如下关系：
+$$\hat\epsilon_{a_1 \cdots a_{n - 1}} = n^b\epsilon_{b a_1 \cdots a_{n - 1}}$$
+
+下面就是把上上式作为特例包括在内的一般Gauss定理。
+
+\begin{theorem}
+    设$M$是$n$维定向流形，$N$是$M$中的$n$维紧致带边嵌入子流形，$g_{ab}$是$M$上的度规，$\epsilon$和$\nabla_a$分别是适配体元和适配导数算符，$\hat\epsilon$是$\partial N$上的诱导体元，$\partial N$的外向法矢$n^a$满足$n^an_a = \pm 1$，$v^a$是$M$上的$C^1$矢量场,则
+    $$\int_{\operatorname{i}(N)}(\nabla_av^a)\epsilon = \pm \int_{\partial N}v^an_a\hat\epsilon ~ \text{（$n^an_a = +1$时取$+$, $n^an_a = -1$时取$-$）}$$
+\end{theorem}
+
+\begin{proof}
+    由上一定理知只须证明$\displaystyle\int_{\partial}v^b\epsilon_{ba_1 \cdots a_{n - 1}} = \pm \int_{\partial N}v^an_a\hat\epsilon$。
+    令$\omega = v^b\epsilon_{ba_1 \cdots a_{n - 1}}$,注意到$\displaystyle\int_{\phi[S]}\omega \equiv \int_{\phi[S]}\tilde\omega$,只须证明
+    $$\tilde\omega_{a_1 \cdots a_{n - 1}} = \pm v^bn_b\hat\epsilon_{a_1 \cdots a_{n - 1}}, ~ \forall q \in \partial N$$
+    其中$n^a$为$\partial N$的单位外向法矢。
+    上式两边都是$W_q$上的$n - 1$形式，故必有$K$使
+    $$\tilde\omega_{a_1 \cdots a_{n - 1}} = K v^bn_b\hat\epsilon_{a_1 \cdots a_{n - 1}}$$
+    于是只须证明$K = \pm 1$。
+    设$\{(e_0)^a = n^a, (e_1)^a, \cdots, (e_{n - 1})^a\}$是$V_q$的一个右手正交归一基底，用$(e_1)^{a_1} \cdots (e_{n - 1})^{a_{n - 1}}$缩并上式，右边给出
+    $$Kv^bn_b\hat\epsilon_{12\cdots(n - 1)} = \pm Kv^b(e^0)_b\hat\epsilon_{12\cdots(n - 1)} = \pm K v^0$$
+    （其中$\hat\epsilon_{12\cdots(n - 1)}$是$\hat\epsilon_{a_1 \cdots a_{n - 1}}$在用基底$\{(e_1)^a, \cdots, (e_{n - 1})^a\}$表示时的分量，第一个等号是因为$n_b = \pm(e^0)_b$\footnote{
+        $n_b = n_0(e^0)_b$，其中$n_0 \equiv n_b(e_0)^b = n_bn^b = \pm 1$。
+    }，第二个等号是因为右手基底保证$\hat\epsilon_{12\cdots(n - 1)} = 1$。）
+    另一方面，左边缩并结果为
+    \[\begin{split}
+        & \tilde\omega_{a_1 \cdots a_{n - 1}}(e_1)^{a_1} \cdots (e_{n - 1})^{a_{n - 1}} = \omega_{a_1 \cdots a_{n - 1}}(e_1)^{a_1} \cdots (e_{n - 1})^{a_{n - 1}} \\
+        = & v^b\epsilon_{b a_1 \cdots a_{n - 1}}(e_1)^{a_1} \cdots (e_{n - 1})^{a_{n - 1}} = v^\mu\epsilon_{\mu 1 2 \cdots (n - 1)} = v^0\epsilon_{0 1 2 \cdots (n - 1)} = v^0
+    \end{split}\]
+    对比两式得$K = \pm 1$。
+\end{proof}
+
+\begin{note}
+    上述定理的条件是$n^a$为$\partial N$的外向单位法矢。
+    把规定改为``当$n^an_a = +1$时，$n^a$朝外向，$n^an_a = -1$时$n^a$朝内向'',则上述定理右边的$\pm$号消失，Gauss定理改取如下形式
+    $$\int_{\operatorname{i}(N)}(\nabla_av^a)\epsilon = \int_{\partial N}v^an_a\hat\epsilon$$
+    
+    若$\partial N$为类光超曲面，即$n^an_a = 0$，则上式仍然成立，但$\hat\epsilon$要按下式定义：
+    $$\frac{1}{n}\epsilon_{a_1 \cdots a_n} = n_{[a_1}\hat\epsilon_{a_2 \cdots a_n]}$$
+\end{note}
 
 \section{对偶微分形式}
 
+以$\Lambda_p(l)$代表$p \in M$的全部$l$形式的集合，则有
+$$\dim\Lambda_p(l) = C^l_n = C^{n - l}_n = \dim\Lambda_p(n - l)$$
