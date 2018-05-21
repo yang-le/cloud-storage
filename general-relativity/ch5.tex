@@ -503,3 +503,49 @@ $$\hat\epsilon_{a_1 \cdots a_{n - 1}} = n^b\epsilon_{b a_1 \cdots a_{n - 1}}$$
 
 以$\Lambda_p(l)$代表$p \in M$的全部$l$形式的集合，则有
 $$\dim\Lambda_p(l) = C^l_n = C^{n - l}_n = \dim\Lambda_p(n - l)$$
+若$M$为带度规$g_{ab}$的定向流形，$\epsilon$为适配体元，则可用$\epsilon$及$g_{ab}$在$\Lambda_M(l)$和$\Lambda_M(n - l)$之间定义一个同构映射如下：
+
+\begin{definition}
+    $\forall \omega \in \Lambda_M(l)$，定义$\omega$的对偶微分形式$^*\omega \in \Lambda_M(n - l)$为
+    $$^*\omega_{a_1 \cdots a_{n - 1}} \coloneq \frac{1}{n!}\omega^{b_1 \cdots b_l}\epsilon_{b_1 \cdots b_l a_1 \cdots a_{n - 1}}$$
+    其中
+    $$\omega^{b_1 \cdots b_l} = g^{b_1c_1} \cdots g^{b_lc_l}\omega_{c_1 \cdots c_l}$$
+\end{definition}
+
+\begin{note}
+    以上定义的$^*$称为Hodge star。不难看出：
+    \textcircled{1} $^* \colon \Lambda_M(l) \to \Lambda_M(n - l)$是同构映射；
+    \textcircled{2} $f \in \mathscr{F}_M$作为$0$形式场，其对偶形式场按定义为：
+    $$^*f_{a_1 \cdots a_n} = \frac{1}{0!}f\epsilon_{a_1 \cdots a_n} = f\epsilon_{a_1 \cdots a_n}$$
+    即$^*f$等于度规适配的体元$\epsilon$的$f$倍，因此可以说函数$f$的积分定义为其对偶形式场的积分。
+    对上式再取$^*$得
+    $$^*(^*f) = ^*(f\epsilon) = \frac{1}{n!}f\epsilon^{b_1 \cdots b_n}\epsilon_{b_1 \cdots b_n} = (-1)^sf$$
+    这一结果可推广为如下定理：
+\end{note}
+
+\begin{theorem}
+    $^{**}\omega = (-1)^{s + l(n - l)}\omega$
+\end{theorem}
+
+现在用微分几何观点重新观察早已熟悉的$3$维欧氏空间$(\mathbb{R}^3, \delta_{ab})$上的矢量代数和矢量场论（其中$M$就是$\mathbb{R}^3$）。
+
+\begin{enumerate}[（1）]
+    \item 为什么过去从未听说过$1$、$2$和$3$形式场？
+    首先，利用欧式度规$\delta_{ab}$可把对偶矢量场$\omega_a$变为矢量场$\omega^a = \delta^{ab}\omega_b$，从而消除了使用$1$形式场的必要性。
+    今后在只涉及$(\mathbb{R}^3, \delta_{ab})$时将不再认真区分上下标。
+    其次，由于$n = 3$，$\Lambda_M(2)$与$\Lambda_M(1)$维数相同并可用同构映射$^* \colon \Lambda_M(2) \to \Lambda_M(1)$把$\omega \in \Lambda_M(2)$与$^*\omega \in \Lambda_M(1)$认同，从而消除了使用$2$形式场的必要性。
+    类似地，$\Lambda_M(3)$与$\Lambda_M(0)$维数相同并可用同构映射$^* \colon \Lambda_M(3) \to \Lambda_M(0)$把$\omega \in \Lambda_M(3)$与$^*\omega \in \Lambda_M(0)$认同，而后者（$0$形式场）就是$\mathbb{R}^3$上的函数。
+    可见$3$维欧氏空间的微分形式场都可由函数和矢量场代替。
+    \item 现在讨论矢量代数的点乘和叉乘运算。
+    把矢量$\vec A$和$\vec B$分别记作$A^a$和$B^b$。
+    $\vec A$和$\vec B$的点乘积$\vec A \cdot \vec B$自然就是$A_aB^a$，但对叉乘积$\vec A \times \vec B$如何理解？令
+    $$\omega_{ab} \equiv A_a \wedge B_b = 2A_{[a}B_{b]}$$
+    则
+    $$^*\omega_c = \frac{1}{2}\omega^{ab}\epsilon_{abc} = \epsilon_{abc}A^{[a}B^{b]} = \epsilon_{abc}A^{a}B^{b}$$
+    其中，$\epsilon_{abc}$是欧氏度规的适配体元。
+    设$\{x, y, z\}$为右手笛卡尔坐标系，则其坐标基底正交归一，于是$\epsilon_{abc}$在此系的非零分量$\epsilon_{ijk}$为
+    $$\epsilon_{123} = \epsilon_{312} = \epsilon_{231} = -\epsilon_{132} = -\epsilon_{213} = -\epsilon_{321} = 1$$
+    可见$\epsilon_{ijk}$就是熟知的Levi--Civita记号。
+    于是$^*\omega_c$在该笛卡尔系的第$k$分量为
+    $$^*\omega_k = \epsilon_{ijk}A^iB^j, ~ k = 1, 2, 3$$
+\end{enumerate}
