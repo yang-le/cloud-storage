@@ -147,11 +147,11 @@ $$\omega = \omega_{1 \cdots n}\mathrm{d}x^{1} \wedge \cdots \wedge \mathrm{d}x^{
 然而，并非所有流形都是可定向的。
 
 \begin{definition}
-    $n$维流形称为可定向的，若其上存在$C^0$且处处非零的$n$形式场$\epsilon$。
+    $n$维流形称为可定向的，若其上存在$C^0$且处处非零的$n$形式场$\varepsilon$。
 \end{definition}
 
 \begin{example}
-    $\mathbb{R}^3$是可定向流形，因为其上存在$C^\infty$的$3$形式场$\epsilon \equiv \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$，其中$x, y, z$为自然坐标。
+    $\mathbb{R}^3$是可定向流形，因为其上存在$C^\infty$的$3$形式场$\varepsilon \equiv \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$，其中$x, y, z$为自然坐标。
 \end{example}
 
 \begin{example}
@@ -159,14 +159,14 @@ $$\omega = \omega_{1 \cdots n}\mathrm{d}x^{1} \wedge \cdots \wedge \mathrm{d}x^{
 \end{example}
 
 \begin{definition}
-    若在$n$维可定向流形$M$上选定一个$C^0$且处处非零的$n$形式场$\epsilon$，就说$M$是定向的（``已经定向''之意）。
-    设$\epsilon_1$和$\epsilon_2$是两个$C^0$且处处非零的$n$形式场，若存在处处为正的函数$h$使$\epsilon_1 = h\epsilon_2$，就说$\epsilon_1$和$\epsilon_2$给出$M$的同一个定向。
+    若在$n$维可定向流形$M$上选定一个$C^0$且处处非零的$n$形式场$\varepsilon$，就说$M$是定向的（``已经定向''之意）。
+    设$\varepsilon_1$和$\varepsilon_2$是两个$C^0$且处处非零的$n$形式场，若存在处处为正的函数$h$使$\varepsilon_1 = h\varepsilon_2$，就说$\varepsilon_1$和$\varepsilon_2$给出$M$的同一个定向。
 \end{definition}
 
 \begin{note}
-    从给出$M$的定向这个角度看，满足$\epsilon_1 = h\epsilon_2 ~ (h > 0)$的$\epsilon_1$和$\epsilon_2$是等价的。
-    由于$n$维流形$M$上每点的全体$n$形式的集合是$1$维矢量空间，任意两个$n$形式场$\epsilon_1$和$\epsilon_2$必有关系$\epsilon_1 = h\epsilon_2$其中$h$是$M$上的函数。
-    若$\epsilon_1$和$\epsilon_2$处处非零，则$h$处处非零；若$\epsilon_1$和$\epsilon_2$为$C^0$的，则$h$为$C^0$的。
+    从给出$M$的定向这个角度看，满足$\varepsilon_1 = h\varepsilon_2 ~ (h > 0)$的$\varepsilon_1$和$\varepsilon_2$是等价的。
+    由于$n$维流形$M$上每点的全体$n$形式的集合是$1$维矢量空间，任意两个$n$形式场$\varepsilon_1$和$\varepsilon_2$必有关系$\varepsilon_1 = h\varepsilon_2$其中$h$是$M$上的函数。
+    若$\varepsilon_1$和$\varepsilon_2$处处非零，则$h$处处非零；若$\varepsilon_1$和$\varepsilon_2$为$C^0$的，则$h$为$C^0$的。
     对连通流形\footnote{
         拓扑空间$(X, \mathscr{T})$称为连通的，若它只有两个既开又闭的子集；
         称为弧连通的，若$X$的任意两点可被一条在$X$中的连续曲线连接。
@@ -177,7 +177,7 @@ $$\omega = \omega_{1 \cdots n}\mathrm{d}x^{1} \wedge \cdots \wedge \mathrm{d}x^{
 \end{note}
 
 \begin{definition}
-    $M$上选好以$\epsilon$为代表的定向后，开域$O \subset M$上的基底场$\{(e_\mu)^a\}$叫做以$\epsilon$衡量为右手的，若$O$上存在处处为正的函数$h$使$\epsilon = h(e^1)_{a_1} \wedge \cdots \wedge (e^n)_{a_n}$，其中$\{(e^\mu)_a\}$是$\{(e_\mu)^a\}$的对偶基（否则称为左手的）。
+    $M$上选好以$\varepsilon$为代表的定向后，开域$O \subset M$上的基底场$\{(e_\mu)^a\}$叫做以$\varepsilon$衡量为右手的，若$O$上存在处处为正的函数$h$使$\varepsilon = h(e^1)_{a_1} \wedge \cdots \wedge (e^n)_{a_n}$，其中$\{(e^\mu)_a\}$是$\{(e_\mu)^a\}$的对偶基（否则称为左手的）。
     一个坐标系叫右（左）手系，若其坐标基底是右（左）手的。
 \end{definition}
 
@@ -227,7 +227,7 @@ $$\omega = \omega_{1 \cdots n}(x^1, \cdots, x^n)\mathrm{d}x^1 \wedge \cdots \wed
         $$\int_{\psi[G]}\omega_{12}\mathrm{d}x^1\mathrm{d}x^2 = -\int_{\psi'[G]}\omega_{12}\det(\partial x^\mu / \partial x'^\nu)\mathrm{d}x'^1\mathrm{d}x'^2 = -\int_{\psi'[G]}\omega'_{12}\mathrm{d}x'^1\mathrm{d}x'^2$$
         因此，为了定义出同一积分，当$\{x^\mu\}$是左手系时应把$\displaystyle\int_G\omega$定义为
         $$\int_G\omega \coloneq -\int_{\psi[G]}\omega_{1 \cdots n}(x^1, \cdots, x^n)\mathrm{d}x^1 \cdots \mathrm{d}x^n$$
-        \item 一个坐标系是右手系还是左手系取决于流形所选的定向，故$\displaystyle\int_G\omega$是依赖于由$\epsilon$所给出的定向的，定向改变后积分变号。
+        \item 一个坐标系是右手系还是左手系取决于流形所选的定向，故$\displaystyle\int_G\omega$是依赖于由$\varepsilon$所给出的定向的，定向改变后积分变号。
         \item 以上之定义了$\omega$在坐标域内开子集$G$上的积分。
         $\omega$在全流形$M$上的积分$\displaystyle\int_M\omega$可由局部积分``缝合''而成，其定义涉及``单位分解'',从略。
     \end{enumerate}
@@ -272,14 +272,14 @@ $$\mathbb{R}^{n-} \coloneq \{(x^1, \cdots, x^n) \in \mathbb{R}^n \mid x^1 \leq 0
 \end{theorem}
 
 \begin{note}
-    把$M$的定向$\epsilon$限制在$N$上便得到$N$的定向，仍记作$\epsilon$,它在$N$的边界$\partial N$（$M$中的超曲面）上自然诱导出一个定向，记作$\bar\epsilon$,是$\bar\epsilon_{a_1 \cdots a_{n - 1}}$的简写。
+    把$M$的定向$\varepsilon$限制在$N$上便得到$N$的定向，仍记作$\varepsilon$,它在$N$的边界$\partial N$（$M$中的超曲面）上自然诱导出一个定向，记作$\bar\varepsilon$,是$\bar\varepsilon_{a_1 \cdots a_{n - 1}}$的简写。
     仅以$\mathbb{R}^{2-}$为例介绍，这时$M = \mathbb{R}^2, ~ N = \mathbb{R}^{2-}, ~ \partial N = \{(x^1, x^2) \mid x^1 = 0\}$。
-    设$\mathbb{R}^2$（因而$\mathbb{R}^{2-}$）的定向为$\epsilon_{ab} = (\mathrm{d}x^1)_a \wedge (\mathrm{d}x^2)_b$，则$\{x^1, x^2\}$以$\epsilon_{ab}$衡量为右手系。
+    设$\mathbb{R}^2$（因而$\mathbb{R}^{2-}$）的定向为$\varepsilon_{ab} = (\mathrm{d}x^1)_a \wedge (\mathrm{d}x^2)_b$，则$\{x^1, x^2\}$以$\varepsilon_{ab}$衡量为右手系。
     因$x^1|_{\partial N} = 0$，把$x^1$开除后所得的$\{x^2\}$便是$\partial N$的一个坐标系。
-    我们这样定义$\partial N$的诱导定向$\bar\epsilon_a$，使坐标系$\{x^2\}$以$\bar\epsilon_a$衡量为右手系。
-    选$\bar\epsilon_a = (\mathrm{d}x^2)_a$便可满足这一要求。
+    我们这样定义$\partial N$的诱导定向$\bar\varepsilon_a$，使坐标系$\{x^2\}$以$\bar\varepsilon_a$衡量为右手系。
+    选$\bar\varepsilon_a = (\mathrm{d}x^2)_a$便可满足这一要求。
     诱导定向的这个基本要求可以推广到任意带边流形$N$。
-    上式左边是$n$形式场$\mathrm{d}\omega$在$n$维流形$\operatorname{i}(N)$（以$\epsilon$为定向）上的积分，右边是$n - 1$形式场$\omega$在$n - 1$维流形$\partial N$（以$\bar\epsilon$为定向）上的积分。
+    上式左边是$n$形式场$\mathrm{d}\omega$在$n$维流形$\operatorname{i}(N)$（以$\varepsilon$为定向）上的积分，右边是$n - 1$形式场$\omega$在$n - 1$维流形$\partial N$（以$\bar\varepsilon$为定向）上的积分。
 \end{note}
 
 \begin{example}
@@ -304,52 +304,52 @@ $$\mathbb{R}^{n-} \coloneq \{(x^1, \cdots, x^n) \in \mathbb{R}^n \mid x^1 \leq 0
 \section{体元}
 
 \begin{definition}
-    $n$维可定向流形$M$上的任一个$C^0$而且处处非零的$n$形式场$\epsilon$称为一个体元。
+    $n$维可定向流形$M$上的任一个$C^0$而且处处非零的$n$形式场$\varepsilon$称为一个体元。
 \end{definition}
 
 \begin{note}
-    体元与定向的区别在于：若$\epsilon_1$和$\epsilon_2$是两个$C^0$且处处非零的$n$形式场，而且有处处为正的函数$h$使$\epsilon_1 = h \epsilon_2$，则$\epsilon_1$和$\epsilon_2$代表同一个定向，但只要$\epsilon_1 \neq \epsilon_2$它们就是两个不同体元。
+    体元与定向的区别在于：若$\varepsilon_1$和$\varepsilon_2$是两个$C^0$且处处非零的$n$形式场，而且有处处为正的函数$h$使$\varepsilon_1 = h \varepsilon_2$，则$\varepsilon_1$和$\varepsilon_2$代表同一个定向，但只要$\varepsilon_1 \neq \varepsilon_2$它们就是两个不同体元。
     对可定向连通流形，定向只有两个，而体元却有无限多个。
-    谈及定向流形上的积分和体元时不要求流形上选定度规场，这时体元的选择十分任意（只有一个要求，就是体元与定向相容，即代表体元的$\epsilon$与代表定向的$\epsilon$之间的乘子为正。），没有一个与众不同的体元。
+    谈及定向流形上的积分和体元时不要求流形上选定度规场，这时体元的选择十分任意（只有一个要求，就是体元与定向相容，即代表体元的$\varepsilon$与代表定向的$\varepsilon$之间的乘子为正。），没有一个与众不同的体元。
     然而，如果流形上给定了度规场$g_{ab}$，便存在选择特定体元的自然方法。
 \end{note}
 
 先考虑带度规$g_{ab}$的$2$维定向流形。
-设$\epsilon_{a_1a_2}$为任一体元，则$\epsilon^{a_1a_2} \equiv g^{a_1b_1}g^{a_2b_2}\epsilon_{b_1b_2}$有意义，且$\epsilon^{a_1a_2}\epsilon_{a_1a_2}$是标量场，可借任一基底计算。
+设$\varepsilon_{a_1a_2}$为任一体元，则$\varepsilon^{a_1a_2} \equiv g^{a_1b_1}g^{a_2b_2}\varepsilon_{b_1b_2}$有意义，且$\varepsilon^{a_1a_2}\varepsilon_{a_1a_2}$是标量场，可借任一基底计算。
 我们用正交归一基底。
 若$g_{ab}$为正定度规，则
-$$\epsilon^{a_1a_2}\epsilon_{a_1a_2} = \delta^{\mu_1\nu_1}\delta^{\mu_2\nu_2}\epsilon_{\nu_1\nu_2}\epsilon_{\mu_1\mu_2} = \delta^{11}\delta^{22}\epsilon_{12}\epsilon_{12} + \delta^{22}\delta^{11}\epsilon_{21}\epsilon_{21} = 2(\epsilon_{12})^2$$
+$$\varepsilon^{a_1a_2}\varepsilon_{a_1a_2} = \delta^{\mu_1\nu_1}\delta^{\mu_2\nu_2}\varepsilon_{\nu_1\nu_2}\varepsilon_{\mu_1\mu_2} = \delta^{11}\delta^{22}\varepsilon_{12}\varepsilon_{12} + \delta^{22}\delta^{11}\varepsilon_{21}\varepsilon_{21} = 2(\varepsilon_{12})^2$$
 若$g_{ab}$为洛伦兹度规，则
-$$\epsilon^{a_1a_2}\epsilon_{a_1a_2} = \eta^{11}\eta^{22}\epsilon_{12}\epsilon_{12} + \eta^{22}\eta^{11}\epsilon_{21}\epsilon_{21} = -2(\epsilon_{12})^2$$
+$$\varepsilon^{a_1a_2}\varepsilon_{a_1a_2} = \eta^{11}\eta^{22}\varepsilon_{12}\varepsilon_{12} + \eta^{22}\eta^{11}\varepsilon_{21}\varepsilon_{21} = -2(\varepsilon_{12})^2$$
 推广至带任意度规$g_{ab}$的$n$维流形有
-$$\epsilon^{a_1 \cdots a_n}\epsilon_{a_1 \cdots a_n} = (-1)^sn!(\epsilon_{1 \cdots n})^2$$
-其中$\epsilon_{1 \cdots n}$是$\epsilon_{a_1 \cdots a_n}$在正交归一基底的分量，$s$是$g_{ab}$在正交归一基底的分量中$-1$的个数，例如正定度规有$s = 0$，洛伦兹度规有$s = 1$。
-所谓借用度规选择一个特定的体元，是指规定体元$\epsilon_{a_1 \cdots a_n}$在正交归一基$\{(e^\mu)_a\}$的分量满足如下的简单性要求：
-$$\epsilon_{1 \cdots n} = \pm 1$$
+$$\varepsilon^{a_1 \cdots a_n}\varepsilon_{a_1 \cdots a_n} = (-1)^sn!(\varepsilon_{1 \cdots n})^2$$
+其中$\varepsilon_{1 \cdots n}$是$\varepsilon_{a_1 \cdots a_n}$在正交归一基底的分量，$s$是$g_{ab}$在正交归一基底的分量中$-1$的个数，例如正定度规有$s = 0$，洛伦兹度规有$s = 1$。
+所谓借用度规选择一个特定的体元，是指规定体元$\varepsilon_{a_1 \cdots a_n}$在正交归一基$\{(e^\mu)_a\}$的分量满足如下的简单性要求：
+$$\varepsilon_{1 \cdots n} = \pm 1$$
 即
-$$\epsilon_{a_1 \cdots a_n} = \pm(e^1)_{a1} \wedge \cdots \wedge(e^n)_{a_n} \text{（对正交归一基）}$$
+$$\varepsilon_{a_1 \cdots a_n} = \pm(e^1)_{a1} \wedge \cdots \wedge(e^n)_{a_n} \text{（对正交归一基）}$$
 这相当于要求
-$$\epsilon^{a_1 \cdots a_n}\epsilon_{a_1 \cdots a_n} = (-1)^sn!$$
-满足上式的$\epsilon_{a_1 \cdots a_n}$称为与度规$g_{ab}$相适配（相容）的体元。
+$$\varepsilon^{a_1 \cdots a_n}\varepsilon_{a_1 \cdots a_n} = (-1)^sn!$$
+满足上式的$\varepsilon_{a_1 \cdots a_n}$称为与度规$g_{ab}$相适配（相容）的体元。
 上式只把体元确定到差一个负号的程度，加上``体元与定向相容''的要求才确定唯一的体元。
 于是上式右边的$+$和$-$号分别对应于右手和左手正交归一基。
 
 小结 ~ 涉及积分时，我们只关心可定向流形$M$。首先选好一个定向使$M$成为定向流形。
 任一基底的右（左）手性由所选定向规定。
 没有度规场$g_{ab}$（或其他可资利用的几何结构）时，体元相当任意，但要求与定向相容。
-指定$g_{ab}$后，体元$\epsilon_{a_1 \cdots a_n}$由$g_{ab}$以及``体元与定向相容''的要求唯一确定，简称适配体元。
+指定$g_{ab}$后，体元$\varepsilon_{a_1 \cdots a_n}$由$g_{ab}$以及``体元与定向相容''的要求唯一确定，简称适配体元。
 今后如无特别声明，在有度规时提到体元都指这个唯一的适配体元。
 
-在$3$维欧氏空间$(\mathbb{R}^3, \delta_{ab})$中任取一个符合直观含义的右手笛卡尔系$\{x, y, z\}$并指定$3$形式场$\epsilon = \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$为定向，则$\{x, y, z\}$按定义就是以$\epsilon$衡量的右手系。
-把$\epsilon = \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$与上式对比可知$\epsilon$是适配体元。
+在$3$维欧氏空间$(\mathbb{R}^3, \delta_{ab})$中任取一个符合直观含义的右手笛卡尔系$\{x, y, z\}$并指定$3$形式场$\varepsilon = \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$为定向，则$\{x, y, z\}$按定义就是以$\varepsilon$衡量的右手系。
+把$\varepsilon = \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$与上式对比可知$\varepsilon$是适配体元。
 设$G$是$\mathbb{R}^3$的开子集且普通积分$\displaystyle\iiint_G\mathrm{d}x\mathrm{d}y\mathrm{d}z$存在，则此积分自然代表$G$的体积（按普通微积分学的体积定义）。
-另一方面，$3$形式场$\epsilon$在$G \subset \mathbb{R}^3$上的积分$\displaystyle\int_G\epsilon$正是$\displaystyle\iiint_G\mathrm{d}x\mathrm{d}y\mathrm{d}z$，可见$\displaystyle\int_G\epsilon$就是$G$的体积。
-推广至任意带正定度规$g_{ab}$的定向流形$N$，设$\epsilon$为适配体元，若$\displaystyle\int_N\epsilon$存在，就称它为$N$的（用$g_{ab}$衡量的）体积（对$1, 2$维流形又分别叫长度和面积）。
-这可看作把$\epsilon$称为体元的由来。
+另一方面，$3$形式场$\varepsilon$在$G \subset \mathbb{R}^3$上的积分$\displaystyle\int_G\varepsilon$正是$\displaystyle\iiint_G\mathrm{d}x\mathrm{d}y\mathrm{d}z$，可见$\displaystyle\int_G\varepsilon$就是$G$的体积。
+推广至任意带正定度规$g_{ab}$的定向流形$N$，设$\varepsilon$为适配体元，若$\displaystyle\int_N\varepsilon$存在，就称它为$N$的（用$g_{ab}$衡量的）体积（对$1, 2$维流形又分别叫长度和面积）。
+这可看作把$\varepsilon$称为体元的由来。
 
 \begin{theorem}
-    设$\epsilon$为适配体元，$\{(e_\mu)^a\}$及$\{(e^\mu)_a\}$为基底及其对偶基底，$g$为$g_{ab}$在此基底的分量组成的行列式，$|g|$为$g$的绝对值，则（式中$+$、$-$号分别适用于右手和左手基底）
-    $$\epsilon_{a_1 \cdots a_n} = \pm\sqrt{|g|}(e^1)_{a_1} \wedge \cdots \wedge (e^n)_{a_n}$$
+    设$\varepsilon$为适配体元，$\{(e_\mu)^a\}$及$\{(e^\mu)_a\}$为基底及其对偶基底，$g$为$g_{ab}$在此基底的分量组成的行列式，$|g|$为$g$的绝对值，则（式中$+$、$-$号分别适用于右手和左手基底）
+    $$\varepsilon_{a_1 \cdots a_n} = \pm\sqrt{|g|}(e^1)_{a_1} \wedge \cdots \wedge (e^n)_{a_n}$$
 \end{theorem}
 
 \begin{note}
@@ -357,19 +357,19 @@ $$\epsilon^{a_1 \cdots a_n}\epsilon_{a_1 \cdots a_n} = (-1)^sn!$$
 \end{note}
 
 \begin{theorem}
-    设$\nabla_a$和$\epsilon$分别是与度规相适配的导数算符和体元，则
-    $$\nabla_b\epsilon_{a_1 \cdots a_n} = 0$$
+    设$\nabla_a$和$\varepsilon$分别是与度规相适配的导数算符和体元，则
+    $$\nabla_b\varepsilon_{a_1 \cdots a_n} = 0$$
 \end{theorem}
 
 \begin{proof}
-    由$\nabla_bg_{ac} = 0$可得$\epsilon^{a_1 \cdots a_n}\nabla_b\epsilon_{a_1 \cdots a_n} = 0$\footnote{
-        因为$\epsilon^{a_1 \cdots a_n}\epsilon_{a_1 \cdots a_n} = (-1)^sn!$，两边取导数得$\nabla_b(\epsilon^{a_1 \cdots a_n}\epsilon_{a_1 \cdots a_n}) = \nabla_b\epsilon^{a_1 \cdots a_n}\epsilon_{a_1 \cdots a_n} + \epsilon^{a_1 \cdots a_n}\nabla_b\epsilon_{a_1 \cdots a_n} = 0$。
+    由$\nabla_bg_{ac} = 0$可得$\varepsilon^{a_1 \cdots a_n}\nabla_b\varepsilon_{a_1 \cdots a_n} = 0$\footnote{
+        因为$\varepsilon^{a_1 \cdots a_n}\varepsilon_{a_1 \cdots a_n} = (-1)^sn!$，两边取导数得$\nabla_b(\varepsilon^{a_1 \cdots a_n}\varepsilon_{a_1 \cdots a_n}) = \nabla_b\varepsilon^{a_1 \cdots a_n}\varepsilon_{a_1 \cdots a_n} + \varepsilon^{a_1 \cdots a_n}\nabla_b\varepsilon_{a_1 \cdots a_n} = 0$。
         又$\nabla_bg_{ac} = 0$可导出$\nabla_bg^{ac} = 0$，故前式第一项为0。
     }，于是对任一矢量场$v^b$有（两边做缩并）
-    $$\epsilon^{a_1 \cdots a_n}v^b\nabla_b\epsilon_{a_1 \cdots a_n} = 0$$
-    因$M$中任一点的$n$形式的集合是$1$维矢量空间，故该点的任意两个$n$形式只能差到一个乘子$h$（对不同点$h$可不同），因此$v^b\nabla_b\epsilon_{a_1 \cdots a_n} = h\epsilon_{a_1 \cdots a_n}$。
-    代入上式便给出$h = 0$，所以$v^b\nabla_b\epsilon_{a_1 \cdots a_n} = 0$。
-    因$v^b$为任意矢量场，故$\nabla_b\epsilon_{a_1 \cdots a_n} = 0$。
+    $$\varepsilon^{a_1 \cdots a_n}v^b\nabla_b\varepsilon_{a_1 \cdots a_n} = 0$$
+    因$M$中任一点的$n$形式的集合是$1$维矢量空间，故该点的任意两个$n$形式只能差到一个乘子$h$（对不同点$h$可不同），因此$v^b\nabla_b\varepsilon_{a_1 \cdots a_n} = h\varepsilon_{a_1 \cdots a_n}$。
+    代入上式便给出$h = 0$，所以$v^b\nabla_b\varepsilon_{a_1 \cdots a_n} = 0$。
+    因$v^b$为任意矢量场，故$\nabla_b\varepsilon_{a_1 \cdots a_n} = 0$。
 \end{proof}
 
 下面要证明关于体元的两个十分有用的等式，为此先要介绍下述引理。
@@ -382,18 +382,18 @@ $$\epsilon^{a_1 \cdots a_n}\epsilon_{a_1 \cdots a_n} = (-1)^sn!$$
 
 \begin{theorem}
     \begin{enumerate}[（a）]
-        \item $\epsilon^{a_1 \cdots a_n}\epsilon_{b_1 \cdots b_n} = (-1)^sn!\delta^{[a_1}{}_{b_1} \cdots \delta^{a_n]}{}_{b_n}$
-        \item $\epsilon^{a_1 \cdots a_j a_{j + 1} \cdots a_n}\epsilon_{a_1 \cdots a_j b_{j + 1} \cdots b_n} = (-1)^s(n - j)!j!\delta^{[a_{j + 1}}{}_{b_{j + 1}} \cdots \delta^{a_n]}{}_{b_n}$
+        \item $\varepsilon^{a_1 \cdots a_n}\varepsilon_{b_1 \cdots b_n} = (-1)^sn!\delta^{[a_1}{}_{b_1} \cdots \delta^{a_n]}{}_{b_n}$
+        \item $\varepsilon^{a_1 \cdots a_j a_{j + 1} \cdots a_n}\varepsilon_{a_1 \cdots a_j b_{j + 1} \cdots b_n} = (-1)^s(n - j)!j!\delta^{[a_{j + 1}}{}_{b_{j + 1}} \cdots \delta^{a_n]}{}_{b_n}$
     \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-    $\epsilon^{a_1 \cdots a_n}\epsilon_{b_1 \cdots b_n} = \epsilon^{[a_1 \cdots a_n]}\epsilon_{[b_1 \cdots b_n]}$表明$\epsilon^{a_1 \cdots a_n}\epsilon_{b_1 \cdots b_n}$对全部上标和全部下标都为反称。
-    不难证明这种$(n, n)$型张量的集合是$1$维矢量空间，而$\delta^{[a_1}{}_{b_1} \cdots \delta^{a_n]}{}_{b_n}$属于这类张量（因为不难证明$\delta^{[a_1}{}_{b_1} \cdots \delta^{a_n]}{}_{b_n} = \delta^{[a_1}{}_{[b_1} \cdots \delta^{a_n]}{}_{b_n]}$），故任何这类张量与$\delta^{[a_1}{}_{b_1} \cdots \delta^{a_n]}{}_{b_n}$只差一个乘子，从而$\epsilon^{a_1 \cdots a_n}\epsilon_{b_1 \cdots b_n} = K\delta^{[a_1}{}_{b_1} \cdots \delta^{a_n]}{}_{b_n}$。
-    与$\epsilon_{a_1 \cdots a_n}\epsilon^{b_1 \cdots b_n}$缩并，左边结果为$(-1)^sn!(-1)^sn!$，右边结果为$K\epsilon_{b_1 \cdots b_n}\epsilon^{b_1 \cdots b_n} = K(-1)^sn!$，于是$K = (-1)^sn!$，故得式（a）。
+    $\varepsilon^{a_1 \cdots a_n}\varepsilon_{b_1 \cdots b_n} = \varepsilon^{[a_1 \cdots a_n]}\varepsilon_{[b_1 \cdots b_n]}$表明$\varepsilon^{a_1 \cdots a_n}\varepsilon_{b_1 \cdots b_n}$对全部上标和全部下标都为反称。
+    不难证明这种$(n, n)$型张量的集合是$1$维矢量空间，而$\delta^{[a_1}{}_{b_1} \cdots \delta^{a_n]}{}_{b_n}$属于这类张量（因为不难证明$\delta^{[a_1}{}_{b_1} \cdots \delta^{a_n]}{}_{b_n} = \delta^{[a_1}{}_{[b_1} \cdots \delta^{a_n]}{}_{b_n]}$），故任何这类张量与$\delta^{[a_1}{}_{b_1} \cdots \delta^{a_n]}{}_{b_n}$只差一个乘子，从而$\varepsilon^{a_1 \cdots a_n}\varepsilon_{b_1 \cdots b_n} = K\delta^{[a_1}{}_{b_1} \cdots \delta^{a_n]}{}_{b_n}$。
+    与$\varepsilon_{a_1 \cdots a_n}\varepsilon^{b_1 \cdots b_n}$缩并，左边结果为$(-1)^sn!(-1)^sn!$，右边结果为$K\varepsilon_{b_1 \cdots b_n}\varepsilon^{b_1 \cdots b_n} = K(-1)^sn!$，于是$K = (-1)^sn!$，故得式（a）。
     两边分别对前$j$个上、下指标缩并得
     \[\begin{split}
-        \epsilon^{a_1 \cdots a_j a_{j + 1} \cdots a_n}\epsilon_{a_1 \cdots a_j b_{j + 1} \cdots b_n} & = (-1)^sn!\delta^{[a_1}{}_{a_1} \cdots \delta^{a_j}{}_{a_j}\delta^{a_{j + 1}}{}_{b_{j + 1}} \cdots \delta^{a_n]}{}_{b_n} \\
+        \varepsilon^{a_1 \cdots a_j a_{j + 1} \cdots a_n}\varepsilon_{a_1 \cdots a_j b_{j + 1} \cdots b_n} & = (-1)^sn!\delta^{[a_1}{}_{a_1} \cdots \delta^{a_j}{}_{a_j}\delta^{a_{j + 1}}{}_{b_{j + 1}} \cdots \delta^{a_n]}{}_{b_n} \\
         & = (-1)^s(n - j)!j!\delta^{[a_{j + 1}}{}_{b_{j + 1}} \cdots \delta^{a_n]}{}_{b_n}
     \end{split}\]
     （其中最末一步用到上述引理）可见式（b）成立。
@@ -402,22 +402,22 @@ $$\epsilon^{a_1 \cdots a_n}\epsilon_{a_1 \cdots a_n} = (-1)^sn!$$
 \section{函数在流形上的积分，Gauss定理}
 
 \begin{definition}
-    设$\epsilon$为流形$M$上的任一体元，$f$为$M$上的$C^0$函数，则$f$在$M$上的积分（记作$\displaystyle\int_Mf$）定义为$n$形式场$f\epsilon$在$M$上的积分，即
-    $$\int_Mf \coloneq \int_Mf\epsilon$$
+    设$\varepsilon$为流形$M$上的任一体元，$f$为$M$上的$C^0$函数，则$f$在$M$上的积分（记作$\displaystyle\int_Mf$）定义为$n$形式场$f\varepsilon$在$M$上的积分，即
+    $$\int_Mf \coloneq \int_Mf\varepsilon$$
 \end{definition}
 
 由定义知函数的积分与体元的选择有关。
 只要流形上给定度规，我们约定总是用适配体元来定义函数的积分。
 这样，在带度规的定向流形上，函数给定后其积分也就确定。
 以$3$维欧氏空间$(\mathbb{R}^3, \delta_{ab})$为例。
-设$\{x, y, z\}$为右手笛卡尔系，则$\epsilon = \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$是适配体元，于是$(\mathbb{R}^3, \delta_{ab})$上的函数$f \colon \mathbb{R}^3 \to \mathbb{R}$的积分按定义为$\displaystyle\int_{\mathbb{R}^3}f = \int_{\mathbb{R}^3}f\epsilon$，而右边无非是$3$形式场$\omega = f\epsilon$的积分。
+设$\{x, y, z\}$为右手笛卡尔系，则$\varepsilon = \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$是适配体元，于是$(\mathbb{R}^3, \delta_{ab})$上的函数$f \colon \mathbb{R}^3 \to \mathbb{R}$的积分按定义为$\displaystyle\int_{\mathbb{R}^3}f = \int_{\mathbb{R}^3}f\varepsilon$，而右边无非是$3$形式场$\omega = f\varepsilon$的积分。
 设$f$与笛卡尔系$\{x, y, z\}$结合而得的$3$元函数为$F(x, y, z)$，则
 $$\omega = F(x, y, z)\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z$$
 故
-$$\int f = \int f\epsilon = \int \omega = \iiint F(x, y, z) \mathrm{d}x\mathrm{d}y\mathrm{d}z$$
+$$\int f = \int f\varepsilon = \int \omega = \iiint F(x, y, z) \mathrm{d}x\mathrm{d}y\mathrm{d}z$$
 如果愿意，也可用（右手）球坐标系$\{r, \theta, \varphi\}$计算。
-由线元式$\mathrm{d}s^2 = \mathrm{d}r^2 + r^2(\mathrm{d}\theta^2 + \sin^2\theta\mathrm{d}\varphi^2)$可知$g = r^4\sin^2\theta$，故$\epsilon = r^2\sin\theta\mathrm{d}r\wedge\mathrm{d}\theta\wedge\mathrm{d}\varphi$,于是$\omega \equiv f\epsilon = \hat{F}(r, \theta, \varphi)r^2\sin\theta\mathrm{d}r \wedge\mathrm{d}\theta\wedge\mathrm{d}\varphi$（其中$\hat{F}(r, \theta, \varphi)$是由$f$与$\{r, \theta, \varphi\}$结合而得的$3$元函数），故
-$$\int f = \int f\epsilon = \int\omega = \iiint\hat{F}(r, \theta, \varphi)r^2\sin\theta\mathrm{d}r\mathrm{d}\theta\mathrm{d}\varphi$$
+由线元式$\mathrm{d}s^2 = \mathrm{d}r^2 + r^2(\mathrm{d}\theta^2 + \sin^2\theta\mathrm{d}\varphi^2)$可知$g = r^4\sin^2\theta$，故$\varepsilon = r^2\sin\theta\mathrm{d}r\wedge\mathrm{d}\theta\wedge\mathrm{d}\varphi$,于是$\omega \equiv f\varepsilon = \hat{F}(r, \theta, \varphi)r^2\sin\theta\mathrm{d}r \wedge\mathrm{d}\theta\wedge\mathrm{d}\varphi$（其中$\hat{F}(r, \theta, \varphi)$是由$f$与$\{r, \theta, \varphi\}$结合而得的$3$元函数），故
+$$\int f = \int f\varepsilon = \int\omega = \iiint\hat{F}(r, \theta, \varphi)r^2\sin\theta\mathrm{d}r\mathrm{d}\theta\mathrm{d}\varphi$$
 
 下面介绍一般形式的Gauss定理。
 读者熟悉的Gauss定理是
@@ -427,8 +427,8 @@ $$\iiint_V (\vec{\nabla}\cdot\vec{A})\mathrm{d}V = \oiint_S\vec{A}\cdot\vec{n}\m
 第一步是导出如下定理，其左边可看作上式左边的推广。
 
 \begin{theorem}
-    设$M$是$n$维定向流形，$N$是$M$中的$n$维紧致带边嵌入子流形，$g_{ab}$是$M$上的度规，$\epsilon$和$\nabla_a$分别是适配体元和适配导数算符，$v^a$是$M$上的$C^1$矢量场，则
-    $$\int_{\operatorname{i}(N)}(\nabla_bv^b)\epsilon = \int_{\partial N}v^b\epsilon_{b a_1 \cdots a_{n - 1}}$$
+    设$M$是$n$维定向流形，$N$是$M$中的$n$维紧致带边嵌入子流形，$g_{ab}$是$M$上的度规，$\varepsilon$和$\nabla_a$分别是适配体元和适配导数算符，$v^a$是$M$上的$C^1$矢量场，则
+    $$\int_{\operatorname{i}(N)}(\nabla_bv^b)\varepsilon = \int_{\partial N}v^b\varepsilon_{b a_1 \cdots a_{n - 1}}$$
 \end{theorem}
 
 \begin{note}
@@ -436,16 +436,16 @@ $$\iiint_V (\vec{\nabla}\cdot\vec{A})\mathrm{d}V = \oiint_S\vec{A}\cdot\vec{n}\m
 \end{note}
 
 \begin{proof}
-    $n - 1$形式场$\omega \equiv v^b\epsilon_{b a_1 \cdots a_{n - 1}}$的外微分$\mathrm{d}\omega = n\nabla_{[c}(v^b\epsilon_{|b|a_1 \cdots a_{n - 1}]})$是$n$形式场，其中$\nabla_c$可为任意导数算符。
-    $N$中任一点的$n$形式的集合是$1$维矢量空间，故该点的两个$n$形式$\mathrm{d}\omega$与$\epsilon$只差一个因子，即
-    $$n\nabla_{[c}(v^b\epsilon_{|b|a_1 \cdots a_{n - 1}]}) = h\epsilon_{ca_1 \cdots a_{n - 1}}$$
+    $n - 1$形式场$\omega \equiv v^b\varepsilon_{b a_1 \cdots a_{n - 1}}$的外微分$\mathrm{d}\omega = n\nabla_{[c}(v^b\varepsilon_{|b|a_1 \cdots a_{n - 1}]})$是$n$形式场，其中$\nabla_c$可为任意导数算符。
+    $N$中任一点的$n$形式的集合是$1$维矢量空间，故该点的两个$n$形式$\mathrm{d}\omega$与$\varepsilon$只差一个因子，即
+    $$n\nabla_{[c}(v^b\varepsilon_{|b|a_1 \cdots a_{n - 1}]}) = h\varepsilon_{ca_1 \cdots a_{n - 1}}$$
     其中$h$是$N$上的函数，可求之如下：
-    上式两边与$\epsilon^{ca_1 \cdots a_{n - 1}}$缩并，右边得$(-1)^shn!$，左边得
+    上式两边与$\varepsilon^{ca_1 \cdots a_{n - 1}}$缩并，右边得$(-1)^shn!$，左边得
     \[\begin{split}
-        & n\epsilon^{ca_1 \cdots a_{n - 1}}\nabla_{[c}(v^b\epsilon_{|b|a_1 \cdots a_{n - 1}]}) = n\epsilon^{[ca_1 \cdots a_{n - 1}]}\nabla_{c}(v^b\epsilon_{ba_1 \cdots a_{n - 1}}) \\
-        = & n\epsilon^{ca_1 \cdots a_{n - 1}}\epsilon_{ba_1 \cdots a_{n - 1}}\nabla_{c}v^b = n(-1)^s(n - 1)!\delta^c{}_b\nabla_cv^b = (-1)^sn!\nabla_bv^b
+        & n\varepsilon^{ca_1 \cdots a_{n - 1}}\nabla_{[c}(v^b\varepsilon_{|b|a_1 \cdots a_{n - 1}]}) = n\varepsilon^{[ca_1 \cdots a_{n - 1}]}\nabla_{c}(v^b\varepsilon_{ba_1 \cdots a_{n - 1}}) \\
+        = & n\varepsilon^{ca_1 \cdots a_{n - 1}}\varepsilon_{ba_1 \cdots a_{n - 1}}\nabla_{c}v^b = n(-1)^s(n - 1)!\delta^c{}_b\nabla_cv^b = (-1)^sn!\nabla_bv^b
     \end{split}\]
-    （注意加入$\delta$时是把$\epsilon$的一个上标$c$换成了$b$）故$h = \nabla_bv^b, ~ \mathrm{d}\omega = \epsilon\nabla_bv^b$。
+    （注意加入$\delta$时是把$\varepsilon$的一个上标$c$换成了$b$）故$h = \nabla_bv^b, ~ \mathrm{d}\omega = \varepsilon\nabla_bv^b$。
     根据Stokes定理，上式得证。
 \end{proof}
 
@@ -453,39 +453,39 @@ $$\iiint_V (\vec{\nabla}\cdot\vec{A})\mathrm{d}V = \oiint_S\vec{A}\cdot\vec{n}\m
 由于后者涉及边界$S$上的体元$\mathrm{d}S$，我们先从$\partial N$的体元谈起。
 此处只讨论$\partial N$不是类光超曲面的情况，这时可谈及$\partial N$的归一化法矢$n^a$，满足$n^an_a = \pm 1$。
 $N$上的度规$g_{ab}$在$\partial N$上的诱导度规为$h_{ab} = g_{ab} \mp n_an_b$。
-把$\partial N$看作带度规$h_{ab}$的$n - 1$维流形，其体元（记作$\hat\epsilon_{a_1 \cdots a_{n - 1}}$）应满足两个条件：
-\textcircled{1} 与$\partial N$的诱导定向（记作$\bar\epsilon_{a_1 \cdots a_{n - 1}}$）相容；
+把$\partial N$看作带度规$h_{ab}$的$n - 1$维流形，其体元（记作$\hat\varepsilon_{a_1 \cdots a_{n - 1}}$）应满足两个条件：
+\textcircled{1} 与$\partial N$的诱导定向（记作$\bar\varepsilon_{a_1 \cdots a_{n - 1}}$）相容；
 \textcircled{2} 与度规$h_{ab}$相适配，即
-$$\hat\epsilon^{a_1 \cdots a_{n - 1}}\hat\epsilon_{a_1 \cdots a_{n - 1}} = (-1)^{\hat s}(n - 1)!$$
-其中$\hat\epsilon^{a_1 \cdots a_{n - 1}}$是用$h_{ab}$对$\hat\epsilon_{a_1 \cdots a_{n - 1}}$升指标的结果，$\hat s$是$h_{ab}$的对角元中负数的个数。
-$\partial N$上满足这两个条件的体元$\hat\epsilon_{a_1 \cdots a_{n - 1}}$称为诱导体元。
-设$n^b$是$\partial N$的外向单位法矢（以$\operatorname{i}(N)$作为内部，``外向''有明确意义），则诱导体元$\hat\epsilon_{a_1 \cdots a_{n - 1}}$与$N$上体元$\epsilon_{a_1 \cdots a_{n - 1}}$有如下关系：
-$$\hat\epsilon_{a_1 \cdots a_{n - 1}} = n^b\epsilon_{b a_1 \cdots a_{n - 1}}$$
+$$\hat\varepsilon^{a_1 \cdots a_{n - 1}}\hat\varepsilon_{a_1 \cdots a_{n - 1}} = (-1)^{\hat s}(n - 1)!$$
+其中$\hat\varepsilon^{a_1 \cdots a_{n - 1}}$是用$h_{ab}$对$\hat\varepsilon_{a_1 \cdots a_{n - 1}}$升指标的结果，$\hat s$是$h_{ab}$的对角元中负数的个数。
+$\partial N$上满足这两个条件的体元$\hat\varepsilon_{a_1 \cdots a_{n - 1}}$称为诱导体元。
+设$n^b$是$\partial N$的外向单位法矢（以$\operatorname{i}(N)$作为内部，``外向''有明确意义），则诱导体元$\hat\varepsilon_{a_1 \cdots a_{n - 1}}$与$N$上体元$\varepsilon_{a_1 \cdots a_{n - 1}}$有如下关系：
+$$\hat\varepsilon_{a_1 \cdots a_{n - 1}} = n^b\varepsilon_{b a_1 \cdots a_{n - 1}}$$
 
 下面就是把上上式作为特例包括在内的一般Gauss定理。
 
 \begin{theorem}
-    设$M$是$n$维定向流形，$N$是$M$中的$n$维紧致带边嵌入子流形，$g_{ab}$是$M$上的度规，$\epsilon$和$\nabla_a$分别是适配体元和适配导数算符，$\hat\epsilon$是$\partial N$上的诱导体元，$\partial N$的外向法矢$n^a$满足$n^an_a = \pm 1$，$v^a$是$M$上的$C^1$矢量场,则
-    $$\int_{\operatorname{i}(N)}(\nabla_av^a)\epsilon = \pm \int_{\partial N}v^an_a\hat\epsilon ~ \text{（$n^an_a = +1$时取$+$, $n^an_a = -1$时取$-$）}$$
+    设$M$是$n$维定向流形，$N$是$M$中的$n$维紧致带边嵌入子流形，$g_{ab}$是$M$上的度规，$\varepsilon$和$\nabla_a$分别是适配体元和适配导数算符，$\hat\varepsilon$是$\partial N$上的诱导体元，$\partial N$的外向法矢$n^a$满足$n^an_a = \pm 1$，$v^a$是$M$上的$C^1$矢量场,则
+    $$\int_{\operatorname{i}(N)}(\nabla_av^a)\varepsilon = \pm \int_{\partial N}v^an_a\hat\varepsilon ~ \text{（$n^an_a = +1$时取$+$, $n^an_a = -1$时取$-$）}$$
 \end{theorem}
 
 \begin{proof}
-    由上一定理知只须证明$\displaystyle\int_{\partial}v^b\epsilon_{ba_1 \cdots a_{n - 1}} = \pm \int_{\partial N}v^an_a\hat\epsilon$。
-    令$\omega = v^b\epsilon_{ba_1 \cdots a_{n - 1}}$,注意到$\displaystyle\int_{\phi[S]}\omega \equiv \int_{\phi[S]}\tilde\omega$,只须证明
-    $$\tilde\omega_{a_1 \cdots a_{n - 1}} = \pm v^bn_b\hat\epsilon_{a_1 \cdots a_{n - 1}}, ~ \forall q \in \partial N$$
+    由上一定理知只须证明$\displaystyle\int_{\partial}v^b\varepsilon_{ba_1 \cdots a_{n - 1}} = \pm \int_{\partial N}v^an_a\hat\varepsilon$。
+    令$\omega = v^b\varepsilon_{ba_1 \cdots a_{n - 1}}$,注意到$\displaystyle\int_{\phi[S]}\omega \equiv \int_{\phi[S]}\tilde\omega$,只须证明
+    $$\tilde\omega_{a_1 \cdots a_{n - 1}} = \pm v^bn_b\hat\varepsilon_{a_1 \cdots a_{n - 1}}, ~ \forall q \in \partial N$$
     其中$n^a$为$\partial N$的单位外向法矢。
     上式两边都是$W_q$上的$n - 1$形式，故必有$K$使
-    $$\tilde\omega_{a_1 \cdots a_{n - 1}} = K v^bn_b\hat\epsilon_{a_1 \cdots a_{n - 1}}$$
+    $$\tilde\omega_{a_1 \cdots a_{n - 1}} = K v^bn_b\hat\varepsilon_{a_1 \cdots a_{n - 1}}$$
     于是只须证明$K = \pm 1$。
     设$\{(e_0)^a = n^a, (e_1)^a, \cdots, (e_{n - 1})^a\}$是$V_q$的一个右手正交归一基底，用$(e_1)^{a_1} \cdots (e_{n - 1})^{a_{n - 1}}$缩并上式，右边给出
-    $$Kv^bn_b\hat\epsilon_{12\cdots(n - 1)} = \pm Kv^b(e^0)_b\hat\epsilon_{12\cdots(n - 1)} = \pm K v^0$$
-    （其中$\hat\epsilon_{12\cdots(n - 1)}$是$\hat\epsilon_{a_1 \cdots a_{n - 1}}$在用基底$\{(e_1)^a, \cdots, (e_{n - 1})^a\}$表示时的分量，第一个等号是因为$n_b = \pm(e^0)_b$\footnote{
+    $$Kv^bn_b\hat\varepsilon_{12\cdots(n - 1)} = \pm Kv^b(e^0)_b\hat\varepsilon_{12\cdots(n - 1)} = \pm K v^0$$
+    （其中$\hat\varepsilon_{12\cdots(n - 1)}$是$\hat\varepsilon_{a_1 \cdots a_{n - 1}}$在用基底$\{(e_1)^a, \cdots, (e_{n - 1})^a\}$表示时的分量，第一个等号是因为$n_b = \pm(e^0)_b$\footnote{
         $n_b = n_0(e^0)_b$，其中$n_0 \equiv n_b(e_0)^b = n_bn^b = \pm 1$。
-    }，第二个等号是因为右手基底保证$\hat\epsilon_{12\cdots(n - 1)} = 1$。）
+    }，第二个等号是因为右手基底保证$\hat\varepsilon_{12\cdots(n - 1)} = 1$。）
     另一方面，左边缩并结果为
     \[\begin{split}
         & \tilde\omega_{a_1 \cdots a_{n - 1}}(e_1)^{a_1} \cdots (e_{n - 1})^{a_{n - 1}} = \omega_{a_1 \cdots a_{n - 1}}(e_1)^{a_1} \cdots (e_{n - 1})^{a_{n - 1}} \\
-        = & v^b\epsilon_{b a_1 \cdots a_{n - 1}}(e_1)^{a_1} \cdots (e_{n - 1})^{a_{n - 1}} = v^\mu\epsilon_{\mu 1 2 \cdots (n - 1)} = v^0\epsilon_{0 1 2 \cdots (n - 1)} = v^0
+        = & v^b\varepsilon_{b a_1 \cdots a_{n - 1}}(e_1)^{a_1} \cdots (e_{n - 1})^{a_{n - 1}} = v^\mu\varepsilon_{\mu 1 2 \cdots (n - 1)} = v^0\varepsilon_{0 1 2 \cdots (n - 1)} = v^0
     \end{split}\]
     对比两式得$K = \pm 1$。
 \end{proof}
@@ -493,21 +493,21 @@ $$\hat\epsilon_{a_1 \cdots a_{n - 1}} = n^b\epsilon_{b a_1 \cdots a_{n - 1}}$$
 \begin{note}
     上述定理的条件是$n^a$为$\partial N$的外向单位法矢。
     把规定改为``当$n^an_a = +1$时，$n^a$朝外向，$n^an_a = -1$时$n^a$朝内向'',则上述定理右边的$\pm$号消失，Gauss定理改取如下形式
-    $$\int_{\operatorname{i}(N)}(\nabla_av^a)\epsilon = \int_{\partial N}v^an_a\hat\epsilon$$
+    $$\int_{\operatorname{i}(N)}(\nabla_av^a)\varepsilon = \int_{\partial N}v^an_a\hat\varepsilon$$
     
-    若$\partial N$为类光超曲面，即$n^an_a = 0$，则上式仍然成立，但$\hat\epsilon$要按下式定义：
-    $$\frac{1}{n}\epsilon_{a_1 \cdots a_n} = n_{[a_1}\hat\epsilon_{a_2 \cdots a_n]}$$
+    若$\partial N$为类光超曲面，即$n^an_a = 0$，则上式仍然成立，但$\hat\varepsilon$要按下式定义：
+    $$\frac{1}{n}\varepsilon_{a_1 \cdots a_n} = n_{[a_1}\hat\varepsilon_{a_2 \cdots a_n]}$$
 \end{note}
 
 \section{对偶微分形式}
 
 以$\Lambda_p(l)$代表$p \in M$的全部$l$形式的集合，则有
 $$\dim\Lambda_p(l) = C^l_n = C^{n - l}_n = \dim\Lambda_p(n - l)$$
-若$M$为带度规$g_{ab}$的定向流形，$\epsilon$为适配体元，则可用$\epsilon$及$g_{ab}$在$\Lambda_M(l)$和$\Lambda_M(n - l)$之间定义一个同构映射如下：
+若$M$为带度规$g_{ab}$的定向流形，$\varepsilon$为适配体元，则可用$\varepsilon$及$g_{ab}$在$\Lambda_M(l)$和$\Lambda_M(n - l)$之间定义一个同构映射如下：
 
 \begin{definition}
     $\forall \omega \in \Lambda_M(l)$，定义$\omega$的对偶微分形式$^*\omega \in \Lambda_M(n - l)$为
-    $$^*\omega_{a_1 \cdots a_{n - 1}} \coloneq \frac{1}{n!}\omega^{b_1 \cdots b_l}\epsilon_{b_1 \cdots b_l a_1 \cdots a_{n - 1}}$$
+    $$^*\omega_{a_1 \cdots a_{n - 1}} \coloneq \frac{1}{n!}\omega^{b_1 \cdots b_l}\varepsilon_{b_1 \cdots b_l a_1 \cdots a_{n - 1}}$$
     其中
     $$\omega^{b_1 \cdots b_l} = g^{b_1c_1} \cdots g^{b_lc_l}\omega_{c_1 \cdots c_l}$$
 \end{definition}
@@ -516,10 +516,10 @@ $$\dim\Lambda_p(l) = C^l_n = C^{n - l}_n = \dim\Lambda_p(n - l)$$
     以上定义的$^*$称为Hodge star。不难看出：
     \textcircled{1} $^* \colon \Lambda_M(l) \to \Lambda_M(n - l)$是同构映射；
     \textcircled{2} $f \in \mathscr{F}_M$作为$0$形式场，其对偶形式场按定义为：
-    $$^*f_{a_1 \cdots a_n} = \frac{1}{0!}f\epsilon_{a_1 \cdots a_n} = f\epsilon_{a_1 \cdots a_n}$$
-    即$^*f$等于度规适配的体元$\epsilon$的$f$倍，因此可以说函数$f$的积分定义为其对偶形式场的积分。
+    $$^*f_{a_1 \cdots a_n} = \frac{1}{0!}f\varepsilon_{a_1 \cdots a_n} = f\varepsilon_{a_1 \cdots a_n}$$
+    即$^*f$等于度规适配的体元$\varepsilon$的$f$倍，因此可以说函数$f$的积分定义为其对偶形式场的积分。
     对上式再取$^*$得
-    $$^*(^*f) = ^*(f\epsilon) = \frac{1}{n!}f\epsilon^{b_1 \cdots b_n}\epsilon_{b_1 \cdots b_n} = (-1)^sf$$
+    $$^*(^*f) = ^*(f\varepsilon) = \frac{1}{n!}f\varepsilon^{b_1 \cdots b_n}\varepsilon_{b_1 \cdots b_n} = (-1)^sf$$
     这一结果可推广为如下定理：
 \end{note}
 
@@ -541,11 +541,94 @@ $$\dim\Lambda_p(l) = C^l_n = C^{n - l}_n = \dim\Lambda_p(n - l)$$
     $\vec A$和$\vec B$的点乘积$\vec A \cdot \vec B$自然就是$A_aB^a$，但对叉乘积$\vec A \times \vec B$如何理解？令
     $$\omega_{ab} \equiv A_a \wedge B_b = 2A_{[a}B_{b]}$$
     则
-    $$^*\omega_c = \frac{1}{2}\omega^{ab}\epsilon_{abc} = \epsilon_{abc}A^{[a}B^{b]} = \epsilon_{abc}A^{a}B^{b}$$
-    其中，$\epsilon_{abc}$是欧氏度规的适配体元。
-    设$\{x, y, z\}$为右手笛卡尔坐标系，则其坐标基底正交归一，于是$\epsilon_{abc}$在此系的非零分量$\epsilon_{ijk}$为
-    $$\epsilon_{123} = \epsilon_{312} = \epsilon_{231} = -\epsilon_{132} = -\epsilon_{213} = -\epsilon_{321} = 1$$
-    可见$\epsilon_{ijk}$就是熟知的Levi--Civita记号。
+    $$^*\omega_c = \frac{1}{2}\omega^{ab}\varepsilon_{abc} = \varepsilon_{abc}A^{[a}B^{b]} = \varepsilon_{abc}A^{a}B^{b}$$
+    其中，$\varepsilon_{abc}$是欧氏度规的适配体元。
+    设$\{x, y, z\}$为右手笛卡尔坐标系，则其坐标基底正交归一，于是$\varepsilon_{abc}$在此系的非零分量$\varepsilon_{ijk}$为
+    $$\varepsilon_{123} = \varepsilon_{312} = \varepsilon_{231} = -\varepsilon_{132} = -\varepsilon_{213} = -\varepsilon_{321} = 1$$
+    可见$\varepsilon_{ijk}$就是熟知的Levi--Civita记号\footnote{$
+        \varepsilon_{a_1 a_2 a_3 \ldots a_n} \coloneq
+        \begin{cases}
+        +1 & \text{如果}(a_1 , a_2 , a_3 , \ldots , a_n) \text{是} (1,2,3,\dots,n) \text{的一个偶排列}  \\
+        -1 & \text{如果}(a_1 , a_2 , a_3 , \ldots , a_n) \text{是} (1,2,3,\dots,n) \text{的一个奇排列} \\
+        0 & \text{其他情况}
+        \end{cases}
+    $}。
     于是$^*\omega_c$在该笛卡尔系的第$k$分量为
-    $$^*\omega_k = \epsilon_{ijk}A^iB^j, ~ k = 1, 2, 3$$
+    $$^*\omega_k = \varepsilon_{ijk}A^iB^j, ~ k = 1, 2, 3$$
+    上式右边正是$\vec A \times \vec B$按叉乘定义的第$k$分量$(\vec A \times \vec B)_k$，故$\vec A \times \vec B$可看作$^*\omega$（准确地说是对偶矢量$^*\omega$对应的矢量）。
+    而$\omega = A \wedge B$，可见对$\vec A$和$\vec B$求叉积就是先求楔积$A \wedge B$再求其对偶形式，可直观地表达为$\times = ^* \comp \wedge$。
+    \item 再从微分几何看$3$维欧氏空间的矢量场论。
+    如前所述，矢量场论的$\vec\nabla$就是与欧氏度规$\delta_{ab}$适配的导数算符$\partial_a$，涉及$\vec\nabla$的公式原则上都可用$\partial_a$表出。
+    例如
+    \begin{enumerate}[（a）]
+        \item $\vec\nabla f = \partial_af$
+        \item $\vec\nabla \cdot \vec A = \partial_aA^a$
+        \item $\vec\nabla \times \vec A = \varepsilon^{abc}\partial_aA_b$ （推导参考前述内容）
+        \item $\vec\nabla \cdot (\vec A \vec B) = \partial_a(A^aB^b)$
+        \item $\vec\nabla\vec A = \partial^aA^b$
+        \item $\nabla^2f = \partial_a\partial^af$
+        \item $\nabla^2\vec A = \partial_a\partial^aA^b$
+    \end{enumerate}
+    借用$\partial_a$及抽象指标还可使一些常用公式的推证简化而且理由清晰。仅举二例。
+    
+    \begin{example}
+    用$\partial_a$证明
+    $$\vec\nabla\cdot(\vec A \times \vec B) = \vec B \cdot (\vec\nabla \times \vec A) - \vec A \cdot (\vec\nabla \times \vec B)$$
+    \end{example}
+
+    \begin{proof}
+        $\vec\nabla\cdot(\vec A \times \vec B) = \partial_c(\varepsilon^{cab}A_aB_b) = \varepsilon^{cab}(A_a\partial_cB_b + B_b\partial_cA_a)$
+        
+        而$\vec B \cdot (\vec\nabla \times \vec A) = B_b(\vec\nabla \times \vec A)^b = B_b(\varepsilon^{bac}\partial_cA_a) = \varepsilon^{cab}B_b\partial_cA_a$
+        
+        $-\vec A \cdot (\vec\nabla \times \vec B) = -A_a(\vec\nabla \times \vec B)^a = -A_a(\varepsilon^{acb}\partial_cB_b) = \varepsilon^{cab}A_a\partial_cB_b$
+        
+        代入便得证。
+    \end{proof}
+
+    \begin{example}
+        用$\partial_a$证明
+        $$\vec\nabla(\vec A \cdot \vec B) = (\vec A \cdot \vec\nabla)\vec B + (\vec B \cdot \vec\nabla)\vec A + \vec A \times (\vec\nabla \times \vec B) + \vec B \times (\vec\nabla \times \vec A)$$
+    \end{example}
+
+    \begin{proof}
+        右边第一项$= A_a\partial^aB^b$
+
+        右边第二项$= B_a\partial^aA^b$
+        \[\begin{split}
+            \text{右边第三项} & = \vec A \times (\varepsilon^{cde}\partial_dB_e) = \varepsilon^{bac}A_a(\varepsilon_{cde}\partial^dB^e) \\
+            & = 2\delta^b_{[d}\delta^a_{e]}A_a\partial^dB^e = (\delta^b_d\delta^a_e - \delta^b_e\delta^a_d)A_a\partial^dB^e = A_a\partial^bB^a - A_a\partial^aB^b
+        \end{split}\]
+        同理，右边第四项$= B_a\partial^bA^a - B_a\partial^aA^b$
+        
+        故，右边$= A_a\partial^bB^a + B_a\partial^bA^a = \partial^b(A_aB^a) = \vec\nabla(\vec A \cdot \vec B)$
+    \end{proof}
+    \item $3$维欧氏空间中的梯度、旋度和散度可用外微分简单表述如下：
+    \begin{theorem}
+        设$f$和$\vec A$是$3$维欧氏空间的函数和矢量场，则
+        $$\mathrm{grad} f = \mathrm{d}f, ~ \mathrm{curl} \vec A = \mathrm{^*d}A, ~ \mathrm{div} \vec A = \mathrm{^*d}(^*A)$$
+    \end{theorem}
+    \begin{proof}
+        $$\mathrm{d}A = 2\partial_{[b}A_{a]}$$
+        $$\mathrm{^*d}A = \partial^{[b}A^{a]}\varepsilon_{bac} = \vec\nabla \times \vec A$$
+        $$^*A = A^a\varepsilon_{abc}$$
+        $$\mathrm{d}^*A = 3\partial_{[d}A^a\varepsilon_{|a|bc]}$$
+        $$\mathrm{^*d}^*A = \frac{3}{3!}\partial^{[d}A_a\varepsilon^{|a|bc]}\varepsilon_{bcd} = \frac{1}{2}\partial^dA_a\varepsilon^{bca}\varepsilon_{bcd} = \frac{1}{2}\partial^dA_a2!\delta^a_d = \partial_aA^a$$
+    \end{proof}
+
+    $\mathbb{R}^3$是平凡流形保证$\mathbb{R}^3$上的闭形式场必恰当，同上述定理结合便很容易证明$3$维欧氏空间场论中并不易证的下列熟知命题：
+    \begin{enumerate}[（1）]
+        \item 无旋矢量场必可表为梯度，即
+        $$\mathrm{curl}\vec E = 0 \Rightarrow \exists \text{标量场}\phi ~ \text{使} \vec E = \mathrm{grad}\phi$$
+        \item 无散矢量场必可表为旋度，即
+        $$\mathrm{div}\vec B = 0 \Rightarrow \exists \text{矢量场}\vec A ~ \text{使} \vec B = \mathrm{curl}\vec A$$
+    \end{enumerate}
+
+    \begin{proof}
+        \begin{enumerate}[（1）]
+            \item $\mathrm{curl}\vec E = 0 \Rightarrow \mathrm{^*d}E = 0  \Rightarrow ^*(\mathrm{^*d}E) = ^*0 = 0$
+            而根据$^{**}\omega = (-1)^{s + l(n - l)}\omega$，可知$^*(\mathrm{^*d}E) = \mathrm{d}E$
+            \item $\mathrm{div}\vec B = 0 \Rightarrow \mathrm{^*d}(^*B) = 0 \Rightarrow \mathrm{d}(^*B) = 0 \Rightarrow ^*B = \mathrm{d}A \Rightarrow B = \mathrm{^*d}A$
+        \end{enumerate}
+    \end{proof}
 \end{enumerate}

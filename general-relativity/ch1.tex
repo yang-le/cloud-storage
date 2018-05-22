@@ -162,11 +162,11 @@ $$X \times Y \times Z \coloneq \{(x, y, z) \mid x \in X, y \in Y, z \in Z\}$$
 
 若$X$和$Y$是一般的集合，对$X$与$Y$之间的映射就只能提出``一一''和``到上''这两个要求；
 但若$X$和$Y$还指定了某种结构，则往往可对$f \colon X \to Y$提出更多要求，例如可要求$f \colon \mathbb{R} \to \mathbb{R}$是连续的甚至光滑的。
-一元函数$f \colon \mathbb{R} \to \mathbb{R}$的连续性在微积分中早有定义（``$\epsilon$ -- $\delta$定义''），重述如下：
-\textcircled{1} 称$f$在点$x$连续，若$\forall \epsilon > 0 \exists \delta > 0$使得当$|x' - x| < \delta$时有$|f(x') - f(x)| < \epsilon$；
+一元函数$f \colon \mathbb{R} \to \mathbb{R}$的连续性在微积分中早有定义（``$\varepsilon$ -- $\delta$定义''），重述如下：
+\textcircled{1} 称$f$在点$x$连续，若$\forall \varepsilon > 0 \exists \delta > 0$使得当$|x' - x| < \delta$时有$|f(x') - f(x)| < \varepsilon$；
 \textcircled{2} 称$f$在$\mathbb{R}$上连续，若它在$\mathbb{R}$的任一点连续。
 这一定义依赖于$\mathbb{R}$中任二元素的距离概念（对$\mathbb{R}$而言距离就是坐标之差），似乎无法推广到没有距离定义的两个集合之间的映射。
-然而细想发现，$\epsilon$ -- $\delta$定义可用开区间概念（而无需距离概念）重新表述如下：
+然而细想发现，$\varepsilon$ -- $\delta$定义可用开区间概念（而无需距离概念）重新表述如下：
 设$X = Y = \mathbb{R}$，映射$f \colon X \to Y$叫做连续的，若$Y$中任一开区间的``逆像''都是$X$的开区间之并（或是空集）。
 以上讨论从一个侧面说明``开区间之并''这一概念的用处：可以定义映射$f \colon \mathbb{R} \to \mathbb{R}$的连续性。
 其实这一概念还有很多用处，因此往往有必要推广到除$\mathbb{R}$外的集合$X$。
