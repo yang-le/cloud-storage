@@ -425,3 +425,143 @@ $\mathbb{R}^2$中以$x_0$为心的单位圆周$S^1$定义为$S^1 \coloneq \{x \i
 \end{definition}
 
 \section{紧致性}
+
+\begin{definition}
+	设$\{O_\alpha\}$是$A \subset X$的开覆盖。
+	若$\{O_\alpha\}$的有限个元素构成的子集$\{O_{\alpha_1}, \cdots, O_{\alpha_n}\}$也覆盖$A$，就说$\{O_\alpha\}$有\textbf{有限子覆盖}。
+\end{definition}
+
+\begin{definition}
+	$A \subset X$叫\textbf{紧致的}，若它的任一开覆盖都有有限子覆盖。
+\end{definition}
+
+\begin{example}
+	设$x \in X$，则独点子集$A \equiv \{x\}$必紧致。
+\end{example}
+
+\begin{proof}
+	设$\{O_\alpha\}$是$A \subset X$的任一开覆盖，则$\{O_\alpha\}$中至少存在一个元素（记作$O_{\alpha_1}$）满足$x \in O_{\alpha_1}$。
+	于是$\{O_{\alpha_1}\}$（作为$\{O_\alpha\}$的子集）是$A \equiv \{x\}$的开覆盖，故$\{O_\alpha\}$有有限子覆盖。
+\end{proof}
+
+\begin{example}
+	$A \equiv (0, 1] \subset \mathbb{R}$不是紧致的。
+\end{example}
+
+\begin{proof}
+	以$\mathbb{N}$代表自然数集，则$\{(1/n, 2) \mid n \in \mathbb{N}\}$是$A$的开覆盖，它没有有限子覆盖。
+\end{proof}
+
+类似地，$\mathbb{R}$中任一开区间或半开区间都非紧致。
+
+\begin{example}
+	$\mathbb{R}$不是紧致的。
+\end{example}
+
+\begin{theorem}
+	$\mathbb{R}$的任一闭区间都紧致。
+\end{theorem}
+
+\begin{note}
+	不要以为闭集一定紧致（就连$\mathbb{R}$中也有非紧致闭集）。
+	紧性与闭性有密切联系，但不等价，其关系体现在以下两定理中。
+\end{note}
+
+为讲述以下定理，先补充以下定义。
+
+\begin{definition}
+	拓扑空间$(X, \mathscr{T})$叫\textbf{$T_2$空间}或\textbf{豪斯多夫空间}，若
+	$$\forall x, y \in X, ~ x \neq y, ~ \exists O_1, O_2 \in \mathscr{T} \text{使} x \in O_1, ~ y \in O_2 \text{且} O_1 \cap O_2 = \emptyset$$
+\end{definition}
+
+\begin{note}
+	常见的拓扑空间（如$\mathbb{R}^n$）都是$T_2$空间。
+	凝聚拓扑空间是非$T_2$空间的一例。
+\end{note}
+
+\begin{theorem}
+	若$(X, \mathscr{T})$为$T_2$空间，$A \subset X$为紧致，则$A$为闭集。
+\end{theorem}
+
+\begin{theorem}
+	若$(X, \mathscr{T})$为紧致且$A \subset X$为闭集，则$A$为紧致。
+\end{theorem}
+
+\begin{definition}
+	$A \subset \mathbb{R}^n$叫\textbf{有界的}，若存在开球$B \subset \mathbb{R}^n$使$A \subset B$。
+\end{definition}
+
+\begin{theorem}
+	$A \subset \mathbb{R}$为紧致，当且仅当$A$为有界闭集。
+\end{theorem}
+
+\begin{theorem}
+	设$A \subset X$紧致，$f \colon X \to Y$连续，则$f[A] \subset Y$紧致。
+\end{theorem}
+
+由以上定理可得推论：同胚映射保持子集的紧致性。
+
+\begin{definition}
+	在同胚映射下保持不变的性质称为\textbf{拓扑性质}或\textbf{拓扑不变性}。
+\end{definition}
+
+\begin{example}
+	紧致性、连通性和$T_2$性都是拓扑性质。
+	有界性不是拓扑性质，例如开区间$(a, b)$同胚于$\mathbb{R}$，但前者有界而后者无界。
+	由此还可看出长度也不是拓扑性质。
+\end{example}
+
+数学分析中有个熟知定理：闭区间上的连续函数必在该区间上取得其最大值和最小值。
+下述定理是这一定理的推广。
+
+\begin{theorem}
+	设$X$紧致，$f \colon X \to \mathbb{R}$连续，则$f[X] \subset \mathbb{R}$有界并取得其最大值和最小值。
+\end{theorem}
+
+\begin{theorem}
+	设$(X_1, \mathscr{T}_1), (X_2, \mathscr{T}_2)$紧致，则$(X_1 \times X_2, \mathscr{T})$紧致（$\mathscr{T}$为$\mathscr{T}_1$和$\mathscr{T}_2$的乘积拓扑）。
+\end{theorem}
+
+\begin{theorem}
+	$A \subset \mathbb{R}^n$紧致，当且仅当它是有界闭集。
+\end{theorem}
+
+简单应用举例 ~ 考虑$(\mathbb{R}^2, \mathscr{T}_u)$。
+设$S^1$是$\mathbb{R}^2$中的任一圆周，易见它是有界闭集，于是它为紧致。
+因为连续映射保紧致性，而$\mathbb{R}$及其任一开区间都不紧致，可见$S^1$不可能与$\mathbb{R}$或其任一开区间同胚。
+类似地，$\mathbb{R}$中任一闭区间都不可能与$\mathbb{R}$或其任一开区间同胚。
+
+\begin{definition}
+	映射$S \colon \mathbb{N} \to X$叫$X$中的\textbf{序列}。
+\end{definition}
+
+\begin{note}
+	通常把序列记作$\{x_n\}$，其中$x_n \equiv S(n) \in X, ~ n \in \mathbb{N}$。
+	$\{x_n\}$其实就是$X$中编了次序的一串点。
+\end{note}
+
+\begin{definition}
+	$x \in X$叫序列$\{x_n\}$的\textbf{极限}，若对$x$的任一开邻域$O$存在$N \in \mathbb{N}$使$x_n \in O ~ \forall n > N$。
+	若$x$是$\{x_n\}$的极限，就说$\{x_n\}$\textbf{收敛}于$x$。
+\end{definition}
+
+\begin{definition}
+	$x \in X$叫序列$\{x_n\}$的\textbf{聚点}，若$x$的任一开邻域都含$\{x_n\}$的无限多点。
+\end{definition}
+
+\begin{note}
+	$x$为$\{x_n\}$的极限$\Rightarrow x$为$\{x_n\}$的聚点，但反之不一定。
+\end{note}
+
+下述定理中有一条件涉及``第二可数''概念。
+元素个数有限的集成为\textbf{有限集}，否则称为\textbf{无限集}。
+对有限集总可将其元素编号以便一个一个地数，所以有限集一定是可数集。
+但无限集也不一定不可数，例如$\mathbb{N}$就是可数的无限集。
+有限集比无限集简单，可数无限集比不可数无限集简单。
+拓扑空间$(X, \mathscr{T})$称为\textbf{第二可数的}，若$\mathscr{T}$存在可数子集$\{O_1, \cdots, O_k\} \subset \mathscr{T}$（或$\{O_1, \cdots\} \subset \mathscr{T}$）使得任一$O \in \mathscr{T}$可被表示为$\{O_1, \cdots, O_k\}$（或$\{O_1, \cdots\}$）的元素之并。
+例如，$(\mathbb{R}^n, \mathscr{T}_u)$是第二可数的，因为$\mathscr{T}_u$有这样的子集（它的每个元素$O_i$是一个开球，球心的每个自然坐标都是有理数，半径也是有理数），使得任一$O \in \mathscr{T}_u$可被表为该子集的元素之并。
+
+\begin{theorem}
+	若$A \subset X$紧致，则$A$中任一序列都有在$A$内的聚点。
+	反之，若$X$为第二可数且$A \subset X$中任一序列都有在$A$内的聚点，则$A$紧致。
+\end{theorem}
