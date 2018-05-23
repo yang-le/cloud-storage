@@ -5,11 +5,11 @@
 先介绍$n$维矢量空间$V$上的``形式''，再讨论$n$维流形$M$上的``微分形式场''。
 
 \begin{definition}
-    $\omega_{a_1 \cdots a_l} \in \mathscr{T}_V(0, 1)$叫$V$上的$l$次形式（简称$l$形式），若
+    $\omega_{a_1 \cdots a_l} \in \mathscr{T}_V(0, 1)$叫$V$上的\textbf{$l$次形式}（简称\textbf{$l$形式}），若
     $$\omega_{a_1 \cdots a_l} = \omega_{[a_1 \cdots a_l]}$$
 \end{definition}
 
-为书写方便，有时略去下标而把$l$形式$\omega_{a_1 \cdots a_l}$写为$\omega$。
+为书写方便，有时略去下标而把$l$形式$\omega_{a_1 \cdots a_l}$写为$\bm\omega$。
 
 \begin{theorem}
     \begin{enumerate}[（a）]
@@ -30,7 +30,7 @@
 $$\omega_{112} = \omega_{133} = \omega_{212} = 0$$
 
 $V$上全体$l$形式的集合记作$\Lambda(l)$。$1$形式其实就是$V$上的对偶矢量，故$\Lambda(1) = V^*$。
-约定把任一实数称为$V$上的$0$形式，则$\Lambda(0) = \mathbb{R}$。
+约定把任一实数称为$V$上的\textbf{$0$形式}，则$\Lambda(0) = \mathbb{R}$。
 $l$形式既然是$(0, l)$型张量，自然有$\Lambda(l) \subset \mathscr{T}_V(0, l)$。
 不但如此，还容易证明$\Lambda(l)$是$\mathscr{T}_V(0, l)$的线性子空间，其维数的计算可从关于$\mathscr{T}_V(k, l)$维数的计算得到启发：
 为求$\mathscr{T}_V(k, l)$的维数可先找一个基底，而为此则要先定义张量积。
@@ -38,20 +38,20 @@ $l$形式既然是$(0, l)$型张量，自然有$\Lambda(l) \subset \mathscr{T}_V
 但可对全体指标施行全反称操作使之成为微分形式，于是有如下定义
 
 \begin{definition}
-    设$\omega$和$\mu$分别为$l$形式和$m$形式，则其楔形积（简称楔积）是按下式定义的$l + m$形式：
+    设$\bm\omega$和$\bm\mu$分别为$l$形式和$m$形式，则其\textbf{楔形积}（简称\textbf{楔积}）是按下式定义的$l + m$形式：
     $$(\omega \wedge \mu)_{a_1 \cdots a_l b_1 \cdots b_m} \coloneq \frac{(l+m)!}{l!m!}\omega_{[a_1 \cdots a_l}\mu_{b_1 \cdots b_m]}$$
     或者说，楔积是满足上式的映射$\wedge \colon \Lambda(l) \times \Lambda(m) \to \Lambda(l + m)$
 \end{definition}
 
-楔积$(\omega \wedge \mu)_{a_1 \cdots a_l b_1 \cdots b_m}$亦可记作$\omega_{a_1 \cdots a_l} \wedge \mu_{b_1 \cdots b_m}$，也常简记为$\omega \wedge \mu$。
+楔积$(\omega \wedge \mu)_{a_1 \cdots a_l b_1 \cdots b_m}$亦可记作$\omega_{a_1 \cdots a_l} \wedge \mu_{b_1 \cdots b_m}$，也常简记为$\bm\omega \wedge \bm\mu$。
 
-由定义可知楔积满足结合律和分配律，即$(\omega \wedge \mu) \wedge \nu = \omega \wedge (\mu \wedge \nu)$（因而$\omega \wedge \mu \wedge \nu$有明确意义）和$\omega \wedge (\mu + \nu) = \omega \wedge \mu + \omega \wedge \nu$。
-但楔积一般不服从交换律，例如对$1$形式$\omega$和$\mu$有
-$$\omega \wedge \mu \equiv \omega_a \wedge \mu_b \equiv (\omega \wedge \mu)_{ab} = 2\omega_{[a}\mu_{b]} = \omega_a\mu_b - \omega_b\mu_a$$
-$$\mu \wedge \omega \equiv (\mu \wedge \omega)_{ab} = 2\mu_{[a}\omega_{b]} = \mu_a\omega_b - \mu_b\omega_a$$
-可见对两个$1$形式的楔积有$\omega \wedge \mu = - \mu \wedge \omega$。
-推广至一般情况，设$\omega$和$\mu$分别是$l$和$m$形式，则
-$$\omega \wedge \mu = (-1)^{lm} \mu \wedge \omega$$
+由定义可知楔积满足结合律和分配律，即$(\bm\omega \wedge \bm\mu) \wedge \bm\nu = \bm\omega \wedge (\bm\mu \wedge \bm\nu)$（因而$\bm\omega \wedge \bm\mu \wedge \bm\nu$有明确意义）和$\bm\omega \wedge (\bm\mu + \bm\nu) = \bm\omega \wedge \bm\mu + \bm\omega \wedge \bm\nu$。
+但楔积一般不服从交换律，例如对$1$形式$\bm\omega$和$\bm\mu$有
+$$\bm\omega \wedge \bm\mu \equiv \omega_a \wedge \mu_b \equiv (\omega \wedge \mu)_{ab} = 2\omega_{[a}\mu_{b]} = \omega_a\mu_b - \omega_b\mu_a$$
+$$\bm\mu \wedge \bm\omega \equiv (\mu \wedge \omega)_{ab} = 2\mu_{[a}\omega_{b]} = \mu_a\omega_b - \mu_b\omega_a$$
+可见对两个$1$形式的楔积有$\bm\omega \wedge \bm\mu = - \bm\mu \wedge \bm\omega$。
+推广至一般情况，设$\bm\omega$和$\bm\mu$分别是$l$和$m$形式，则
+$$\bm\omega \wedge \bm\mu = (-1)^{lm} \bm\mu \wedge \bm\omega$$
 
 \begin{theorem}
     设$\dim V = n$，则$\dim \Lambda(l) = C_n^l = \frac{n!}{l!(n - l)!}$，若$l \leq n$；
@@ -61,7 +61,7 @@ $$\omega \wedge \mu = (-1)^{lm} \mu \wedge \omega$$
 下面回到流形$M$上来。
 若对$M$（或$A \subset M$）的任一点$p$指定$V_p$上的一个$l$形式，就得到$M$（或$A$）上的一个$l$形式场（``场''字常略去）。
 $1$形式场和$0$形式场分别是对偶矢量场和标量场。
-$M$上的光滑的$l$形式场称为$l$次微分形式场，也简称作$l$形式场或$l$形式。
+$M$上的光滑的$l$形式场称为\textbf{$l$次微分形式场}，也简称作\textbf{$l$形式场}或\textbf{$l$形式}。
 
 设$(O, \psi)$为一坐标系，则$O$上的$l$形式场可方便地用对偶坐标基底场$\{(\mathrm{d}x^\mu)_a\}$逐点线性表出。
 $$\omega_{a_1 \cdots a_l} = \sum_C \omega_{\mu_1 \cdots \mu_l}(\mathrm{d}x^{\mu_1})_{a_1} \wedge \cdots \wedge (\mathrm{d}x^{\mu_l})_{a_l}$$
@@ -71,14 +71,14 @@ $$\omega_{\mu_1 \cdots \mu_l} = \omega_{a_1 \cdots a_l}(\partial / \partial x^{\
 一个重要的特例是$l = n$的情况。因为$C_n^l = C_n^n = 1$，上式右边的求和只有一项，即
 $$\omega_{a_1 \cdots a_n} = \omega_{1 \cdots n}(\mathrm{d}x^{1})_{a_1} \wedge \cdots \wedge (\mathrm{d}x^{n})_{a_n}$$
 简写为
-$$\omega = \omega_{1 \cdots n}\mathrm{d}x^{1} \wedge \cdots \wedge \mathrm{d}x^{n}$$
-上式也可以这样理解：$M$中任一点$p$的所有$n$形式的集合是$1$维矢量空间，只有一个基矢，可取为$\mathrm{d}x^{1} \wedge \cdots \wedge \mathrm{d}x^{n}|_p$，上式就是$\omega|_p$用这一基矢的展开式。
+$$\bm\omega = \omega_{1 \cdots n}\mathrm{d}x^{1} \wedge \cdots \wedge \mathrm{d}x^{n}$$
+上式也可以这样理解：$M$中任一点$p$的所有$n$形式的集合是$1$维矢量空间，只有一个基矢，可取为$\mathrm{d}x^{1} \wedge \cdots \wedge \mathrm{d}x^{n}|_p$，上式就是$\bm\omega|_p$用这一基矢的展开式。
 注意，展开系数$\omega_{1 \cdots n}$对不同点可以不同，因而是坐标域上的函数，也可表为坐标的$n$元函数$\omega_{1 \cdots n}(x^1, \cdots, x^n)$。
 
 我们以$\Lambda_M(l)$代表$M$上全体$l$形式场的集合。
 
 \begin{definition}
-    流形$M$上的外微分算符是一个映射$\mathrm{d} \colon \Lambda_M(l) \to \Lambda_M(l + 1)$，定义为
+    流形$M$上的\textbf{外微分算符}是一个映射$\mathrm{d} \colon \Lambda_M(l) \to \Lambda_M(l + 1)$，定义为
     $$(\mathrm{d}\omega)_{b a_1 \cdots a_l} \coloneq (l + 1)\nabla_{[b}\omega_{a_1 \cdots a_l]}$$
     其中$\nabla_b$为任一导数算符（因由$C^c{}_{ab} = C^c{}_{ba}$可证对任意$\nabla_a$和$\tilde\nabla_a$有$\tilde\nabla_{[b}\omega_{\cdots]} = \nabla_{[b}\omega_{\cdots]}$）。
     可见在定义外微分之前无须在$M$上指定导数算符（及任何其他附加结构，如度规）。
@@ -88,7 +88,7 @@ $$\omega = \omega_{1 \cdots n}\mathrm{d}x^{1} \wedge \cdots \wedge \mathrm{d}x^{
     第二章曾定义过$(\mathrm{d}f)_a$，第三章又知$(\mathrm{d}f)_a = \nabla_af$，可见$(\mathrm{d}f)_a$就是$f \in \Lambda_M(0)$的外微分，这正是当时用符号$\mathrm{d}f$的原因。
 \end{example}
 
-把$l$形式场$\omega$写成对偶坐标基矢的展开式的一个好处是便于计算$\mathrm{d}\omega$，请看如下定理
+把$l$形式场$\bm\omega$写成对偶坐标基矢的展开式的一个好处是便于计算$\mathrm{d}\bm\omega$，请看如下定理
 
 \begin{theorem}
     设$\omega_{a_1 \cdots a_l} = \sum\limits_C \omega_{\mu_1 \cdots \mu_l}(\mathrm{d}x^{\mu_1})_{a_1} \wedge \cdots \wedge (\mathrm{d}x^{\mu_l})_{a_l}$，则
@@ -110,13 +110,13 @@ $$\omega = \omega_{1 \cdots n}\mathrm{d}x^{1} \wedge \cdots \wedge \mathrm{d}x^{
 \end{proof}
 
 \begin{definition}
-    设$\omega$为$M$上的$l$形式场。$\omega$叫闭的，若$\mathrm{d}\omega = 0$；$\omega$叫恰当的，若存在$l - 1$形式场$\mu$使$\omega = \mathrm{d}\mu$。
+    设$\bm\omega$为$M$上的$l$形式场。$\bm\omega$叫\textbf{闭的}，若$\mathrm{d}\bm\omega = 0$；$\bm\omega$叫\textbf{恰当的}，若存在$l - 1$形式场$\bm\mu$使$\bm\omega = \mathrm{d}\bm\mu$。
 \end{definition}
 
-因此，前述定理亦可表述为：若$\omega$是恰当的，则$\omega$是闭的。
+因此，前述定理亦可表述为：若$\bm\omega$是恰当的，则$\bm\omega$是闭的。
 然而，要使逆命题成立则还须对流形$M$提出一定要求（略）。
 平凡流形$\mathbb{R}^n$满足这一要求，而流形一定局域平凡，所以对任意流形$M$而言，闭的$l$形式场至少是局域恰当的。
-就是说，设$\omega$是流形$M$上的闭的$l$形式场，则$M$的任一点$p$必有邻域$N$，在$N$上存在$l - 1$形式场$\mu$使$\omega = \mathrm{d}\mu$。
+就是说，设$\bm\omega$是流形$M$上的闭的$l$形式场，则$M$的任一点$p$必有邻域$N$，在$N$上存在$l - 1$形式场$\bm\mu$使$\bm\omega = \mathrm{d}\bm\mu$。
 
 \begin{theorem}
     当$M = \mathbb{R}^2$时，上述定理及其逆定理给出普通微积分的下述命题：
@@ -147,11 +147,11 @@ $$\omega = \omega_{1 \cdots n}\mathrm{d}x^{1} \wedge \cdots \wedge \mathrm{d}x^{
 然而，并非所有流形都是可定向的。
 
 \begin{definition}
-    $n$维流形称为可定向的，若其上存在$C^0$且处处非零的$n$形式场$\varepsilon$。
+    $n$维流形称为\textbf{可定向的}，若其上存在$C^0$且处处非零的$n$形式场$\bm\varepsilon$。
 \end{definition}
 
 \begin{example}
-    $\mathbb{R}^3$是可定向流形，因为其上存在$C^\infty$的$3$形式场$\varepsilon \equiv \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$，其中$x, y, z$为自然坐标。
+    $\mathbb{R}^3$是可定向流形，因为其上存在$C^\infty$的$3$形式场$\bm\varepsilon \equiv \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$，其中$x, y, z$为自然坐标。
 \end{example}
 
 \begin{example}
@@ -159,8 +159,8 @@ $$\omega = \omega_{1 \cdots n}\mathrm{d}x^{1} \wedge \cdots \wedge \mathrm{d}x^{
 \end{example}
 
 \begin{definition}
-    若在$n$维可定向流形$M$上选定一个$C^0$且处处非零的$n$形式场$\varepsilon$，就说$M$是定向的（``已经定向''之意）。
-    设$\varepsilon_1$和$\varepsilon_2$是两个$C^0$且处处非零的$n$形式场，若存在处处为正的函数$h$使$\varepsilon_1 = h\varepsilon_2$，就说$\varepsilon_1$和$\varepsilon_2$给出$M$的同一个定向。
+    若在$n$维可定向流形$M$上选定一个$C^0$且处处非零的$n$形式场$\bm\varepsilon$，就说$M$是\textbf{定向的}（``已经定向''之意）。
+    设$\varepsilon_1$和$\varepsilon_2$是两个$C^0$且处处非零的$n$形式场，若存在处处为正的函数$h$使$\varepsilon_1 = h\varepsilon_2$，就说$\varepsilon_1$和$\varepsilon_2$给出$M$的同一个\textbf{定向}。
 \end{definition}
 
 \begin{note}
@@ -168,8 +168,8 @@ $$\omega = \omega_{1 \cdots n}\mathrm{d}x^{1} \wedge \cdots \wedge \mathrm{d}x^{
     由于$n$维流形$M$上每点的全体$n$形式的集合是$1$维矢量空间，任意两个$n$形式场$\varepsilon_1$和$\varepsilon_2$必有关系$\varepsilon_1 = h\varepsilon_2$其中$h$是$M$上的函数。
     若$\varepsilon_1$和$\varepsilon_2$处处非零，则$h$处处非零；若$\varepsilon_1$和$\varepsilon_2$为$C^0$的，则$h$为$C^0$的。
     对连通流形\footnote{
-        拓扑空间$(X, \mathscr{T})$称为连通的，若它只有两个既开又闭的子集；
-        称为弧连通的，若$X$的任意两点可被一条在$X$中的连续曲线连接。
+        拓扑空间$(X, \mathscr{T})$称为\textbf{连通的}，若它只有两个既开又闭的子集；
+        称为\textbf{弧连通的}，若$X$的任意两点可被一条在$X$中的连续曲线连接。
         流形称为连通的（或弧连通的），若其底拓扑空间是连通的（或弧连通的）。
         对拓扑空间，弧连通必定连通，但连通不一定弧连通（存在``擦边性''反例）。
         对流形，弧连通与连通等价。
@@ -177,30 +177,30 @@ $$\omega = \omega_{1 \cdots n}\mathrm{d}x^{1} \wedge \cdots \wedge \mathrm{d}x^{
 \end{note}
 
 \begin{definition}
-    $M$上选好以$\varepsilon$为代表的定向后，开域$O \subset M$上的基底场$\{(e_\mu)^a\}$叫做以$\varepsilon$衡量为右手的，若$O$上存在处处为正的函数$h$使$\varepsilon = h(e^1)_{a_1} \wedge \cdots \wedge (e^n)_{a_n}$，其中$\{(e^\mu)_a\}$是$\{(e_\mu)^a\}$的对偶基（否则称为左手的）。
-    一个坐标系叫右（左）手系，若其坐标基底是右（左）手的。
+    $M$上选好以$\bm\varepsilon$为代表的定向后，开域$O \subset M$上的基底场$\{(e_\mu)^a\}$叫做以$\bm\varepsilon$衡量为\textbf{右手的}，若$O$上存在处处为正的函数$h$使$\bm\varepsilon = h(e^1)_{a_1} \wedge \cdots \wedge (e^n)_{a_n}$，其中$\{(e^\mu)_a\}$是$\{(e_\mu)^a\}$的对偶基（否则称为\textbf{左手的}）。
+    一个坐标系叫\textbf{右（左）手系}，若其坐标基底是右（左）手的。
 \end{definition}
 
-下面介绍$n$维定向流形$M$上的$n$形式场$\omega$的积分。
-$\omega$可用对偶坐标基矢的楔形积$\mathrm{d}x^1 \wedge \cdots \wedge \mathrm{d}x^n$展开为
-$$\omega = \omega_{1 \cdots n}(x^1, \cdots, x^n)\mathrm{d}x^1 \wedge \cdots \wedge \mathrm{d}x^n$$
-可见每一$n$形式场$\omega$在坐标域上给出一个$n$元函数$\omega_{1 \cdots n}(x^1, \cdots, x^n)$，我们就把这个$n$元函数的普通$n$重积分称为$n$形式场$\omega$的积分，准确定义如下：
+下面介绍$n$维定向流形$M$上的$n$形式场$\bm\omega$的积分。
+$\bm\omega$可用对偶坐标基矢的楔形积$\mathrm{d}x^1 \wedge \cdots \wedge \mathrm{d}x^n$展开为
+$$\bm\omega = \omega_{1 \cdots n}(x^1, \cdots, x^n)\mathrm{d}x^1 \wedge \cdots \wedge \mathrm{d}x^n$$
+可见每一$n$形式场$\bm\omega$在坐标域上给出一个$n$元函数$\omega_{1 \cdots n}(x^1, \cdots, x^n)$，我们就把这个$n$元函数的普通$n$重积分称为$n$形式场$\bm\omega$的积分，准确定义如下：
 
 \begin{definition}
-    设$(O, \psi)$是$n$维定向流形$M$上的右手坐标系，$\omega$是开子集$G \subset O$上的连续$n$形式场，则$\omega$在$G$上的积分定义为
-    $$\int_G\omega \coloneq \int_{\psi[G]}\omega_{1 \cdots n}(x^1, \cdots, x^n)\mathrm{d}x^1 \cdots \mathrm{d}x^n$$
+    设$(O, \psi)$是$n$维定向流形$M$上的右手坐标系，$\bm\omega$是开子集$G \subset O$上的连续$n$形式场，则$\bm\omega$在$G$上的\textbf{积分}定义为
+    $$\int_G\bm\omega \coloneq \int_{\psi[G]}\omega_{1 \cdots n}(x^1, \cdots, x^n)\mathrm{d}x^1 \cdots \mathrm{d}x^n$$
     上式右边是$n$元函数$\omega_{1 \cdots n}(x^1, \cdots, x^n)$在$\mathbb{R}^n$的开子集$\psi[G]$上的普通积分\footnote{指Riemann或Lebesgue积分}，早已有定义。
 \end{definition}
 
 \begin{note}
     \begin{enumerate}[（1）]
-        \item 为说明上述定义的合理性，还应证明$\omega$在$G$上的积分与所选右手坐标系无关。
+        \item 为说明上述定义的合理性，还应证明$\bm\omega$在$G$上的积分与所选右手坐标系无关。
         仅以$n = 2$为例证明如下。
         
         设$(O, \psi)$和$(O', \psi')$为右手坐标系，满足$G \subset O \cap O'$，两坐标分别记作$x^1, x^2$和$x'^1, x'^2$，则
-        $$\omega = \omega_{12}\mathrm{d}x^1 \wedge \mathrm{d}x^2 = \omega'_{12}\mathrm{d}x'^1 \wedge \mathrm{d}x'^2$$
-        令$\displaystyle\int_G\omega \equiv \int_{\psi[G]}\omega_{12}\mathrm{d}x^1\mathrm{d}x^2, ~ (\int_G\omega)' \equiv \int_{\psi'[G]}\omega'_{12}\mathrm{d}x'^1\mathrm{d}x'^2$,欲证
-        $$(\int_G\omega)' = \int_G\omega$$
+        $$\bm\omega = \omega_{12}\mathrm{d}x^1 \wedge \mathrm{d}x^2 = \omega'_{12}\mathrm{d}x'^1 \wedge \mathrm{d}x'^2$$
+        令$\displaystyle\int_G\bm\omega \equiv \int_{\psi[G]}\omega_{12}\mathrm{d}x^1\mathrm{d}x^2, ~ (\int_G\bm\omega)' \equiv \int_{\psi'[G]}\omega'_{12}\mathrm{d}x'^1\mathrm{d}x'^2$,欲证
+        $$(\int_G\bm\omega)' = \int_G\bm\omega$$
         由张量变换律知$\omega'_{12} = \displaystyle\frac{\partial x^1}{\partial x'^1}\frac{\partial x^2}{\partial x'^2}\omega_{12} + \frac{\partial x^2}{\partial x'^1} \frac{\partial x^1}{\partial x'^2}\omega_{21} = \omega_{12}\det(\frac{\partial x^\mu}{\partial x'^\nu})$,其中
         $$\det(\frac{\partial x^\mu}{\partial x'^\nu}) \equiv \begin{vmatrix}
             \displaystyle\frac{\partial x^1}{\partial x'^1} & \displaystyle\frac{\partial x^1}{\partial x'^2} \\
@@ -225,31 +225,31 @@ $$\omega = \omega_{1 \cdots n}(x^1, \cdots, x^n)\mathrm{d}x^1 \wedge \cdots \wed
 
         然而，如果$\{x^\mu\}$和$\{x'^\mu\}$分别是右、左手系，则$\det(\partial x^\mu / \partial x'^\nu) < 0$，等号右边的$\det(\partial x^\mu / \partial x'^\nu)$应改为$|\det(\partial x^\mu / \partial x'^\nu)| = -\det(\partial x^\mu / \partial x'^\nu)$, 故上式变为
         $$\int_{\psi[G]}\omega_{12}\mathrm{d}x^1\mathrm{d}x^2 = -\int_{\psi'[G]}\omega_{12}\det(\partial x^\mu / \partial x'^\nu)\mathrm{d}x'^1\mathrm{d}x'^2 = -\int_{\psi'[G]}\omega'_{12}\mathrm{d}x'^1\mathrm{d}x'^2$$
-        因此，为了定义出同一积分，当$\{x^\mu\}$是左手系时应把$\displaystyle\int_G\omega$定义为
-        $$\int_G\omega \coloneq -\int_{\psi[G]}\omega_{1 \cdots n}(x^1, \cdots, x^n)\mathrm{d}x^1 \cdots \mathrm{d}x^n$$
-        \item 一个坐标系是右手系还是左手系取决于流形所选的定向，故$\displaystyle\int_G\omega$是依赖于由$\varepsilon$所给出的定向的，定向改变后积分变号。
-        \item 以上之定义了$\omega$在坐标域内开子集$G$上的积分。
-        $\omega$在全流形$M$上的积分$\displaystyle\int_M\omega$可由局部积分``缝合''而成，其定义涉及``单位分解'',从略。
+        因此，为了定义出同一积分，当$\{x^\mu\}$是左手系时应把$\displaystyle\int_G\bm\omega$定义为
+        $$\int_G\bm\omega \coloneq -\int_{\psi[G]}\omega_{1 \cdots n}(x^1, \cdots, x^n)\mathrm{d}x^1 \cdots \mathrm{d}x^n$$
+        \item 一个坐标系是右手系还是左手系取决于流形所选的定向，故$\displaystyle\int_G\bm\omega$是依赖于由$\bm\varepsilon$所给出的定向的，定向改变后积分变号。
+        \item 以上之定义了$\bm\omega$在坐标域内开子集$G$上的积分。
+        $\bm\omega$在全流形$M$上的积分$\displaystyle\int_M\bm\omega$可由局部积分``缝合''而成，其定义涉及``单位分解'',从略。
     \end{enumerate}
 \end{note}
 
 设$S, M$是流形，维数分别是$l$和$n(>l)$，$\phi \colon S \to M$是嵌入。
-因为$\phi[S]$是子流形，当然可谈及其上的$l$形式场$\mu$的积分。
+因为$\phi[S]$是子流形，当然可谈及其上的$l$形式场$\bm\mu$的积分。
 然而``$\phi[S]$嵌入在$M$内''的事实导致``$\phi[S]$上的$l$形式场''具有两种可能的含义。
 正如``$\phi[S]$上的切矢场''有切于和不切于$\phi[S]$之分那样，``$\phi[S]$上的$l$形式场''也可分为``切于''和不``切于''$\phi[S]$两种。
-准确地说，$\phi[S]$上的$l$形式场$\mu$称为``切于''$\phi[S]$的，如果$\forall q \in \phi[S]$，$\mu|_q$是$W_q$（而非$V_q$）上的$l$形式（能把$W_q$的任意$l$个元素变为一个实数的线性映射）。
+准确地说，$\phi[S]$上的$l$形式场$\bm\mu$称为``切于''$\phi[S]$的，如果$\forall q \in \phi[S]$，$\bm\mu|_q$是$W_q$（而非$V_q$）上的$l$形式（能把$W_q$的任意$l$个元素变为一个实数的线性映射）。
 ``$\phi[S]$上的$l$形式场''既可能是``切于''$\phi[S]$的，也可能不是``切于''$\phi[S]$的。
-因为谈及$l$形式场在$\phi[S]$上的积分时是把$\phi[S]$作为独立流形看待的（不顾及它``外面''的情况），所以只有``切于''$\phi[S]$的$l$形式场$\mu$的积分才有意义。
-不过，既然$\phi[S]$上的、不``切于''$\phi[S]$的$l$形式场$\mu$是能把每点$q \in \phi[S]$的$V_q$（而不只是$W_q$）的任意$l$个元素变为一个实数的线性映射，而$W_q$无非是$V_q$的子空间，只要把$\mu$的作用范围限制在$W_q$便得到一个``切于''$\phi[S]$的$l$形式场，我们把它记作$\tilde\mu$,并称之为$\mu$的限制。
+因为谈及$l$形式场在$\phi[S]$上的积分时是把$\phi[S]$作为独立流形看待的（不顾及它``外面''的情况），所以只有``切于''$\phi[S]$的$l$形式场$\bm\mu$的积分才有意义。
+不过，既然$\phi[S]$上的、不``切于''$\phi[S]$的$l$形式场$\bm\mu$是能把每点$q \in \phi[S]$的$V_q$（而不只是$W_q$）的任意$l$个元素变为一个实数的线性映射，而$W_q$无非是$V_q$的子空间，只要把$\bm\mu$的作用范围限制在$W_q$便得到一个``切于''$\phi[S]$的$l$形式场，我们把它记作$\bm{\tilde\mu}$,并称之为$\bm\mu$的限制。
 准确说来有如下定义
 
 \begin{definition}
     设$\mu_{a_1 \cdots a_l}$是$l$维子流形$\phi[S] \subset M$上的$l$形式场。
-    $\phi[S]$（看作脱离$M$而独立存在的流形）上的$l$形式场$\tilde\mu_{a_1 \cdots a_l}$称为$\mu_{a_1 \cdots a_l}$在$\phi[S]$上的限制，若
+    $\phi[S]$（看作脱离$M$而独立存在的流形）上的$l$形式场$\tilde\mu_{a_1 \cdots a_l}$称为$\mu_{a_1 \cdots a_l}$在$\phi[S]$上的\textbf{限制}，若
     $$\tilde\mu_{a_1 \cdots a_l}|_q(\omega_1)^{a_1} \cdots (\omega_l)^{a_l} = \mu_{a_1 \cdots a_l}|_q(\omega_1)^{a_1} \cdots (\omega_l)^{a_l}, ~ \forall q \in \phi[S], ~ (\omega_1)^a, \cdots (\omega_l)^a \in W_q$$
 \end{definition}
 
-今后凡谈及$l$形式场$\mu$在$l$维子流形$\phi[S]$上的积分时，一律理解为$\mu$的限制$\tilde\mu$的积分，即总把$\displaystyle\int_{\phi[S]}\mu$理解为$\displaystyle\int_{\phi[S]}\tilde\mu$。
+今后凡谈及$l$形式场$\bm\mu$在$l$维子流形$\phi[S]$上的积分时，一律理解为$\bm\mu$的限制$\bm{\tilde\mu}$的积分，即总把$\displaystyle\int_{\phi[S]}\bm\mu$理解为$\displaystyle\int_{\phi[S]}\bm{\tilde\mu}$。
 
 \section{Stokes定理}
 
@@ -262,24 +262,24 @@ $$\iiint_V(\vec\nabla\cdot\vec{A})\mathrm{d}V = \oiint_S\vec{A}\cdot\vec{n}\math
 $n$维带边流形的最简单例子是
 $$\mathbb{R}^{n-} \coloneq \{(x^1, \cdots, x^n) \in \mathbb{R}^n \mid x^1 \leq 0\}$$
 其中$x^1, \cdots, x^n$是自然坐标，由$x^1 = 0$的所有点组成的子集叫$\mathbb{R}^{n-}$的边界，它本身是个$n - 1$维流形（其实就是$\mathbb{R}^{n - 1}$）。
-推广至一般情况，$n$维带边流形$N$与$n$维流形定义相仿，只是把该定义中的$\mathbb{R}^n$改为$\mathbb{R}^{n-}$，即$N$的开覆盖${O_\alpha}$中的每一元素$O_\alpha$都应同胚于$\mathbb{R}^{n-}$的一个子集，$N$中全体被映射到$x^1 = 0$处的点组成$N$的边界，记作$\partial N$。
+推广至一般情况，\textbf{$n$维带边流形}$N$与$n$维流形定义相仿，只是把该定义中的$\mathbb{R}^n$改为$\mathbb{R}^{n-}$，即$N$的开覆盖${O_\alpha}$中的每一元素$O_\alpha$都应同胚于$\mathbb{R}^{n-}$的一个子集，$N$中全体被映射到$x^1 = 0$处的点组成$N$的\textbf{边界}，记作$\partial N$。
 请注意$\partial N$是$n - 1$维流形；$\operatorname{i}(N) \equiv N - \partial N$是$n$维流形。
 例如，$\mathbb{R}^3$中的实心球体$B$是$3$维带边流形，其边界（$2$维球面$S^2$）是$2$维流形，$\operatorname{i}(B)$则是$3$维流形。
 
 \begin{theorem}
-    设$n$维定向流形$M$的紧致子集$N$是个$n$维带边流形，$\omega$是$M$上的$n - 1$形式场（可微性至少为$C^1$），则
-    $$\int_{\operatorname{i}(N)}\mathrm{d}\omega = \int_{\partial N}\omega$$
+    设$n$维定向流形$M$的紧致子集$N$是个$n$维带边流形，$\bm\omega$是$M$上的$n - 1$形式场（可微性至少为$C^1$），则
+    $$\int_{\operatorname{i}(N)}\mathrm{d}\bm\omega = \int_{\partial N}\bm\omega$$
 \end{theorem}
 
 \begin{note}
-    把$M$的定向$\varepsilon$限制在$N$上便得到$N$的定向，仍记作$\varepsilon$,它在$N$的边界$\partial N$（$M$中的超曲面）上自然诱导出一个定向，记作$\bar\varepsilon$,是$\bar\varepsilon_{a_1 \cdots a_{n - 1}}$的简写。
+    把$M$的定向$\bm\varepsilon$限制在$N$上便得到$N$的定向，仍记作$\bm\varepsilon$,它在$N$的边界$\partial N$（$M$中的超曲面）上自然诱导出一个定向，记作$\bm{\bar\varepsilon}$,是$\bar\varepsilon_{a_1 \cdots a_{n - 1}}$的简写。
     仅以$\mathbb{R}^{2-}$为例介绍，这时$M = \mathbb{R}^2, ~ N = \mathbb{R}^{2-}, ~ \partial N = \{(x^1, x^2) \mid x^1 = 0\}$。
     设$\mathbb{R}^2$（因而$\mathbb{R}^{2-}$）的定向为$\varepsilon_{ab} = (\mathrm{d}x^1)_a \wedge (\mathrm{d}x^2)_b$，则$\{x^1, x^2\}$以$\varepsilon_{ab}$衡量为右手系。
     因$x^1|_{\partial N} = 0$，把$x^1$开除后所得的$\{x^2\}$便是$\partial N$的一个坐标系。
     我们这样定义$\partial N$的诱导定向$\bar\varepsilon_a$，使坐标系$\{x^2\}$以$\bar\varepsilon_a$衡量为右手系。
     选$\bar\varepsilon_a = (\mathrm{d}x^2)_a$便可满足这一要求。
     诱导定向的这个基本要求可以推广到任意带边流形$N$。
-    上式左边是$n$形式场$\mathrm{d}\omega$在$n$维流形$\operatorname{i}(N)$（以$\varepsilon$为定向）上的积分，右边是$n - 1$形式场$\omega$在$n - 1$维流形$\partial N$（以$\bar\varepsilon$为定向）上的积分。
+    上式左边是$n$形式场$\mathrm{d}\bm\omega$在$n$维流形$\operatorname{i}(N)$（以$\bm\varepsilon$为定向）上的积分，右边是$n - 1$形式场$\bm\omega$在$n - 1$维流形$\partial N$（以$\bm{\bar\varepsilon}$为定向）上的积分。
 \end{note}
 
 \begin{example}
@@ -287,14 +287,14 @@ $$\mathbb{R}^{n-} \coloneq \{(x^1, \cdots, x^n) \in \mathbb{R}^n \mid x^1 \leq 0
     $$\iint_S(\partial A_2 / \partial x^1 - \partial A_1 / \partial x^2)\mathrm{d}x^1\mathrm{d}x^2 = \oint_LA_l\mathrm{d}l$$
 
     现在说明上式是前述定理的特例。令$M = \mathbb{R}^2$，则$S \cup L$可认为是$N$，其中$S$和$L$分别对应$\operatorname{i}(N)$和$\partial N$。
-    用欧氏度规$\delta_{ab}$把$A^a$变为$1$形式场（即对偶矢量）$A_a \equiv \delta_{ab}A^b$，则$A_a$对应$\omega$。把$A_a$用笛卡尔系对偶坐标基矢展开：$\omega = A_a = A_\mu(\mathrm{d}x^\mu)_a$，则
-    $$\mathrm{d}\omega = \mathrm{d}A_\mu \wedge \mathrm{d}x^\mu = \frac{\partial A_\mu}{\partial x^\nu}\mathrm{d}x^\nu \wedge \mathrm{d}x^\mu = \frac{\partial A_1}{\partial x^2}\mathrm{d}x^2 \wedge \mathrm{d}x^1 + \frac{\partial A_2}{\partial x^1}\mathrm{d}x^1 \wedge \mathrm{d}x^2 = (\frac{\partial A_2}{\partial x^1} - \frac{\partial A_1}{\partial x^2})\mathrm{d}x^1 \wedge \mathrm{d}x^2$$
-    其中第二个等号是$\mathrm{d}f$用对偶坐标基矢的展开式，可见上式左边可以表示为$\displaystyle\int_{\operatorname{i}(N)}\mathrm{d}\omega$。
-    另一方面，$\displaystyle\int_{\partial N}\omega = \int_{\partial N}\tilde\omega$。
-    选线长$l$为$L$的局部坐标，把$\tilde\omega$用坐标基矢展开为$\tilde\omega_a = \tilde\omega_1(l)(\mathrm{d}l)_a$，两边与$(\partial / \partial l)^a$缩并得
+    用欧氏度规$\delta_{ab}$把$A^a$变为$1$形式场（即对偶矢量）$A_a \equiv \delta_{ab}A^b$，则$A_a$对应$\bm\omega$。把$A_a$用笛卡尔系对偶坐标基矢展开：$\bm\omega = A_a = A_\mu(\mathrm{d}x^\mu)_a$，则
+    $$\mathrm{d}\bm\omega = \mathrm{d}A_\mu \wedge \mathrm{d}x^\mu = \frac{\partial A_\mu}{\partial x^\nu}\mathrm{d}x^\nu \wedge \mathrm{d}x^\mu = \frac{\partial A_1}{\partial x^2}\mathrm{d}x^2 \wedge \mathrm{d}x^1 + \frac{\partial A_2}{\partial x^1}\mathrm{d}x^1 \wedge \mathrm{d}x^2 = (\frac{\partial A_2}{\partial x^1} - \frac{\partial A_1}{\partial x^2})\mathrm{d}x^1 \wedge \mathrm{d}x^2$$
+    其中第二个等号是$\mathrm{d}f$用对偶坐标基矢的展开式，可见上式左边可以表示为$\displaystyle\int_{\operatorname{i}(N)}\mathrm{d}\bm\omega$。
+    另一方面，$\displaystyle\int_{\partial N}\bm\omega = \int_{\partial N}\bm{\tilde\omega}$。
+    选线长$l$为$L$的局部坐标，把$\bm{\tilde\omega}$用坐标基矢展开为$\tilde\omega_a = \tilde\omega_1(l)(\mathrm{d}l)_a$，两边与$(\partial / \partial l)^a$缩并得
     $$\tilde\omega_1(l) = \tilde\omega_a(\partial / \partial l)^a = \omega_a(\partial / \partial l)^a = A_a(\partial / \partial l)^a = A_l$$
-    故$\tilde\omega = A_l\mathrm{d}l$，于是
-    $$\oint_L A_l\mathrm{d}l = \int_{\partial N}\omega$$
+    故$\bm{\tilde\omega} = A_l\mathrm{d}l$，于是
+    $$\oint_L A_l\mathrm{d}l = \int_{\partial N}\bm\omega$$
     可见，上式是Stokes定理的特例。
 \end{example}
 
@@ -304,13 +304,13 @@ $$\mathbb{R}^{n-} \coloneq \{(x^1, \cdots, x^n) \in \mathbb{R}^n \mid x^1 \leq 0
 \section{体元}
 
 \begin{definition}
-    $n$维可定向流形$M$上的任一个$C^0$而且处处非零的$n$形式场$\varepsilon$称为一个体元。
+    $n$维可定向流形$M$上的任一个$C^0$而且处处非零的$n$形式场$\bm\varepsilon$称为一个\textbf{体元}。
 \end{definition}
 
 \begin{note}
     体元与定向的区别在于：若$\varepsilon_1$和$\varepsilon_2$是两个$C^0$且处处非零的$n$形式场，而且有处处为正的函数$h$使$\varepsilon_1 = h \varepsilon_2$，则$\varepsilon_1$和$\varepsilon_2$代表同一个定向，但只要$\varepsilon_1 \neq \varepsilon_2$它们就是两个不同体元。
     对可定向连通流形，定向只有两个，而体元却有无限多个。
-    谈及定向流形上的积分和体元时不要求流形上选定度规场，这时体元的选择十分任意（只有一个要求，就是体元与定向相容，即代表体元的$\varepsilon$与代表定向的$\varepsilon$之间的乘子为正。），没有一个与众不同的体元。
+    谈及定向流形上的积分和体元时不要求流形上选定度规场，这时体元的选择十分任意（只有一个要求，就是体元与定向相容，即代表体元的$\bm\varepsilon$与代表定向的$\bm\varepsilon$之间的乘子为正。），没有一个与众不同的体元。
     然而，如果流形上给定了度规场$g_{ab}$，便存在选择特定体元的自然方法。
 \end{note}
 
@@ -330,25 +330,25 @@ $$\varepsilon_{1 \cdots n} = \pm 1$$
 $$\varepsilon_{a_1 \cdots a_n} = \pm(e^1)_{a1} \wedge \cdots \wedge(e^n)_{a_n} \text{（对正交归一基）}$$
 这相当于要求
 $$\varepsilon^{a_1 \cdots a_n}\varepsilon_{a_1 \cdots a_n} = (-1)^sn!$$
-满足上式的$\varepsilon_{a_1 \cdots a_n}$称为与度规$g_{ab}$相适配（相容）的体元。
+满足上式的$\varepsilon_{a_1 \cdots a_n}$称为\textbf{与度规$g_{ab}$相适配（相容）的体元}。
 上式只把体元确定到差一个负号的程度，加上``体元与定向相容''的要求才确定唯一的体元。
 于是上式右边的$+$和$-$号分别对应于右手和左手正交归一基。
 
 小结 ~ 涉及积分时，我们只关心可定向流形$M$。首先选好一个定向使$M$成为定向流形。
 任一基底的右（左）手性由所选定向规定。
 没有度规场$g_{ab}$（或其他可资利用的几何结构）时，体元相当任意，但要求与定向相容。
-指定$g_{ab}$后，体元$\varepsilon_{a_1 \cdots a_n}$由$g_{ab}$以及``体元与定向相容''的要求唯一确定，简称适配体元。
+指定$g_{ab}$后，体元$\varepsilon_{a_1 \cdots a_n}$由$g_{ab}$以及``体元与定向相容''的要求唯一确定，简称\textbf{适配体元}。
 今后如无特别声明，在有度规时提到体元都指这个唯一的适配体元。
 
-在$3$维欧氏空间$(\mathbb{R}^3, \delta_{ab})$中任取一个符合直观含义的右手笛卡尔系$\{x, y, z\}$并指定$3$形式场$\varepsilon = \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$为定向，则$\{x, y, z\}$按定义就是以$\varepsilon$衡量的右手系。
-把$\varepsilon = \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$与上式对比可知$\varepsilon$是适配体元。
+在$3$维欧氏空间$(\mathbb{R}^3, \delta_{ab})$中任取一个符合直观含义的右手笛卡尔系$\{x, y, z\}$并指定$3$形式场$\bm\varepsilon = \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$为定向，则$\{x, y, z\}$按定义就是以$\bm\varepsilon$衡量的右手系。
+把$\bm\varepsilon = \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$与上式对比可知$\bm\varepsilon$是适配体元。
 设$G$是$\mathbb{R}^3$的开子集且普通积分$\displaystyle\iiint_G\mathrm{d}x\mathrm{d}y\mathrm{d}z$存在，则此积分自然代表$G$的体积（按普通微积分学的体积定义）。
-另一方面，$3$形式场$\varepsilon$在$G \subset \mathbb{R}^3$上的积分$\displaystyle\int_G\varepsilon$正是$\displaystyle\iiint_G\mathrm{d}x\mathrm{d}y\mathrm{d}z$，可见$\displaystyle\int_G\varepsilon$就是$G$的体积。
-推广至任意带正定度规$g_{ab}$的定向流形$N$，设$\varepsilon$为适配体元，若$\displaystyle\int_N\varepsilon$存在，就称它为$N$的（用$g_{ab}$衡量的）体积（对$1, 2$维流形又分别叫长度和面积）。
-这可看作把$\varepsilon$称为体元的由来。
+另一方面，$3$形式场$\bm\varepsilon$在$G \subset \mathbb{R}^3$上的积分$\displaystyle\int_G\bm\varepsilon$正是$\displaystyle\iiint_G\mathrm{d}x\mathrm{d}y\mathrm{d}z$，可见$\displaystyle\int_G\bm\varepsilon$就是$G$的体积。
+推广至任意带正定度规$g_{ab}$的定向流形$N$，设$\bm\varepsilon$为适配体元，若$\displaystyle\int_N\bm\varepsilon$存在，就称它为$N$的（用$g_{ab}$衡量的）\textbf{体积}（对$1, 2$维流形又分别叫\textbf{长度}和\textbf{面积}）。
+这可看作把$\bm\varepsilon$称为体元的由来。
 
 \begin{theorem}
-    设$\varepsilon$为适配体元，$\{(e_\mu)^a\}$及$\{(e^\mu)_a\}$为基底及其对偶基底，$g$为$g_{ab}$在此基底的分量组成的行列式，$|g|$为$g$的绝对值，则（式中$+$、$-$号分别适用于右手和左手基底）
+    设$\bm\varepsilon$为适配体元，$\{(e_\mu)^a\}$及$\{(e^\mu)_a\}$为基底及其对偶基底，$g$为$g_{ab}$在此基底的分量组成的行列式，$|g|$为$g$的绝对值，则（式中$+$、$-$号分别适用于右手和左手基底）
     $$\varepsilon_{a_1 \cdots a_n} = \pm\sqrt{|g|}(e^1)_{a_1} \wedge \cdots \wedge (e^n)_{a_n}$$
 \end{theorem}
 
@@ -357,7 +357,7 @@ $$\varepsilon^{a_1 \cdots a_n}\varepsilon_{a_1 \cdots a_n} = (-1)^sn!$$
 \end{note}
 
 \begin{theorem}
-    设$\nabla_a$和$\varepsilon$分别是与度规相适配的导数算符和体元，则
+    设$\nabla_a$和$\bm\varepsilon$分别是与度规相适配的导数算符和体元，则
     $$\nabla_b\varepsilon_{a_1 \cdots a_n} = 0$$
 \end{theorem}
 
@@ -402,22 +402,22 @@ $$\varepsilon^{a_1 \cdots a_n}\varepsilon_{a_1 \cdots a_n} = (-1)^sn!$$
 \section{函数在流形上的积分，Gauss定理}
 
 \begin{definition}
-    设$\varepsilon$为流形$M$上的任一体元，$f$为$M$上的$C^0$函数，则$f$在$M$上的积分（记作$\displaystyle\int_Mf$）定义为$n$形式场$f\varepsilon$在$M$上的积分，即
-    $$\int_Mf \coloneq \int_Mf\varepsilon$$
+    设$\bm\varepsilon$为流形$M$上的任一体元，$f$为$M$上的$C^0$函数，则\textbf{$f$在$M$上的积分}（记作$\displaystyle\int_Mf$）定义为$n$形式场$f\bm\varepsilon$在$M$上的积分，即
+    $$\int_Mf \coloneq \int_Mf\bm\varepsilon$$
 \end{definition}
 
 由定义知函数的积分与体元的选择有关。
 只要流形上给定度规，我们约定总是用适配体元来定义函数的积分。
 这样，在带度规的定向流形上，函数给定后其积分也就确定。
 以$3$维欧氏空间$(\mathbb{R}^3, \delta_{ab})$为例。
-设$\{x, y, z\}$为右手笛卡尔系，则$\varepsilon = \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$是适配体元，于是$(\mathbb{R}^3, \delta_{ab})$上的函数$f \colon \mathbb{R}^3 \to \mathbb{R}$的积分按定义为$\displaystyle\int_{\mathbb{R}^3}f = \int_{\mathbb{R}^3}f\varepsilon$，而右边无非是$3$形式场$\omega = f\varepsilon$的积分。
+设$\{x, y, z\}$为右手笛卡尔系，则$\bm\varepsilon = \mathrm{d}x \wedge \mathrm{d}y \wedge \mathrm{d}z$是适配体元，于是$(\mathbb{R}^3, \delta_{ab})$上的函数$f \colon \mathbb{R}^3 \to \mathbb{R}$的积分按定义为$\displaystyle\int_{\mathbb{R}^3}f = \int_{\mathbb{R}^3}f\bm\varepsilon$，而右边无非是$3$形式场$\bm\omega = f\bm\varepsilon$的积分。
 设$f$与笛卡尔系$\{x, y, z\}$结合而得的$3$元函数为$F(x, y, z)$，则
-$$\omega = F(x, y, z)\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z$$
+$$\bm\omega = F(x, y, z)\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z$$
 故
-$$\int f = \int f\varepsilon = \int \omega = \iiint F(x, y, z) \mathrm{d}x\mathrm{d}y\mathrm{d}z$$
+$$\int f = \int f\bm\varepsilon = \int \bm\omega = \iiint F(x, y, z) \mathrm{d}x\mathrm{d}y\mathrm{d}z$$
 如果愿意，也可用（右手）球坐标系$\{r, \theta, \varphi\}$计算。
-由线元式$\mathrm{d}s^2 = \mathrm{d}r^2 + r^2(\mathrm{d}\theta^2 + \sin^2\theta\mathrm{d}\varphi^2)$可知$g = r^4\sin^2\theta$，故$\varepsilon = r^2\sin\theta\mathrm{d}r\wedge\mathrm{d}\theta\wedge\mathrm{d}\varphi$,于是$\omega \equiv f\varepsilon = \hat{F}(r, \theta, \varphi)r^2\sin\theta\mathrm{d}r \wedge\mathrm{d}\theta\wedge\mathrm{d}\varphi$（其中$\hat{F}(r, \theta, \varphi)$是由$f$与$\{r, \theta, \varphi\}$结合而得的$3$元函数），故
-$$\int f = \int f\varepsilon = \int\omega = \iiint\hat{F}(r, \theta, \varphi)r^2\sin\theta\mathrm{d}r\mathrm{d}\theta\mathrm{d}\varphi$$
+由线元式$\mathrm{d}s^2 = \mathrm{d}r^2 + r^2(\mathrm{d}\theta^2 + \sin^2\theta\mathrm{d}\varphi^2)$可知$g = r^4\sin^2\theta$，故$\bm\varepsilon = r^2\sin\theta\mathrm{d}r\wedge\mathrm{d}\theta\wedge\mathrm{d}\varphi$,于是$\bm\omega \equiv f\bm\varepsilon = \hat{F}(r, \theta, \varphi)r^2\sin\theta\mathrm{d}r \wedge\mathrm{d}\theta\wedge\mathrm{d}\varphi$（其中$\hat{F}(r, \theta, \varphi)$是由$f$与$\{r, \theta, \varphi\}$结合而得的$3$元函数），故
+$$\int f = \int f\bm\varepsilon = \int\bm\omega = \iiint\hat{F}(r, \theta, \varphi)r^2\sin\theta\mathrm{d}r\mathrm{d}\theta\mathrm{d}\varphi$$
 
 下面介绍一般形式的Gauss定理。
 读者熟悉的Gauss定理是
@@ -427,8 +427,8 @@ $$\iiint_V (\vec{\nabla}\cdot\vec{A})\mathrm{d}V = \oiint_S\vec{A}\cdot\vec{n}\m
 第一步是导出如下定理，其左边可看作上式左边的推广。
 
 \begin{theorem}
-    设$M$是$n$维定向流形，$N$是$M$中的$n$维紧致带边嵌入子流形，$g_{ab}$是$M$上的度规，$\varepsilon$和$\nabla_a$分别是适配体元和适配导数算符，$v^a$是$M$上的$C^1$矢量场，则
-    $$\int_{\operatorname{i}(N)}(\nabla_bv^b)\varepsilon = \int_{\partial N}v^b\varepsilon_{b a_1 \cdots a_{n - 1}}$$
+    设$M$是$n$维定向流形，$N$是$M$中的$n$维紧致带边嵌入子流形，$g_{ab}$是$M$上的度规，$\bm\varepsilon$和$\nabla_a$分别是适配体元和适配导数算符，$v^a$是$M$上的$C^1$矢量场，则
+    $$\int_{\operatorname{i}(N)}(\nabla_bv^b)\bm\varepsilon = \int_{\partial N}v^b\varepsilon_{b a_1 \cdots a_{n - 1}}$$
 \end{theorem}
 
 \begin{note}
@@ -436,8 +436,8 @@ $$\iiint_V (\vec{\nabla}\cdot\vec{A})\mathrm{d}V = \oiint_S\vec{A}\cdot\vec{n}\m
 \end{note}
 
 \begin{proof}
-    $n - 1$形式场$\omega \equiv v^b\varepsilon_{b a_1 \cdots a_{n - 1}}$的外微分$\mathrm{d}\omega = n\nabla_{[c}(v^b\varepsilon_{|b|a_1 \cdots a_{n - 1}]})$是$n$形式场，其中$\nabla_c$可为任意导数算符。
-    $N$中任一点的$n$形式的集合是$1$维矢量空间，故该点的两个$n$形式$\mathrm{d}\omega$与$\varepsilon$只差一个因子，即
+    $n - 1$形式场$\bm\omega \equiv v^b\varepsilon_{b a_1 \cdots a_{n - 1}}$的外微分$\mathrm{d}\bm\omega = n\nabla_{[c}(v^b\varepsilon_{|b|a_1 \cdots a_{n - 1}]})$是$n$形式场，其中$\nabla_c$可为任意导数算符。
+    $N$中任一点的$n$形式的集合是$1$维矢量空间，故该点的两个$n$形式$\mathrm{d}\bm\omega$与$\bm\varepsilon$只差一个因子，即
     $$n\nabla_{[c}(v^b\varepsilon_{|b|a_1 \cdots a_{n - 1}]}) = h\varepsilon_{ca_1 \cdots a_{n - 1}}$$
     其中$h$是$N$上的函数，可求之如下：
     上式两边与$\varepsilon^{ca_1 \cdots a_{n - 1}}$缩并，右边得$(-1)^shn!$，左边得
@@ -445,7 +445,7 @@ $$\iiint_V (\vec{\nabla}\cdot\vec{A})\mathrm{d}V = \oiint_S\vec{A}\cdot\vec{n}\m
         & n\varepsilon^{ca_1 \cdots a_{n - 1}}\nabla_{[c}(v^b\varepsilon_{|b|a_1 \cdots a_{n - 1}]}) = n\varepsilon^{[ca_1 \cdots a_{n - 1}]}\nabla_{c}(v^b\varepsilon_{ba_1 \cdots a_{n - 1}}) \\
         = & n\varepsilon^{ca_1 \cdots a_{n - 1}}\varepsilon_{ba_1 \cdots a_{n - 1}}\nabla_{c}v^b = n(-1)^s(n - 1)!\delta^c{}_b\nabla_cv^b = (-1)^sn!\nabla_bv^b
     \end{split}\]
-    （注意加入$\delta$时是把$\varepsilon$的一个上标$c$换成了$b$）故$h = \nabla_bv^b, ~ \mathrm{d}\omega = \varepsilon\nabla_bv^b$。
+    （注意加入$\delta$时是把$\bm\varepsilon$的一个上标$c$换成了$b$）故$h = \nabla_bv^b, ~ \mathrm{d}\bm\omega = \bm\varepsilon\nabla_bv^b$。
     根据Stokes定理，上式得证。
 \end{proof}
 
@@ -458,20 +458,20 @@ $N$上的度规$g_{ab}$在$\partial N$上的诱导度规为$h_{ab} = g_{ab} \mp 
 \textcircled{2} 与度规$h_{ab}$相适配，即
 $$\hat\varepsilon^{a_1 \cdots a_{n - 1}}\hat\varepsilon_{a_1 \cdots a_{n - 1}} = (-1)^{\hat s}(n - 1)!$$
 其中$\hat\varepsilon^{a_1 \cdots a_{n - 1}}$是用$h_{ab}$对$\hat\varepsilon_{a_1 \cdots a_{n - 1}}$升指标的结果，$\hat s$是$h_{ab}$的对角元中负数的个数。
-$\partial N$上满足这两个条件的体元$\hat\varepsilon_{a_1 \cdots a_{n - 1}}$称为诱导体元。
+$\partial N$上满足这两个条件的体元$\hat\varepsilon_{a_1 \cdots a_{n - 1}}$称为\textbf{诱导体元}。
 设$n^b$是$\partial N$的外向单位法矢（以$\operatorname{i}(N)$作为内部，``外向''有明确意义），则诱导体元$\hat\varepsilon_{a_1 \cdots a_{n - 1}}$与$N$上体元$\varepsilon_{a_1 \cdots a_{n - 1}}$有如下关系：
 $$\hat\varepsilon_{a_1 \cdots a_{n - 1}} = n^b\varepsilon_{b a_1 \cdots a_{n - 1}}$$
 
 下面就是把上上式作为特例包括在内的一般Gauss定理。
 
 \begin{theorem}
-    设$M$是$n$维定向流形，$N$是$M$中的$n$维紧致带边嵌入子流形，$g_{ab}$是$M$上的度规，$\varepsilon$和$\nabla_a$分别是适配体元和适配导数算符，$\hat\varepsilon$是$\partial N$上的诱导体元，$\partial N$的外向法矢$n^a$满足$n^an_a = \pm 1$，$v^a$是$M$上的$C^1$矢量场,则
-    $$\int_{\operatorname{i}(N)}(\nabla_av^a)\varepsilon = \pm \int_{\partial N}v^an_a\hat\varepsilon ~ \text{（$n^an_a = +1$时取$+$, $n^an_a = -1$时取$-$）}$$
+    设$M$是$n$维定向流形，$N$是$M$中的$n$维紧致带边嵌入子流形，$g_{ab}$是$M$上的度规，$\bm\varepsilon$和$\nabla_a$分别是适配体元和适配导数算符，$\bm{\hat\varepsilon}$是$\partial N$上的诱导体元，$\partial N$的外向法矢$n^a$满足$n^an_a = \pm 1$，$v^a$是$M$上的$C^1$矢量场,则
+    $$\int_{\operatorname{i}(N)}(\nabla_av^a)\bm\varepsilon = \pm \int_{\partial N}v^an_a\bm{\hat\varepsilon} ~ \text{（$n^an_a = +1$时取$+$, $n^an_a = -1$时取$-$）}$$
 \end{theorem}
 
 \begin{proof}
-    由上一定理知只须证明$\displaystyle\int_{\partial}v^b\varepsilon_{ba_1 \cdots a_{n - 1}} = \pm \int_{\partial N}v^an_a\hat\varepsilon$。
-    令$\omega = v^b\varepsilon_{ba_1 \cdots a_{n - 1}}$,注意到$\displaystyle\int_{\phi[S]}\omega \equiv \int_{\phi[S]}\tilde\omega$,只须证明
+    由上一定理知只须证明$\displaystyle\int_{\partial}v^b\varepsilon_{ba_1 \cdots a_{n - 1}} = \pm \int_{\partial N}v^an_a\bm{\hat\varepsilon}$。
+    令$\bm\omega = v^b\varepsilon_{ba_1 \cdots a_{n - 1}}$,注意到$\displaystyle\int_{\phi[S]}\bm\omega \equiv \int_{\phi[S]}\bm{\tilde\omega}$,只须证明
     $$\tilde\omega_{a_1 \cdots a_{n - 1}} = \pm v^bn_b\hat\varepsilon_{a_1 \cdots a_{n - 1}}, ~ \forall q \in \partial N$$
     其中$n^a$为$\partial N$的单位外向法矢。
     上式两边都是$W_q$上的$n - 1$形式，故必有$K$使
@@ -493,9 +493,9 @@ $$\hat\varepsilon_{a_1 \cdots a_{n - 1}} = n^b\varepsilon_{b a_1 \cdots a_{n - 1
 \begin{note}
     上述定理的条件是$n^a$为$\partial N$的外向单位法矢。
     把规定改为``当$n^an_a = +1$时，$n^a$朝外向，$n^an_a = -1$时$n^a$朝内向'',则上述定理右边的$\pm$号消失，Gauss定理改取如下形式
-    $$\int_{\operatorname{i}(N)}(\nabla_av^a)\varepsilon = \int_{\partial N}v^an_a\hat\varepsilon$$
+    $$\int_{\operatorname{i}(N)}(\nabla_av^a)\bm\varepsilon = \int_{\partial N}v^an_a\bm{\hat\varepsilon}$$
     
-    若$\partial N$为类光超曲面，即$n^an_a = 0$，则上式仍然成立，但$\hat\varepsilon$要按下式定义：
+    若$\partial N$为类光超曲面，即$n^an_a = 0$，则上式仍然成立，但$\bm{\hat\varepsilon}$要按下式定义：
     $$\frac{1}{n}\varepsilon_{a_1 \cdots a_n} = n_{[a_1}\hat\varepsilon_{a_2 \cdots a_n]}$$
 \end{note}
 
@@ -503,28 +503,28 @@ $$\hat\varepsilon_{a_1 \cdots a_{n - 1}} = n^b\varepsilon_{b a_1 \cdots a_{n - 1
 
 以$\Lambda_p(l)$代表$p \in M$的全部$l$形式的集合，则有
 $$\dim\Lambda_p(l) = C^l_n = C^{n - l}_n = \dim\Lambda_p(n - l)$$
-若$M$为带度规$g_{ab}$的定向流形，$\varepsilon$为适配体元，则可用$\varepsilon$及$g_{ab}$在$\Lambda_M(l)$和$\Lambda_M(n - l)$之间定义一个同构映射如下：
+若$M$为带度规$g_{ab}$的定向流形，$\bm\varepsilon$为适配体元，则可用$\bm\varepsilon$及$g_{ab}$在$\Lambda_M(l)$和$\Lambda_M(n - l)$之间定义一个同构映射如下：
 
 \begin{definition}
-    $\forall \omega \in \Lambda_M(l)$，定义$\omega$的对偶微分形式$^*\omega \in \Lambda_M(n - l)$为
+    $\forall \bm\omega \in \Lambda_M(l)$，定义$\bm\omega$的\textbf{对偶微分形式}$^*\bm\omega \in \Lambda_M(n - l)$为
     $$^*\omega_{a_1 \cdots a_{n - 1}} \coloneq \frac{1}{n!}\omega^{b_1 \cdots b_l}\varepsilon_{b_1 \cdots b_l a_1 \cdots a_{n - 1}}$$
     其中
     $$\omega^{b_1 \cdots b_l} = g^{b_1c_1} \cdots g^{b_lc_l}\omega_{c_1 \cdots c_l}$$
 \end{definition}
 
 \begin{note}
-    以上定义的$^*$称为Hodge star。不难看出：
+    以上定义的$^*$称为\textbf{Hodge star}。不难看出：
     \textcircled{1} $^* \colon \Lambda_M(l) \to \Lambda_M(n - l)$是同构映射；
     \textcircled{2} $f \in \mathscr{F}_M$作为$0$形式场，其对偶形式场按定义为：
     $$^*f_{a_1 \cdots a_n} = \frac{1}{0!}f\varepsilon_{a_1 \cdots a_n} = f\varepsilon_{a_1 \cdots a_n}$$
-    即$^*f$等于度规适配的体元$\varepsilon$的$f$倍，因此可以说函数$f$的积分定义为其对偶形式场的积分。
+    即$^*f$等于度规适配的体元$\bm\varepsilon$的$f$倍，因此可以说函数$f$的积分定义为其对偶形式场的积分。
     对上式再取$^*$得
-    $$^*(^*f) = ^*(f\varepsilon) = \frac{1}{n!}f\varepsilon^{b_1 \cdots b_n}\varepsilon_{b_1 \cdots b_n} = (-1)^sf$$
+    $$^*(^*f) = ^*(f\bm\varepsilon) = \frac{1}{n!}f\varepsilon^{b_1 \cdots b_n}\varepsilon_{b_1 \cdots b_n} = (-1)^sf$$
     这一结果可推广为如下定理：
 \end{note}
 
 \begin{theorem}
-    $^{**}\omega = (-1)^{s + l(n - l)}\omega$
+    $^{**}\bm\omega = (-1)^{s + l(n - l)}\bm\omega$
 \end{theorem}
 
 现在用微分几何观点重新观察早已熟悉的$3$维欧氏空间$(\mathbb{R}^3, \delta_{ab})$上的矢量代数和矢量场论（其中$M$就是$\mathbb{R}^3$）。
@@ -533,8 +533,8 @@ $$\dim\Lambda_p(l) = C^l_n = C^{n - l}_n = \dim\Lambda_p(n - l)$$
     \item 为什么过去从未听说过$1$、$2$和$3$形式场？
     首先，利用欧式度规$\delta_{ab}$可把对偶矢量场$\omega_a$变为矢量场$\omega^a = \delta^{ab}\omega_b$，从而消除了使用$1$形式场的必要性。
     今后在只涉及$(\mathbb{R}^3, \delta_{ab})$时将不再认真区分上下标。
-    其次，由于$n = 3$，$\Lambda_M(2)$与$\Lambda_M(1)$维数相同并可用同构映射$^* \colon \Lambda_M(2) \to \Lambda_M(1)$把$\omega \in \Lambda_M(2)$与$^*\omega \in \Lambda_M(1)$认同，从而消除了使用$2$形式场的必要性。
-    类似地，$\Lambda_M(3)$与$\Lambda_M(0)$维数相同并可用同构映射$^* \colon \Lambda_M(3) \to \Lambda_M(0)$把$\omega \in \Lambda_M(3)$与$^*\omega \in \Lambda_M(0)$认同，而后者（$0$形式场）就是$\mathbb{R}^3$上的函数。
+    其次，由于$n = 3$，$\Lambda_M(2)$与$\Lambda_M(1)$维数相同并可用同构映射$^* \colon \Lambda_M(2) \to \Lambda_M(1)$把$\bm\omega \in \Lambda_M(2)$与$^*\bm\omega \in \Lambda_M(1)$认同，从而消除了使用$2$形式场的必要性。
+    类似地，$\Lambda_M(3)$与$\Lambda_M(0)$维数相同并可用同构映射$^* \colon \Lambda_M(3) \to \Lambda_M(0)$把$\bm\omega \in \Lambda_M(3)$与$^*\bm\omega \in \Lambda_M(0)$认同，而后者（$0$形式场）就是$\mathbb{R}^3$上的函数。
     可见$3$维欧氏空间的微分形式场都可由函数和矢量场代替。
     \item 现在讨论矢量代数的点乘和叉乘运算。
     把矢量$\vec A$和$\vec B$分别记作$A^a$和$B^b$。
@@ -555,8 +555,8 @@ $$\dim\Lambda_p(l) = C^l_n = C^{n - l}_n = \dim\Lambda_p(n - l)$$
     $}。
     于是$^*\omega_c$在该笛卡尔系的第$k$分量为
     $$^*\omega_k = \varepsilon_{ijk}A^iB^j, ~ k = 1, 2, 3$$
-    上式右边正是$\vec A \times \vec B$按叉乘定义的第$k$分量$(\vec A \times \vec B)_k$，故$\vec A \times \vec B$可看作$^*\omega$（准确地说是对偶矢量$^*\omega$对应的矢量）。
-    而$\omega = A \wedge B$，可见对$\vec A$和$\vec B$求叉积就是先求楔积$A \wedge B$再求其对偶形式，可直观地表达为$\times = ^* \comp \wedge$。
+    上式右边正是$\vec A \times \vec B$按叉乘定义的第$k$分量$(\vec A \times \vec B)_k$，故$\vec A \times \vec B$可看作$^*\bm\omega$（准确地说是对偶矢量$^*\bm\omega$对应的矢量）。
+    而$\bm\omega = A \wedge B$，可见对$\vec A$和$\vec B$求叉积就是先求楔积$A \wedge B$再求其对偶形式，可直观地表达为$\times = ^* \comp \wedge$。
     \item 再从微分几何看$3$维欧氏空间的矢量场论。
     如前所述，矢量场论的$\vec\nabla$就是与欧氏度规$\delta_{ab}$适配的导数算符$\partial_a$，涉及$\vec\nabla$的公式原则上都可用$\partial_a$表出。
     例如
@@ -627,7 +627,7 @@ $$\dim\Lambda_p(l) = C^l_n = C^{n - l}_n = \dim\Lambda_p(n - l)$$
     \begin{proof}
         \begin{enumerate}[（1）]
             \item $\mathrm{curl}\vec E = 0 \Rightarrow \mathrm{^*d}E = 0  \Rightarrow ^*(\mathrm{^*d}E) = ^*0 = 0$
-            而根据$^{**}\omega = (-1)^{s + l(n - l)}\omega$，可知$^*(\mathrm{^*d}E) = \mathrm{d}E$
+            而根据$^{**}\bm\omega = (-1)^{s + l(n - l)}\bm\omega$，可知$^*(\mathrm{^*d}E) = \mathrm{d}E$
             \item $\mathrm{div}\vec B = 0 \Rightarrow \mathrm{^*d}(^*B) = 0 \Rightarrow \mathrm{d}(^*B) = 0 \Rightarrow ^*B = \mathrm{d}A \Rightarrow B = \mathrm{^*d}A$
         \end{enumerate}
     \end{proof}
