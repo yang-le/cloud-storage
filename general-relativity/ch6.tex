@@ -1,0 +1,151 @@
+\chapter{李群和李代数}
+
+\section{群论初步}
+
+\begin{definition}
+    集合$G$配以满足以下条件的映射$G \times G \to G$（叫群乘法）称为群：
+    \begin{enumerate}[（a）]
+        \item $(g_1g_2)g_3 = g_1(g_2g_3) ~ \forall g_1, g_2, g_3 \in G$
+        \item 存在恒等元$e \in G$，使$eg = ge = g, ~ \forall g \in G$
+        \item $\forall g \in G$, 存在逆元$g^{-1} \in G$,使$g^{-1}g = gg^{-1} = e$
+    \end{enumerate}
+\end{definition}
+
+\begin{note}
+    恒等元是唯一的\footnote{
+        考虑有两个恒等元$e_1, e_2$，有$e_1e_2 = e_1 = e_2$
+    }，任一群元的逆元也是唯一的\footnote{
+        考虑任一群元$g$有两个逆元$g_1^{-1}, g_2^{-1}$，有$g_1^{-1} = (g_2^{-1}g)g_1^{-1} = g_2^{-1}(gg_1^{-1}) = g_2^{-1}$
+    }。
+\end{note}
+
+\begin{definition}
+    乘法满足交换律的群（即$gh = hg ~ \forall g, h \in G$）称为阿贝尔群。
+    只含有限个元素的群叫有限群，否则叫无限群。
+    群$G$的子集$H$称为$G$的子群，若$H$用$G$的乘法为乘法也构成群。
+\end{definition}
+
+\begin{definition}
+    设$G$和$G'$是群。
+    映射$\mu \colon G \to G'$叫同态，若
+    $$\mu(g_1g_2) = \mu(g_1)\mu(g_2), \forall g_1, g_2 \in G$$
+\end{definition}
+
+\begin{theorem}
+    同态映射$\mu \colon G \to G'$有以下性质：
+    \begin{enumerate}[（a）]
+        \item 若$e, e'$各为$G, G'$的恒等元，则$\mu(e) = e'$\footnote{
+            $\mu(g) = \mu(ge) = \mu(g)\mu(e), ~ \forall \mu(g) \in G'$，考虑到恒等元的唯一性，则必有$\mu(e) = e'$。
+        }
+        \item $\mu(g^{-1}) = \mu(g)^{-1}, \forall g \in G$\footnote{
+            $\mu(g^{-1}) = \mu(g^{-1})e' = \mu(g^{-1})\mu(g)\mu(g)^{-1} = \mu(e)\mu(g)^{-1} = \mu(g)^{-1}$
+        }
+        \item $\mu[G]$是$G'$的子群\footnote{
+            显然$\mu[G]$是$G'$的子集（否则$\mu$就不构成$G \to G'$的映射）。
+            按$\mu$的定义，容易验证$\mu[G]$上的乘法是结合的，单位元是$\mu(e)$，$\mu(g)$逆元为$\mu(g^{-1})$
+        }，当$G$是阿贝尔群时$\mu[G]$是$G'$的阿贝尔子群\footnote{
+            若$G$上的乘法可交换，则$\mu$的定义保证$\mu[G]$上的乘法也可交换。
+            注意这并不说明$G'$上的乘法可交换。
+        }。
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}
+    一一到上的同态映射称为同构。
+    当有可能与矢量空间之间的同构混淆时又明确地把群之间的同构称为群同构。
+    同构$\mu \colon G \to G$称为群$G$上的自同构。
+\end{definition}
+
+\begin{example}
+    $\forall g \in G$，可构造一个称为伴随同构的自同构映射，又称内自同构，记作$I_g \colon G \to G$，定义\footnote{
+        当然应该验证这一定义符合同构映射的要求。
+        首先$I_g(h_1h_2) = I_g(h_1)I_g(h_2)$说明这是同态映射。
+        其次，$I_g(h_1) = I_g(h2) \Rightarrow h_1 = h_2, \forall h_1, h_2 \in G$说明该映射是一一的。
+        最后，$I_g(g^{-1}hg) = h, \forall h \in G$说明该映射是到上的。
+    }为$$I_g(h) \coloneq ghg^{-1}, \forall h \in G$$
+\end{example}
+
+\begin{note}
+    今后常把两个同构的群视作一样，并用等号表示。
+\end{note}
+
+\begin{definition}
+    群$G$和$G'$（看作两个集合）的卡氏积$G \times G'$按下列乘法
+    $$(g_1, g_1')(g_2, g_2') \coloneq (g_1g_2, g_1'g_2'), ~ \forall g_1, g_2 \in G, ~ g_1',g_2' \in G'$$
+    构成的群称为$G$和$G'$的直积群。
+\end{definition}
+
+\begin{example}
+    以加法为群乘法，则$\mathbb{R}$是群。
+    $\mathbb{R}^2 \equiv \mathbb{R} \times \mathbb{R}$配以由上式定义的乘法就构成直积群，而且此乘法正好是$\mathbb{R}^2$上（自然定义）的加法。
+\end{example}
+
+\begin{definition}
+    设$H$是群$G$的子群，$g \in G$，则$gH \equiv \{gh \mid h \in H\}$称为$H$的含$g$的左陪集。
+    类似地可定义右陪集。
+\end{definition}
+
+\begin{note}
+    若子群$H$的两个左陪集有交，则两者必相等\footnote{
+        设$p = g_1h_1 = g_2h_2$是$g_1H \cap g_2H$中的一个元素。
+        $\forall x = g_1h_x \in g_1H$，有$x = g_1h_1h_1^{-1}h_x = g_2h_2h_1^{-1}h_x \in g_2H$，反之亦然。
+    }。
+\end{note}
+
+\begin{definition}
+    群$G$的子群$H$称为正规子群或不变子群，若
+    $$ghg^{-1} \in H, ~ \forall g \in G, h \in H$$
+\end{definition}
+
+\begin{definition}
+    设$G$是群，则$A(G) \equiv \{\mu \colon G \to G \mid \mu \text{为自同构映射}\}$以映射的复合为群乘法构成群，称为群$G$的自同构群。
+    ``以映射的复合为乘法''是指$\forall \mu, \nu \in A(G)$，群乘积$\mu\nu \in A(G)$定义为$(\mu\nu)(g) \equiv \mu(\nu(g)) ~ \forall g \in G$。
+\end{definition}
+
+\begin{theorem}
+    以$A_I(G)$代表$G$上全体内自同构映射的集合，即
+    $$A_I(G) \equiv \{I_g \colon G \to G \mid g \in G\} \subset A(G)$$
+    则$A_I(G)$是群$A(G)$的一个正规子群。
+\end{theorem}
+
+\begin{proof}
+    $A_I(G)$显然是$A(G)$的子集，并且容易证明，以映射复合为群乘法，$A_I(G)$也构成群，所以$A_I(G)$是$A(G)$的子群。
+    其恒等元为$I_e$，其相应于$I_g$的逆元为$I_{g^{-1}}$。
+    为了验证它还是正规子群，考虑$(\mu I_g \mu^{-1})(h) = \mu(g(\mu^{-1}(h))g^{-1}) = \mu(g)\mu(\mu^{-1}(h))\mu(g^{-1}) = I_{\mu(g)}(h), \forall \mu \in A(G), I_g \in A_I(G), h \in G$。
+    所以有$\mu I_g \mu^{-1} = I_{\mu(g)} \in A_I(G), \forall \mu \in A(G), I_g \in A_I(G)$。
+\end{proof}
+
+\begin{definition}
+    设$H$和$K$是群，且存在同态映射$\mu \colon K \to A(H)$。$\forall k \in K$，把$\mu(k) \in A(H)$简记作$\mu_k$，则$G \equiv H \times K$配以下式定义的群乘法
+    $$(h, k)(h', k') \coloneq (h\mu_k(h'), kk'), ~ \forall h,h' \in H, k, k' \in K$$
+    所构成的群称为$H$和$K$的半直积群\footnote{
+        真是一个巧妙的定义。
+        
+        结合律：$[(h, k)(h', k')](h'', k'') = (h\mu_k(h'), kk')(h'', k'') = (h\mu_k(h')\mu_{kk'}(h''), kk'k'')$
+        而$(h, k)[(h', k')(h'', k'')] = (h, k)(h'\mu_{k'}(h''), k'k'') = (h\mu_k(h'\mu_{k'}(h'')), kk'k'') = (h\mu_k(h')\mu_k\mu_{k'}(h''), kk'k'') = (h\mu_k(h')\mu_{kk'}(h''), kk'k'')$
+        最后两个等号是因为$A(H)$中的元素皆为同态映射，而且$\mu$本身也是同态映射（因此$\mu(ab) = \mu(a)\mu(b)$）。
+
+        单位元：注意到同态映射保单位元，而$A(H)$中的单位元就是恒等映射，故$(e_h, e_k)(h, k) = (e_h\mu_{e_k}(h), e_kk) = (e_hh, e_kk)$
+        而$(h, k)(e_h, e_k) = (h\mu_k(e_h), ke_k) = (he_h, ke_k)$
+
+        逆元：$(\mu_{k^{-1}}(h^{-1}), k^{-1})(h, k) = (\mu_{k^{-1}}(h^{-1})\mu_{k^{-1}}(h), k^{-1}k) = (e_h, e_k)$
+        而$(h, k)(\mu_{k^{-1}}(h^{-1}), k^{-1}) = (h\mu_k(\mu_{k^{-1}}(h^{-1})), kk^{-1}) = (e_h, e_k)$
+    }，记作$G \equiv H \otimes_S K$。
+\end{definition}
+
+\section{李群}
+
+\section{李代数}
+
+\section{单参子群和指数映射}
+
+\section{常用李群及其李代数}
+
+\section{李代数的结构常数}
+
+\section{李变换群和Killing矢量场}
+
+\section{伴随表示和Killing型}
+
+\section{固有洛伦兹群和洛伦兹代数}
+
