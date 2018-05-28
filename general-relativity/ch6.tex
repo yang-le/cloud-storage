@@ -135,6 +135,84 @@
 
 \section{李群}
 
+\begin{definition}
+    若$G$既是$n$维（实）流形又是群，其群乘映射$G \times G \to G$（请注意$G \times G$也是流形）和求逆元映射$G \to G$都是$C^\infty$的，则$G$叫$n$维（实）李群\footnote{
+        约定把有离散拓扑的可数群称为零维李群。
+        因为有限群的默认拓扑是离散拓扑，所以有限群都可看作零维李群。
+    }。
+\end{definition}
+
+\begin{example}
+    以加法为群乘法，则$\mathbb{R}$是$1$维李群。
+\end{example}
+
+\begin{example}
+    $\mathbb{R}$和$\mathbb{R}$的直积群$\mathbb{R}^2$是$2$维李群。
+    推而广之，$\mathbb{R}^n$是$n$维李群。
+\end{example}
+
+\begin{example}
+    设$\phi \colon \mathbb{R} \times M \to M$是流形$M$上的任一单参微分同胚群，则$\{\phi_t \mid t \in \mathbb{R}\}$是$1$维李群\footnote{
+        $\phi(t, p) = p ~ \forall p \in M, t \in \mathbb{R}$的情况可视为例外。
+        这是与$M$上的$0$矢量场对应的那个特殊的单参微分同胚群，是只含恒等元的独点群，可看作零维李群。
+    }，同构于$\mathbb{R}$。
+\end{example}
+
+\begin{example}
+    易证广义黎曼空间$(M, g_{ab})$上的两个等度规映射的复合也是等度规映射，因此$(M, g_{ab})$上全体等度规映射的集合以复合映射为乘法构成群，称为$(M, g_{ab})$的等度规群。
+    还可验证等度规群是李群。
+    闵氏时空的等度规群是$10$维李群，施瓦西时空的等度规群是$4$维李群。
+    一般地，$n$维广义黎曼空间$(M, g_{ab})$的等度规群的维数$m \leq n(n+1)/2$。
+    但$(M, g_{ab})$上全体微分同胚的集合则``大''到不能构成有限群。
+    事实上，它是一个无限维群。
+\end{example}
+
+\begin{note}
+    本章只限于讨论有限维李群，虽然许多结论对无限维李群也适用。
+\end{note}
+
+以下如无特别声明，$G$一律代表李群。
+李群的双重身份（即是群又是流形）使得用几何语言研究李群成为可能。
+群乘映射和求逆元映射的光滑性则使李群具有一系列好性质。
+
+\begin{definition}
+    李群$G$和$G'$之间的$C^\infty$同态映射$\mu \colon G \to G'$称为李群同态。
+    李群同态$\mu$称为李群同构，若$\mu$为微分同胚。
+\end{definition}
+
+\begin{definition}
+    李群$G$的子集$H$称为$G$的李子群，若$H$既是$G$的子流形又是$G$的子群。
+\end{definition}
+
+\begin{definition}
+    $\forall g \in G$，映射$L_g \colon h \mapsto gh ~ \forall h \in G$叫做由$g$生成的左平移。
+\end{definition}
+
+\begin{note}
+    \textcircled{1} 由李群定义中关于群乘映射和求逆元映射的$C^\infty$性可知左平移$L_g \colon G \to G$是微分同胚映射。
+    \textcircled{2} 易见$L_{gh} = L_g \comp L_h$。
+\end{note}
+
+以下的讨论经常涉及$G$的一点的矢量和$G$的一个子集上的矢量场，并要对两者作明确区分。
+我们将用$A, B, \cdots$代表一点的矢量，用$\bar A, \bar B, \cdots$代表矢量场，用$\bar A_g$代表矢量场$\bar A$在点$g \in G$的值。
+为简化表达式，本章中所有矢量（除少数情况外）都不加抽象指标。
+
+\begin{definition}
+    $G$上的矢量场$\bar A$叫左不变的，若
+    $$L_{g*}\bar A = \bar A, ~ \forall g \in G$$
+    其中$L_{g*}$是由左平移映射$L_g \colon G \to G$诱导的推前映射。
+\end{definition}
+
+\begin{note}
+    \textcircled{1} 左不变矢量场必为$C^\infty$矢量场；
+    \textcircled{2} 不难看出左不变矢量场的定义式等价于
+    $$(L_{g*}\bar A)_{gh} = \bar A_{gh}$$
+    推前映射一般只能把一点的张量映射为张量，但当$\phi \colon M \to N$是微分同胚时，$\phi_*$可把$M$上张量场$v$映为$N$上张量场$\phi_*v$，定义为$(\phi_*v)|_{\phi(p)} = \phi_*(v|_p) ~ \forall p \in M$。
+    用于现在的情况，就是$(L_{g*}\bar A)_{gh} = L_{g*}(\bar A_h)$。
+    于是上式又等价于$$\bar A_{gh} = L_{g*}(\bar A_h)$$
+    上式可作为左不变矢量场$\bar A$的等价定义。
+\end{note}
+
 \section{李代数}
 
 \section{单参子群和指数映射}
