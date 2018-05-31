@@ -320,7 +320,97 @@ $$[A, B] \coloneq [\bar A, \bar B]_e, ~ \forall A, B \in V_e$$
     设$H$是李群$G$的李子群，则$H$的李代数$\mathscr{H}$是$\mathscr{G}$的李子代数。
 \end{theorem}
 
+\begin{definition}
+    李代数$\mathscr{G}$的子代数$\mathscr{H}$称为$\mathscr{G}$的理想，若
+    $$[A, \mu] \in \mathscr{H}, ~ \forall A \in \mathscr{G}, \mu \in \mathscr{H}$$
+\end{definition}
+
+\begin{note}
+    理想在李代数理论中的角色相当于正规子群在群论中的角色。
+\end{note}
+
+\begin{theorem}
+    设$\mathscr{H} \subset \mathscr{G}$是理想，$\mathscr{G} / \mathscr{H}$代表以等价类为元素的集合（$A, B \in \mathscr{G}$叫等价的，若$A - B \in \mathscr{H}$）,则$\mathscr{G} / \mathscr{H}$是李代数，称为商李代数。
+\end{theorem}
+
+\begin{definition}
+    李代数$\mathscr{G}$称为单李代数，若它不是阿贝尔代数而且除$\mathscr{G}$及$\{0\}$外不含理想。
+    $\mathscr{G}$称为半单李代数，若它不含非零的阿贝尔理想。
+    相应地，李群$G$称为单李群，若它不是阿贝尔群而且除$G$外不含正规子群。
+    $G$称为半单李群，若它不含阿贝尔正规子群。
+\end{definition}
+
 \section{单参子群和指数映射}
+
+\begin{definition}
+    $C^\infty$曲线$\gamma \colon \mathbb{R} \to G$叫李群$G$的单参子群，若
+    $$\gamma(s + t) = \gamma(s)\gamma(t), ~ \forall s, t \in \mathbb{R}$$
+    其中$\gamma(s)\gamma(t)$代表群元$\gamma(s)$和$\gamma(t)$的群乘积。
+\end{definition}
+
+\begin{note}
+    上式表明单参子群$\gamma \colon \mathbb{R} \to G$是从李群$\mathbb{R}$到$G$的李群同态映射。
+\end{note}
+
+\begin{note}
+    按上述定义，单参子群是满足上式的一条$C^\infty$曲线，但不妨把映射的像集$\{\gamma(t) \mid t \in \mathbb{R}\} \subset G$看作单参子群。
+    上式保证：
+    \textcircled{1} 子集的任意两个元素按$G$的乘法的积仍在子集内；
+    \textcircled{2} 子集含$G$的恒等元$e$（由上式得$\gamma(t) = \gamma(0)\gamma(t)$，以$\gamma(t)$的逆元右乘得$e = \gamma(0)$）
+    \textcircled{3} 子集的任一元素$\gamma(t)$（作为$G$的元素）的逆元（就是$\gamma(-t)$）在子集内。
+    所以子集$\{\gamma(t) \mid t \in \mathbb{R}\}$构成子群\footnote{
+        在$\gamma \colon \mathbb{R} \to G$是多对一映射的情况下（例如后面的独点线及第$5$节的$SO(2)$群），$\exists t_1, t_2 \in \mathbb{R}$使$\gamma(t_1) = \gamma(t_2) \in \{\gamma(t) \mid t \in \mathbb{R}\}$。
+        子群首先是子集，所以$\gamma(t_1)$和$\gamma(t_2)$理应看作子群$\{\gamma(t) \mid t \in \mathbb{R}\}$的同一群元。
+        但若称$\{\gamma(t) \mid t \in \mathbb{R}\}$为单参子群，则不同参数值$t_1$和$t_2$又应给出不同群元，就是说，一旦在``子群''前冠以``单参''就应有$\gamma(t_1) \neq \gamma(t_2)$。
+        可见``单参子群''一词有不妥之处，至少不应把子群$\{\gamma(t) \mid t \in \mathbb{R}\}$称为单参子群。
+    }（而且是阿贝尔子群）。
+\end{note}
+
+本节的一个重点是证明如下结论：``单参子群是左不变矢量场过$e$的不可延积分曲线，反之亦然。''
+单参子群按定义是从$\mathbb{R}$到$G$的映射，定义域为全$\mathbb{R}$。
+因此，要接受上述结论，至少要证明左不变矢量场过$e$的积分曲线的参数可取遍全$\mathbb{R}$。
+下面的定理对此给出保证（而且更强）。
+
+\begin{theorem}
+    任一左不变矢量场$\bar A$都是完备矢量场，就是说，它的每一不可延积分曲线的参数都可取遍全$\mathbb{R}$。
+\end{theorem}
+
+\begin{proof}
+    本书惯用$\partial / \partial t$代表曲线$\gamma(t)$的切矢，由于本章涉及多条曲线的切矢，为避免混淆，我们改用$\frac{\mathrm{d}}{\mathrm{d}t}\gamma(t)$代表$\gamma(t)$的切矢。
+    设$\mu(t)$是$\bar A$的、满足$\mu(0) = e$的积分曲线，不失一般性，设其定义域为开区间$(-\varepsilon, \varepsilon)$，即$\mu \colon (-\varepsilon, \varepsilon) \to G$。
+    在线上取点$h \equiv \mu(\varepsilon / 2)$，令$\nu(t) \equiv h\mu(t - \varepsilon / 2)$，则有曲线映射$\nu \colon (-\varepsilon / 2, 3\varepsilon / 2) \to G$，且其切矢
+    $$\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\nu(t) = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_tL_h\mu(t - \varepsilon / 2) = L_{h*}\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\mu(t - \varepsilon / 2)$$
+    其中第二步用到``曲线像的切矢等于曲线切矢的像''。
+    令$t'(t) \equiv t - \varepsilon / 2$，则
+    $$\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\mu(t - \varepsilon / 2) = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\mu(t‘(t)) = \left[\left.\frac{\mathrm{d}}{\mathrm{d}t'}\right|_{t(t')}\mu(t')\right]\frac{\mathrm{d}t'}{\mathrm{d}t} = \left.\frac{\mathrm{d}}{\mathrm{d}t'}\right|_{t'(t)}\mu(t') = \bar A_{\mu(t - \varepsilon / 2)}$$
+    最后一步是因为$\mu(t)$是$\bar A$的积分曲线。代入上式便得
+    $$\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\nu(t) = L_{h*}\bar A_{\mu(t - \varepsilon / 2)} = \bar A_{h\mu(t - \varepsilon / 2)} = \bar A_{\nu(t)}$$
+    这就表明，$\nu$也是$\bar A$的积分曲线，而$\nu(\varepsilon / 2) = h\mu(0) = h = \mu(\varepsilon / 2)$则说明$\nu$与$\mu$有交，因此由积分曲线的（局域）唯一性可知在两积分曲线$\nu$和$\mu$的定义域的交集$(-\varepsilon / 2, \epsilon)$上有$\nu = \mu$。
+    可见$\mu$的定义域已被延拓至$(-\varepsilon, 3\varepsilon / 2)$。
+    重复以上操作便得$\bar A$的一条定义域为全$\mathbb{R}$的积分曲线$\gamma \colon \mathbb{R} \to G$。
+    作为证明的第二步，$\forall g \in G$，令
+    $$\beta(t) \equiv g\gamma(t)$$
+    则仿照上述推导有
+    $$\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\beta(t) = \bar A_{g\gamma(t)} = \bar A_{\beta(t)}$$
+    表明$\beta \colon \mathbb{R} \to G$是$\bar A$过$g$的积分曲线（满足$\mathrm{d}\beta / \mathrm{d}t|_{t = 0} = \bar A_g$）。
+    可见$\bar A$的任一不可延积分曲线的参数都可取遍全$\mathbb{R}$。
+\end{proof}
+
+\begin{theorem}
+    设$\gamma \colon \mathbb{R} \to G$是左不变矢量场$\bar A$的、满足$\gamma(0) = e$的积分曲线，则$\gamma$是$G$的一个单参子群。
+\end{theorem}
+
+\begin{proof}
+    只须证明$\gamma$满足单参子群的定义。
+    前面已经证明$\beta(t) \equiv g\gamma(t)$是$\bar A$的、满足$\beta(0) = g$的积分曲线。
+    取$\gamma$线上一点$\gamma(s)$作为$g$，便知
+    $$\beta(t) \equiv \gamma(s)\gamma(t)$$
+    是满足$\beta(0) = \gamma(s)$的积分曲线。
+    另一方面，由$\gamma_1(t) \equiv \gamma(s + t)$定义的曲线$\gamma_1 \colon \mathbb{R} \to G$在$\gamma_1(t)$点的切矢为
+    $$\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\gamma_1(t) = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\gamma(s + t) = \left[\left.\frac{\mathrm{d}}{\mathrm{d}(s + t)}\right|_{s + t}\gamma(s + t)\right]\frac{\mathrm{d}(s + t)}{\mathrm{d}t} = \bar A_{\gamma(s + t)} = \bar A_{\gamma_1(t)}$$
+    上式表明$\gamma_1$也是$\bar A$的积分曲线，而且也满足$\gamma_1(0) = \gamma(s)$。
+    由积分曲线的唯一性可知$\gamma_1(t) = \beta(t)$，于是有$\gamma(s + t) = \gamma(s)\gamma(t)$。
+\end{proof}
 
 \section{常用李群及其李代数}
 
