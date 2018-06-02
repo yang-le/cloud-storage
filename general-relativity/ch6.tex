@@ -412,7 +412,85 @@ $$[A, B] \coloneq [\bar A, \bar B]_e, ~ \forall A, B \in V_e$$
     由积分曲线的唯一性可知$\gamma_1(t) = \beta(t)$，于是有$\gamma(s + t) = \gamma(s)\gamma(t)$。
 \end{proof}
 
+\begin{theorem}
+    设单参子群$\gamma \colon \mathbb{R} \to G$在恒等元$e$的切矢为$A$，则$\gamma(t)$是$A$对应的左不变矢量场$\bar A$的积分曲线。
+\end{theorem}
+
+\begin{proof}
+    只须证明对$\gamma$的任一点$\gamma(s)$有$\bar A_{\gamma(s)} = \mathrm{d} / \mathrm{d}t|_{t = s}\gamma(t)$，而这由下式显见：
+    \[\begin{aligned}
+        \bar A_{\gamma(s)} & = L_{\gamma(s)*}A = L_{\gamma(s)*}\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}\gamma(t) = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}L_{\gamma(s)}\gamma(t) \\
+        & = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}\gamma(s)\gamma(t) = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}\gamma(s + t) = \left.\frac{\mathrm{d}}{\mathrm{d}t'}\right|_{t' = s}\gamma(t') = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = s}\gamma(t)
+    \end{aligned}\]
+\end{proof}
+
+由上述两定理可知左不变矢量场与单参子群之间有一一对应关系。
+注意到$V_e$与左不变矢量场的集合$\mathscr{L}$一一对应，便知李群$G$的李代数$\mathscr{G}$（$=V_e$）的每一元素$A$生成$G$的一个单参子群$\gamma(t)$，所以$\mathscr{G}$的每一元素称为一个（无限小）生成元。
+物理文献常又只把$\mathscr{G}$的一个基底的元素称为生成元。
+
+\begin{note}
+    与$V_e$的零元（$A = 0$）对应的单参子群\footnote{
+        其对应的左不变矢量场为零矢量场。
+    }就是只含$e$的子群，即满足$\gamma[\mathbb{R}] = e$的独点线$\gamma \colon \mathbb{R} \to G$。
+\end{note}
+
+\begin{definition}
+    李群$G$上的指数映射$\exp \colon V_e \to G$定义为
+    $$\exp(A) \coloneq \gamma(1), ~ \forall A \in \mathscr{G}$$
+    其中$\gamma \colon \mathbb{R} \to G$是与$A$对应的那个单参子群。
+\end{definition}
+
+\begin{theorem}
+    $$\exp(sA) = \gamma(s), ~ \forall s \in \mathbb{R}, A \in V_e$$
+    其中$\gamma(s)$是由$A$决定的单参子群。
+\end{theorem}
+
+\begin{proof}
+    令$A' \equiv sA \in V_e$。
+    以$\bar A, \bar A'$分别代表$A$和$A'$对应的左不变矢量场。
+    $\eta \colon V_e \to \mathscr{L}$是同构映射导致$\bar A' = s\bar A$。
+    以$\gamma(t)$代表$\bar A$对应的单参子群，用$\gamma'(t) \equiv \gamma(st)$定义曲线$\gamma' \colon \mathbb{R} \to G$，则
+    $$\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\gamma'(t) = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\gamma(st) = \left[\left.\frac{\mathrm{d}}{\mathrm{d}(st)}\right|_{st}\gamma(st)\right]\frac{\mathrm{d}(st)}{\mathrm{d}t} = s\bar A_{\gamma(st)} = \bar A'_{\gamma'(t)}$$
+    说明$\gamma'(t)$是$\bar A'$的积分曲线。
+    注意到$\gamma'(0) = \gamma(0) = e$，可知$\gamma'(t)$是$\bar A'$对应的单参子群。
+    于是$\exp(sA) = \exp(A') = \gamma'(1) = \gamma(s)$。
+\end{proof}
+
+\begin{note}
+    设$\gamma(t)$是由$A \in V_e$决定的单参子群，则上述定理表明
+    $$\gamma(t) = \exp(tA)$$
+    今后也常用$\exp(tA)$代表由$A$决定的单参子群。
+\end{note}
+
+\begin{theorem}
+    设$\phi \colon \mathbb{R} \times G \to G$是由$A \in V_e$对应的左不变矢量场$\bar A$产生的单参微分同胚群，则
+    $$\phi_t(g) = g\exp(tA), ~ \forall g \in G, t \in \mathbb{R}$$
+\end{theorem}
+
+\begin{proof}
+    设$\gamma(t)$是由$A$决定的单参子群，前述定理表明$\gamma(t) = \exp(tA)$。
+    由本节一开始的定理之证明又知$\beta(t) \equiv g\gamma(t)$是$\bar A$过$g$点的积分曲线，且$\beta(0) = g$。
+    由单参微分同胚群的构造\footnote{
+        定义$\phi_t(p)$为这样一个点，它位于过$p$的积分曲线上，其参数值与$p$的参数值之差为$t$。
+        
+        换言之，左不变矢量场$\bar A$对应的单参子群就是其给出的单参微分同胚群过$e$点的轨道。
+    }便知
+    $$\phi_t(g) = \beta(t) = g\gamma(t) = g\exp(tA)$$
+\end{proof}
+
 \section{常用李群及其李代数}
+
+\subsection{$GL(m)$群（一般线性群）}
+
+\subsection{$O(m)$群（正交群）}
+
+\subsection{$O(1, 3)$群（洛伦兹群）}
+
+\subsection{$U(m)$群（酉群）}
+
+\subsection{$E(m)$群（欧氏群）}
+
+\subsection{Poincaré群（庞加莱群）}
 
 \section{李代数的结构常数}
 
