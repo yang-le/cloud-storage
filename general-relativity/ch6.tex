@@ -482,7 +482,74 @@ $$[A, B] \coloneq [\bar A, \bar B]_e, ~ \forall A, B \in V_e$$
 
 \subsection{$GL(m)$群（一般线性群）}
 
+设$V$是$m$（$< \infty$）维实矢量空间，以$GL(m)$代表由$V$到$V$的全体可逆线性映射的集合，以映射的复合为乘法，则不难证明$GL(m)$是群，称为$m$阶（实）一般线性群。
+因为$V$到$V$的线性映射就是$V$上的$(1, 1)$型张量，所以$GL(m)$的任一群元$T \in \mathscr{T}_V(1, 1)$。
+取定$V$的任一基底（及其对偶基底）后，$T$就有$m^2$个分量，自然对应于一个$m \times m$实矩阵。
+映射$T$的可逆性保证其矩阵（仍记作$T$）是可逆矩阵，即$\det T \neq 0$。
+不难看出全体$m \times m$可逆矩阵在矩阵乘法下构成群（以单位矩阵$I$为恒等元），而且与$GL(m)$同构，于是
+$$GL(m) = \{m \times m\text{实矩阵}T \mid \det T \neq 0\}$$
+因此也常把$GL(m)$看作实矩阵群（但上式等号代表的同构关系依赖于$V$的基底的选取）。
+另一方面，集合$\mathbb{R}^{m^2}$的每点因为由$m^2$个实数构成而可排成一个$m \times m$的实矩阵，故$GL(m)$可看作$\mathbb{R}^{m^2}$的子集。
+对矩阵求行列式的操作可看作连续映射$\det \colon \mathbb{R}^{m^2} \to \mathbb{R}$，满足
+$$\textstyle GL(m) = \det^{-1}(-\infty, 0) \cup \det^{-1}(0, \infty) \subset \mathbb{R}^{m^2}$$
+$(-\infty, 0)$和$(0, \infty)$显然是$\mathbb{R}$的开子集，故映射$\det$的连续性保证$\det^{-1}(-\infty, 0)$和$\det^{-1}(0, \infty)$是$\mathbb{R}^{m^2}$的开子集，这又导致
+\textcircled{1} $GL(m)$是$\mathbb{R}^{m^2}$的开子集;
+\textcircled{2} $\det^{-1}(-\infty, 0)$和$\det^{-1}(0, \infty)$是$GL(m)$的开子集（用诱导拓扑衡量）。
+而$\det^{-1}(-\infty, 0)$和$\det^{-1}(0, \infty)$又因为互为补集而都是$GL(m)$的闭子集，可见$GL(m)$含有除自身和$\emptyset$外的既开又闭的子集，因而是非连通流形。
+还可证明，$GL(m)$是有两个连通分支的非连通流形。最简单的例子是
+$$GL(1) = (-\infty, 0) \cup (0, \infty) $$
+
+当说到$GL(m)$的群元是从$V$到$V$的可逆线性映射时，我们是在用纯几何语言。
+当说到$GL(m)$的群元是$m \times m$可逆矩阵时，我们是在用坐标语言---给$V$选定基底（及其对偶基底）后，从$V$到$V$的任一可逆线性映射$T$就有了$m^2$个分量，选作坐标，便得流形$GL(m)$上的一个坐标系。
+以$\mathfrak{gl}(m)$代表$GL(m)$的李代数，设$A \in \mathfrak{gl}(m)$，则它是恒等元$I \in GL(m)$的矢量，在上述坐标系的基底中自然有$m^2$个分量，因而也对应于一个$m \times m$的实矩阵。
+反之，任一$m \times m$实矩阵的$m^2$个矩阵元配以$I$点的坐标基矢便给出$I$点的一个矢量。
+可见，虽然只有可逆实矩阵$m \times m$才是$GL(m)$的元素，任意$m \times m$实矩阵都是$\mathfrak{gl}(m)$的元素。
+事实上，全体$m \times m$实矩阵构成的矢量空间与$I$点的切空间$V_I$有同构关系，于是有如下定理
+
+\begin{theorem}
+    $\mathfrak{gl}(m) = \{m \times m\text{实矩阵}\}$（等号代表两个矢量空间同构，同构关系依赖于$V$的基底的选取）
+\end{theorem}
+
+对任一$m \times m$矩阵$A$引入符号
+$$\mathrm{Exp}(A) \equiv I + A + \frac{1}{2!}A^2 + \frac{1}{3!}A^3 + \cdots$$
+其中$A^2 \equiv AA$（矩阵相乘），$A^3 \equiv AAA$。
+可以证明：
+\textcircled{1} 上式右边收敛，所以左边有意义，是一个$m \times m$矩阵；
+\textcircled{2} 若矩阵$A, B$对易，即$AB = BA$，则
+$$\mathrm{Exp}(A + B) = (\mathrm{Exp}(A))(\mathrm{Exp}(B))$$
+下面的定理表明，对$\mathfrak{gl}(m)$的元素$A$（看作矩阵），$\mathrm{Exp}$就是指数映射的$\exp$。
+
+\begin{theorem}
+    $\mathrm{Exp}(A) = \exp(A), ~ \forall A \in \mathfrak{gl}(m)$
+\end{theorem}
+
+\begin{proof}
+    $\forall s, t \in \mathbb{R}$，由上式得
+    $$\mathrm{Exp}[(s + t)A] = \mathrm{Exp}(sA)\mathrm{Exp}(tA), ~ \forall A \in \mathfrak{gl}(m)$$
+    取$s = 1, t = -1$，则上式给出$\mathrm{Exp}(A)\mathrm{Exp}(-A) = \mathrm{Exp}(0) = I$。
+    上式表明矩阵$\mathrm{Exp}(A)$有逆（就是$\mathrm{Exp}(-A)$），故$\mathrm{Exp}(A) \in GL(m)$。
+    式中的$A$可为$\mathfrak{gl}(m)$的任一元素，所以
+    $$\mathrm{Exp}(tA) \in GL(m), ~ \forall A \in \mathfrak{gl}(m), t \in \mathbb{R}$$
+    令$\gamma(t) \equiv \mathrm{Exp}(tA)$，则有$\gamma(s + t) = \gamma(s)\gamma(t)$，且根据$\mathrm{Exp}$的定义有
+    $$\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}\mathrm{Exp}(tA) = A$$
+    可见$\gamma(t) \equiv \mathrm{Exp}(tA)$是由$A$唯一决定的单参子群$\exp(tA)$，从而$\mathrm{Exp}(tA) = \exp(tA)$
+\end{proof}
+
+本节的第一个定理表明$\mathfrak{gl}(m)$和$\{m \times m\text{实矩阵}\}$作为矢量空间是同构的。
+自然要问他们作为李代数是否也同构。答案是肯定的。
+以$V_e$作为$\mathfrak{gl}(m)$，其任意二元素$A, B \in V_e$的李括号定义为$[A, B] = [\bar A, \bar B]_e$（见第三节）。
+另一方面，$A, B \in V_e$所对应的$m \times m$矩阵（仍记作$A, B$）的李括号定义为矩阵对易子$AB - BA$。
+因此，欲证$\mathfrak{gl}(m)$和$\{m \times m\text{实矩阵}\}$是同构李代数只须证明$[\bar A, \bar B]_e = AB - BA$。
+而这正是如下定理的结论。
+
+\begin{theorem}
+    设$G$是$GL(m)$的李子群，则其李代数元$A, B \in \mathfrak{g} \subset \mathfrak{gl}(m)$的李括号$[A, B]$对应于$A, B$所对应的矩阵（仍记作$A, B$）的对易子$AB - BA$，即
+    $$[A, B] = AB - BA$$
+\end{theorem}
+
 \subsection{$O(m)$群（正交群）}
+
+如前所说，$GL(m)$
 
 \subsection{$O(1, 3)$群（洛伦兹群）}
 
