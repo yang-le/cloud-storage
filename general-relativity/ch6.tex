@@ -549,9 +549,120 @@ $$\mathrm{Exp}(A + B) = (\mathrm{Exp}(A))(\mathrm{Exp}(B))$$
 
 \subsection{$O(m)$群（正交群）}
 
-如前所说，$GL(m)$
+如前所说，$GL(m)$群是$m$维矢量空间$V$上所有可逆$(1, 1)$型张量$T$的集合，除可逆性外没有其他要求，所以称为一般线性群。
+对$T$再提出某些适当要求则可得到$GL(m)$群的某些子群。
+$O(m)$群就是重要一例，其要求是$T$保度规。
+以下把$O(m)$群的元素专记作$Z$。
+设$(V, g_{ab})$是带正定度规的$m$维矢量空间。
+线性映射$Z \colon V \to V$称为保度规的，若
+$$g_{ab}(Z^a{}_cv^c)(Z^b{}_du^d) = g_{cd}v^cu^d, ~ \forall v^c, u^d \in V$$
+取$u = v$，则上式给出
+$$g_{ab}(Z^a{}_cv^c)(Z^b{}_dv^d) = g_{cd}v^cv^d, ~ \forall v^c \in V$$
+可见保度规的$Z$对矢量的作用必保长度。
+反之，利用$g_{ab} = g_{(ab)}$可证任何满足上式的$Z$必保度规。
+所以保长性等价于保度性。
+保度规性又等价于
+$$Z^a{}_cZ^b{}_dg_{ab} = g_{cd}$$
+令$$O(m) \equiv \{Z^a{}_b \in \mathscr{T}_V(1, 1) \mid Z^a{}_cZ^b{}_dg_{ab} = g_{cd}\}$$
+把$Z^a{}_b$看作从$V$到$V$的映射，以复合映射为群乘法，则$O(m)$是群，而且是$GL(m)$的李子群。
+用$V$的任一正交归一基底可把上式改写为分量形式\footnote{
+    $g_{\sigma\rho}(e^\sigma)_c(e^\rho)_d = Z^\mu{}_\sigma Z^\nu{}_\rho g_{\mu\nu}(e^\sigma)_c(e^\rho)_d$
+    因$(e^\sigma)_c(e^\rho)_d$正交归一并注意到我们约定$g_{ab}$为正定度规，就有$g_{\sigma\rho}(e^\sigma)_c(e^\rho)_d = \delta_{\sigma\rho}$
+}：$$\delta_{\sigma\rho} = Z^\mu{}_\sigma Z^\nu{}_\rho \delta_{\mu\nu} = (Z^T)_\sigma{}^\mu \delta_{\mu\nu}Z^\nu{}_\rho$$
+其中$Z^T$代表矩阵$Z$的转置矩阵。把上式写成矩阵等式即为
+$$I = Z^TIZ = Z^TZ$$
+表明$Z^T = Z^{-1}$，即$Z$是正交矩阵。
+可见$O(m)$同构于$m \times m$正交矩阵群（由全体$m \times m$正交矩阵以矩阵乘法为群乘法构成的群）。
+因为对任一矩阵$T$有$\det T^T = \det T$，由上式得
+$$1 = (\det Z^T)(\det Z) = (\det Z)^2$$
+故$$\det Z = \pm 1$$
+上式表明群元的行列式不是$1$就是$-1$，这就注定了$O(m)$群的流形是非连通的。
+
+以上抽象定义的$O(m)$可用具体对象来体现。
+先考虑$O(1)$群。$1$维欧氏空间$(\mathbb{R}, \delta_{ab})$可看作带正定度规的$1$维矢量空间，因而可以充当用以定义$O(1)$群的那个$(V, g_{ab})$。
+$O(1)$群的每个群元$Z$就是把空间的任一点（即起自原点的任一矢量）$\vec v$变为长度相等的矢量$\vec v' \equiv Z(\vec v)$的线性映射。
+由于长度相等，只有$\vec v' = \vec v$和$\vec v' = -\vec v$两种可能。
+可见$O(1)$只有两个群元，其中一个是恒等元，另一个称为反射，记作$r$，于是$O(1) = \{e, r\}$。
+再讨论$O(2)$群。$2$维欧氏空间$(\mathbb{R}^2, \delta_{ab})$可看作带正定度规的$2$维矢量空间。
+$O(2)$的每个群元$Z$就是把空间中起自原点的任一矢量$\vec v$变为长度相等的矢量$\vec v' \equiv Z(\vec v)$的线性映射。
+首先想到的自然是令$\vec v$转某一角度$\alpha$的转动，这种映射记作$Z(\alpha)$，可用矩阵表示为
+$$Z(\alpha) = \begin{bmatrix}
+    \cos \alpha & -\sin \alpha \\
+    \sin \alpha & \cos \alpha
+\end{bmatrix}$$
+这是行列式为$+1$的正交矩阵。上式的特例是$Z(0) = \operatorname{diag}(1, 1)$，即恒等元$I$。
+然而，不难验证下面的$Z'(\alpha)$也保长度：
+$$Z'(\alpha) = \begin{bmatrix}
+    \cos \alpha & \sin \alpha \\
+    \sin \alpha & -\cos \alpha
+\end{bmatrix}$$
+这是行列式为$-1$的正交矩阵，其特例是$Z'(0) = \operatorname{diag}(1, -1)$，它作用于$\vec v$的结果$\vec v'$与$\vec v$关于$x$轴对称，故$Z'(0)$代表以$x$轴为对称轴的反射，记作$r_y$（只改变$y$分量）,即$\vec v' = r_y(\vec v)$。
+不要误以为$r_y$也可看作转动，因为它作用于另一矢量$\vec u$得$r_y(\vec u)$，其与$\vec u$的夹角不同于$r_y(\vec v)$与$\vec v$的夹角。
+同理，$Z'(\pi) = \operatorname{diag}(-1, 1)$代表以$y$轴为对称轴的反射$r_x$。
+此外，$Z(\pi) = \operatorname{diag}(-1, -1)$则代表以原点为对称点的反演，记作$i_{xy}$，易证$i_{xy} = r_xr_y$。
+
+$Z$的$4$个矩阵元由于条件$Z^TZ = I$而受到$3$个方程的限制\footnote{
+    $z_{11}^2 + z_{21}^2 = 1, z_{12}^2 + z_{22}^2 = 1, z_{11}z_{12} + z_{21}z_{22} = 0$
+}，只有$1$个独立，所以$O(2)$是$1$维李群。
+由$Z^TZ = I$还可证明$O(2)$的群元被前述两式所穷尽，其中第一式代表的子集构成$O(2)$的李子群，称为$2$维空间的转动群，记作$SO(2)$，字母$S$代表``特殊''，是指每个群元$Z \in SO(2)$满足$\det Z = +1$。
+这也适用于其他常见李群，例如$GL(m)$中满足$\det T = +1$的子集也构成子群，称为$SL(m)$群（特殊线性群）。
+$O(2)$群中由前述第二式表示的子集不含恒等元$e$，因此不是子群。
+两个子集的$\alpha$都可解释为转角（$Z'(\alpha)$中的$\alpha$代表（对$x$轴）反射后再转的角度），取值范围是$0 \leq \alpha < 2\pi$。
+所以$O(2)$群的流形可看作两个互不连通的$S^1$（圆周）之并，是一个非连通流形，每个圆周是一个连通分支。
+
+推而广之，因为$O(m)$的群元$Z$满足$\det Z = \pm 1$，其流形总是由两个连通分支组成的非连通流形，其中含$e$的分支记作$SO(m)$，即
+$$SO(m) = \{Z \in O(m) \mid \det Z = +1\}$$
+这是$O(m)$的李子群，称为特殊正交群，最常用的是$3$维空间的转动群$SO(3)$，它的每一群元可看作把$3$维欧氏空间中起自原点的任一矢量$\vec v$绕过原点的某轴转某角的映射（而且除恒等元外的每个群元的转轴是唯一的，这一结论称为欧拉定理）。
+这使我们可用起自原点的一个箭头代表$SO(3)$的一个群元：箭头所在直线代表转轴，箭头长度（规定从$0$到$\pi$）代表转角，方向相反的箭头代表沿相反方向的转动。
+由于沿某方向转$\pi$角相当于沿反方向转$\pi$角，同一直线段的两端代表同一群元，应当认同。
+于是，李群$SO(3)$的流形是$3$维实心球体，球面上位于每一直径两端的一对点要认同（简称对径认同）。
+这一流形记作$\mathbb{RP}^3$。（$3$维实射影空间$\mathbb{RP}^3$本有其他定义方式，但可以证明$SO(3)$与$\mathbb{RP}^3$微分同胚。）
+
+下面讨论李群$O(m)$和$SO(m)$的李代数$\mathfrak{o}(m)$和$\mathfrak{so}(m)$。
+这两个李代数必定一样，因为设$A \in \mathfrak{o}(m)$，则$A$决定$O(m)$中的一个单参子群$\gamma(t)$，注意到
+\textcircled{1} $\det I = 1$;
+\textcircled{2} $O(m)$中任一群元的行列式只能为$\pm 1$，
+则由单参子群的连续性可知$\gamma(t)$上任一点$Z$都有$\det Z = 1$，可见对任一$t$有$\gamma(t) \in SO(m)$，从而$A$，作为$\gamma(t)$在$I$点的切矢，必属于$\mathfrak{so}(m)$
+
+\begin{theorem}
+    $\mathfrak{o}(m) = \{m \times m \text{实矩阵} A \mid A^T = -A\text{（即$A$为反称阵）}\}$
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[（A）]
+        \item $\forall A \in \mathfrak{o}(m)$，设$Z(t)$是李群$O(m)$中的曲线，且$Z(0) = I, \mathrm{d} / \mathrm{d}t|_{t = 0}Z(t) = A$，则$Z(t)$（对每一$t$值）是一个满足
+        $$Z^T(t)Z(t) = I$$
+        的矩阵\footnote{
+            原因为$Z(t) \in SO(m)$，参考前述分析
+        }。对上式求导并在$t = 0$取值得
+        $$0 = \left[Z^T(t)\frac{\mathrm{d}}{\mathrm{d}t}Z(t)\right]_{t = 0} + \left[\left(\frac{\mathrm{d}}{\mathrm{d}t}Z^T(t)\right)Z(t)\right]_{t = 0} = Z^T(0)A + \left[\frac{\mathrm{d}}{\mathrm{d}t}Z^T(t)\right]_{t = 0}Z(0)$$
+        $Z(0) = I$等价于$Z^T(0) = I$，$A = \mathrm{d} / \mathrm{d}t|_{t = 0}Z(t)$等价于\footnote{
+            $\displaystyle\lim_{t \to 0} \frac{Z^T(t) - Z^T(0)}{t} = \lim_{t \to 0} \frac{Z^T(t) - I^T}{t^T} = \lim_{t \to 0}(\frac{Z(t) - I}{t})^T = A^T$
+        }$A^T = \mathrm{d} / \mathrm{d}t|_{t = 0}Z^T(t)$，因而上式给出$0 = A + A^T$，可见$A$为反称矩阵。
+        \item 设$A$为任一$m \times m$反称实矩阵，注意到$(A^2)^T = (A^T)^2, (A^3)^T = (A^T)^3, \cdots, $因此有$(\mathrm{Exp}A)^T = \mathrm{Exp}(A^T)$\footnote{
+            直观想来这很显然，但因涉及无限级数，求转置与求极限操作的可交换问题并不简单。
+            以下遇到类似问题时不再指出。
+        }所以
+        $$(\mathrm{Exp}A)^T(\mathrm{Exp}A) = (\mathrm{Exp}A^T)(\mathrm{Exp}A) = \mathrm{Exp}(-A)(\mathrm{Exp}A) = I$$
+        上式表明$\mathrm{Exp}A$是正交矩阵，因而$\mathrm{Exp}A \in O(m)$。
+        由此又知\footnote{
+            把前述论证中的$A$替换为$A' \equiv tA$即可。
+        }$\mathrm{Exp}(tA) \in O(m)$（对每一$t$值）。
+        又根据$\mathrm{Exp}$的定义知$\mathrm{d} / \mathrm{d}t|_{t = 0}\mathrm{Exp}(tA) = A$，可见$A$是李群$O(m)$中过$I$的曲线$\mathrm{Exp}(tA)$在$I$点的切矢，所以$A \in \mathfrak{o}(m)$
+    \end{enumerate}
+\end{proof}
+
+利用上述定理可方便地决定李群$O(m)$及$SO(m)$的维数。
+因为$m \times m$反称矩阵的$m$个对角元全为零，其余$m^2 - m$个元素中只有半数独立，所以决定一个$m \times m$的反称实矩阵需要$(m^2 - m) / 2 = m(m - 1) / 2$个实数。
+于是上述定理导致
+$$\dim O(m) = \dim\mathfrak{o}(m) = \frac{1}{2}m(m - 1)$$
+具体说，
+$$\dim O(1) = 0\text{（零维李群）}, \dim O(2) = 1, \dim O(3) = 3, \dim O(4) = 6, \cdots, $$
 
 \subsection{$O(1, 3)$群（洛伦兹群）}
+
+定义$O(m)$群时曾约定$(V, g_{ab})$中的$g_{ab}$为正定度规，现在放宽为任意度规。
+
 
 \subsection{$U(m)$群（酉群）}
 
