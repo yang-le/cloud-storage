@@ -662,7 +662,111 @@ $$\dim O(1) = 0\text{（零维李群）}, \dim O(2) = 1, \dim O(3) = 3, \dim O(4
 \subsection{$O(1, 3)$群（洛伦兹群）}
 
 定义$O(m)$群时曾约定$(V, g_{ab})$中的$g_{ab}$为正定度规，现在放宽为任意度规。
+设$g_{ab}$在正交归一基底下的矩阵有$m'$个对角元为$-1$，$m''$个对角元为$+1$，则$V$上所有保度规的线性映射的集合在以复合映射为群乘法下构成群，记作$O(m', m'')$，即
+$$O(m', m'') \coloneq \{\Lambda^a{}_b \in \mathscr{T}_V(1, 1) \mid \Lambda^a{}_c\Lambda^b{}_dg_{ab} = g_{cd}\}$$
+同$O(m)$类似，$O(m', m'')$也是$GL(m)$（其中$m = m' + m''$）的李子群，$O(m)$可看作$O(m', m'')$在$m' = 0, m'' = m$时的特例。
 
+抽象定义的$O(m', m'')$群也可与$O(m)$类似地用具体对象体现。
+我们只讨论$m' = 1$的情况，并且最关心$O(1, 3)$群（$4$维闵氏时空的洛伦兹群），但先从最简单的$O(1, 1)$群讲起。
+$2$维闵氏时空$(\mathbb{R}^2, \eta_{ab})$可看作用来定义$O(1, 1)$群的那个带洛伦兹度规的$(V, g_{ab})$。
+用$(\mathbb{R}^2, \eta_{ab})$的任一正交归一基可把保度规条件$\Lambda^a{}_c\Lambda^b{}_dg_{ab} = g_{cd}$改写为分量形式：
+$$\eta_{\sigma\rho} = \Lambda^\mu{}_\sigma\Lambda^\nu{}_\rho\eta_{\mu\nu} = (\Lambda^T)_\sigma{}^\mu\eta_{\mu\nu}\Lambda^\nu{}_\rho$$
+写成矩阵等式即为
+$$\eta = \Lambda^T\eta\Lambda, \text{其中} \eta \equiv \operatorname{diag}(-1, 1)$$
+上式表明$\det \Lambda = \pm 1$，因此，与$O(m)$群类似，$O(1, 1)$群也是非连通的。
+注意到洛伦兹变换$t' = \gamma(t - vx), x' = \gamma(x - vt)$保闵氏线元，自然猜想它是$O(1, 1)$的群元。
+把变换的参数$v$改写为$\operatorname{th}\lambda$，其中$\lambda \in (-\infty, \infty)$，则$\gamma \equiv (1 - v^2)^{-1/2} = \operatorname{ch}\lambda$，故洛伦兹变换可改写为
+$$t' = t\operatorname{ch}\lambda - x\operatorname{sh}\lambda, ~ x' = -t\operatorname{sh}\lambda + x\operatorname{ch}\lambda$$
+不难验证这一变换的矩阵
+$$\Lambda(\lambda) = \begin{bmatrix}
+    \operatorname{ch}\lambda & -\operatorname{sh}\lambda \\
+    -\operatorname{sh}\lambda & \operatorname{ch}\lambda
+\end{bmatrix}$$
+满足上式，可见$\forall \lambda \in (-\infty, \infty)$，$\Lambda(\lambda)$是$O(1, 1)$的群元。
+对上式的$\Lambda$有$\det \Lambda = +1$，然而前面已说明$\det \Lambda = \pm 1$，看来还应有其他连通分支。
+其实，$O(1, 1)$的非连通性除了来自$\Lambda$所受的限制$\det \Lambda = \pm 1$之外还来自$\Lambda^0{}_0$所受到的限制。
+设$\{(e_\mu)^a\}$是$V$的正交归一基底，用$\Lambda^a{}_c\Lambda^b{}_dg_{ab} = g_{cd}$作用于$(e_0)^c(e_0)^d$得\footnote{
+    左边$= \Lambda^a{}_0\Lambda^b{}_0g_{ab} = -(\Lambda^0{}_0)^2 + (\Lambda^1{}_0)^2$，右边$= -1$。
+}$-(\Lambda^0{}_0)^2 + (\Lambda^1{}_0)^2 = -1$，所以$(\Lambda^0{}_0)^2 \geq 1$。
+$\det \Lambda$与$\Lambda^0{}_0$的允许值的配合使李群$O(1, 1)$由如下$4$个互不连通的连通分支组成：
+\begin{enumerate}[(I)]
+    \item 子集$O^\uparrow_+(1, 1)$，其元素$\Lambda(\lambda) = \begin{bmatrix}
+    \operatorname{ch}\lambda & -\operatorname{sh}\lambda \\
+    -\operatorname{sh}\lambda & \operatorname{ch}\lambda
+    \end{bmatrix}$满足$\det \Lambda = +1, \Lambda^0{}_0 \geq +1$；
+    \item 子集$O^\uparrow_-(1, 1)$，其元素$\Lambda(\lambda) = \begin{bmatrix}
+    \operatorname{ch}\lambda & -\operatorname{sh}\lambda \\
+    \operatorname{sh}\lambda & -\operatorname{ch}\lambda
+    \end{bmatrix}$满足$\det \Lambda = -1, \Lambda^0{}_0 \geq +1$；
+    \item 子集$O^\downarrow_-(1, 1)$，其元素$\Lambda(\lambda) = \begin{bmatrix}
+    -\operatorname{ch}\lambda & \operatorname{sh}\lambda \\
+    -\operatorname{sh}\lambda & \operatorname{ch}\lambda
+    \end{bmatrix}$满足$\det \Lambda = -1, \Lambda^0{}_0 \leq -1$；
+    \item 子集$O^\downarrow_+(1, 1)$，其元素$\Lambda(\lambda) = \begin{bmatrix}
+    -\operatorname{ch}\lambda & \operatorname{sh}\lambda \\
+    \operatorname{sh}\lambda & -\operatorname{ch}\lambda
+    \end{bmatrix}$满足$\det \Lambda = +1, \Lambda^0{}_0 \leq -1$；
+\end{enumerate}
+
+$(\mathbb{R}^2, \eta_{ab})$可看作带洛伦兹度规的$2$维矢量空间，$\Lambda^a{}_b \in O(1, 1)$就是把空间中起自原点的任一矢量$v^a$变为$\Lambda^a{}_bv^b$的保度规线性映射。
+略去抽象指标，用正交归一基底把$v$表为列矢量$v = \begin{bmatrix}
+    v^0 \\
+    v^1
+\end{bmatrix}$，我们来看$4$个连通分支中$\lambda = 0$的元素$\Lambda(0)$对它的作用。
+对$O^\uparrow_+(1, 1)$而言，$\Lambda(0)$就是恒等元，它把$v$映射为$v$。
+对$O^\uparrow_-(1, 1)$，有$\Lambda(0) = \operatorname{diag}(1, -1)$，作用于$v$所得矩阵为$v' = \begin{bmatrix}
+    v^0 \\
+    -v^1
+\end{bmatrix}$，称为空间反射，记作$r_x$。
+对$O^\downarrow_-(1, 1)$，有$\Lambda(0) = \operatorname{diag}(-1, 1)$，作用于$v$所得矩阵为$v' = \begin{bmatrix}
+    -v^0 \\
+    v^1
+\end{bmatrix}$，称为时间反射，记作$r_t$。
+对$O^\downarrow_+(1, 1)$，有$\Lambda(0) = \operatorname{diag}(-1, -1)$，作用于$v$所得矩阵为$v' = \begin{bmatrix}
+    -v^0 \\
+    -v^1
+\end{bmatrix}$，称为时空反演，记作$i_{tx}$。
+
+因为每个连通分支的元素由一个参数$\lambda$决定，而且$\lambda \in (-\infty, \infty)$，所以每一连通分支都可看作流形$\mathbb{R}$，整个李群$O(1, 1)$是$1$维非连通流形。
+$4$个连通分支中只有$O^\uparrow_+(1, 1)$是$O(1, 1)$的子群（只有它包含恒等元），因而是李子群。（因为有这样的一般结论：李群的含恒等元的连通分支是它的李子群。）
+$O(1, 1)$与$O(2)$有一重要区别：$O(2)$的流形紧致而$O(1, 1)$非紧致。
+我们称$O(2)$为紧致李群而$O(1, 1)$为非紧致李群。
+
+在以上基础上就不难介绍$O(m', m'')$中对物理最有用的特例，即洛伦兹群$O(1, 3)$，简记为$L$，其群元$\Lambda \in L$（作为$4 \times 4$矩阵）的充要条件与前述一样，只是改为$4 \times 4$矩阵等式，即
+$$\eta = \Lambda^T\eta\Lambda, \text{其中} \eta \equiv \operatorname{diag}(-1, 1, 1, 1)$$
+$L$是由$4$个连通分支组成的$6$维非连通流形，这$4$个连通分支是
+\[\begin{split}
+    L^\uparrow_+ = \{\Lambda \in L \mid \det \Lambda = +1, \Lambda^0{}_0 \geq +1\}, ~ & L^\uparrow_- = \{\Lambda \in L \mid \det \Lambda = -1, \Lambda^0{}_0 \geq +1\}, \\
+    L^\downarrow_- = \{\Lambda \in L \mid \det \Lambda = -1, \Lambda^0{}_0 \leq -1\}, ~ & L^\downarrow_+ = \{\Lambda \in L \mid \det \Lambda = +1, \Lambda^0{}_0 \leq -1\}.
+\end{split}\]
+每个连通分支含一个最简单的元素，依次记作$I, r_s, r_t, i_{ts}$，其中
+\[\begin{aligned}
+    I  & \equiv \operatorname{diag}(1, 1, 1, 1) \in L^\uparrow_+ \text{是$L$的恒等元} \\
+    r_s & \equiv \operatorname{diag}(1, -1, -1, -1) \in L^\uparrow_- \text{是$L$的空间反射元} \\
+    r_t & \equiv \operatorname{diag}(-1, 1, 1, 1) \in L^\downarrow_- \text{是$L$的时间反射元} \\
+    i_{ts} & \equiv r_tr_s = -I \in L^\downarrow_+ \text{是$L$的时空反演元}
+\end{aligned}\]
+上述$4$个连通分支中只有$L^\uparrow_+$是子群（只有它包含恒等元），而且是李子群，称为固有洛伦兹群\footnote{
+    $\Lambda^0{}_0 \geq +1$的洛伦兹变换不改变被作用矢量$v^a$的时间分量$v^0$的正负性，故称保时向的（orthochronous）,反之$\Lambda^0{}_0 \leq -1$的洛伦兹变换称为反时向的（antichronous）。
+    另一方面，``固有''（proper）一词则常用以形容$\det \Lambda = +1$。
+    因此$L^\uparrow_+$的全称应是固有、保时向洛伦兹群，而固有洛伦兹群一词则应留给$L$的非连通子群$L_+ = \{\Lambda \in L \mid \det \Lambda = +1\}$。
+    也有文献称$L^\uparrow_+$为限制（restricted）洛伦兹群或正常洛伦兹群。
+    考虑到简单性和习惯性，本书仍仿照多数文献称$L^\uparrow_+$为固有洛伦兹群。
+}，是$6$维连通流形，流形结构为$\mathbb{R}^3 \times SO(3)$。
+其他$3$个连通分支都是子群$L^\uparrow_+$的左陪集：
+$$L^\uparrow_- = r_sL^\uparrow_+, ~ L^\downarrow_- = r_tL^\uparrow_+, ~ L^\downarrow_+ = i_{ts}L^\uparrow_+$$
+
+同$O(3)$群类似，洛伦兹群$O(1, 3)$和它的子群$L^\uparrow_+$有相同的李代数，记作$\mathfrak{o}(1, 3)$。
+
+\begin{theorem}
+    $\mathfrak{o}(1, 3) = \{4 \times 4 \text{实矩阵} A \mid A^T = -\eta A \eta\}$
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[（A）]
+        \item $\forall A \in \mathfrak{o}(1, 3)$
+    \end{enumerate}
+\end{proof}
 
 \subsection{$U(m)$群（酉群）}
 
