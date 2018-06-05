@@ -764,11 +764,81 @@ $$L^\uparrow_- = r_sL^\uparrow_+, ~ L^\downarrow_- = r_tL^\uparrow_+, ~ L^\downa
 
 \begin{proof}
     \begin{enumerate}[（A）]
-        \item $\forall A \in \mathfrak{o}(1, 3)$
+        \item $\forall A \in \mathfrak{o}(1, 3)$，考虑$O(1, 3)$中满足以下两条件的曲线$\Lambda(t)$：
+        \begin{enumerate}[（1）]
+            \item $\Lambda(0) = I$，
+            \item $\mathrm{d} / \mathrm{d}t|_{t = 0}\Lambda(t) = A$
+        \end{enumerate}
+        注意到$\Lambda(t) \in O(1, 3)$则有$\Lambda^T(t)\eta\Lambda(t) = \eta ~ \forall t \in \mathbb{R}$。
+        对$t$求导并在$t = 0$取值得
+        $$0 = \left[\frac{\mathrm{d}}{\mathrm{d}t}\Lambda^T(t)\right]_{t = 0}\eta\Lambda(0) + \Lambda^T(0)\eta\left[\frac{\mathrm{d}}{\mathrm{d}t}\Lambda(t)\right]_{t = 0} = A^T \eta I + I \eta A = A^T \eta + \eta A$$
+        以$\eta^{-1}$右乘上式，注意到$\eta^{-1} = \eta$，得$A^T = -\eta A \eta$。（$\eta$与$\eta^{-1}$作为矩阵相等，但写矩阵元时最好分清上下标，即$\eta$的矩阵元为$\eta_{\mu\nu}$而$\eta^{-1}$的矩阵元为$\eta^{\mu\nu}$。）
+        \item 设$A$是满足$A^T = -\eta A \eta$的$4 \times 4$实矩阵。
+        仿照讨论$O(m)$时的证明，只须证明$\operatorname{Exp}(A) \in O(1, 3)$。
+        因为对任意矩阵$M, N$有
+        $$\begin{aligned}
+            & N^{-1}(\operatorname{Exp}M)N = N^{-1}(I + M + \frac{1}{2!}M^2 + \frac{1}{3!}M^3 + \cdots)N \\
+            = & I + N^{-1}MN + \frac{1}{2!}(N^{-1}MN)(N^{-1}MN) + \frac{1}{3!}(N^{-1}MN)(N^{-1}MN)(N^{-1}MN) + \cdots \\
+            = & \operatorname{Exp}(N^{-1}MN)
+        \end{aligned}$$
+        取$N = \eta, M = A$便得$\eta(\operatorname{Exp}A)\eta = \operatorname{Exp}(\eta A \eta)$，因而$\eta(\operatorname{Exp}A) = \operatorname{Exp}(\eta A \eta)\eta$。
+        于是$(\operatorname{Exp}A)^T\eta(\operatorname{Exp}A) = (\operatorname{Exp}A^T)\eta(\operatorname{Exp}A) = (\operatorname{Exp}A^T)\operatorname{Exp}(\eta A \eta)\eta = \operatorname{Exp}(A^T + \eta A \eta)\eta = \eta$，（其中用到$A^T = -\eta A \eta$。）
+        可见$\operatorname{Exp}(A) \in O(1, 3)$。
     \end{enumerate}
 \end{proof}
 
+要利用计算$O(m)$维数的方法来计算$O(1, 3)$群的维数，可以借用如下事实：
+$\forall A \in \mathfrak{o}(1, 3)$，令$B \equiv \eta A$，则由$A^T = -\eta A \eta$易见$B^T = -B$，即$B \in \mathfrak{o}(4)$。
+这表明存在从$\mathfrak{o}(1, 3)$到$\mathfrak{o}(4)$的映射，而且是（矢量空间之间的）同构映射，因而$\dim \mathfrak{o}(1, 3) = \dim \mathfrak{o}(4)$。
+这一结论只依赖于$\eta$的对称性和非退化性。
+对$O(m', m'')$群，令$\eta$代表这样的对角矩阵，其前$m'$个对角元为$-1$，后$m''$个对角元为$+1$，便知也有类似结论，即
+$$\dim O(m', m'') = \dim O(m' + m'')$$
+
+$\Lambda \in L$满足$\eta = \Lambda^T \eta \Lambda$，其中$\eta \equiv \operatorname{diag}(-1, 1, 1, 1)$。而
+$$\eta = \Lambda^T \eta \Lambda \Leftrightarrow \eta \Lambda^{-1} = \Lambda^T \eta \Leftrightarrow \Lambda^{-1} = \eta^{-1}\Lambda^T\eta$$
+再用$\eta^{-1} = \eta$便得$\Lambda^{-1} = \eta \Lambda^T \eta$。
+借此可方便地求得$\Lambda \in L$的逆矩阵$\Lambda^{-1}$：
+先写出$\Lambda$的转置矩阵$\Lambda^T$，再对$\Lambda^T$的各元素依下列法则改变符号：
+$\begin{bmatrix}
+    + - - - \\
+    - + + + \\
+    - + + + \\
+    - + + +
+\end{bmatrix}$，结果即为$\Lambda^{-1}$。
+
+鉴于固有洛伦兹群和洛伦兹代数对物理学的非常重要性，我们将单辟一节对此做更详尽的讨论。
+
 \subsection{$U(m)$群（酉群）}
+
+$GL(m)$群是用$m$维实矢量空间$V$定义的。
+把$V$改为$m$维复矢量空间所得的一般线性群记作$GL(m, \mathbb{C})$，是$2m^2$维（实）李群。
+与$GL(m, \mathbb{R})$（即$GL(m)$）不同，$GL(m, \mathbb{C})$是连通李群。
+我们只介绍这个群的一个重要子群---酉群$U(m)$。
+正如$GL(m)$群的子群$O(m)$要求保度规那样，酉群$U(m)$是对$GL(m, \mathbb{C})$要求保内积的结果。
+复矢量空间的内积与实矢量空间的内积类似而又不同，最重要的区别在于，实矢量空间的内积对两个矢量的作用都为线性，而复矢量空间的内积只对第二个矢量为线性，对第一个矢量则为反线性。
+定义了内积的复矢量空间称为内积空间。
+设$V$是有限维内积空间，线性映射$A \colon V \to V$称为$V$上的线性算符，简称算符，它自然诱导出$V$上的另一线性算符$A^\dagger$，称为$A$的伴随算符，满足
+$$(A^\dagger f, g) = (f, Ag), ~ \forall f, g \in V$$
+其中$Ag$代表$A$作用于$g$所得矢量，即$A(g)$的简写。
+可以证明每一$A$按上式决定唯一的$A^\dagger$，上式可作为$A^\dagger$的定义。
+
+\begin{definition}
+    内积空间$V$上的算符$U$称为酉算符（或幺正算符），若其作用保内积，即
+    $$(Uf, Ug) = (f, g), ~ \forall f, g \in V$$
+\end{definition}
+
+\begin{theorem}
+    算符$U$为酉算符的充要条件为
+    $$U^\dagger U = \delta$$
+    其中$\delta$代表恒等算符，即从$V$到$V$的恒等映射。
+\end{theorem}
+
+\begin{proof}
+    若$U^\dagger U = \delta$，则根据伴随算符的定义有$(Uf, Ug) = (U^\dagger Uf, g) = (f, g), ~ \forall f, g \in V$，故$U$为酉算符。
+    反之，若$U$为酉算符，则$\forall f, g \in V$有
+    $$0 = (Uf, Ug) - (f, g) = (U^\dagger Uf, g) - (f, g) = ((U^\dagger U - \delta)f, g)$$
+    取$g = (U^\dagger U - \delta)f$，则$0 = (g, g)$，故$g = 0$，即$(U^\dagger U - \delta)f = 0 ~ \forall f \in V$，从而$U^\dagger U = \delta$。
+\end{proof}
 
 \subsection{$E(m)$群（欧氏群）}
 
