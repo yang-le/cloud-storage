@@ -815,7 +815,13 @@ $GL(m)$群是用$m$维实矢量空间$V$定义的。
 与$GL(m, \mathbb{R})$（即$GL(m)$）不同，$GL(m, \mathbb{C})$是连通李群。
 我们只介绍这个群的一个重要子群---酉群$U(m)$。
 正如$GL(m)$群的子群$O(m)$要求保度规那样，酉群$U(m)$是对$GL(m, \mathbb{C})$要求保内积的结果。
-复矢量空间的内积与实矢量空间的内积类似而又不同，最重要的区别在于，实矢量空间的内积对两个矢量的作用都为线性，而复矢量空间的内积只对第二个矢量为线性，对第一个矢量则为反线性。
+复矢量空间的内积与实矢量空间的内积类似而又不同，最重要的区别在于，实矢量空间的内积对两个矢量的作用都为线性，而复矢量空间的内积\footnote{
+    如下条件可作为其定义：
+    \textcircled{1} $(f, g + h) = (f, g) + (f, h)$；
+    \textcircled{2} $(f, cg) = c(f, g)$；
+    \textcircled{3} $(f, g) = \widebar{(g, f)}$；
+    \textcircled{4} $(f, f) \geq 0, \text{且} (f, f) = 0 \Leftrightarrow f = 0$；
+}只对第二个矢量为线性，对第一个矢量则为反线性。
 定义了内积的复矢量空间称为内积空间。
 设$V$是有限维内积空间，线性映射$A \colon V \to V$称为$V$上的线性算符，简称算符，它自然诱导出$V$上的另一线性算符$A^\dagger$，称为$A$的伴随算符，满足
 $$(A^\dagger f, g) = (f, Ag), ~ \forall f, g \in V$$
@@ -839,6 +845,17 @@ $$(A^\dagger f, g) = (f, Ag), ~ \forall f, g \in V$$
     $$0 = (Uf, Ug) - (f, g) = (U^\dagger Uf, g) - (f, g) = ((U^\dagger U - \delta)f, g)$$
     取$g = (U^\dagger U - \delta)f$，则$0 = (g, g)$，故$g = 0$，即$(U^\dagger U - \delta)f = 0 ~ \forall f \in V$，从而$U^\dagger U = \delta$。
 \end{proof}
+
+选定$V$的一个正交归一基底$\{e_i\}$后，$V$上任一算符$A$可用矩阵表示，其矩阵元定义为\footnote{
+可以证明，这样定义的矩阵满足如下两个条件：
+\textcircled{1} $A$是零算符当且仅当其矩阵$A$为零矩阵；
+\textcircled{2} 算符$AB$的矩阵为算符$A$的矩阵与算符$B$的矩阵的乘积$AB$。
+}
+$$A_{ij} \coloneq (e_i, Ae_j)$$
+由上式得
+$$A_{ij} = (A^\dagger e_i, e_j) = \widebar{(e_j, A^\dagger e_i)} = \widebar{A^\dagger_{ji}}$$
+所以，若以$A$和$A^\dagger$分别代表算符$A$和$A^\dagger$在同一基底的矩阵，以$\widebar{A^T}$代表$A$的转置矩阵的矩阵元都取复数共轭所得的矩阵，则
+$$A^\dagger = \widebar{A^T}$$
 
 \subsection{$E(m)$群（欧氏群）}
 
