@@ -1,0 +1,871 @@
+\chapter{李群和李代数}
+
+\section{群论初步}
+
+\begin{definition}
+    集合$G$配以满足以下条件的映射$G \times G \to G$（叫群乘法）称为群：
+    \begin{enumerate}[（a）]
+        \item $(g_1g_2)g_3 = g_1(g_2g_3) ~ \forall g_1, g_2, g_3 \in G$
+        \item 存在恒等元$e \in G$，使$eg = ge = g, ~ \forall g \in G$
+        \item $\forall g \in G$, 存在逆元$g^{-1} \in G$,使$g^{-1}g = gg^{-1} = e$
+    \end{enumerate}
+\end{definition}
+
+\begin{note}
+    恒等元是唯一的\footnote{
+        考虑有两个恒等元$e_1, e_2$，有$e_1e_2 = e_1 = e_2$
+    }，任一群元的逆元也是唯一的\footnote{
+        考虑任一群元$g$有两个逆元$g_1^{-1}, g_2^{-1}$，有$g_1^{-1} = (g_2^{-1}g)g_1^{-1} = g_2^{-1}(gg_1^{-1}) = g_2^{-1}$
+    }。
+\end{note}
+
+\begin{definition}
+    乘法满足交换律的群（即$gh = hg ~ \forall g, h \in G$）称为阿贝尔群。
+    只含有限个元素的群叫有限群，否则叫无限群。
+    群$G$的子集$H$称为$G$的子群，若$H$用$G$的乘法为乘法也构成群。
+\end{definition}
+
+\begin{definition}
+    设$G$和$G'$是群。
+    映射$\mu \colon G \to G'$叫同态，若
+    $$\mu(g_1g_2) = \mu(g_1)\mu(g_2), \forall g_1, g_2 \in G$$
+\end{definition}
+
+\begin{theorem}
+    同态映射$\mu \colon G \to G'$有以下性质：
+    \begin{enumerate}[（a）]
+        \item 若$e, e'$各为$G, G'$的恒等元，则$\mu(e) = e'$\footnote{
+            $\mu(g) = \mu(ge) = \mu(g)\mu(e), ~ \forall \mu(g) \in G'$，考虑到恒等元的唯一性，则必有$\mu(e) = e'$。
+        }
+        \item $\mu(g^{-1}) = \mu(g)^{-1}, \forall g \in G$\footnote{
+            $\mu(g^{-1}) = \mu(g^{-1})e' = \mu(g^{-1})\mu(g)\mu(g)^{-1} = \mu(e)\mu(g)^{-1} = \mu(g)^{-1}$
+        }
+        \item $\mu[G]$是$G'$的子群\footnote{
+            显然$\mu[G]$是$G'$的子集（否则$\mu$就不构成$G \to G'$的映射）。
+            按$\mu$的定义，容易验证$\mu[G]$上的乘法是结合的，单位元是$\mu(e)$，$\mu(g)$逆元为$\mu(g^{-1})$
+        }，当$G$是阿贝尔群时$\mu[G]$是$G'$的阿贝尔子群\footnote{
+            若$G$上的乘法可交换，则$\mu$的定义保证$\mu[G]$上的乘法也可交换。
+            注意这并不说明$G'$上的乘法可交换。
+        }。
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}
+    一一到上的同态映射称为同构。
+    当有可能与矢量空间之间的同构混淆时又明确地把群之间的同构称为群同构。
+    同构$\mu \colon G \to G$称为群$G$上的自同构。
+\end{definition}
+
+\begin{example}
+    $\forall g \in G$，可构造一个称为伴随同构的自同构映射，又称内自同构，记作$I_g \colon G \to G$，定义\footnote{
+        当然应该验证这一定义符合同构映射的要求。
+        首先$I_g(h_1h_2) = I_g(h_1)I_g(h_2)$说明这是同态映射。
+        其次，$I_g(h_1) = I_g(h2) \Rightarrow h_1 = h_2, \forall h_1, h_2 \in G$说明该映射是一一的。
+        最后，$I_g(g^{-1}hg) = h, \forall h \in G$说明该映射是到上的。
+    }为$$I_g(h) \coloneq ghg^{-1}, \forall h \in G$$
+\end{example}
+
+\begin{note}
+    今后常把两个同构的群视作一样，并用等号表示。
+\end{note}
+
+\begin{definition}
+    群$G$和$G'$（看作两个集合）的卡氏积$G \times G'$按下列乘法
+    $$(g_1, g_1')(g_2, g_2') \coloneq (g_1g_2, g_1'g_2'), ~ \forall g_1, g_2 \in G, ~ g_1',g_2' \in G'$$
+    构成的群称为$G$和$G'$的直积群。
+\end{definition}
+
+\begin{example}
+    以加法为群乘法，则$\mathbb{R}$是群。
+    $\mathbb{R}^2 \equiv \mathbb{R} \times \mathbb{R}$配以由上式定义的乘法就构成直积群，而且此乘法正好是$\mathbb{R}^2$上（自然定义）的加法。
+\end{example}
+
+\begin{definition}
+    设$H$是群$G$的子群，$g \in G$，则$gH \equiv \{gh \mid h \in H\}$称为$H$的含$g$的左陪集。
+    类似地可定义右陪集。
+\end{definition}
+
+\begin{note}
+    若子群$H$的两个左陪集有交，则两者必相等\footnote{
+        设$p = g_1h_1 = g_2h_2$是$g_1H \cap g_2H$中的一个元素。
+        $\forall x = g_1h_x \in g_1H$，有$x = g_1h_1h_1^{-1}h_x = g_2h_2h_1^{-1}h_x \in g_2H$，反之亦然。
+    }。
+\end{note}
+
+\begin{definition}
+    群$G$的子群$H$称为正规子群或不变子群，若
+    $$ghg^{-1} \in H, ~ \forall g \in G, h \in H$$
+\end{definition}
+
+\begin{definition}
+    设$G$是群，则$A(G) \equiv \{\mu \colon G \to G \mid \mu \text{为自同构映射}\}$以映射的复合为群乘法构成群，称为群$G$的自同构群。
+    ``以映射的复合为乘法''是指$\forall \mu, \nu \in A(G)$，群乘积$\mu\nu \in A(G)$定义为$(\mu\nu)(g) \equiv \mu(\nu(g)) ~ \forall g \in G$。
+\end{definition}
+
+\begin{theorem}
+    以$A_I(G)$代表$G$上全体内自同构映射的集合，即
+    $$A_I(G) \equiv \{I_g \colon G \to G \mid g \in G\} \subset A(G)$$
+    则$A_I(G)$是群$A(G)$的一个正规子群。
+\end{theorem}
+
+\begin{proof}
+    $A_I(G)$显然是$A(G)$的子集，并且容易证明，以映射复合为群乘法，$A_I(G)$也构成群，所以$A_I(G)$是$A(G)$的子群。
+    其恒等元为$I_e$，其相应于$I_g$的逆元为$I_{g^{-1}}$。
+    为了验证它还是正规子群，考虑$(\mu I_g \mu^{-1})(h) = \mu(g(\mu^{-1}(h))g^{-1}) = \mu(g)\mu(\mu^{-1}(h))\mu(g^{-1}) = I_{\mu(g)}(h), \forall \mu \in A(G), I_g \in A_I(G), h \in G$。
+    所以有$\mu I_g \mu^{-1} = I_{\mu(g)} \in A_I(G), \forall \mu \in A(G), I_g \in A_I(G)$。
+\end{proof}
+
+\begin{definition}
+    设$H$和$K$是群，且存在同态映射$\mu \colon K \to A(H)$。$\forall k \in K$，把$\mu(k) \in A(H)$简记作$\mu_k$，则$G \equiv H \times K$配以下式定义的群乘法
+    $$(h, k)(h', k') \coloneq (h\mu_k(h'), kk'), ~ \forall h,h' \in H, k, k' \in K$$
+    所构成的群称为$H$和$K$的半直积群\footnote{
+        真是一个巧妙的定义。
+        
+        结合律：$[(h, k)(h', k')](h'', k'') = (h\mu_k(h'), kk')(h'', k'') = (h\mu_k(h')\mu_{kk'}(h''), kk'k'')$
+        而$(h, k)[(h', k')(h'', k'')] = (h, k)(h'\mu_{k'}(h''), k'k'') = (h\mu_k(h'\mu_{k'}(h'')), kk'k'') = (h\mu_k(h')\mu_k\mu_{k'}(h''), kk'k'') = (h\mu_k(h')\mu_{kk'}(h''), kk'k'')$
+        最后两个等号是因为$A(H)$中的元素皆为同态映射，而且$\mu$本身也是同态映射（因此$\mu(ab) = \mu(a)\mu(b)$）。
+
+        单位元：注意到同态映射保单位元，而$A(H)$中的单位元就是恒等映射，故$(e_h, e_k)(h, k) = (e_h\mu_{e_k}(h), e_kk) = (e_hh, e_kk)$
+        而$(h, k)(e_h, e_k) = (h\mu_k(e_h), ke_k) = (he_h, ke_k)$
+
+        逆元：$(\mu_{k^{-1}}(h^{-1}), k^{-1})(h, k) = (\mu_{k^{-1}}(h^{-1})\mu_{k^{-1}}(h), k^{-1}k) = (e_h, e_k)$
+        而$(h, k)(\mu_{k^{-1}}(h^{-1}), k^{-1}) = (h\mu_k(\mu_{k^{-1}}(h^{-1})), kk^{-1}) = (e_h, e_k)$
+    }，记作$G \equiv H \otimes_S K$。
+\end{definition}
+
+\section{李群}
+
+\begin{definition}
+    若$G$既是$n$维（实）流形又是群，其群乘映射$G \times G \to G$（请注意$G \times G$也是流形）和求逆元映射$G \to G$都是$C^\infty$的，则$G$叫$n$维（实）李群\footnote{
+        约定把有离散拓扑的可数群称为零维李群。
+        因为有限群的默认拓扑是离散拓扑，所以有限群都可看作零维李群。
+    }。
+\end{definition}
+
+\begin{example}
+    以加法为群乘法，则$\mathbb{R}$是$1$维李群。
+\end{example}
+
+\begin{example}
+    $\mathbb{R}$和$\mathbb{R}$的直积群$\mathbb{R}^2$是$2$维李群。
+    推而广之，$\mathbb{R}^n$是$n$维李群。
+\end{example}
+
+\begin{example}
+    设$\phi \colon \mathbb{R} \times M \to M$是流形$M$上的任一单参微分同胚群，则$\{\phi_t \mid t \in \mathbb{R}\}$是$1$维李群\footnote{
+        $\phi(t, p) = p ~ \forall p \in M, t \in \mathbb{R}$的情况可视为例外。
+        这是与$M$上的$0$矢量场对应的那个特殊的单参微分同胚群，是只含恒等元的独点群，可看作零维李群。
+    }，同构于$\mathbb{R}$。
+\end{example}
+
+\begin{example}
+    易证广义黎曼空间$(M, g_{ab})$上的两个等度规映射的复合也是等度规映射，因此$(M, g_{ab})$上全体等度规映射的集合以复合映射为乘法构成群，称为$(M, g_{ab})$的等度规群。
+    还可验证等度规群是李群。
+    闵氏时空的等度规群是$10$维李群，施瓦西时空的等度规群是$4$维李群。
+    一般地，$n$维广义黎曼空间$(M, g_{ab})$的等度规群的维数$m \leq n(n+1)/2$。
+    但$(M, g_{ab})$上全体微分同胚的集合则``大''到不能构成有限群。
+    事实上，它是一个无限维群。
+\end{example}
+
+\begin{note}
+    本章只限于讨论有限维李群，虽然许多结论对无限维李群也适用。
+\end{note}
+
+以下如无特别声明，$G$一律代表李群。
+李群的双重身份（即是群又是流形）使得用几何语言研究李群成为可能。
+群乘映射和求逆元映射的光滑性则使李群具有一系列好性质。
+
+\begin{definition}
+    李群$G$和$G'$之间的$C^\infty$同态映射$\mu \colon G \to G'$称为李群同态。
+    李群同态$\mu$称为李群同构，若$\mu$为微分同胚。
+\end{definition}
+
+\begin{definition}
+    李群$G$的子集$H$称为$G$的李子群，若$H$既是$G$的子流形又是$G$的子群。
+\end{definition}
+
+\begin{definition}
+    $\forall g \in G$，映射$L_g \colon h \mapsto gh ~ \forall h \in G$叫做由$g$生成的左平移。
+\end{definition}
+
+\begin{note}
+    \textcircled{1} 由李群定义中关于群乘映射和求逆元映射的$C^\infty$性可知左平移$L_g \colon G \to G$是微分同胚映射。
+    \textcircled{2} 易见$L_{gh} = L_g \comp L_h$。
+\end{note}
+
+以下的讨论经常涉及$G$的一点的矢量和$G$的一个子集上的矢量场，并要对两者作明确区分。
+我们将用$A, B, \cdots$代表一点的矢量，用$\bar A, \bar B, \cdots$代表矢量场，用$\bar A_g$代表矢量场$\bar A$在点$g \in G$的值。
+为简化表达式，本章中所有矢量（除少数情况外）都不加抽象指标。
+
+\begin{definition}
+    $G$上的矢量场$\bar A$叫左不变的，若
+    $$L_{g*}\bar A = \bar A, ~ \forall g \in G$$
+    其中$L_{g*}$是由左平移映射$L_g \colon G \to G$诱导的推前映射。
+\end{definition}
+
+\begin{note}
+    \textcircled{1} 左不变矢量场必为$C^\infty$矢量场；
+    \textcircled{2} 不难看出左不变矢量场的定义式等价于
+    $$(L_{g*}\bar A)_{gh} = \bar A_{gh}$$
+    推前映射一般只能把一点的张量映射为张量，但当$\phi \colon M \to N$是微分同胚时，$\phi_*$可把$M$上张量场$v$映为$N$上张量场$\phi_*v$，定义为$(\phi_*v)|_{\phi(p)} = \phi_*(v|_p) ~ \forall p \in M$。
+    用于现在的情况，就是$(L_{g*}\bar A)_{gh} = L_{g*}(\bar A_h)$。
+    于是上式又等价于$$\bar A_{gh} = L_{g*}(\bar A_h)$$
+    上式可作为左不变矢量场$\bar A$的等价定义。
+\end{note}
+
+不难看出左不变矢量场之和以及左不变矢量场乘以常数仍为左不变矢量场，故$\mathscr{L} \equiv \{\bar A \mid \bar A \text{是$G$上的左不变矢量场}\}$是矢量空间。
+
+\begin{theorem}
+    $G$上全体左不变矢量场的集合$\mathscr{L}$与$G$的恒等元$e$的切空间$V_e$（作为两个矢量空间）同构。
+\end{theorem}
+
+\begin{proof}
+    $\forall A \in V_e$，用下式定义$G$上的矢量场$\bar A$:
+    $$\bar A_g \coloneq L_{g*}A, ~ \forall g \in G$$
+    由此得$\bar A_e = A$。把上式的$g$改为$gh$得
+    $$\bar A_{gh} = L_{gh*}A = (L_g \comp L_h)_*A = (L_{g*} \comp L_{h*})A = L_{g*}(L_{h*}A) = L_{g*}\bar A_h$$
+    因此\footnote{
+        关于复合映射的推前等于推前映射的复合，证明如下：
+        $(L_g \comp L_h)_*A(f) \coloneq A((L_g \comp L_h)^*f) ~ \forall f \in \mathscr{F}$，
+        而$(L_g \comp L_h)^*f|_p \coloneq f|_{(L_g \comp L_h)(p)} = f|_{L_g(L_h(p))} = L_g^*f|_{L_h(p)} = L_h^*(L_g^*f)|_p = (L_h^* \comp L_g^*)f|_p ~ \forall p$。
+        因此$(L_g \comp L_h)_*A(f) = A((L_h^* \comp L_g^*)f) ~ \forall f \in \mathscr{F}$。另一方面，$[(L_{g*} \comp L_{h*})A](f) = [L_{g*}(L_{h*}A)](f) = (L_{h*}A)(L_g^*f) = A(L_h^*L_g^*f) = A((L_h^* \comp L_g^*)f) ~ \forall f \in \mathscr{F}$
+    }$\bar A$是左不变矢量场。
+    可见上式定义了一个映射$\eta \colon V_e \to \mathscr{L}$（把$A$映为$\bar A$）。
+    $L_{g*}$的线性性保证$\eta$的线性性，由$\bar A_e = A$易见\footnote{
+        假设有$A \neq B$，则$\eta(A) = \bar A, \eta(B) = \bar B$，因其在$e$点不等（$\bar A_e = A \neq B = \bar B_e$），故$\bar A \neq \bar B$。
+    }$\eta$是一一映射。
+    于是欲证$\eta$为同构只须证$\eta$为到上映射。
+    $\forall \bar A \in \mathscr{L}$，有$\bar A_e \in V_e$。
+    注意到$\eta(\bar A_e)|_g = L_{g*}\bar A_e = \bar A_{ge} = \bar A_g, ~ \forall g \in G$。
+    这说明$\eta(\bar A_e) = \bar A， ~ \forall \bar A \in \mathscr{L}$。
+    即$\eta$为到上映射\footnote{
+        就是说，任给一个$\bar A \in \mathscr{L}$，都可以找到其原像$\bar A_e \in V_e$。
+    }。
+\end{proof}
+
+\section{李代数}
+
+在矢量空间$\mathscr{V}$上定义某种称为``乘法''的映射就得到一个代数。
+一种重要的乘法叫李括号，记作$[,] \colon \mathscr{V} \times \mathscr{V} \to \mathscr{V}$，它是满足以下两条件的双线性映射：
+\begin{enumerate}[（a）]
+    \item $[A, B] = -[B, A], ~ \forall A, B \in \mathscr{V}$
+    \item $[A, [B, C]] + [C, [A, B]] + [B, [A, C]] = 0, ~ \forall A, B, C \in \mathscr{V}$
+\end{enumerate}
+第二个条件称为雅克比恒等式。
+
+\begin{definition}
+    定义了李括号的矢量空间称为李代数。
+    任意两个元素的李括号都为零的李代数称为阿贝尔李代数。
+\end{definition}
+
+本章只讨论有限维实矢量空间上的李代数（实李代数），虽然许多结论对无限维（实或复）李代数也适用。
+
+\begin{example}
+    把$\mathbb{R}^3$看作$3$维矢量空间，用下式定义李括号
+    $$[\vec v, \vec u] \coloneq \vec v \times \vec u, \forall \vec v, \vec u \in \mathbb{R}^3$$
+    则$\mathbb{R}^3$成为李代数。
+\end{example}
+
+\begin{example}
+    $\mathscr{M} \equiv \{m \times m \text{矩阵}\}$显然为$m^2$维矢量空间。
+    用矩阵对易子定义李括号，即
+    $$[A, B] \coloneq AB - BA, \forall A, B \in \mathscr{M}, \text{（其中$AB$是$A, B$的矩阵积）}$$
+    则$\mathscr{M}$是李代数。
+\end{example}
+
+\begin{theorem}
+    $G$上全体左不变矢量场的集合$\mathscr{L}$是李代数。
+\end{theorem}
+
+\begin{proof}
+    以矢量场对易子为李括号。因为$\forall \bar A, \bar B \in \mathscr{L}$有
+    $$L_{g*}[\bar A, \bar B] = [L_{g*}\bar A, L_{g*}\bar B] = [\bar A, \bar B]$$
+    所以$[\bar A, \bar B] \in \mathscr{L} ~ \forall \bar A, \bar B \in \mathscr{L}$，可见对易子的确是从$\mathscr{L} \times \mathscr{L}$到$\mathscr{L}$的映射。
+    对易子当然是双线性的和反称的。而且可以验证对易子也满足雅克比恒等式。
+\end{proof}
+
+\begin{definition}
+    设$\mathscr{V}$和$\mathscr{W}$是李代数。
+    线性映射$\beta \colon \mathscr{V} \to \mathscr{W}$称为李代数同态，若它保李括号，即$\beta([A, B]) = [\beta(A), \beta(B)] ~ \forall A, B \in \mathscr{V}$。
+    李代数同态$\beta \colon \mathscr{V} \to \mathscr{W}$称为李代数同构，若$\beta$是一一到上映射。
+\end{definition}
+
+\begin{note}
+    今后常把两个同构的李代数视作相同，并用等号表示。
+\end{note}
+
+对李群$G$的恒等元$e$的切空间$V_e$用下式定义李括号：
+$$[A, B] \coloneq [\bar A, \bar B]_e, ~ \forall A, B \in V_e$$
+（其中$\bar A, \bar B$分别是$A, B$对应的左不变矢量场。）则$V_e$成为李代数\footnote{
+    这巧妙地利用了$V_e$线性同构于$\mathscr{L}$这一事实。
+}，称为李群$G$的李代数，记作$\mathscr{G}$。易证$\mathscr{G}$与$\mathscr{L}$有李代数同构关系，$\eta$可充当同构映射。
+反之，给定一个李代数，是否也可找到一个李群，它的李代数是所给的李代数？
+答案是：这样的李群一定存在，并且唯一到只差整体拓扑结构的程度。（例如，以流形$S^1$上的角坐标之和作为群乘法，则$S^1$是$1$维李群，它与$1$维李群$\mathbb{R}$不同---有不同的整体拓扑---但却有相同的李代数。第$6$节末还将给出有相同李代数的不同李群的另外两个重要例子。）
+准确地说，给定一个李代数，总可找到唯一的单连通李群（其流形为单连通流形\footnote{
+    任一闭曲线可通过连续变形缩为一点的连通流形称为单连通流形。
+}的李群），它以所给李代数为李代数。
+这是李群理论中的一个重要定理。李群和李代数的这一密切联系使李群的讨论大为简化，因为李代数比李群简单得多。
+
+\begin{theorem}
+    设$\mathscr{G}$和$\mathscr{\hat G}$分别是李群$G$和$\hat G$的李代数，$\rho \colon G \to \hat G$是同态映射，则$\rho$在点$e \in G$诱导的推前映射$\rho_* \colon \mathscr{G} \to \mathscr{\hat G}$是李代数同态。
+\end{theorem}
+
+\begin{definition}
+    李代数$\mathscr{G}$的子空间$\mathscr{H}$称为$\mathscr{G}$的李子代数，若
+    $$[A, B] \in \mathscr{H}, ~ \forall A, B \in \mathscr{H}$$
+    其中$[A, B]$是把$A, B$看作$\mathscr{G}$的元素时的李括号，现在也称为子代数$\mathscr{H}$的李括号。
+\end{definition}
+
+\begin{theorem}
+    设$H$是李群$G$的李子群，则$H$的李代数$\mathscr{H}$是$\mathscr{G}$的李子代数。
+\end{theorem}
+
+\begin{definition}
+    李代数$\mathscr{G}$的子代数$\mathscr{H}$称为$\mathscr{G}$的理想，若
+    $$[A, \mu] \in \mathscr{H}, ~ \forall A \in \mathscr{G}, \mu \in \mathscr{H}$$
+\end{definition}
+
+\begin{note}
+    理想在李代数理论中的角色相当于正规子群在群论中的角色。
+\end{note}
+
+\begin{theorem}
+    设$\mathscr{H} \subset \mathscr{G}$是理想，$\mathscr{G} / \mathscr{H}$代表以等价类为元素的集合（$A, B \in \mathscr{G}$叫等价的，若$A - B \in \mathscr{H}$）,则$\mathscr{G} / \mathscr{H}$是李代数，称为商李代数。
+\end{theorem}
+
+\begin{definition}
+    李代数$\mathscr{G}$称为单李代数，若它不是阿贝尔代数而且除$\mathscr{G}$及$\{0\}$外不含理想。
+    $\mathscr{G}$称为半单李代数，若它不含非零的阿贝尔理想。
+    相应地，李群$G$称为单李群，若它不是阿贝尔群而且除$G$外不含正规子群。
+    $G$称为半单李群，若它不含阿贝尔正规子群。
+\end{definition}
+
+\section{单参子群和指数映射}
+
+\begin{definition}
+    $C^\infty$曲线$\gamma \colon \mathbb{R} \to G$叫李群$G$的单参子群，若
+    $$\gamma(s + t) = \gamma(s)\gamma(t), ~ \forall s, t \in \mathbb{R}$$
+    其中$\gamma(s)\gamma(t)$代表群元$\gamma(s)$和$\gamma(t)$的群乘积。
+\end{definition}
+
+\begin{note}
+    上式表明单参子群$\gamma \colon \mathbb{R} \to G$是从李群$\mathbb{R}$到$G$的李群同态映射。
+\end{note}
+
+\begin{note}
+    按上述定义，单参子群是满足上式的一条$C^\infty$曲线，但不妨把映射的像集$\{\gamma(t) \mid t \in \mathbb{R}\} \subset G$看作单参子群。
+    上式保证：
+    \textcircled{1} 子集的任意两个元素按$G$的乘法的积仍在子集内；
+    \textcircled{2} 子集含$G$的恒等元$e$（由上式得$\gamma(t) = \gamma(0)\gamma(t)$，以$\gamma(t)$的逆元右乘得$e = \gamma(0)$）
+    \textcircled{3} 子集的任一元素$\gamma(t)$（作为$G$的元素）的逆元（就是$\gamma(-t)$）在子集内。
+    所以子集$\{\gamma(t) \mid t \in \mathbb{R}\}$构成子群\footnote{
+        在$\gamma \colon \mathbb{R} \to G$是多对一映射的情况下（例如后面的独点线及第$5$节的$SO(2)$群），$\exists t_1, t_2 \in \mathbb{R}$使$\gamma(t_1) = \gamma(t_2) \in \{\gamma(t) \mid t \in \mathbb{R}\}$。
+        子群首先是子集，所以$\gamma(t_1)$和$\gamma(t_2)$理应看作子群$\{\gamma(t) \mid t \in \mathbb{R}\}$的同一群元。
+        但若称$\{\gamma(t) \mid t \in \mathbb{R}\}$为单参子群，则不同参数值$t_1$和$t_2$又应给出不同群元，就是说，一旦在``子群''前冠以``单参''就应有$\gamma(t_1) \neq \gamma(t_2)$。
+        可见``单参子群''一词有不妥之处，至少不应把子群$\{\gamma(t) \mid t \in \mathbb{R}\}$称为单参子群。
+    }（而且是阿贝尔子群）。
+\end{note}
+
+本节的一个重点是证明如下结论：``单参子群是左不变矢量场过$e$的不可延积分曲线，反之亦然。''
+单参子群按定义是从$\mathbb{R}$到$G$的映射，定义域为全$\mathbb{R}$。
+因此，要接受上述结论，至少要证明左不变矢量场过$e$的积分曲线的参数可取遍全$\mathbb{R}$。
+下面的定理对此给出保证（而且更强）。
+
+\begin{theorem}
+    任一左不变矢量场$\bar A$都是完备矢量场，就是说，它的每一不可延积分曲线的参数都可取遍全$\mathbb{R}$。
+\end{theorem}
+
+\begin{proof}
+    本书惯用$\partial / \partial t$代表曲线$\gamma(t)$的切矢，由于本章涉及多条曲线的切矢，为避免混淆，我们改用$\frac{\mathrm{d}}{\mathrm{d}t}\gamma(t)$代表$\gamma(t)$的切矢。
+    设$\mu(t)$是$\bar A$的、满足$\mu(0) = e$的积分曲线，不失一般性，设其定义域为开区间$(-\varepsilon, \varepsilon)$，即$\mu \colon (-\varepsilon, \varepsilon) \to G$。
+    在线上取点$h \equiv \mu(\varepsilon / 2)$，令$\nu(t) \equiv h\mu(t - \varepsilon / 2)$，则有曲线映射$\nu \colon (-\varepsilon / 2, 3\varepsilon / 2) \to G$，且其切矢
+    $$\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\nu(t) = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_tL_h\mu(t - \varepsilon / 2) = L_{h*}\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\mu(t - \varepsilon / 2)$$
+    其中第二步用到``曲线像的切矢等于曲线切矢的像''。
+    令$t'(t) \equiv t - \varepsilon / 2$，则
+    $$\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\mu(t - \varepsilon / 2) = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\mu(t‘(t)) = \left[\left.\frac{\mathrm{d}}{\mathrm{d}t'}\right|_{t(t')}\mu(t')\right]\frac{\mathrm{d}t'}{\mathrm{d}t} = \left.\frac{\mathrm{d}}{\mathrm{d}t'}\right|_{t'(t)}\mu(t') = \bar A_{\mu(t - \varepsilon / 2)}$$
+    最后一步是因为$\mu(t)$是$\bar A$的积分曲线。代入上式便得
+    $$\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\nu(t) = L_{h*}\bar A_{\mu(t - \varepsilon / 2)} = \bar A_{h\mu(t - \varepsilon / 2)} = \bar A_{\nu(t)}$$
+    这就表明，$\nu$也是$\bar A$的积分曲线，而$\nu(\varepsilon / 2) = h\mu(0) = h = \mu(\varepsilon / 2)$则说明$\nu$与$\mu$有交，因此由积分曲线的（局域）唯一性可知在两积分曲线$\nu$和$\mu$的定义域的交集$(-\varepsilon / 2, \epsilon)$上有$\nu = \mu$。
+    可见$\mu$的定义域已被延拓至$(-\varepsilon, 3\varepsilon / 2)$。
+    重复以上操作便得$\bar A$的一条定义域为全$\mathbb{R}$的积分曲线$\gamma \colon \mathbb{R} \to G$。
+    作为证明的第二步，$\forall g \in G$，令
+    $$\beta(t) \equiv g\gamma(t)$$
+    则仿照上述推导有
+    $$\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\beta(t) = \bar A_{g\gamma(t)} = \bar A_{\beta(t)}$$
+    表明$\beta \colon \mathbb{R} \to G$是$\bar A$过$g$的积分曲线（满足$\mathrm{d}\beta / \mathrm{d}t|_{t = 0} = \bar A_g$）。
+    可见$\bar A$的任一不可延积分曲线的参数都可取遍全$\mathbb{R}$。
+\end{proof}
+
+\begin{theorem}
+    设$\gamma \colon \mathbb{R} \to G$是左不变矢量场$\bar A$的、满足$\gamma(0) = e$的积分曲线，则$\gamma$是$G$的一个单参子群。
+\end{theorem}
+
+\begin{proof}
+    只须证明$\gamma$满足单参子群的定义。
+    前面已经证明$\beta(t) \equiv g\gamma(t)$是$\bar A$的、满足$\beta(0) = g$的积分曲线。
+    取$\gamma$线上一点$\gamma(s)$作为$g$，便知
+    $$\beta(t) \equiv \gamma(s)\gamma(t)$$
+    是满足$\beta(0) = \gamma(s)$的积分曲线。
+    另一方面，由$\gamma_1(t) \equiv \gamma(s + t)$定义的曲线$\gamma_1 \colon \mathbb{R} \to G$在$\gamma_1(t)$点的切矢为
+    $$\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\gamma_1(t) = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\gamma(s + t) = \left[\left.\frac{\mathrm{d}}{\mathrm{d}(s + t)}\right|_{s + t}\gamma(s + t)\right]\frac{\mathrm{d}(s + t)}{\mathrm{d}t} = \bar A_{\gamma(s + t)} = \bar A_{\gamma_1(t)}$$
+    上式表明$\gamma_1$也是$\bar A$的积分曲线，而且也满足$\gamma_1(0) = \gamma(s)$。
+    由积分曲线的唯一性可知$\gamma_1(t) = \beta(t)$，于是有$\gamma(s + t) = \gamma(s)\gamma(t)$。
+\end{proof}
+
+\begin{theorem}
+    设单参子群$\gamma \colon \mathbb{R} \to G$在恒等元$e$的切矢为$A$，则$\gamma(t)$是$A$对应的左不变矢量场$\bar A$的积分曲线。
+\end{theorem}
+
+\begin{proof}
+    只须证明对$\gamma$的任一点$\gamma(s)$有$\bar A_{\gamma(s)} = \mathrm{d} / \mathrm{d}t|_{t = s}\gamma(t)$，而这由下式显见：
+    \[\begin{aligned}
+        \bar A_{\gamma(s)} & = L_{\gamma(s)*}A = L_{\gamma(s)*}\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}\gamma(t) = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}L_{\gamma(s)}\gamma(t) \\
+        & = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}\gamma(s)\gamma(t) = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}\gamma(s + t) = \left.\frac{\mathrm{d}}{\mathrm{d}t'}\right|_{t' = s}\gamma(t') = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = s}\gamma(t)
+    \end{aligned}\]
+\end{proof}
+
+由上述两定理可知左不变矢量场与单参子群之间有一一对应关系。
+注意到$V_e$与左不变矢量场的集合$\mathscr{L}$一一对应，便知李群$G$的李代数$\mathscr{G}$（$=V_e$）的每一元素$A$生成$G$的一个单参子群$\gamma(t)$，所以$\mathscr{G}$的每一元素称为一个（无限小）生成元。
+物理文献常又只把$\mathscr{G}$的一个基底的元素称为生成元。
+
+\begin{note}
+    与$V_e$的零元（$A = 0$）对应的单参子群\footnote{
+        其对应的左不变矢量场为零矢量场。
+    }就是只含$e$的子群，即满足$\gamma[\mathbb{R}] = e$的独点线$\gamma \colon \mathbb{R} \to G$。
+\end{note}
+
+\begin{definition}
+    李群$G$上的指数映射$\exp \colon V_e \to G$定义为
+    $$\exp(A) \coloneq \gamma(1), ~ \forall A \in \mathscr{G}$$
+    其中$\gamma \colon \mathbb{R} \to G$是与$A$对应的那个单参子群。
+\end{definition}
+
+\begin{theorem}
+    $$\exp(sA) = \gamma(s), ~ \forall s \in \mathbb{R}, A \in V_e$$
+    其中$\gamma(s)$是由$A$决定的单参子群。
+\end{theorem}
+
+\begin{proof}
+    令$A' \equiv sA \in V_e$。
+    以$\bar A, \bar A'$分别代表$A$和$A'$对应的左不变矢量场。
+    $\eta \colon V_e \to \mathscr{L}$是同构映射导致$\bar A' = s\bar A$。
+    以$\gamma(t)$代表$\bar A$对应的单参子群，用$\gamma'(t) \equiv \gamma(st)$定义曲线$\gamma' \colon \mathbb{R} \to G$，则
+    $$\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\gamma'(t) = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_t\gamma(st) = \left[\left.\frac{\mathrm{d}}{\mathrm{d}(st)}\right|_{st}\gamma(st)\right]\frac{\mathrm{d}(st)}{\mathrm{d}t} = s\bar A_{\gamma(st)} = \bar A'_{\gamma'(t)}$$
+    说明$\gamma'(t)$是$\bar A'$的积分曲线。
+    注意到$\gamma'(0) = \gamma(0) = e$，可知$\gamma'(t)$是$\bar A'$对应的单参子群。
+    于是$\exp(sA) = \exp(A') = \gamma'(1) = \gamma(s)$。
+\end{proof}
+
+\begin{note}
+    设$\gamma(t)$是由$A \in V_e$决定的单参子群，则上述定理表明
+    $$\gamma(t) = \exp(tA)$$
+    今后也常用$\exp(tA)$代表由$A$决定的单参子群。
+\end{note}
+
+\begin{theorem}
+    设$\phi \colon \mathbb{R} \times G \to G$是由$A \in V_e$对应的左不变矢量场$\bar A$产生的单参微分同胚群，则
+    $$\phi_t(g) = g\exp(tA), ~ \forall g \in G, t \in \mathbb{R}$$
+\end{theorem}
+
+\begin{proof}
+    设$\gamma(t)$是由$A$决定的单参子群，前述定理表明$\gamma(t) = \exp(tA)$。
+    由本节一开始的定理之证明又知$\beta(t) \equiv g\gamma(t)$是$\bar A$过$g$点的积分曲线，且$\beta(0) = g$。
+    由单参微分同胚群的构造\footnote{
+        定义$\phi_t(p)$为这样一个点，它位于过$p$的积分曲线上，其参数值与$p$的参数值之差为$t$。
+        
+        换言之，左不变矢量场$\bar A$对应的单参子群就是其给出的单参微分同胚群过$e$点的轨道。
+    }便知
+    $$\phi_t(g) = \beta(t) = g\gamma(t) = g\exp(tA)$$
+\end{proof}
+
+\section{常用李群及其李代数}
+
+\subsection{$GL(m)$群（一般线性群）}
+
+设$V$是$m$（$< \infty$）维实矢量空间，以$GL(m)$代表由$V$到$V$的全体可逆线性映射的集合，以映射的复合为乘法，则不难证明$GL(m)$是群，称为$m$阶（实）一般线性群。
+因为$V$到$V$的线性映射就是$V$上的$(1, 1)$型张量，所以$GL(m)$的任一群元$T \in \mathscr{T}_V(1, 1)$。
+取定$V$的任一基底（及其对偶基底）后，$T$就有$m^2$个分量，自然对应于一个$m \times m$实矩阵。
+映射$T$的可逆性保证其矩阵（仍记作$T$）是可逆矩阵，即$\det T \neq 0$。
+不难看出全体$m \times m$可逆矩阵在矩阵乘法下构成群（以单位矩阵$I$为恒等元），而且与$GL(m)$同构，于是
+$$GL(m) = \{m \times m\text{实矩阵}T \mid \det T \neq 0\}$$
+因此也常把$GL(m)$看作实矩阵群（但上式等号代表的同构关系依赖于$V$的基底的选取）。
+另一方面，集合$\mathbb{R}^{m^2}$的每点因为由$m^2$个实数构成而可排成一个$m \times m$的实矩阵，故$GL(m)$可看作$\mathbb{R}^{m^2}$的子集。
+对矩阵求行列式的操作可看作连续映射$\det \colon \mathbb{R}^{m^2} \to \mathbb{R}$，满足
+$$\textstyle GL(m) = \det^{-1}(-\infty, 0) \cup \det^{-1}(0, \infty) \subset \mathbb{R}^{m^2}$$
+$(-\infty, 0)$和$(0, \infty)$显然是$\mathbb{R}$的开子集，故映射$\det$的连续性保证$\det^{-1}(-\infty, 0)$和$\det^{-1}(0, \infty)$是$\mathbb{R}^{m^2}$的开子集，这又导致
+\textcircled{1} $GL(m)$是$\mathbb{R}^{m^2}$的开子集;
+\textcircled{2} $\det^{-1}(-\infty, 0)$和$\det^{-1}(0, \infty)$是$GL(m)$的开子集（用诱导拓扑衡量）。
+而$\det^{-1}(-\infty, 0)$和$\det^{-1}(0, \infty)$又因为互为补集而都是$GL(m)$的闭子集，可见$GL(m)$含有除自身和$\emptyset$外的既开又闭的子集，因而是非连通流形。
+还可证明，$GL(m)$是有两个连通分支的非连通流形。最简单的例子是
+$$GL(1) = (-\infty, 0) \cup (0, \infty) $$
+
+当说到$GL(m)$的群元是从$V$到$V$的可逆线性映射时，我们是在用纯几何语言。
+当说到$GL(m)$的群元是$m \times m$可逆矩阵时，我们是在用坐标语言---给$V$选定基底（及其对偶基底）后，从$V$到$V$的任一可逆线性映射$T$就有了$m^2$个分量，选作坐标，便得流形$GL(m)$上的一个坐标系。
+以$\mathfrak{gl}(m)$代表$GL(m)$的李代数，设$A \in \mathfrak{gl}(m)$，则它是恒等元$I \in GL(m)$的矢量，在上述坐标系的基底中自然有$m^2$个分量，因而也对应于一个$m \times m$的实矩阵。
+反之，任一$m \times m$实矩阵的$m^2$个矩阵元配以$I$点的坐标基矢便给出$I$点的一个矢量。
+可见，虽然只有可逆实矩阵$m \times m$才是$GL(m)$的元素，任意$m \times m$实矩阵都是$\mathfrak{gl}(m)$的元素。
+事实上，全体$m \times m$实矩阵构成的矢量空间与$I$点的切空间$V_I$有同构关系，于是有如下定理
+
+\begin{theorem}
+    $\mathfrak{gl}(m) = \{m \times m\text{实矩阵}\}$（等号代表两个矢量空间同构，同构关系依赖于$V$的基底的选取）
+\end{theorem}
+
+对任一$m \times m$矩阵$A$引入符号
+$$\mathrm{Exp}(A) \equiv I + A + \frac{1}{2!}A^2 + \frac{1}{3!}A^3 + \cdots$$
+其中$A^2 \equiv AA$（矩阵相乘），$A^3 \equiv AAA$。
+可以证明：
+\textcircled{1} 上式右边收敛，所以左边有意义，是一个$m \times m$矩阵；
+\textcircled{2} 若矩阵$A, B$对易，即$AB = BA$，则
+$$\mathrm{Exp}(A + B) = (\mathrm{Exp}(A))(\mathrm{Exp}(B))$$
+下面的定理表明，对$\mathfrak{gl}(m)$的元素$A$（看作矩阵），$\mathrm{Exp}$就是指数映射的$\exp$。
+
+\begin{theorem}
+    $\mathrm{Exp}(A) = \exp(A), ~ \forall A \in \mathfrak{gl}(m)$
+\end{theorem}
+
+\begin{proof}
+    $\forall s, t \in \mathbb{R}$，由上式得
+    $$\mathrm{Exp}[(s + t)A] = \mathrm{Exp}(sA)\mathrm{Exp}(tA), ~ \forall A \in \mathfrak{gl}(m)$$
+    取$s = 1, t = -1$，则上式给出$\mathrm{Exp}(A)\mathrm{Exp}(-A) = \mathrm{Exp}(0) = I$。
+    上式表明矩阵$\mathrm{Exp}(A)$有逆（就是$\mathrm{Exp}(-A)$），故$\mathrm{Exp}(A) \in GL(m)$。
+    式中的$A$可为$\mathfrak{gl}(m)$的任一元素，所以
+    $$\mathrm{Exp}(tA) \in GL(m), ~ \forall A \in \mathfrak{gl}(m), t \in \mathbb{R}$$
+    令$\gamma(t) \equiv \mathrm{Exp}(tA)$，则有$\gamma(s + t) = \gamma(s)\gamma(t)$，且根据$\mathrm{Exp}$的定义有
+    $$\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}\mathrm{Exp}(tA) = A$$
+    可见$\gamma(t) \equiv \mathrm{Exp}(tA)$是由$A$唯一决定的单参子群$\exp(tA)$，从而$\mathrm{Exp}(tA) = \exp(tA)$
+\end{proof}
+
+本节的第一个定理表明$\mathfrak{gl}(m)$和$\{m \times m\text{实矩阵}\}$作为矢量空间是同构的。
+自然要问他们作为李代数是否也同构。答案是肯定的。
+以$V_e$作为$\mathfrak{gl}(m)$，其任意二元素$A, B \in V_e$的李括号定义为$[A, B] = [\bar A, \bar B]_e$（见第三节）。
+另一方面，$A, B \in V_e$所对应的$m \times m$矩阵（仍记作$A, B$）的李括号定义为矩阵对易子$AB - BA$。
+因此，欲证$\mathfrak{gl}(m)$和$\{m \times m\text{实矩阵}\}$是同构李代数只须证明$[\bar A, \bar B]_e = AB - BA$。
+而这正是如下定理的结论。
+
+\begin{theorem}
+    设$G$是$GL(m)$的李子群，则其李代数元$A, B \in \mathfrak{g} \subset \mathfrak{gl}(m)$的李括号$[A, B]$对应于$A, B$所对应的矩阵（仍记作$A, B$）的对易子$AB - BA$，即
+    $$[A, B] = AB - BA$$
+\end{theorem}
+
+\subsection{$O(m)$群（正交群）}
+
+如前所说，$GL(m)$群是$m$维矢量空间$V$上所有可逆$(1, 1)$型张量$T$的集合，除可逆性外没有其他要求，所以称为一般线性群。
+对$T$再提出某些适当要求则可得到$GL(m)$群的某些子群。
+$O(m)$群就是重要一例，其要求是$T$保度规。
+以下把$O(m)$群的元素专记作$Z$。
+设$(V, g_{ab})$是带正定度规的$m$维矢量空间。
+线性映射$Z \colon V \to V$称为保度规的，若
+$$g_{ab}(Z^a{}_cv^c)(Z^b{}_du^d) = g_{cd}v^cu^d, ~ \forall v^c, u^d \in V$$
+取$u = v$，则上式给出
+$$g_{ab}(Z^a{}_cv^c)(Z^b{}_dv^d) = g_{cd}v^cv^d, ~ \forall v^c \in V$$
+可见保度规的$Z$对矢量的作用必保长度。
+反之，利用$g_{ab} = g_{(ab)}$可证任何满足上式的$Z$必保度规。
+所以保长性等价于保度性。
+保度规性又等价于
+$$Z^a{}_cZ^b{}_dg_{ab} = g_{cd}$$
+令$$O(m) \equiv \{Z^a{}_b \in \mathscr{T}_V(1, 1) \mid Z^a{}_cZ^b{}_dg_{ab} = g_{cd}\}$$
+把$Z^a{}_b$看作从$V$到$V$的映射，以复合映射为群乘法，则$O(m)$是群，而且是$GL(m)$的李子群。
+用$V$的任一正交归一基底可把上式改写为分量形式\footnote{
+    $g_{\sigma\rho}(e^\sigma)_c(e^\rho)_d = Z^\mu{}_\sigma Z^\nu{}_\rho g_{\mu\nu}(e^\sigma)_c(e^\rho)_d$
+    因$(e^\sigma)_c(e^\rho)_d$正交归一并注意到我们约定$g_{ab}$为正定度规，就有$g_{\sigma\rho}(e^\sigma)_c(e^\rho)_d = \delta_{\sigma\rho}$
+}：$$\delta_{\sigma\rho} = Z^\mu{}_\sigma Z^\nu{}_\rho \delta_{\mu\nu} = (Z^T)_\sigma{}^\mu \delta_{\mu\nu}Z^\nu{}_\rho$$
+其中$Z^T$代表矩阵$Z$的转置矩阵。把上式写成矩阵等式即为
+$$I = Z^TIZ = Z^TZ$$
+表明$Z^T = Z^{-1}$，即$Z$是正交矩阵。
+可见$O(m)$同构于$m \times m$正交矩阵群（由全体$m \times m$正交矩阵以矩阵乘法为群乘法构成的群）。
+因为对任一矩阵$T$有$\det T^T = \det T$，由上式得
+$$1 = (\det Z^T)(\det Z) = (\det Z)^2$$
+故$$\det Z = \pm 1$$
+上式表明群元的行列式不是$1$就是$-1$，这就注定了$O(m)$群的流形是非连通的。
+
+以上抽象定义的$O(m)$可用具体对象来体现。
+先考虑$O(1)$群。$1$维欧氏空间$(\mathbb{R}, \delta_{ab})$可看作带正定度规的$1$维矢量空间，因而可以充当用以定义$O(1)$群的那个$(V, g_{ab})$。
+$O(1)$群的每个群元$Z$就是把空间的任一点（即起自原点的任一矢量）$\vec v$变为长度相等的矢量$\vec v' \equiv Z(\vec v)$的线性映射。
+由于长度相等，只有$\vec v' = \vec v$和$\vec v' = -\vec v$两种可能。
+可见$O(1)$只有两个群元，其中一个是恒等元，另一个称为反射，记作$r$，于是$O(1) = \{e, r\}$。
+再讨论$O(2)$群。$2$维欧氏空间$(\mathbb{R}^2, \delta_{ab})$可看作带正定度规的$2$维矢量空间。
+$O(2)$的每个群元$Z$就是把空间中起自原点的任一矢量$\vec v$变为长度相等的矢量$\vec v' \equiv Z(\vec v)$的线性映射。
+首先想到的自然是令$\vec v$转某一角度$\alpha$的转动，这种映射记作$Z(\alpha)$，可用矩阵表示为
+$$Z(\alpha) = \begin{bmatrix}
+    \cos \alpha & -\sin \alpha \\
+    \sin \alpha & \cos \alpha
+\end{bmatrix}$$
+这是行列式为$+1$的正交矩阵。上式的特例是$Z(0) = \operatorname{diag}(1, 1)$，即恒等元$I$。
+然而，不难验证下面的$Z'(\alpha)$也保长度：
+$$Z'(\alpha) = \begin{bmatrix}
+    \cos \alpha & \sin \alpha \\
+    \sin \alpha & -\cos \alpha
+\end{bmatrix}$$
+这是行列式为$-1$的正交矩阵，其特例是$Z'(0) = \operatorname{diag}(1, -1)$，它作用于$\vec v$的结果$\vec v'$与$\vec v$关于$x$轴对称，故$Z'(0)$代表以$x$轴为对称轴的反射，记作$r_y$（只改变$y$分量）,即$\vec v' = r_y(\vec v)$。
+不要误以为$r_y$也可看作转动，因为它作用于另一矢量$\vec u$得$r_y(\vec u)$，其与$\vec u$的夹角不同于$r_y(\vec v)$与$\vec v$的夹角。
+同理，$Z'(\pi) = \operatorname{diag}(-1, 1)$代表以$y$轴为对称轴的反射$r_x$。
+此外，$Z(\pi) = \operatorname{diag}(-1, -1)$则代表以原点为对称点的反演，记作$i_{xy}$，易证$i_{xy} = r_xr_y$。
+
+$Z$的$4$个矩阵元由于条件$Z^TZ = I$而受到$3$个方程的限制\footnote{
+    $z_{11}^2 + z_{21}^2 = 1, z_{12}^2 + z_{22}^2 = 1, z_{11}z_{12} + z_{21}z_{22} = 0$
+}，只有$1$个独立，所以$O(2)$是$1$维李群。
+由$Z^TZ = I$还可证明$O(2)$的群元被前述两式所穷尽，其中第一式代表的子集构成$O(2)$的李子群，称为$2$维空间的转动群，记作$SO(2)$，字母$S$代表``特殊''，是指每个群元$Z \in SO(2)$满足$\det Z = +1$。
+这也适用于其他常见李群，例如$GL(m)$中满足$\det T = +1$的子集也构成子群，称为$SL(m)$群（特殊线性群）。
+$O(2)$群中由前述第二式表示的子集不含恒等元$e$，因此不是子群。
+两个子集的$\alpha$都可解释为转角（$Z'(\alpha)$中的$\alpha$代表（对$x$轴）反射后再转的角度），取值范围是$0 \leq \alpha < 2\pi$。
+所以$O(2)$群的流形可看作两个互不连通的$S^1$（圆周）之并，是一个非连通流形，每个圆周是一个连通分支。
+
+推而广之，因为$O(m)$的群元$Z$满足$\det Z = \pm 1$，其流形总是由两个连通分支组成的非连通流形，其中含$e$的分支记作$SO(m)$，即
+$$SO(m) = \{Z \in O(m) \mid \det Z = +1\}$$
+这是$O(m)$的李子群，称为特殊正交群，最常用的是$3$维空间的转动群$SO(3)$，它的每一群元可看作把$3$维欧氏空间中起自原点的任一矢量$\vec v$绕过原点的某轴转某角的映射（而且除恒等元外的每个群元的转轴是唯一的，这一结论称为欧拉定理）。
+这使我们可用起自原点的一个箭头代表$SO(3)$的一个群元：箭头所在直线代表转轴，箭头长度（规定从$0$到$\pi$）代表转角，方向相反的箭头代表沿相反方向的转动。
+由于沿某方向转$\pi$角相当于沿反方向转$\pi$角，同一直线段的两端代表同一群元，应当认同。
+于是，李群$SO(3)$的流形是$3$维实心球体，球面上位于每一直径两端的一对点要认同（简称对径认同）。
+这一流形记作$\mathbb{RP}^3$。（$3$维实射影空间$\mathbb{RP}^3$本有其他定义方式，但可以证明$SO(3)$与$\mathbb{RP}^3$微分同胚。）
+
+下面讨论李群$O(m)$和$SO(m)$的李代数$\mathfrak{o}(m)$和$\mathfrak{so}(m)$。
+这两个李代数必定一样，因为设$A \in \mathfrak{o}(m)$，则$A$决定$O(m)$中的一个单参子群$\gamma(t)$，注意到
+\textcircled{1} $\det I = 1$;
+\textcircled{2} $O(m)$中任一群元的行列式只能为$\pm 1$，
+则由单参子群的连续性可知$\gamma(t)$上任一点$Z$都有$\det Z = 1$，可见对任一$t$有$\gamma(t) \in SO(m)$，从而$A$，作为$\gamma(t)$在$I$点的切矢，必属于$\mathfrak{so}(m)$
+
+\begin{theorem}
+    $\mathfrak{o}(m) = \{m \times m \text{实矩阵} A \mid A^T = -A\text{（即$A$为反称阵）}\}$
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[（A）]
+        \item $\forall A \in \mathfrak{o}(m)$，设$Z(t)$是李群$O(m)$中的曲线，且$Z(0) = I, \mathrm{d} / \mathrm{d}t|_{t = 0}Z(t) = A$，则$Z(t)$（对每一$t$值）是一个满足
+        $$Z^T(t)Z(t) = I$$
+        的矩阵\footnote{
+            原因为$Z(t) \in SO(m)$，参考前述分析
+        }。对上式求导并在$t = 0$取值得
+        $$0 = \left[Z^T(t)\frac{\mathrm{d}}{\mathrm{d}t}Z(t)\right]_{t = 0} + \left[\left(\frac{\mathrm{d}}{\mathrm{d}t}Z^T(t)\right)Z(t)\right]_{t = 0} = Z^T(0)A + \left[\frac{\mathrm{d}}{\mathrm{d}t}Z^T(t)\right]_{t = 0}Z(0)$$
+        $Z(0) = I$等价于$Z^T(0) = I$，$A = \mathrm{d} / \mathrm{d}t|_{t = 0}Z(t)$等价于\footnote{
+            $\displaystyle\lim_{t \to 0} \frac{Z^T(t) - Z^T(0)}{t} = \lim_{t \to 0} \frac{Z^T(t) - I^T}{t^T} = \lim_{t \to 0}(\frac{Z(t) - I}{t})^T = A^T$
+        }$A^T = \mathrm{d} / \mathrm{d}t|_{t = 0}Z^T(t)$，因而上式给出$0 = A + A^T$，可见$A$为反称矩阵。
+        \item 设$A$为任一$m \times m$反称实矩阵，注意到$(A^2)^T = (A^T)^2, (A^3)^T = (A^T)^3, \cdots, $因此有$(\mathrm{Exp}A)^T = \mathrm{Exp}(A^T)$\footnote{
+            直观想来这很显然，但因涉及无限级数，求转置与求极限操作的可交换问题并不简单。
+            以下遇到类似问题时不再指出。
+        }所以
+        $$(\mathrm{Exp}A)^T(\mathrm{Exp}A) = (\mathrm{Exp}A^T)(\mathrm{Exp}A) = \mathrm{Exp}(-A)(\mathrm{Exp}A) = I$$
+        上式表明$\mathrm{Exp}A$是正交矩阵，因而$\mathrm{Exp}A \in O(m)$。
+        由此又知\footnote{
+            把前述论证中的$A$替换为$A' \equiv tA$即可。
+        }$\mathrm{Exp}(tA) \in O(m)$（对每一$t$值）。
+        又根据$\mathrm{Exp}$的定义知$\mathrm{d} / \mathrm{d}t|_{t = 0}\mathrm{Exp}(tA) = A$，可见$A$是李群$O(m)$中过$I$的曲线$\mathrm{Exp}(tA)$在$I$点的切矢，所以$A \in \mathfrak{o}(m)$
+    \end{enumerate}
+\end{proof}
+
+利用上述定理可方便地决定李群$O(m)$及$SO(m)$的维数。
+因为$m \times m$反称矩阵的$m$个对角元全为零，其余$m^2 - m$个元素中只有半数独立，所以决定一个$m \times m$的反称实矩阵需要$(m^2 - m) / 2 = m(m - 1) / 2$个实数。
+于是上述定理导致
+$$\dim O(m) = \dim\mathfrak{o}(m) = \frac{1}{2}m(m - 1)$$
+具体说，
+$$\dim O(1) = 0\text{（零维李群）}, \dim O(2) = 1, \dim O(3) = 3, \dim O(4) = 6, \cdots, $$
+
+\subsection{$O(1, 3)$群（洛伦兹群）}
+
+定义$O(m)$群时曾约定$(V, g_{ab})$中的$g_{ab}$为正定度规，现在放宽为任意度规。
+设$g_{ab}$在正交归一基底下的矩阵有$m'$个对角元为$-1$，$m''$个对角元为$+1$，则$V$上所有保度规的线性映射的集合在以复合映射为群乘法下构成群，记作$O(m', m'')$，即
+$$O(m', m'') \coloneq \{\Lambda^a{}_b \in \mathscr{T}_V(1, 1) \mid \Lambda^a{}_c\Lambda^b{}_dg_{ab} = g_{cd}\}$$
+同$O(m)$类似，$O(m', m'')$也是$GL(m)$（其中$m = m' + m''$）的李子群，$O(m)$可看作$O(m', m'')$在$m' = 0, m'' = m$时的特例。
+
+抽象定义的$O(m', m'')$群也可与$O(m)$类似地用具体对象体现。
+我们只讨论$m' = 1$的情况，并且最关心$O(1, 3)$群（$4$维闵氏时空的洛伦兹群），但先从最简单的$O(1, 1)$群讲起。
+$2$维闵氏时空$(\mathbb{R}^2, \eta_{ab})$可看作用来定义$O(1, 1)$群的那个带洛伦兹度规的$(V, g_{ab})$。
+用$(\mathbb{R}^2, \eta_{ab})$的任一正交归一基可把保度规条件$\Lambda^a{}_c\Lambda^b{}_dg_{ab} = g_{cd}$改写为分量形式：
+$$\eta_{\sigma\rho} = \Lambda^\mu{}_\sigma\Lambda^\nu{}_\rho\eta_{\mu\nu} = (\Lambda^T)_\sigma{}^\mu\eta_{\mu\nu}\Lambda^\nu{}_\rho$$
+写成矩阵等式即为
+$$\eta = \Lambda^T\eta\Lambda, \text{其中} \eta \equiv \operatorname{diag}(-1, 1)$$
+上式表明$\det \Lambda = \pm 1$，因此，与$O(m)$群类似，$O(1, 1)$群也是非连通的。
+注意到洛伦兹变换$t' = \gamma(t - vx), x' = \gamma(x - vt)$保闵氏线元，自然猜想它是$O(1, 1)$的群元。
+把变换的参数$v$改写为$\operatorname{th}\lambda$，其中$\lambda \in (-\infty, \infty)$，则$\gamma \equiv (1 - v^2)^{-1/2} = \operatorname{ch}\lambda$，故洛伦兹变换可改写为
+$$t' = t\operatorname{ch}\lambda - x\operatorname{sh}\lambda, ~ x' = -t\operatorname{sh}\lambda + x\operatorname{ch}\lambda$$
+不难验证这一变换的矩阵
+$$\Lambda(\lambda) = \begin{bmatrix}
+    \operatorname{ch}\lambda & -\operatorname{sh}\lambda \\
+    -\operatorname{sh}\lambda & \operatorname{ch}\lambda
+\end{bmatrix}$$
+满足上式，可见$\forall \lambda \in (-\infty, \infty)$，$\Lambda(\lambda)$是$O(1, 1)$的群元。
+对上式的$\Lambda$有$\det \Lambda = +1$，然而前面已说明$\det \Lambda = \pm 1$，看来还应有其他连通分支。
+其实，$O(1, 1)$的非连通性除了来自$\Lambda$所受的限制$\det \Lambda = \pm 1$之外还来自$\Lambda^0{}_0$所受到的限制。
+设$\{(e_\mu)^a\}$是$V$的正交归一基底，用$\Lambda^a{}_c\Lambda^b{}_dg_{ab} = g_{cd}$作用于$(e_0)^c(e_0)^d$得\footnote{
+    左边$= \Lambda^a{}_0\Lambda^b{}_0g_{ab} = -(\Lambda^0{}_0)^2 + (\Lambda^1{}_0)^2$，右边$= -1$。
+}$-(\Lambda^0{}_0)^2 + (\Lambda^1{}_0)^2 = -1$，所以$(\Lambda^0{}_0)^2 \geq 1$。
+$\det \Lambda$与$\Lambda^0{}_0$的允许值的配合使李群$O(1, 1)$由如下$4$个互不连通的连通分支组成：
+\begin{enumerate}[(I)]
+    \item 子集$O^\uparrow_+(1, 1)$，其元素$\Lambda(\lambda) = \begin{bmatrix}
+    \operatorname{ch}\lambda & -\operatorname{sh}\lambda \\
+    -\operatorname{sh}\lambda & \operatorname{ch}\lambda
+    \end{bmatrix}$满足$\det \Lambda = +1, \Lambda^0{}_0 \geq +1$；
+    \item 子集$O^\uparrow_-(1, 1)$，其元素$\Lambda(\lambda) = \begin{bmatrix}
+    \operatorname{ch}\lambda & -\operatorname{sh}\lambda \\
+    \operatorname{sh}\lambda & -\operatorname{ch}\lambda
+    \end{bmatrix}$满足$\det \Lambda = -1, \Lambda^0{}_0 \geq +1$；
+    \item 子集$O^\downarrow_-(1, 1)$，其元素$\Lambda(\lambda) = \begin{bmatrix}
+    -\operatorname{ch}\lambda & \operatorname{sh}\lambda \\
+    -\operatorname{sh}\lambda & \operatorname{ch}\lambda
+    \end{bmatrix}$满足$\det \Lambda = -1, \Lambda^0{}_0 \leq -1$；
+    \item 子集$O^\downarrow_+(1, 1)$，其元素$\Lambda(\lambda) = \begin{bmatrix}
+    -\operatorname{ch}\lambda & \operatorname{sh}\lambda \\
+    \operatorname{sh}\lambda & -\operatorname{ch}\lambda
+    \end{bmatrix}$满足$\det \Lambda = +1, \Lambda^0{}_0 \leq -1$；
+\end{enumerate}
+
+$(\mathbb{R}^2, \eta_{ab})$可看作带洛伦兹度规的$2$维矢量空间，$\Lambda^a{}_b \in O(1, 1)$就是把空间中起自原点的任一矢量$v^a$变为$\Lambda^a{}_bv^b$的保度规线性映射。
+略去抽象指标，用正交归一基底把$v$表为列矢量$v = \begin{bmatrix}
+    v^0 \\
+    v^1
+\end{bmatrix}$，我们来看$4$个连通分支中$\lambda = 0$的元素$\Lambda(0)$对它的作用。
+对$O^\uparrow_+(1, 1)$而言，$\Lambda(0)$就是恒等元，它把$v$映射为$v$。
+对$O^\uparrow_-(1, 1)$，有$\Lambda(0) = \operatorname{diag}(1, -1)$，作用于$v$所得矩阵为$v' = \begin{bmatrix}
+    v^0 \\
+    -v^1
+\end{bmatrix}$，称为空间反射，记作$r_x$。
+对$O^\downarrow_-(1, 1)$，有$\Lambda(0) = \operatorname{diag}(-1, 1)$，作用于$v$所得矩阵为$v' = \begin{bmatrix}
+    -v^0 \\
+    v^1
+\end{bmatrix}$，称为时间反射，记作$r_t$。
+对$O^\downarrow_+(1, 1)$，有$\Lambda(0) = \operatorname{diag}(-1, -1)$，作用于$v$所得矩阵为$v' = \begin{bmatrix}
+    -v^0 \\
+    -v^1
+\end{bmatrix}$，称为时空反演，记作$i_{tx}$。
+
+因为每个连通分支的元素由一个参数$\lambda$决定，而且$\lambda \in (-\infty, \infty)$，所以每一连通分支都可看作流形$\mathbb{R}$，整个李群$O(1, 1)$是$1$维非连通流形。
+$4$个连通分支中只有$O^\uparrow_+(1, 1)$是$O(1, 1)$的子群（只有它包含恒等元），因而是李子群。（因为有这样的一般结论：李群的含恒等元的连通分支是它的李子群。）
+$O(1, 1)$与$O(2)$有一重要区别：$O(2)$的流形紧致而$O(1, 1)$非紧致。
+我们称$O(2)$为紧致李群而$O(1, 1)$为非紧致李群。
+
+在以上基础上就不难介绍$O(m', m'')$中对物理最有用的特例，即洛伦兹群$O(1, 3)$，简记为$L$，其群元$\Lambda \in L$（作为$4 \times 4$矩阵）的充要条件与前述一样，只是改为$4 \times 4$矩阵等式，即
+$$\eta = \Lambda^T\eta\Lambda, \text{其中} \eta \equiv \operatorname{diag}(-1, 1, 1, 1)$$
+$L$是由$4$个连通分支组成的$6$维非连通流形，这$4$个连通分支是
+\[\begin{split}
+    L^\uparrow_+ = \{\Lambda \in L \mid \det \Lambda = +1, \Lambda^0{}_0 \geq +1\}, ~ & L^\uparrow_- = \{\Lambda \in L \mid \det \Lambda = -1, \Lambda^0{}_0 \geq +1\}, \\
+    L^\downarrow_- = \{\Lambda \in L \mid \det \Lambda = -1, \Lambda^0{}_0 \leq -1\}, ~ & L^\downarrow_+ = \{\Lambda \in L \mid \det \Lambda = +1, \Lambda^0{}_0 \leq -1\}.
+\end{split}\]
+每个连通分支含一个最简单的元素，依次记作$I, r_s, r_t, i_{ts}$，其中
+\[\begin{aligned}
+    I  & \equiv \operatorname{diag}(1, 1, 1, 1) \in L^\uparrow_+ \text{是$L$的恒等元} \\
+    r_s & \equiv \operatorname{diag}(1, -1, -1, -1) \in L^\uparrow_- \text{是$L$的空间反射元} \\
+    r_t & \equiv \operatorname{diag}(-1, 1, 1, 1) \in L^\downarrow_- \text{是$L$的时间反射元} \\
+    i_{ts} & \equiv r_tr_s = -I \in L^\downarrow_+ \text{是$L$的时空反演元}
+\end{aligned}\]
+上述$4$个连通分支中只有$L^\uparrow_+$是子群（只有它包含恒等元），而且是李子群，称为固有洛伦兹群\footnote{
+    $\Lambda^0{}_0 \geq +1$的洛伦兹变换不改变被作用矢量$v^a$的时间分量$v^0$的正负性，故称保时向的（orthochronous）,反之$\Lambda^0{}_0 \leq -1$的洛伦兹变换称为反时向的（antichronous）。
+    另一方面，``固有''（proper）一词则常用以形容$\det \Lambda = +1$。
+    因此$L^\uparrow_+$的全称应是固有、保时向洛伦兹群，而固有洛伦兹群一词则应留给$L$的非连通子群$L_+ = \{\Lambda \in L \mid \det \Lambda = +1\}$。
+    也有文献称$L^\uparrow_+$为限制（restricted）洛伦兹群或正常洛伦兹群。
+    考虑到简单性和习惯性，本书仍仿照多数文献称$L^\uparrow_+$为固有洛伦兹群。
+}，是$6$维连通流形，流形结构为$\mathbb{R}^3 \times SO(3)$。
+其他$3$个连通分支都是子群$L^\uparrow_+$的左陪集：
+$$L^\uparrow_- = r_sL^\uparrow_+, ~ L^\downarrow_- = r_tL^\uparrow_+, ~ L^\downarrow_+ = i_{ts}L^\uparrow_+$$
+
+同$O(3)$群类似，洛伦兹群$O(1, 3)$和它的子群$L^\uparrow_+$有相同的李代数，记作$\mathfrak{o}(1, 3)$。
+
+\begin{theorem}
+    $\mathfrak{o}(1, 3) = \{4 \times 4 \text{实矩阵} A \mid A^T = -\eta A \eta\}$
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[（A）]
+        \item $\forall A \in \mathfrak{o}(1, 3)$，考虑$O(1, 3)$中满足以下两条件的曲线$\Lambda(t)$：
+        \begin{enumerate}[（1）]
+            \item $\Lambda(0) = I$，
+            \item $\mathrm{d} / \mathrm{d}t|_{t = 0}\Lambda(t) = A$
+        \end{enumerate}
+        注意到$\Lambda(t) \in O(1, 3)$则有$\Lambda^T(t)\eta\Lambda(t) = \eta ~ \forall t \in \mathbb{R}$。
+        对$t$求导并在$t = 0$取值得
+        $$0 = \left[\frac{\mathrm{d}}{\mathrm{d}t}\Lambda^T(t)\right]_{t = 0}\eta\Lambda(0) + \Lambda^T(0)\eta\left[\frac{\mathrm{d}}{\mathrm{d}t}\Lambda(t)\right]_{t = 0} = A^T \eta I + I \eta A = A^T \eta + \eta A$$
+        以$\eta^{-1}$右乘上式，注意到$\eta^{-1} = \eta$，得$A^T = -\eta A \eta$。（$\eta$与$\eta^{-1}$作为矩阵相等，但写矩阵元时最好分清上下标，即$\eta$的矩阵元为$\eta_{\mu\nu}$而$\eta^{-1}$的矩阵元为$\eta^{\mu\nu}$。）
+        \item 设$A$是满足$A^T = -\eta A \eta$的$4 \times 4$实矩阵。
+        仿照讨论$O(m)$时的证明，只须证明$\operatorname{Exp}(A) \in O(1, 3)$。
+        因为对任意矩阵$M, N$有
+        $$\begin{aligned}
+            & N^{-1}(\operatorname{Exp}M)N = N^{-1}(I + M + \frac{1}{2!}M^2 + \frac{1}{3!}M^3 + \cdots)N \\
+            = & I + N^{-1}MN + \frac{1}{2!}(N^{-1}MN)(N^{-1}MN) + \frac{1}{3!}(N^{-1}MN)(N^{-1}MN)(N^{-1}MN) + \cdots \\
+            = & \operatorname{Exp}(N^{-1}MN)
+        \end{aligned}$$
+        取$N = \eta, M = A$便得$\eta(\operatorname{Exp}A)\eta = \operatorname{Exp}(\eta A \eta)$，因而$\eta(\operatorname{Exp}A) = \operatorname{Exp}(\eta A \eta)\eta$。
+        于是$(\operatorname{Exp}A)^T\eta(\operatorname{Exp}A) = (\operatorname{Exp}A^T)\eta(\operatorname{Exp}A) = (\operatorname{Exp}A^T)\operatorname{Exp}(\eta A \eta)\eta = \operatorname{Exp}(A^T + \eta A \eta)\eta = \eta$，（其中用到$A^T = -\eta A \eta$。）
+        可见$\operatorname{Exp}(A) \in O(1, 3)$。
+    \end{enumerate}
+\end{proof}
+
+要利用计算$O(m)$维数的方法来计算$O(1, 3)$群的维数，可以借用如下事实：
+$\forall A \in \mathfrak{o}(1, 3)$，令$B \equiv \eta A$，则由$A^T = -\eta A \eta$易见$B^T = -B$，即$B \in \mathfrak{o}(4)$。
+这表明存在从$\mathfrak{o}(1, 3)$到$\mathfrak{o}(4)$的映射，而且是（矢量空间之间的）同构映射，因而$\dim \mathfrak{o}(1, 3) = \dim \mathfrak{o}(4)$。
+这一结论只依赖于$\eta$的对称性和非退化性。
+对$O(m', m'')$群，令$\eta$代表这样的对角矩阵，其前$m'$个对角元为$-1$，后$m''$个对角元为$+1$，便知也有类似结论，即
+$$\dim O(m', m'') = \dim O(m' + m'')$$
+
+$\Lambda \in L$满足$\eta = \Lambda^T \eta \Lambda$，其中$\eta \equiv \operatorname{diag}(-1, 1, 1, 1)$。而
+$$\eta = \Lambda^T \eta \Lambda \Leftrightarrow \eta \Lambda^{-1} = \Lambda^T \eta \Leftrightarrow \Lambda^{-1} = \eta^{-1}\Lambda^T\eta$$
+再用$\eta^{-1} = \eta$便得$\Lambda^{-1} = \eta \Lambda^T \eta$。
+借此可方便地求得$\Lambda \in L$的逆矩阵$\Lambda^{-1}$：
+先写出$\Lambda$的转置矩阵$\Lambda^T$，再对$\Lambda^T$的各元素依下列法则改变符号：
+$\begin{bmatrix}
+    + - - - \\
+    - + + + \\
+    - + + + \\
+    - + + +
+\end{bmatrix}$，结果即为$\Lambda^{-1}$。
+
+鉴于固有洛伦兹群和洛伦兹代数对物理学的非常重要性，我们将单辟一节对此做更详尽的讨论。
+
+\subsection{$U(m)$群（酉群）}
+
+$GL(m)$群是用$m$维实矢量空间$V$定义的。
+把$V$改为$m$维复矢量空间所得的一般线性群记作$GL(m, \mathbb{C})$，是$2m^2$维（实）李群。
+与$GL(m, \mathbb{R})$（即$GL(m)$）不同，$GL(m, \mathbb{C})$是连通李群。
+我们只介绍这个群的一个重要子群---酉群$U(m)$。
+正如$GL(m)$群的子群$O(m)$要求保度规那样，酉群$U(m)$是对$GL(m, \mathbb{C})$要求保内积的结果。
+复矢量空间的内积与实矢量空间的内积类似而又不同，最重要的区别在于，实矢量空间的内积对两个矢量的作用都为线性，而复矢量空间的内积\footnote{
+    如下条件可作为其定义：
+    \textcircled{1} $(f, g + h) = (f, g) + (f, h)$；
+    \textcircled{2} $(f, cg) = c(f, g)$；
+    \textcircled{3} $(f, g) = \widebar{(g, f)}$；
+    \textcircled{4} $(f, f) \geq 0, \text{且} (f, f) = 0 \Leftrightarrow f = 0$；
+}只对第二个矢量为线性，对第一个矢量则为反线性。
+定义了内积的复矢量空间称为内积空间。
+设$V$是有限维内积空间，线性映射$A \colon V \to V$称为$V$上的线性算符，简称算符，它自然诱导出$V$上的另一线性算符$A^\dagger$，称为$A$的伴随算符，满足
+$$(A^\dagger f, g) = (f, Ag), ~ \forall f, g \in V$$
+其中$Ag$代表$A$作用于$g$所得矢量，即$A(g)$的简写。
+可以证明每一$A$按上式决定唯一的$A^\dagger$，上式可作为$A^\dagger$的定义。
+
+\begin{definition}
+    内积空间$V$上的算符$U$称为酉算符（或幺正算符），若其作用保内积，即
+    $$(Uf, Ug) = (f, g), ~ \forall f, g \in V$$
+\end{definition}
+
+\begin{theorem}
+    算符$U$为酉算符的充要条件为
+    $$U^\dagger U = \delta$$
+    其中$\delta$代表恒等算符，即从$V$到$V$的恒等映射。
+\end{theorem}
+
+\begin{proof}
+    若$U^\dagger U = \delta$，则根据伴随算符的定义有$(Uf, Ug) = (U^\dagger Uf, g) = (f, g), ~ \forall f, g \in V$，故$U$为酉算符。
+    反之，若$U$为酉算符，则$\forall f, g \in V$有
+    $$0 = (Uf, Ug) - (f, g) = (U^\dagger Uf, g) - (f, g) = ((U^\dagger U - \delta)f, g)$$
+    取$g = (U^\dagger U - \delta)f$，则$0 = (g, g)$，故$g = 0$，即$(U^\dagger U - \delta)f = 0 ~ \forall f \in V$，从而$U^\dagger U = \delta$。
+\end{proof}
+
+选定$V$的一个正交归一基底$\{e_i\}$后，$V$上任一算符$A$可用矩阵表示，其矩阵元定义为\footnote{
+可以证明，这样定义的矩阵满足如下两个条件：
+\textcircled{1} $A$是零算符当且仅当其矩阵$A$为零矩阵；
+\textcircled{2} 算符$AB$的矩阵为算符$A$的矩阵与算符$B$的矩阵的乘积$AB$。
+}
+$$A_{ij} \coloneq (e_i, Ae_j)$$
+由上式得
+$$A_{ij} = (A^\dagger e_i, e_j) = \widebar{(e_j, A^\dagger e_i)} = \widebar{A^\dagger_{ji}}$$
+所以，若以$A$和$A^\dagger$分别代表算符$A$和$A^\dagger$在同一基底的矩阵，以$\widebar{A^T}$代表$A$的转置矩阵的矩阵元都取复数共轭所得的矩阵，则
+$$A^\dagger = \widebar{A^T}$$
+
+\subsection{$E(m)$群（欧氏群）}
+
+\subsection{Poincaré群（庞加莱群）}
+
+\section{李代数的结构常数}
+
+\section{李变换群和Killing矢量场}
+
+\section{伴随表示和Killing型}
+
+\section{固有洛伦兹群和洛伦兹代数}
+
