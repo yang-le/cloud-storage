@@ -205,3 +205,146 @@ $N$维矢量空间$V$的一个基底无非是由$N$个元素组成的、满足�
     $$\sum^N_{n = 1}c_nf_n = 0 \Rightarrow c_n = 0, n = 1, \cdots, N$$
     $\mathscr{H}$的任一子集$\{f_\alpha\}$称为线性独立的，若$\{f_\alpha\}$的任一非空有限子集线性独立。
 \end{definition}
+
+如果$\mathscr{H}$中存在满足以下两条件的无限序列$\{e_n\}$：
+\textcircled{1} $\{e_n\}$线性独立；
+\textcircled{2} $\mathscr{H}$的任一元素$f$可由$\{e_n\}$线性表出：
+$$f = \sum^\infty_{n = 1}c_ne_n, ~ c_n \in \mathbb{C}$$
+就说$\{e_n\}$构成$\mathscr{H}$的一个基底。
+（上式中的$\displaystyle f = \sum^\infty_{n = 1}c_ne_n$是$\displaystyle f = \lim_{N \to \infty}\sum^N_{n = 1}c_ne_n$的简写。
+请注意这里的极限涉及$\mathscr{H}$的拓扑，对未定义拓扑的矢量空间无意义。）
+
+下面再讨论$\mathscr{H}$的正交归一基。
+
+\begin{definition}
+    Hilbert空间$\mathscr{H}$中的序列$\{f_n\}$叫正交归一序列，若
+    $$(f_m, f_n) = \delta_{mn}$$
+\end{definition}
+
+不难证明$\mathscr{H}$中的任一正交归一序列都线性独立。
+所以，若$\mathscr{H}$的维数有限，则当$\{f_n\}$的元素个数等于$\mathscr{H}$的维数时，$\{f_n\}$自然构成$\mathscr{H}$的一个基底，而且是正交归一基。
+当$\mathscr{H}$是无限维时，要成为正交归一基，$\{f_n\}$的元素必须无限多个。
+然而，并非由无限多个元素构成的正交归一序列$\{f_n\}$都是正交归一基，这里有一个是否已把元素``选够''的问题
+（例如，设$\{f_n\}$是基底，则只取$n$为偶数的子集也含无限多个元素，但却不是基底），
+只有满足下面定义的完备性条件的$\{f_n\}$才能成为正交归一基。
+
+\begin{definition}
+    $\mathscr{H}$中的正交归一序列$\{f_n\}$叫完备的，若$\mathscr{H}$中除零元外不存在与每个$f_n$都正交的元素
+    （即不能通过给$\{f_n\}$添加新元素而得到``更大''的正交归一序列）。
+\end{definition}
+
+$\{f_n\}$的完备性保证$\mathscr{H}$的任一元素$f$都可用$\{f_n\}$线性表出，因此$\mathscr{H}$的任一完备的正交归一序列（如果存在）都是$\mathscr{H}$的正交归一基。
+改用$\{e_n\}$代表完备的正交归一序列，则任一$f \in \mathscr{H}$都可用$\{e_n\}$线性表出。由前述两式得
+$$c_n = (e_n, f)$$
+故
+$$f = \sum^\infty_{n = 1}(e_n, f)e_n$$
+
+\subsection{Hilbert空间上的线性算符}
+
+\begin{definition}
+    映射$A \colon \mathscr{H} \to \mathscr{H}$称为$\mathscr{H}$上的算符，数学书一般译作算子。
+    $A$作用于$f \in \mathscr{H}$的结果记作$Af$。
+    $A$称为线性算符，若
+    $$A(c_1f_1 + c_2f_2) = c_1Af_1 + c_2Af_2, ~ \forall f_1, f_2 \in \mathscr{H}, c_1, c_2 \in \mathbb{C}$$
+\end{definition}
+
+\begin{definition}
+    算符$A \colon \mathscr{H} \to \mathscr{H}$和$B \colon \mathscr{H} \to \mathscr{H}$称为相等的，若$Af = Bf ~ \forall f \in \mathscr{H}$。
+\end{definition}
+
+今后如无特别声明，行文中的算符均指线性算符。
+$\mathscr{H}$上全体线性算符的集合$\mathscr{L}(\mathscr{H})$也是个复矢量空间\footnote{
+    注意和$\mathscr{H}^*$区分，$\mathscr{H}^*$中的元素皆是从$\mathscr{H}$到$\mathbb{C}$的连续线性映射。
+}，只要用如下的自然方式定义加法和数乘：
+\begin{enumerate}[]
+    \item 加法 ~ $(A_1 + A_2)f \coloneq A_1f + A_2f, ~ \forall A_1 A_2 \in \mathscr{L}(\mathscr{H}), f \in \mathscr{H}$；
+    \item 数乘 ~ $(cA)f \coloneq c(Af), ~ \forall A \in \mathscr{L}(\mathscr{H}), c \in \mathbb{C}$
+\end{enumerate}
+（$\mathscr{L}(\mathscr{H})$的零元（也叫零算符）是这样的算符，它作用于任意$f \in \mathscr{H}$都得$\mathscr{H}$的零元。）
+
+算符分为有界算符和无界算符两大类（定义见下节）。
+本节只讨论有界算符。
+
+\begin{definition}
+    $\mathscr{H}$上的一个线性算符$A \colon \mathscr{H} \to \mathscr{H}$自然诱导出$\mathscr{H}^*$上的一个线性算符$A^* \colon \mathscr{H}^* \to \mathscr{H}^*$，定义为
+    $$(A^*\eta)(f) \coloneq \eta(Af), ~ \forall f \in \mathscr{H}, \eta \in \mathscr{H}^*$$
+    易见$A^*\eta$（作为从$\mathscr{H}$到$\mathbb{C}$的映射）是线性的，还可证明它是连续的，因此$A^*\eta \in \mathscr{H}^*$，从而保证$A^*$是从$\mathscr{H}^*$到$\mathscr{H}^*$的映射。
+    这样定义的$A^*$称为算符$A$的对偶算符。
+\end{definition}
+
+\begin{note}
+    \textcircled{1} $A$和$A^*$是两个不同Hilbert空间上的算符，其中$A \colon \mathscr{H} \to \mathscr{H}$而$A^* \colon \mathscr{H}^* \to \mathscr{H}^*$。
+    \textcircled{2} 不难证明：
+    \begin{enumerate}[（a）]
+        \item $A^*$的确是线性算符
+        \item $A^*$与$A$的对应关系是线性的，即
+        $$(A_1 + A_2)^* = A_1^* + A_2^*, ~ (cA)^* = cA^*$$
+    \end{enumerate}
+\end{note}
+
+$\mathscr{H}$上的任一线性算符$A$的对偶算符$A^*$又可自然诱导出$\mathscr{H}$上的一个线性算符$A^\dagger \colon \mathscr{H} \to \mathscr{H}$。
+设$\nu \colon \mathscr{H} \to \mathscr{H}^*$是前述一一、到上、反线性映射，则可定义$A^\dagger$为如下的复合映射：
+$$A^\dagger \coloneq \nu^{-1} \comp A^* \comp \nu$$
+$\nu$的反线性性导致$\nu^{-1}$的反线性性，加上$A^*$的线性性，便知$A^\dagger$是线性的。
+
+\begin{definition}
+    如上定义的$A^\dagger \colon \mathscr{H} \to \mathscr{H}$叫$A$的伴随算符。
+\end{definition}
+
+\begin{note}
+    $A$和$A^\dagger$都是$\mathscr{H}$上的算符，但$A^*$是$\mathscr{H}^*$上的算符。
+\end{note}
+
+\begin{theorem}
+    设$A^\dagger$是$A$的伴随算符，则
+    $$(f, Ag) = (A^\dagger f, g), ~ \forall f, g \in \mathscr{H}$$
+    反之，若$B \colon \mathscr{H} \to \mathscr{H}$满足
+    $$(f, Ag) = (Bf, g), ~ \forall f, g \in \mathscr{H}$$
+    则$B = A^\dagger$。
+\end{theorem}
+
+\begin{proof}
+    $(f, Ag) = \eta_f(Ag) = (A^*\eta_f)(f) \equiv \eta_h(g) = (h, g) = (A^\dagger f, g)$,
+    其中第一步用到$\eta_f$的定义，第二步用到$A^*$的定义，第三步无非是把$A^*\eta_f$记作$\eta_h$，最后一步用到$A^\dagger$的定义。
+    反之，
+    $$0 = (Bf, g) - (A^\dagger f, g) = (Bf - A^\dagger f, g), ~ \forall f, g \in \mathscr{H}$$
+    故$0 = Bf - A^\dagger f = (B - A^\dagger)f ~ \forall f \in \mathscr{H}$，因而$B = A^\dagger$。
+\end{proof}
+
+\begin{note}
+    可见上式可用作$A^\dagger$的等价定义。
+\end{note}
+
+\begin{theorem}
+    $A^\dagger$与$A$的对应关系是反线性的，即
+    \[\begin{split}
+        (A_1 + A_2)^\dagger = A_1^\dagger + A_2^\dagger \\
+        (cA)^\dagger = \bar{c}A^\dagger, ~ \forall c \in \mathbb{C}
+    \end{split}\]
+\end{theorem}
+
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{theorem}
+    设$A$为$\mathscr{H}$上的有界算符，则$A^{\dagger\dagger} = A$
+\end{theorem}
+
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{definition}
+    （有界）线性算符$A \colon \mathscr{H} \to \mathscr{H}$称为自伴的或厄米的，若$A = A^\dagger$，即
+    $$(f, Ag) = (Af, g), ~ \forall f, g \in \mathscr{H}$$
+\end{definition}
+
+\begin{note}
+    ``厄米算符就是自伴算符''的说法只对有界算符成立。
+    对无界算符，自伴性强于厄米性，详见下节。
+\end{note}
+
+\subsection{Dirac的左右矢记号}
+
+
