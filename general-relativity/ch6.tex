@@ -425,4 +425,61 @@ Dirac说过（大意）:设由$\ket{\psi}$代表的态与自己叠加，结果�
 前面一节讨论的是``$\mathscr{H}$上的''``有界''线性算符。
 下面先解释这两个定语的含义。
 
+``$\mathscr{H}$上的算符（operator on $\mathscr{H}$）''是指从$\mathscr{H}$到$\mathscr{H}$的映射，其定义域是整个$\mathscr{H}$。
+然而量子力学中大多数算符$A$的定义域（记作$D_A$）都只能是$\mathscr{H}$的一个真子集，即$A$只能是从$D_A \subset \mathscr{H}$（$D_A \neq \mathscr{H}$）到$\mathscr{H}$的映射。
+这称为$\mathscr{H}$中的算符（operator in $\mathscr{H}$）。\footnote{
+    这种用on和in形容算符定义域的约定只在部分文献中采用。
+    在不采用这种约定的文献中，``operator on $\mathscr{H}$''不表明该算符的定义域是$\mathscr{H}$。
+}以$1$维空间的波函数空间$\mathscr{H} = L^2(\mathbb{R})$为例。（如前所述，此乃无限维Hilbert空间。）
+定义位置算符$X \colon D_X \to L^2(\mathbb{R})$为
+$$(X\psi)(x) \coloneq x\psi(x), ~ \forall \psi \in D_X, x \in \mathbb{R}$$
+上式的含义是：$X$作用于$D_X$的任一元素$\psi$的结果是这样一个波函数，其在点$x \in \mathbb{R}$的值等于$\psi$在点$x$的值$\psi(x)$乘以$x$。
+算符$X$的定义域$D_X \neq L^2(\mathbb{R})$，因为$\exists \psi \in L^2(\mathbb{R})$使$X\psi \notin L^2(\mathbb{R})$。
+例如，函数
+\[\psi(x) = \begin{cases}
+    1 / x, & x \geq 1 \\
+    0, & x < 1
+\end{cases}\]
+是平方可积的，但函数
+\[(X\psi)(x) = x\psi(x) = \begin{cases}
+    1, & x \geq 1 \\
+    0, & x < 1
+\end{cases}\]
+却非平方可积，说明$\psi \in L^2(\mathbb{R})$而$\psi \notin D_X$。
+因而位置算符$X$只是$L^2(\mathbb{R})$中（而非$L^2(\mathbb{R})$上）的线性算符。
+第二个例子是动量算符$P \colon D_P \to L^2(\mathbb{R})$，其定义为
+$$(P\psi)(x) \coloneq -\mathrm{i}\hbar\frac{\mathrm{d}\psi(x)}{\mathrm{d}x}, ~ \forall \psi \in D_P$$
+$D_P$是$L^2(\mathbb{R})$的这样的子集，其中每个元素$\psi(x)$几乎处处可微，\footnote{
+    关于$D_P$的进一步限制可见后文。
+}而且
+$$\frac{\mathrm{d}\psi(x)}{\mathrm{d}x} \in L^2(\mathbb{R})$$
+并非$L^2(\mathbb{R})$的每个元素都满足这一条件，所以$D_P \neq L^2(\mathbb{R})$，即动量算符$P$也只是$L^2(\mathbb{R})$中（而非$L^2(\mathbb{R})$上）的线性算符。
+
+下面介绍有界算符的定义。
+
+\begin{definition}
+    线性算符$A \colon D_A(\subset \mathscr{H}) \to \mathscr{H}$称为有界算符，若$\exists M > 0$使
+    $$\sqrt{(Af, Af)} \leq M\sqrt{(f, f)}, ~ \forall f \in D_A$$
+    否则称为无界算符。
+\end{definition}
+
+\begin{theorem}
+    设$A$是$\mathscr{H}$上的有界线性算符，则$A^\dagger$也是$\mathscr{H}$上的有界线性算符。
+\end{theorem}
+
+对有限维Hilbert空间，所有线性算符都是有界的。
+反之，量子力学用到的无限维Hilbert空间中许多重要线性算符（例如位置算符$X$，动量算符$P$和哈氏算符$H$）都是无界算符。
+$X$的无界性可证明如下：考虑波函数序列$\{\psi_1(x), \psi_2(x), \cdots, \psi_n(x), \cdots \}$，其中$\psi_n(x)$定义为
+\[\psi_n(x) = \begin{cases}
+    1, & x \in [n, n + 1) \\
+    0, & x \notin [n, n + 1)
+\end{cases}\]
+则易见$\psi_n \in D_X$。有
+$$(\psi_n, \psi_n) = \int^{+\infty}_{-\infty}\widebar{\psi_n(x)}\psi_n(x)\mathrm{d}x = \int^{n + 1}_n\mathrm{d}x = 1$$
+另一方面，
+$$(X\psi_n, X\psi_n) = \int^{+\infty}_{-\infty}x^2\widebar{\psi_n(x)}\psi_n(x)\mathrm{d}x = \int^{n + 1}_nx^2\mathrm{d}x > n^2$$
+因为$n$可为任意大的自然数，所以不存在$M > 0$使
+$$\sqrt{(X\psi_n, X\psi_n))} \leq M\sqrt{(\psi_n, \psi_n)}, ~ \forall \psi_n(x)$$
+可见$X$无界。
+
 
