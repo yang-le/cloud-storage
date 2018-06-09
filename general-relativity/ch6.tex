@@ -324,7 +324,9 @@ $\nu$的反线性性导致$\nu^{-1}$的反线性性，加上$A^*$的线性性，
 \end{theorem}
 
 \begin{proof}
-    TODO
+    $((A_1 + A_2)^\dagger)f, g) = (f, (A_1 + A_2)g) = (f, A_1g) + (f, A_2g) = (A_1^\dagger f, g) + (A_2^\dagger f, g) = ((A_1^\dagger + A_2^\dagger)f, g)$
+    
+    $((cA)^\dagger f, g) = (f, cAg) = c(f, Ag) = c(A^\dagger f, g) = (\bar{c}A^\dagger f, g)$
 \end{proof}
 
 \begin{theorem}
@@ -332,7 +334,7 @@ $\nu$的反线性性导致$\nu^{-1}$的反线性性，加上$A^*$的线性性，
 \end{theorem}
 
 \begin{proof}
-    TODO
+    $(A^{\dagger\dagger}f, g) = (f, A^\dagger g) = \widebar{(A^\dagger g, f)} = \widebar{(g, Af)} = (Af, g)$
 \end{proof}
 
 \begin{definition}
@@ -346,5 +348,81 @@ $\nu$的反线性性导致$\nu^{-1}$的反线性性，加上$A^*$的线性性，
 \end{note}
 
 \subsection{Dirac的左右矢记号}
+
+在Dirac的记号中，每一$f \in \mathscr{H}$记作$\ket{f}$，称为右矢；
+每一$\eta \in \mathscr{H}^*$记作$\bra{\eta}$，称为左矢。
+$\bra{\eta}$作用于$\ket{f}$所得复数记作$\braket{\eta | f}$，即$\braket{\eta | f} \equiv \eta(f)$。
+物理学家常把$\braket{\eta | f}$称为$\bra{\eta}$与$\ket{f}$的内积，在泛函分析中$\braket{\eta | f}$则是$g_\eta$与$f$的内积，其中$g_\eta \equiv \nu^{-1}(\eta) \in \mathscr{H}$。
+记号$\braket{\eta | f}$中的$\braket{}$可看作一个尖括号，``括号''在英文中是``bracket''，去掉字母c并拆为两半，自然把左半$\bra{}$称为bra，而右半$\ket{}$称为ket。
+$\ket{f} \in \mathscr{H}$在$\nu \colon \mathscr{H} \to \mathscr{H}^*$映射下的像$\eta_f \in \mathscr{H}^*$本应记作$\bra{\eta_f}$，但可简记为$\bra{f}$，这不会与$\ket{f}$混淆，却可形象地表明$\bra{f}$就是$\ket{f}$在$\nu$映射下的对应物。
+通常也把这种对应关系记作$\bra{f} \leftrightarrow \ket{f}$。
+同样，$\bra{\eta} \in \mathscr{H}^*$的逆像$\nu^{-1}(\eta)$可简记为$\ket{\eta}$，即$\bra{\eta} \leftrightarrow \ket{\eta}$，原来的$(f, g) = \eta_f(g)$则可表为$(f, g) = \braket{f | g}$。
+实际上，使用Dirac记号后无需再以拉丁字母$f, g, \cdots$和希腊字母$\eta, \xi, \cdots$分别代表$\mathscr{H}$和$\mathscr{H}^*$的元素。
+设$\ket{\psi} \in \mathscr{H}, c \in \mathbb{C}$，则$c\ket{\psi} \in \mathscr{H}$，则可记作$\ket{c\psi}$，即$c\ket{\psi} \equiv \ket{c\psi}$。
+由内积空间的定义有
+\[\begin{split}
+    \braket{\psi | \phi} = \widebar{\braket{\phi | \psi}}, \\
+    \braket{\psi | c\phi} = c\braket{\psi | \phi}, \\
+    \braket{c\psi | \phi} = \bar{c}\braket{\psi | \phi}
+\end{split}\]
+其中$\bra{c\psi}$代表$\ket{c\psi}$在映射$v$下的像，即$\bra{c\psi} \leftrightarrow \ket{c\psi}$。
+注意到$\nu$的反线性性，得
+$$\bra{c\psi} = \nu(c\psi) = \bar{c}\nu(\psi) = \bar{c}\bra{\psi}$$
+故映射$\nu \colon \mathscr{H} \to \mathscr{H}^*$的反线性性体现为
+$$\bra{c\psi} = \bar{c}\bra{\psi}$$
+或
+$$c\ket{\psi} \leftrightarrow \bar{c}\bra{\psi}$$
+其中$\bar{c}\bra{\psi}$是复数$\bar{c}$乘左矢$\bra{\psi}$所得的左矢，也可记为$\bra{\psi}\bar{c}$
+
+算符$A$作用于右矢$\ket{\psi} \in \mathscr{H}$所得的右矢记作$\ket{A\psi}$，即$A\ket{\psi} \equiv \ket{A\psi}$。
+把用$A^*$作用于左矢$\bra{\eta} \in \mathscr{H}^*$的结果记作$A^*\bra{\eta}$，则$A^*$的定义式可表为
+$$(A^*\bra{\eta})\ket{f} = \bra{\eta}(A\ket{f}), ~ \forall \ket{f} \in \mathscr{H}, \bra{\eta} \in \mathscr{H}^*$$
+现在说明上式右边的圆括号可以去掉。
+先回到不用Dirac记号的式子。
+因为$A \colon \mathscr{H} \to \mathscr{H}$而$\eta \colon \mathscr{H} \to \mathbb{C}$，所以$\eta \comp A \colon \mathscr{H} \to \mathbb{C}$。
+$\eta$是$\mathscr{H}$上的连续线性泛函保证$\eta \comp A$也是，故$\eta \comp A \in \mathscr{H}^*$。
+进一步把$\eta \comp A$简记作$\eta A$，则有
+$$(A^*\eta)(f) = (\eta \comp A)(f) = (\eta A)(f)$$
+因而$A^*\eta = \eta A$（$\in \mathscr{H}^*$），用Dirac记号则为$A^*\bra{\eta} = \ket{\eta}A$,于是前式左边等于$(\bra{\eta}A)\ket{f}$，前式就成为
+$$(\bra{\eta}A)\ket{f} = \bra{\eta}(A\ket{f})$$
+上式表明圆括号没有必要，$\bra{\eta}A\ket{f}$有明确含义，它既可理解为$(\bra{\eta}A)\ket{f}$，也可理解为$\bra{\eta}(A\ket{f})$。
+有人把$A^\dagger$记作$A^*$，则他们的$\bra{\eta}A^*$是我们的$\bra{\eta}A^\dagger = A^{\dagger*}\bra{\eta}$。
+
+\begin{theorem}
+    $A\ket{\psi} \leftrightarrow \bra{\psi}A^\dagger$
+\end{theorem}
+
+\begin{proof}
+    因$A\ket{\psi} \equiv \ket{A\psi} \leftrightarrow \bra{A\psi}$，故只须证$\braket{A\psi | \phi} = (\bra{\psi}A^\dagger)\ket{\phi} ~ \forall \ket{\phi} \in \mathscr{H}$。
+    由上式得
+    $$(\bra{\psi}A^\dagger)\ket{\phi} = \bra{\psi}(A^\dagger\ket{\phi}) = \braket{\psi | A^\dagger\phi} = \braket{A\psi | \phi}$$
+    其中最后一步用到$A^{\dagger\dagger} = A$。
+\end{proof}
+
+由上可知，任一算符$A$的本征方程$A\ket{\psi} = c\ket{\psi}$的左矢形式为
+$$\bra{\psi}A^\dagger = \bra{\psi}\bar{c}$$
+
+设$\{\ket{e_n}\}$是$\mathscr{H}$的正交归一基，则可定义$\mathscr{H}$上的线性算符$\sum_n\ket{e_n}\bra{e_n}$为
+$$(\sum_n\ket{e_n}\bra{e_n})\ket{\psi} \coloneq \sum_n\ket{e_n}\braket{e_n | \psi} \in \mathscr{H}, ~ \forall \ket{\psi} \in \mathscr{H}$$
+注意到$\sum_n\ket{e_n}\braket{e_n | \psi} = \ket{\psi}$就有
+$$\sum_n\ket{e_n}\bra{e_n} = I$$
+其中$I$代表单位算符（恒等映射），其定义为$I\ket{\psi} \coloneq \ket{\psi} ~ \forall \ket{\psi} \in \mathscr{H}$。
+上式便是量子力学中常用的完备性关系。
+
+\subsection{态矢和射线}
+
+量子系统每一时刻的态由Hilbert空间$\mathscr{H}$中的一个矢量（右矢$\ket{\psi}$）表示，因此右矢叫做态矢。
+然而态矢与态的对应关系不是一一的。
+Dirac说过（大意）:设由$\ket{\psi}$代表的态与自己叠加，结果将对应于态矢$c_1\ket{\psi} + c_2\ket{\psi} = (c_1 + c_2)\ket{\psi}$，其中$c_1$和$c_2$是任意复数。
+我们应该假定，除了$c_1 + c_2 = 0$的情况外，结果态$(c_1 + c_2)\ket{\psi}$与原始态$\ket{\psi}$相同，即态矢$(c_1 + c_2)\ket{\psi}$和$\ket{\psi}$应代表相同的态。
+（``自己与自己叠加不会得出新态''，请注意这与经典物理非常不同。）
+就是说，右矢$\ket{\psi}$和$c\ket{\psi}$（$c$为任意非零复数）代表同一状态。
+于是，若对$\mathscr{H}$的任意非零元素$\ket{\psi}$定义$\mathscr{H}$的子集$r_\psi \coloneq \{c\ket{\psi} \mid c \in \mathbb{C}, c \neq 0\}$，并称$r_\psi$为过$\ket{\psi}$的一条射线，则一条射线对应于量子系统的一个态。
+以$\mathscr{H}$中的所有射线为元素的集合$\mathscr{R}$叫射线空间。
+
+\section{无界算符及其自伴性}
+
+前面一节讨论的是``$\mathscr{H}$上的''``有界''线性算符。
+下面先解释这两个定语的含义。
 
 
