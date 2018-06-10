@@ -511,28 +511,28 @@ $$GL(1) = (-\infty, 0) \cup (0, \infty) $$
 \end{theorem}
 
 对任一$m \times m$矩阵$A$引入符号
-$$\mathrm{Exp}(A) \equiv I + A + \frac{1}{2!}A^2 + \frac{1}{3!}A^3 + \cdots$$
+$$\operatorname{Exp}(A) \equiv I + A + \frac{1}{2!}A^2 + \frac{1}{3!}A^3 + \cdots$$
 其中$A^2 \equiv AA$（矩阵相乘），$A^3 \equiv AAA$。
 可以证明：
 \textcircled{1} 上式右边收敛，所以左边有意义，是一个$m \times m$矩阵；
 \textcircled{2} 若矩阵$A, B$对易，即$AB = BA$，则
-$$\mathrm{Exp}(A + B) = (\mathrm{Exp}(A))(\mathrm{Exp}(B))$$
-下面的定理表明，对$\mathfrak{gl}(m)$的元素$A$（看作矩阵），$\mathrm{Exp}$就是指数映射的$\exp$。
+$$\operatorname{Exp}(A + B) = (\operatorname{Exp}(A))(\operatorname{Exp}(B))$$
+下面的定理表明，对$\mathfrak{gl}(m)$的元素$A$（看作矩阵），$\operatorname{Exp}$就是指数映射的$\exp$。
 
 \begin{theorem}
-    $\mathrm{Exp}(A) = \exp(A), ~ \forall A \in \mathfrak{gl}(m)$
+    $\operatorname{Exp}(A) = \exp(A), ~ \forall A \in \mathfrak{gl}(m)$
 \end{theorem}
 
 \begin{proof}
     $\forall s, t \in \mathbb{R}$，由上式得
-    $$\mathrm{Exp}[(s + t)A] = \mathrm{Exp}(sA)\mathrm{Exp}(tA), ~ \forall A \in \mathfrak{gl}(m)$$
-    取$s = 1, t = -1$，则上式给出$\mathrm{Exp}(A)\mathrm{Exp}(-A) = \mathrm{Exp}(0) = I$。
-    上式表明矩阵$\mathrm{Exp}(A)$有逆（就是$\mathrm{Exp}(-A)$），故$\mathrm{Exp}(A) \in GL(m)$。
+    $$\operatorname{Exp}[(s + t)A] = \operatorname{Exp}(sA)\operatorname{Exp}(tA), ~ \forall A \in \mathfrak{gl}(m)$$
+    取$s = 1, t = -1$，则上式给出$\operatorname{Exp}(A)\operatorname{Exp}(-A) = \operatorname{Exp}(0) = I$。
+    上式表明矩阵$\operatorname{Exp}(A)$有逆（就是$\operatorname{Exp}(-A)$），故$\operatorname{Exp}(A) \in GL(m)$。
     式中的$A$可为$\mathfrak{gl}(m)$的任一元素，所以
-    $$\mathrm{Exp}(tA) \in GL(m), ~ \forall A \in \mathfrak{gl}(m), t \in \mathbb{R}$$
-    令$\gamma(t) \equiv \mathrm{Exp}(tA)$，则有$\gamma(s + t) = \gamma(s)\gamma(t)$，且根据$\mathrm{Exp}$的定义有
-    $$\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}\mathrm{Exp}(tA) = A$$
-    可见$\gamma(t) \equiv \mathrm{Exp}(tA)$是由$A$唯一决定的单参子群$\exp(tA)$，从而$\mathrm{Exp}(tA) = \exp(tA)$
+    $$\operatorname{Exp}(tA) \in GL(m), ~ \forall A \in \mathfrak{gl}(m), t \in \mathbb{R}$$
+    令$\gamma(t) \equiv \operatorname{Exp}(tA)$，则有$\gamma(s + t) = \gamma(s)\gamma(t)$，且根据$\operatorname{Exp}$的定义有
+    $$\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}\operatorname{Exp}(tA) = A$$
+    可见$\gamma(t) \equiv \operatorname{Exp}(tA)$是由$A$唯一决定的单参子群$\exp(tA)$，从而$\operatorname{Exp}(tA) = \exp(tA)$
 \end{proof}
 
 本节的第一个定理表明$\mathfrak{gl}(m)$和$\{m \times m\text{实矩阵}\}$作为矢量空间是同构的。
@@ -639,16 +639,16 @@ $$SO(m) = \{Z \in O(m) \mid \det Z = +1\}$$
         $Z(0) = I$等价于$Z^T(0) = I$，$A = \mathrm{d} / \mathrm{d}t|_{t = 0}Z(t)$等价于\footnote{
             $\displaystyle\lim_{t \to 0} \frac{Z^T(t) - Z^T(0)}{t} = \lim_{t \to 0} \frac{Z^T(t) - I^T}{t^T} = \lim_{t \to 0}(\frac{Z(t) - I}{t})^T = A^T$
         }$A^T = \mathrm{d} / \mathrm{d}t|_{t = 0}Z^T(t)$，因而上式给出$0 = A + A^T$，可见$A$为反称矩阵。
-        \item 设$A$为任一$m \times m$反称实矩阵，注意到$(A^2)^T = (A^T)^2, (A^3)^T = (A^T)^3, \cdots, $因此有$(\mathrm{Exp}A)^T = \mathrm{Exp}(A^T)$\footnote{
+        \item 设$A$为任一$m \times m$反称实矩阵，注意到$(A^2)^T = (A^T)^2, (A^3)^T = (A^T)^3, \cdots, $因此有$(\operatorname{Exp}A)^T = \operatorname{Exp}(A^T)$\footnote{
             直观想来这很显然，但因涉及无限级数，求转置与求极限操作的可交换问题并不简单。
             以下遇到类似问题时不再指出。
         }所以
-        $$(\mathrm{Exp}A)^T(\mathrm{Exp}A) = (\mathrm{Exp}A^T)(\mathrm{Exp}A) = \mathrm{Exp}(-A)(\mathrm{Exp}A) = I$$
-        上式表明$\mathrm{Exp}A$是正交矩阵，因而$\mathrm{Exp}A \in O(m)$。
+        $$(\operatorname{Exp}A)^T(\operatorname{Exp}A) = (\operatorname{Exp}A^T)(\operatorname{Exp}A) = \operatorname{Exp}(-A)(\operatorname{Exp}A) = I$$
+        上式表明$\operatorname{Exp}A$是正交矩阵，因而$\operatorname{Exp}A \in O(m)$。
         由此又知\footnote{
             把前述论证中的$A$替换为$A' \equiv tA$即可。
-        }$\mathrm{Exp}(tA) \in O(m)$（对每一$t$值）。
-        又根据$\mathrm{Exp}$的定义知$\mathrm{d} / \mathrm{d}t|_{t = 0}\mathrm{Exp}(tA) = A$，可见$A$是李群$O(m)$中过$I$的曲线$\mathrm{Exp}(tA)$在$I$点的切矢，所以$A \in \mathfrak{o}(m)$
+        }$\operatorname{Exp}(tA) \in O(m)$（对每一$t$值）。
+        又根据$\operatorname{Exp}$的定义知$\mathrm{d} / \mathrm{d}t|_{t = 0}\operatorname{Exp}(tA) = A$，可见$A$是李群$O(m)$中过$I$的曲线$\operatorname{Exp}(tA)$在$I$点的切矢，所以$A \in \mathfrak{o}(m)$
     \end{enumerate}
 \end{proof}
 
@@ -857,7 +857,187 @@ $$A_{ij} = (A^\dagger e_i, e_j) = \widebar{(e_j, A^\dagger e_i)} = \widebar{A^\d
 所以，若以$A$和$A^\dagger$分别代表算符$A$和$A^\dagger$在同一基底的矩阵，以$\widebar{A^T}$代表$A$的转置矩阵的矩阵元都取复数共轭所得的矩阵，则
 $$A^\dagger = \widebar{A^T}$$
 
+\begin{theorem}
+    算符$U$为酉算符的充要条件是其在正交归一基底下的矩阵$U$满足矩阵等式
+    $$U^{-1} = U^{\dagger}, \text{即} U^{-1} = \widebar{U^T}$$
+\end{theorem}
+
+\begin{proof}
+    前述酉算符满足的算符等式在正交归一基底下对应于矩阵等式
+    $U^\dagger U = I$
+    故$U^{-1} = U^\dagger$。
+\end{proof}
+
+\begin{definition}
+    满足上式的复矩阵$U$称为酉矩阵（或幺正矩阵）。
+\end{definition}
+
+\begin{note}
+    如果$V$为实矢量空间，则$U^{-1} = U^\dagger$成为$U^{-1} = U^T$，即$U$为正交矩阵。
+    所以酉矩阵可看作正交矩阵在复矩阵的推广。
+\end{note}
+
+\begin{theorem}
+    设$U$为酉矩阵，则
+    $$\det U = \mathrm{e}^{\mathrm{i}\phi} \text{（其中$\phi \in \mathbb{R}$），即$|\det U| = 1$}$$
+\end{theorem}
+
+\begin{proof}
+    对前述矩阵等式取行列式得$1 = (\det \widebar{U^T})(\det U) = \widebar{(\det U)}(\det U)$，得证。
+\end{proof}
+
+\begin{definition}
+    令$U(m) \equiv \{\text{$m$维内积空间$V$上的酉算符}\} = \{m \times m \text{酉矩阵}\}$，以复合映射（或矩阵乘法）为群乘法，则不难验证$U(m)$是李群，称为酉群（或幺正群）。
+\end{definition}
+
+\begin{example}
+    （酉群$U(1)$） 选$1$维复矢量空间$\mathbb{C}$作为$V$并按下式定义内积使成为内积空间：
+    $$(f, g) \coloneq \bar fg, ~ \forall f, g \in \mathbb{C} ~ \text{（容易验证满足内积定义各条件）}$$
+    复数$U \in \mathbb{C}$可看作$\mathbb{C}$上的线性算符，它作用于任一$f \in \mathbb{C}$的结果定义为复数乘积$Uf$。
+    易证$U$为酉算符当且仅当$|U| = 1$，所以$\mathbb{C}$上全体酉算符的集合是复平面上的单位圆。
+    可见李群$U(1)$的流形是一个圆周，是个紧致的连通流形（连通性的证明见下文定理）。
+\end{example}
+
+\begin{definition}
+    复方阵$A$称为厄米的，若$A^\dagger = A$；$A$称为反厄米的，若$A^\dagger = -A$。
+\end{definition}
+
+\begin{note}
+    \textcircled{1} 对实方阵，厄米就是对称；反厄米就是反称。
+    \textcircled{2} 易证：$A$为厄米 $\Leftrightarrow$ $\mathrm{i}A$为反厄米。
+\end{note}
+
+与$GL(m)$群的李代数$\mathfrak{gl}(m)$同构于全体$m \times m$实矩阵构成的李代数类似，$GL(m, \mathbb{C})$群的李代数$\mathfrak{gl}(m, \mathbb{C})$同构于全体$m \times m$复矩阵构成的李代数，即
+$$\mathfrak{gl}(m, \mathbb{C}) = \{m \times m \text{复矩阵}\} ~ \text{（等号代表李代数同构）}$$
+
+\begin{theorem}
+    酉群$U(m)$的李代数
+    $$\mathfrak{u}(m) = \{A \in \mathfrak{gl}(m, \mathbb{C}) \mid A^\dagger = -A\} = \{m \times m \text{反厄米矩阵}\}$$
+\end{theorem}
+
+\begin{proof}
+    与正交群对应的定理证明类似，只须把$Z^T(t)$和$A^T$分别改为$U^\dagger(t)$和$A^\dagger$。
+\end{proof}
+
+\begin{theorem}
+    $$\dim U(m) = \dim \mathfrak{u}(m) = m^2$$
+\end{theorem}
+
+\begin{proof}
+    $A \in \mathfrak{u}(m)$是有$m^2$个复元素的矩阵，由$2m^2$个实数决定。
+    但$A$的反厄米性$A_{ij} = -\bar A_{ji}$导致$m^2$个实方程，理由是：
+    \textcircled{1} 反厄米性要求对角元为虚数，故每个对角元的反厄米条件相当于一个实方程（实部$= 0$），因而所有对角元提供$m$个实方程；
+    \textcircled{2} 反厄米性使每对非对角元提供$2$个实方程，而非对角元共有$(m^2 - m) / 2$对，故全部非对角元共提供$2 \times (m^2 - m) / 2 = m^2 - m$个方程。
+    可见$2m^2$个实数要受$m^2$个实方程限制，只有$m^2$个独立。
+\end{proof}
+
+\begin{example}
+    （李代数$\mathfrak{u}(1)$）
+    由第一个例子得知李群$U(1)$可表为$U(1) = \{\mathrm{e}^{-\mathrm{i}\theta} \mid \theta \in \mathbb{R}\}$，其中$\mathrm{e}^{-\mathrm{i}\theta} = \operatorname{Exp}(-\mathrm{i}\theta)$可看作以$\theta$为参数的单参子群（等于$U(1)$自身），相应的李代数元为
+    $$A = \left.\frac{\mathrm{d}}{\mathrm{d}\theta}\right|_{\theta = 0}\mathrm{e}^{-\mathrm{i}\theta} = -\mathrm{i} \in \mathfrak{u}(1) ~ \text{（不难验证$A$的确满足$A^\dagger = -A$）}$$
+    以$A$为基矢生成的$1$维（实）矢量空间就是$\mathfrak{u}(1)$，故$\mathfrak{u}(1) = \{-\mathrm{i}\alpha \mid \alpha \in \mathbb{R}\}$
+\end{example}
+
+酉矩阵满足的$\det U = \mathrm{e}^{\mathrm{i}\phi}$和正交矩阵满足的$\det Z = \pm 1$很不一样。
+这同如下事实密切相关：
+
+\begin{theorem}
+    与$O(m)$群相反，酉群$U(m)$是连通流形。
+\end{theorem}
+
+\begin{proof}
+    只须证明$\forall U \in U(m)$，存在连续曲线$\gamma(t) \subset U(m)$使$\gamma(0) = I, \gamma(1) = U$。
+    由线性代数可知任意酉矩阵可用酉变换化为对角形，且对角元的模皆为$1$。
+    就是说，$\forall U \in U(m), \exists W \in U(m)$使
+    $$WUW^{-1} = D$$
+    式中$D$为对角矩阵，对角元为$\mathrm{e}^{\mathrm{i}\varphi_1}, \cdots, \mathrm{e}^{\mathrm{i}\varphi_m}$（其中$\varphi_1, \cdots, \varphi_m \in \mathbb{R}$）。
+    设$\Phi$是以$\varphi_1, \cdots, \varphi_m$为对角元的实对角矩阵，则可验证$D = \operatorname{Exp}(\mathrm{i}\Phi)$。由上式得
+    $$U = W^{-1}DW = W^{-1}(\operatorname{Exp}(\mathrm{i}\Phi))W = \operatorname{Exp}(\mathrm{i}W^{-1}\Phi W)$$
+    其中最末一步可参考前述证明中的类似处理。
+    令$A \equiv \mathrm{i}W^{-1}\Phi W$，则
+    $$A^\dagger = \widebar{A^T} = \widebar{\mathrm{i}W^T\Phi^T(W^{-1})^T} = -\mathrm{i}W^{-1}\Phi W = -A$$
+    表明$A$为反厄米矩阵，故$A \in \mathfrak{u}(m)$。
+    于是上式相当于$U = \operatorname{Exp}A$，可见$U(m)$中存在连续曲线$\gamma(t) \equiv \operatorname{Exp}(tA)$使$\gamma(0) = I, \gamma(1) = U$。
+\end{proof}
+
+\begin{note}
+    以上证明中的连续曲线$\gamma(t)$其实是单参子群，因此我们证明了比定理的结论更强的结论：
+    酉群的任一群元都属于某一单参子群。
+    这一结论也适用于$SO(m)$群。
+    然而并非任一李群的含$e$的连通分支的任一群元都属于某一单参子群。
+    例如$\begin{bmatrix}
+        -1 & 1 \\
+        0 & -1
+    \end{bmatrix} \in GL(2)$就不是。
+    存在这样的定理：
+    紧致的连通李群的指数映射是到上映射，这等价于任一群元都属于某一单参子群。
+\end{note}
+
+$U(m)$的子集$SU(m) \equiv \{U \in U(m) \mid \det U = 1\}$是$U(m)$的李子群，称为特殊酉群。
+同$U(m)$一样，$SU(m)$也是紧致的连通李群。
+
+\begin{theorem}
+    设$A$为任意$m \times m$矩阵，则
+    $$\det(\operatorname{Exp}A) = \mathrm{e}^{\operatorname{tr}A}$$
+\end{theorem}
+
+\begin{proof}
+    设$f(t) \equiv \det(\operatorname{Exp}tA)$，则
+    \[\begin{split}
+        \frac{\mathrm{d}}{\mathrm{d}t}f(t) & = \left.\frac{\partial}{\partial s}\right|_{s = 0}f(t + s) = \left.\frac{\partial}{\partial s}\right|_{s = 0}[\det(\operatorname{Exp}(t + s)A)] = \left.\frac{\partial}{\partial s}\right|_{s = 0}[\det(\operatorname{Exp}tA)\det(\operatorname{Exp}sA)] \\
+        & = [\det(\operatorname{Exp}tA)]\left.\frac{\partial}{\partial s}\right|_{s = 0}[\det(\operatorname{Exp}sA)] = [\det(\operatorname{Exp}tA)]\operatorname{tr}A = f(t)\mathrm{tr}A
+    \end{split}\]
+    其中第五步将在下行之后补证。
+    由上式得$\mathrm{d}\ln f(t) / \mathrm{d}t = \mathrm{tr}A$，加之$f(0) = \det I = 1$，有$f(t) = \mathrm{e}^{(\operatorname{tr}A)t}$。
+    令$t = 1$便得上式。
+\end{proof}
+
+最后补证上式的第五步，即$\mathrm{d} / \mathrm{d}s|_{s = 0}[\det(\operatorname{Exp}sA)] = \operatorname{tr}A$。
+设$X$为任意$m \times m$矩阵，$X^i{}_j$是其矩阵元，$\varepsilon_{i_1 \cdots i_m}$代表$m$维Levi--Civita记号，则
+$$\det X = \varepsilon_{i_1 \cdots i_m}X^{i_1}{}_1 \cdots X^{i_m}{}_m$$
+取$X = \operatorname{Exp}(sA) = I + sA + s^2A^2 / 2! + \cdots$，有$X^i{}_j = \delta^i{}_j + sA^i{}_j + s^2A^i{}_kA^k{}_j / 2! + \cdots$，故
+$$X^i{}_j|_{s = 0} = \delta^i{}_j, ~ \left.\frac{\mathrm{d}}{\mathrm{d}s}\right|_{s = 0}X^i{}_j = A^i{}_j$$
+对前式求导并利用上式便可证得$\mathrm{d} / \mathrm{d}s|_{s = 0}[\det(\operatorname{Exp}sA)] = \operatorname{tr}A$：
+\[\begin{split}
+    & \left.\frac{\mathrm{d}}{\mathrm{d}s}\right|_{s = 0}\det X = \varepsilon_{i_1 \cdots i_m}\left.\left(\frac{\mathrm{d}X^{i_1}{}_1}{\mathrm{d}s}X^{i_2}{}_2 \cdots X^{i_m}{}_m + \cdots + X^{i_1}{}_1X^{i_2}{}_2 \cdots \frac{\mathrm{d}X^{i_m}{}_m}{\mathrm{d}s}\right)\right|_{s = 0} \\
+    & = \varepsilon_{i_1 \cdots i_m}(A^{i_1}{}_1\delta^{i_2}{}_2 \cdots \delta^{i_m}{}_m + \cdots + \delta^{i_1}{}_1\delta^{i_2}{}_2 \cdots A^{i_m}{}_m) = (A^1{}_1 + \cdots + A^m{}_m) = \operatorname{tr}A
+\end{split}\]
+
+\begin{theorem}
+    特殊酉群$SU(m)$的李代数
+    $$\mathfrak{su}(m) = \{A \in \mathfrak{u}(m) \mid \operatorname{tr}A = 0\} = \{m \times m \text{无迹反厄米矩阵}\}$$
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[（A）]
+        \item 设$A \in \mathfrak{su}(m)$，则$\forall t \in \mathbb{R}$有$\operatorname{Exp}(tA) \in SU(m)$，故$\det(\operatorname{Exp}tA) = 1$，根据上述定理得$\mathrm{e}^{\operatorname{tr}(tA)} = 1$。
+        因而$\operatorname{tr}(tA) = \mathrm{i}2k\pi$（其中$k = 0$或整数）。
+        但$\operatorname{tr}(tA) = t(\operatorname{tr}A)$，逼出$k = 0, \operatorname{tr}A = 0$，即$A$为无迹矩阵。
+        另一方面，由$A \in \mathfrak{su}(m)$易见$A \in \mathfrak{u}(m)$，故$A$为反厄米矩阵。
+        \item 设$A$是无迹反厄米矩阵，则$\forall t \in \mathbb{R}$，$tA$也是无迹反厄米矩阵。
+        反厄米性导致$tA \in \mathfrak{u}(m)$，从而$\operatorname{Exp}(tA) \in U(m)$。
+        $tA$的无迹性配以前述定理导致$\det(\operatorname{Exp}tA) = 1$，由$\operatorname{Exp}(tA) \in U(m)$便知$\operatorname{Exp}(tA) \in SU(m)$。
+        把$\operatorname{Exp}(tA)$写成级数式，求导便得曲线$\operatorname{Exp}(tA) \subset SU(m)$在$I$点的切矢$\mathrm{d} / \mathrm{d}t|_{t = 0}\operatorname{Exp}(tA) = A$。
+        可见$A \in \mathfrak{su}(m)$。
+    \end{enumerate}
+\end{proof}
+
+上述定理表明酉群$U(m)$与其子群$SU(m)$有不同的李代数。
+
+\begin{theorem}
+    $$\dim SU(m) = \dim\mathfrak{su}(m) = m^2 - 1$$
+\end{theorem}
+
+\begin{proof}
+    $\mathfrak{su}(m)$是$\mathfrak{u}(m)$的子代数：
+    $\mathfrak{u}(m)$的元素$A$只当满足$\operatorname{tr}A = 0$才是$\mathfrak{su}(m)$的元素。
+    $A$的反厄米性使对角元为虚数，所以$\operatorname{tr}A = 0$只提供一个实方程，由此便知$\dim\mathfrak{su}(m) = m^2 - 1$。
+\end{proof}
+
 \subsection{$E(m)$群（欧氏群）}
+
+$m$维欧氏空间的等度规群称为欧氏群，记作$E(m)$。
+欧式空间有最高对称性，所以$\dim E(m) = m(m + 1) / 2$。
 
 \subsection{Poincaré群（庞加莱群）}
 
