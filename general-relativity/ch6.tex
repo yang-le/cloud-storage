@@ -482,4 +482,117 @@ $$(X\psi_n, X\psi_n) = \int^{+\infty}_{-\infty}x^2\widebar{\psi_n(x)}\psi_n(x)\m
 $$\sqrt{(X\psi_n, X\psi_n))} \leq M\sqrt{(\psi_n, \psi_n)}, ~ \forall \psi_n(x)$$
 可见$X$无界。
 
+可以证明，有界算符的定义域总可延拓至整个$\mathscr{H}$，因此讨论有界算符时可只关心$\mathscr{H}$上的算符。
+然而对无界算符不能如此简化，所以涉及无界算符时要格外注意定义域问题。
+
+设$A$是$\mathscr{H}$中的无界算符，定义域$D_A \neq \mathscr{H}$。
+我们遇到的第一个问题是如何定义其伴随算符$A^\dagger$。
+回忆上节对$\mathscr{H}$上的算符$A$的对偶算符$A^*$和伴随算符$A^\dagger$的定义。
+先用下式定义$A^*$：
+$$(A^*\eta)(f) \coloneq \eta(Af), ~ \forall f \in \mathscr{H}$$
+再用$A^*$定义$A^\dagger$。
+可以证明这样定义的$A^*$（和$A^\dagger$）是$\mathscr{H}^*$上（和$\mathscr{H}$上）的有界算符。
+然而，$A^*$的上述定义对$\mathscr{H}$中的算符$A$不适用。
+由于$D_A \neq \mathscr{H}$，$Af$对于不在$D_A$中的$f$无意义，因此上式中的``$\forall f \in \mathscr{H}$''应改为``$\forall f \in D_A$''。
+然而这样改后的式子就不成其为$A^*$的定义，因为要定义$\mathscr{H}^*$的元素$A^*\eta$必须定义它对$\mathscr{H}$的每一元素的作用。
+可见当$D_A \neq \mathscr{H}$时$A^\dagger$需要另给定义。
+注意到其等价定义，可考虑用下法直接定义$A^\dagger$。
+对给定的$f \in \mathscr{H}$，若存在唯一的$h_f \in \mathscr{H}$使
+$$(f, Ag) = (h_f, g), ~ \forall g \in D_A$$
+就把$A^\dagger f$定义为$h_f$，即
+$$A^\dagger f \coloneq h_f$$
+$A^\dagger$的定义域自然为
+$$D_{A^\dagger} = \{f \in \mathscr{H} \mid \exists \text{唯一} h_f \in \mathscr{H} \text{使} (f, Ag) = (h_f, g) ~ \forall g \in D_A\}$$
+用此法定义$A^\dagger$的可能性取决于满足式$(f, Ag) = (h_f, g), ~ \forall g \in D_A$的$h_f$的唯一性，其充要条件将由下述定理给出。
+为讲此定理先介绍两个术语：拓扑空间$X$的子集$U \subset X$称为稠密子集，若$\bar U = X$（$\bar U$代表$U$的闭包）；Hilbert空间$\mathscr{H}$中的算符$A$称为稠定的，若$\widebar{D_A} = \mathscr{H}$。
+
+\begin{theorem}
+    设$A$是$\mathscr{H}$中的线性算符，$f \in \mathscr{H}$，则满足
+    $$(f, Ag) = (h, g), ~ \forall g \in D_A$$
+    的$h \in \mathscr{H}$是唯一的当且仅当$A$是稠定的。
+\end{theorem}
+
+由此可知，当且仅当$\mathscr{H}$中的算符$A$为稠定时，其伴随算符$A^\dagger$可由前式定义，其定义域亦如前所述。
+我们有
+$$(f, Ag) = (A^\dagger f, g), ~ \forall g \in D_A, f \in D_{A^\dagger}$$
+不难证明这样定义的$A^\dagger$是线性的，而且若$A$是$\mathscr{H}$上的有界算符，则这样定义的$A^\dagger$与上节定义的$A^\dagger$相同（这时$A^\dagger$也是$\mathscr{H}$上的有界算符）。
+考虑到上述定理，今后凡谈到算符$A$的伴随算符$A^\dagger$时都默认$A$是稠定的。
+可以证明位置和动量算符都是稠定算符。
+应该指出，$D_A$稠密并不保证$D_{A^\dagger}$稠密。
+在最坏的情况下，$D_{A^\dagger}$可以``小''到只含零元的程度，即$D_{A^\dagger} = \{0\}$。
+幸好这种情况很少出现。
+定义域不稠密的无界算符在量子力学中没有什么用处。
+
+算符的厄米性对量子力学的重要性是众所周知的。
+上节已对$\mathscr{H}$上的算符$A$的厄米性下了如下定义：
+$$(f, Ag) = (Af, g), ~ \forall f, g \in \mathscr{H}$$
+$\mathscr{H}$中的算符$A \colon D_A \to \mathscr{H}$的厄米性仍可用上式定义，只须把式中的$\forall f, g \in \mathscr{H}$改为$\forall f, g \in D_A$。
+然而，泛函分析有个Hellinger--Toeplitz定理，它断言Hilbert空间$\mathscr{H}$上满足上式的算符$A$必然有界。
+这就导致如下严酷的结论：无界的厄米算符的定义域不可能是全$\mathscr{H}$。
+因此涉及无界厄米算符时必须格外注意定义域问题。
+下面将看到，无界算符的厄米性和自伴性的关键区别就在于定义域。
+
+设$A, B$是$\mathscr{H}$上的算符，则其和、积及相等的定义十分简单：
+\begin{enumerate}[]
+    \item 和 ~ $(A + B)f \coloneq Af + Bf, ~ \forall f \in \mathscr{H}$，
+    \item 积 ~ $(AB)f \coloneq A(Bf), ~ \forall f \in \mathscr{H}$,
+    \item 相等 ~ $A = B \Leftrightarrow Af = Bf, ~ \forall f \in \mathscr{H}$。
+\end{enumerate}
+然而对$\mathscr{H}$中的算符就要麻烦一些。
+例如，$A + B$的定义域只能是$D_A \cap D_B$，而$AB$的定义域则还涉及$B$的值域，因为只当$Bf \in D_A$时$ABf$才有意义。
+$A$与$B$的相等性和相互包含性则由如下定义规定：
+
+\begin{definition}
+    设$A, B$是$\mathscr{H}$中的线性算符，其定义域分别为$D_A$和$D_B$，则
+    \begin{enumerate}[（a）]
+        \item $A = B$若$D_A = D_B$而且$Af = Bf, ~ \forall f \in D_A = D_B$；
+        \item $A \subset B$若$D_A \subset D_B$而且$Af = Bf, ~ \forall f \in D_A$（把$B$称为$A$的延拓或扩张）。
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    $\mathscr{H}$中的任意（有界或无界）稠定线性算符$A$称为厄米的，若
+    $$(f, Ag) = (Af, g), ~ \forall f, g \in D_A$$
+\end{definition}
+
+\begin{theorem}
+    $\mathscr{H}$中的稠定算符$A$为厄米算符的充要条件是$A \subset A^\dagger$。\footnote{
+        $A$为厄米不保证$A^\dagger$为厄米。
+        事实上，对厄米算符$A$有$A \subset A^{\dagger\dagger} \subset A^\dagger$（却未必有$A^\dagger \subset A^{\dagger\dagger}$）。
+    }
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[（A）]
+        \item 设$A$为厄米，则$\forall f \in D_A$，有$(f, Ag) = (h_f, g) ~ \forall g \in D_A$。
+        对比$D_{A^\dagger}$的定义发现$f \in D_{A^\dagger}$（其中的$h_f$的唯一性由$A$的稠定性保证，$h_f$就是$Af$）。
+        所以，$f \in D_A \Rightarrow f \in D_{A^\dagger}$，因而$A \subset A^\dagger$。
+        \item 设$A \subset A^\dagger$，则$D_A \subset D_{A^\dagger}$且$\forall f \in D_A$有$A^\dagger f = Af$，故
+        $$(f, Ag) = (Af, g), ~ \forall f, g \in D_A$$
+        可见$A$是厄米的。
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    讨论表明（此处只介绍结论），若厄米算符$A$有界，可把$A$唯一地延拓为$\mathscr{H}$上的有界算符，仍记作$A$（唯一性由$D_A$的稠密性保证）。
+    同样，$A^\dagger$也可被唯一地延拓为$\mathscr{H}$上的有界算符，而且$(f, Ag) = (Af, g) = (A^\dagger f, g) ~ \forall f, g \in \mathscr{H}$。
+    可见上述命题中的$A \subset A^\dagger$对有界厄米算符$A$可表为$A = A^\dagger$。
+    然而确实存在$D_A \neq D_{A^\dagger}$（因而$A \neq A^\dagger$）的无界厄米算符$A$，对这种算符一般只能写$A \subset A^\dagger$。
+    这说明对无界算符$A$来说，$A = A^\dagger$是比$A \subset A^\dagger$更高的要求。
+    满足$A = A^\dagger$的算符非常重要，值得赋予专名：
+\end{note}
+
+\begin{definition}
+    $\mathscr{H}$中的任意（有界或无界）稠定算符$A$称为自伴的，若$A = A^\dagger$。
+\end{definition}
+
+由此可知，无界算符的自伴性强于厄米性。
+偏偏量子力学中多数算符是无界算符，因此区分厄米性和自伴性就成为重要问题。
+厄米性和自伴性的关键差别在于定义域，所以对量子力学的算符应该特别注意定义域及其有关问题（例如定义域的延拓或压缩以及算符的性质在定义域延拓或压缩时的可能改变）。
+讨论量子力学问题时出现的若干混淆正是不注意算符的定义域问题所致。
+
+\begin{theorem}
+    $L^2(\mathbb{R})$中的位置算符$X \colon D_X \to L^2(\mathbb{R})$是自伴算符。
+\end{theorem}
+
 
