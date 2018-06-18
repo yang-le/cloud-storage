@@ -1128,8 +1128,201 @@ $$[v, u]^c = C^c{}_{ab}v^au^b, ~ \forall v^a, u^b \in \mathscr{V}$$
 
 \begin{proof}
     由$[v, u]^a = -[u, v]^a$易见第一条成立。
-    利用李括号满足的雅克比恒等式可证明第二条也成立。（TODO）
+    利用李括号满足的雅克比恒等式可证明第二条也成立。
 \end{proof}
+
+设$\{(e_\mu)^a\}$是$\mathscr{V}$的任一基底，则
+$$[e_\mu, e_\nu]^c = C^c{}_{ab}(e_\mu)^a(e_\nu)^b = C^\sigma{}_{\mu\nu}(e_\sigma)^c$$
+上式的$C^\sigma{}_{\mu\nu}$称为李代数$\mathscr{V}$的结构常数。
+与结构张量$C^c{}_{ab}$不同，结构常数$C^\sigma{}_{\mu\nu}$除依赖李代数本身外还依赖于对基底的人为选择。
+基底变换时结构常数按张量分量变换律变换。
+李氏的一个基本定理断言：
+给定一组满足以下两条件的常数$C^\sigma{}_{\mu\nu}$：
+\textcircled{1} $C^\sigma{}_{\mu\nu} = - C^\sigma{}_{\nu\mu}$；
+\textcircled{2} $C^\sigma{}_{\mu[\nu}C^\mu{}_{\rho\tau]} = 0$，
+必存在李群，其李代数以$C^\sigma{}_{\mu\nu}$为结构常数。
+
+\begin{example}
+    李群$\mathbb{R}^2$的李代数的结构张量。
+
+    把$\mathbb{R}^2$的每点看作从$(0, 0)$点出发的一个矢量，以矢量加法为群乘法，则$\mathbb{R}^2$是以$(0, 0)$点为恒等元$e$的$2$维李群。
+    易见这是阿贝尔群。
+    可以证明：
+    \textcircled{1} 过$e$的每一个直线是一个单参子群；
+    \textcircled{2} $\mathbb{R}^2$上任一左不变矢量场$\bar A$满足$\partial_a\bar A^b = 0$（其中$\partial_a$是自然坐标系的普通导数算符）。
+    等价地，$\bar A$的积分曲线族是平行直线族\footnote{
+        考虑任一左不变矢量场过$e$的不可延积分曲线，在这种情况下，它就是$\mathbb{R}^2$的单参子群，即过$e$的一条直线。
+        因此，$\bar A_{\gamma(s)} = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = s}\gamma(t)$。
+        设$\gamma(t) = (ta, tb)$（即其斜率为$b / a$），则$\bar A_{\gamma(s)} = (a, b)$。
+        因此，$\partial_a\bar A^b$的坐标分量$\partial\bar A^\nu / \partial x^\mu = 0$。
+    }。
+    由\textcircled{2}可知任意两个左不变矢量场$\bar A$，$\bar B$的对易子为零\footnote{
+        $[u, v]^\mu = u^\nu\partial_\nu v^\mu - v^\nu\partial_\nu u^\mu = 0$
+    }：$[\bar A, \bar B] = 0$，故结构张量$C^a{}_{bc} = 0$。
+    这是当然的，因为$\mathbb{R}^2$是连通的阿贝尔李群，其李代数自然是阿贝尔代数。
+    类似地可定义李群$\mathbb{R}^n$，它当然也是阿贝尔群，其李代数也是阿贝尔李代数。
+\end{example}
+
+\begin{example}
+    李代数$\mathfrak{so}(3)$的结构张量。
+
+    前已证明$\dim \mathfrak{so}(3) = 3$。
+    为求得$\mathfrak{so}(3)$的$3$个基矢，可借用$SO(3)$群的$3$个典型的单参子群，它们分别由绕$x$轴、$y$轴和$z$轴的转动组成，以转角$\alpha$为参数，则三个单参子群的矩阵依次为
+    $$Z_x(\alpha) = \begin{bmatrix}
+        1 & 0 & 0 \\
+        0 & \cos\alpha & -\sin\alpha \\
+        0 & \sin\alpha & \cos\alpha
+    \end{bmatrix}, Z_y(\alpha) = \begin{bmatrix}
+        \cos\alpha & 0 & \sin\alpha \\
+        0 & 1 & 0 \\
+        -\sin\alpha & 0 & \cos\alpha
+    \end{bmatrix}, Z_z(\alpha) = \begin{bmatrix}
+        \cos\alpha & -\sin\alpha & 0 \\
+        \sin\alpha & \cos\alpha & 0 \\
+        0 & 0 & 1
+    \end{bmatrix},$$（容易验证它们满足单参子群的条件，如$Z_z(\alpha)Z_z(\beta) = Z_z(\alpha + \beta)$）
+    每一子群在恒等元$I$的切矢给出$\mathfrak{so}(3)$的一个元素（该单参子群的生成元），分别是
+    $$A_1 = \left.\frac{\mathrm{d}}{\mathrm{d}\alpha}\right|_{\alpha = 0}Z_x(\alpha) = \begin{bmatrix}
+        0 & 0 & 0 \\
+        0 & 0 & -1 \\
+        0 & 1 & 0
+    \end{bmatrix},$$
+    $$A_2 = \left.\frac{\mathrm{d}}{\mathrm{d}\alpha}\right|_{\alpha = 0}Z_y(\alpha) = \begin{bmatrix}
+        0 & 0 & 1 \\
+        0 & 0 & 0 \\
+        -1 & 0 & 0
+    \end{bmatrix}, $$
+    和
+    $$A_3 = \left.\frac{\mathrm{d}}{\mathrm{d}\alpha}\right|_{\alpha = 0}Z_z(\alpha) = \begin{bmatrix}
+        0 & -1 & 0 \\
+        1 & 0 & 0 \\
+        0 & 0 & 0
+    \end{bmatrix}$$
+    $A_1, A_2, A_3$显然线性独立，因而构成$\mathfrak{so}(3)$的一个基底。
+    注意到矩阵李群的李代数的李括号等于矩阵对易子，就不难验证这$3$个基矢中任意两个的李括号为
+    $$[A_1, A_2] = A_3, [A_2, A_3] = A_1, [A_3, A_1] = A_2$$
+    即$[A_i, A_j] = \varepsilon^k{}_{ij}A_k, ~ i, j, k = 1, 2, 3$其中$\varepsilon^k{}_{ij}$是Levi--Civita记号。
+    可见$\mathfrak{so}(3)$在基底$\{A_1, A_2, A_3\}$下的结构常数是$\varepsilon^k{}_{ij}$。
+\end{example}
+
+\begin{example}
+    洛伦兹李代数$\mathfrak{o}(1, 3)$的结构张量。
+
+    仿照上例的做法，先写出固有洛伦兹群$L^\uparrow_+$的$6$个典型的单参子群的矩阵：
+    $$\begin{bmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & \cos\alpha & -\sin\alpha \\
+        0 & 0 & \sin\alpha & \cos\alpha
+    \end{bmatrix}, \begin{bmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & \cos\alpha & 0 & \sin\alpha \\
+        0 & 0 & 1 & 0 \\
+        0 & -\sin\alpha & 0 & \cos\alpha
+    \end{bmatrix}, \begin{bmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & \cos\alpha & -\sin\alpha & 0 \\
+        0 & \sin\alpha & \cos\alpha & 0 \\
+        0 & 0 & 0 & 1
+    \end{bmatrix},$$
+    $$\begin{bmatrix}
+        \operatorname{ch}\lambda & -\operatorname{sh}\lambda & 0 & 0 \\
+        -\operatorname{sh}\lambda & \operatorname{ch}\lambda & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+    \end{bmatrix}, \begin{bmatrix}
+        \operatorname{ch}\lambda & 0 & -\operatorname{sh}\lambda & 0 \\
+        0 & 1 & 0 & 0 \\
+        -\operatorname{sh}\lambda & 0 & \operatorname{ch}\lambda & 0 \\
+        0 & 0 & 0 & 1
+    \end{bmatrix}, \begin{bmatrix}
+        \operatorname{ch}\lambda & 0 & 0 & -\operatorname{sh}\lambda \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        -\operatorname{sh}\lambda & 0 & 0 & \operatorname{ch}\lambda
+    \end{bmatrix}$$
+    其中前$3$个代表$4$维闵氏时空中的空间转动，后$3$个代表伪转动。
+    把它们的生成元分别记作$r_1, r_2, r_3$和$b_1, b_2, b_3$，则由求导可得
+    $$r_1 = \begin{bmatrix}
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & -1 \\
+        0 & 0 & 1 & 0
+    \end{bmatrix}, r_2 = \begin{bmatrix}
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 1 \\
+        0 & 0 & 0 & 0 \\
+        0 & -1 & 0 & 0
+    \end{bmatrix}, r_3 = \begin{bmatrix}
+        0 & 0 & 0 & 0 \\
+        0 & 0 & -1 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 0
+    \end{bmatrix},$$
+    $$b_1 = \begin{bmatrix}
+        0 & -1 & 0 & 0 \\
+        -1 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0
+    \end{bmatrix}, b_2 = \begin{bmatrix}
+        0 & 0 & -1 & 0 \\
+        0 & 0 & 0 & 0 \\
+        -1 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0
+    \end{bmatrix}, b_3 = \begin{bmatrix}
+        0 & 0 & 0 & -1 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        -1 & 0 & 0 & 0
+    \end{bmatrix}$$
+    易见$\mathfrak{o}(1, 3)$的这$6$个元素线性独立，因而构成一个基底。
+    不难验证它们的李括号满足下式（它的某些重要后果将在第$9$节讨论）：
+    $$[r_i, r_j] = \varepsilon^k{}_{ij}r_k, ~ [b_i, r_j] = \varepsilon^k{}_{ij}b_k, ~ [b_i, b_j] = -\varepsilon^k{}_{ij}r_k, ~ i, j, k = 1, 2, 3$$
+    李代数$\mathfrak{o}(1, 3)$在基底$\{r_1, r_2, r_3, b_1, b_2, b_3\}$下的结构常数可从上式读出。
+    引入符号$l_{\mu\nu}$（$\mu, \nu = 0, 1, 2, 3$且$l_{\mu\nu}$反称），其含义为
+    $$l_{01} \equiv b_1, l_{02} \equiv b_2, l_{03} \equiv b_3, l_{12} \equiv r_3, l_{23} \equiv r_1, l_{31} \equiv r_2$$
+    则不难验证前式可统一表为下式：
+    $$[l_{\mu\nu}, l_{\rho\sigma}] = \eta_{\mu\rho}l_{\nu\sigma} + \eta_{\nu\sigma}l_{\mu\rho} - \eta_{\mu\sigma}l_{\nu\rho} - \eta_{\nu\rho}l_{\mu\sigma}$$
+    每一个$l_{\mu\nu}$可看作一个反称实矩阵，矩阵元可表为
+    $$(l_{\mu\nu})^\alpha{}_\beta = -\delta^\alpha{}_\mu\eta_{\beta\nu} + \delta^\alpha{}_\nu\eta_{\beta\mu}$$
+\end{example}
+
+\begin{example}
+    特殊酉群$SU(2)$的李代数$\mathfrak{su}(2)$的结构张量。
+
+    前面已知$\dim\mathfrak{su}(2) = 3$，且$\mathfrak{su}(2)$的元素是$2 \times 2$无迹反厄米矩阵。
+    大家熟知的$3$个泡利矩阵$\tau_1 = \begin{bmatrix}
+        0 & 1 \\
+        1 & 0
+    \end{bmatrix}, \tau_2 = \begin{bmatrix}
+        0 & -\mathrm{i} \\
+        \mathrm{i} & 0
+    \end{bmatrix}, \tau_3 = \begin{bmatrix}
+        1 & 0 \\
+        0 & -1
+    \end{bmatrix}$是无迹厄米矩阵，乘以$\mathrm{i}$就是无迹反厄米矩阵，而且互相线性独立，可充当$\mathfrak{su}(2)$的基底。
+    为了得到简单的结构常数，我们不用$\mathrm{i}$而用$-\mathrm{i} / 2$乘以泡利矩阵，从而得到$\mathfrak{su}(2)$的如下$3$个基矢：
+    $$E_i = -\mathrm{i}\tau_i / 2, ~ i = 1, 2, 3$$
+    不难验证
+    $$[E_1, E_2] = E_3, ~ [E_2, E_3] = E_1, ~ [E_3, E_1] = E_2$$
+    即
+    $$[E_i, E_j] = \varepsilon^k{}_{ij}E_k, ~ i, j, k = 1, 2, 3$$
+    这表明$\mathfrak{su}(2)$在基底$\{E_1, E_2, E_3\}$下的结构常数与$\mathfrak{so}(3)$在基底$\{A_1, A_2, A_3\}$下的结构常数相同。
+    （如果以$\mathrm{i}$而不是$-\mathrm{i} / 2$乘泡利矩阵，则结构常数将不满足上式。）
+    令线性映射$\psi \colon \mathfrak{su}(2) \to \mathfrak{so}(3)$满足$\psi(E_i) = A_i$（$i = 1, 2, 3$），就可看出$\psi$保李括号，所以是$\mathfrak{su}(2)$与$\mathfrak{so}(3)$之间的李代数同构。
+    应该注意，虽然$\mathfrak{su}(2)$的元素是复矩阵，但$\mathfrak{su}(2)$仍是实的$3$维矢量空间：
+    只有以实数为组合系数才能确保所构成的线性组合仍在$\mathfrak{su}(2)$之内。
+
+    $\mathfrak{su}(2)$与$\mathfrak{so}(3)$同构并不意味着$SU(2)$与$SO(3)$同构。
+    事实上，不存在$SU(2)$与$SO(3)$之间的同构映射，但存在$2$对$1$的李群同态映射$\pi \colon SU(2) \to SO(3)$，即$SU(2)$的两个不同群元对应于$SO(3)$的一个群元。
+    前面说过，一个李群决定唯一的李代数，但一个李代数并不决定唯一的李群（除非待定的是单连通李群）。
+    $SU(2)$与$SO(3)$的关系是这一重要结论的一个很好的例子：
+    $$\mathfrak{su}(2) = \mathfrak{so}(3) \nRightarrow SU(2) = SO(3)$$
+    $SU(2)$与$SO(3)$都是连通流形，但可以证明$SU(2)$是单连通流形而$SO(3)$不是。
+    正是这一非单连通性使$SU(2) \neq SO(3)$。
+    与此类似，群$SL(2, \mathbb{C})$与固有洛伦兹群$L^\uparrow_+$有相同李代数，但两群只同态不同构。
+    存在$2$对$1$的李群同态映射$\pi \colon SL(2, \mathbb{C}) \to L^\uparrow_+$。
+\end{example}
 
 \section{李变换群和Killing矢量场}
 
