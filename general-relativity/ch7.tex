@@ -1326,6 +1326,71 @@ $$[e_\mu, e_\nu]^c = C^c{}_{ab}(e_\mu)^a(e_\nu)^b = C^\sigma{}_{\mu\nu}(e_\sigma
 
 \section{李变换群和Killing矢量场}
 
+把流形$M$上的单参微分同胚群$\phi \colon \mathbb{R} \times M \to M$中的$1$维阿贝尔李群$\mathbb{R}$推广为任意李群$G$便有如下定义
+
+\begin{definition}
+    设$G$是李群，$M$是流形。
+    $C^\infty$映射$\sigma \colon G \times M \to M$称为$M$上的一个李变换群，若
+    \begin{enumerate}[（a）]
+        \item $\forall g \in G, \sigma_g \colon M \to M$是微分同胚；
+        \item $\sigma_{gh} = \sigma_g \comp \sigma_h, ~ \forall g, h \in G$
+    \end{enumerate}
+\end{definition}
+
+容易验证$\{\sigma_g \mid g \in G\}$以映射的复合为群乘法构成群，恒等元就是从$M$到$M$的恒等映射（等于$\sigma_e$，其中$e$为$G$的恒等元），且$(\sigma_g)^{-1} = \sigma_{g^{-1}} ~ \forall g \in G$。
+有些文献把$\{\sigma_g \mid g \in G\}$称为李变换群（我们有时也用这一称谓），有些则把$G$称为李变换群。
+$\forall p \in M$，有$\sigma_p \colon G \to M$。
+$\sigma_p$和$\sigma_g$都是由$\sigma$诱导出的映射，三者关系为
+$$\sigma_p(g) = \sigma(p, g) = \sigma_g(p), ~ \forall g \in G, p \in M$$
+
+李群按定义是一个高度抽象的概念，而李变换群却比较具体：
+它的群元$\sigma_g$是流形$M$上的点变换（微分同胚）。
+例如，抽象定义的李群$SO(3)$若借用一个$2$维球面$S^2$来想象就变得具体：
+每一$g \in SO(3)$对应于$S^2$上这样一个点变换，它让$S^2$的每点绕过球心的同一轴转同一角。
+事实上，上述定义的条件（$b$）保证存在从李群$G = \{g\}$到李变换群$\{\sigma_g\}$的同态映射，所以后者的确可看作前者的具体化，于是有以下定义：
+
+\begin{definition}
+    从李群$G = \{g\}$到李变换群$\{\sigma_g \colon M \to M \mid g \in G\}$的上述同态映射$G \to \{\sigma_g\}$称为$G$的一个实现，$M$称为实现空间。
+    若此同态为同构，则称为忠实实现。
+\end{definition}
+
+\begin{note}
+    因为每一$g \in G$对应于一个左平移映射$L_g \colon G \to G$（看作$\sigma_g \colon M \to M$，其中$M = G$），所以映射$G \to \{L_g \mid g \in G\}$是$G$的一个实现（实现空间就是$G$本身），而且是忠实实现。
+\end{note}
+
+\begin{definition}
+    李群$G$在流形$M$上的一个实现$G \to \{\sigma_g\}$称为$G$的一个表示，若$M$是矢量空间且$\sigma_g \colon M \to M$（$\forall g \in G$）是线性变换。
+    这时称$M$为表示空间。
+    往往也把映射$G \to \{\sigma_g\}$的像$\{\sigma_g\}$称为$G$的表示（但应注意不同映射有相同像的情况）。
+    若忠实实现是表示，则称为忠实表示。
+\end{definition}
+
+\begin{note}
+    \textcircled{1} 可见$G$的每一表示$\{\sigma_g\}$可看作一个矩阵群。
+    \textcircled{2} 因为$S^2$不是矢量空间，把$SO(3)$的群元看作$S^2$上的转动这种对应关系只是实现而非表示。
+    但若选$M = \mathbb{R}^3$，则$SO(3)$的每一群元对应于$\mathbb{R}^3$上的这样一个微分同胚，它让每点绕过原点的同一轴转同一角。
+    这种对应关系就是一个表示，而且是忠实表示。
+\end{note}
+
+设$\gamma \colon \mathbb{R} \to G$是$G$的、与$A \in V_e$对应的单参子群，则$\{\gamma(t) \mid t \in \mathbb{R}\}$是$G$中的曲线。
+把群$\{\sigma_g \mid g \in G\}$中$g$的取值范围限制在曲线$\gamma(t)$上便得子集$\{\sigma_{\gamma(t)} \mid t \in \mathbb{R}\}$，其中每个$\sigma_{\gamma(t)} \colon M \to M$都是微分同胚，而且$\sigma_{\gamma(t)} \comp \sigma_{\gamma(s)} = \sigma_{\gamma(t + s)}$，可见$G$的每一单参子群决定$M$上的一个单参微分同胚群$\{\sigma_{\gamma(t)} \mid t \in \mathbb{R}\}$。
+我们想找出与之对应的$C^\infty$矢量场（记作$\bar\xi$）。
+因为$\bar\xi$的积分曲线与单参微分同胚群$\{\sigma_{\gamma(t)} \mid t \in \mathbb{R}\}$的轨道重合，所以$\forall p \in M$，$\bar\xi$等于过$p$点的轨道在$p$点的切矢。
+群$\{\sigma_{\gamma(t)} \mid t \in \mathbb{R}\}$过$p$的轨道是点集$\{\sigma_{\gamma(t)}(p) \mid t \in \mathbb{R}\}$，而$\sigma_{\gamma(t)}(p) = \sigma(\gamma(t), p) = \sigma_p(\gamma(t))$，于是
+$$\bar\xi_p = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}\sigma_p(\gamma(t)) = {\sigma_p}_*\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}\gamma(t) = {\sigma_p}_*A$$
+
+可见，给定李变换群$\sigma \colon G \times M \to M$后，$G$的李代数$V_e$的每一元素$A$对应于$M$上的一个$C^\infty$矢量场$\bar\xi$，故有映射$\chi \colon V_e \to \{\bar\xi\}$。
+为理解$\{\bar\xi\}$的意义，先看一类特殊情况：
+$M$是带度规$g_{ab}$的流形，$G$是$(M, g_{ab})$的等度规群，李变换群$\sigma \colon G \times M \to M$的每一$\sigma_g \colon M \to M$是等度规映射。
+这时$G$的每一单参子群$\gamma(t)$产生的单参微分同胚群$\{\sigma_{\gamma(t)} \mid t \in \mathbb{R}\}$升格为单参等度规群，其轨道的切矢$\bar\xi$就是$(M, g_{ab})$上的Killing矢量场，即$\{\bar\xi\} \subset \mathscr{K}$（$\mathscr{K}$代表$(M, g_{ab})$上全体Killing场构成的矢量空间），故$\chi$可看作映射$V_e \to \mathscr{K}$（可证其为线性映射）。
+以矢量场对易子为$\mathscr{K}$的李括号，则$\mathscr{K}$成为李代数，且可证明$\chi \colon V_e \to \mathscr{K}$对李括号保到只差一个负号的程度：
+$$\chi([A, B]) = -[\chi(A), \chi(B)], ~ \forall A, B \in V_e$$
+用下式定义新映射$\psi \colon V_e \to \mathscr{K}$：
+$$\psi(A) = -\chi(A), ~ \forall A \in V_e$$
+则易见$\psi$保李括号，即
+$$\psi([A, B]) = [\psi(A), \psi(B)], ~ \forall A, B \in V_e$$
+故$\psi$是李代数同态。
+
 \section{伴随表示和Killing型}
 
 \section{固有洛伦兹群和洛伦兹代数}
