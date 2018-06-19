@@ -806,7 +806,7 @@ $\begin{bmatrix}
     - + + +
 \end{bmatrix}$，结果即为$\Lambda^{-1}$。
 
-鉴于固有洛伦兹群和洛伦兹代数对物理学的非常重要性，我们将单辟一节对此做更详尽的讨论。
+%鉴于固有洛伦兹群和洛伦兹代数对物理学的非常重要性，我们将单辟一节对此做更详尽的讨论。
 
 \subsection{$U(m)$群（酉群）}
 
@@ -1390,8 +1390,95 @@ $$\psi(A) = -\chi(A), ~ \forall A \in V_e$$
 则易见$\psi$保李括号，即
 $$\psi([A, B]) = [\psi(A), \psi(B)], ~ \forall A, B \in V_e$$
 故$\psi$是李代数同态。
+如果每个Killing场都是完备矢量场，则每个都产生单参等度规群，故等度规群$G$（因而$V_e$）与$\mathscr{K}$维数相同，$\psi \colon V_e \to \mathscr{K}$是李代数同构。
+反之，不完备Killing场的单参等度规群$\{\phi \colon M \to M\}$是只含恒等元的$0$维（而不是$1$维）李群，因为无论参数$t$取何值（只要非零），总有$p \in M$使$p$在$\phi_t$下无像。
+于是$\dim G$减少而$\dim\mathscr{K}$不变，导致$\dim G = \dim V_e < \dim\mathscr{K}$，意味着$V_e$与$\mathscr{K}$只同态不同构。
+下面是简单特例：把$(\mathbb{R}^2, \delta_{ab})$的一半（连边）挖去，则除了平行于切痕的那些平移Killing场之外的Killing场（含旋转Killing场）都不再完备，故$\dim G = \dim V_e = 1$（而$\dim\mathscr{K}$仍为$3$）。
+于是有
+
+\begin{theorem}
+    $(M, g_{ab})$的等度规群的李代数$V_e$同构于其上全体Killing场的集合$\mathscr{K}$的李子代数；
+    当每一Killing场都完备时$V_e = \mathscr{K}$（李代数同构）
+\end{theorem}
+
+利用Killing场的对易子可方便地求得等度规群的李代数的结构常数，我们只举例说明$V_e$同构于$\mathscr{K}$时的计算过程（略去抽象指标）。
+
+\begin{example}
+    $3$维欧氏空间$(\mathbb{R}^3, \delta_{ab})$中的$2$维球面$(S^2, h_{ab})$（其中$h_{ab}$是$\delta_{ab}$的诱导度规）的等度规群是$SO(3)$。
+    $(S^2, h_{ab})$上的全体Killing矢量场的集合$\mathscr{K}$是$3$维李代数，不难验证
+    \[\begin{split}
+        \xi_1 & \equiv \sin\varphi(\partial / \partial\theta) + \cot\theta\cos\varphi(\partial / \partial\varphi) \\
+        \xi_2 & \equiv -\cos\varphi(\partial / \partial\theta) + \cot\theta\sin\varphi(\partial / \partial\varphi) \\
+        \xi_3 & \equiv -\partial / \partial\varphi
+    \end{split}\]
+    满足Killing方程，可选作$\mathscr{K}$的一组基矢。对易子的计算表明
+    $$[\xi_1, \xi_2] = \xi_3, ~ [\xi_2, \xi_3] = \xi_1, ~ [\xi_3, \xi_1] = \xi_2$$
+    这可看作李代数$\mathfrak{so}(3)$的结构常数表达式。
+    以$A_1, A_2, A_3$代表$\mathfrak{so}(3)$的一组基矢，则由$\psi(A_i) \equiv \xi_i$（$i = 1, 2, 3$）定义的映射$\psi \colon \mathfrak{so}(3) \to \mathscr{K}$正是前述的$\psi$，由上述定理可知它是李代数同构。
+\end{example}
+
+\begin{example}
+    作为$2$维欧氏空间的等度规群，欧氏群$E(2)$的李代数$\mathfrak{e}(2)$同构于$(\mathbb{R}^2, \delta_{ab})$上全体Killing矢量场的集合$\mathscr{K}$。
+    设$\{x, y\}$是笛卡尔系，则
+    $$\xi_{t_1} \equiv -\frac{\partial}{\partial x}, ~ \xi_{t_2} \equiv -\frac{\partial}{\partial y}, ~ \xi_r \equiv y\frac{\partial}{\partial x} - x\frac{\partial}{\partial y}$$
+    是独立的Killing矢量场，可充当$\mathscr{K}$的一组基矢。简单的对易子的计算表明
+    $$[\xi_{t_1}, \xi_{t_2}] = 0, ~ [\xi_r, \xi_{t_1}] = \xi_{t_2}, ~ [\xi_r, \xi_{t_2}] = -\xi_{t_1}$$
+    这可看作李代数$\mathfrak{e}(2)$的结构常数表达式。
+\end{example}
+
+\begin{example}
+    作为$4$维闵氏时空的等度规群，Poincaré群$P$的李代数$\mathfrak{p}$同构于$(\mathbb{R}^4, \eta_{ab})$上全体Killing场的集合$\mathscr{K}$。
+    设$\{t, x, y, z\}$是任一洛伦兹系，则
+    $$\xi_{t_0} \equiv -\frac{\partial}{\partial t}, ~ \xi_{t_1} \equiv -\frac{\partial}{\partial x}, ~ \xi_{t_2} \equiv -\frac{\partial}{\partial y}, ~ \xi_{t_3} \equiv -\frac{\partial}{\partial z}$$
+    $$\xi_{r_1} \equiv z\frac{\partial}{\partial y} - y\frac{\partial}{\partial z}, ~ \xi_{r_2} \equiv x\frac{\partial}{\partial z} - z\frac{\partial}{\partial x}, ~ \xi_{r_3} \equiv y\frac{\partial}{\partial x} - x\frac{\partial}{\partial y}$$
+    $$\xi_{b_1} \equiv t\frac{\partial}{\partial x} - x\frac{\partial}{\partial t}, ~ \xi_{b_2} \equiv t\frac{\partial}{\partial y} - y\frac{\partial}{\partial t}, ~ \xi_{b_3} \equiv t\frac{\partial}{\partial z} - z\frac{\partial}{\partial t}$$
+    是独立的Killing场，可充当$\mathscr{K}$的一组基矢。简单的计算表明全部非零对易子为
+    \[\begin{split}
+        & [\xi_{r_i}, \xi_{r_j}] = \varepsilon^k{}_{ij}\xi_{r_k}, ~ [\xi_{r_i}, \xi_{b_j}] = \varepsilon^k{}_{ij}\xi_{b_k}, ~ [\xi_{b_i}, \xi_{b_j}] = -\varepsilon^k{}_{ij}\xi_{r_k}, ~ [\xi_{b_i}, \xi_{t_0}] = -\xi_{t_i}, \\
+        & [\xi_{r_i}, \xi_{t_j}] = \varepsilon^k{}_{ij}\xi_{t_k}, ~ [\xi_{b_i}, \xi_{t_i}] = -\xi_{t_0} \text{（不对$i$求和）}, ~ i, j, k = 1, 2, 3
+    \end{split}\]
+    上式也可浓缩地表为（其中$l_{\mu\nu}$的含义参考前文）
+    \[\begin{split}
+        & [\xi_{l_{\mu\nu}}, \xi_{l_{\rho\sigma}}] = \eta_{\mu\rho}\xi_{l_{\nu\sigma}} + \eta_{\nu\sigma}\xi_{l_{\mu\rho}} - \eta_{\mu\sigma}\xi_{l_{\nu\rho}} - \eta_{\nu\rho}\xi_{l_{\mu\sigma}}, \\
+        & [\xi_{l_{\mu\nu}}, \xi_{t_\sigma}] = \eta_{\mu\sigma}\xi_{t_\nu} - \eta_{\nu\sigma}\xi_{t_\mu}, ~ \mu, \nu, \sigma = 0, 1, 2, 3
+    \end{split}\]
+\end{example}
 
 \section{伴随表示和Killing型}
 
+\iffalse
+
 \section{固有洛伦兹群和洛伦兹代数}
 
+\subsection{固有洛伦兹变换和固有洛伦兹群}
+
+洛伦兹群是由洛伦兹变换引出的。
+洛伦兹变换是$4$维闵氏时空中从一个惯性坐标系（洛伦兹系）到另一惯性坐标系的坐标变换。
+读者熟悉的洛伦兹变换
+$$t' = \gamma(t - vx), ~ x' = \gamma(x - vt), ~ y' = y, ~ z' = z, ~ -1 < v < 1, ~ \gamma \equiv (1 - v^2)^{-1 / 2}$$
+所涉及的两个惯性坐标系满足如下条件：
+\textcircled{1} 空间坐标原点在$t' = t = 0$时重合；
+\textcircled{2} $\{x', y', z'\}$系相对于$\{x, y, z\}$系以$3$速率$|v|$沿$x$轴正或负向匀速平动；
+\textcircled{3} 空间坐标轴对应同向。
+以$X$和$X'$分别代表由$t, x, y, z$和$t', x', y', z'$排成的列矩阵，则上式可用矩阵表为
+$$X' = B_x(v)X, \text{其中} B_x(v) = \begin{bmatrix}
+    \gamma & -\gamma v & 0 & 0 \\
+    -\gamma v & \gamma & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+\end{bmatrix}$$
+令$v = \operatorname{th}\lambda$，则$-1 < v < 1$相当于$-\infty < \lambda < \infty$，$B_x(v)$可改写为
+$$B_x(\lambda) = \begin{bmatrix}
+    \operatorname{ch}\lambda & -\operatorname{sh}\lambda & 0 & 0 \\
+    -\operatorname{sh}\lambda & \operatorname{ch}\lambda & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+\end{bmatrix}$$
+
+今后也常把$X$作为$\{t, x, y, z\}$系的简称。
+为了把条件\textcircled{2}放宽为``$X'$系相对于$X$系的速度$\vec V$可取任意方向''，可先把前式改写为一个$3$维矢量等式。
+设事件$p \in \mathbb{R}^4$在$X$和$X'$系的时空坐标分别为$t, x, y, z$和$t', x', y', z'$，以$\vec e_1, \vec e_2, \vec e_3$和$\vec e'_1, \vec e'_2, \vec e'_3$分别代表两系的空间坐标基矢，则
+$$\vec R \equiv x\vec e_1 + y\vec e_2 + z\vec e_3, ~ \vec R' \equiv x'\vec e'_1 + y'\vec e'_2 + z'\vec e'_3$$
+分别代表事件$p$在两系中的位矢。
+
+\fi
