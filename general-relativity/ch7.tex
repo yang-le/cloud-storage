@@ -1446,6 +1446,91 @@ $$\psi([A, B]) = [\psi(A), \psi(B)], ~ \forall A, B \in V_e$$
 
 \section{伴随表示和Killing型}
 
+设$V$是$m$（$< \infty$）维实矢量空间，令
+$$\mathscr{L}(V) \equiv \{\text{线性变换}\psi \colon V \to V\} \equiv \{V\text{上}(1, 1)\text{型张量}\psi^a{}_b\}$$
+则$\mathscr{L}(V)$是$m^2$维矢量空间，任选$V$的基底后又对应于$\mathfrak{gl}(m, \mathbb{R})$。
+在$\mathscr{L}(V)$上可自然定义乘法：$\forall \psi, \varphi \in \mathscr{L}(V)$，其乘积$\psi\varphi$定义为复合映射$\psi\comp\varphi \in \mathscr{L}(V)$。
+由此又可自然定义李括号映射
+$$[,] \colon \mathscr{L}(V) \times \mathscr{L}(V) \to \mathscr{L}(V)$$
+为
+$$[\psi, \varphi] \coloneq \psi\varphi - \varphi\psi, ~ \forall \psi, \varphi \in \mathscr{L}(V)$$
+从而使$\mathscr{L}(V)$成为$m^2$维李代数。
+
+\begin{definition}
+    李代数同态映射$\beta \colon \mathscr{G} \to \mathscr{L}(V)$称为李代数$\mathscr{G}$的表示。
+\end{definition}
+
+同一李群（或李代数）可有无数表示，本节的重点是介绍李群和李代数的伴随表示。
+根据第一节，用群$G$的每一元素$g \in G$可构造一个称为伴随同构的自同构映射$I_g \colon G \to G$。
+对李群$G$，这还是个微分同胚，因此是从$G$到$G$的李群同构。
+按定义，$I_g(h) \equiv ghg^{-1} ~ \forall h \in G$，所以$I_g(e) = e$，它在$e$点所诱导的推前映射（切映射）$I_{g*}$（是$I_{g*e}$的简写）是从$V_e$到$V_e$的映射，简记为$\mathrm{Ad}_g$，即$\mathrm{Ad}_g \equiv I_{g*e}$。
+因$V_e$就是$G$的李代数$\mathscr{G}$，故$\mathrm{Ad}_g \colon \mathscr{G} \to \mathscr{G}$是$\mathscr{G}$上的线性变换。
+虽然$I_g$作用于$e$得$e$，但作用于过$e$的曲线一般得另一曲线（两者在$e$点有不同切矢），故$\mathrm{Ad}_g$作用于$A \in \mathscr{G}$未必得$A$。
+
+\begin{theorem}
+    设$\mathscr{G}$是李群$G$的李代数，则$\forall g \in G, A \in \mathscr{G}$有
+    $$\exp(t\mathrm{Ad}_gA) = g(\exp tA)g^{-1}$$
+\end{theorem}
+
+\begin{proof}
+    令$\gamma(t) \equiv \exp(tA), \gamma'(t) \equiv g(\exp tA)g^{-1}$，则由单参子群的定义式$\gamma(t + s) = \gamma(t)\gamma(s)$易证$\gamma'(t + s) = \gamma'(t)\gamma'(s)$，故$\gamma'(t)$也是单参子群。
+    注意到上式左边是由$\mathrm{Ad}_gA$生成的单参子群，为证此式只须证明两边在$e$点的切矢相同，证明如下：
+    \[\begin{split}
+        \text{右边的切矢} & = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}[g(\exp tA)g^{-1}] = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}[I_g(\exp tA)] \\
+        & = I_{g*}[\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}\exp(tA)] = \mathrm{Ad}_gA = \text{左边的切矢}
+    \end{split}\]
+\end{proof}
+
+\begin{theorem}
+    设$H$是李群$G$的正规子群，$\mathscr{H}$是$H$的李代数，则
+    $$\mathrm{Ad}_gB \in \mathscr{H}, ~ \forall B \in \mathscr{H}, g \in G$$
+\end{theorem}
+
+\begin{proof}
+    由$B \in \mathscr{H}$可知$\exp(tB)$是$H$的单参子群，由正规子群的定义又知$g\exp(tB)g^{-1} \subset H$，于是上述定理表明$\exp(t\mathrm{Ad}_gB)$是$H$的单参子群，因而
+    $$\mathrm{Ad}_gB \in \mathscr{H}$$
+\end{proof}
+
+\begin{theorem}
+    设$\mathscr{G}$是李群$G$的李代数，则$\forall A, B \in \mathscr{G}$有
+    $$[A, B] = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}(\mathrm{Ad}_{\exp(tA)}B)$$
+\end{theorem}
+
+\begin{note}
+    $\mathrm{Ad}_{\exp(tA)}B$在$t$固定时是$e$点的矢量，在$t$变动时是$t$的、矢量取值的函数，等式右边代表此函数的导函数在$t = 0$的值（仍是$e$点的矢量），即
+    $$[A, B] = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}(\mathrm{Ad}_{\exp(tA)}B) \equiv \lim_{t \to 0}\frac{1}{t}(\mathrm{Ad}_{\exp(tA)}B - \mathrm{Ad}_{\exp(0)}B)$$
+\end{note}
+
+\begin{proof}
+    以$\bar A, \bar B$分别代表$A, B \in \mathscr{G}$对应的左不变矢量场，$\phi \colon \mathbb{R} \times G \to G$代表$\bar A$产生的单参微分同胚群，则$\phi_t(e) = \exp(tA)$，即$\bar B_{\phi_t(e)} = L_{\exp(tA)*}B$，因此
+    \[\begin{split}
+        [A, B] & = [\bar A, \bar B]_e = (\mathscr{L}_{\bar A}\bar B)_e = \lim_{t \to 0}\frac{1}{t}[(\phi_{-t*}\bar B)_e - \bar B_e] = \lim_{t \to 0}\frac{1}{t}[\phi_{-t*}\bar B_{\phi_t(e)} - \phi_{-0*}\bar B_{\phi_0(e)}] \\
+        & = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}[\phi_{-t*}\bar B_{\phi_t(e)}] = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}[\phi_{-t*}L_{\exp(tA)*}B] = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}[(\phi_{-t} \comp L_{\exp(tA)})_*B]
+    \end{split}\]
+    另一方面，由$I_h(g) \equiv hgh^{-1}$又知$\forall g \in G$有
+    $$I_{\exp(tA)}(g) = \exp(tA)g\exp(-tA) = \phi_{-t}[\exp(tA)g] = \phi_{-t}[L_{\exp(tA)}(g)] = (\phi_{-t} \comp L_{\exp(tA)})(g)$$
+    （其中第二步用到第四节末的定理。）所以$I_{\exp(tA)} = \phi_{-t}\comp L_{\exp(tA)}$，代入上式便得
+    $$[A, B] = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}(I_{\exp(tA)*}B) = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}(\mathrm{Ad}_{\exp(tA)}B)$$
+\end{proof}
+
+\begin{theorem}
+    设$H$是连通李群$G$的连通李子群，$\mathscr{H}$和$\mathscr{G}$分别是$H$和$G$的李代数，则$H$是$G$的正规子群当且仅当$\mathscr{H}$是$\mathscr{G}$的理想。
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[（A）]
+        \item 因为$H$是$G$的正规子群，由前述定理知$\mathrm{Ad}_{\exp(tA)}B \in \mathscr{H}$，结合上述定理就有$[A, B] \in \mathscr{H}$，可见$\mathscr{H}$是$\mathscr{G}$的理想。
+        \item 因为$\mathscr{H}$是$\mathscr{G}$的理想，故根据上述定理有$\mathrm{Ad}_gB \in \mathscr{H}$。
+        可以证明（略），只要$H$是连通李群的连通李子群，则$\forall h \in H, \exists B_1, B_2, \cdots \in \mathscr{H}$使$h=(\exp B_1)(\exp B_2)\cdots$（有限个指数之积）。所以
+        $$ghg^{-1} = g(\exp B_1)g^{-1}g(\exp B_2)g^{-1}\cdots = h_1h_2\cdots\in H$$
+        其中$h_n \equiv g(\exp B_n)g^{-1} = \exp(\mathrm{Ad}_gB_n) \in H, n \in \mathbb{N}$。
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    可见理想在李代数理论中的角色相当于正规子群在群论中的角色。
+\end{note}
+
 \iffalse
 
 \section{固有洛伦兹群和洛伦兹代数}
