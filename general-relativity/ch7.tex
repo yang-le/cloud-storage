@@ -1531,6 +1531,118 @@ $$[\psi, \varphi] \coloneq \psi\varphi - \varphi\psi, ~ \forall \psi, \varphi \i
     可见理想在李代数理论中的角色相当于正规子群在群论中的角色。
 \end{note}
 
+由推前映射的线性性可知$I_{g*} \colon \mathscr{G} \to \mathscr{G}$是$\mathscr{G}$上的线性映射，故$\mathrm{Ad}_g \in \mathscr{L}(\mathscr{G})$。
+$I_g \colon G \to G$是微分同胚还保证$I_{g*} \colon \mathscr{G} \to \mathscr{G}$是同构映射\footnote{
+    其实$I_{g*} \colon \mathscr{G} \to \mathscr{G}$不止是矢量空间同构而且是李代数同构。
+}，当然有逆，所以
+$$\mathrm{Ad}_g \in \{\mathscr{G}\text{上可逆线性变换}\} \subset \mathscr{L}(\mathscr{G})$$
+既然每一$g \in G$对应于一个$\mathrm{Ad}_g$，便有从$G$到$\{\mathscr{G}\text{上可逆线性变换}\}$的映射，记作$\mathrm{Ad}$，即
+$$\mathrm{Ad} \colon G \to \{\mathscr{G}\text{上可逆线性变换}\}$$
+选定基底后$\mathscr{G}$上的每个可逆线性变换对应于一个可逆矩阵，故$\{\mathscr{G}\text{上可逆线性变换}\}$对应于一个矩阵群（就是$GL(m, \mathbb{R})$，其中$m \equiv \dim(G)$）。
+下面证明$\mathrm{Ad}$是同态映射，因而是李群$G$的表示。
+
+\begin{theorem}
+    $\mathrm{Ad} \colon G \to \{\mathscr{G}\text{上可逆线性变换}\}$是同态映射。
+\end{theorem}
+
+\begin{proof}
+    不难证明$\forall g, h \in G$有$I_{gh} = I_g \comp I_h$，故
+    $$\mathrm{Ad}_{gh} = I_{gh*} = (I_g \comp I_h)_* = I_{g*} \comp I_{h*} = \mathrm{Ad}_g \comp \mathrm{Ad}_h$$
+    同态性于是得证。
+\end{proof}
+
+\begin{definition}
+    同态映射$\mathrm{Ad} \colon G \to \{\mathscr{G}\text{上可逆线性变换}\}$称为李群$G$的伴随表示。
+\end{definition}
+
+至今已讲过三个与``伴随''有关的映射，即伴随同构$I_g \colon G \to G$；伴随同构的切映射$\mathrm{Ad}_g \colon \mathscr{G} \to \mathscr{G}$；伴随表示$\mathrm{Ad} \colon G \to \{\mathscr{G}\text{上可逆线性变换}\}$。
+现在介绍第四个，即$\mathrm{ad}_A \colon \mathscr{G} \to \mathscr{G}$（其中$A$不是群元而是代数元：$A \in \mathscr{G}$），定义为
+$$\mathrm{ad}_A(B) \coloneq [A, B], ~ \forall B \in \mathscr{G}$$
+由李括号的线性性可知$\mathrm{ad}_A \colon \mathscr{G} \to \mathscr{G}$有如下两个性质：
+\begin{enumerate}[（a）]
+    \item $\forall B_1, B_2 \in \mathscr{G}, \beta_1, \beta_2 \in \mathbb{R}$有$\mathrm{ad}_A(\beta_1B_1 + \beta_2B_2) = \beta_1\mathrm{ad}_A(B_1) + \beta_2\mathrm{ad}_A(B_2)$
+    \item $\forall A_1, A_2 \in \mathscr{G}, \alpha_1, \alpha_2 \in \mathbb{R}$有$\mathrm{ad}_{\alpha_1A_1 + \alpha_2A_2} = \alpha_1\mathrm{ad}_{A_1} + \alpha_2\mathrm{ad}_{A_2}$
+\end{enumerate}
+性质（a）表明$\mathrm{ad}_A$是$\mathscr{G}$上的线性变换，即$\mathrm{ad}_A \in \mathscr{L}(\mathscr{G})$，也可看作$\mathscr{G}$上的$(1, 1)$型张量，所以上式在补上抽象指标后又可用$\mathscr{G}$的结构张量$C^c{}_{ab}$改写为
+$$(\mathrm{ad}_A)^c{}_{b}B^b \equiv [A, B]^c = C^c{}_{ab}A^aB^b, ~ \forall B^b \in \mathscr{G}$$
+从而给出张量$(\mathrm{ad}_A)^c{}_{b}$在甩掉作用对象$B^b$后的表达式
+$$(\mathrm{ad}_A)^c{}_{b} = A^aC^c{}_{ab}$$
+
+映射$\mathrm{ad}_A$（其中$A \in \mathscr{G}$）虽不同于$\mathrm{Ad}_g$（其中$g \in G$），但两者有如下密切关系：
+$$\mathrm{Ad}_{\exp(A)} = \operatorname{Exp}(\mathrm{ad}_A)$$
+其中$\operatorname{Exp}(\mathrm{ad}_A)$的含义是
+$$\operatorname{Exp}(\mathrm{ad}_A) \equiv \delta + \mathrm{ad}_A + \frac{1}{2!}(\mathrm{ad}_A)^2 + \frac{1}{3!}(\mathrm{ad}_A)^3 + \cdots$$
+这可看作$\mathscr{G}$上的$(1, 1)$型张量等式，$\delta$代表恒等映射（即$\delta^a{}_b$），$(\mathrm{ad}_A)^2$代表$(\mathrm{ad}_A)^a{}_c(\mathrm{ad}_A)^c{}_b$等等。
+因$\mathrm{ad}_A$可看作抽象李代数$\mathscr{L}(\mathscr{G})$的元素，$\operatorname{Exp}(\mathrm{ad}_A)$也可理解为$\exp(\mathrm{ad}_A)$，即李代数$\mathscr{L}(\mathscr{G})$相应的（单连通）李群上的指数映射。
+这一理解与用幂级数的理解等价。
+
+既然每一$A \in \mathscr{G}$对应于一个$\mathrm{ad}_A \in \mathscr{L}(\mathscr{G})$，便有从$\mathscr{G}$到$\mathscr{L}(\mathscr{G})$的映射（与``伴随''有关的第五个映射），记作$\mathrm{ad} \colon \mathscr{G} \to \mathscr{L}(\mathscr{G})$，$\mathrm{ad}_A$的性质（b）表明$\mathrm{ad}$为线性映射。
+由李括号所满足的雅克比恒等式易证$\mathrm{ad}_A$满足
+$$\mathrm{ad}_{[A, B]} = \mathrm{ad}_A\mathrm{ad}_B - \mathrm{ad}_B\mathrm{ad}_A, ~ \forall A, B \in \mathscr{G}$$
+即$\mathrm{ad} \colon \mathscr{G} \to \mathscr{L}(\mathscr{G})$保李括号，因而是同态映射。
+
+\begin{definition}
+    同态映射$\mathrm{ad} \colon \mathscr{G} \to \mathscr{L}(\mathscr{G})$称为李代数$\mathscr{G}$的伴随表示。
+\end{definition}
+
+注意到$\{\mathscr{G}\text{上可逆线性变换}\} \subset \mathscr{L}(\mathscr{G})$，也可写$\mathrm{Ad} \colon G \to \mathscr{L}(\mathscr{G})$。
+由$\mathrm{Ad}_e \colon \mathscr{G} \to \mathscr{G}$是恒等映射可知$\mathrm{Ad}(e)$是$\mathscr{L}(\mathscr{G})$中的单位矩阵$I$，故$\mathrm{Ad} \colon G \to \mathscr{L}(\mathscr{G})$在点$e$诱导出推前映射$\mathrm{Ad}_* \colon V_e \to V_I$。
+注意到$V_e = \mathscr{G}$以及矢量空间$\mathscr{L}(\mathscr{G})$可与其中任一点的切空间（现在取$V_I$）认同，便有$\mathrm{Ad}_* \colon \mathscr{G} \to \mathscr{L}(\mathscr{G})$，即映射$\mathrm{Ad}_*$与$\mathrm{ad}$有相同的定义域和值域。
+下面证明它们是相等的映射。
+
+\begin{theorem}
+    映射$\mathrm{Ad}_* \colon \mathscr{G} \to \mathscr{L}(\mathscr{G})$与$\mathrm{ad} \colon \mathscr{G} \to \mathscr{L}(\mathscr{G})$相等。
+\end{theorem}
+
+\begin{proof}
+    只须证$\mathrm{Ad}_*A = \mathrm{ad}_A ~ \forall A \in \mathscr{G}$，为此只须证$(\mathrm{Ad}_*A)(B) = \mathrm{ad}_A(B) ~ \forall A, B \in \mathscr{G}$。
+    因$$\mathrm{Ad}_*A = \mathrm{Ad}_*[\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}\exp(tA)] = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}\mathrm{Ad}(\exp tA) = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}\mathrm{Ad}_{\exp tA}$$
+    故$$\mathrm{Ad}_*A(B) = [\left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}\mathrm{Ad}_{\exp tA}](B) = \left.\frac{\mathrm{d}}{\mathrm{d}t}\right|_{t = 0}(\mathrm{Ad}_{\exp tA}B) = [A, B] = \mathrm{ad}_A(B)$$
+\end{proof}
+
+利用$\mathscr{G}$的伴随表示可定义映射$K \colon \mathscr{G} \times \mathscr{G} \to \mathbb{R}$如下：
+$$K(A, B) \coloneq \operatorname{tr}(\mathrm{ad}_A\mathrm{ad}_B), ~ \forall A, B \in \mathscr{G}$$
+其中$\mathrm{ad}_A\mathrm{ad}_B$表示两个线性变换的相继作用，也可用抽象指标表为
+$$(\mathrm{ad}_A)^a{}_c(\mathrm{ad}_B)^c{}_b = (\mathrm{ad}_A\mathrm{ad}_B)^a{}_b$$
+而$\operatorname{tr}(\mathrm{ad}_A\mathrm{ad}_B)$则代表$(\mathrm{ad}_A\mathrm{ad}_B)^a{}_a$，即$(1, 1)$型张量$(\mathrm{ad}_A\mathrm{ad}_B)^a{}_b$的迹。
+由上式可知$K$是把$\mathscr{G}$上两个矢量$A, B$变为一个实数的对称双线性映射，因而是$\mathscr{G}$上的$(0, 2)$型对称张量，在李代数理论中被称为$\mathscr{G}$上的Killing型。
+由前述定理不难证明
+$$K([A, B], C) = K(A, [B, C]), ~ \forall A, B, C \in \mathscr{G}$$
+提示：利用$\operatorname{tr}$号内方阵顺序的可轮换性，例如$\operatorname{tr}(ABC) = \operatorname{tr}(CAB) = \operatorname{tr}(BCA)$。
+
+上式也可借抽象指标表为
+$$K(A, B) = (\mathrm{ad}_A)^a{}_b(\mathrm{ad}_B)^b{}_a = C^a{}_{cb}C^b{}_{da}A^cB^d$$
+另一方面，$K(A, B)$又可用抽象指标表为$K_{cd}A^cB^d$，与上式结合便得
+$$K_{cd} = C^a{}_{cb}C^b{}_{da}$$
+
+$K_{ab}$的对称性使它有可能充当矢量空间$\mathscr{G}$上的度规，但为此还须$K_{ab}$非退化。
+可以证明，$K_{ab}$非退化的充要条件是$\mathscr{G}$为半单李代数。
+所以半单李代数$\mathscr{G}$的Killing型$K_{ab}$可充当$\mathscr{G}$的度规，称为嘉当度规。
+$K_{ab}$的号差原则上因$\mathscr{G}$而异，不过物理中遇到的李代数的$K_{ab}$多数是负定的，因而存在正交归一基底$\{(E_\mu)^a\}$使$K_{\mu\nu} = K_{ab}(E_\mu)^a(E_\nu)^b = -\delta_{\mu\nu}$。
+
+嘉当度规$K_{ab}$的一大用处是给结构常数$C^\sigma{}_{\mu\nu}$降指标，即可定义
+$$C_{\rho\mu\nu} \equiv K_{\rho\sigma}C^\sigma{}_{\mu\nu}$$
+
+\begin{theorem}
+    $C_{\rho\mu\nu} \equiv C_{[\rho\mu\nu]}$
+\end{theorem}
+
+\begin{proof}
+    下标本来就反称，故只须证$C_{\rho\mu\nu} = -C_{\mu\rho\nu}$，即$K_{\rho\sigma}C^\sigma{}_{\mu\nu} = -K_{\mu\sigma}C^\sigma{}_{\rho\nu}$。
+    注意到$K_{\rho\sigma}C^\sigma{}_{\mu\nu} = K(E_\rho, E_\sigma)C^\sigma{}_{\mu\nu} = K(E_\rho, C^\sigma{}_{\mu\nu}E_\sigma) = K(E_\rho, [E_\mu, E_\nu])$，只须证
+    $$K(E_\rho, [E_\mu, E_\nu]) = -K(E_\mu, [E_\rho, E_\nu])$$
+    利用前述定理及$[E_\rho, E_\mu] = -[E_\mu, E_\rho]$立即得证。
+\end{proof}
+
+李代数$\mathscr{G}$的Killing型是用伴随表示$\mathrm{ad}$定义的，但可自然推广到任何表示$\beta \colon \mathscr{G} \to \mathscr{L}(\mathscr{G})$。
+在$\mathscr{G}$上定义对称双线性映射$\tilde K \colon \mathscr{G} \times \mathscr{G} \to \mathbb{R}$如下：
+$$\tilde K(A, B) \coloneq \operatorname{tr}[\beta(A)\beta(B)], ~ \forall A, B \in \mathscr{G}$$
+当$\beta$为伴随表示$\mathrm{ad}$时$\tilde K$回到$K$。
+与$K$类似，$\tilde K$也可看作$\mathscr{G}$上的$(0, 2)$型对称张量，故也可记作$\tilde K_{ab}$。
+当李代数$\mathscr{G}$及其表示$\beta$满足适当条件时$\tilde K$非退化，这时就可充当$\mathscr{G}$上的度规，不妨称为广义嘉当度规。
+不难证明前述定理也适用于$\tilde K$，即
+$$\tilde K([A, B], C) = \tilde K(A, [B, C]), ~ \forall A, B, C \in \mathscr{G}$$
+
 \iffalse
 
 \section{固有洛伦兹群和洛伦兹代数}
