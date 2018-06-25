@@ -1,9 +1,71 @@
 \chapter[纤维丛及其在规范场论的应用]{\\纤维丛及其在规范场论的应用}
 
-本附录大量用到李群和李代数的知识。
-由于种种原因，
+本附录大量用到李群和李代数的知识，阅读前最好先读前一章。
+由于种种原因，本章（及前一章）的某些符号与本书他处的习惯不尽相同，例如，
+\textcircled{1} 除少数地方外不用抽象指标，以减轻表达式的外观复杂度。
+\textcircled{2} 曲线$\eta(t)$的切矢用$\displaystyle\frac{\mathrm{d}\eta(t)}{\mathrm{d}t}$（或$\mathrm{d}\eta(t) / \mathrm{d}t$，或$(\mathrm{d} / \mathrm{d}t)\eta(t)$，只在少数情况用$\partial / \partial t$）代表。
+此外，本章经常涉及丛流形$P$和底流形$M$，它们的点分别用$p \in P$和$x \in M$代表；
+$p \in P$的切空间在本书他处都记作$V_p$，但在本章中$V_p$另有含义，代表$p$点切空间的竖直子空间。
+因此本章把$p \in P$的切空间记作$\mathrm{T}_pP$。
+类似地，$x \in M$的切空间记作$\mathrm{T}_xM$。
+这不但符合大多数文献的习惯，而且也合理，因为$M$的切丛在文献中统一记作$\mathrm{T}M$,点$x \in M$的切空间既然对应于$x$上方的纤维，就对应于$\mathrm{T}M$的一个子集，自然应记作$\mathrm{T}_xM$。
 
 \section{主纤维丛}
+
+\subsection{主丛的定义和例子}
+
+\begin{definition}
+    李群$G$在流形$K$上的一个左作用是一个$C^\infty$映射$L \colon G \times K \to K$满足：
+    \begin{enumerate}[（a）]
+        \item $L_g \colon K \to K$是微分同胚 $\forall g \in G$；
+        \item $L_{gh} = L_g \comp L_h, ~ \forall g, h \in G$
+    \end{enumerate}
+\end{definition}
+
+\begin{note}
+    与李变换群的定义比较可知李变换群$G \times M \to M$就是$G$在$M$上的左作用。
+\end{note}
+
+\begin{definition}
+    李群$G$在流形$K$上的一个右作用是一个$C^\infty$映射$R \colon K \times G \to K$满足：
+    \begin{enumerate}[（a）]
+        \item $R_g \colon K \to K$是微分同胚 $\forall g \in G$；
+        \item $R_{gh} = R_h \comp R_g, ~ \forall g, h \in G$
+    \end{enumerate}  
+\end{definition}
+
+\begin{note}
+    仿照李变换群，也可以证明$L_e$及$R_e$（其中$e$是$G$的恒等元）是恒等映射。
+\end{note}
+
+下面大量用到李群$G$在某流形（主丛流形）$P$上的右作用，即$R \colon P \times G \to P$。
+我们将把$R_g(p)$（其中$g \in G, p \in P$）简记作$pg$。
+
+\begin{definition}
+    子集$\{pg \mid g \in G\} \subset P$称为右作用$R \colon P \times G \to P$过点$p \in P$的轨道。
+    右作用$R \colon P \times G \to P$称为自由的，若$g \neq e \Rightarrow pg \neq p ~ \forall p \in P$。
+    左作用的自由性和轨道仿此定义。
+\end{definition}
+
+现在介绍主纤维丛的定义。
+这一定义对初学者有一定难度，我们先给出定义，再以加注的方式详加解释。
+
+\begin{definition}
+    主纤维丛由一个叫做丛流形的流形$P$、一个叫做底流形的流形$M$和一个叫做结构群的李群$G$组成，满足以下要求：
+    \begin{enumerate}[（a）]
+        \item $G$在$P$上有自由右作用$R \colon P \times G \to P$；
+        \item 存在$C^\infty$的、到上的投影映射$\pi \colon P \to M$，满足
+        $$\pi^{-1}[\pi(p)] = \{pg \mid g \in G\}, ~ \forall p \in P$$
+        \item 每一$x \in M$有开邻域$U \subset M$及微分同胚$T_U \colon \pi^{-1}[U] \to U \times G$，且$T_U$取如下形式：
+        $$T_U(p) = (\pi(p), S_U(p)), ~ \forall p \in \pi^{-1}[U]$$
+        其中映射$S_U \colon \pi^{-1}[U] \to G$满足
+        $$S_U(pg) = S_U(p)g, ~ \forall g \in G$$
+    \end{enumerate}
+\end{definition}
+
+\begin{note}
+    今后把主纤维丛简称主丛，并简记为$P(M, G)$，甚至简记为$P$。
+\end{note}
 
 \section{主丛上的联络}
 
