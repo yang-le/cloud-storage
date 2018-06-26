@@ -67,6 +67,75 @@ $p \in P$的切空间在本书他处都记作$V_p$，但在本章中$V_p$另有�
     今后把主纤维丛简称主丛，并简记为$P(M, G)$，甚至简记为$P$。
 \end{note}
 
+\begin{note}
+    投影映射$\pi \colon P \to M$一般不是一一映射，故逆映射$\pi^{-1} \colon M \to P$一般不存在。
+    但对子集$U \subset M$而言，$\pi^{-1}[U] \equiv \{p \in P \mid \pi(p) \in U\}$有明确含义。
+    同理，把$x \in M$看作$M$的独点子集$\{x\} \in M$，则$\pi^{-1}[\{x\}]$有意义（简记作$\pi^{-1}[x]$）,称为点$x \in M$上方的纤维。
+    注意到前述定义，条件（b）实际上就是要求任一点$p \in P$的投影$\pi(p) \in M$上方的纤维$\pi^{-1}[\pi(p)]$等于右作用$R$过点$p$的轨道。
+\end{note}
+
+\begin{note}
+    映射$R \colon P \times G \to P$在给定$p \in P$后诱导出映射$R_p \colon G \to P$。
+    既然$\pi^{-1}[\pi(p)]$是$R$过$p$的轨道，映射$R_p$的值域就只能是$\pi^{-1}[\pi(p)] \subset P$，故也可把$R_p$更明确地写成$R_p \colon G \to \pi^{-1}[\pi(p)]$。
+    令$x \equiv \pi(p)$以便把$R_p \colon G \to \pi^{-1}[\pi(p)]$简记为$R_p \colon G \to \pi^{-1}[x]$。
+    可以证明$R_p \colon G \to P$是个嵌入映射，所以$G$的流形结构可被带到$\pi^{-1}[x]$上，使$\pi^{-1}[x]$成为$P$中的嵌入子流形，\footnote{
+        不难证明$\pi^{-1}[x]$由此得到的微分（流形）结构与点$p \in \pi^{-1}[x]$的选择无关。
+        还可证明$\pi^{-1}[x]$是正则嵌入子流形。
+    }而且$R_p \colon G \to \pi^{-1}[x]$成为微分同胚。
+    进一步自然要问：$G$的群结构是否也可被带到$\pi^{-1}[x]$上？
+    答案是肯定的。
+    首先，$R_p(e) = p$使我们想到可选$p$作为待定义李群$\pi^{-1}[x]$的恒等元。
+    其次，每一$p' \in \pi^{-1}[x]$对应于$G$的一个元素$g \equiv R_p^{-1}(p')$，故
+    $$p' = R_p(g) = R_g(p) = pg$$
+    因而可借用$G$的群乘法给$\pi^{-1}[x]$定义群乘法：
+    $$(pg)\cdot(ph) \coloneq p(gh), ~ \forall pg, ph \in \pi^{-1}[x]$$
+    于是每一纤维都可看作$G$的一个李群同构版本。
+    但必须注意：由于$p$点在$\pi^{-1}[x]$上可以任取（$\pi^{-1}[x]$中没有一点是天生与众不同的），在把$\pi^{-1}[x]$定义为李群时不存在一种自然的定义方式（取任意$p \in \pi^{-1}[x]$作为恒等元均可）。
+    所以，与$G$不同，$\pi^{-1}[x]$不是一个自然的李群，或说它不存在天生的群结构。
+    它与$G$之间的李群同构映射$R_p$是$p$点依赖的。
+\end{note}
+
+\begin{note}
+    条件（c）保证每一$x \in M$都有开邻域$U$，其逆像$\pi^{-1}[U]$与乘积流形$U \times G$微分同胚。
+    在特殊情况下，这个$U$可能``大''到等于$M$，这时$\pi^{-1}[U] = P$，于是$P$与乘积流形$M \times G$微分同胚，不妨写$P = M \times G$。
+    这种可表为乘积流形的主丛称为平凡主丛。
+    一般主丛并不平凡，但条件（c）保证$\pi^{-1}[U]$总与$U \times G$微分同胚，所以说任何主丛都是局域平凡的。
+    由于微分同胚映射$T_U$在此起关键作用，所以把$T_U$称为一个局域平凡化，简称局域平凡。
+\end{note}
+
+\begin{note}
+    条件（c）是对映射$T_U$的要求。
+    $\forall p \in \pi^{-1}[U]$，映射的像$T_U(p)$是$U \times G$的一点，即$U$的一点与$G$的一点构成的有序对$(\bullet, \bullet)$，由此不难理解前式右边写成$(\pi(p), S_U(p))$的原因。
+    括号中第一槽$\pi(p)$表明$T_U(p)$的第一要素等于$p$的投影$\pi(p)$（$p \in \pi^{-1}[U]$保证$\pi(p)$的确是$U$的元素），第二槽则要灵活得多，它只规定第二要素是$p$在映射$S_U$下的像，而对映射$S_U$的唯一要求是满足前述等式。
+\end{note}
+
+\begin{note}
+    $\forall x \in U$，把$S_U$的定义域限制为$\pi^{-1}[U]$的子集$\pi^{-1}[x]$，便有微分同胚$S_U \colon \pi^{-1}[x] \to G$（以保证$T_U$是微分同胚）。
+    可见，选定一个局域平凡$T_U$就选定了$\pi^{-1}[x]$与$G$之间的一个微分同胚映射，因而在$\pi^{-1}[x]$上确定了一个``特殊点''$\breve{p}_U$，满足$S_U(\breve{p}_U) = e \in G$。
+    相应于这个$\breve{p}_U$又有微分同胚$R_{\breve{p}_U} \colon G \to \pi^{-1}[x]$，不难证明映射$R_{\breve{p}_U}$与$S_U \colon \pi^{-1}[x] \to G$互逆，即
+    $$S_U \comp R_{\breve{p}_U} \colon G \to G \text{是恒等映射}$$
+\end{note}
+
+\begin{note}
+    设$P(M, G)$是主丛，则不难证明如下的有用公式：
+    $$R_g \comp R_p = R_{pg} \comp I_{g^{-1}}, ~ \forall p \in P, g \in G$$
+    其中，$I_{g^{-1}} \colon G \to G$是由$g^{-1} \in G$构造的伴随同构。
+\end{note}
+
+\begin{example}
+    对任给的李群$G$和流形$M$总可按如下三步构造一个主丛：
+    \begin{enumerate}[（1）]
+        \item 选$P \equiv M \times G$为丛流形，则$P$的任一点都可表为$p = (x, g)$，其中$x \in M, g \in G$。
+        \item 定义自由右作用$R \colon P \times G \to P$为
+        $$R_h(x, g) \coloneq (x, gh), ~ \forall x \in M, ~ h,g \in G$$
+        （也可表为$(x, g)h \coloneq (x, gh)$）
+        \item 定义投影映射为
+        $$\pi(x, g) \coloneq x, ~ \forall x \in M, g \in G$$
+    \end{enumerate}
+    以上三步足以保证$P(M, G)$是个主丛，条件（c）自动满足，具体说，$\forall x \in M$都选$M$为条件中的开邻域$U$，从而$\pi^{-1}[U] = \pi^{-1}[M] = M \times G$，再把局域平凡$T_U \colon \pi^{-1}[U] \to U \times G$定义为恒等映射便可。
+    这样构造的主丛显然是平凡的。
+\end{example}
+
 \section{主丛上的联络}
 
 \section{与主丛相伴的纤维丛（伴丛）}
