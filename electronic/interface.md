@@ -121,6 +121,31 @@ Advanced Host Controller Interface
 PCI is a local computer bus for attaching hardware devices in a computer.
 PCI is the initialism for **Peripheral Component Interconnect** and is part of the PCI Local Bus standard.
 
+### Pins
+
+| Pin# | Side B | Side A | Comments |
+| ---- | ------ | ------ | -------- |
+| 1    | -12V   | TRST#  | JTAG port pins (optional) |
+| 2    | TCK    | +12V   | JTAG port pins (optional) |
+| 3    | Ground | TMS    | JTAG port pins (optional) |
+| 4    | TDO    | TDI    | JTAG port pins (optional) |
+| 5    | +5V    | +5V    |          |
+| 6    | +5V    | INTA#  | Interrupt lines (open-drain) |
+| 7    | INTB#  | INTC#  | Interrupt lines (open-drain) |
+| 8    | INTD#  | +5V    | Interrupt lines (open-drain) |
+| 9    | PRSNT1#|Reserved| Pulled low to indicate 7.5 or 25W power required |
+| 10   |Reserved| IOPWR  | +5V or +3.3V |
+| 11   | PRSNT2#|Reserved| Pulled low to indicate 7.5 or 25W power required |
+| 12   | Ground | Ground | Key notch for 3.3V-capable cards |
+| 13   | Ground | Ground | Key notch for 3.3V-capable cards |
+| 14   |Reserved|3.3V aux| Standby power (optional) |
+| 15   | Ground | RST#   | Bus reset |
+| 16   | CLK    | IOPWR  | 33/66 MHz clock |
+| 17   | Ground | GNT#   | Bus grant from motherboard to card |
+| 18   | REQ#   | Ground | Bus request from card to motherboard |
+| 19   | IOPWR  | PME#   | Power management event (optional) 3.3V, open drain, active low |
+
+
 ## AGP
 
 ## PCI Express
