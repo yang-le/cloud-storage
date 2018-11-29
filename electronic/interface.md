@@ -251,3 +251,85 @@ PCI Express (Peripheral Component Interconnect Express), officially abbreviated 
 | Pin# | Side B | Side A | Description |
 | ---- | ------ | ------ | ----------- |
 | 1    | +12V   | PRSNT1#| Must connect to farthest PRSNT2# pin |
+| 2    | +12V   | +12V   | Main power pins |
+| 3    | +12V   | +12V   | Main power pins |
+| 4    | Ground | Ground | |
+| 5    | SMCLK  | TCK    | SMBus and JTAG port pins |
+| 6    | SMDAT  | TDI    | SMBus and JTAG port pins |
+| 7    | Ground | TDO    | SMBus and JTAG port pins |
+| 8    | +3.3V  | TMS    | SMBus and JTAG port pins |
+| 9    | TRST#  | +3.3V  | SMBus and JTAG port pins |
+| 10   | +3.3V aux | +3.3V | Standby power |
+| 11   | WAKE#  | PERST# | Link reactivation; fundamental reset |
+| -    |        |        | Key notch |
+| 12   |CLKREQ# | Ground | Clock Request Signal |
+| 13   | Ground | REFCLK+| Reference clock differential pair |
+| 14   | HSOp(0)| REFCLK-| Lane 0 transmit data, + and - |
+| 15   | HSOn(0)| Ground | Lane 0 transmit data, + and - |
+| 16   | Ground | HSIp(0)| Lane 0 receive data, + and - |
+| 17   | PRSNT2#| HSIn(0)| Lane 0 receive data, + and - |
+| 18   | Ground | Ground | PCI Express x1 cards end at pin 18 |
+| 19   | HSOp(1)|Reserved| Lane 1 transmit data, + and - |
+| 20   | HSOn(1)| Ground | Lane 1 transmit data, + and - |
+| 21   | Ground | HSIp(1)| Lane 1 receive data, + and - |
+| 22   | Ground | HSIn(1)| Lane 1 receive data, + and - |
+| 23   | HSOp(2)| Ground | Lane 2 transmit data, + and - |
+| 24   | HSOn(2)| Ground | Lane 2 transmit data, + and - |
+| 25   | Ground | HSIp(2)| Lane 2 receive data, + and - |
+| 26   | Ground | HSIn(2)| Lane 2 receive data, + and - |
+| 27   | HSOp(3)| Ground | Lane 3 transmit data, + and - |
+| 28   | HSOn(3)| Ground | Lane 3 transmit data, + and - |
+| 29   | Ground | HSIp(3)| Lane 3 receive data, + and - |
+| 30   |PWRBRK# | HSIn(3)| Lane 3 receive data, + and - |
+| 31   | PRSNT2#| Ground | |
+| 32   | HSOn(2)|Reserved| PCI Express x4 cards end at pin 32 |
+| 33   | HSOp(4)|Reserved| Lane 4 transmit data, + and - |
+| 34   | HSOn(4)| Ground | Lane 4 transmit data, + and - |
+| 35   | Ground | HSIp(4)| Lane 4 receive data, + and - |
+| 36   | Ground | HSIn(4)| Lane 4 receive data, + and - |
+| 37   | HSOp(5)| Ground | Lane 5 transmit data, + and - |
+| 38   | HSOn(5)| Ground | Lane 5 transmit data, + and - |
+| 39   | Ground | HSIp(5)| Lane 5 receive data, + and - |
+| 40   | Ground | HSIn(5)| Lane 5 receive data, + and - |
+| 41   | HSOp(6)| Ground | Lane 6 transmit data, + and - |
+| 42   | HSOn(6)| Ground | Lane 6 transmit data, + and - |
+| 43   | Ground | HSIp(6)| Lane 6 receive data, + and - |
+| 44   | Ground | HSIn(6)| Lane 6 receive data, + and - |
+| 45   | HSOp(7)| Ground | Lane 7 transmit data, + and - |
+| 46   | HSOn(7)| Ground | Lane 7 transmit data, + and - |
+| 47   | Ground | HSIp(7)| Lane 7 receive data, + and - |
+| 48   | PRSNT2#| HSIn(7)| Lane 7 receive data, + and - |
+| 49   | Ground | Ground | PCI Express x8 cards end at pin 49 |
+| 50   | HSOp(8)|Reserved| Lane 8 transmit data, + and - |
+| 51   | HSOn(8)| Ground | Lane 8 transmit data, + and - |
+| 52   | Ground | HSIp(8)| Lane 8 receive data, + and - |
+| 53   | Ground | HSIn(8)| Lane 8 receive data, + and - |
+| 54   | HSOp(9)| Ground | Lane 9 transmit data, + and - |
+| 55   | HSOn(9)| Ground | Lane 9 transmit data, + and - |
+| 56   | Ground | HSIp(9)| Lane 9 receive data, + and - |
+| 57   | Ground | HSIn(9)| Lane 9 receive data, + and - |
+| 58   |HSOp(10)| Ground | Lane 10 transmit data, + and - |
+| 59   |HSOn(10)| Ground | Lane 10 transmit data, + and - |
+| 60   | Ground |HSIp(10)| Lane 10 receive data, + and - |
+| 61   | Ground |HSIn(10)| Lane 10 receive data, + and - |
+| 62   |HSOp(11)| Ground | Lane 11 transmit data, + and - |
+| 63   |HSOn(11)| Ground | Lane 11 transmit data, + and - |
+| 64   | Ground |HSIp(11)| Lane 11 receive data, + and - |
+| 65   | Ground |HSIn(11)| Lane 11 receive data, + and - |
+| 66   |HSOp(12)| Ground | Lane 12 transmit data, + and - |
+| 67   |HSOn(12)| Ground | Lane 12 transmit data, + and - |
+| 68   | Ground |HSIp(12)| Lane 12 receive data, + and - |
+| 69   | Ground |HSIn(12)| Lane 12 receive data, + and - |
+| 70   |HSOp(13)| Ground | Lane 13 transmit data, + and - |
+| 71   |HSOn(13)| Ground | Lane 13 transmit data, + and - |
+| 72   | Ground |HSIp(13)| Lane 13 receive data, + and - |
+| 73   | Ground |HSIn(13)| Lane 13 receive data, + and - |
+| 74   |HSOp(14)| Ground | Lane 14 transmit data, + and - |
+| 75   |HSOn(14)| Ground | Lane 14 transmit data, + and - |
+| 76   | Ground |HSIp(14)| Lane 14 receive data, + and - |
+| 77   | Ground |HSIn(14)| Lane 14 receive data, + and - |
+| 78   |HSOp(15)| Ground | Lane 15 transmit data, + and - |
+| 79   |HSOn(15)| Ground | Lane 15 transmit data, + and - |
+| 80   | Ground |HSIp(15)| Lane 15 receive data, + and - |
+| 81   |PRSNT2# |HSIn(15)| Lane 15 receive data, + and - |
+| 82   |Reserved| Ground | |
