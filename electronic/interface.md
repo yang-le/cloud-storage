@@ -144,9 +144,83 @@ PCI is the initialism for **Peripheral Component Interconnect** and is part of t
 | 17   | Ground | GNT#   | Bus grant from motherboard to card |
 | 18   | REQ#   | Ground | Bus request from card to motherboard |
 | 19   | IOPWR  | PME#   | Power management event (optional) 3.3V, open drain, active low |
-
+| 20   | AD[31] | AD[30] | Address / data bus (upper half) |
+| 21   | AD[29] | +3.3V  | Address / data bus (upper half) |
+| 22   | Ground | AD[28] | Address / data bus (upper half) |
+| 23   | AD[27] | AD[26] | Address / data bus (upper half) |
+| 24   | AD[25] | Ground | Address / data bus (upper half) |
+| 25   | +3.3V  | AD[24] | Address / data bus (upper half) |
+| 26   |C/BE[3]#| IDSEL  | Address / data bus (upper half) |
+| 27   | AD[23] | +3.3V  | Address / data bus (upper half) |
+| 28   | Ground | AD[22] | Address / data bus (upper half) |
+| 29   | AD[21] | AD[20] | Address / data bus (upper half) |
+| 30   | AD[19] | Ground | Address / data bus (upper half) |
+| 31   | +3.3V  | AD[18] | Address / data bus (upper half) |
+| 32   | AD[17] | AD[16] | Address / data bus (upper half) |
+| 33   |C/BE[2]#| +3.3V  | Address / data bus (upper half) |
+| 34   | Ground | FRAME# | Bus transfer in progress |
+| 35   | IRDY#  | Ground | Initiator ready |
+| 36   | +3.3V  | TRDY#  | Target ready |
+| 37   | DEVSEL#| Ground | Target selected |
+| 38   | PCIXCAP / Ground | STOP # | PCI-X capable; Target request halt |
+| 39   | LOCK#  | +3.3V  | Locked transaction |
+| 40   | PERR#  | SMBCLK / SDONE | Parity error; SMBus clock or Snoop done (obsolete) |
+| 41   | +3.3V  | SMBDAT / SBO# | SMBus data or Snoop backoff (obsolete) |
+| 42   | SERR#  | Ground | System error |
+| 43   | +3.3V  | PAR    | Even parity over AD[31:00] and C/BE[3:0]# |
+| 44   |C/BE[1]#| AD[15] | Address / data bus (higher half) |
+| 45   | AD[14] | +3.3V  | Address / data bus (higher half) |
+| 46   | Ground | AD[13] | Address / data bus (higher half) |
+| 47   | AD[12] | AD[11] | Address / data bus (higher half) |
+| 48   | AD[10] | Ground | Address / data bus (higher half) |
+| 49   | M66EN / Ground | AD[09] | Address / data bus (higher half) |
+| 50   | Ground | Ground | Key notch for 5V-capable cards |
+| 51   | Ground | Ground | Key notch for 5V-capable cards |
+| 52   | AD[08] |C/BE[0]#| Address / data bus (lower half) |
+| 53   | AD[07] | +3.3V  | Address / data bus (lower half) |
+| 54   | +3.3V  | AD[06] | Address / data bus (lower half) |
+| 55   | AD[05] | AD[04] | Address / data bus (lower half) |
+| 56   | AD[03] | Ground | Address / data bus (lower half) |
+| 57   | Ground | AD[02] | Address / data bus (lower half) |
+| 58   | AD[01] | AD[00] | Address / data bus (lower half) |
+| 59   | IOPWR  | IOPWR  | |
+| 59   | ACK64# | REQ64# | For 64-bit extension; no connect for 32-bit devices |
+| 61   | +5V    | +5V    | |
+| 62   | +5V    | +5V    | |
+| -    |        |        | Notch |
+| 63   |Reserved| Ground | |
+| 64   | Ground |C/BE[7]#| |
+| 65   |C/BE[6]#|C/BE[5]#| |
+| 66   |C/BE[4]#| IOPWR    | |
+| 67   | Ground | PAR64  | |
+| 68   | AD[63] | AD[62] | |
+| 69   | AD[61] | Ground | |
+| 70   | IOPWR  | AD[60] | |
+| 71   | AD[59] | AD[58] | |
+| 72   | AD[57] | Ground | |
+| 73   | Ground | AD[56] | |
+| 74   | AD[55] | AD[54] | |
+| 75   | AD[53] | IOPWR  | |
+| 76   | Ground | AD[52] | |
+| 77   | AD[51] | AD[50] | |
+| 78   | AD[49] | Ground | |
+| 79   | IOPWR  | AD[48] | |
+| 80   | AD[47] | AD[46] | |
+| 81   | AD[45] | Ground | |
+| 82   | Ground | AD[44] | |
+| 83   | AD[43] | AD[42] | |
+| 84   | AD[42] | IOPWR  | |
+| 85   | Ground | AD[40] | |
+| 86   | AD[39] | AD[38] | |
+| 87   | AD[37] | Ground | |
+| 88   | IOPWR  | AD[36] | |
+| 89   | AD[35] | AD[34] | |
+| 90   | AD[33] | Ground | |
+| 91   | Ground | AD[32] | |
+| 92   |Reserved|Reserved| |
+| 93   |Reserved| Ground | |
+| 94   | Ground |Reserved| |
 
 ## AGP
 
 ## PCI Express
-
