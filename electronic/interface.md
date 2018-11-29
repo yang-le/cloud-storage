@@ -282,7 +282,7 @@ PCI Express (Peripheral Component Interconnect Express), officially abbreviated 
 | 29   | Ground | HSIp(3)| Lane 3 receive data, + and - |
 | 30   |PWRBRK# | HSIn(3)| Lane 3 receive data, + and - |
 | 31   | PRSNT2#| Ground | |
-| 32   | HSOn(2)|Reserved| PCI Express x4 cards end at pin 32 |
+| 32   | Ground |Reserved| PCI Express x4 cards end at pin 32 |
 | 33   | HSOp(4)|Reserved| Lane 4 transmit data, + and - |
 | 34   | HSOn(4)| Ground | Lane 4 transmit data, + and - |
 | 35   | Ground | HSIp(4)| Lane 4 receive data, + and - |
