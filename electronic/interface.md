@@ -121,6 +121,15 @@ Advanced Host Controller Interface
 PCI is a local computer bus for attaching hardware devices in a computer.
 PCI is the initialism for **Peripheral Component Interconnect** and is part of the PCI Local Bus standard.
 
+### Revisions
+
+- PCI 1.0 1992
+- PCI 2.0 1993
+  - PCI 2.1 1995
+  - PCI 2.2 1998
+  - PCI 2.3 2002
+- PCI 3.0 2004
+
 ### Pins
 
 | Pin# | Side B | Side A | Comments |
@@ -224,3 +233,21 @@ PCI is the initialism for **Peripheral Component Interconnect** and is part of t
 ## AGP
 
 ## PCI Express
+
+PCI Express (Peripheral Component Interconnect Express), officially abbreviated as PCIe or PCI-e, is a high-speed serial computer expansion bus standard, designed to replace the older PCI, PCI-X and AGP bus standards.
+
+### Revisions
+
+| PCI Express version | Introduced | Transfer rate | x1 | x2 | x4 | x8 | x16 |
+| ------------------- | ---------- | ------------- | -- | -- | -- | -- | --- |
+| 1.0                 | 2003       | 2.5 GT/s      | 250 MB/s | 0.50 GB/s | 1.0 GB/s | 2.0 GB/s | 4.0 GB/s |
+| 2.0                 | 2007       | 5.0 GT/s      | 500 MB/s | 1.0 GB/s | 2.0 GB/s | 4.0 GB/s | 8.0 GB/s |
+| 3.0                 | 2010       | 8.0 GT/s      | 984.6 MB/s | 1.97 GB/s | 3.94 GB/s | 7.88 GB/s | 15.75 GB/s |
+| 4.0                 | 2017       | 16.0 GT/s     | 1969 MB/s | 3.94 GB/s | 7.88 GB/s | 15.75 GB/s | 31.51 GB/s |
+| 5.0                 | 2019       | 32.0 GT/s     | 3938 MB/s | 7.88 GB/s | 15.75 GB/s | 31.51 GB/s | 63.0 GB/s |
+
+### Pins
+
+| Pin# | Side B | Side A | Description |
+| ---- | ------ | ------ | ----------- |
+| 1    | +12V   | PRSNT1#| Must connect to farthest PRSNT2# pin |
