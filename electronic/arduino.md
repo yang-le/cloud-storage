@@ -28,17 +28,43 @@ It keeps the same robust form factor and peripheral list of the UNO with the add
 这是Arduino与Intel合作的一块板子，核心为Intel Curie模块。
 该模块内置运算单元、运动传感器和低功耗蓝牙，以及由Intel开发的开源RTOS固件。
 其CPU为Intel Quark SE C1000，x86架构，32MHz主频，32位地址/数据总线，8KB L1 指令缓存。
-其传感器子系统核心为ARC EM4 DSP，RISC架构，同样是32MHz主频，32位地址/数据总线，8KB L1 指令缓存，内置浮点运算单元。
+其传感器子系统核心为ARC EM4 ~DSP~，ARCv2架构，内置浮点运算单元。
 
 #### Esplora
+
+The Arduino Esplora is an Arduino Leonardo based board with integrated sensors and actuators.
+
+Leonardo的衍生版，额外增加了声光输出，手柄、滑杆、温度传感器、加速度计、麦克风和光照传感器。支持外接彩色LCD屏幕。
 
 ### Modules
 
 #### Micro
 
+Arduino Micro is the **smallest** board of the family, easy to integrate it in everyday objects to make them interactive.
+
+Leonardo的微型版，Arduino和Adafruit合作推出。
+
 #### Nano
 
+The Arduino Nano is a compact board similar to the UNO.
+
+Uno的微型版，主芯片为ATmega328P，USB芯片为FTDI生产的FT232R。
+
 #### ~Mini~
+
+The Arduino Mini is a very compact version of the Arduino Nano without an on-board USB to Serial connection.
+
+衍生自Nano，去掉了USB芯片，已停产。
+
+## Enhanced Features
+
+### Boards
+
+#### Mega
+
+The MEGA 2560 is designed for more complex projects.
+
+主芯片为ATMemga2560。支持54路GPIO（其中15路可用作PWM输出），16路模拟输入，4路UARTs。
 
 ## Internet of Things
 
