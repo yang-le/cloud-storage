@@ -107,4 +107,63 @@ It has an on-board SD connector with dedicated SPI interfaces (SPI1) that allows
 
 ## Internet of Things
 
+### Boards
+
+#### Yún
+
+The Yún with the power of a Linux based system that enables advanced network connections and applications.
+
+主芯片 ATmega32u4
+无线模块 Qualcomm Atheros AR9331，其核心是一颗MIPS 24K CPU
+USB2.0 HUB及SD读卡器芯片 AU6351GL
+
+#### ~Ethernet~
+
+An Arduino Uno incorporating a WizNet W5100 TCP/IP Ethernet Controller.
+
+已停产。
+
+#### ~Tian~
+
+The new Arduino Tian board is powered by Atmel’s SAMD21 MCU,
+featuring a 32-bit ARM Cortex® M0+ core and a Qualcomm Atheros AR9342,
+which is an highly integrated MIPS processor operating at up to 533MHz and feature-rich IEEE802.11n 2x2 2.4/5 GHz dual-band WiFi module.
+Qualcomm Atheros MIPS supports a Linux distribution, based on OpenWRT named Linino.
+The Arduino Tian has also a build in 4GB eMMC memory that will can be helpful to build your projects.
+It is possible to Switch ON/OFF the Linux port from the MCU to reduce the power consumption.
+
+主芯片 ATSAMD21G18A
+USB芯片 CP2105GM
+无线模块 Qualcomm Atheros AR9342，其核心是一颗MIPS 74K CPU
+以太网接口芯片 AR8035
+蓝牙芯片 CSR8510
+USB2.0 HUB及SD读卡器芯片 AU6259 + AU6350
+8MB SPI 闪存芯片 W25Q64FVSSIGT
+
+已停产。
+
+#### Industrial 101
+
+#### Leonardo Eth
+
+#### MKR FOX 1200
+
+#### MKR WAN 1300
+
+#### MKR GSM 1400
+
+#### MKR WiFi 1010
+
+#### Uno WiFi Rev2
+
+#### MKR NB 1500
+
+#### MKR VIDOR 4000
+
+### Modules
+
+#### MKR1000
+
+#### Yún MINI
+
 ## Wearable
