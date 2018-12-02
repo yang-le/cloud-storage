@@ -66,6 +66,45 @@ The MEGA 2560 is designed for more complex projects.
 
 主芯片为ATMemga2560。支持54路GPIO（其中15路可用作PWM输出），16路模拟输入，4路UARTs。
 
+#### Zero
+
+Arduino Zero is a simple and powerful 32-bit extension of the platform established by the UNO. 
+
+主芯片为ATSAMD21G18，是一个32位 Cortex M0+ ARM。
+工作电压3.3V，主频48MHz，拥有256KB的Flash及32KB的SRAM，内置12通道DMA，32位CRC生成器，以及带时钟/日历功能的32位RTC。
+20路GPIO中包括6路12位ADC和1路10位的DAC，其中18路支持PWM，19路支持外部中断。
+
+调试芯片为A06-0736 EDBG。
+
+#### Due
+
+The Arduino Due is the first Arduino board based on a 32-bit ARM core microcontroller.
+
+主芯片为AT91SAM3X8E，32位 Cortex M3 ARM.
+工作电压3.3V，主频84MHz，拥有512KB的Flash和96KB的SRAM。
+提供54路GPIO（其中12路支持PWM输出），12路模拟输入和2路模拟输出（DAC）。
+
+USB芯片为ATmega16u2。
+
+#### ~Mega ADK~
+
+#### ~M0~
+
+已停产，被Zero替代。
+
+#### ~M0 Pro~
+
+已停产，被Zero替代。
+
+### Modules
+
+#### MKR Zero
+
+The MKR ZERO brings you the power of a Zero in the smaller format established by the MKR form factor.
+It has an on-board SD connector with dedicated SPI interfaces (SPI1) that allows you to play with MUSIC files with no extra hardware!
+
+该模组板载SD卡插槽，支持3.7V最小700mAh的Li-Po 单电芯充电。
+
 ## Internet of Things
 
 ## Wearable
