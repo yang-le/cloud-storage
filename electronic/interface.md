@@ -1,5 +1,21 @@
 # Interfaces
 
+## DDR SDRAM
+
+DDR SDRAM means double data rate synchronous dynamic random-access memory.
+
+### Revisions
+
+| standard | Release year | Transfer rate (MT/s) | DIMM pins |
+| -------- | ------------ | -------------------- | --------- |
+| DDR 1    | 2000         | 200 – 400            | 184       |
+| DDR 2    | 2003         | 400 – 1066.67        | 240       |
+| DDR 3    | 2007         | 800 – 2133.33        | 240       |
+| DDR 4    | 2014         | 1600 – 3200          | 288       |
+
+### Pins
+
+
 ## PATA
 
 The ATA interface itself evolved in several stages from Western Digital's original **Integrated Drive Electronics** (IDE) interface.
