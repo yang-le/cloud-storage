@@ -172,9 +172,20 @@ It is possible to Switch ON/OFF the Linux port from the MCU to reduce the power 
 
 已停产。
 
-#### Industrial 101
+#### ~Industrial 101~
 
-#### Leonardo Eth
+The Industrial 101 is a small form-factor Yún designed for product integration.
+
+已停产
+
+#### ~Leonardo Eth~
+
+All the fun of a Leonardo, plus an Ethernet port to extend your project to the IoT world.
+
+- 主芯片 ATmega32u4
+- 以太网接口芯片 W5500
+
+已停产
 
 #### MKR FOX 1200
 
@@ -185,6 +196,17 @@ It is possible to Switch ON/OFF the Linux port from the MCU to reduce the power 
 #### MKR WiFi 1010
 
 #### Uno WiFi Rev2
+
+It's basically an Arduino Uno Rev3 with more kick:
+It comes with a brand new 8-bit microprocessor from Microchip, and an onboard IMU (Inertial Measurement Unit).
+As for the WiFi connection, that's made secure with the new ECC608 crypto chip accelerator.
+
+- 主芯片 ATmega4809
+- USB芯片 ATMEGA32U4
+- 加密芯片 ATECC608A
+- 6DoF IMU LSM6DSM
+- 以太网接口芯片 W5500
+- Wi-Fi模块 NINA-W132
 
 #### MKR NB 1500
 
