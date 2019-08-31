@@ -1,0 +1,17 @@
+https://www-cs-faculty.stanford.edu/~knuth/fasc0a.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc0b.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc0c.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc1a.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc1b.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc1.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc2a.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc2b.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc3a.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc3b.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc4a.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc4b.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc5a.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc5b.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc5c.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc6a.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc8a.ps.gz
