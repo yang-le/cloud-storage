@@ -130,31 +130,32 @@
 ## 6.3. Digital Searching
 ## 6.4. Hashing
 ## 6.5. Retrieval on Secondary Keys
-# 7. Combinatorial Searching
-## 7.1. Zeros and Ones
-### 7.1.1. Boolean Basics
-### 7.1.2. Boolean evaluation
-### 7.1.3. Bitwise tricks and techniques
-### 7.1.4. Binary decision diagrams
-## 7.2. Generating all possibilities
-### 7.2.1. Generating Basic Combinatorial Patterns
-#### 7.2.1.1. Generating all n-tuples
-#### 7.2.1.2. Generating all permutations
-#### 7.2.1.3. Generating all combinations
-#### 7.2.1.4. Generating all partitions
-#### 7.2.1.5. Generating all set partitions
-#### 7.2.1.6. Generating all trees
-#### 7.2.1.7. History and further references
-### 7.2.2. Backtrack Programming
-#### 7.2.2.1. Dancing Links
-#### 7.2.2.2. Satisfiability
-#### 7.2.2.3. Constraint satisfaction
-#### 7.2.2.4. Hamiltonian paths
-#### 7.2.2.5. Cliques
+# 7. Combinatorial Searching (0a, begin of Volume 4A)
+## 7.1. Zeros and Ones (0b)
+### 7.1.1. Boolean Basics (0b)
+### 7.1.2. Boolean evaluation (0c)
+### 7.1.3. Bitwise tricks and techniques (1a)
+### 7.1.4. Binary decision diagrams (1b)
+## 7.2. Generating all possibilities (2a)
+### 7.2.1. Generating Basic Combinatorial Patterns (2a)
+#### 7.2.1.1. Generating all n-tuples (2a)
+#### 7.2.1.2. Generating all permutations (2b)
+#### 7.2.1.3. Generating all combinations (3a)
+#### 7.2.1.4. Generating all partitions (3b)
+#### 7.2.1.5. Generating all set partitions (3b)
+#### 7.2.1.6. Generating all trees (4a)
+#### 7.2.1.7. History and further references (4b, end of Volume 4A)
+(5a, begin of Volume 4B)
+### 7.2.2. Backtrack Programming (5b)
+#### 7.2.2.1. Dancing Links (5c)
+#### 7.2.2.2. Satisfiability (6a, end of Volume 4B)
+#### 7.2.2.3. Constraint satisfaction (7a, begin of Volume 4C)
+#### 7.2.2.4. Hamiltonian paths and cycles (8a)
+#### 7.2.2.5. Cliques (8b)
 #### 7.2.2.6. Covers
 #### 7.2.2.7. Squares
-#### 7.2.2.8. A potpourri of puzzles
-#### 7.2.2.9. Estimating backtrack costs
+#### 7.2.2.8. A potpourri of puzzles (9b)
+#### 7.2.2.9. Estimating backtrack costs (9c)
 ### 7.2.3. Generating inequivalent patterns
 ## 7.3. Shortest paths
 ## 7.4. Graph algorithms
@@ -162,8 +163,8 @@
 ### 7.4.2. Special classes of graphs
 ### 7.4.3. Expander graphs
 ### 7.4.4. Random graphs
-## 7.5. Network algorithms
-### 7.5.1. Distinct representatives
+## 7.5. Graphs and optimization
+### 7.5.1. Bipartite matching
 ### 7.5.2. The assignment problem
 ### 7.5.3. Network flows
 ### 7.5.4. Optimum subtrees
@@ -179,4 +180,3 @@
 # 8. Recursion
 # 9. Lexical scanning
 # 10. Parsing techniques
-

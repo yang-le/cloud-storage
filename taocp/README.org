@@ -72,15 +72,13 @@ Volume 4 Fascicle 0, under the direction of Lin Peng Huang (Beijing: Chinese Mac
 
 ** 第4B卷
 
-第4B卷现有一个分册已出版，其将作为该卷的中间三分之一的内容，如下
+Combinatorial Algorithms, Part 2 (Upper Saddle River, New Jersey: Addison-Wesley, 2023), xviii+714pp. ISBN 0-201-03806-4
+
+在第4B卷的硬皮版完成之前，有两个分册出版，如下
+
+Volume 4 Fascicle 5, Mathematical Preliminaries Redux; Introduction to Backtracking; Dancing Links (2019), xiii+384pp. ISBN 978-0-13-467179-6
 
 Volume 4 Fascicle 6, Satisfiability (2015), xiii+310pp. ISBN 978-0-13-439760-3
-
-另有一些“准分册”作为alpha测试之用，可以直接从Knuth的网页下载到，它们是
-
-Pre-Fascicle 5a (Mathematical Preliminaries Redux)
-
-Pre-Fascicle 5b (Introduction to Backtracking)
 
 ** 第5卷
 

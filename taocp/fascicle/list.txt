@@ -17,3 +17,5 @@ https://www-cs-faculty.stanford.edu/~knuth/fasc6a.ps.gz
 https://www-cs-faculty.stanford.edu/~knuth/fasc7a.ps.gz
 https://www-cs-faculty.stanford.edu/~knuth/fasc8a.ps.gz
 https://www-cs-faculty.stanford.edu/~knuth/fasc8b.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc9b.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc9c.ps.gz
