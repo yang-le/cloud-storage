@@ -159,12 +159,12 @@
 ### 7.2.3. Generating inequivalent patterns
 ## 7.3. Shortest paths
 ## 7.4. Graph algorithms
-### 7.4.1. Components and traversal
+### 7.4.1. Components and traversal (12a)
 ### 7.4.2. Special classes of graphs
 ### 7.4.3. Expander graphs
 ### 7.4.4. Random graphs
 ## 7.5. Graphs and optimization
-### 7.5.1. Bipartite matching
+### 7.5.1. Bipartite matching (14a)
 ### 7.5.2. The assignment problem
 ### 7.5.3. Network flows
 ### 7.5.4. Optimum subtrees
@@ -177,6 +177,6 @@
 ## 7.8. Branch-and-bound techniques
 ## 7.9. Herculean tasks (aka NP-hard problems)
 ## 7.10. Near-optimization
-# 8. Recursion
+# 8. Recursion (16a)
 # 9. Lexical scanning
 # 10. Parsing techniques
