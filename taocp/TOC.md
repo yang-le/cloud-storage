@@ -180,3 +180,5 @@
 # 8. Recursion (16a)
 # 9. Lexical scanning
 # 10. Parsing techniques
+# 11. Mathematical Linguistics
+# 12. Programming Language Translation
