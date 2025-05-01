@@ -22,3 +22,4 @@ https://www-cs-faculty.stanford.edu/~knuth/fasc9c.ps.gz
 https://www-cs-faculty.stanford.edu/~knuth/fasc12a.ps.gz
 https://www-cs-faculty.stanford.edu/~knuth/fasc14a.ps.gz
 https://www-cs-faculty.stanford.edu/~knuth/fasc16a.ps.gz
+https://www-cs-faculty.stanford.edu/~knuth/fasc20a.ps.gz

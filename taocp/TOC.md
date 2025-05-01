@@ -177,7 +177,7 @@
 ## 7.8. Branch-and-bound techniques
 ## 7.9. Herculean tasks (aka NP-hard problems)
 ## 7.10. Near-optimization
-# 8. Recursion (16a)
+# 8. Recursion (16a, 20a)
 # 9. Lexical scanning
 # 10. Parsing techniques
 # 11. Mathematical Linguistics
